@@ -17,6 +17,7 @@ TITLE="title: "
 DATE_LINE="date: "
 CATEGORIES="categories: "
 TAGS="tags: "
+PROJECTS="projects: "
 
 # Ask user for input
 echo "Enter title:"
@@ -31,6 +32,10 @@ echo "Enter tags: include []"
 read PHRASE3
 echo "You entered $PHRASE3"
 
+echo "Enter projects: include []" 
+read PHRASE4
+echo "You entered $PHRASE4"
+
 # Remove spaces from PHRASE and replace with hyphens
 FORMATTED_PHRASE="$(echo -ne "${PHRASE}" | tr [:space:] '-')"
 
@@ -40,7 +45,7 @@ NEW_MD_FILE="$(echo -n "${POST_DATE}"-"${FORMATTED_PHRASE}")".md
 
 # Prints formatted Jekyll header utilizing POST_DATE and user-entered PHRASE.
 # Writes contents to NEW_MD_FILE
-printf "%s\n%s\n%s%s\n%s'%s'\n%s%s\n%s%s\n%s%s\n" "$MD_LINE" "$LAYOUT" "$TITLE" "$PHRASE" "$DATE_LINE" "$POST_DATE" "$CATEGORIES" "$PHRASE2" "$TAGS" "$PHRASE3" "$MD_LINE" >> \
+printf "%s\n%s\n%s%s\n%s'%s'\n%s%s\n%s%s\n%s%s\n" "$MD_LINE" "$LAYOUT" "$TITLE" "$PHRASE" "$DATE_LINE" "$POST_DATE" "$CATEGORIES" "$PHRASE2" "$TAGS" "$PHRASE3" "$PROJECTS" "$PHRASE4" "$MD_LINE" >> \
 "$NEW_MD_FILE"
 
 # Opens NEW_MD_FILE in nano text editor for editing.
