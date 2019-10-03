@@ -17,26 +17,23 @@ Soft and Hard homogenization, and DNA/RNA Extractions followed this [protocol](h
 [Qubit](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2019-05-31-Qubit-Protocol.md) used to check DNA and RNA quantity (ng/μl).  
 [TapeStation](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2019-05-31-TapeStation-Protocol.md) used to check RNA quality.
 
-RNA Qubit Results: 20191001  
-DNA Qubit Results: 20191002
-
-DNA Standard 1: 149.59 ng/μl  
-DNA Standard 2: 20,884.81 ng/μl  
+DNA Standard 1: 163.56 ng/μl  
+DNA Standard 2: 22,644.53 ng/μl  
 RNA Standard 1: 402.39 ng/μl  
 RNA Standard 2: 10,030.67 ng/μl
 
 | Timepoint | Species     | Coral ID | Extraction ID | Homogenization | DNA Reading 1 | DNA Reading 2 | Average DNA ng/μl | RNA Reading 1 | RNA Reading 2 | Average RNA ng/μl | RIN |
 |-----------|-------------|----------|---------------|----------------|---------------|---------------|-------------------|---------------|---------------|-------------------|-----|
-| 20181215  | Montipora   | 2511     | 485           | soft           | 15.2          | 15.2          | 15.2              | 19.8          | 19.4          | 19.6              | 9.2 |
-| 20181215  | Montipora   | 2511     | 486           | hard           | 7.54          | 7.5           | 7.52              | 12.2          | 12            | 12.1              | NA  |
-| 20181215  | Montipora   | 2188     | 487           | soft           | 11.9          | 11.9          | 11.9              | 13.4          | 13.4          | 13.4              | 9.2 |
-| 20181215  | Montipora   | 2188     | 488           | hard           | 14.6          | 14.5          | 14.55             | 10.2          | 10.2          | 10.2              | NA  |
-| 20181215  | Pocillopora | 2668     | 489           | soft           | 19            | 18.9          | 18.95             | 90.6          | 90.6          | 90.6              | 9   |
-| 20181215  | Pocillopora | 2668     | 490           | hard           | 13.5          | 13.3          | 13.4              | 52.6          | 52.4          | 52.5              | NA  |
-| 20181215  | Montipora   | 2302     | 491           | soft           | 46.6          | 46.4          | 46.5              | 17.6          | 17.8          | 17.7              | 8.7 |
-| 20181215  | Montipora   | 2302     | 492           | hard           | 30            | 29.8          | 29.9              | 11.2          | 11.2          | 11.2              | NA  |
-| 20181215  | Montipora   | 1248     | 493           | soft           | 43.2          | 43            | 43.1              | 14.4          | 14.4          | 14.4              | **  |
-| 20181215  | Montipora   | 1248     | 494           | hard           | 35.8          | 35.6          | 35.7              | 13.8          | 13.6          | 13.7              | NA  |
+| 20181215  | Montipora   | 2511     | 485           | soft           | 10.2          | 9.92          | 10.06             | 19.8          | 19.4          | 19.6              | 9.2 |
+| 20181215  | Montipora   | 2511     | 486           | hard           | 7.62          | 7.52          | 7.57              | 12.2          | 12            | 12.1              | NA  |
+| 20181215  | Montipora   | 2188     | 487           | soft           | 17.7          | 17.5          | 17.6              | 13.4          | 13.4          | 13.4              | 9.2 |
+| 20181215  | Montipora   | 2188     | 488           | hard           | 10.3          | 10.2          | 10.25             | 10.2          | 10.2          | 10.2              | NA  |
+| 20181215  | Pocillopora | 2668     | 489           | soft           | 28.4          | 28.2          | 28.3              | 90.6          | 90.6          | 90.6              | 9   |
+| 20181215  | Pocillopora | 2668     | 490           | hard           | 31.4          | 31.2          | 31.3              | 52.6          | 52.4          | 52.5              | NA  |
+| 20181215  | Montipora   | 2302     | 491           | soft           | 12.3          | 12.2          | 12.25             | 17.6          | 17.8          | 17.7              | 8.7 |
+| 20181215  | Montipora   | 2302     | 492           | hard           | 8.74          | 8.64          | 8.69              | 11.2          | 11.2          | 11.2              | NA  |
+| 20181215  | Montipora   | 1248     | 493           | soft           | 15.5          | 15.4          | 15.45             | 14.4          | 14.4          | 14.4              | **  |
+| 20181215  | Montipora   | 1248     | 494           | hard           | 6.46          | 6.38          | 6.42              | 13.8          | 13.6          | 13.7              | NA  |
 
 [Link to 20191001 TapeStation report, Extractions #485-494](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2019-10-01%20-%2013.58.57.pdf)
 
