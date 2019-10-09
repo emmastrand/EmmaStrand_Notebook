@@ -16,6 +16,8 @@ Soft and Hard homogenization, and DNA/RNA Extractions followed this [protocol](h
 
 DNA 400 μl Wash Buffer step was centrifuged for 30 seconds instead of 2 minutes.
 
+Bleached fragments: P1416 (HTHC), P1596 (HTAC), P2185 (HTHC)
+
 [Qubit](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2019-05-31-Qubit-Protocol.md) used to check DNA and RNA quantity (ng/μl).  
 [TapeStation](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2019-05-31-TapeStation-Protocol.md) used to check RNA quality.
 
