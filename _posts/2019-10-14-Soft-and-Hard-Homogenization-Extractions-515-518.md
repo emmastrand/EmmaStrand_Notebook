@@ -27,8 +27,8 @@ Soft and Hard homogenization, and DNA/RNA Extractions followed this [protocol](h
 
 **Qubit, Gel, and TapeStation at a later date.**
 
-[Link to X TapeStation report, Extractions #515-518]()
+[Link to 20191015 TapeStation report, Extractions #25, 177, 179, 279, 477, 493, 515, 517](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2019-10-15%20-%2013.26.52.pdf)
 
 [Gel Electrophoresis Results](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2019-07-16-Gel-Electrophoresis-Protocol.md):
 
-![X Extractions #515-518]()
+![20191014 Extractions #515-518](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20191015.JPG?raw=true)

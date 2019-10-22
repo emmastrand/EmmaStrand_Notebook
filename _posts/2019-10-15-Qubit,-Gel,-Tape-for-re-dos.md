@@ -28,8 +28,8 @@ Gel Electrophoresis, Qubit, and TapeStation re-dos for samples that did not read
 | 454           | 10.2          | 10.2      | 10.2        |
 
 [TapeStation](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2019-05-31-TapeStation-Protocol.md) used to check RNA quality.  
-[Link to 20191015 TapeStation report, Extractions #25, 177, 179, 279, 477, 493, 515, 517]()
+[Link to 20191015 TapeStation report, Extractions #25, 177, 179, 279, 477, 493, 515, 517](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2019-10-15%20-%2013.26.52.pdf)
 
 [Gel Electrophoresis Results](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2019-07-16-Gel-Electrophoresis-Protocol.md):  
 
-![20191014 Extractions #515-518]()
+![20191014 Extractions #515-518](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20191015.JPG?raw=true)
