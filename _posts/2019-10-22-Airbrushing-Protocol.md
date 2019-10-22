@@ -35,4 +35,7 @@ Iwata Airbrush set up:
 
 The airbrush set-up is not fully broken down after each use. The compressor and airbrush will remain connected. See the photo below.  
 
-[Iwata_airbrush_setup]()
+![Iwata_airbrush_setup](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/Iwata_Airbrush_setup.JPG?raw=true)
+
+3. Connect the remaining end of the red/blue/green airhose to the Iwata airbrush. See photo below. *Putnam lab airbrush supplies are kept in drawer AD1.*  
+4. 
