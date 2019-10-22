@@ -9,6 +9,8 @@ projects: Putnam Lab
 
 # Putnam Lab Airbrushing Protocol
 
+Goal: To remove the tissue from the coral fragment to obtain a coral tissue homogenate <50 mL.  
+
 Written for airbrushing *Montipora capitata* and *Pocillopora acuta* fragments from the Holobiont Integration 2018 project.
 
 Based on the following Putnam Lab Airbrushing protocols:  
@@ -19,10 +21,18 @@ Based on the following Putnam Lab Airbrushing protocols:
 
 Iwata Airbrush Set: [Example](https://www.amazon.com/Eclipse-Airbrush-Master-Compressor-Cleaning/dp/B001BO4X8Y/ref=sr_1_1_sspa?keywords=iwata+airbrush&qid=1571759464&sr=8-1-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUExUzVDOVBHRkgySFlJJmVuY3J5cHRlZElkPUEwMjk5MDAwMTU1TDcxQ0M2TExNQSZlbmNyeXB0ZWRBZElkPUEwNDIwNDIwMTlRVUxHV0dRQzBGSiZ3aWRnZXROYW1lPXNwX2F0ZiZhY3Rpb249Y2xpY2tSZWRpcmVjdCZkb05vdExvZ0NsaWNrPXRydWU=)  
 
-## Set-up
+## Summary Protocol  
+1. Sterilizing equipment with 10% bleach, DI water Type II, and 70% ethanol.  
+2. Airbrush coral fragment using ice-cold filtered sea-water.  
+3. Record volume (mL) of the homogenate.  
+4.
+
+
+## Detailed Protocol
+### Set-up
 
 Sterilizing working area:  
-1. Rinse clippers with:  
+1. Rinse tweezers and scissors with:  
   a. 10% bleach solution  
   b. DI water Type II  
   c. 70% Ethanol
@@ -30,12 +40,48 @@ Sterilizing working area:
 3. Spray gloves with 70% ethanol and rub hands together.
 
 Iwata Airbrush set up:  
-1. Plug in the Iwata air compressor into the nearest outlet.  
-2. Connect one end of the red/blue/green hose to the compressor.
+4. Plug in the Iwata air compressor into the nearest outlet.  
+5. Connect one end of the red/blue/green hose to the compressor.
 
 The airbrush set-up is not fully broken down after each use. The compressor and airbrush will remain connected. See the photo below.  
 
 ![Iwata_airbrush_setup](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/Iwata_Airbrush_setup.JPG?raw=true)
 
-3. Connect the remaining end of the red/blue/green airhose to the Iwata airbrush. See photo below. *Putnam lab airbrush supplies are kept in drawer AD1.*  
-4. 
+6. Connect the remaining end of the red/blue/green airhose to the Iwata airbrush. See photo below. *Putnam lab airbrush supplies are kept in drawer AD1.*   
+7. Fill the airbrush bottle with ice-cold 0.2 μm filtered seawater. Cap the bottle and connect to the Iwata airbrush as seen below.
+
+![Airbrush](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/Iwata_airbrush2.JPG?raw=true)
+
+8. Turn on the Iwata air compressor.  
+9. Rinsing the airbrush for 30 seconds: Aim the nozzle of the airbrush (end closest to the airbrush bottle) into an empty 100 mL beaker. Push down (pulls air from the compressor) and pull back (pulls water from the bottle) on the trigger to operate. Continue for 30 seconds to flush the airbrush.  
+
+### Sample Preparation  
+10. Label a sterile whirlpak with date of airbrushing and coral ID.  
+11. Take the coral fragment out of the -80&deg;C freezer.  
+*Once the coral fragment is taken from the freezer, the following steps need to be done timely (not rushed) because higher temperatures will degrade the protein and tissue.*
+12. Using the sterilized tweezers, transfer the coral fragment to the new sterile whirlpak.  
+
+### Airbrushing
+13. Using the sides of the whirlpak, hold the coral fragment in the whirlpak (never touch the fragment with your gloves).  
+14. With your other hand, hold the airbrush so that you are able to push down and pull back on the trigger only using one hand.  
+15. Hold the airbrush nozzle at least an inch above the coral fragment so that the polyps and sharp structure of the coral does not damage the fragile airbrush pieces.
+16. Push down and pull back on the trigger to operate the airbrush, hovering over a section of tissue to clear the skeleton before releasing moving on to another section.  
+*In order to airbrush the entire coral, user will have to rotate the fragment throughout the protocol. Hold the whirlpak and coral fragment so that the opening of the whirlpak faces upwards to avoid losing tissue solution. The white, calcium carbonate skeleton of the coral will start to show. It can be difficult to airbrush every single portion of tissue off of the fragment due to the porous nature of coral structure. Airbrush until the fragment is as white as possible.*
+
+## Homogenate collection   
+17. Using the tweezers, transfer the coral skeleton from the new labeled whirlpak to the original sampled whirlpak. *Be careful not to tilt the whirlpak and lose tissue homogenate.*
+18. Tilt the whirlpak containing the tissue homogenate slightly to the left so that the homogenate aggregrates in one corner of the bag.  
+19. Using sterilized scissors, cut the bottom right hand corner of the whirlpak.  
+20. Gently pour the homogenate out of the whirlpak into a 50 mL falcon tube.  
+21. Label the falcon tube with the airbrushed date, coral ID, your initials, and the coral sampling date.  
+22. Record the volume (mL) of homogenate.
+
+## Homogenization  
+
+## Aliquot  
+
+## Bleaching
+
+where to put skeletons? 
+
+## Clean-up

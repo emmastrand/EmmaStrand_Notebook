@@ -2,7 +2,7 @@
 layout: post
 title: Creating a GitHub/Jekyll Lab Notebook
 date: '2019-05-24'
-categories: Notebook
+categories: Goals
 tags: [computing, Lab Notebook, Jekyll]
 ---
 
