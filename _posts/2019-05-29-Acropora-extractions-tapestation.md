@@ -2,7 +2,7 @@
 layout: post
 title: Acropora eggs/sperm DNA and RNA Extractions
 date: '2019-05-29'
-categories: DNA Extraction, RNA Extraction
+categories: Processing
 tags: [Acropora, DNA, RNA, eggs, sperm, TapeStation]
 ---
 

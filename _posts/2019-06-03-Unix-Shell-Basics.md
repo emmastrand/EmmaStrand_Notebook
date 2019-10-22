@@ -2,7 +2,7 @@
 layout: post
 title: Unix Shell Basics
 date: '2019-06-03'
-categories: Processing
+categories: Notebook
 tags: unix, terminal
 projects: Putnam Lab
 ---

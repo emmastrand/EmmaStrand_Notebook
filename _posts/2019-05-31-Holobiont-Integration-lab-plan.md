@@ -2,7 +2,7 @@
 layout: post
 title: Lab Plan for Holobiont Integration Project
 date: '2019-05-31'
-categories: Lab Plan
+categories: Notebook
 tags: [Lab Plan, Holobiont Integration]
 ---
 
