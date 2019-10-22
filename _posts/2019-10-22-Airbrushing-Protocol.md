@@ -21,11 +21,15 @@ Based on the following Putnam Lab Airbrushing protocols:
 
 Iwata Airbrush Set: [Example](https://www.amazon.com/Eclipse-Airbrush-Master-Compressor-Cleaning/dp/B001BO4X8Y/ref=sr_1_1_sspa?keywords=iwata+airbrush&qid=1571759464&sr=8-1-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUExUzVDOVBHRkgySFlJJmVuY3J5cHRlZElkPUEwMjk5MDAwMTU1TDcxQ0M2TExNQSZlbmNyeXB0ZWRBZElkPUEwNDIwNDIwMTlRVUxHV0dRQzBGSiZ3aWRnZXROYW1lPXNwX2F0ZiZhY3Rpb249Y2xpY2tSZWRpcmVjdCZkb05vdExvZ0NsaWNrPXRydWU=)  
 
+Micro-homogenizing kit: [Example]()
+
 ## Summary Protocol  
 1. Sterilizing equipment with 10% bleach, DI water Type II, and 70% ethanol.  
 2. Airbrush coral fragment using ice-cold filtered sea-water.  
 3. Record volume (mL) of the homogenate.  
-4.
+4. Homogenize tissue slurry.  
+5. Aliquot portions of the tissue slurry for further physiological analysis.  
+6.
 
 
 ## Detailed Protocol
@@ -76,12 +80,31 @@ The airbrush set-up is not fully broken down after each use. The compressor and 
 21. Label the falcon tube with the airbrushed date, coral ID, your initials, and the coral sampling date.  
 22. Record the volume (mL) of homogenate.
 
-## Homogenization  
+## Homogenization
+
+23. Plug in the micro-homogenizer set up to the nearest outlet and connect the large micro-homogenizer piece to reflect the set up below.
+
+![micro]()
+
 
 ## Aliquot  
+1. Total protein: Aliquot X uL of tissue homogenate into a new 1.5 mL microcentrifuge tube labeled with the coral ID and "total protein".  
+2. Chlorophyll-a: Aliquot X uL of tissue homogenate into a new 1.5 mL microcentrifuge tube labeled with the coral ID and "Chlorophyll-a".  
+3. Symbiont counts: Aliquot X uL of tissue homogenate into a new 1.5 mL microcentrifuge tube labeled with the coral ID and "flowcy".  
 
 ## Bleaching
-
-where to put skeletons? 
+1. Label an empty 100 mL beaker with a piece of tape labeled with the coral ID, "20% bleach", date of bleaching.  
+2. Using the sterilized tweezers, transfer the skeleton from the whirlpak to the beaker.  
+3. Pour enough 20% bleach to cover the entire skeleton.  
+4. Leave for 24 hours.  
+5. After 24 hours has past, use sterilized tweezers to remove the coral fragment from the beaker and place on a paper towel. Take the labeled piece of tape from the beaker and place under the coral fragment.     
+6. Let dry for 24 hours.  
+7. After 24 hours has past, use the sterilized tweezers to move the skeleton from the paper towel to a ziploc bag labeled with the coral ID.
 
 ## Clean-up
+1. Sterilize all scissors and tweezers used throughout the protocol.  
+2. Disconnect the Iwata airbrush set-up.  
+3. Disconnect the homogenization set-up.  
+3. Wipe down benchtop with 70% ethanol.  
+4. Throw away any garbage produced throughout protocol.  
+5. Empty any full tips containers and restock equipment and solutions as needed.
