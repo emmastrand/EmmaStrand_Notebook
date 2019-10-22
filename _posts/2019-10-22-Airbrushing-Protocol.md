@@ -29,8 +29,8 @@ Micro-homogenizing kit: [Example]()
 3. Record volume (mL) of the homogenate.  
 4. Homogenize tissue slurry.  
 5. Aliquot portions of the tissue slurry for further physiological analysis.  
-6.
-
+6. Bleach the coral skeleton  
+7. Clean up
 
 ## Detailed Protocol
 ### Set-up
@@ -84,13 +84,23 @@ The airbrush set-up is not fully broken down after each use. The compressor and 
 
 23. Plug in the micro-homogenizer set up to the nearest outlet and connect the large micro-homogenizer piece to reflect the set up below.
 
-![micro]()
+![micro](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/microhomogenizer.JPG?raw=true)
 
+24. Fill two 15 mL falcon tubes with DI water II (labeled "DI water II", your initials, and date made), a 15 mL falcon tube with 50% bleach (labeled "50% bleach", your initials, and date made), and a 15 mL falcon tube with 70% ethanol (labeled "ethanol", your initials, and date made).
+24. Sterilize the microhomogenizer by dipping the piece in the appropriate 15 mL falcon tube in this order:  
+  - DI water II  
+  - 50% bleach  
+  - DI water II  
+  - 70% ethanol  
+  - DI water II  
+25. Wipe down with a kimwipe.  
+26. Place the microhomogenizer in the coral tissue homogenate 50 mL falcon tube and turn on starting at a low speed. Gradually increase the speed of the microhomogenizer to fully homogenize the tissue slurry.  
 
 ## Aliquot  
-1. Total protein: Aliquot X uL of tissue homogenate into a new 1.5 mL microcentrifuge tube labeled with the coral ID and "total protein".  
-2. Chlorophyll-a: Aliquot X uL of tissue homogenate into a new 1.5 mL microcentrifuge tube labeled with the coral ID and "Chlorophyll-a".  
-3. Symbiont counts: Aliquot X uL of tissue homogenate into a new 1.5 mL microcentrifuge tube labeled with the coral ID and "flowcy".  
+28. Total protein: Aliquot X uL of tissue homogenate into a new 1.5 mL microcentrifuge tube labeled with the coral ID and "total protein".  
+29. Chlorophyll-a: Aliquot X uL of tissue homogenate into a new 1.5 mL microcentrifuge tube labeled with the coral ID and "Chlorophyll-a".  
+30. Symbiont counts: Aliquot X uL of tissue homogenate into a new 1.5 mL microcentrifuge tube labeled with the coral ID and "flowcy".
+31. Store the tissue homogenate and aliquots in the -80&deg;C freezer.  
 
 ## Bleaching
 1. Label an empty 100 mL beaker with a piece of tape labeled with the coral ID, "20% bleach", date of bleaching.  
@@ -99,7 +109,8 @@ The airbrush set-up is not fully broken down after each use. The compressor and 
 4. Leave for 24 hours.  
 5. After 24 hours has past, use sterilized tweezers to remove the coral fragment from the beaker and place on a paper towel. Take the labeled piece of tape from the beaker and place under the coral fragment.     
 6. Let dry for 24 hours.  
-7. After 24 hours has past, use the sterilized tweezers to move the skeleton from the paper towel to a ziploc bag labeled with the coral ID.
+7. After 24 hours has past, use the sterilized tweezers to move the skeleton from the paper towel to a ziploc bag labeled with the coral ID.  
+8. Store the coral skeletons in ____.
 
 ## Clean-up
 1. Sterilize all scissors and tweezers used throughout the protocol.  
