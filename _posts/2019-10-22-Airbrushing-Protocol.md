@@ -52,7 +52,7 @@ The airbrush set-up is not fully broken down after each use. The compressor and 
 ![Iwata_airbrush_setup](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/Iwata_Airbrush_setup.JPG?raw=true)
 
 6. Connect the remaining end of the red/blue/green airhose to the Iwata airbrush. See photo below. *Putnam lab airbrush supplies are kept in drawer AD1.*   
-7. Fill the airbrush bottle with ice-cold 0.2 μm filtered seawater. Cap the bottle and connect to the Iwata airbrush as seen below.
+7. Fill the airbrush bottle with ice-cold PBS solution. Cap the bottle and connect to the Iwata airbrush as seen below.
 
 ![Airbrush](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/Iwata_airbrush2.JPG?raw=true)
 
