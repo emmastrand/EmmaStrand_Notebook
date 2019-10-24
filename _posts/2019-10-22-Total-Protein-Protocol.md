@@ -19,12 +19,26 @@ Based on the following Putnam Lab Airbrushing protocols:
 This protocol is adapted to determine total protein content using the [Pierce BCA Protein Assay Kit from Thermo Scientific](https://www.thermofisher.com/order/catalog/product/23225?SID=srch-srp-23225).  
 
 # Summary Protocol  
-
-# Setup
+1. Prepare the tissue homogenate sample using NaOH, 4 hour incubation period, and HCl prior to total protein procedure.  
+2. Prepare BSA Standards.  
+3. Prepare the BCA working reagent.  
+4. Microplate procedure from Pierce BCA Protein Assay Kit.  
 
 # Detailed Protocol  
 
+**Adult Tissue Sample Preparation**
+1. Thaw homogenate aliquot labeled with the coral ID and "total protein".  
+2. Label a new microcentrifuge tube with the coral ID, total protein assay date, and "prot". *If aliquot tube already contains exactly 500 μL of tissue sample, no need to make a new microcentrifuge tube.*  
+3. Pipette 500 μL of the adult coral tissue sample into the new labeled 1.5 mL microcentrifuge tube.  
+4. Add 10 μL of 1M NaOH (pH should be ~10) to the tube.  
+5. Pipette a very small amount of sample onto pH paper to confirm the pH ~10.  
+6. Incubate the tube at 50&deg;C for 4 hours shaking at 300 rpm.  
+7. Add 280 μL of 0.1M HCl to the tube to neutralize the sample. Add this volume in small amounts and continue to test the pH of the sample using pH paper. pH needs to be at 7.0 to move onto the next steps.  
+
+For coral larvae samples, see [K. Wong protocol](https://kevinhwong1.github.io/KevinHWong_Notebook/Total-Protein-Extraction-Protocol/).
+
 **Preparation of Diluted Albumin (BSA) Standards**  
+*These standards can be made during the 4 hour incubation period in the sample preparation section.*
 1. Use the following table as a guide to prepare a set of protein standards. For this project we will use the microplate procedure. Diluent is DI water Type II. Each vial will be a sterile 1.5 mL microcentrifuge tube. Label the cap of the microcentrifuge tube with the Vial ID ("A", "B", etc.).  
 
 | Vial | Volume of Diluent (μL) | Volume of Source of BSA (μL) | Final BSA Concentration (μg/mL) |

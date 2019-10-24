@@ -21,7 +21,7 @@ Based on the following Putnam Lab Airbrushing protocols:
 
 Iwata Airbrush Set: [Example](https://www.amazon.com/Eclipse-Airbrush-Master-Compressor-Cleaning/dp/B001BO4X8Y/ref=sr_1_1_sspa?keywords=iwata+airbrush&qid=1571759464&sr=8-1-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUExUzVDOVBHRkgySFlJJmVuY3J5cHRlZElkPUEwMjk5MDAwMTU1TDcxQ0M2TExNQSZlbmNyeXB0ZWRBZElkPUEwNDIwNDIwMTlRVUxHV0dRQzBGSiZ3aWRnZXROYW1lPXNwX2F0ZiZhY3Rpb249Y2xpY2tSZWRpcmVjdCZkb05vdExvZ0NsaWNrPXRydWU=)  
 
-Micro-homogenizing kit: [Example]()
+Micro-homogenizing kit: [PRO Scientific](https://proscientific.com/micro-sample-homogenizer-kits/standard-micro-homogenizer-package/)
 
 ## Summary Protocol  
 1. Sterilizing equipment with 10% bleach, DI water Type II, and 70% ethanol.  
