@@ -27,13 +27,14 @@ This protocol is adapted to determine total protein content using the [Pierce BC
 # Detailed Protocol  
 
 **Adult Tissue Sample Preparation**
-1. Thaw homogenate aliquot labeled with the coral ID and "total protein".  
-2. Label a new microcentrifuge tube with the coral ID, total protein assay date, and "prot". *If aliquot tube already contains exactly 500 μL of tissue sample, no need to make a new microcentrifuge tube.*  
-3. Pipette 500 μL of the adult coral tissue sample into the new labeled 1.5 mL microcentrifuge tube.  
-4. Add 10 μL of 1M NaOH (pH should be ~10) to the tube.  
-5. Pipette a very small amount of sample onto pH paper to confirm the pH ~10.  
-6. Incubate the tube at 50&deg;C for 4 hours shaking at 300 rpm.  
-7. Add 280 μL of 0.1M HCl to the tube to neutralize the sample. Add this volume in small amounts and continue to test the pH of the sample using pH paper. pH needs to be at 7.0 to move onto the next steps.  
+1. Thaw homogenate aliquot labeled with the coral ID and "total protein".
+2. Vortex to re-suspend the symbiont cell pellet.   
+3. Label a new microcentrifuge tube with the coral ID, total protein assay date, and "prot". *If aliquot tube already contains exactly 500 μL of tissue sample, no need to make a new microcentrifuge tube.*  
+4. Pipette 500 μL of the adult coral tissue sample into the new labeled 1.5 mL microcentrifuge tube.  
+5. Add 10 μL of 1M NaOH (pH should be ~10) to the tube.  
+6. Pipette a very small amount of sample onto pH paper to confirm the pH ~10.  
+7. Incubate the tube at 50&deg;C for 4 hours shaking at 300 rpm.  
+8. Add 280 μL of 0.1M HCl to the tube to neutralize the sample. Add this volume in small amounts and continue to test the pH of the sample using pH paper. pH needs to be at 7.0 to move onto the next steps.  
 
 For coral larvae samples, see [K. Wong protocol](https://kevinhwong1.github.io/KevinHWong_Notebook/Total-Protein-Extraction-Protocol/).
 
