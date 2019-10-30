@@ -30,7 +30,7 @@ Protocol written for *Montipora capitata* and *Pocillopora acuta* adult coral sa
 **Sample Preparation**
 1. Sonicate or homogenize tissue sample on cold PBS.  
 2. Centrifuge at 10,000 xg for 10 minutes at 4&deg;C.  
-3. Aliquot the supernatant for storage at -80&deg;C, protein determination, and subsequent TAC assay.
+3. Aliquot the supernatant for storage at -80&deg;C, protein determination, and subsequent TAC assay. Use this supernatant for the total protein protocol. 
 
 **Uric Acid Standard Curve Preparation**  
 1. Add 10 mg of the Uric Acid powder to 1 mL of 1N NaOH (10 mg/mL ratio) to create a 60 nM Uric Acid standard.   
@@ -58,4 +58,4 @@ Protocol written for *Montipora capitata* and *Pocillopora acuta* adult coral sa
 4. Add 50 μL of the 1X Copper Ion Reagent into each well.  
 5. Incubate 5 minutes on a shaker.  
 6. Add 50 μL of 1X Stop Solution to each well. This terminates the reaction.  
-7. Measure the absorbance for each well at 490 nm. 
+7. Measure the absorbance for each well at 490 nm.
