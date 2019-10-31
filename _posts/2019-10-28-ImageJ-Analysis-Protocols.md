@@ -7,21 +7,26 @@ tags: bleaching, images
 projects: Putnam Lab
 ---
 
-# Putnam Lab ImageJ Bleaching Analysis Protocols
+# Putnam Lab ImageJ Protocols
 
-Goal: To quantify bleaching from images taken of coral fragments next to a red, blue, green color standard ruler.  
-
-Protocol written to analyze images taken in the field for the 2018-2019 Holobiont Integration project.
+A series of analysis protocols in ImageJ.  
+Contents:
+- [**Bleaching_Score**](#Bleaching_Score)
+- [**Larvae_Size_Fecundity_Fertilization**](#Larvae_Size_Fecundity_Fertilization)
 
 ## ImageJ Download
 
 Download the ImageJ application from the National Institute of Health's webpage:
 https://imagej.nih.gov/ij/download.html.  
 
-## Image Example  
+## <a name="Bleaching_Score"></a> **Bleaching_Score**
+
+Goal: To quantify bleaching from images taken of coral fragments next to a red, blue, green color standard ruler. Protocol written to analyze images taken in the field for the 2018-2019 Holobiont Integration project.
+
+**Image Example**  
 Limit the amount of shadow and atypical light reflection by placing a piece of white paper behind the coral fragments. Place the red, blue, and green standard ruler behind the coral fragments. The water needs to be clean to avoid any particles blocking the coral standard ruler and/or coral fragments.
 
-## Quantifying Bleaching Score
+**Quantifying Bleaching Score**
 1. Open the ImageJ application. The application only appears as a tool bar until an image is opened.  
 2. Open "Bleaching ImageJ" google spreadsheet.    
 3. In ImageJ: "File" > "Open" > Choose the desired photo.
@@ -44,3 +49,26 @@ Limit the amount of shadow and atypical light reflection by placing a piece of w
 8. On the histogram window, click through the "RGB" options to record the mean red, blue, and green color concentration.
 
 ![ex](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/ImageJ_6.png?raw=true)
+
+## <a name="Larvae_Size_Fecundity_Fertilization"></a> **Larvae_Size_Fecundity_Fertilization**
+
+Goal: To measure the size (diameter) of 50 eggs per photo, quantify fecundity by larval counts, and quantify fertilization by embryo counts.  
+
+1. Open the ImageJ application. The application only appears as a tool bar until an image is opened.  
+2. Open "Bleaching ImageJ" google spreadsheet.    
+3. In ImageJ: "File" > "Open" > Choose the desired photo.
+
+**Egg Size**  
+
+**Fecundity**
+
+1. Count all of the eggs in each photo.  
+2. Record this total value in the spreadsheet.  
+
+**Fertilization**  
+1. Count all of the larvae in each category:  
+  - Unfertilized: one cell  
+  - Cleaved embryos: 2 cells  
+  - Cleaved embryos: 4 cells  
+  - Cleaved embryos: 4+ cells
+2. Record each value in the spreadsheet.
