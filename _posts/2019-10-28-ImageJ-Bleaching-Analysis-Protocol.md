@@ -40,5 +40,7 @@ Limit the amount of shadow and atypical light reflection by placing a piece of w
 
 ![example](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/ImageJ_5.png?raw=true)
 
-7. Click the fourth drawing tool option on the main toolbar, freehand selections. Outline the **LIVE coral tissue only**. Do not select any portions of the coral fragment that have a shadow.    
+7. Click the fourth drawing tool option on the main toolbar, freehand selections. Outline the **LIVE coral tissue only**. Do not select any portions of the coral fragment that have a shadow.
 8. On the histogram window, click through the "RGB" options to record the mean red, blue, and green color concentration.
+
+![ex](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/ImageJ_6.png?raw=true)
