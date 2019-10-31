@@ -105,12 +105,18 @@ The airbrush set-up is not fully broken down after each use. The compressor and 
 ## Bleaching
 1. Label an empty 100 mL beaker with a piece of tape labeled with the coral ID, "20% bleach", date of bleaching.  
 2. Using the sterilized tweezers, transfer the skeleton from the whirlpak to the beaker.  
-3. Pour enough 20% bleach to cover the entire skeleton.  
+3. Pour enough 20% bleach to cover the entire skeleton.
+
+![bleach]()
+
 4. Leave for 24 hours.  
-5. After 24 hours has past, use sterilized tweezers to remove the coral fragment from the beaker and place on a paper towel. Take the labeled piece of tape from the beaker and place under the coral fragment.     
+5. After 24 hours has past, use sterilized tweezers to remove the coral fragment from the beaker and place on a paper towel. Take the labeled piece of tape from the beaker and place under the coral fragment.  
+
+![drying]()
+
 6. Let dry for 24 hours.  
 7. After 24 hours has past, use the sterilized tweezers to move the skeleton from the paper towel to a ziploc bag labeled with the coral ID.  
-8. Store the coral skeletons in ____.
+8. Store the coral skeletons in the cardboard box above the microscopes labeled "Emma Coral Fragments".
 
 ## Clean-up
 1. Sterilize all scissors and tweezers used throughout the protocol.  
