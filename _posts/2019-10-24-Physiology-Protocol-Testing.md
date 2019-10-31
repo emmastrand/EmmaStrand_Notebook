@@ -23,3 +23,6 @@ Two healthy and two bleached fragments were chosen from the 20181215 molecular b
 | P2738    | 11   | ATHC      | 20181215  | 20191023      | ES   | 15                   | Healthy  |
 
 Coral skeletons were placed in 20% bleach for 24 hours (20191023), and then left out to dry for 24 hours (20191024).
+
+**20191030 E.S./S.G.**  
+Total Antioxidant Capacity following this [protocol](https://emmastrand.github.io/EmmaStrand_Notebook/Total-Antioxidant-Capacity-Protocol/) was tested on the four above coral fragment samples.  

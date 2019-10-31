@@ -26,7 +26,10 @@ Limit the amount of shadow and atypical light reflection by placing a piece of w
 2. Open "Bleaching ImageJ" google spreadsheet.    
 3. In ImageJ: "File" > "Open" > Choose the desired photo.  
 4. Open the histogram analysis option: "Analyze" > Histogram.  
-5. From the five options at the bottom of the window, click "Live" and "RGB". Once in live, selecting different regions of the photo, the histogram will change intensity levels.  
+5. Click "Live" and "RGB". Once in live, selecting different regions of the photo, the histogram will change intensity levels.  
+
+
+
 6. Select each of the three color standards and record the mean value given by the histogram.  
   1. Hover the mouse over a corner of the blue tape, right click to drag and select as much of the blue square as possible.  
   2. On the histogram window, click through the "RGB" options: "Intensity (unweighted), Intensity (weighted), "R+G+B", "Red", "Green", and stop at "Blue". Record the Mean value in "Bleaching ImageJ" spreadsheet under "Blue.Standard".  
