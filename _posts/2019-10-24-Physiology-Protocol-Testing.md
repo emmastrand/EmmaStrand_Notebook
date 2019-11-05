@@ -63,3 +63,36 @@ Ash-Free Dry Weight following this [protocol](https://emmastrand.github.io/EmmaS
 | 2738_400 | 20181215  | 0.3847         |           |              | 20191031  | ES        | Protocol testing |
 | 2738_600 | 20181215  | 0.5808         |           |              | 20191031  | ES        | Protocol testing |
 | 2738_700 | 20181215  | 0.6902         |           |              | 20191031  | ES        | Protocol testing |
+
+**20191104 E.S.**  
+Total Protein following this [protocol](https://emmastrand.github.io/EmmaStrand_Notebook/Total-Protein-Protocol/) was tested on the four above coral fragment samples.  
+
+Notes:  
+- 280 μL was too much 0.1 M HCl, pH read 5.0  
+- 50 μL of 1 M NaOH added back, pH read 9.0  
+Just to #1567:  
+- 10 μL HCl added, pH read 9.0  
+- 10 μL HCl added, pH read 9.0  
+- 10 μL HCl added, pH read 9.0  
+- 50 μL HCl added, pH read 9.0  
+- 50 μL HCl added, pH read 8.5  
+- 50 μL HCl added, pH read 8.5  
+- 50 μL HCl added, pH read 8.5  
+- 50 μL HCl added, pH read 7.0  
+Just to #1615:  
+- 200 μL HCl added, then 50 μL HCl added, then 10 μL HCl added, then 10 μL HCl added until pH read 7.0  
+Just to #2193:  
+- 200 μL HCl added, then 10 μL HCl added until pH read 7.0  
+Just to #2738:  
+- 270 μL HCl added until pH read 7.0
+
+Map for Spectrophotometer:  
+
+| 1 | 2    | 3    | 4 | 5 | 6 | 7 | 8    | 9    | 10   | 11   | 12   |      |
+|---|------|------|---|---|---|---|------|------|------|------|------|------|
+| **A** | A    | A    | B | B | C | C | D    | D    | E    | E    | F    | F    |
+| **B** | G    | G    | H | H | I | I | 1567 | 1567 | 1615 | 1615 | 2193 | 2193 |
+| **C** | 2738 | 2738 |   |   |   |   |      |      |      |      |      |      |
+| **D** |      |      |   |   |   |   |      |      |      |      |      |      | |
+
+[Total Protein Data Sheet]()
