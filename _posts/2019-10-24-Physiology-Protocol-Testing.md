@@ -95,4 +95,4 @@ Map for Spectrophotometer:
 | **C** | 2738 | 2738 |   |   |   |   |      |      |      |      |      |      |
 | **D** |      |      |   |   |   |   |      |      |      |      |      |      | |
 
-[Total Protein Data Sheet]()
+[Total Protein Data Sheet](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TotalProtein/20191105_TP.csv)
