@@ -50,4 +50,4 @@ RNA Standard 2:  ng/μl
 
 [Gel Electrophoresis Results](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2019-07-16-Gel-Electrophoresis-Protocol.md):
 
-![20191109 Extractions #519-538]()
+![20191109 Extractions #519-538](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20191109.JPG?raw=true)
