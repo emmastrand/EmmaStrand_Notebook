@@ -9,6 +9,8 @@ projects: Putnam Lab
 
 # Putnam Lab Total Protein Protocol  
 
+**Draft Protocol**
+
 Goal: To quantify the total protein concentration in coral homogenate samples.   
 
 Written for quantifying total protein of *Montipora capitata* and *Pocillopora acuta* fragments from the Holobiont Integration 2018 project.

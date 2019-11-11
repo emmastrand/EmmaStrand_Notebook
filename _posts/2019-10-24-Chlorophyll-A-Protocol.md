@@ -9,6 +9,8 @@ projects: Putnam Lab
 
 # Putnam Lab Chlorophyll-A Concentration Protocol
 
+**Draft Protocol**
+
 Goal: To determine the concentration of Chlorophyll-A in adult coral tissue homogenate samples.  
 
 Protocol written for *Montipora capitata* and *Pocillopora acuta* adult coral samples from the Holobiont Integration 2018 project. Modified from [Wall et al 2018](https://link.springer.com/content/pdf/10.1007%2Fs00227-018-3317-z.pdf).  

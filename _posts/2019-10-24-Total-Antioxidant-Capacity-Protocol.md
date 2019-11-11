@@ -9,6 +9,8 @@ projects: Putnam Lab
 
 # Putnam Lab Total Antioxidant Capacity Protocol
 
+**Draft Protocol**
+
 Goal: To determine the total antioxidant capacity in adult coral tissue homogenate samples.  
 
 Protocol written for *Montipora capitata* and *Pocillopora acuta* adult coral samples from the Holobiont Integration 2018 project. Modified from [Cell BioLabs OxiSelect Total Antioxidant Capacity (TAC) Assay Kit](https://www.cellbiolabs.com/total-antioxidant-capacity-tac-assay?gclid=EAIaIQobChMIiI6EtZK15QIVBKSzCh0uSw7pEAAYAyAAEgID-_D_BwE).

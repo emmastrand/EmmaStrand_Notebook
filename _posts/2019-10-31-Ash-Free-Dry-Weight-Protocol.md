@@ -9,6 +9,8 @@ projects: Putnam Lab
 
 # Putnam Lab Ash-Free Dry Weight Protocol
 
+**Draft Protocol**
+
 Protocol written for *Montipora capitata* and *Pocillopora acuta* adult coral samples from the Holobiont Integration 2018 project.  
 
 1. Turn on oven and set to 75&deg;C.
