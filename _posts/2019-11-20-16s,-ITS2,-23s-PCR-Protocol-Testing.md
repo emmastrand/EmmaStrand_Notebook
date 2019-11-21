@@ -73,7 +73,7 @@ Protocol:
 
 [Gel Electrophoresis Protocol](https://emmastrand.github.io/EmmaStrand_Notebook/Gel-Electrophoresis-Protocol/)
 
-![20191119 Gel]()
+![20191119 Gel](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20191119_amplicon.png?raw=true)
 
 
 Order of test tubes, gel electrophoresis, and PCR plates:  
