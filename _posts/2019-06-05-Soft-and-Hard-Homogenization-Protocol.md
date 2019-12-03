@@ -7,7 +7,7 @@ tags: soft homogenization, hard homogenization, DNA extraction, RNA extraction, 
 projects: Holobiont Integration
 ---
 
-# Soft and Hard Homogenization Protocol
+# Soft and Hard Homogenization Protocol    
 Goal: To extract DNA and RNA from coral fragments and to enrich for host in the first "soft homogenization" fraction and holobiont in the "hard homogenization" fraction.
 
 Testing to see if "Soft homogenization" will include DNA and RNA from primarily the host for transcriptomics and DNA methylation analysis. "Hard homogenization" will include the DNA from the symbionts and microbiome for ITS2 and 16s amplification and Holobiont RNA.
