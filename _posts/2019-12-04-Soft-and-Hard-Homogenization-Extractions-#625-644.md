@@ -19,7 +19,7 @@ Soft and Hard homogenization, and DNA/RNA Extractions followed this [protocol](h
 [TapeStation](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2019-05-31-TapeStation-Protocol.md) used to check RNA quality.
 
 High Sensitivity:  
-DNA Standard 1:   ng/μl  
-DNA Standard 2:   ng/μl  
-RNA Standard 1:   ng/μl  
-RNA Standard 2:   ng/μl
+DNA Standard 1:  56.40 ng/μl  
+DNA Standard 2:  24,393.58 ng/μl  
+RNA Standard 1:  50.42 ng/μl  
+RNA Standard 2:  1,012.40 ng/μl

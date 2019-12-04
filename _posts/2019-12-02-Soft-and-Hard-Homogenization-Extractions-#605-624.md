@@ -19,10 +19,10 @@ Soft and Hard homogenization, and DNA/RNA Extractions followed this [protocol](h
 [TapeStation](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2019-05-31-TapeStation-Protocol.md) used to check RNA quality.
 
 High Sensitivity:  
-DNA Standard 1:   ng/μl  
-DNA Standard 2:   ng/μl  
-RNA Standard 1:   ng/μl  
-RNA Standard 2:   ng/μl
+DNA Standard 1:  56.40 ng/μl  
+DNA Standard 2:  24,393.58 ng/μl  
+RNA Standard 1:  50.42 ng/μl  
+RNA Standard 2:  1,012.40 ng/μl
 
 | Timepoint | Species     | Coral ID | Extraction ID | Homogenization | DNA Reading 1 | DNA Reading 2 | Average DNA ng/μl | RNA Reading 1 | RNA Reading 2 | Average RNA ng/μl | RIN |
 |-----------|-------------|----------|---------------|----------------|---------------|---------------|-------------------|---------------|---------------|-------------------|-----|
@@ -47,7 +47,7 @@ RNA Standard 2:   ng/μl
 | 20181215  | Pocillopora | 1147     | 623           | soft           |               |               | 0                 |               |               | 0                 |     |
 | 20181215  | Pocillopora | 1147     | 624           | hard           |               |               | 0                 |               |               | 0                 | NA  |
 
-[Link to X TapeStation report, Extractions #595-604]()
+[Link to 20191204 TapeStation report, Extractions #595-604](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2019-12-04%20-%2013.08.32.pdf)
 
 [Gel Electrophoresis Results](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2019-07-16-Gel-Electrophoresis-Protocol.md):
 
