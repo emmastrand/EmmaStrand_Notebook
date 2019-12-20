@@ -48,7 +48,7 @@ RNA Standard 2:  1,065 ng/μl
 
 **Tubes labeled as extraction IDs 685, 686, 687, 688. The correct extraction IDs are 693, 694, 695, 696.**
 
-[Link to 20191216 TapeStation report, Extractions #695](X)
+[Link to 20191216 TapeStation report, Extractions #695](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2019-12-16%20-%2013.07.03.pdf)
 
 [Gel Electrophoresis Results](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2019-07-16-Gel-Electrophoresis-Protocol.md):
 

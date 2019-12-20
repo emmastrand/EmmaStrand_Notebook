@@ -38,7 +38,7 @@ RNA Standard 2:  X ng/μl
 | 20181103  | Montipora | 1467     | 692           | hard           | 12.9          | 12.6          | 12.75             | 8.62          | 8.54          | 8.58              | NA  |
 
 
-[Link to 20191210 TapeStation report, Extractions #685-692](X)
+[Link to 20191210 TapeStation report, Extractions #685-692](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2019-12-10%20-%2014.42.41.pdf)
 
 [Gel Electrophoresis Results](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2019-07-16-Gel-Electrophoresis-Protocol.md):
 

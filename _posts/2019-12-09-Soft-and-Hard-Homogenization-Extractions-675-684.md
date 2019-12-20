@@ -39,9 +39,9 @@ RNA Standard 2:  X ng/μl
 
 
 
-[Link to 20191209 TapeStation report, Extractions #675-679](X)
+[Link to 20191209 TapeStation report, Extractions #675-679](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2019-12-09%20-%2019.28.53.pdf)
 
-[Link to 20191209 TapeStation report, Extractions #681-684](X)
+[Link to 20191209 TapeStation report, Extractions #681-684](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2019-12-09%20-%2019.44.49.pdf)
 
 [Gel Electrophoresis Results](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2019-07-16-Gel-Electrophoresis-Protocol.md):
 
