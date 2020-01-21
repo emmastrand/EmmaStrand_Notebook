@@ -89,7 +89,7 @@ The airbrush set-up is not fully broken down after each use. The compressor and 
 24. Fill two 15 mL falcon tubes with DI water II (labeled "DI water II", your initials, and date made), a 15 mL falcon tube with 50% bleach (labeled "50% bleach", your initials, and date made), and a 15 mL falcon tube with 70% ethanol (labeled "ethanol", your initials, and date made).
 24. Sterilize the microhomogenizer by dipping the piece in the appropriate 15 mL falcon tube in this order:  
   - DI water II  
-  - 50% bleach  
+  - 10% bleach  
   - DI water II  
   - 70% ethanol  
   - DI water II  
@@ -97,21 +97,19 @@ The airbrush set-up is not fully broken down after each use. The compressor and 
 26. Place the microhomogenizer in the coral tissue homogenate 50 mL falcon tube and turn on starting at a low speed. Gradually increase the speed of the microhomogenizer to fully homogenize the tissue slurry.  
 
 ## Aliquot
-28. Label one 5 mL tube with the coral ID on the cap *and* side, and "AFDW". Label 4 1.5 mL microcentrifuge tubes with the coral ID on the cap *and* side. Label one tube "Host TT", one "Sym TT", one "Zoox", and the last one "Chl".   
-28. Aliquot 1 mL of tissue homogenate into the "Chl" tube.    
-29. Aliquot 1 mL of tissue homogenate into the "Zoox" tube.  
-30. Centrifuge these two microcentrifuge tubes at 13,000 x rcf for 3 minutes.
-31. While the tubes are being centrifuged, aliquot 5 mL of the supernatant into the "AFDW" tube and place in the -80&deg;C freezer in the designated Ash-Free Dry Weight assay freezer bag.  
+28. Label 3 1.5 mL microcentrifuge tubes with the coral ID on the cap *and* side. Label one tube "TP/TAC", one "Zoox", and the last one "Chl".   
+29. Aliquot 1 mL of tissue homogenate into the "Chl" tube.  
+30. Aliquot 1 mL of tissue homogenate into the "TP/TAC" tube.     
+31. Aliquot 500 μl of tissue homogenate into the "Zoox" tube.  
 32. Place the 50 mL homogenate stock falcon tube in the -80&deg;C freezer in the designated homogenate stock freezer bag.  
-33. Discard the supernatant from the "Chl" tube and place the "Chl" tube in the -80&deg;C freezer in the designated Chlorophyll assay freezer box.    
-34. Place the supernatant from the "Zoox" tube into the "Host TT" and place the "Host TT" tube in the -80&deg;C freezer in the designated Host Total Protein and TAC assay freezer box.  
-35. Re-suspend the algae pellet in the "Zoox" tube in 1 mL of PBS. Use a pipette tip to break up the pellet and pipette mix the slurry until the pellet is completely dissolved.  
-36. Place 500 uL of the re-suspended pellet from the "Zoox" tube into the "Sym TT" tube and place the "Sym TT" tube in the -80&deg;C freezer in the designated Symbiont Total Protein and TAC assay freezer box.    
-37. Place the "Zoox" tube in the -80&deg;C freezer in the designated Symbiont Counts freezer box.  
+33. Place the "Zoox" tube in the -80&deg;C freezer in the designated Host Total Protein and TAC assay freezer box.  
+34. Place the "TP/TAC" tube in the -80&deg;C freezer in the designated Host Total Protein and TAC assay freezer box.
+35. Centrifuge the "Chl" microcentrifuge tube at 13,000 x rcf for 3 minutes.  
+36. Discard the supernatant from the "Chl" tube and place the "Chl" tube in the -80&deg;C freezer in the designated Chlorophyll assay freezer box.
 
 ## Bleaching
 1. Label an empty 100 mL beaker with a piece of tape labeled with the coral ID, "20% bleach", date of bleaching.  
-2. Using the sterilized tweezers, transfer the skeleton from the whirlpak to the beaker.  
+2. Using the sterilized tweezers, transfer the skeleton from the whirlpak to the beaker. The skeleton needs to be completely free of coral tissue and as white as possible.    
 3. Pour enough 20% bleach to cover the entire skeleton.
 
 ![bleach](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/Corals_bleach.JPG?raw=true).
@@ -121,8 +119,8 @@ The airbrush set-up is not fully broken down after each use. The compressor and 
 
 ![drying](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/Corals_drying.JPG?raw=true).
 
-6. Let dry for 24 hours.  
-7. After 24 hours has past, use the sterilized tweezers to move the skeleton from the paper towel to a ziploc bag labeled with the coral ID.  
+6. Let dry for 24 hours until completely dry. Alternatively, skeletons can be placed in the drying ovens until dry.      
+7. After completely dry, use the sterilized tweezers to move the skeleton from the paper towel to a ziploc bag labeled with the coral ID.  
 8. Store the coral skeletons in the cardboard box above the microscopes labeled "Emma Coral Fragments".
 
 ## Clean-up
