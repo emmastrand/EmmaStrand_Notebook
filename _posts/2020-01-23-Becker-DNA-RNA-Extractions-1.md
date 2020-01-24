@@ -38,8 +38,8 @@ RNA Standard 2:  963.31 ng/μl
 | E11      | 6.84  | 6.8   | 6.82        | 9.82  | 9.96  | 9.89        | 8.8 |
 | C31      | 15.5  | 15.4  | 15.45       | 10.2  | 10.2  | 10.2        | 7.7 |
 
-[Link to 20200123 TapeStation report](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2019-12-16%20-%2013.07.03.pdf)
+[Link to 20200123 TapeStation report](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2020-01-23%20-%2015.07.22.pdf)
 
 [Gel Electrophoresis Results](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2019-07-16-Gel-Electrophoresis-Protocol.md):
 
-![20200123 Extractions](X)
+![20200123 Extractions](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20200223_Becker1.jpg?raw=true)
