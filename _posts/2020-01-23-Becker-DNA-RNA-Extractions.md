@@ -131,6 +131,27 @@ RNA Standard 2: 995.63 ng/μl
 
 [Gel Electrophoresis Results](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2019-07-16-Gel-Electrophoresis-Protocol.md):
 
-![20200128 Extractions](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20200128_Becker_gel.jpg?raw=true)
+![20200128 Extractions](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20200128_Becker_gel2.jpg?raw=true)
 
 Photos of clipping size to compare to qubit values:  
+
+Control 17:  
+![C17](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20200128_Becker_C17.jpg?raw=true)
+
+Enriched 2:  
+![E2](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20200128_Becker_E2.jpg?raw=true)
+
+Control 18:  
+![C18](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20200128_Becker_C18.jpg?raw=true)
+
+Control 19:  
+![C19](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20200128_Becker_C19.jpg?raw=true)
+
+Enriched 5:  
+![E5](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20200128_Becker_E5.jpg?raw=true)
+
+Enriched 13:  
+![E13](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20200128_Becker_E13.jpg?raw=true)
+
+Enriched 7:  
+![E7](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20200128_Becker_E7.jpg?raw=true)
