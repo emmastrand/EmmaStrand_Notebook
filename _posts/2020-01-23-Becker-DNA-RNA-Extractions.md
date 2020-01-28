@@ -25,12 +25,12 @@ DNA/RNA Extractions from Danielle Becker's *Pocillopora* coral samples using the
 [TapeStation](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2019-05-31-TapeStation-Protocol.md) used to check RNA quality.
 
 Broad Range:
-DNA Standard 1:  141.84 ng/μl  
-DNA Standard 2:  18,643.22 ng/μl  
+DNA Standard 1: 141.84 ng/μl  
+DNA Standard 2: 18,643.22 ng/μl  
 
 High Sensitivity:
-RNA Standard 1:  50.93 ng/μl  
-RNA Standard 2:  963.31 ng/μl  
+RNA Standard 1: 50.93 ng/μl  
+RNA Standard 2: 963.31 ng/μl  
 
 | Coral ID | DNA 1 | DNA 2 | Average DNA | RNA 1 | RNA 2 | Average RNA | RIN |
 |----------|-------|-------|-------------|-------|-------|-------------|-----|
@@ -62,12 +62,12 @@ Half of RNA flow-through from samples C30, E4, and E10 thrown out accidentally. 
 [TapeStation](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2019-05-31-TapeStation-Protocol.md) used to check RNA quality.
 
 Broad Range:
-DNA Standard 1:  142.77 ng/μl  
-DNA Standard 2:  20,503.32 ng/μl  
+DNA Standard 1: 142.77 ng/μl  
+DNA Standard 2: 20,503.32 ng/μl  
 
 High Sensitivity:
-RNA Standard 1:  51.31 ng/μl  
-RNA Standard 2:  1,010.38 ng/μl
+RNA Standard 1: 51.31 ng/μl  
+RNA Standard 2: 1,010.38 ng/μl
 
 | Coral ID | DNA 1 | DNA 2 | Average DNA | RNA 1 | RNA 2 | Average RNA | RIN |
 |----------|-------|-------|-------------|-------|-------|-------------|-----|
@@ -111,12 +111,12 @@ DNA/RNA Extractions from Danielle Becker's *Pocillopora* coral samples using the
 [TapeStation](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2019-05-31-TapeStation-Protocol.md) used to check RNA quality.
 
 Broad Range:
-DNA Standard 1:  162.98 ng/μl  
-DNA Standard 2:  23,670.63 ng/μl  
+DNA Standard 1: 162.98 ng/μl  
+DNA Standard 2: 23,670.63 ng/μl  
 
 High Sensitivity:
-RNA Standard 1:  51.25 ng/μl  
-RNA Standard 2:  995.63 ng/μl
+RNA Standard 1: 51.25 ng/μl  
+RNA Standard 2: 995.63 ng/μl
 
 | Coral ID | DNA 1 | DNA 2 | Average DNA | RNA 1 | RNA 2 | Average RNA | RIN |
 |----------|-------|-------|-------------|-------|-------|-------------|-----|
@@ -127,8 +127,7 @@ RNA Standard 2:  995.63 ng/μl
 | E5       | 17.7  | 17.7  | 17.7        | 11.8  | 11.9  | 11.85       | 8.3 |
 | E13      | 15.9  | 15.8  | 15.85       | 15.1  | 15    | 15.05       | 9.6 |
 
-
-[Link to 20200128 TapeStation report]()
+[Link to 20200128 TapeStation report](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2020-01-28%20-%2011.34.58.pdf)
 
 [Gel Electrophoresis Results](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2019-07-16-Gel-Electrophoresis-Protocol.md):
 
