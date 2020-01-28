@@ -42,7 +42,7 @@ RNA Standard 2: 963.31 ng/μl
 
 [Gel Electrophoresis Results](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2019-07-16-Gel-Electrophoresis-Protocol.md):
 
-![20200123 Extractions](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20200223_Becker1.jpg?raw=true)
+![20200123 Extractions](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20200123_Becker1.jpg?raw=true)
 
 ### 20200127 DNA RNA extraction round for Danielle Becker coral samples.
 
@@ -132,3 +132,5 @@ RNA Standard 2: 995.63 ng/μl
 [Gel Electrophoresis Results](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2019-07-16-Gel-Electrophoresis-Protocol.md):
 
 ![20200128 Extractions]()
+
+Photos of clipping size to compare to qubit values:  
