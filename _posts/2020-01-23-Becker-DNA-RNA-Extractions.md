@@ -92,3 +92,44 @@ RNA Standard 2:  1,010.38 ng/μl
 [Gel Electrophoresis Results](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2019-07-16-Gel-Electrophoresis-Protocol.md):
 
 ![20200127 Extractions](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20200127.jpg?raw=true)
+
+### 20200128 DNA RNA extraction round for Danielle Becker coral samples.
+
+DNA/RNA Extractions from Danielle Becker's *Pocillopora* coral samples using the following protocol: [Zymo Duet RNA DNA Extraction Protocol](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2019-05-31-Zymo-Duet-RNA-DNA-Extraction-Protocol.md) and modified adult fragment tissue preparation steps described below:  
+- Whole coral clipping and 700 μl of DNA/RNA shield from sample tube placed in tube with 2 mL 0.5 mm glass beads and 300 μl fresh DNA/RNA shield.  
+- 40 seconds at 20 Hz in the Tissue Lyser to remove tissue from coral skeleton.  
+- Supernatant removed and placed in 1.5 mL microcentrifuge tube for a stock solution (~700 μl).  
+- 600 μl of tissue homogenate, 60 μl of Proteinase K Digestion buffer (1:10 ratio with tissue homogenate volume), and 30 μl of Proteinase K added to a new 1.5 mL microcentrifuge tube.  
+- 690 μl of Lysis Buffer added (1:1 ratio to tissue, Proteinase K Digestion buffer, and Proteinase K volume)  
+- 1,380 μl of 100% molecular grade ethanol added to tissue for RNA portion of the protocol (1:1 ratio)  
+- 50 μl Tris added to yellow spin column and incubated at room temperature for 10 minutes before centrifuged, and repeated for 5 minutes for a total of 100 μl DNA.  
+- 50 μl Tris added to green spin column and incubated at room temperature for 5 minutes before centrifuged, and repeated for a total of 100 μl RNA.
+
+1,000 μl DNA RNA Shield added to samples E5, C17, and E7 because there might be enough tissue on the skeleton to try another extraction if necessary. These samples had larger clippings.  
+
+[Qubit](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2019-05-31-Qubit-Protocol.md) used to check DNA and RNA quantity (ng/μl).  
+[TapeStation](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2019-05-31-TapeStation-Protocol.md) used to check RNA quality.
+
+Broad Range:
+DNA Standard 1:  162.98 ng/μl  
+DNA Standard 2:  23,670.63 ng/μl  
+
+High Sensitivity:
+RNA Standard 1:  51.25 ng/μl  
+RNA Standard 2:  995.63 ng/μl
+
+| Coral ID | DNA 1 | DNA 2 | Average DNA | RNA 1 | RNA 2 | Average RNA | RIN |
+|----------|-------|-------|-------------|-------|-------|-------------|-----|
+| C17      | 19.1  | 18.3  | 18.7        | 23    | 23    | 23          | 9.3 |
+| E2       | 11.3  | 11.3  | 11.3        | 11    | 11.1  | 11.05       | 8.8 |
+| C18      | 14.7  | 14.7  | 14.7        | 17.5  | 17.5  | 17.5        | 9.2 |
+| C19      | 9.2   | 9.16  | 9.18        | 8.52  | 8.46  | 8.49        | 8.2 |
+| E5       | 17.7  | 17.7  | 17.7        | 11.8  | 11.9  | 11.85       | 8.3 |
+| E13      | 15.9  | 15.8  | 15.85       | 15.1  | 15    | 15.05       | 9.6 |
+
+
+[Link to 20200128 TapeStation report]()
+
+[Gel Electrophoresis Results](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2019-07-16-Gel-Electrophoresis-Protocol.md):
+
+![20200128 Extractions]()
