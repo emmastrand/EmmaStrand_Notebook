@@ -10,7 +10,7 @@ projects: Danielle Becker
 # Danielle Becker DNA RNA Extractions
 ### 20200123 Test extraction round for Danielle Becker coral samples.
 
-DNA/RNA Extractions from Danielle Becker's *{Pocillopora*} coral samples using the following protocol: [Zymo Duet RNA DNA Extraction Protocol](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2019-05-31-Zymo-Duet-RNA-DNA-Extraction-Protocol.md) and modified adult fragment tissue preparation steps described below:  
+DNA/RNA Extractions from Danielle Becker's *Pocillopora* coral samples using the following protocol: [Zymo Duet RNA DNA Extraction Protocol](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2019-05-31-Zymo-Duet-RNA-DNA-Extraction-Protocol.md) and modified adult fragment tissue preparation steps described below:  
 - Half of coral fragment clipped and 500 μl of DNA/RNA shield from sample tube placed in tube with 2 mL 0.5 mm glass beads.  
 - 40 seconds at 20 Hz in the Tissue Lyser to remove tissue from coral skeleton.  
 - Supernatant removed and placed in 1.5 mL microcentrifuge tube for a stock solution (~700 μl).  
@@ -46,7 +46,7 @@ RNA Standard 2:  963.31 ng/μl
 
 ### 20200127 DNA RNA extraction round for Danielle Becker coral samples.
 
-DNA/RNA Extractions from Danielle Becker's *{Pocillopora*} coral samples using the following protocol: [Zymo Duet RNA DNA Extraction Protocol](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2019-05-31-Zymo-Duet-RNA-DNA-Extraction-Protocol.md) and modified adult fragment tissue preparation steps described below:  
+DNA/RNA Extractions from Danielle Becker's *Pocillopora* coral samples using the following protocol: [Zymo Duet RNA DNA Extraction Protocol](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2019-05-31-Zymo-Duet-RNA-DNA-Extraction-Protocol.md) and modified adult fragment tissue preparation steps described below:  
 - Whole coral clipping and 700 μl of DNA/RNA shield from sample tube placed in tube with 2 mL 0.5 mm glass beads and 300 μl fresh DNA/RNA shield.  
 - 40 seconds at 20 Hz in the Tissue Lyser to remove tissue from coral skeleton.  
 - Supernatant removed and placed in 1.5 mL microcentrifuge tube for a stock solution (~700 μl).  
