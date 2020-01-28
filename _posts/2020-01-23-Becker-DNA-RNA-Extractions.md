@@ -131,6 +131,6 @@ RNA Standard 2: 995.63 ng/μl
 
 [Gel Electrophoresis Results](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2019-07-16-Gel-Electrophoresis-Protocol.md):
 
-![20200128 Extractions]()
+![20200128 Extractions](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20200128_Becker_gel.jpg?raw=true)
 
 Photos of clipping size to compare to qubit values:  
