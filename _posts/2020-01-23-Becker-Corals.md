@@ -308,3 +308,46 @@ Plate 2:
 | F  | 30 | 30 | 30 |        |        |        |   |   |   |    |    |    |
 | G  | 31 | 31 | 31 |        |        |        |   |   |   |    |    |    |
 | H  | 32 | 32 | 32 |        |        |        |   |   |   |    |    |    |
+
+Gel Electrophoresis Image:  
+
+![Becker](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20200130_Becker_ITS2.png?raw=true)
+
+Sequencing center ID:
+
+| DataID | AmpliconID | SampleName | AmpliconGene | StripTube Number |
+|--------|------------|------------|--------------|------------------|
+| HP401  | 1          | E9         | ITS2         | 1                |
+| HP402  | 2          | E11        | ITS2         | 1                |
+| HP403  | 3          | C31        | ITS2         | 1                |
+| HP404  | 4          | C30        | ITS2         | 1                |
+| HP405  | 5          | E4         | ITS2         | 1                |
+| HP406  | 6          | C25        | ITS2         | 1                |
+| HP407  | 7          | C32        | ITS2         | 1                |
+| HP408  | 8          | E6         | ITS2         | 1                |
+| HP409  | 9          | C29        | ITS2         | 2                |
+| HP410  | 10         | E1         | ITS2         | 2                |
+| HP411  | 11         | E3         | ITS2         | 2                |
+| HP412  | 12         | E16        | ITS2         | 2                |
+| HP413  | 13         | E8         | ITS2         | 2                |
+| HP414  | 14         | E15        | ITS2         | 2                |
+| HP415  | 15         | C21        | ITS2         | 2                |
+| HP416  | 16         | C22        | ITS2         | 2                |
+| HP417  | 17         | E14        | ITS2         | 3                |
+| HP418  | 18         | E10        | ITS2         | 3                |
+| HP419  | 19         | C17        | ITS2         | 3                |
+| HP420  | 20         | E2         | ITS2         | 3                |
+| HP421  | 21         | C18        | ITS2         | 3                |
+| HP422  | 22         | C19        | ITS2         | 3                |
+| HP423  | 23         | E5         | ITS2         | 3                |
+| HP424  | 24         | E13        | ITS2         | 3                |
+| HP425  | 25         | E7         | ITS2         | 4                |
+| HP426  | 26         | E12        | ITS2         | 4                |
+| HP427  | 27         | C27        | ITS2         | 4                |
+| HP428  | 28         | C24        | ITS2         | 4                |
+| HP429  | 29         | C23        | ITS2         | 4                |
+| HP430  | 30         | C20        | ITS2         | 4                |
+| HP431  | 31         | C28        | ITS2         | 4                |
+| HP432  | 32         | C26        | ITS2         | 4                |
+| HP433  | 33         | MIX        | ITS2         | 5                |
+| HP434  | 34         | NEG CON    | ITS2         | 5                |
