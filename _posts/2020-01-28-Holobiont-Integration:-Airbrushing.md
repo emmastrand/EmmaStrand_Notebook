@@ -12,7 +12,7 @@ projects: Holobiont Integration
 Airbrushing *Pocillopora acuta* and *Montipora capitata* whole coral fragments from the Holobiont Integration project from Hawaii in 2018 using the following [Putnam Lab Protocol](https://emmastrand.github.io/EmmaStrand_Notebook/Airbrushing-Protocol/).  
 
 Total number of samples to airbrush: 365.  
-Total airbrushed: 57 (last updated 20200128 13:45).  
+Total airbrushed: 99 (last updated 20200130 9:03).  
 
 | Species     | Plug_ID | Treatment | Sample_Date | Airbrush_Date | Airbrush_Tech | Homogenate_Vol_mL |
 |-------------|---------|-----------|-------------|---------------|---------------|-------------------|
@@ -73,3 +73,45 @@ Total airbrushed: 57 (last updated 20200128 13:45).
 | Pacuta      | 1691    | HTAC      | 20180923    | 20200128      | DC            | 12.5              |
 | Pacuta      | 1735    | HTAC      | 20180923    | 20200128      | DC            | 29                |
 | Pacuta      | 1336    | HTAC      | 20180923    | 20200128      | DC            | 9                 |
+| Pacuta      | 1080    | ATAC      | 20181006    | 20200128      | AM            | 37.5              |
+| Pacuta      | 1222    | ATAC      | 20181006    | 20200128      | AM            | 47                |
+| Pacuta      | 1339    | HTHC      | 20180923    | 20200128      | DC            | 15                |
+| Pacuta      | 1490    | HTAC      | 20181006    | 20200128      | AM            | 12                |
+| Pacuta      | 1573    | HTAC      | 20181006    | 20200128      | AM            | 25                |
+| Pacuta      | 1655    | HTHC      | 20180923    | 20200128      | DC            | 18                |
+| Pacuta      | 1825    | ATHC      | 20180923    | 20200128      | DC            | 24.5              |
+| Pacuta      | 2531    | ATHC      | 20180923    | 20200128      | DC            | 20                |
+| Pacuta      | 1094    | HTHC      | 20181006    | 20200129      | AM            | 12.5              |
+| Pacuta      | 1156    | ATHC      | 20181006    | 20200129      | AF            | 12.5              |
+| Pacuta      | 1165    | HTHC      | 20181006    | 20200129      | AF            | 12                |
+| Pacuta      | 1327    | HTAC      | 20181117    | 20200129      | AF            | 5                 |
+| Pacuta      | 1446    | HTHC      | 20181006    | 20200129      | AM            | 37.5              |
+| Pacuta      | 1500    | ATAC      | 20181006    | 20200129      | AF            | 15                |
+| Pacuta      | 1621    | HTHC      | 20181006    | 20200129      | AF            | 17                |
+| Pacuta      | 1686    | ATAC      | 20181117    | 20200129      | AF            | 7.5               |
+| Pacuta      | 1753    | ATAC      | 20181006    | 20200129      | AF            | 12.5              |
+| Pacuta      | 2156    | HTAC      | 20181117    | 20200129      | EC            | 5                 |
+| Pacuta      | 2393    | ATAC      | 20181117    | 20200129      | AF            | 30                |
+| Pacuta      | 2521    | ATHC      | 20181006    | 20200129      | AF            | 18.5              |
+| Pacuta      | 2666    | ATHC      | 20181006    | 20200129      | AM            | 37                |
+| Pacuta      | 2998    | ATHC      | 20181117    | 20200129      | AM            | 9.5               |
+| Pacuta      | 1338    | HTAC      | 20181006    | 20200130      | DC            | 21                |
+| Pacuta      | 1441    | HTHC      | 20181117    | 20200130      | DC            | 11                |
+| Pacuta      | 1618    | HTHC      | 20181117    | 20200130      | DC            | 13                |
+| Pacuta      | 1622    | ATAC      | 20181006    | 20200130      | DC            | 17.5              |
+| Pacuta      | 1713    | HTHC      | 20181117    | 20200130      | DC            | 11                |
+| Pacuta      | 1731    | HTAC      | 20181006    | 20200130      | AF            | 12.5              |
+| Pacuta      | 1748    | HTHC      | 20181006    | 20200130      | AF            | 8.5               |
+| Pacuta      | 1811    | HTHC      | 20181020    | 20200130      | EC            | 12.5              |
+| Pacuta      | 2074    | HTHC      | 20181020    | 20200130      | AF            | 25                |
+| Pacuta      | 2075    | ATHC      | 20181117    | 20200130      | DC            | 13                |
+| Pacuta      | 2079    | HTHC      | 20181117    | 20200130      | DC            | 22.5              |
+| Pacuta      | 2203    | HTHC      | 20181006    | 20200130      | AF            | 17                |
+| Pacuta      | 2416    | HTAC      | 20181006    | 20200130      | DC            | 12.5              |
+| Pacuta      | 2519    | ATHC      | 20181117    | 20200130      | DC            | 23                |
+| Pacuta      | 2530    | ATHC      | 20181020    | 20200130      | EC            | 14                |
+| Pacuta      | 2728    | ATHC      | 20181006    | 20200130      | AF            | 8                 |
+| Pacuta      | 2858    | ATHC      | 20181020    | 20200130      | AF            | 7                 |
+| Pacuta      | 2882    | ATHC      | 20181020    | 20200130      | EC            | 17.5              |
+| Pacuta      | 2996    | ATHC      | 20181006    | 20200130      | AF            | 23                |
+| Pacuta      | 2997    | ATHC      | 20181117    | 20200130      | DC            | 20                |
