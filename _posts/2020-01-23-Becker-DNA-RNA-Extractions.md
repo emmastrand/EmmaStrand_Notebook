@@ -193,7 +193,7 @@ RNA Standard 2: 1,037.95 ng/μl
 | 20200129 | C27      | 9.18  | 9.16  | 9.17                | **    | **    | **                  | **  |
 | 20200129 | C28      | 22.2  | 22.2  | 22.2                | 12.2  | 12.2  | 12.2                | 8.9 |
 
-[Link to 20200129 TapeStation report]()
+[Link to 20200129 TapeStation report](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2020-01-29%20-%2017.22.22.pdf)
 
 [Gel Electrophoresis Results](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2019-07-16-Gel-Electrophoresis-Protocol.md):
 
