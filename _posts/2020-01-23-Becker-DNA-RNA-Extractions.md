@@ -8,6 +8,7 @@ projects: Danielle Becker
 ---
 
 # Danielle Becker Coral Samples Processing January 2020
+## DNA RNA Extractions
 ### 20200123 Test DNA RNA extraction round for Danielle Becker coral samples.
 
 DNA/RNA Extractions from Danielle Becker's *Pocillopora* coral samples using the following protocol: [Zymo Duet RNA DNA Extraction Protocol](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2019-05-31-Zymo-Duet-RNA-DNA-Extraction-Protocol.md) and modified adult fragment tissue preparation steps described below:  
@@ -197,7 +198,7 @@ RNA Standard 2: 1,037.95 ng/μl
 
 [Gel Electrophoresis Results](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2019-07-16-Gel-Electrophoresis-Protocol.md):
 
-![20200129 Extractions]()
+![20200129 Extractions](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20200129_Becker.jpg?raw=true)
 
 
 ### Summary of DNA RNA Extraction Results
@@ -236,3 +237,5 @@ RNA Standard 2: 1,037.95 ng/μl
 | 20200127 | C30      | 142.77         | 20,503.32      | 6.64  | 6.6   | 6.62                | 51.31          | 1,010.38       | **    | **    | **                  | **  |
 | 20200123 | C31      | 141.84         | 18,643.22      | 15.5  | 15.4  | 15.45               | 50.93          | 963.31         | 10.2  | 10.2  | 10.2                | 7.7 |
 | 20200127 | C32      | 142.77         | 20,503.32      | 7.72  | 7.68  | 7.7                 | 51.31          | 1,010.38       | **    | **    | **                  | **  |
+
+## ITS2 Sequencing
