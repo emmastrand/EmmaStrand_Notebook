@@ -12,7 +12,7 @@ projects: Holobiont Integration
 Airbrushing *Pocillopora acuta* and *Montipora capitata* whole coral fragments from the Holobiont Integration project from Hawaii in 2018 using the following [Putnam Lab Protocol](https://emmastrand.github.io/EmmaStrand_Notebook/Airbrushing-Protocol/).  
 
 Total number of samples to airbrush: 365.  
-Total airbrushed: 124 (last updated 20200204 12:46).  
+Total airbrushed: 134 (last updated 20200204 15:15).  
 
 | Species   	| Plug_ID 	| Treatment 	| Sample_Date 	| Airbrush_Date 	| Airbrush_Tech 	| Homogenate_Vol_mL 	|
 |-----------	|---------	|-----------	|-------------	|---------------	|---------------	|-------------------	|
@@ -140,3 +140,13 @@ Total airbrushed: 124 (last updated 20200204 12:46).
 | Pacuta    	| 2015    	| ATAC      	| 20181020    	| 20200204      	| DC            	| 15                	|
 | Pacuta    	| 2853    	| ATHC      	| 20181103    	| 20200204      	| DC            	| 10                	|
 | Pacuta    	| 2992    	| ATHC      	| 20181103    	| 20200204      	| SG            	| 8                 	|
+| Pacuta    	| 1442    	|           	|             	| 20200204      	| SG            	| 17.5              	|
+| Pacuta    	| 1770    	|           	|             	| 20200204      	| SG            	| 16                	|
+| Pacuta    	| 1130    	| HTHC      	| 20181103    	| 20200204      	| SG            	| 15                	|
+| Pacuta    	| 1170    	| HTHC      	| 20181103    	| 20200204      	| DC            	| 46                	|
+| Pacuta    	| 1224    	| ATHC      	| 20181103    	| 20200204      	| DC            	| 27.5              	|
+| Pacuta    	| 1256    	| ATHC      	| 20181103    	| 20200204      	| SG            	| 13                	|
+| Pacuta    	| 2169    	| HTHC      	| 20181103    	| 20200204      	| SG            	| 17                	|
+| Pacuta    	| 2541    	| ATHC      	| 20181103    	| 20200204      	| DC            	| 30                	|
+| Pacuta    	| 2729    	| ATHC      	| 20181103    	| 20200204      	| SG            	| 15.5              	|
+| Pacuta    	| 1100    	| ATAC      	| 20180922    	| 20200204      	|               	|                   	|
