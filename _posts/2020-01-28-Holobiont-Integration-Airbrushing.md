@@ -12,7 +12,7 @@ projects: Holobiont Integration
 Airbrushing *Pocillopora acuta* and *Montipora capitata* whole coral fragments from the Holobiont Integration project from Hawaii in 2018 using the following [Putnam Lab Protocol](https://emmastrand.github.io/EmmaStrand_Notebook/Airbrushing-Protocol/).  
 
 Total number of samples to airbrush: 365.  
-Total airbrushed: 134 (last updated 20200204 15:15).  
+Total airbrushed: 141 (last updated 20200205 9:21).  
 
 | Species   	| Plug_ID 	| Treatment 	| Sample_Date 	| Airbrush_Date 	| Airbrush_Tech 	| Homogenate_Vol_mL 	|
 |-----------	|---------	|-----------	|-------------	|---------------	|---------------	|-------------------	|
@@ -149,4 +149,11 @@ Total airbrushed: 134 (last updated 20200204 15:15).
 | Pacuta    	| 2169    	| HTHC      	| 20181103    	| 20200204      	| SG            	| 17                	|
 | Pacuta    	| 2541    	| ATHC      	| 20181103    	| 20200204      	| DC            	| 30                	|
 | Pacuta    	| 2729    	| ATHC      	| 20181103    	| 20200204      	| SG            	| 15.5              	|
-| Pacuta    	| 1100    	| ATAC      	| 20180922    	| 20200204      	|               	|                   	|
+| Pacuta    	| 1100    	| ATAC      	| 20180922    	| 20200204      	| AM            	| 19.5              	|
+| Pacuta    	| 1116    	| ATAC      	| 20180922    	| 20200204      	| AM            	| 32                	|
+| Pacuta    	| 1174    	| HTHC      	| 20181117    	| 20200204      	| EC            	| 5                 	|
+| Pacuta    	| 1324    	| HTHC      	| 20180923    	| 20200204      	| EC            	| 29                	|
+| Pacuta    	| 1488    	| HTAC      	| 20180922    	| 20200204      	| AM            	| 17.5              	|
+| Pacuta    	| 1572    	| HTAC      	| 20181117    	| 20200204      	| EC            	| 12                	|
+| Pacuta    	| 1630    	| ATAC      	| 20181117    	| 20200204      	| EC            	| 22.5              	|
+| Pacuta    	| 1702    	| HTAC      	| 20181117    	| 20200204      	| EC            	| 10                	|
