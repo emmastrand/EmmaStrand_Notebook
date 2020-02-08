@@ -12,10 +12,12 @@ projects: Holobiont Integration
 Airbrushing *Pocillopora acuta* and *Montipora capitata* whole coral fragments from the Holobiont Integration project from Hawaii in 2018 using the following [Putnam Lab Protocol](https://emmastrand.github.io/EmmaStrand_Notebook/Airbrushing-Protocol/).  
 
 Total number of samples to airbrush: 401.  
-Total airbrushed: 152 (last updated 20200206 9:36).  
+Total airbrushed: 167 (last updated 20200208 12:30).  
 
 | Species   	| Plug_ID 	| Treatment 	| Sample_Date 	| Airbrush_Date 	| Airbrush_Tech 	| Homogenate_Vol_mL 	|
 |-----------	|---------	|-----------	|-------------	|---------------	|---------------	|-------------------	|
+| Mcapitata 	| 2193    	| ATHC      	| 20181215    	| 20191023      	| ES            	| 20                	|
+| Pacuta    	| 1615    	| HTAC      	| 20181215    	| 20191023      	| ES            	| 17                	|
 | Pacuta    	| 1423    	| ATAC      	| 20181103    	| 20200121      	| ES            	| 35                	|
 | Mcapitata 	| 1444    	| ATAC      	| 20181103    	| 20200121      	| ES            	| 25                	|
 | Pacuta    	| 1495    	| ATAC      	| 20180929    	| 20200121      	| ES            	| 12                	|
@@ -168,3 +170,16 @@ Total airbrushed: 152 (last updated 20200206 9:36).
 | Pacuta    	| 1491    	| HTAC      	| 20180923    	| 20200205      	| AM            	| 28                	|
 | Pacuta    	| 1738    	| HTAC      	| 20181117    	| 20200205      	| AF            	| 11                	|
 | Pacuta    	| 2382    	| HTAC      	| 20181117    	| 20200205      	| AM            	| 24.5              	|
+| Pacuta    	| 1187    	| ATAC      	| 20180923    	| 20200206      	| AF            	| 9                 	|
+| Pacuta    	| 1636    	| ATAC      	| 20181117    	| 20200206      	| AF            	| 9.5               	|
+| Pacuta    	| 1077    	| ATAC      	| 20180923    	| 20200206      	| AF            	| 12.5              	|
+| Pacuta    	| 1180    	| ATHC      	| 20180923    	| 20200206      	| AF            	| 18                	|
+| Pacuta    	| 1252    	| ATHC      	| 20180923    	| 20200206      	| AF            	| 15                	|
+| Pacuta    	| 1215    	| ATHC      	| 20181215    	| 20200206      	| EC            	| 18                	|
+| Pacuta    	| 1247    	| ATHC      	| 20181215    	| 20200206      	| EC            	| 32.5              	|
+| Pacuta    	| 1492    	| ATHC      	| 20190112    	| 20200206      	| EC            	| 17                	|
+| Pacuta    	| 1547    	| HTAC      	| 20181215    	| 20200206      	| AF            	| 5                 	|
+| Pacuta    	| 2013    	| ATAC      	| 20181215    	| 20200206      	| AF            	| 14.5              	|
+| Pacuta    	| 2396    	| ATAC      	| 20181215    	| 20200206      	| AF            	| 15                	|
+| Pacuta    	| 2566    	| ATHC      	| 20181215    	| 20200206      	| AF            	| 7                 	|
+| Pacuta    	| 2744    	| ATHC      	| 20190112    	| 20200206      	| EC            	| 32.5              	|
