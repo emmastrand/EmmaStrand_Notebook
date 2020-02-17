@@ -12,7 +12,7 @@ projects: Holobiont Integration
 Airbrushing *Pocillopora acuta* and *Montipora capitata* whole coral fragments from the Holobiont Integration project from Hawaii in 2018 using the following [Putnam Lab Protocol](https://emmastrand.github.io/EmmaStrand_Notebook/Airbrushing-Protocol/).  
 
 Total number of samples to airbrush: 401.  
-Total airbrushed: 201 (last updated 20200211 22:18).  
+Total airbrushed: 244 (last updated 20200217 13:24).  
 
 | Species   	| Plug_ID 	| Treatment 	| Sample_Date 	| Airbrush_Date 	| Airbrush_Tech 	| Homogenate_Vol_mL 	|
 |-----------	|---------	|-----------	|-------------	|---------------	|---------------	|-------------------	|
@@ -236,3 +236,27 @@ Total airbrushed: 201 (last updated 20200211 22:18).
 | Mcapitata 	| 1185    	| HTHC      	| 20181215    	| 20200213      	| AF            	| 18                	|
 | Mcapitata 	| 1284    	| HTAC      	| 20190112    	| 20200213      	| AF            	| 27.5              	|
 | Mcapitata 	| 2872    	| ATHC      	| 20190112    	| 20200213      	| AF            	| 15.5              	|
+| Mcapitata 	| 1210    	| ATAC      	| 20181215    	| 20200214      	| ES            	| 60                	|
+| Pacuta    	| 1281    	|           	| 20181006    	| 20200214      	| ES            	| 42.5              	|
+| Mcapitata 	| 1454    	| HTHC      	| 20181117    	| 20200214      	| ES            	| 23.5              	|
+| Mcapitata 	| 1608    	| HTHC      	| 20181215    	| 20200214      	| ES            	| 24                	|
+| Mcapitata 	| 1616    	| ATAC      	| 20190112    	| 20200214      	| ES            	| 40                	|
+| Mcapitata 	| 1725    	| HTAC      	| 20181117    	| 20200214      	| ES            	| 31                	|
+| Mcapitata 	| 1998    	| HTAC      	| 20190112    	| 20200214      	| ES            	| 29.5              	|
+| Mcapitata 	| 2004    	| HTAC      	| 20181215    	| 20200214      	| ES            	| 17.5              	|
+| Mcapitata 	| 2011    	| HTHC      	| 20181215    	| 20200214      	| ES            	| 41.5              	|
+| Mcapitata 	| 2153    	| HTAC      	| 20180922    	| 20200214      	| ES            	| 30                	|
+| Mcapitata 	| 2301    	| ATAC      	| 20190112    	| 20200214      	| ES            	| 66                	|
+| Mcapitata 	| 2398    	| ATAC      	| 20181215    	| 20200214      	| ES            	| 45                	|
+| Mcapitata 	| 2857    	| ATHC      	| 20190112    	| 20200214      	| ES            	| 45                	|
+| Mcapitata 	| 2978    	| ATHC      	| 20190112    	| 20200214      	| ES            	| 32.5              	|
+| Mcapitata 	| 3002    	| ATHC      	| 20190112    	| 20200214      	| ES            	| 26.5              	|
+| Mcapitata 	| 1063    	| ATAC      	| 20190112    	| 20200217      	| AF            	| 20                	|
+| Mcapitata 	| 1182    	| HTHC      	| 20180923    	| 20200217      	| AF            	| 20                	|
+| Mcapitata 	| 1197    	| HTHC      	| 20180923    	| 20200217      	| AF            	| 15.5              	|
+| Mcapitata 	| 1272    	| HTHC      	| 20190112    	| 20200217      	| AF            	| 18.5              	|
+| Mcapitata 	| 1469    	| HTAC      	| 20181215    	| 20200217      	| AF            	| 11.5              	|
+| Mcapitata 	| 1638    	| HTAC      	| 20190112    	| 20200217      	| AF            	| 16                	|
+| Mcapitata 	| 2018    	| HTHC      	| 20190112    	| 20200217      	| AF            	| 7.5               	|
+| Mcapitata 	| 2372    	| HTAC      	| 20181117    	| 20200217      	| AF            	| 39.5              	|
+| Mcapitata 	| 2565    	| ATHC      	| 20181215    	| 20200217      	| AF            	| 32.5              	|
