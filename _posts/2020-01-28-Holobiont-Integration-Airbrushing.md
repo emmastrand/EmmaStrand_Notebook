@@ -12,7 +12,7 @@ projects: Holobiont Integration
 Airbrushing *Pocillopora acuta* and *Montipora capitata* whole coral fragments from the Holobiont Integration project from Hawaii in 2018 using the following [Putnam Lab Protocol](https://emmastrand.github.io/EmmaStrand_Notebook/Airbrushing-Protocol/).  
 
 Total number of samples to airbrush: 401.  
-Total airbrushed: 244 (last updated 20200217 13:24).  
+Total airbrushed: 257 (last updated 20200218 15:39).  
 
 | Species   	| Plug_ID 	| Treatment 	| Sample_Date 	| Airbrush_Date 	| Airbrush_Tech 	| Homogenate_Vol_mL 	|
 |-----------	|---------	|-----------	|-------------	|---------------	|---------------	|-------------------	|
@@ -260,3 +260,16 @@ Total airbrushed: 244 (last updated 20200217 13:24).
 | Mcapitata 	| 2018    	| HTHC      	| 20190112    	| 20200217      	| AF            	| 7.5               	|
 | Mcapitata 	| 2372    	| HTAC      	| 20181117    	| 20200217      	| AF            	| 39.5              	|
 | Mcapitata 	| 2565    	| ATHC      	| 20181215    	| 20200217      	| AF            	| 32.5              	|
+| Mcapitata 	| 1042    	| ATAC      	| 20181103    	| 20200218      	| SG            	| 27.5              	|
+| Mcapitata 	| 1065    	| ATAC      	| 20181103    	| 20200218      	| SG            	| 38                	|
+| Mcapitata 	| 1104    	| ATAC      	| 20180923    	| 20200218      	| DC            	| 46                	|
+| Mcapitata 	| 1127    	| HTHC      	| 20180929    	| 20200218      	| SG            	| 27                	|
+| Mcapitata 	| 1304    	| ATHC      	| 20180923    	| 20200218      	| DC            	| 27.5              	|
+| Mcapitata 	| 1540    	| ATAC      	| 20190112    	| 20200218      	| DC            	| 28                	|
+| Mcapitata 	| 1560    	| ATHC      	| 20180923    	| 20200218      	| DC            	| 52                	|
+| Mcapitata 	| 1576    	| HTAC      	| 20181006    	| 20200218      	| SG            	| 32.5              	|
+| Mcapitata 	| 1584    	| HTAC      	| 20181103    	| 20200218      	| SG            	| 52.5              	|
+| Mcapitata 	| 1587    	| ATAC      	| 20180929    	| 20200218      	| SG            	| 40                	|
+| Mcapitata 	| 1625    	| ATAC      	| 20181006    	| 20200218      	| SG            	| 45                	|
+| Mcapitata 	| 1688    	| HTAC      	| 20181215    	| 20200218      	| DC            	| 21                	|
+| Mcapitata 	| 2397    	| ATHC      	| 20181117    	| 20200218      	| SG            	| 24                	|
