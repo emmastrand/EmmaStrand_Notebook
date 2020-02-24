@@ -12,7 +12,7 @@ projects: Holobiont Integration
 Airbrushing *Pocillopora acuta* and *Montipora capitata* whole coral fragments from the Holobiont Integration project from Hawaii in 2018 using the following [Putnam Lab Protocol](https://emmastrand.github.io/EmmaStrand_Notebook/Airbrushing-Protocol/).  
 
 Total number of samples to airbrush: 401.  
-Total airbrushed: 261 (last updated 20200219 10:00).  
+Total airbrushed: 298 (last updated 20200224 10:15).  
 
 | Species   	| Plug_ID 	| Treatment 	| Sample_Date 	| Airbrush_Date 	| Airbrush_Tech 	| Homogenate_Vol_mL 	|
 |-----------	|---------	|-----------	|-------------	|---------------	|---------------	|-------------------	|
@@ -200,9 +200,12 @@ Total airbrushed: 261 (last updated 20200219 10:00).
 | Mcapitata 	| 1135    	| HTHC      	| 20190112    	| 20200211      	| SG            	| 19                	|
 | Pacuta    	| 1149    	| ATHC      	| 20190112    	| 20200211      	| DC            	| 27                	|
 | Pacuta    	| 1191    	| HTHC      	| 20181117    	| 20200211      	| DC            	| 10                	|
+| Mcapitata 	| 1241    	| HTAC      	| 20181215    	| 20200211      	| EC            	| 26                	|
 | Mcapitata 	| 1273    	| HTHC      	| 20181215    	| 20200211      	| SG            	| 22                	|
+| Mcapitata 	| 1337    	| HTHC      	| 20181215    	| 20200211      	| EC            	| 52.5              	|
 | Pacuta    	| 1434    	| ATAC      	| 20190112    	| 20200211      	| DC            	| 45                	|
 | Mcapitata 	| 1448    	| ATAC      	| 20181215    	| 20200211      	| SG            	| 30.5              	|
+| Pacuta    	| 1456    	| ATAC      	| 20181215    	| 20200211      	| DC            	| 32.5              	|
 | Pacuta    	| 1473    	| ATAC      	| 20181215    	| 20200211      	| DC            	| 21                	|
 | Pacuta    	| 1482    	| ATAC      	| 20181215    	| 20200211      	| DC            	| 9                 	|
 | Mcapitata 	| 1568    	| HTAC      	| 20190112    	| 20200211      	| SG            	| 16.5              	|
@@ -212,16 +215,12 @@ Total airbrushed: 261 (last updated 20200219 10:00).
 | Mcapitata 	| 1824    	| HTHC      	| 20190112    	| 20200211      	| SG            	| 25                	|
 | Pacuta    	| 2208    	| ATHC      	| 20181215    	| 20200211      	| DC            	| 21                	|
 | Pacuta    	| 2384    	| HTAC      	| 20180923    	| 20200211      	| DC            	| 30                	|
+| Mcapitata 	| 2532    	| ATHC      	| 20181215    	| 20200211      	| SG            	| 80                	|
 | Pacuta    	| 2669    	| ATHC      	| 20190112    	| 20200211      	| DC            	| 12.5              	|
 | Pacuta    	| 2751    	| ATHC      	| 20190112    	| 20200211      	| DC            	| 12.5              	|
-| Pacuta    	| 2982    	| ATHC      	| 20190112    	| 20200211      	| DC            	| 8.5               	|
-| Mcapitata 	| 1241    	| HTAC      	| 20181215    	| 20200211      	| EC            	| 26                	|
-| Mcapitata 	| 1337    	| HTHC      	| 20181215    	| 20200211      	| EC            	| 52.5              	|
-| Pacuta    	| 1456    	| ATAC      	| 20181215    	| 20200211      	| DC            	| 32.5              	|
-| Mcapitata 	| 2532    	| ATHC      	| 20181215    	| 20200211      	| SG            	| 80                	|
 | Mcapitata 	| 2876    	| ATHC      	| 20181215    	| 20200211      	| EC            	| 36.5              	|
+| Pacuta    	| 2982    	| ATHC      	| 20190112    	| 20200211      	| DC            	| 8.5               	|
 | Mcapitata 	| 1067    	| ATAC      	| 20180929    	| 20200212      	| AM            	| 50                	|
-| Mcapitata 	| 3000    	| ATHC      	| 20181006    	| 20200212      	| AM            	| 53                	|
 | Mcapitata 	| 1333    	| HTAC      	| 20180929    	| 20200212      	| AM            	| 31                	|
 | Mcapitata 	| 1461    	| ATAC      	| 20180929    	| 20200212      	| AM            	| 40                	|
 | Mcapitata 	| 1550    	| ATHC      	| 20180929    	| 20200212      	| AM            	| 42                	|
@@ -230,6 +229,7 @@ Total airbrushed: 261 (last updated 20200219 10:00).
 | Mcapitata 	| 1634    	| HTAC      	| 20181215    	| 20200212      	| AF            	| 14.5              	|
 | Mcapitata 	| 1730    	| HTHC      	| 20181006    	| 20200212      	| AM            	| 35                	|
 | Mcapitata 	| 2010    	| HTHC      	| 20181006    	| 20200212      	| AM            	| 36.5              	|
+| Mcapitata 	| 3000    	| ATHC      	| 20181006    	| 20200212      	| AM            	| 53                	|
 | Mcapitata 	| 1044    	| ATAC      	| 20181117    	| 20200213      	| AF            	| 28                	|
 | Mcapitata 	| 1102    	| ATAC      	| 20190112    	| 20200213      	| AF            	| 17.5              	|
 | Mcapitata 	| 1142    	| ATHC      	| 20181215    	| 20200213      	| AF            	| 24.5              	|
@@ -256,6 +256,7 @@ Total airbrushed: 261 (last updated 20200219 10:00).
 | Mcapitata 	| 1197    	| HTHC      	| 20180923    	| 20200217      	| AF            	| 15.5              	|
 | Mcapitata 	| 1272    	| HTHC      	| 20190112    	| 20200217      	| AF            	| 18.5              	|
 | Mcapitata 	| 1469    	| HTAC      	| 20181215    	| 20200217      	| AF            	| 11.5              	|
+| Mcapitata 	| 1489    	| ATAC      	| 20181215    	| 20200217      	| AF            	| 7.5               	|
 | Mcapitata 	| 1638    	| HTAC      	| 20190112    	| 20200217      	| AF            	| 16                	|
 | Mcapitata 	| 2018    	| HTHC      	| 20190112    	| 20200217      	| AF            	| 7.5               	|
 | Mcapitata 	| 2372    	| HTAC      	| 20181117    	| 20200217      	| AF            	| 39.5              	|
@@ -294,3 +295,22 @@ Total airbrushed: 261 (last updated 20200219 10:00).
 | Mcapitata 	| 2394    	| ATAC      	| 20180929    	| 20200219      	| AF            	| 30                	|
 | Mcapitata 	| 2404    	| HTAC      	| 20181006    	| 20200219      	| AF            	| 27.5              	|
 | Mcapitata 	| 2741    	| ATHC      	| 20181006    	| 20200219      	| SG            	| 32.5              	|
+| Mcapitata 	| 1061    	| ATAC      	| 20180923    	| 20200220      	| DC            	| 43                	|
+| Mcapitata 	| 1146    	| ATHC      	| 20180922    	| 20200220      	| DC            	| 82.5              	|
+| Mcapitata 	| 1166    	| ATAC      	| 20181117    	| 20200220      	| DC            	| 42.5              	|
+| Mcapitata 	| 1438    	| HTHC      	| 20181117    	| 20200220      	| DC            	| 55                	|
+| Mcapitata 	| 1597    	| HTAC      	| 20181117    	| 20200220      	| DC            	| 25                	|
+| Mcapitata 	| 1640    	| HTAC      	| 20180922    	| 20200220      	| DC            	| 33                	|
+| Mcapitata 	| 2378    	| HTAC      	| 20180923    	| 20200220      	| DC            	| 28                	|
+| Mcapitata 	| 2852    	| ATHC      	| 20190112    	| 20200220      	| DC            	| 24                	|
+| Mcapitata 	| 1189    	| ATAC      	| 20180929    	| 20200221      	| EC            	| 38.5              	|
+| Mcapitata 	| 1309    	| HTAC      	| 20181117    	| 20200221      	| AM            	| 42                	|
+| Mcapitata 	| 1483    	| HTAC      	| 20181006    	| 20200221      	| AM            	| 55                	|
+| Mcapitata 	| 1533    	| ATAC      	| 20181117    	| 20200221      	| AM            	| 42.5              	|
+| Mcapitata 	| 1592    	| ATAC      	| 20181103    	| 20200221      	| EC            	| 50                	|
+| Mcapitata 	| 1643    	| HTAC      	| 20181006    	| 20200221      	| EC            	| 35                	|
+| Mcapitata 	| 1749    	| HTHC      	| 20181117    	| 20200221      	| AM            	| 58                	|
+| Mcapitata 	| 2044    	| ATHC      	| 20181117    	| 20200221      	| EC            	| 25                	|
+| Mcapitata 	| 2172    	| HTHC      	| 20181117    	| 20200221      	| EC            	| 50                	|
+| Mcapitata 	| 2279    	| HTHC      	| 20181006    	| 20200221      	| EC            	| 47.5              	|
+| Mcapitata 	| 2391    	| ATAC      	| 20181103    	| 20200221      	| EC            	| 65                	|
