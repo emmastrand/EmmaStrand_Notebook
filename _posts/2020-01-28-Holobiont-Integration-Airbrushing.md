@@ -12,7 +12,7 @@ projects: Holobiont Integration
 Airbrushing *Pocillopora acuta* and *Montipora capitata* whole coral fragments from the Holobiont Integration project from Hawaii in 2018 using the following [Putnam Lab Protocol](https://emmastrand.github.io/EmmaStrand_Notebook/Airbrushing-Protocol/).  
 
 Total number of samples to airbrush: 401.  
-Total airbrushed: 319 (last updated 20200224 23:19).  
+Total airbrushed: 342 (last updated 20200225 18:39).  
 
 | Species   	| Plug_ID 	| Treatment 	| Sample_Date 	| Airbrush_Date 	| Airbrush_Tech 	| Homogenate_Vol_mL 	|
 |-----------	|---------	|-----------	|-------------	|---------------	|---------------	|-------------------	|
@@ -326,6 +326,7 @@ Total airbrushed: 319 (last updated 20200224 23:19).
 | Mcapitata 	| 1036    	| ATAC      	| 20181020    	| 20200224      	| AM            	| 34.5              	|
 | Mcapitata 	| 1099    	| ATAC      	| 20181006    	| 20200224      	| AF            	| 13                	|
 | Mcapitata 	| 1122    	| HTHC      	| 20181006    	| 20200224      	| AM            	| 40                	|
+| Mcapitata 	| 1171    	| HTHC      	| 20181006    	| 20200224      	| AM            	| 33                	|
 | Mcapitata 	| 1216    	| ATHC      	| 20181006    	| 20200224      	| AM            	| 28                	|
 | Mcapitata 	| 1264    	| HTHC      	| 20181020    	| 20200224      	| AM            	| 55                	|
 | Mcapitata 	| 1265    	| HTHC      	| 20180923    	| 20200224      	| AM            	| 53                	|
@@ -334,14 +335,26 @@ Total airbrushed: 319 (last updated 20200224 23:19).
 | Mcapitata 	| 2164    	| HTAC      	| 20181020    	| 20200224      	| AM            	| 48                	|
 | Mcapitata 	| 2535    	| ATHC      	| 20180923    	| 20200224      	| AM            	| 31                	|
 | Mcapitata 	| 2863    	| ATHC      	| 20181020    	| 20200224      	| AM            	| 42.5              	|
-| Mcapitata 	| 1171    	| HTHC      	| 20181006    	| 20200224      	| AM            	| 33                	|
+| Mcapitata 	| 1092    	| HTHC      	| 20181020    	| 20200225      	| SG            	| 37.5              	|
 | Mcapitata 	| 1117    	| ATAC      	| 20181006    	| 20200225      	| DC            	| 52.5              	|
+| Mcapitata 	| 1226    	| ATHC      	| 20181020    	| 20200225      	| SG            	| 42.5              	|
 | Mcapitata 	| 1242    	| HTAC      	| 20180923    	| 20200225      	| DC            	| 50                	|
 | Mcapitata 	| 1295    	| ATHC      	| 20181006    	| 20200225      	| DC            	| 59                	|
+| Mcapitata 	| 1299    	| HTAC      	| 20180923    	| 20200225      	| EC/AM         	| 22.5              	|
 | Mcapitata 	| 1316    	| HTAC      	| 20181020    	| 20200225      	| DC            	| 57.5              	|
+| Mcapitata 	| 1353    	| HTHC      	| 20181020    	| 20200225      	| SG            	| 24.5              	|
+| Mcapitata 	| 1413    	| HTHC      	| 20181103    	| 20200225      	| AM            	| 37                	|
+| Mcapitata 	| 1479    	| ATAC      	| 20180923    	| 20200225      	| SG            	| 34                	|
 | Mcapitata 	| 1494    	| HTAC      	| 20181020    	| 20200225      	| DC            	| 47.5              	|
+| Mcapitata 	| 1498    	| ATHC      	| 20181020    	| 20200225      	| EC/AM         	| 27.5              	|
 | Mcapitata 	| 1551    	| ATAC      	| 20181020    	| 20200225      	| DC            	| 90                	|
 | Mcapitata 	| 1695    	| ATHC      	| 20181020    	| 20200225      	| DC            	| 72.5              	|
 | Mcapitata 	| 1708    	| HTAC      	| 20180923    	| 20200225      	| DC            	| 46                	|
+| Mcapitata 	| 2376    	| HTAC      	| 20181020    	| 20200225      	| EC/AM         	| 32.5              	|
 | Mcapitata 	| 2389    	| ATAC      	| 20181006    	| 20200225      	| DC            	| 26                	|
+| Mcapitata 	| 2517    	| HTHC      	| 20181020    	| 20200225      	| AM            	| 39                	|
+| Mcapitata 	| 2529    	| ATHC      	| 20180923    	| 20200225      	| EC/AM         	| 32.5              	|
+| Mcapitata 	| 2732    	| ATHC      	| 20181103    	| 20200225      	| EC/AM         	| 35                	|
+| Mcapitata 	| 2749    	| ATHC      	| 20181020    	| 20200225      	| EC/AM         	| 49                	|
 | Mcapitata 	| 2869    	| ATHC      	| 20181117    	| 20200225      	| DC            	| 32.5              	|
+| Mcapitata 	| 2989    	| ATHC      	| 20181103    	| 20200225      	| AM            	| 73                	|
