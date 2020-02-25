@@ -302,6 +302,7 @@ Total airbrushed: 319 (last updated 20200224 23:19).
 | Mcapitata 	| 1409    	| HTHC      	| 20181006    	| 20200220      	| AF            	| 46                	|
 | Mcapitata 	| 1438    	| HTHC      	| 20181117    	| 20200220      	| DC            	| 55                	|
 | Mcapitata 	| 1447    	| HTHC      	| 20181117    	| 20200220      	| AF            	| 17.5              	|
+| Mcapitata 	| 1480    	| HTHC      	| 20180929    	| 20200220      	| AF            	| 27.5              	|
 | Mcapitata 	| 1593    	| HTAC      	| 20180929    	| 20200220      	| AF            	| 37.5              	|
 | Mcapitata 	| 1597    	| HTAC      	| 20181117    	| 20200220      	| DC            	| 25                	|
 | Mcapitata 	| 1640    	| HTAC      	| 20180922    	| 20200220      	| DC            	| 33                	|
@@ -311,7 +312,6 @@ Total airbrushed: 319 (last updated 20200224 23:19).
 | Mcapitata 	| 2211    	| ATHC      	| 20181117    	| 20200220      	| AF            	| 26                	|
 | Mcapitata 	| 2378    	| HTAC      	| 20180923    	| 20200220      	| DC            	| 28                	|
 | Mcapitata 	| 2852    	| ATHC      	| 20190112    	| 20200220      	| DC            	| 24                	|
-| Mcapitata 	| 1480    	| HTHC      	| 20180929    	| 20200220      	| AF            	| 27.5              	|
 | Mcapitata 	| 1189    	| ATAC      	| 20180929    	| 20200221      	| EC            	| 38.5              	|
 | Mcapitata 	| 1309    	| HTAC      	| 20181117    	| 20200221      	| AM            	| 42                	|
 | Mcapitata 	| 1483    	| HTAC      	| 20181006    	| 20200221      	| AM            	| 55                	|
@@ -325,7 +325,6 @@ Total airbrushed: 319 (last updated 20200224 23:19).
 | Mcapitata 	| 2391    	| ATAC      	| 20181103    	| 20200221      	| EC            	| 65                	|
 | Mcapitata 	| 1036    	| ATAC      	| 20181020    	| 20200224      	| AM            	| 34.5              	|
 | Mcapitata 	| 1099    	| ATAC      	| 20181006    	| 20200224      	| AF            	| 13                	|
-| Mcapitata 	| 1117    	| ATAC      	| 20181006    	| 20200224      	| AM            	| 33                	|
 | Mcapitata 	| 1122    	| HTHC      	| 20181006    	| 20200224      	| AM            	| 40                	|
 | Mcapitata 	| 1216    	| ATHC      	| 20181006    	| 20200224      	| AM            	| 28                	|
 | Mcapitata 	| 1264    	| HTHC      	| 20181020    	| 20200224      	| AM            	| 55                	|
@@ -335,3 +334,14 @@ Total airbrushed: 319 (last updated 20200224 23:19).
 | Mcapitata 	| 2164    	| HTAC      	| 20181020    	| 20200224      	| AM            	| 48                	|
 | Mcapitata 	| 2535    	| ATHC      	| 20180923    	| 20200224      	| AM            	| 31                	|
 | Mcapitata 	| 2863    	| ATHC      	| 20181020    	| 20200224      	| AM            	| 42.5              	|
+| Mcapitata 	| 1171    	| HTHC      	| 20181006    	| 20200224      	| AM            	| 33                	|
+| Mcapitata 	| 1117    	| ATAC      	| 20181006    	| 20200225      	| DC            	| 52.5              	|
+| Mcapitata 	| 1242    	| HTAC      	| 20180923    	| 20200225      	| DC            	| 50                	|
+| Mcapitata 	| 1295    	| ATHC      	| 20181006    	| 20200225      	| DC            	| 59                	|
+| Mcapitata 	| 1316    	| HTAC      	| 20181020    	| 20200225      	| DC            	| 57.5              	|
+| Mcapitata 	| 1494    	| HTAC      	| 20181020    	| 20200225      	| DC            	| 47.5              	|
+| Mcapitata 	| 1551    	| ATAC      	| 20181020    	| 20200225      	| DC            	| 90                	|
+| Mcapitata 	| 1695    	| ATHC      	| 20181020    	| 20200225      	| DC            	| 72.5              	|
+| Mcapitata 	| 1708    	| HTAC      	| 20180923    	| 20200225      	| DC            	| 46                	|
+| Mcapitata 	| 2389    	| ATAC      	| 20181006    	| 20200225      	| DC            	| 26                	|
+| Mcapitata 	| 2869    	| ATHC      	| 20181117    	| 20200225      	| DC            	| 32.5              	|
