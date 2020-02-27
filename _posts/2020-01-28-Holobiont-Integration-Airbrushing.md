@@ -12,7 +12,7 @@ projects: Holobiont Integration
 Airbrushing *Pocillopora acuta* and *Montipora capitata* whole coral fragments from the Holobiont Integration project from Hawaii in 2018 using the following [Putnam Lab Protocol](https://emmastrand.github.io/EmmaStrand_Notebook/Airbrushing-Protocol/).  
 
 Total number of samples to airbrush: 401.  
-Total airbrushed: 342 (last updated 20200225 18:39).  
+Total airbrushed: 349 (last updated 20200226 15:29).  
 
 | Species   	| Plug_ID 	| Treatment 	| Sample_Date 	| Airbrush_Date 	| Airbrush_Tech 	| Homogenate_Vol_mL 	|
 |-----------	|---------	|-----------	|-------------	|---------------	|---------------	|-------------------	|
@@ -358,3 +358,10 @@ Total airbrushed: 342 (last updated 20200225 18:39).
 | Mcapitata 	| 2749    	| ATHC      	| 20181020    	| 20200225      	| EC/AM         	| 49                	|
 | Mcapitata 	| 2869    	| ATHC      	| 20181117    	| 20200225      	| DC            	| 32.5              	|
 | Mcapitata 	| 2989    	| ATHC      	| 20181103    	| 20200225      	| AM            	| 73                	|
+| Mcapitata 	| 1136    	| ATHC      	| 20181103    	| 20200226      	| AM            	| 32.5              	|
+| Mcapitata 	| 1162    	| HTHC      	| 20181103    	| 20200226      	| AM            	| 55                	|
+| Mcapitata 	| 1564    	| ATAC      	| 20180923    	| 20200226      	| AM            	| 43                	|
+| Mcapitata 	| 1822    	| HTHC      	| 20181103    	| 20200226      	| AM            	| 40                	|
+| Mcapitata 	| 2360    	| ATAC      	| 20180923    	| 20200226      	| AM            	| 51                	|
+| Mcapitata 	| 2407    	| HTAC      	| 20181020    	| 20200226      	| AM            	| 65                	|
+| Mcapitata 	| 2525    	| HTHC      	| 20181020    	| 20200226      	| AM            	| 50                	|
