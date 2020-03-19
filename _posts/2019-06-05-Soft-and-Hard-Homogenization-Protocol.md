@@ -11,9 +11,11 @@ projects: Holobiont Integration
 
 Major Goal: To extract DNA and RNA from coral fragments and to enrich for host in the first "soft homogenization" fraction and holobiont in the "hard homogenization" fraction. Testing to see if "Soft homogenization" will include DNA and RNA from primarily the host for transcriptomics and DNA methylation analysis. "Hard homogenization" will include the DNA from the symbionts and microbiome for ITS2 and 16s amplification and Holobiont RNA.
 
-Major Results: In the below protocol, the "soft" and "hard" homogenizations did not show a difference quantitatively or qualitatively in symbiont communities.
+Major Results: In the below protocol, the "soft" and "hard" homogenizations did not show a difference quantitatively or qualitatively in symbiont communities. "Mix S" = a mixture of soft homogenization extractions and "Mix H" = a mixture of hard homogenization extractions. There is no clear difference in extraction method.
 
-![sym]()
+![sym](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/sym-hard-soft.png?raw=true)
+
+![sym2]()
 
 Major Take Home: Although this protocol is not effective, there is still a need to develop an efficient way to separate symbiont and host tissue for downstream genomic analysis. Ideas or suggestions? hputnam@uri.edu or emma_strand@uri.edu.
 
