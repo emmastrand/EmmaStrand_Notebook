@@ -15,7 +15,7 @@ Major Results: In the below protocol, the "soft" and "hard" homogenizations did 
 
 ![sym](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/sym-hard-soft.png?raw=true)
 
-![sym2]()
+![sym2](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/sym-hard-soft-2.png?raw=true)
 
 Major Take Home: Although this protocol is not effective, there is still a need to develop an efficient way to separate symbiont and host tissue for downstream genomic analysis. Ideas or suggestions? hputnam@uri.edu or emma_strand@uri.edu.
 
