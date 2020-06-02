@@ -1,0 +1,294 @@
+---
+title: "ITS2_analysis_unused"
+author: "EL Strand"
+date: "5/4/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+################ ALPHA DIVERSITY USING OTUSUMMARY ################ 
+
+## Calculating alpha diversity: https://rdrr.io/cran/otuSummary/man/alphaDiversity.html
+The dataframe input needs to be a specific matrix format. See sections prior to "Transforming to phyloseq objects" and what goes into the output csv "otu_transposed". The output of this function is allBio (alpha diversity for the whole community), abundBio (alpha diversity indices for the adundant population), and rareBio (alpha diversity indices for the rare biosphere). 
+
+Loading in dataframes and running alpha diversity metrics usings otuSummary package. 
+```{r}
+rm(list=ls()) # clear work space
+if ("otuSummary" %in% rownames(installed.packages()) == 'FALSE') install.packages('otuSummary') 
+library(otuSummary)
+library(dplyr)
+library(ggplot2)
+library(ggpubr)
+library(plyr)
+library(tidyr)
+library(gridExtra)
+
+### example data loaded to compare dataframe formatting
+# data(otumothur)
+# test1 <- alphaDiversity(otutab = otumothur, siteInCol = TRUE,
+   # taxhead = "taxonomy", threshold = 1, percent = FALSE, write = FALSE)
+### 
+seq_abundance_raw <- read.csv("~/MyProjects/Acclim_Dynamics/ITS2/R_Input/Seq_Absolute_raw_input.csv", sep=",", header=TRUE)
+seq_abundance_raw <- t(seq_abundance_raw)
+write.csv(seq_abundance_raw, "~/MyProjects/Acclim_Dynamics/ITS2/R_Input/Seq_Absolute_transposed_alpha.csv")
+
+type_abundance_raw <- read.csv("~/MyProjects/Acclim_Dynamics/ITS2/R_Input/Type_Absolute_raw_input.csv", sep=",", header=TRUE)
+type_abundance_raw <- t(type_abundance_raw)
+write.csv(type_abundance_raw, "~/MyProjects/Acclim_Dynamics//ITS2/R_Input/Type_Absolute_transposed_alpha.csv")
+```
+Manually delete the first row V1, V2, V3 - this is annoying come back to this later.
+
+```{r}
+# Taking out the "X" in front of each column and row ; come back to figuring out to take out the X in row names 
+seq_abundance_transposed <- read.csv("~/MyProjects/Acclim_Dynamics/ITS2/R_Input/Seq_Absolute_transposed_alpha.csv", sep = ",", header = TRUE)
+for (col in 1:ncol(seq_abundance_transposed)) {
+  colnames(seq_abundance_transposed)[col] <- sub("X", "", colnames(seq_abundance_transposed)[col])
+}
+row.names(seq_abundance_transposed) <- seq_abundance_transposed$sample_uid # defining row names from the uid column
+seq_abundance_transposed <- seq_abundance_transposed %>% select (-sample_uid) # removing the sample uid column since it is now used as a row name
+
+type_abundance_transposed <- read.csv("~/MyProjects/Acclim_Dynamics/ITS2/R_Input/Type_Absolute_transposed_alpha.csv", sep = ",", header = TRUE)
+for (col in 1:ncol(type_abundance_transposed)) {
+  colnames(type_abundance_transposed)[col] <- sub("X", "", colnames(type_abundance_transposed)[col])
+}
+row.names(type_abundance_transposed) <- type_abundance_transposed$sample_uid # defining row names from the uid column
+type_abundance_transposed <- type_abundance_transposed %>% select (-sample_uid) # removing the sample uid column since it is now used as a row name
+
+# Transforming the OTU and tax datatables into matrixes 
+seq_abundance_transposed <- as.matrix(seq_abundance_transposed)
+type_abundance_transposed <- as.matrix(type_abundance_transposed)
+```
+
+```{r}
+alpha_seq <- alphaDiversity(seq_abundance_transposed, siteInCol = TRUE, taxhead = NULL, threshold = 1, percent = FALSE, write = TRUE)
+write.csv(alpha_seq$allBio, "~/MyProjects/Acclim_Dynamics/ITS2/Output/seq_alpha_allBio.csv")
+write.csv(alpha_seq$abundBio, "~/MyProjects/Acclim_Dynamics/ITS2/Output/seq_alpha_abundBio.csv")
+write.csv(alpha_seq$rareBio, "~/MyProjects/Acclim_Dynamics/ITS2/Output/seq_alpha_rareBio.csv")
+
+alpha_type <- alphaDiversity(type_abundance_transposed, siteInCol = TRUE, taxhead = NULL, threshold = 1, percent = FALSE, write = TRUE)
+write.csv(alpha_type$allBio, "~/MyProjects/Acclim_Dynamics/ITS2/Output/type_alpha_allBio.csv")
+write.csv(alpha_type$abundBio, "~/MyProjects/Acclim_Dynamics/ITS2/Output/type_alpha_abundBio.csv")
+write.csv(alpha_type$rareBio, "~/MyProjects/Acclim_Dynamics/ITS2/Output/type_alpha_rareBio.csv")
+```
+
+Merging the diversity measures from allBio and sample information. 
+```{r}
+Seq_allBio <- read.csv("~/MyProjects/Acclim_Dynamics/ITS2/Output/seq_alpha_rareBio.csv", sep = ",", header = TRUE)
+Type_allBio <- read.csv("~/MyProjects/Acclim_Dynamics/ITS2/Output/type_alpha_rareBio.csv", sep = ",", header = TRUE)
+
+sample_info <- read.csv("~/MyProjects/Acclim_Dynamics/ITS2/R_Input/Sample_variables.csv", sep=",", header=TRUE)
+names(Seq_allBio)[1] <- "sample_uid" # changing the column header to match that in sample_info
+names(Type_allBio)[1] <- "sample_uid" # changing the column header to match that in sample_info
+
+seq_alpha_diversity_total <- full_join(Seq_allBio, sample_info, by="sample_uid")
+type_alpha_diversity_total <- full_join(Type_allBio, sample_info, by="sample_uid")
+```
+
+Calculating the alpha diversity means.
+```{r}
+# Seq Alpha Diversity means 
+## THIS NEEDS TO BE TIMEPOINT B/C 3 TIMEPOINTS ON 20180922
+seq_alpha_diversity_total <- na.omit(seq_alpha_diversity_total)
+seq_alpha_diversity_total$Sample_Date <- as.factor(seq_alpha_diversity_total$Sample_Date)
+seq_alpha_diversity_total$Timepoint <- as.factor(seq_alpha_diversity_total$Timepoint) 
+
+# Nevermind on the below for now 
+# Sample #138 has a value of 0 for shannon index - look into later; take out sample uid 77 which is sample 138
+# alpha_diversity_total <- filter(alpha_diversity_total, !sample_uid==77)
+
+Seq.Shannon.Means <- ddply(seq_alpha_diversity_total, c('Timepoint','Host_species', 'Treatment'), summarize,
+                  Shannon.mean= mean(shannon, na.rm=T), #mean shannon
+                  N = sum(!is.na(shannon)), # sample size
+                  Shannon.se = sd(shannon, na.rm=T)/sqrt(N)) # standard error
+
+# Type Alpha Diversity means 
+type_alpha_diversity_total <- na.omit(type_alpha_diversity_total)
+type_alpha_diversity_total$Sample_Date <- as.factor(type_alpha_diversity_total$Sample_Date)
+type_alpha_diversity_total$Timepoint <- as.factor(type_alpha_diversity_total$Timepoint) 
+
+Type.Shannon.Means <- ddply(type_alpha_diversity_total, c('Timepoint','Host_species', 'Treatment'), summarize,
+                  Shannon.mean= mean(shannon, nxsa.rm=T), # mean shannon
+                  N = sum(!is.na(shannon)), # sample size
+                  Shannon.se = sd(shannon, na.rm=T)/sqrt(N)) # standard error
+```
+
+Plotting alpha diversity values over timepoint, treatment, and species. 
+```{r}
+# Seq Alpha Diversity
+Seq.Mcap_alpha <- subset(Seq.Shannon.Means, Host_species=="Montipora capitata")
+Seq.Mcap.A <- ggline(Seq.Mcap_alpha, x = "Timepoint", y = "Shannon.mean", color = "Treatment",
+       ylim=c(0,4), 
+       add = c("Shannon.se"),
+       palette = c("blue", "light blue", "salmon", "red3")) + ggtitle("Montipora capitata") + ylab("Alpha diversity")
+Seq.Mcap.A
+
+Seq.Pacuta_alpha <- subset(Seq.Shannon.Means, Host_species=="Pocillopora acuta")
+Seq.Pacuta.A <- ggline(Seq.Pacuta_alpha, x = "Timepoint", y = "Shannon.mean", color = "Treatment",
+       ylim=c(0,3), 
+       add = c("Shannon.se"),
+       palette = c("blue", "light blue", "salmon", "red3")) + ggtitle("Pocillopora acuta") + ylab("Alpha diversity")
+Seq.Pacuta.A
+
+Seq.Alpha.Figs <- arrangeGrob(Seq.Mcap.A, Seq.Pacuta.A, ncol=1)
+ggsave(file="~/MyProjects/Acclim_Dynamics/ITS2/Output/Seq.Alpha.Figs.pdf", Seq.Alpha.Figs, width = 11, height = 6, units = c("in"))
+
+# Type Alpha Diversity 
+Type.Mcap_alpha <- subset(Type.Shannon.Means, Host_species=="Montipora capitata")
+Type.Mcap.A <- ggline(Type.Mcap_alpha, x = "Timepoint", y = "Shannon.mean", color = "Treatment",
+       ylim=c(0,4), 
+       add = c("Shannon.se"),
+       palette = c("blue", "light blue", "salmon", "red3")) + ggtitle("Montipora capitata") + ylab("Alpha diversity")
+Type.Mcap.A
+
+Type.Pacuta_alpha <- subset(Type.Shannon.Means, Host_species=="Pocillopora acuta")
+Type.Pacuta.A <- ggline(Type.Pacuta_alpha, x = "Timepoint", y = "Shannon.mean", color = "Treatment",
+       ylim=c(0,3), 
+       add = c("Shannon.se"),
+       palette = c("blue", "light blue", "salmon", "red3")) + ggtitle("Pocillopora acuta") + ylab("Alpha diversity")
+Type.Pacuta.A
+
+Type.Alpha.Figs <- arrangeGrob(Type.Mcap.A, Type.Pacuta.A, ncol=1)
+ggsave(file="~/MyProjects/Acclim_Dynamics/ITS2/Output/Type.Alpha.Figs.pdf", Type.Alpha.Figs, width = 11, height = 6, units = c("in"))
+```
+
+Statistical analyses
+```{r} 
+#The below is all for post-med sequences not Type (no need for this since all of the values are zero. haha.)
+library(car)
+library(moments)
+Seq_Mcap_alpha_stats <- subset(seq_alpha_diversity_total, Host_species=="Montipora capitata")
+Seq_Pacuta_alpha_stats <- subset(seq_alpha_diversity_total, Host_species=="Pocillopora acuta")
+
+## Histograms of data distribution
+hist(Seq_Mcap_alpha_stats$shannon)
+hist(Seq_Pacuta_alpha_stats$shannon)
+
+## Shapiro-Wilks Normality Test
+shapiro.test(Seq_Mcap_alpha_stats$shannon)
+shapiro.test(Seq_Pacuta_alpha_stats$shannon) 
+
+## Skewness test: uses moments package
+## zero = no skewness (normal dist); negative value = negatively (left) skewed; positive value = positively (right) skewed
+skewness(Seq_Mcap_alpha_stats$shannon, na.rm = TRUE)
+skewness(Seq_Pacuta_alpha_stats$shannon, na.rm = TRUE)
+
+## Transformations if necessary based on the skew of the data
+# Mcap: Square root 
+Seq_Mcap_alpha_stats$shannon_sqrt <- sqrt(max(Seq_Mcap_alpha_stats$shannon + 1) - Seq_Mcap_alpha_stats$shannon) 
+hist(Seq_Mcap_alpha_stats$shannon_sqrt) # checking the distribution post transformation 
+skewness(Seq_Mcap_alpha_stats$shannon_sqrt, na.rm = TRUE) # checking the skew post transformation 
+
+# Pacuta: Log
+Seq_Pacuta_alpha_stats$shannon_log <- log10(max(Seq_Pacuta_alpha_stats$shannon+1) - Seq_Pacuta_alpha_stats$shannon) # log transformation for negative values
+hist(Seq_Pacuta_alpha_stats$shannon_log) # checking the distribution post transformation 
+skewness(Seq_Pacuta_alpha_stats$shannon_log, na.rm = TRUE) # checking the skew post transformation 
+
+## Bartlett Test of Homogeneity 
+bartlett.test(shannon_sqrt ~ interaction(Treatment,Timepoint), data=Seq_Mcap_alpha_stats)
+bartlett.test(shannon_log ~ interaction(Treatment,Timepoint), data=Seq_Pacuta_alpha_stats)
+
+### ANOVA (if significance of factor) and Tukey Post-Hoc (which factor is significant) tests
+# Mcap
+Mcap_alpha.aov <- aov(shannon_sqrt ~ Treatment*Timepoint, data = Seq_Mcap_alpha_stats)
+summary(Mcap_alpha.aov)
+TukeyHSD(Mcap_alpha.aov)
+
+#Pacuta
+Pacuta_alpha.aov <- aov(shannon_log ~ Treatment*Timepoint, data = Seq_Pacuta_alpha_stats)
+summary(Pacuta_alpha.aov)
+Pacuta_tukey <- TukeyHSD(Pacuta_alpha.aov)
+Pacuta_TT_Tukey <- as.data.frame(Pacuta_tukey$`Treatment:Timepoint`)
+```
+
+################ ALTERNATIVE OPTIONS TO THE ANALYSES ABOVE ################ 
+The below scripts were not used because of errors that ran into and never resolved or I decided on another package. The below could be useful in the future. 
+
+## Alternative Options using Phyloseq:
+Heatmaps 
+```{r}
+# filtering by the most abundance Profile Types
+carbom_abund <- filter_taxa(sample_date, function(x) sum(x > total*0.20) > 0, TRUE)
+carbom_abund
+
+plot_heatmap(carbom_abund, method = "NMDS", distance = "bray")
+```
+
+Calculating alpha diversity 
+```{r}
+plot_richness(carbom, measures = c("Chao1", "Shannon"), x="Timepoint", color = "Treatment")
+```
+
+
+## Calculating alpha diversity using Tabula: https://www.rdocumentation.org/packages/tabula/versions/1.0.0/topics/alpha-diversity
+```{r}
+#dataframes - otu_mat, samples_df, tax_mat
+if ("tabula" %in% rownames(installed.packages()) == 'FALSE') install.packages('tabula') 
+library(tabula)
+
+diversity(otu_mat, "shannon", simplify = FALSE)
+```
+
+
+## Dirichlet Regression - this may not be supported anymore. I recommend reading into this analysis before proceeding. 
+```{r}
+if ("DirichletReg" %in% rownames(installed.packages()) == 'FALSE') install.packages('DirichletReg') 
+library(DirichletReg)
+```
+
+################ PERMANOVA NOT USED ################ 
+Didn't use the relative abundance portions of the PERMANOVA. 
+
+1. Reading in and combining dataframes. 
+```{r}
+relative_type_raw <- read.csv("~/MyProjects/Acclim_Dynamics/ITS2/R_Input/Type_Relative_raw_input.csv", sep=",", header=TRUE) # reading in the type relative abundance file
+absolute_type_raw <- read.csv("~/MyProjects/Acclim_Dynamics/ITS2/R_Input/Type_Absolute_raw_input.csv", sep=",", header=TRUE) # reading in the type absolute abundance file
+
+sample_info_p <- read.csv("~/MyProjects/Acclim_Dynamics/ITS2/R_Input/Sample_variables.csv", sep=",", header=TRUE) # reading in sample info datasheet
+sample_info_p <- na.omit(sample_info_p)
+
+relative_permanova <- full_join(relative_type_raw, sample_info_p, by="sample_uid") 
+relative_permanova <- select(relative_permanova, -Plug_ID, -Tank, -Sample_Date, -sample) # removing columns that won't be factors
+relative_permanova <- na.omit(relative_permanova)
+mcap_permanova_data <- subset(relative_permanova, Host_species=="Montipora capitata")
+```
+
+2. Transform or standardize data: Use square root or proportions to minimize influence of most abundant groups. 
+```{r}
+## Relative 
+# Total  
+relative.matrix <- as.matrix(relative_permanova[,2:13]) # response varibles (Type Profiles) in a sample x species matrix
+relative.sqrt.mat <- sqrt(relative.matrix) # square root transformation
+
+#Mcap 
+mcap.relative.matrix <- as.matrix(mcap_permanova_data[,2:13]) # response varibles (Type Profiles) in a sample x species matrix
+mcap.relative.sqrt.mat <- sqrt(mcap.relative.matrix) # square root transformation
+
+#Pacuta
+```
+
+3. Calculate ecological resemblance using bray-curtis dissimilarity (abundance weighted )
+```{r}
+## Relative
+# Total 
+relative.dist <- vegdist(relative.sqrt.mat, method = 'bray')
+# Mcap
+mcap.relative.dist <- vegdist(mcap.relative.sqrt.mat, method = 'bray')
+# Pacuta
+```
+
+4. PERMANOVA calculation. Does ITS2 Type Profile abundance differ between treatment, timepoint, and species?
+```{r}
+## Relative Abundances 
+# Two-way PERMANOVA
+Mcap.rel.permanova <- adonis2(mcap.relative.dist~Treatment*Timepoint, data=Mcap_rel_permanova_subset, permutations = 999, method = "bray", strata = "PLOT")
+Mcap.rel.permanova
+
+Pacuta.rel.permanova <- adonis2(relative.dist~Treatment*Timepoint, data=relative_permanova, permutations = 999, method = "bray", strata = "PLOT")
+
+# Three-way(?) PERMANOVA
+total.rel.permanova <- adonis2(relative.dist~Treatment*Timepoint*Host_species, data=relative_permanova, permutations = 999, method = "bray", strata = "PLOT")
+total.rel.permanova
+```
