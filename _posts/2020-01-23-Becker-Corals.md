@@ -351,3 +351,178 @@ Sequencing center ID:
 | HP432  | 32         | C26        | ITS2         | 4                |
 | HP433  | 33         | MIX        | ITS2         | 5                |
 | HP434  | 34         | NEG CON    | ITS2         | 5                |
+
+
+### Re-extracting the samples with no RNA yield
+
+**Extractions from re-bead beating coral fragments + 300 uL of original shield**
+
+DNA/RNA Extractions from Danielle Becker's *Pocillopora* coral samples using the following protocol: [Zymo Duet RNA DNA Extraction Protocol](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2019-05-31-Zymo-Duet-RNA-DNA-Extraction-Protocol.md) and modified adult fragment tissue preparation steps described below:
+
+Tissue fragment preparation:  
+- Thawing the bead tube that contains the fragments and beads from the original extraction  
+- Adding 300 uL of the original DNA RNA shield and 700 uL of new DNA RNA shield  
+- 40 seconds at 20 Hz in the Tissue Lyser to remove reamining tissue from coral skeleton  
+- Supernatant removed and placed in 1.5 mL microcentrifuge tube for the extraction protocol (Zymo link above) with the following modifications.  
+- No stock solution leftover from 20200901 extraction. ~300 uL of stock solution remains from the original extraction in case 20200901 extraction fails.  
+
+Extraction modification steps:
+- 700 μl of tissue homogenate, 70 μl of Proteinase K Digestion buffer (1:10 ratio with tissue homogenate volume), and 35 μl of Proteinase K added to a new 1.5 mL microcentrifuge tube.  
+- 805 μl of Lysis Buffer added (1:1 ratio to tissue, Proteinase K Digestion buffer, and Proteinase K volume)  
+- 1,610 μl of 100% molecular grade ethanol added to tissue for RNA portion of the protocol (1:1 ratio)  
+
+20200901 notes:  
+- No incubation step used for final DNA elution steps (accidentally skipped). Lower DNA yield from these samples but should still be usable.
+
+20200907 notes:  
+- Supernatant is very clear, hardly any tissue on these fragment pieces. Worried about not getting enough genomic pool from the coral. Starting to think the original stock would better biologically even though there is only 300 uL leftover.  
+- C32 did not have any original DNA RNA shield left. 1,000 uL of new RNA DNA shield used.
+
+Qubit and TapeStation Results  
+
+Extractions from coral fragment pieces and original DNA RNA shield
+
+| Date     	| Coral ID 	| DNA 1 	| DNA 2 	| Average DNA (ng_uL) 	| RNA 1 	| RNA 2 	| Average RNA (ng_uL) 	| RIN 	| Pass?       	|
+|----------	|----------	|-------	|-------	|---------------------	|-------	|-------	|---------------------	|-----	|-------------	|
+| 20200901 	| E3       	| 10.9  	| 10.8  	| 10.85               	| 16.8  	| 16.8  	| 16.8                	| 8.3 	| Yes         	|
+| 20200901 	| E8       	| 3     	| 2.98  	| 2.99                	| 6.96  	| 7     	| 6.98                	| **  	| No          	|
+| 20200901 	| E14      	| 7.46  	| 7.4   	| 7.43                	| 15.5  	| 15.5  	| 15.5                	| 8.9 	| Yes         	|
+| 20200901 	| C22      	| 7.78  	| 7.76  	| 7.77                	| 23.6  	| 23.6  	| 23.6                	| 9.4 	| Yes         	|
+| 20200907 	| E1       	| 9.5   	| 9.46  	| 9.48                	| 8.74  	| 8.72  	| 8.73                	| **  	| Re do tape? 	|
+| 20200907 	| E15      	| 3.74  	| 3.68  	| 3.71                	| 5.54  	| 5.42  	| 5.48                	| **  	| No          	|
+| 20200907 	| C21      	| 2.66  	| 2.64  	| 2.65                	| 7.72  	| 7.82  	| 7.77                	| 8.8 	| Yes         	|
+| 20200907 	| C26      	| 4.78  	| 4.74  	| 4.76                	| 5.88  	| 5.9   	| 5.89                	| **  	| No          	|
+| 20200907 	| C27      	| 3.52  	| 3.5   	| 3.51                	| 4.2   	| 4.4   	| 4.3                 	| **  	| No          	|
+| 20200907 	| C29      	| 4.5   	| 4.48  	| 4.49                	| 6.74  	| 6.72  	| 6.73                	| **  	| No          	|
+| 20200907 	| C30      	| 5.34  	| 5.28  	| 5.31                	| 9.3   	| 9.32  	| 9.31                	| 8.6 	| Yes         	|
+| 20200907 	| C32      	| 3.02  	| 3.02  	| 3.02                	| **    	| **    	| **                  	| **  	| No          	|
+| 20200915 	| E4       	| 5.2   	| 4.96  	| 5.08                	| 15.1  	| 15.1  	| 15.1                	| 9.3 	| Yes         	|
+| 20200915 	| E10      	| 11.4  	| 11.3  	| 11.35               	| 23.2  	| 23.2  	| 8                   	| 8   	| Yes         	|
+
+20200901 Extractions:
+DNA BR Standard 1: 199.24 ng/μl  
+DNA BR Standard 2: 22,582.06 ng/μl  
+RNA HS Standard 1: 49.18 ng/μl  
+RNA HS Standard 2: 907.40 ng/μl
+
+20200907 Extractions:
+DNA BR Standard 1: 192.94 ng/μl  
+DNA BR Standard 2: 21,521.22 ng/μl  
+RNA HS Standard 1: 50.71 ng/μl  
+RNA HS Standard 2: 952.91 ng/μl
+
+2020915 Extractions:  
+DNA BR Standard 1: 168.02 ng/μl  
+DNA BR Standard 2: 19,640.60 ng/μl  
+RNA HS Standard 1: 50.14 ng/μl  
+RNA HS Standard 2: 924.90 ng/μl
+
+20200901 E3, E8, E14, C22 [TapeStation Results]()
+
+20200901 E3, E8, E14, C22 Gel Image
+![gel]()
+
+20200907 [TapeStation Results]()
+
+20200907 Gel Image
+![gel2]()
+
+20200915 [TapeStation]()  
+
+20200915 Gel image  
+![gel3]()
+
+Although I did get RNA from this re-extraction round, I am now thinking that doing extractions on the original stock (only 300 uL) would be better biologically. The original stock would have more coral tissue and is darker in color than what I got from beating the coral fragments again. Only issue is that I wasn't originally able to get enough from 300 uL on the first time around which is why I hadn't done re-extractions on those yet. If this works, I would take the RNA and DNA from the stock instead of what was done on 20200901 and 20200907.
+
+Next steps: 20200912 Extractions on the 300 uL stock from all samples. Two rounds of 6 samples. This is the last shot on this batch of corals. If still not satisfied with results, then consider doing cites for the batch in Mo'orea.
+
+
+**Extractions from 300 uL original stock solution from the first time bead beating the fragments**
+
+20200911:  
+2 rounds of extractions: 1.) E8, C22, E14, E8, C29, E15 and 2.) C30, C21, E1, C27, C26, C32
+
+Stock is from original Tissue Lyser run, go straight into ProK Buffer and ProK step. (300 uL sample, 30 uL Prok Buffer, 15 uL ProK).
+
+20200914 Qubit, TapeStation
+DNA BR Standard 1: 194.38 ng/μl  
+DNA BR Standard 2: 21,798.00 ng/μl  
+RNA HS Standard 1: 49.37 ng/μl  
+RNA HS Standard 2: 941.70 ng/μl
+
+| Date     	| Coral ID 	| DNA 1 	| DNA 2 	| Average DNA (ng_uL) 	| RNA 1 	| RNA 2 	| Average RNA (ng_uL) 	| RIN 	| Pass? 	|
+|----------	|----------	|-------	|-------	|---------------------	|-------	|-------	|---------------------	|-----	|-------	|
+| 20200911 	| E3       	| 8.6   	| 8.56  	| 8.58                	| 7.28  	| 7.36  	| 7.32                	| **  	| No    	|
+| 20200911 	| E8       	| **    	| **    	| **                  	| **    	| **    	| **                  	| **  	| No    	|
+| 20200911 	| E14      	| 5.04  	| 5.02  	| 5.03                	| 5.12  	| 5.1   	| 5.11                	| **  	| No    	|
+| 20200911 	| C22      	| 7.9   	| 7.86  	| 7.88                	| 10.7  	| 10.7  	| 10.7                	| 8.9 	| Yes   	|
+| 20200911 	| E1       	| 2.66  	| 2.64  	| 2.65                	| 5.18  	| 5.26  	| 5.22                	| **  	| No    	|
+| 20200911 	| E15      	| **    	| **    	| **                  	| **    	| **    	| **                  	| **  	| No    	|
+| 20200911 	| C21      	| 2.44  	| 2.42  	| 2.43                	| 4.6   	| 4.6   	| 4.6                 	| **  	| No    	|
+| 20200911 	| C26      	| **    	| **    	| **                  	| **    	| **    	| **                  	| **  	| No    	|
+| 20200911 	| C27      	| **    	| **    	| **                  	| **    	| **    	| **                  	| **  	| No    	|
+| 20200911 	| C29      	| 2.56  	| 2.56  	| 2.56                	| 5.14  	| 5.08  	| 5.11                	| **  	| No    	|
+| 20200911 	| C30      	| 2.42  	| 2.4   	| 2.41                	| 6.04  	| 6.04  	| 6.04                	| **  	| No    	|
+| 20200911 	| C32      	| 2.5   	| 2.46  	| 2.48                	| **    	| **    	| **                  	| **  	| No    	|
+
+20200914 [TapeStation Results]()
+
+No gel image for these extractions because GelGreen was accidentally left out of the gel. Not re-done because Qubit values were low anyways.
+
+This method didn't work as well as I had hoped. Could be that the stock de-thawing caused degradation of DNA RNA? Use the extractions done with re-bead beating the coral fragments.
+
+Just to double check:  
+Re-qubit C26 RNA from January 2019.  
+RNA HS Standard 1: 49.57 ng/μl  
+RNA HS Standard 2: 964.11 ng/μl
+Value 1: 5.04 ng/uL Value 2: 5.04 ng/uL
+
+Re-TapeStation E1 from January 2019.  
+Value returned as too low to detect.
+
+Removed E1 and C26 from the final list to send to sequencing.
+
+# Final Extraction Values
+
+20200916 final thoughts: Some of the coral had enough tissue on the fragments to be re-bead beated successfully. There was also likely DNA and RNA in the original shield volume. I know think this is the better option biologically because freeze-thawing stock or tissue homogenate more than once degrades the DNA and RNA in the homogenate. Which you can see based on the results of the second type of re-extractions, and this also happened to Kevin (labmate) with his 2017 vs 2018 tissue homogenate.
+
+Dates in January 2020 are original extraction values. Dates in September 2020 are re-extraction values.  
+
+Below are the samples that have passed DNA and RNA quality and quantity tested post extraction. All fragments are together in a box in the new, blue -80C freezer.
+
+| Date     	| Coral ID 	| DNA 1 	| DNA 2 	| Average DNA (ng_uL) 	| RNA 1 	| RNA 2 	| Average RNA (ng_uL) 	| RIN 	| Pass? 	|
+|----------	|----------	|-------	|-------	|---------------------	|-------	|-------	|---------------------	|-----	|-------	|
+| 20200128 	| C17      	| 19.1  	| 18.3  	| 18.7                	| 23    	| 23    	| 23                  	| 9.3 	| Yes   	|
+| 20200128 	| C18      	| 14.7  	| 14.7  	| 14.7                	| 17.5  	| 17.5  	| 17.5                	| 9.2 	| Yes   	|
+| 20200128 	| C19      	| 9.2   	| 9.16  	| 9.18                	| 8.52  	| 8.46  	| 8.49                	| 8.2 	| Yes   	|
+| 20200129 	| C20      	| 21    	| 20.8  	| 20.9                	| 11.7  	| 11.7  	| 11.7                	| 8.2 	| Yes   	|
+| 20200907 	| C21      	| 2.66  	| 2.64  	| 2.65                	| 7.72  	| 7.82  	| 7.77                	| 8.8 	| Yes   	|
+| 20200901 	| C22      	| 7.78  	| 7.76  	| 7.77                	| 23.6  	| 23.6  	| 23.6                	| 9.4 	| Yes   	|
+| 20200129 	| C23      	| 10.9  	| 10.9  	| 10.9                	| 6.4   	| 6.36  	| 6.38                	| 7.4 	| Yes   	|
+| 20200129 	| C24      	| 12.7  	| 12.7  	| 12.7                	| 13.5  	| 13.6  	| 13.55               	| 9.3 	| Yes   	|
+| 20200127 	| C25      	| 19.7  	| 19.7  	| 19.7                	| 18.3  	| 18.3  	| 18.3                	| 9.2 	| Yes   	|
+| 20200129 	| C28      	| 22.2  	| 22.2  	| 22.2                	| 12.2  	| 12.2  	| 12.2                	| 8.9 	| Yes   	|
+| 20200907 	| C30      	| 5.34  	| 5.28  	| 5.31                	| 9.3   	| 9.32  	| 9.31                	| 8.6 	| Yes   	|
+| 20200123 	| C31      	| 15.5  	| 15.4  	| 15.45               	| 10.2  	| 10.2  	| 10.2                	| 7.7 	| Yes   	|
+| 20200123 	| E11      	| 6.84  	| 6.8   	| 6.82                	| 9.82  	| 9.96  	| 9.89                	| 8.8 	| Yes   	|
+| 20200129 	| E12      	| 17.6  	| 17.5  	| 17.55               	| 13.9  	| 13.9  	| 13.9                	| 9.1 	| Yes   	|
+| 20200128 	| E13      	| 15.9  	| 15.8  	| 15.85               	| 15.1  	| 15    	| 15.05               	| 9.6 	| Yes   	|
+| 20200901 	| E14      	| 7.46  	| 7.4   	| 7.43                	| 15.5  	| 15.5  	| 15.5                	| 8.9 	| Yes   	|
+| 20200127 	| E16      	| 12.4  	| 12.4  	| 12.4                	| 7.76  	| 7.88  	| 7.82                	| 9   	| Yes   	|
+| 20200128 	| E2       	| 11.3  	| 11.3  	| 11.3                	| 11    	| 11.1  	| 11.05               	| 8.8 	| Yes   	|
+| 20200901 	| E3       	| 10.9  	| 10.8  	| 10.85               	| 16.8  	| 16.8  	| 16.8                	| 8.3 	| Yes   	|
+| 20200915 	| E4       	| 5.2   	| 4.96  	| 5.08                	| 15.1  	| 15.1  	| 15.1                	| 9.3 	| Yes   	|
+| 20200128 	| E5       	| 17.7  	| 17.7  	| 17.7                	| 11.8  	| 11.9  	| 11.85               	| 8.3 	| Yes   	|
+| 20200127 	| E6       	| 8.34  	| 8.32  	| 8.33                	| 8.38  	| 8.44  	| 8.41                	| 9.1 	| Yes   	|
+| 20200128 	| E7       	| 18.9  	| 18.9  	| 18.9                	| 15.6  	| 15.5  	| 15.55               	| 8.8 	| Yes   	|
+| 20200123 	| E9       	| 11.4  	| 11.4  	| 11.4                	| 21.2  	| 21.2  	| 21.2                	| 9.2 	| Yes   	|
+| 20200915 	| E10      	| 11.4  	| 11.3  	| 11.35               	| 23.2  	| 23.2  	| 8                   	| 8   	| Yes   	|
+
+![Labeled tubes in freezer]()
+
+![Becker_box]()
+
+[Google spreadsheet with raw extraction data]()  
+
+mtORF amplication [spreadsheet]()  
+- mtORF amplication was done with DNA from January 2020 extractions. This was completed prior to September 2020 re-extractions for DNA and RNA in the same genomic pool.
