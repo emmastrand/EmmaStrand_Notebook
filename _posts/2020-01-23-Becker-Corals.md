@@ -520,7 +520,8 @@ Below are the samples that have passed DNA and RNA quality and quantity tested p
 | 20200123 	| E9       	| 11.4  	| 11.4  	| 11.4                	| 21.2  	| 21.2  	| 21.2                	| 9.2 	| Yes   	|
 | 20200915 	| E10      	| 11.4  	| 11.3  	| 11.35               	| 23.2  	| 23.2  	| 8                   	| 8   	| Yes   	|
 
-![Labeled tubes in freezer](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20200915_Becker_freezerbox1.jpg?raw=true)
+![Labeled tubes in freezer](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20200915_Becker_freezerbox1.jpg?raw=true)  
+- All four boxes contain saved material from the extractions. Once DNA and RNA is back from sequencing and backed up in several places, we can throw away most of the contents of the three white boxes. There are a couple of tubes with coral fragments that can be saved but we won't need the rest. 
 
 ![labeled tubes](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20200915_Becker_freezerbox2.jpg?raw=true)  
 - Tubes are also labeled on the sides with dates of extraction. Match these with the extraction dates in the tables above to find desired DNA tube.
