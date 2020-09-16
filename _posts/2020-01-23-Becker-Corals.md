@@ -520,11 +520,14 @@ Below are the samples that have passed DNA and RNA quality and quantity tested p
 | 20200123 	| E9       	| 11.4  	| 11.4  	| 11.4                	| 21.2  	| 21.2  	| 21.2                	| 9.2 	| Yes   	|
 | 20200915 	| E10      	| 11.4  	| 11.3  	| 11.35               	| 23.2  	| 23.2  	| 8                   	| 8   	| Yes   	|
 
-![Labeled tubes in freezer]()
+![Labeled tubes in freezer](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20200915_Becker_freezerbox1.jpg?raw=true)
 
-![Becker_box]()
+![labeled tubes](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20200915_Becker_freezerbox2.jpg?raw=true)  
+- Tubes are also labeled on the sides with dates of extraction. Match these with the extraction dates in the tables above to find desired DNA tube.
 
-[Google spreadsheet with raw extraction data]()  
+![tubes](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20200915_Becker_freezerbox3.jpg?raw=true)
 
-mtORF amplication [spreadsheet]()  
-- mtORF amplication was done with DNA from January 2020 extractions. This was completed prior to September 2020 re-extractions for DNA and RNA in the same genomic pool.
+[Google spreadsheet with raw extraction data](https://docs.google.com/spreadsheets/d/1mX8FNcFFAQoqvpL6lUyzs5IOuzWBeMwC00m8l7YoGkA/edit#gid=765494403)  
+
+mtORF amplication [M. Schedl notebook post](https://github.com/meschedl/MESPutnam_Open_Lab_Notebook/blob/master/_posts/2020-08-27-Danielle-Poc-mtORF.md)  
+- mtORF and ITS2 amplication was done with DNA from January 2020 extractions. This was completed prior to September 2020 re-extractions for DNA and RNA in the same genomic pool.  
