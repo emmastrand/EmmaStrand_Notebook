@@ -417,20 +417,22 @@ DNA BR Standard 2: 19,640.60 ng/μl
 RNA HS Standard 1: 50.14 ng/μl  
 RNA HS Standard 2: 924.90 ng/μl
 
-20200901 E3, E8, E14, C22 [TapeStation Results]()
+20200901 E3, E8, E14, C22 [TapeStation Results](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2020-09-01%20-%2015.38.31.pdf)
 
 20200901 E3, E8, E14, C22 Gel Image
-![gel]()
+![gel](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20200901_Becker.jpg?raw=true)
 
-20200907 [TapeStation Results]()
+20200908 [TapeStation Results](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2020-09-08%20-%2015.52.33.pdf)
 
-20200907 Gel Image
-![gel2]()
+20200908 Gel Image
+![gel2](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20200908_Becker.jpeg?raw=true)
 
-20200915 [TapeStation]()  
+20200915 [TapeStation](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2020-09-15%20-%2016.05.14.pdf)  
 
 20200915 Gel image  
-![gel3]()
+
+![gel3](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20200915_Becker.jpg?raw=true)
+
 
 Although I did get RNA from this re-extraction round, I am now thinking that doing extractions on the original stock (only 300 uL) would be better biologically. The original stock would have more coral tissue and is darker in color than what I got from beating the coral fragments again. Only issue is that I wasn't originally able to get enough from 300 uL on the first time around which is why I hadn't done re-extractions on those yet. If this works, I would take the RNA and DNA from the stock instead of what was done on 20200901 and 20200907.
 
@@ -465,7 +467,7 @@ RNA HS Standard 2: 941.70 ng/μl
 | 20200911 	| C30      	| 2.42  	| 2.4   	| 2.41                	| 6.04  	| 6.04  	| 6.04                	| **  	| No    	|
 | 20200911 	| C32      	| 2.5   	| 2.46  	| 2.48                	| **    	| **    	| **                  	| **  	| No    	|
 
-20200914 [TapeStation Results]()
+20200914 [TapeStation Results](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2020-09-14%20-%2013.18.17.pdf)
 
 No gel image for these extractions because GelGreen was accidentally left out of the gel. Not re-done because Qubit values were low anyways.
 
@@ -478,13 +480,13 @@ RNA HS Standard 2: 964.11 ng/μl
 Value 1: 5.04 ng/uL Value 2: 5.04 ng/uL
 
 Re-TapeStation E1 from January 2019.  
-Value returned as too low to detect.
+Value returned as too low to detect. [TapeStation Report](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2020-09-14%20-%2015.49.38.pdf)
 
 Removed E1 and C26 from the final list to send to sequencing.
 
 # Final Extraction Values
 
-20200916 final thoughts: Some of the coral had enough tissue on the fragments to be re-bead beated successfully. There was also likely DNA and RNA in the original shield volume. I know think this is the better option biologically because freeze-thawing stock or tissue homogenate more than once degrades the DNA and RNA in the homogenate. Which you can see based on the results of the second type of re-extractions, and this also happened to Kevin (labmate) with his 2017 vs 2018 tissue homogenate.
+20200916 final thoughts: Some of the coral had enough tissue on the fragments to be re-bead beated successfully. There was also likely DNA and RNA in the original shield volume. I now think this is the better option biologically because freeze-thawing stock or tissue homogenate more than once degrades the DNA and RNA in the homogenate. Which you can see based on the results of the second type of re-extractions based on the stock, and this also happened to Kevin (labmate) with his 2017 vs 2018 tissue homogenates.
 
 Dates in January 2020 are original extraction values. Dates in September 2020 are re-extraction values.  
 
