@@ -484,6 +484,31 @@ Value returned as too low to detect. [TapeStation Report](https://github.com/emm
 
 Removed E1 and C26 from the final list to send to sequencing.
 
+20200921:  
+The below will be combined and re-qubit prior to sequencing.
+
+| Date     	| Coral ID 	| DNA 1 	| DNA 2 	| Average DNA (ng_uL) 	| RNA 1 	| RNA 2 	| Average RNA (ng_uL) 	| RIN 	| Pass? 	| Qualitative RIN by HP 	|         	|
+|----------	|----------	|-------	|-------	|---------------------	|-------	|-------	|---------------------	|-----	|-------	|-----------------------	|---------	|
+| 20200907 	| E1       	| 9.5   	| 9.46  	| 9.48                	| 8.74  	| 8.72  	| 8.73                	| **  	| Yes   	| Fine                  	| Combine 	|
+| 20200911 	| E1       	| 2.66  	| 2.64  	| 2.65                	| 5.18  	| 5.26  	| 5.22                	| **  	| Yes   	| Fine                  	| Combine 	|
+| 20200129 	| C26      	| 7.94  	| 7.92  	| 7.93                	| 5.04  	| 5.04  	| 5.04                	| 6   	| Yes   	| OK                    	| Combine 	|
+| 20200907 	| C26      	| 4.78  	| 4.74  	| 4.76                	| 5.88  	| 5.9   	| 5.89                	| **  	| Yes   	| OK                    	| Combine 	|
+| 20200907 	| C29      	| 4.5   	| 4.48  	| 4.49                	| 6.74  	| 6.72  	| 6.73                	| **  	| Yes   	| Fine                  	| Combine 	|
+| 20200911 	| C29      	| 2.56  	| 2.56  	| 2.56                	| 5.14  	| 5.08  	| 5.11                	| **  	| Yes   	| Fine                  	| Combine 	|
+| 20200907 	| C32      	| 3.02  	| 3.02  	| 3.02                	| **    	| **    	| **                  	| **  	| Yes   	| Fine, but low         	| Combine 	|
+| 20200911 	| C32      	| 2.5   	| 2.46  	| 2.48                	| **    	| **    	| **                  	| **  	| Yes   	| Fine, but low         	| Combine 	|
+
+New qubit values:
+
+| Date 	| Coral ID 	| DNA 1 	| DNA 2 	| Average DNA (ng_uL) 	| RNA 1 	| RNA 2 	| Average RNA (ng_uL) 	| RIN 	| Pass? 	| Qualitative RIN by HP 	|   	|
+|------	|----------	|-------	|-------	|---------------------	|-------	|-------	|---------------------	|-----	|-------	|-----------------------	|---	|
+|      	| E1       	|       	|       	|                     	|       	|       	|                     	|     	|       	|                       	|   	|
+|      	| C26      	|       	|       	|                     	|       	|       	|                     	|     	|       	|                       	|   	|
+|      	| C29      	|       	|       	|                     	|       	|       	|                     	|     	|       	|                       	|   	|
+|      	| C32      	|       	|       	|                     	|       	|       	|                     	|     	|       	|                       	|   	|
+
+
+
 # Final Extraction Values
 
 20200916 final thoughts: Some of the coral had enough tissue on the fragments to be re-bead beated successfully. There was also likely DNA and RNA in the original shield volume. I now think this is the better option biologically because freeze-thawing stock or tissue homogenate more than once degrades the DNA and RNA in the homogenate. Which you can see based on the results of the second type of re-extractions based on the stock, and this also happened to Kevin (labmate) with his 2017 vs 2018 tissue homogenates.
@@ -521,7 +546,7 @@ Below are the samples that have passed DNA and RNA quality and quantity tested p
 | 20200915 	| E10      	| 11.4  	| 11.3  	| 11.35               	| 23.2  	| 23.2  	| 8                   	| 8   	| Yes   	|
 
 ![Labeled tubes in freezer](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20200915_Becker_freezerbox1.jpg?raw=true)  
-- All four boxes contain saved material from the extractions. Once DNA and RNA is back from sequencing and backed up in several places, we can throw away most of the contents of the three white boxes. There are a couple of tubes with coral fragments that can be saved but we won't need the rest. 
+- All four boxes contain saved material from the extractions. Once DNA and RNA is back from sequencing and backed up in several places, we can throw away most of the contents of the three white boxes. There are a couple of tubes with coral fragments that can be saved but we won't need the rest.
 
 ![labeled tubes](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20200915_Becker_freezerbox2.jpg?raw=true)  
 - Tubes are also labeled on the sides with dates of extraction. Match these with the extraction dates in the tables above to find desired DNA tube.
