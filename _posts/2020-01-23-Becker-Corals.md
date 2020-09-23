@@ -489,23 +489,23 @@ The below will be combined and re-qubit prior to sequencing.
 
 | Date     	| Coral ID 	| DNA 1 	| DNA 2 	| Average DNA (ng_uL) 	| RNA 1 	| RNA 2 	| Average RNA (ng_uL) 	| RIN 	| Pass? 	| Qualitative RIN by HP 	|         	|
 |----------	|----------	|-------	|-------	|---------------------	|-------	|-------	|---------------------	|-----	|-------	|-----------------------	|---------	|
-| 20200907 	| E1       	| 9.5   	| 9.46  	| 9.48                	| 8.74  	| 8.72  	| 8.73                	| **  	| Yes   	| Fine                  	| Combine 	|
-| 20200911 	| E1       	| 2.66  	| 2.64  	| 2.65                	| 5.18  	| 5.26  	| 5.22                	| **  	| Yes   	| Fine                  	| Combine 	|
-| 20200129 	| C26      	| 7.94  	| 7.92  	| 7.93                	| 5.04  	| 5.04  	| 5.04                	| 6   	| Yes   	| OK                    	| Combine 	|
-| 20200907 	| C26      	| 4.78  	| 4.74  	| 4.76                	| 5.88  	| 5.9   	| 5.89                	| **  	| Yes   	| OK                    	| Combine 	|
-| 20200907 	| C29      	| 4.5   	| 4.48  	| 4.49                	| 6.74  	| 6.72  	| 6.73                	| **  	| Yes   	| Fine                  	| Combine 	|
-| 20200911 	| C29      	| 2.56  	| 2.56  	| 2.56                	| 5.14  	| 5.08  	| 5.11                	| **  	| Yes   	| Fine                  	| Combine 	|
-| 20200907 	| C32      	| 3.02  	| 3.02  	| 3.02                	| **    	| **    	| **                  	| **  	| Yes   	| Fine, but low         	| Combine 	|
-| 20200911 	| C32      	| 2.5   	| 2.46  	| 2.48                	| **    	| **    	| **                  	| **  	| Yes   	| Fine, but low         	| Combine 	|
+| 20200907 	| E1       	| 9.5   	| 9.46  	| 9.48                	| 8.74  	| 8.72  	| 8.73                	| **  	| No    	| Fine                  	| Combine 	|
+| 20200911 	| E1       	| 2.66  	| 2.64  	| 2.65                	| 5.18  	| 5.26  	| 5.22                	| **  	| No    	| Fine                  	| Combine 	|
+| 20200129 	| C26      	| 7.94  	| 7.92  	| 7.93                	| 5.04  	| 5.04  	| 5.04                	| 6   	| No    	| OK                    	| Combine 	|
+| 20200907 	| C26      	| 4.78  	| 4.74  	| 4.76                	| 5.88  	| 5.9   	| 5.89                	| **  	| No    	| OK                    	| Combine 	|
+| 20200907 	| C29      	| 4.5   	| 4.48  	| 4.49                	| 6.74  	| 6.72  	| 6.73                	| **  	| No    	| Fine                  	| Combine 	|
+| 20200911 	| C29      	| 2.56  	| 2.56  	| 2.56                	| 5.14  	| 5.08  	| 5.11                	| **  	| No    	| Fine                  	| Combine 	|
+| 20200907 	| C32      	| 3.02  	| 3.02  	| 3.02                	| **    	| **    	| **                  	| **  	| No    	| Fine, but low         	| Combine 	|
+| 20200911 	| C32      	| 2.5   	| 2.46  	| 2.48                	| **    	| **    	| **                  	| **  	| No    	| Fine, but low         	| Combine 	|
 
 New qubit values:
 
-| Date 	| Coral ID 	| DNA 1 	| DNA 2 	| Average DNA (ng_uL) 	| RNA 1 	| RNA 2 	| Average RNA (ng_uL) 	| RIN 	| Pass? 	| Qualitative RIN by HP 	|   	|
-|------	|----------	|-------	|-------	|---------------------	|-------	|-------	|---------------------	|-----	|-------	|-----------------------	|---	|
-|      	| E1       	|       	|       	|                     	|       	|       	|                     	|     	|       	|                       	|   	|
-|      	| C26      	|       	|       	|                     	|       	|       	|                     	|     	|       	|                       	|   	|
-|      	| C29      	|       	|       	|                     	|       	|       	|                     	|     	|       	|                       	|   	|
-|      	| C32      	|       	|       	|                     	|       	|       	|                     	|     	|       	|                       	|   	|
+| Date     	| Coral ID 	| DNA 1 	| DNA 2 	| Average DNA (ng_uL) 	| RNA 1 	| RNA 2 	| Average RNA (ng_uL) 	| RIN 	| Pass? 	| Qualitative RIN by HP 	|
+|----------	|----------	|-------	|-------	|---------------------	|-------	|-------	|---------------------	|-----	|-------	|-----------------------	|
+| 20200922 	| E1       	| 7.6   	| 7.5   	| 7.55                	| 9.52  	| 9.6   	| 9.56                	| 8.6 	| Yes   	| Fine                  	|
+| 20200922 	| C26      	| 7.52  	| 7.44  	| 7.48                	| 6.3   	| 6.34  	| 6.32                	| **  	| Yes   	| Fine                  	|
+| 20200922 	| C29      	| 4.84  	| 4.78  	| 4.81                	| 6.44  	| 6.42  	| 6.43                	| **  	| Yes   	| Fine                  	|
+| 20200922 	| C32      	| 3.6   	| 3.48  	| 3.54                	| 4.4   	| **    	| 4.4                 	| **  	| Yes   	| Fine                  	|
 
 
 
@@ -517,33 +517,42 @@ Dates in January 2020 are original extraction values. Dates in September 2020 ar
 
 Below are the samples that have passed DNA and RNA quality and quantity tested post extraction. All fragments are together in a box in the new, blue -80C freezer.
 
-| Date     	| Coral ID 	| DNA 1 	| DNA 2 	| Average DNA (ng_uL) 	| RNA 1 	| RNA 2 	| Average RNA (ng_uL) 	| RIN 	| Pass? 	|
-|----------	|----------	|-------	|-------	|---------------------	|-------	|-------	|---------------------	|-----	|-------	|
-| 20200128 	| C17      	| 19.1  	| 18.3  	| 18.7                	| 23    	| 23    	| 23                  	| 9.3 	| Yes   	|
-| 20200128 	| C18      	| 14.7  	| 14.7  	| 14.7                	| 17.5  	| 17.5  	| 17.5                	| 9.2 	| Yes   	|
-| 20200128 	| C19      	| 9.2   	| 9.16  	| 9.18                	| 8.52  	| 8.46  	| 8.49                	| 8.2 	| Yes   	|
-| 20200129 	| C20      	| 21    	| 20.8  	| 20.9                	| 11.7  	| 11.7  	| 11.7                	| 8.2 	| Yes   	|
-| 20200907 	| C21      	| 2.66  	| 2.64  	| 2.65                	| 7.72  	| 7.82  	| 7.77                	| 8.8 	| Yes   	|
-| 20200901 	| C22      	| 7.78  	| 7.76  	| 7.77                	| 23.6  	| 23.6  	| 23.6                	| 9.4 	| Yes   	|
-| 20200129 	| C23      	| 10.9  	| 10.9  	| 10.9                	| 6.4   	| 6.36  	| 6.38                	| 7.4 	| Yes   	|
-| 20200129 	| C24      	| 12.7  	| 12.7  	| 12.7                	| 13.5  	| 13.6  	| 13.55               	| 9.3 	| Yes   	|
-| 20200127 	| C25      	| 19.7  	| 19.7  	| 19.7                	| 18.3  	| 18.3  	| 18.3                	| 9.2 	| Yes   	|
-| 20200129 	| C28      	| 22.2  	| 22.2  	| 22.2                	| 12.2  	| 12.2  	| 12.2                	| 8.9 	| Yes   	|
-| 20200907 	| C30      	| 5.34  	| 5.28  	| 5.31                	| 9.3   	| 9.32  	| 9.31                	| 8.6 	| Yes   	|
-| 20200123 	| C31      	| 15.5  	| 15.4  	| 15.45               	| 10.2  	| 10.2  	| 10.2                	| 7.7 	| Yes   	|
-| 20200123 	| E11      	| 6.84  	| 6.8   	| 6.82                	| 9.82  	| 9.96  	| 9.89                	| 8.8 	| Yes   	|
-| 20200129 	| E12      	| 17.6  	| 17.5  	| 17.55               	| 13.9  	| 13.9  	| 13.9                	| 9.1 	| Yes   	|
-| 20200128 	| E13      	| 15.9  	| 15.8  	| 15.85               	| 15.1  	| 15    	| 15.05               	| 9.6 	| Yes   	|
-| 20200901 	| E14      	| 7.46  	| 7.4   	| 7.43                	| 15.5  	| 15.5  	| 15.5                	| 8.9 	| Yes   	|
-| 20200127 	| E16      	| 12.4  	| 12.4  	| 12.4                	| 7.76  	| 7.88  	| 7.82                	| 9   	| Yes   	|
-| 20200128 	| E2       	| 11.3  	| 11.3  	| 11.3                	| 11    	| 11.1  	| 11.05               	| 8.8 	| Yes   	|
-| 20200901 	| E3       	| 10.9  	| 10.8  	| 10.85               	| 16.8  	| 16.8  	| 16.8                	| 8.3 	| Yes   	|
-| 20200915 	| E4       	| 5.2   	| 4.96  	| 5.08                	| 15.1  	| 15.1  	| 15.1                	| 9.3 	| Yes   	|
-| 20200128 	| E5       	| 17.7  	| 17.7  	| 17.7                	| 11.8  	| 11.9  	| 11.85               	| 8.3 	| Yes   	|
-| 20200127 	| E6       	| 8.34  	| 8.32  	| 8.33                	| 8.38  	| 8.44  	| 8.41                	| 9.1 	| Yes   	|
-| 20200128 	| E7       	| 18.9  	| 18.9  	| 18.9                	| 15.6  	| 15.5  	| 15.55               	| 8.8 	| Yes   	|
-| 20200123 	| E9       	| 11.4  	| 11.4  	| 11.4                	| 21.2  	| 21.2  	| 21.2                	| 9.2 	| Yes   	|
-| 20200915 	| E10      	| 11.4  	| 11.3  	| 11.35               	| 23.2  	| 23.2  	| 8                   	| 8   	| Yes   	|
+
+| Date     	| Coral ID 	| DNA 1 	| DNA 2 	| Average DNA (ng_uL) 	| RNA 1 	| RNA 2 	| Average RNA (ng_uL) 	| RIN 	| Pass? 	| Qualitative RIN by HP 	|
+|----------	|----------	|-------	|-------	|---------------------	|-------	|-------	|---------------------	|-----	|-------	|-----------------------	|
+| 20200128 	| C17      	| 19.1  	| 18.3  	| 18.7                	| 23    	| 23    	| 23                  	| 9.3 	| Yes   	|                       	|
+| 20200128 	| C18      	| 14.7  	| 14.7  	| 14.7                	| 17.5  	| 17.5  	| 17.5                	| 9.2 	| Yes   	|                       	|
+| 20200128 	| C19      	| 9.2   	| 9.16  	| 9.18                	| 8.52  	| 8.46  	| 8.49                	| 8.2 	| Yes   	|                       	|
+| 20200129 	| C20      	| 21    	| 20.8  	| 20.9                	| 11.7  	| 11.7  	| 11.7                	| 8.2 	| Yes   	|                       	|
+| 20200907 	| C21      	| 2.66  	| 2.64  	| 2.65                	| 7.72  	| 7.82  	| 7.77                	| 8.8 	| Yes   	|                       	|
+| 20200901 	| C22      	| 7.78  	| 7.76  	| 7.77                	| 23.6  	| 23.6  	| 23.6                	| 9.4 	| Yes   	|                       	|
+| 20200129 	| C23      	| 10.9  	| 10.9  	| 10.9                	| 6.4   	| 6.36  	| 6.38                	| 7.4 	| Yes   	|                       	|
+| 20200129 	| C24      	| 12.7  	| 12.7  	| 12.7                	| 13.5  	| 13.6  	| 13.55               	| 9.3 	| Yes   	|                       	|
+| 20200127 	| C25      	| 19.7  	| 19.7  	| 19.7                	| 18.3  	| 18.3  	| 18.3                	| 9.2 	| Yes   	|                       	|
+| 20200922 	| C26      	| 7.52  	| 7.44  	| 7.48                	| 6.3   	| 6.34  	| 6.32                	| **  	| Yes   	| Fine                  	|
+| 20200907 	| C27      	| 3.52  	| 3.5   	| 3.51                	| 4.2   	| 4.4   	| 4.3                 	| **  	| Yes   	| Fine                  	|
+| 20200129 	| C28      	| 22.2  	| 22.2  	| 22.2                	| 12.2  	| 12.2  	| 12.2                	| 8.9 	| Yes   	|                       	|
+| 20200922 	| C29      	| 4.84  	| 4.78  	| 4.81                	| 6.44  	| 6.42  	| 6.43                	| **  	| Yes   	| Fine                  	|
+| 20200907 	| C30      	| 5.34  	| 5.28  	| 5.31                	| 9.3   	| 9.32  	| 9.31                	| 8.6 	| Yes   	|                       	|
+| 20200123 	| C31      	| 15.5  	| 15.4  	| 15.45               	| 10.2  	| 10.2  	| 10.2                	| 7.7 	| Yes   	|                       	|
+| 20200922 	| C32      	| 3.6   	| 3.48  	| 3.54                	| 4.4   	| ***   	| 4.4                 	| **  	| Yes   	| Fine                  	|
+| 20200922 	| E1       	| 7.6   	| 7.5   	| 7.55                	| 9.52  	| 9.6   	| 9.56                	| 8.6 	| Yes   	| Fine                  	|
+| 20200128 	| E2       	| 11.3  	| 11.3  	| 11.3                	| 11    	| 11.1  	| 11.05               	| 8.8 	| Yes   	|                       	|
+| 20200901 	| E3       	| 10.9  	| 10.8  	| 10.85               	| 16.8  	| 16.8  	| 16.8                	| 8.3 	| Yes   	|                       	|
+| 20200915 	| E4       	| 5.2   	| 4.96  	| 5.08                	| 15.1  	| 15.1  	| 15.1                	| 9.3 	| Yes   	|                       	|
+| 20200128 	| E5       	| 17.7  	| 17.7  	| 17.7                	| 11.8  	| 11.9  	| 11.85               	| 8.3 	| Yes   	|                       	|
+| 20200127 	| E6       	| 8.34  	| 8.32  	| 8.33                	| 8.38  	| 8.44  	| 8.41                	| 9.1 	| Yes   	|                       	|
+| 20200128 	| E7       	| 18.9  	| 18.9  	| 18.9                	| 15.6  	| 15.5  	| 15.55               	| 8.8 	| Yes   	|                       	|
+| 20200901 	| E8       	| 3     	| 2.98  	| 2.99                	| 6.96  	| 7     	| 6.98                	| **  	| Yes   	| Fine                  	|
+| 20200123 	| E9       	| 11.4  	| 11.4  	| 11.4                	| 21.2  	| 21.2  	| 21.2                	| 9.2 	| Yes   	|                       	|
+| 20200915 	| E10      	| 11.4  	| 11.3  	| 11.35               	| 23.2  	| 23.2  	| 8                   	| 8   	| Yes   	|                       	|
+| 20200123 	| E11      	| 6.84  	| 6.8   	| 6.82                	| 9.82  	| 9.96  	| 9.89                	| 8.8 	| Yes   	|                       	|
+| 20200129 	| E12      	| 17.6  	| 17.5  	| 17.55               	| 13.9  	| 13.9  	| 13.9                	| 9.1 	| Yes   	|                       	|
+| 20200128 	| E13      	| 15.9  	| 15.8  	| 15.85               	| 15.1  	| 15    	| 15.05               	| 9.6 	| Yes   	|                       	|
+| 20200901 	| E14      	| 7.46  	| 7.4   	| 7.43                	| 15.5  	| 15.5  	| 15.5                	| 8.9 	| Yes   	|                       	|
+| 20200907 	| E15      	| 3.74  	| 3.68  	| 3.71                	| 5.54  	| 5.42  	| 5.48                	| **  	| Yes   	| Fine                  	|
+| 20200127 	| E16      	| 12.4  	| 12.4  	| 12.4                	| 7.76  	| 7.88  	| 7.82                	| 9   	| Yes   	|                       	|
+
 
 ![Labeled tubes in freezer](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20200915_Becker_freezerbox1.jpg?raw=true)  
 - All four boxes contain saved material from the extractions. Once DNA and RNA is back from sequencing and backed up in several places, we can throw away most of the contents of the three white boxes. There are a couple of tubes with coral fragments that can be saved but we won't need the rest.
@@ -556,4 +565,49 @@ Below are the samples that have passed DNA and RNA quality and quantity tested p
 [Google spreadsheet with raw extraction data](https://docs.google.com/spreadsheets/d/1mX8FNcFFAQoqvpL6lUyzs5IOuzWBeMwC00m8l7YoGkA/edit#gid=765494403)  
 
 mtORF amplication [M. Schedl notebook post](https://github.com/meschedl/MESPutnam_Open_Lab_Notebook/blob/master/_posts/2020-08-27-Danielle-Poc-mtORF.md)  
-- mtORF and ITS2 amplication was done with DNA from January 2020 extractions. This was completed prior to September 2020 re-extractions for DNA and RNA in the same genomic pool.  
+- mtORF and ITS2 amplication was done with DNA from January 2020 extractions. This was completed prior to September 2020 re-extractions for DNA and RNA in the same genomic pool.   
+
+### RNASeq Prep for Genewiz
+
+Active [spreadsheet](https://docs.google.com/spreadsheets/d/1mX8FNcFFAQoqvpL6lUyzs5IOuzWBeMwC00m8l7YoGkA/edit#gid=765494403) with the below data.
+
+I chose to send 500 ng because some samples had low quantity values and all samples sent to Genewiz need to have the same quantity of DNA. uL_to_500ng calculated by =500/Qubit. Check mark indicates the full volume needed was added. Two samples did not have enough total sample so that will be less 500 ng; we will send anyway. 
+
+[Protocol for RNASeq Prep](https://github.com/meschedl/MESPutnam_Open_Lab_Notebook/blob/master/random/sample-sumbission.md)
+
+| Date     	| Coral ID 	| RNA 1 	| RNA 2 	| Avg_RNA (ng/uL) 	| uL_to_500ng 	| Notes                                 	|
+|----------	|----------	|-------	|-------	|-----------------	|-------------	|---------------------------------------	|
+| 20200128 	| C17      	| 23    	| 23    	| 23              	| 21.74       	| ✓                                     	|
+| 20200128 	| C18      	| 17.5  	| 17.5  	| 17.5            	| 28.57       	| ✓                                     	|
+| 20200128 	| C19      	| 8.52  	| 8.46  	| 8.49            	| 58.89       	| ✓                                     	|
+| 20200129 	| C20      	| 11.7  	| 11.7  	| 11.7            	| 42.74       	| ✓                                     	|
+| 20200907 	| C21      	| 7.72  	| 7.82  	| 7.77            	| 64.35       	| ✓                                     	|
+| 20200901 	| C22      	| 23.6  	| 23.6  	| 23.6            	| 21.19       	| ✓                                     	|
+| 20200129 	| C23      	| 6.4   	| 6.36  	| 6.38            	| 78.37       	| ✓                                     	|
+| 20200129 	| C24      	| 13.5  	| 13.6  	| 13.55           	| 36.90       	| ✓                                     	|
+| 20200127 	| C25      	| 18.3  	| 18.3  	| 18.3            	| 27.32       	| ✓                                     	|
+| 20200129 	| C28      	| 12.2  	| 12.2  	| 12.2            	| 40.98       	| ✓                                     	|
+| 20200907 	| C30      	| 9.3   	| 9.32  	| 9.31            	| 53.71       	| ✓                                     	|
+| 20200123 	| C31      	| 10.2  	| 10.2  	| 10.2            	| 49.02       	| ✓                                     	|
+| 20200123 	| E11      	| 9.82  	| 9.96  	| 9.89            	| 50.56       	| ✓                                     	|
+| 20200129 	| E12      	| 13.9  	| 13.9  	| 13.9            	| 35.97       	| ✓                                     	|
+| 20200128 	| E13      	| 15.1  	| 15    	| 15.05           	| 33.22       	| ✓                                     	|
+| 20200901 	| E14      	| 15.5  	| 15.5  	| 15.5            	| 32.26       	| ✓                                     	|
+| 20200127 	| E16      	| 7.76  	| 7.88  	| 7.82            	| 63.94       	| ✓                                     	|
+| 20200128 	| E2       	| 11    	| 11.1  	| 11.05           	| 45.25       	| ✓                                     	|
+| 20200901 	| E3       	| 16.8  	| 16.8  	| 16.8            	| 29.76       	| ✓                                     	|
+| 20200915 	| E4       	| 15.1  	| 15.1  	| 15.1            	| 33.11       	| ✓                                     	|
+| 20200128 	| E5       	| 11.8  	| 11.9  	| 11.85           	| 42.19       	| ✓                                     	|
+| 20200127 	| E6       	| 8.38  	| 8.44  	| 8.41            	| 59.45       	| ✓                                     	|
+| 20200128 	| E7       	| 15.6  	| 15.5  	| 15.55           	| 32.15       	| ✓                                     	|
+| 20200123 	| E9       	| 21.2  	| 21.2  	| 21.2            	| 23.58       	| ✓                                     	|
+| 20200915 	| E10      	| 23.2  	| 23.2  	| 23.2            	| 21.55       	| ✓                                     	|
+| 20200901 	| E8       	| 6.96  	| 7     	| 6.98            	| 71.63       	| ✓                                     	|
+| 20200922 	| E1       	| 9.52  	| 9.6   	| 9.56            	| 52.30       	| ✓                                     	|
+| 20200922 	| C26      	| 6.3   	| 6.34  	| 6.32            	| 79.11       	| ✓                                     	|
+| 20200922 	| C29      	| 6.44  	| 6.42  	| 6.43            	| 77.76       	| ✓                                     	|
+| 20200922 	| C32      	| 4.4   	| **    	| 4.4             	| 113.64      	| ✓; had enough b/c combined 2 elutions 	|
+| 20200907 	| E15      	| 5.54  	| 5.42  	| 5.48            	| 91.24       	| 84.8 uL added; that was all we had    	|
+| 20200907 	| C27      	| 4.2   	| 4.4   	| 4.3             	| 116.28      	| 85.6 uL added; that was all we had    	|
+
+20200923 Update: LN2 ordered; waiting for that to arrive prior to shipping. Samples are parafilmed and ready to be sent.
