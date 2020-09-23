@@ -337,9 +337,13 @@ BR DNA Standard 1: 172.65 Standard 2: 16,875.12.
 
 Those with ** for values were too low to measure. I will re-qubit these in case 1 full uL wasn't added to the qubit tube. Otherwise there might not have been a full uL added to the PCR plate.
 
+## Gel Electrophoresis Analysis
+
+mtORF amplication will result in a sharp band ~1,000 bp. 
+
 20200923 Gel:  
 
-![gel1]()
+![gel1](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20200923.jpg?raw=true)
 
 ## Sequencing Prep
 

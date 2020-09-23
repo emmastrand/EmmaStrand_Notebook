@@ -507,7 +507,9 @@ New qubit values:
 | 20200922 	| C29      	| 4.84  	| 4.78  	| 4.81                	| 6.44  	| 6.42  	| 6.43                	| **  	| Yes   	| Fine                  	|
 | 20200922 	| C32      	| 3.6   	| 3.48  	| 3.54                	| 4.4   	| **    	| 4.4                 	| **  	| Yes   	| Fine                  	|
 
+Combined DNA on gel 20200923:  
 
+![gel1](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20200923.jpg?raw=true)
 
 # Final Extraction Values
 
@@ -571,7 +573,7 @@ mtORF amplication [M. Schedl notebook post](https://github.com/meschedl/MESPutna
 
 Active [spreadsheet](https://docs.google.com/spreadsheets/d/1mX8FNcFFAQoqvpL6lUyzs5IOuzWBeMwC00m8l7YoGkA/edit#gid=765494403) with the below data.
 
-I chose to send 500 ng because some samples had low quantity values and all samples sent to Genewiz need to have the same quantity of DNA. uL_to_500ng calculated by =500/Qubit. Check mark indicates the full volume needed was added. Two samples did not have enough total sample so that will be less 500 ng; we will send anyway. 
+I chose to send 500 ng because some samples had low quantity values and all samples sent to Genewiz need to have the same quantity of DNA. uL_to_500ng calculated by =500/Qubit. Check mark indicates the full volume needed was added. Two samples did not have enough total sample so that will be less 500 ng; we will send anyway.
 
 [Protocol for RNASeq Prep](https://github.com/meschedl/MESPutnam_Open_Lab_Notebook/blob/master/random/sample-sumbission.md)
 
