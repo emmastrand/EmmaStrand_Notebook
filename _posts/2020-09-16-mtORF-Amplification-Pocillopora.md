@@ -343,7 +343,7 @@ mtORF amplication will result in a sharp band ~1,000 bp.
 
 20200923 Gel:  
 
-![gel1](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20200923.jpg?raw=true)
+![gel1](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20200923_Becker-mtORF.jpg?raw=true)
 
 ## Sequencing Prep
 
