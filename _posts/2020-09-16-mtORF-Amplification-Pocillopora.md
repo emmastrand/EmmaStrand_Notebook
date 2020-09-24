@@ -339,7 +339,7 @@ Those with ** for values were too low to measure. I will re-qubit these in case 
 
 ## Gel Electrophoresis Analysis
 
-mtORF amplication will result in a sharp band ~1,000 bp. 
+mtORF amplication will result in a sharp band ~1,000 bp.
 
 20200923 Gel:  
 
@@ -348,3 +348,21 @@ mtORF amplication will result in a sharp band ~1,000 bp.
 ## Sequencing Prep
 
 20200923: A small set of 7 samples were chosen to analyze on a gel before sending to sequence as a test run. These samples were chosen randomly but I tried to make sure a range of qubit values were included (6 - 30 ng) and samples from both PCR plates were included from various columns.
+
+20200924:  
+1:2 dilution chosen; 5 uL of DNA and 5 uL of water added.
+
+| Prep Date 	| Sample ID 	| DNA 1  	| DNA 2 	| Average DNA(ng_uL) 	| 1:2 Dilutions (ng_uL) 	| DNA to 25 ng 	| H2O to 10 uL 	| Notes                        	|
+|-----------	|-----------	|--------	|-------	|--------------------	|-----------------------	|--------------	|--------------	|------------------------------	|
+| 20200924  	| 1594      	| 6.7    	| 6.76  	| 6.73               	| 3.37                  	| 7.43         	| 2.57         	| ✓                            	|
+| 20200924  	| 1205      	| 37.2   	| 36.8  	| 37                 	| 18.50                 	| 1.35         	| 8.65         	| ✓                            	|
+| 20200924  	| 2513      	| 26.4   	| 26.2  	| 26.3               	| 13.15                 	| 1.90         	| 8.10         	| ✓                            	|
+| 20200924  	| 2005      	| 11.9   	| 11.8  	| 11.85              	| 5.93                  	| 4.22         	| 5.78         	| ✓                            	|
+| 20200924  	| 1732      	| 20     	| 19.9  	| 19.95              	| 9.98                  	| 2.51         	| 7.49         	| ✓                            	|
+| 20200924  	| 1721      	| 15.2   	| 15.1  	| 15.15              	| 7.58                  	| 3.30         	| 6.70         	| ✓                            	|
+| 20200924  	| 2733      	| 19.7   	| 19.5  	| 19.6               	| 9.80                  	| 2.55         	| 7.45         	| ✓                            	|
+| 20200924  	| BL2A      	| 0      	| 0     	| 0                  	| 0                     	| 5            	| 5            	| 5 uL of blank; 5 uL of water 	|
+
+See the Putnam lab mtORF protocol for the URI GSC sequencing forms.
+
+Small set of samples to be dropped off on Monday, 20200928 for the Tuesday run. 
