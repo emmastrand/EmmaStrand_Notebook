@@ -466,13 +466,17 @@ mtORF amplication will result in a sharp band ~1,000 bp.
 
 20201026 Gels:  
 
+![gel1](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20201026_gel1.jpg?raw=true)
+
+![gel2](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20201026_gel2.jpg?raw=true)
+
+![gel3](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20201026_gel3.jpg?raw=true)
+
+![gel4](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20201026_gel4.jpg?raw=true)
+
+20201028 Gel:  
+
 ![gel1]()
-
-![gel2]()
-
-![gel3]()
-
-![gel4]()
 
 ## Sequencing Prep
 
