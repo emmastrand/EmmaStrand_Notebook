@@ -683,3 +683,29 @@ Plate 2
 20201103:
 x = (3.2 uM Fat6.1 primer)(3 uL total)/10 uM Fat6.1 primer = 0.96 uL 10 uM Fat6.1 primer  
 3.2 uM primer = 0.96 uL 10 uM primer + 2.04 ultrapure water  
+
+**2 samples did not run in sequencing**
+
+I uploaded sequences to the program Geneious to align all 119 sequences returned from GSC and determine which 2 didn't work. HPE70 and HPE78 sequences were the two files with no sequences, which were 1581 and 1563.
+
+My initial thought was that the primer wasn't added correctly to the 25ng dilution plates that were given to GSC. So, I re-qubited the samples from the 1:2 dilution plates to make sure there was DNA added. Below are those results.
+
+BR DNA Standard 1: 193.10  
+BR DNA Standard 2: 22,836.21  
+
+1581 DNA 1: 11.8, DNA 2: 11.7, Average: 11.75 ng/uL.  
+1563 DNA 1: 8.42, DNA 2: 8.32, Average: 8.37 ng/uL.  
+
+From this, it was most likely an issue with adding primer or DNA to the 25 ng plate.
+
+25 ng plate calculations:  
+
+1581 (11.75 ng/uL): 2.13 uL DNA + 7.87 uL Ultrapure H2O + 2 uL 3.2 uM primer  
+1563 (8.32 ng/uL): 2.99 uL DNA + 7.01 uL Ultrapure H2O + 2 uL 3.2 uM primer  
+
+4 uL of 3.2 uM primer = 1.28 uL 10 uM primer + 2.72 uL Ultrapure H2O
+
+HPE120 = 1581  
+HPE121 = 1563
+
+These samples were re-made in PCR strip tubes labeled HPE120 and HPE121, then placed in Janet/GSC's freezer on 20201111.  
