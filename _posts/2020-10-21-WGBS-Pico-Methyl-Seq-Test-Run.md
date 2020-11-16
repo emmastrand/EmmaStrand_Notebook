@@ -15,7 +15,7 @@ projects: Holobiont Integration
 
 As 20201112, two test runs have been done for WGBS PMS protocol to optimize sample input for five species of coral: *P. lutea, M. capitata, P. acuta, P. meandrina, P. asterodies*.  
 
-Both trials done in 2 days - day 1 ends with the bisulfite conversion step, left in the 4C fridge for less than 20 hours and then started again the next day. This could probably be done in 1 day in the future now that I have done this protocol multiple times. 
+Both trials done in 2 days - day 1 ends with the bisulfite conversion step, left in the 4C fridge for less than 20 hours and then started again the next day. This could probably be done in 1 day in the future now that I have done this protocol multiple times.
 
 ### Trial 1: 20201015 and 20201026
 DNA input: 1 ng. Dilutions done by taking 2 uL of DNA + (1-Qubit value)x2 10 uM Tris HCl.  
@@ -83,12 +83,12 @@ BR DNA Standard 2: 19,255.88
 
 **Index Key**  
 
-| Date     	| Sample       	| i5 index # 	| i7 index # 	|
-|----------	|--------------	|------------	|------------	|
-| 20201110 	| P1 - P ast   	| 3          	| 3          	|
-| 20201110 	| P3 - Poc mea 	| 4          	| 4          	|
-| 20201110 	| 2860 Mcap        	| 1          	| 1          	|
-| 20201110 	| 2878 Pacuta        	| 2          	| 2          	|
+| Sample   Name/Pool Name* 	| Library Name* 	| i7 Index Name* 	| i7 Index Sequence* 	| i5 Index Name* 	| i5 Index Sequence* 	|
+|--------------------------	|---------------	|----------------	|--------------------	|----------------	|--------------------	|
+| Mcap_2860                	| Mcap_2860     	| i7_UDI0001     	| AACCGCGG           	| i5_UDI0001     	| AGCGCTAG           	|
+| Pact_2878                	| Pact_2878     	| i7_UDI0002     	| GGTTATAA           	| i5_UDI0002     	| GATATCGA           	|
+| Past_P1                  	| Past_P1       	| i7_UDI0003     	| CCAAGTCC           	| i5_UDI0003     	| CGCAGACG           	|
+| Pmean_P3                 	| Pmean_P3      	| i7_UDI0004     	| TTGGACTT           	| i5_UDI0004     	| TATGAGTA           	|
 
 I started my samples at 1 and 2 in case this trial worked and I could start the rest of my samples at 3.
 
