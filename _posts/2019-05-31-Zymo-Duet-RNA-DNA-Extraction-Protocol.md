@@ -34,11 +34,31 @@ II. Spray gloves with RNAse away and rub hands together.
 
 Take fragments one at a time out of the freezer and sterilize clippers in between every fragment. These steps are time sensitive to prevent the coral fragments and freezer from thawing. Do not rush, but be efficient.
 
-Clipping fragment:  
+#### Fragment Clipping in DNA/RNA Shield
+
+1. Take 500 uL of DNA/RNA shield from the original sample tube into a new 2 mL 0.5 glass bead tube.  
+2. Using sterilized clippers, cut coral clipping in half (depending on the size, keep the entire clipping) and place in 2 mL 0.5 mm bead tube from step 1.  
+3. Add 500 uL new DNA/RNA shield to the bead tube with the coral fragment from step 1 and 2.  
+4. Proceed to homogenization steps.
+
+Depending on desired DNA RNA quantity, you can increase the amount of uL added of the original DNA RNA shield from the original sampling tube or increase the size of fragment used.
+
+#### Whole Snap-Frozen Fragment  
+
 1. Label the side of a bead tube with the coral fragment's sample ID number, your initials, and today's date. Label the cap of the bead tube with the coral ID number.       
 2. Add 1000 μl of RNA/DNA shield to the tube.
 3. Remove desired fragment from -80 &deg;C freezer.  
-4. Using sterilized clippers, clip off 3-4 small pieces and place all the pieces into the 1.5 mL microcentrifuge tube. RNA/DNA shield needs to cover the fragments.
+4. Using sterilized clippers, clip off 3-4 small pieces and place all the pieces into the 1.5 mL microcentrifuge tube. RNA/DNA shield needs to cover the fragments.  
+5. Proceed to homogenization steps.
+
+#### Homogenization
+
+1. Vortex the 2 mL 0.5 mm glass bead tube for 1 minute for *Pocillopora spp.* and 2 minutes for *Montipora spp.*. The amount of time for vortexing will depend on the coral skeletal structure and how easily the tissue separates from the skeleton. Too much vortexing can cause DNA/RNA degradation, but too little vortexing can result in minimal DNA/RNA yield.  
+2. After vortexing, check to see if most of the tissue has come off of the skeleton and that the DNA/RNA shield has darkened in color.  
+3. Remove supernatant and place in a new 1.5 mL microcentrifuge tube. Save the bead tube with the skeleton fragment in -80 &deg;C freezer as a potential back-up in case the extraction doesn't work. Label 1.5 mL microcentrifuge tube as desired.  
+4. Proceed to DNA Extraction steps.  
+
+We have tried an alternative homogenization method to separate the host and symbiont tissue in the extraction process: [Soft and Hard Homogenization](https://emmastrand.github.io/EmmaStrand_Notebook/Soft-and-Hard-Homogenization-Protocol/). This didn't work as desired for us, but has room for improvement.
 
 ### Larvae Sample Preparation
 From [E. Chille's Putnam Lab Protocol](https://echille.github.io/E.-Chille-Open-Lab-Notebook/Protocol-for-DNA-RNA-Extractions-of-Montipora-Coral-Larvae-Using-Zymo-Duet-Extraction-Kit/):
