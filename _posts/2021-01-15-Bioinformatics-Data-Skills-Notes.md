@@ -20,7 +20,3 @@ Resources:
 - [Creating a GitHub/Jekyll Lab Notebook - E.Strand](https://emmastrand.github.io/EmmaStrand_Notebook/Creating-notebook/)
 
 Primer on lab and computational apsects of functional genomics: [Roberts and Gavery 2018](https://eagle.fish.washington.edu/whale/pub/jsr37309_1r8rd0.pdf)
-
-Reading Notes:
-
-**Preface xiii-xv**
