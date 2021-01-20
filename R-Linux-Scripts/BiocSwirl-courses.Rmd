@@ -1,0 +1,49 @@
+---
+title: "BiocSwirl_courses"
+author: "EL Strand"
+date: "1/19/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Clears workspace. 
+```{r}
+rm(list=ls())
+```
+
+Loading libraries. I had trouble downloading devtools so I updated 'processx' package, installed 'usethis', and re-ran the install devtools function. Seems to have fixed this.  
+1/20/21: devtools wouldn't run without ellipsis. Installed ellipsis package, 'yes' to sources that need compilation.
+```{r}
+install.packages("devtools")
+library(devtools)
+
+devtools::install_github("biocswirl-dev-team/BiocSwirl") # selected '1' to update all; 'Yes' to install that need compilation; 'Yes' to install from C/C++/Fortran: 'brio'. This install took awhile. 
+library(BiocSwirl)
+```
+
+```{r, eval = FALSE}
+# list all available BiocSwirl courses
+list_courses()
+# install selected course. 
+# copy name from output of list_courses()
+load_course(course ='RNAseq')
+```
+
+To start the course environment, excute the command below. No parameters are necessary. The command will start an interactive environment that will allow you to navigate to your course.
+```{r, eval = FALSE}
+start_course()
+```
+
+## RNASeq Course
+
+Installing packages needed for analysis. 
+```{r}
+install.packages("pheatmap")
+install.packages("BiocManager")
+BiocManager::install("DESeq2")
+```
+
+
