@@ -34,7 +34,9 @@ Reverse Primer with Adapter Overhang:
 
 ### 515F and 806R for V4
 
-Now we want to try 515F and 806R for the V4 region. Below information from [Earth Microbiome](https://earthmicrobiome.org/protocols-and-standards/16s/) and Apprill et al 2015.
+Now we want to try 515F and 806R for the V4 region. Below information from [Earth Microbiome](https://earthmicrobiome.org/protocols-and-standards/16s/).
+
+Earth Microbiome:  
 
 515F forward primer, barcoded  
 Field descriptions (space-delimited):
@@ -45,7 +47,7 @@ Forward primer pad
 Forward primer linker  
 Forward primer (515F)  
 
-AATGATACGGCGACCACCGAGATCTACACGCT XXXXXXXXXXXX TATGGTAATT GT **GTGYCAGCMGCCGCGGTAA**
+AATGATACGGCGACCACCGAGATCTACACGCT XXXXXXXXXXXX TATGGTAATT GT GTGYCAGCMGCCGCGGTAA
 
 806R reverse primer  
 Field descriptions (space-delimited):
@@ -55,11 +57,15 @@ Reverse primer pad
 Reverse primer linker  
 Reverse primer (806R)  
 
-CAAGCAGAAGACGGCATACGAGAT AGTCAGCCAG CC **GGACTACNVGGGTWTCTAAT**
+CAAGCAGAAGACGGCATACGAGAT AGTCAGCCAG CC GGACTACNVGGGTWTCTAAT
 
-We took the primer sequences (bolded above) from Earth Microbiome (and based on Apprill et al 2015), and added the URI GSC specific adapter sequences:  
+[Apprill et al 2015](https://www.int-res.com/articles/ame_oa/a075p129.pdf):  
+515F: 5’-**GTG CCA GCM GCC GCG GTA A**-3’    
+806R: 5’-**GGA CTA CHV GGG TWT CTA AT**-3’
+
+We took the primer sequences from Apprill et al 2015, and added the URI GSC specific adapter sequences (all bolded above):  
 
 | Primer       	| GSC Adapter Overhang               	| Sequence             	| Custom primer to be ordered (Adapter+Seq):             	|
 |--------------	|------------------------------------	|----------------------	|--------------------------------------------------------	|
-| 515F forward 	| TCGTCGGCAGCGTCAGATGTGTATAAGAGACAG  	| GTGYCAGCMGCCGCGGTAA  	| TCGTCGGCAGCGTCAGATGTGTATAAGAGACAGGTGYCAGCMGCCGCGGTAA   	|
-| 806R reverse 	| GTCTCGTGGGCTCGGAGATGTGTATAAGAGACAG 	| GGACTACNVGGGTWTCTAAT 	| GTCTCGTGGGCTCGGAGATGTGTATAAGAGACAGGGACTACNVGGGTWTCTAAT 	|
+| 515F forward 	| TCGTCGGCAGCGTCAGATGTGTATAAGAGACAG  	| GTGCCAGCMGCCGCGGTAA  	| TCGTCGGCAGCGTCAGATGTGTATAAGAGACAGGTGCCAGCMGCCGCGGTAA   	|
+| 806R reverse 	| GTCTCGTGGGCTCGGAGATGTGTATAAGAGACAG 	| GGACTACHVGGGTWTCTAAT 	| GTCTCGTGGGCTCGGAGATGTGTATAAGAGACAGGGACTACHVGGGTWTCTAAT 	|
