@@ -42,4 +42,4 @@ RNA HS St1: 46.32 St2: 728.78
 
 Full tapestation report [2021-01-31](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2021-01-31%20-%2018.17.51.pdf).
 
-![gel]()
+![gel](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210131-gel.jpg?raw=true)
