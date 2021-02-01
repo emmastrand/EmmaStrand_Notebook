@@ -55,8 +55,13 @@ Depending on desired DNA RNA quantity, you can increase the amount of uL added o
 
 1. Vortex the 2 mL 0.5 mm glass bead tube for 1 minute for *Pocillopora spp.* and 2 minutes for *Montipora spp.*. The amount of time for vortexing will depend on the coral skeletal structure and how easily the tissue separates from the skeleton. Too much vortexing can cause DNA/RNA degradation, but too little vortexing can result in minimal DNA/RNA yield.  
 2. After vortexing, check to see if most of the tissue has come off of the skeleton and that the DNA/RNA shield has darkened in color.  
-3. Remove supernatant and place in a new 1.5 mL microcentrifuge tube. Save the bead tube with the skeleton fragment in -80 &deg;C freezer as a potential back-up in case the extraction doesn't work. Label 1.5 mL microcentrifuge tube as desired.  
-4. Proceed to DNA Extraction steps.  
+3. Remove supernatant and place in a new 1.5 mL microcentrifuge tube*.  
+4. Place 300 uL of that aliquoted supernatant into a new 1.5 mL microcentrifuge tube for extractions.    
+5. Save the bead tube with the skeleton fragment and leftover aliquoted  supernatant tube* in -80 &deg;C freezer as a potential back-up in case the extraction doesn't work. Label 1.5 mL microcentrifuge tube as desired.  
+6. Add 30 µl of PK digestion buffer to each sample tube (1:10 ratio of PK Digestion Buffer:Sample).  
+7. Add 15 µl Proteinase K to each sample tube (1:2 ratio of Proteinase K:PK Digestion Buffer).  
+8. Vortex for 5-10 seconds and spin down.    
+9. Proceed to extraction steps.    
 
 We have tried an alternative homogenization method to separate the host and symbiont tissue in the extraction process: [Soft and Hard Homogenization](https://emmastrand.github.io/EmmaStrand_Notebook/Soft-and-Hard-Homogenization-Protocol/). This didn't work as desired for us, but has room for improvement.
 
