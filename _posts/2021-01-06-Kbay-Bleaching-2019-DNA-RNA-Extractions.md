@@ -17,9 +17,13 @@ Google drive for extraction photos [link](https://drive.google.com/drive/folders
 ### Protocol  
 Based on Putnam Lab DNA RNA Duet Extraction [Protocol](https://emmastrand.github.io/EmmaStrand_Notebook/Zymo-Duet-RNA-DNA-Extraction-Protocol/) and [Zymo Research Kit](https://files.zymoresearch.com/protocols/_d7003t_d7003_quick-dna-rna_miniprep_plus_kit.pdf).  
 
-After 2 minute vortex step, this is what the sample tube will look like:  
+After clipping fragments and placing them into the sample tube. The goal is to have all the samples start with this volume of coral.
 
-![coral]()
+![coral-pre](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210131pre-vortex-ext.jpg?raw=true)
+
+After 2 minute vortex step, this is what the sample tube will look like. The goal is to have almost all of the tissue off of the coral skeleton. *Montipora spp.* can be difficult to do this without resulting in lower quality DNA/RNA because they are so mucus-y.   
+
+![coral](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210131-postvortex.jpg?raw=true)
 
 ### 2021-01-31 Extractions (1-6)
 
