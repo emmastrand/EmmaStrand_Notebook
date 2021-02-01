@@ -41,21 +41,21 @@ Now we want to try 515F and 806R for the V4 region. Below information from [Eart
 **515F forward primer, barcoded**
 Field descriptions (space-delimited):
 
-5′ Illumina adapter
-Golay barcode
-Forward primer pad
-Forward primer linker
-Forward primer (515F)
+5′ Illumina adapter  
+Golay barcode  
+Forward primer pad  
+Forward primer linker  
+Forward primer (515F)  
 
 AATGATACGGCGACCACCGAGATCTACACGCT XXXXXXXXXXXX TATGGTAATT GT *GTGYCAGCMGCCGCGGTAA*
 
 **806R reverse primer**
 Field descriptions (space-delimited):
 
-Reverse complement of 3′ Illumina adapter
-Reverse primer pad
-Reverse primer linker
-Reverse primer (806R)
+Reverse complement of 3′ Illumina adapter  
+Reverse primer pad  
+Reverse primer linker  
+Reverse primer (806R)  
 
 CAAGCAGAAGACGGCATACGAGAT AGTCAGCCAG CC *GGACTACNVGGGTWTCTAAT*
 
