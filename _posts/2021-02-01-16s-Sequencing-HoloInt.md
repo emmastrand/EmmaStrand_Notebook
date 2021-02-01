@@ -7,7 +7,7 @@ tags: 16s, DNA
 projects: Holobiont Integration
 ---
 
-# 16s Sequencing
+# Next Gen 16s Sequencing
 
 Link to [Acclimatization Dynamics repo](https://github.com/hputnam/Acclim_Dynamics).  
 
