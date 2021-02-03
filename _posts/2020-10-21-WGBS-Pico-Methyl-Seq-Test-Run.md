@@ -125,3 +125,13 @@ PrepAmp Master Mix (PAMM):
 ![tape4](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20201111_2878.png?raw=true)
 
 *The concentrations are much higher on the TapeStation than Qubit values. Which one do we trust more? The output of WGBS PMS is only 15 uL max, and I used 3 uL for tapestation and qubit (prepped qubit twice). I'm hesitant to use more to re-qubit unless we have to.*
+
+Submission details (20201116_30-445814566_Strand_WGBS):  
+
+| Sample # 	| General Information 	|                              	|                         	|                       	|                    	| Amount of Material 	|              	|                      	| Miscellaneous       	|                                       	| Special Comments 	|
+|----------	|---------------------	|------------------------------	|-------------------------	|-----------------------	|--------------------	|--------------------	|--------------	|----------------------	|---------------------	|---------------------------------------	|------------------	|
+|          	| Sample/Pool Name*   	| Number of Libraries in Pool* 	| Starting Material Type* 	| Species/Strain*       	| Sample Buffer*     	| Total Amount*      	| Volume (µL)* 	| Conc. (nM or ng/uL)* 	| Purification Method 	| Library Prep Kit Used*                	|                  	|
+| 1        	| ES1                 	| 1                            	| DNA                     	| Porites astreoides    	| DNA elution buffer 	| 25.8               	| 10           	| 2.58                 	| KAPA Pure Beads     	| Zymo Pico Methyl-Seq Library Prep Kit 	| Mcap_2860        	|
+| 2        	| ES2                 	| 1                            	| DNA                     	| Pocillopora meandrina 	| DNA elution buffer 	| 38.1               	| 10           	| 3.81                 	| KAPA Pure Beads     	| Zymo Pico Methyl-Seq Library Prep Kit 	| Pact_2878        	|
+| 3        	| ES3                 	| 1                            	| DNA                     	| Montipora capitata    	| DNA elution buffer 	| 10                 	| 10           	| 1                    	| KAPA Pure Beads     	| Zymo Pico Methyl-Seq Library Prep Kit 	| Past_P1          	|
+| 4        	| ES4                 	| 1                            	| DNA                     	| Pocillopora acuta     	| DNA elution buffer 	| 38.1               	| 10           	| 3.81                 	| KAPA Pure Beads     	| Zymo Pico Methyl-Seq Library Prep Kit 	| Pmean_P3         	|
