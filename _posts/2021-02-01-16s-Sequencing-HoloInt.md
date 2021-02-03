@@ -74,23 +74,78 @@ We took the primer sequences from Apprill et al 2015, and added the URI GSC spec
 
 ## Lab Protocol
 
-Based on Earth Microbiome, Apprill et al 2015, and URI GSC (figure below).
+Prerequisites:  
+- Snap-frozen or well-preserved tissue samples  
+- DNA extracted from tissue samples ([Putnam Lab Zymo Duet RNA DNA Extraction Protocol](https://emmastrand.github.io/EmmaStrand_Notebook/Zymo-Duet-RNA-DNA-Extraction-Protocol/))  
+- Quantity and quality of DNA checked (Quality: [Gel Electrophoresis](https://emmastrand.github.io/EmmaStrand_Notebook/Gel-Electrophoresis-Protocol/) and Quantity: [Qubit](https://emmastrand.github.io/EmmaStrand_Notebook/Qubit-Protocol/))  
+
+Resources:  
+- PCR and Gel Electrophoresis Descriptions and Troubleshooting: [Strand 2017](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/protocols/PCR_GEL_SPEC.pdf)  
+- Khan Academy: [PCR Explained](https://www.khanacademy.org/science/biology/biotech-dna-technology/dna-sequencing-pcr-electrophoresis/a/polymerase-chain-reaction-pcr)  
+- [16s Library Prep Guide](https://support.illumina.com/documents/documentation/chemistry_documentation/16s/16s-metagenomic-library-prep-guide-15044223-b.pdf)
+- DNA Barcoding Explained: [International Barcode of Life](https://ibol.org/about/dna-barcoding/), [Barcoding 101](https://dnabarcoding101.org/lab/)
+
+Materials:  
+- Phusion HiFi Mastermix (Thermo Scientific F531S): https://www.fishersci.com/shop/products/phusion-high-fidelity-pcr-master-mixes/f531s  
+- Ultra-pure water
+- 96-well plates, centrifuge, pipettes and filter tips, thermocycler  
+- 515F and 806R primers with appropriate adapter overhang
+
+
+This protocol is based on resources from on Earth Microbiome, Apprill et al 2015, and URI GSC.
 
 ![workflow1](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16s-workflow.png?raw=true)
 
-In our lab, we will complete the first PCR step and then we pay URI GSC to complete the rest of the library prep and preparation for sequencing. 
+In our lab, we will complete the first PCR step and then we pay URI GSC to complete the rest of the library prep and preparation for sequencing.
 
-![workflow2]()
+![workflow2](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16s-workflow2.png?raw=true)
 
 515F Forward and 806RB Reverse Amplicon size: ~390 bp.
 
-PCR program:  
+**Steps:**
 
-| Temperature 	| Time, 96-well 	| Time, 384-well 	| Repeat 	|
-|-------------	|---------------	|----------------	|--------	|
-| 94 °C       	| 3 min         	| 3 min          	|        	|
-| 94 °C       	| 45 s          	| 60 s           	| x35    	|
-| 50 °C       	| 60 s          	| 60 s           	| x35    	|
-| 72 °C       	| 90 s          	| 105 s          	| x35    	|
-| 72 °C       	| 10 min        	| 10 min         	|        	|
-| 4 °C        	| hold          	| hold           	|        	|
+1. Check concentrations with [Qubit](https://emmastrand.github.io/EmmaStrand_Notebook/Qubit-Protocol/).  
+2. Calculate volumes of DNA and water needed to dilute sample to 3.33 ng/μl concentration in 10 μl.  
+
+| Sample ID | DNA (ng_μl) | DNA for dilution (μl) | Water for Dilution (μl) |
+|----------|-------------|-----------------------|-------------------------|
+| Example       | Qubit value        | =33/Qubit value                  | 10 - DNA for dilution value                    |
+| Coral 1      | 6.82        | 4.84                  | 5.16                    |
+
+3. Aliquot the appropriate volume of ultra pure water needed for dilution (for Coral 1, 5.16 μl) into each appropriately labeled PCR strip tube.  
+4. Aliquot the appropriate volume of DNA sample needed for dilution (for Coral 1, 4.84 μl).  
+> 10 ng is widely used as a general starting point, this is usually enough DNA to amplify your desired gene. If the sample is suspected to contain more inhibitors, decrease this starting value. If the sample is not amplifying, a troubleshooting option is to increase this value. Starting with 10 ng for 100 μl reaction that is split into triplicate wells in the PCR steps, 3.33 ng of DNA is needed per reaction. A 10 μl dilution step is used to standardize DNA samples. To calculate the DNA sample volume needed for the dilution, use the following equation: V<sub>1</sub>M<sub>1</sub>=V<sub>2</sub>M<sub>2</sub>.   
+V<sub>1</sub>(Qubit value)=(3.33 ng/μl)(10 μl)  
+V<sub>1</sub>=33/Qubit value  
+Finally, to calculate the volume of water needed, subtract the DNA volume required from 10 μl.
+
+5. Make master mix stock solution. Forward and reverse primers will come in 100 uM stock solutions, dilute this to 10 uM. Keep master mix stock solution on ice.    
+
+| Component            | Per Rxn            | FINAL CONC | 16s |
+|----------------------|--------------------|------------|------|
+| 2X Phusion Mastermix | 50 μl               | 1X         | 1750 |
+| F primer (10uM)      | 2 μl                | 0.4uM      | 70   |
+| R primer (10uM)      | 2 μl                | 0.4uM      | 70   |
+| H2O                  | Up to 100 μl (45 μl) |            | 1645 |  
+
+6. Add 97 μl of master mix stock solution to each well.  
+7. Add 3 μl of DNA sample (from the 10 μl dilution mix) to each well.
+8. Add 10 μl ultra pure water to one well per plate as a negative control.
+9. Add 0.5 μl of each sample into one well as a mixture control.  
+10. Aliquot 100 μl reaction into 3 wells to run reaction in triplicate PCR (33 μl each).  
+11. Spin down plate.  
+12. Run the following PCR program (this cycle program is specific to 16s):  
+
+PCR program (Apprill et al 2015):  
+
+| Temperature 	| Time   	| Repeat 	|
+|-------------	|--------	|--------	|
+| 95 °C       	| 2 min  	| 1      	|
+| 95 °C       	| 20 s   	| x27-35 	|
+|  55 °C      	| 15s    	|        	|
+| 72 °C       	| 5 min  	|        	|
+| 72 °C       	| 10 min 	| 1      	|
+
+13. Pool products into PCR strip tubes (100 μl total) appropriately labeled with the sample ID. These will be the PCR product stock. Store at -20&deg;C.     
+14. Run 5 μl of each product on a 2% agarose gel using the following [Putnam Lab Gel Electrophoresis protocol](https://emmastrand.github.io/EmmaStrand_Notebook/Gel-Electrophoresis-Protocol/) to check for ~390 bp product.  
+15. Aliquot 45 μl of each product from the PCR product stock (in Step 11) into new PCR strip tubes appropriately labeled with the sample ID. These tubes will be delivered to the sequencing center. Store at -20&deg;C until delivering to the sequencing center.

@@ -65,9 +65,9 @@ Finally, to calculate the volume of water needed, subtract the DNA volume requir
 7. Add 3 μl of DNA sample (from the 10 μl dilution mix) to each well.
 8. Add 10 μl ultra pure water to one well per plate as a negative control.
 9. Add 0.5 μl of each sample into one well as a mixture control.  
-8. Aliquot 100 μl reaction into 3 wells to run reaction in triplicate PCR (33 μl each).  
-9. Spin down plate.  
-10. Run the following PCR program (this cycle program is specific to ITS2):  
+10. Aliquot 100 μl reaction into 3 wells to run reaction in triplicate PCR (33 μl each).  
+11. Spin down plate.  
+12. Run the following PCR program (this cycle program is specific to ITS2):  
 
 | Cycles | Time   | Temp |
 |--------|--------|------|
@@ -78,6 +78,6 @@ Finally, to calculate the volume of water needed, subtract the DNA volume requir
 | 1      | 2 min  | 72°  |
 | 1      | ∞ min  | 4°   |
 
-11. Pool products into PCR strip tubes (100 μl total) appropriately labeled with the sample ID. These will be the PCR product stock. Store at -20&deg;C.     
-12. Run 5 μl of each product on a 2% agarose gel using the following [Putnam Lab Gel Electrophoresis protocol](https://emmastrand.github.io/EmmaStrand_Notebook/Gel-Electrophoresis-Protocol/) to check for ~300 bp product.  
-13. Aliquot 45 μl of each product from the PCR product stock (in Step 11) into new PCR strip tubes appropriately labeled with the sample ID. These tubes will be delivered to the sequencing center. Store at -20&deg;C until delivering to the sequencing center.     
+13. Pool products into PCR strip tubes (100 μl total) appropriately labeled with the sample ID. These will be the PCR product stock. Store at -20&deg;C.     
+14. Run 5 μl of each product on a 2% agarose gel using the following [Putnam Lab Gel Electrophoresis protocol](https://emmastrand.github.io/EmmaStrand_Notebook/Gel-Electrophoresis-Protocol/) to check for ~300 bp product.  
+15. Aliquot 45 μl of each product from the PCR product stock (in Step 11) into new PCR strip tubes appropriately labeled with the sample ID. These tubes will be delivered to the sequencing center. Store at -20&deg;C until delivering to the sequencing center.     
