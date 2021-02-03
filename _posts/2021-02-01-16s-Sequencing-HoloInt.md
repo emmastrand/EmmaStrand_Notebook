@@ -74,9 +74,13 @@ We took the primer sequences from Apprill et al 2015, and added the URI GSC spec
 
 ## Lab Protocol
 
-Based on Earth Microbiome, Apprill et al 2015, and URI GSC.
+Based on Earth Microbiome, Apprill et al 2015, and URI GSC (figure below).
 
-![workflow]()
+![workflow1](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16s-workflow.png?raw=true)
+
+In our lab, we will complete the first PCR step and then we pay URI GSC to complete the rest of the library prep and preparation for sequencing. 
+
+![workflow2]()
 
 515F Forward and 806RB Reverse Amplicon size: ~390 bp.
 
