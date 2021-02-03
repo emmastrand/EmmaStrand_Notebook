@@ -128,7 +128,7 @@ Finally, to calculate the volume of water needed, subtract the DNA volume requir
 | 10uM working stock 515F primer  	| 2  	| 1                                               	| 2                 	|
 | 10uM working stock 806RB primer 	| 2  	| 1                                               	| 2                 	|
 
-> Amount of Ultrapure water is determined by  100 - (Phusion PCR master mix + F primer + R primer). Amount of primer can be increased or decreased as a part of troubleshooting. 
+> Amount of Ultrapure water is determined by  100 - (Phusion PCR master mix + F primer + R primer). Amount of primer can be increased or decreased as a part of troubleshooting.
 
 6. Add 97 μl of master mix stock solution to each well.  
 7. Add 3 μl of DNA sample (from the 10 μl dilution mix) to each well.
@@ -151,3 +151,5 @@ PCR program (Apprill et al 2015):
 13. Pool products into PCR strip tubes (100 μl total) appropriately labeled with the sample ID. These will be the PCR product stock. Store at -20&deg;C.     
 14. Run 5 μl of each product on a 2% agarose gel using the following [Putnam Lab Gel Electrophoresis protocol](https://emmastrand.github.io/EmmaStrand_Notebook/Gel-Electrophoresis-Protocol/) to check for ~390 bp product.  
 15. Aliquot 45 μl of each product from the PCR product stock (in Step 11) into new PCR strip tubes appropriately labeled with the sample ID. These tubes will be delivered to the sequencing center. Store at -20&deg;C until delivering to the sequencing center.
+
+Example of [google spreadsheet](https://docs.google.com/spreadsheets/d/184gZr6-Bc48Q-48O8OhfnEsu5wRloLiekuJg3T_IzXw/edit?usp=sharing) for data processing, including master mix and dilution calculations, and 96-well PCR platemaps.
