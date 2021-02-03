@@ -1,15 +1,17 @@
 ---
 layout: post
-title: 16s Sequencing HoloInt
+title: 16s Sequencing Protocol
 date: '2021-02-01'
-categories: Processing
+categories: Protocol
 tags: 16s, DNA
-projects: Holobiont Integration
+projects: Putnam Lab
 ---
 
-# Next Gen 16s Sequencing
+# 16s Sequencing
 
-Link to [Acclimatization Dynamics repo](https://github.com/hputnam/Acclim_Dynamics).  
+
+
+## Next Gen 16s Sequencing Primer Design
 
 Rebecca Stevik originally tried 518F and 926R for 16s V4/V5 region but had trouble with the results. Link to [protocol google sheet](https://docs.google.com/spreadsheets/d/1nwWCbPFduX4a2K3Fc-qeALjZADdt0yuQTMVSW2n9SbU/edit?usp=sharing).  
 
@@ -61,11 +63,30 @@ CAAGCAGAAGACGGCATACGAGAT AGTCAGCCAG CC GGACTACNVGGGTWTCTAAT
 
 [Apprill et al 2015](https://www.int-res.com/articles/ame_oa/a075p129.pdf):  
 515F: 5’-**GTG CCA GCM GCC GCG GTA A**-3’    
-806R: 5’-**GGA CTA CHV GGG TWT CTA AT**-3’
+806R: 5’-**GGA CTA CNV GGG TWT CTA AT**-3’
 
 We took the primer sequences from Apprill et al 2015, and added the URI GSC specific adapter sequences (all bolded above):  
 
 | Primer       	| GSC Adapter Overhang               	| Sequence             	| Custom primer to be ordered (Adapter+Seq):             	|
 |--------------	|------------------------------------	|----------------------	|--------------------------------------------------------	|
 | 515F forward 	| TCGTCGGCAGCGTCAGATGTGTATAAGAGACAG  	| GTGCCAGCMGCCGCGGTAA  	| TCGTCGGCAGCGTCAGATGTGTATAAGAGACAGGTGCCAGCMGCCGCGGTAA   	|
-| 806R reverse 	| GTCTCGTGGGCTCGGAGATGTGTATAAGAGACAG 	| GGACTACHVGGGTWTCTAAT 	| GTCTCGTGGGCTCGGAGATGTGTATAAGAGACAGGGACTACHVGGGTWTCTAAT 	|
+| 806RB reverse 	| GTCTCGTGGGCTCGGAGATGTGTATAAGAGACAG 	| GGACTACNVGGGTWTCTAAT 	| GTCTCGTGGGCTCGGAGATGTGTATAAGAGACAGGGACTACNVGGGTWTCTAAT 	|
+
+## Lab Protocol
+
+Based on Earth Microbiome, Apprill et al 2015, and URI GSC.
+
+![workflow]()
+
+515F Forward and 806RB Reverse Amplicon size: ~390 bp.
+
+PCR program:  
+
+| Temperature 	| Time, 96-well 	| Time, 384-well 	| Repeat 	|
+|-------------	|---------------	|----------------	|--------	|
+| 94 °C       	| 3 min         	| 3 min          	|        	|
+| 94 °C       	| 45 s          	| 60 s           	| x35    	|
+| 50 °C       	| 60 s          	| 60 s           	| x35    	|
+| 72 °C       	| 90 s          	| 105 s          	| x35    	|
+| 72 °C       	| 10 min        	| 10 min         	|        	|
+| 4 °C        	| hold          	| hold           	|        	|
