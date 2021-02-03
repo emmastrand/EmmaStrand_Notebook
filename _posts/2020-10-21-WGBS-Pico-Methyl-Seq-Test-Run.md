@@ -126,7 +126,7 @@ PrepAmp Master Mix (PAMM):
 
 *The concentrations are much higher on the TapeStation than Qubit values. Which one do we trust more? The output of WGBS PMS is only 15 uL max, and I used 3 uL for tapestation and qubit (prepped qubit twice). I'm hesitant to use more to re-qubit unless we have to.*
 
-Submission details (20201116_30-445814566_Strand_WGBS):  
+Submission details (20201117_30-445814566_Strand_WGBS):  
 
 | Sample # 	| General Information 	|                              	|                         	|                       	|                    	| Amount of Material 	|              	|                      	| Miscellaneous       	|                                       	| Special Comments 	|
 |----------	|---------------------	|------------------------------	|-------------------------	|-----------------------	|--------------------	|--------------------	|--------------	|----------------------	|---------------------	|---------------------------------------	|------------------	|
