@@ -121,12 +121,14 @@ Finally, to calculate the volume of water needed, subtract the DNA volume requir
 
 5. Make master mix stock solution. Forward and reverse primers will come in 100 uM stock solutions, dilute this to 10 uM. Keep master mix stock solution on ice.    
 
-| Component            | Per Rxn            | FINAL CONC | 16s |
-|----------------------|--------------------|------------|------|
-| 2X Phusion Mastermix | 50 μl               | 1X         | 1750 |
-| F primer (10uM)      | 2 μl                | 0.4uM      | 70   |
-| R primer (10uM)      | 2 μl                | 0.4uM      | 70   |
-| H2O                  | Up to 100 μl (45 μl) |            | 1645 |  
+| Master Mix                      	| uL 	| # of samples (X + X neg controls + X for error) 	| total needed (uL) 	|
+|---------------------------------	|----	|-------------------------------------------------	|-------------------	|
+| Phusion PCR master mix          	| 50 	| 1                                               	| 50                	|
+| UltraPure water                 	| 43 	| 1                                               	| 43                	|
+| 10uM working stock 515F primer  	| 2  	| 1                                               	| 2                 	|
+| 10uM working stock 806RB primer 	| 2  	| 1                                               	| 2                 	|
+
+> Amount of Ultrapure water is determined by  100 - (Phusion PCR master mix + F primer + R primer). Amount of primer can be increased or decreased as a part of troubleshooting. 
 
 6. Add 97 μl of master mix stock solution to each well.  
 7. Add 3 μl of DNA sample (from the 10 μl dilution mix) to each well.
