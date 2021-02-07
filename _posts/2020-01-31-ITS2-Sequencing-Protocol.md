@@ -35,7 +35,7 @@ Citation: LaJeunesse TC, Trench RK (2000) Biogeography of two species of Symbiod
 - 96-well plates, centrifuge, pipettes and filter tips, thermocycler
 
 Protocol:  
-10 ng of DNA is the bare minimum required for ITS2 sequencing using this protocol.  
+We start with 10 ng of DNA added to the master mix for this protocol.  
 
 1. Check concentrations with [Qubit](https://emmastrand.github.io/EmmaStrand_Notebook/Qubit-Protocol/).  
 2. Calculate volumes of DNA and water needed to dilute sample to 3.33 ng/μl concentration in 10 μl.  
@@ -47,7 +47,9 @@ Protocol:
 
 3. Aliquot the appropriate volume of ultra pure water needed for dilution (for Coral 1, 5.16 μl) into each appropriately labeled PCR strip tube.  
 4. Aliquot the appropriate volume of DNA sample needed for dilution (for Coral 1, 4.84 μl).  
-> 10 ng is widely used as a general starting point, this is usually enough DNA to amplify your desired gene. If the sample is suspected to contain more inhibitors, decrease this starting value. If the sample is not amplifying, a troubleshooting option is to increase this value. Starting with 10 ng for 100 μl reaction that is split into triplicate wells in the PCR steps, 3.33 ng of DNA is needed per reaction. A 10 μl dilution step is used to standardize DNA samples. To calculate the DNA sample volume needed for the dilution, use the following equation: V<sub>1</sub>M<sub>1</sub>=V<sub>2</sub>M<sub>2</sub>.   
+> 10 ng is widely used as a general starting point, this is usually enough DNA to amplify your desired gene. If the sample is suspected to contain more inhibitors, decrease this starting value. If the sample is not amplifying, a troubleshooting option is to decrease and increase this value. NEED TO DISCUSS THIS _Starting with 10 ng for 100 μl reaction that is split into triplicate wells in the PCR steps, 3.33 ng of DNA is needed per reaction._ Standardize the DNA concentration of each sample prior to amplification.   
+
+To calculate the DNA sample volume needed for the dilution in 10µl for example, use the following equation: V<sub>1</sub>M<sub>1</sub>=V<sub>2</sub>M<sub>2</sub>.   
 V<sub>1</sub>(Qubit value)=(3.33 ng/μl)(10 μl)  
 V<sub>1</sub>=33/Qubit value  
 Finally, to calculate the volume of water needed, subtract the DNA volume required from 10 μl.
@@ -63,11 +65,11 @@ Finally, to calculate the volume of water needed, subtract the DNA volume requir
 
 6. Add 97 μl of master mix stock solution to each well.  
 7. Add 3 μl of DNA sample (from the 10 μl dilution mix) to each well.
-8. Add 10 μl ultra pure water to one well per plate as a negative control.
-9. Add 0.5 μl of each sample into one well as a mixture control.  
-10. Aliquot 100 μl reaction into 3 wells to run reaction in triplicate PCR (33 μl each).  
+8. Add 3 μl ultra pure water to one well per plate as a negative control.
+9. THIS IS NOT CLEAR _Add 0.5 μl of each sample into one well as a mixture control._  
+10. Set up each reaction in duplicate or triplicate for the PCR.  
 11. Spin down plate.  
-12. Run the following PCR program (this cycle program is specific to ITS2):  
+12. Run the following PCR program (this cycle program is specific to ITS2 for this primer set):  
 
 | Cycles | Time   | Temp |
 |--------|--------|------|
@@ -77,7 +79,8 @@ Finally, to calculate the volume of water needed, subtract the DNA volume requir
 |        | 30 sec | 72°  |
 | 1      | 2 min  | 72°  |
 | 1      | ∞ min  | 4°   |
-
-13. Pool products into PCR strip tubes (100 μl total) appropriately labeled with the sample ID. These will be the PCR product stock. Store at -20&deg;C.     
-14. Run 5 μl of each product on a 2% agarose gel using the following [Putnam Lab Gel Electrophoresis protocol](https://emmastrand.github.io/EmmaStrand_Notebook/Gel-Electrophoresis-Protocol/) to check for ~300 bp product.  
+  
+13. Run 5 μl of each product on a 2% agarose gel using the following [Putnam Lab Gel Electrophoresis protocol](https://emmastrand.github.io/EmmaStrand_Notebook/Gel-Electrophoresis-Protocol/) to check for ~300 bp product. 
+  *Pooling occurs only after duplicate or triplicate samples (based on if you chose duplicates or triplicates above) have successfully amplified and confirmed on the gel*
+14. Pool products into PCR strip tubes (100 μl total) appropriately labeled with the sample ID. These will be the PCR product stock. Store at -20&deg;C.   
 15. Aliquot 45 μl of each product from the PCR product stock (in Step 11) into new PCR strip tubes appropriately labeled with the sample ID. These tubes will be delivered to the sequencing center. Store at -20&deg;C until delivering to the sequencing center.     
