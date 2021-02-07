@@ -147,9 +147,9 @@ PCR program (Apprill et al 2015):
 |  55 °C      	| 15s    	|        	|
 | 72 °C       	| 5 min  	|        	|
 | 72 °C       	| 10 min 	| 1      	|
-
-13. Pool products into PCR strip tubes (100 μl total) appropriately labeled with the sample ID. These will be the PCR product stock. Store at -20&deg;C.     
-14. Run 5 μl of each product on a 2% agarose gel using the following [Putnam Lab Gel Electrophoresis protocol](https://emmastrand.github.io/EmmaStrand_Notebook/Gel-Electrophoresis-Protocol/) to check for ~390 bp product.  
-15. Aliquot 45 μl of each product from the PCR product stock (in Step 11) into new PCR strip tubes appropriately labeled with the sample ID. These tubes will be delivered to the sequencing center. Store at -20&deg;C until delivering to the sequencing center.
+   
+13. Run 5 μl of each product on a 2% agarose gel using the following [Putnam Lab Gel Electrophoresis protocol](https://emmastrand.github.io/EmmaStrand_Notebook/Gel-Electrophoresis-Protocol/) to check for ~390 bp product. You need to have successful triplicate samples prior to pooling
+14. Pool replicate products for those that were successfully amplified into PCR strip tubes (100 μl total) appropriately labeled with the original sample ID and the word pool. These will be the PCR product stock. Store at -20&deg;C.  
+15. Aliquot 45 μl of each product from the PCR product stock (in Step 11) into new PCR strip tubes appropriately labeled with the sample ID. These tubes will be delivered to the sequencing center to complete the library prep and sequencing. Store at -20&deg;C until delivering to the sequencing center.
 
 Example of [google spreadsheet](https://docs.google.com/spreadsheets/d/184gZr6-Bc48Q-48O8OhfnEsu5wRloLiekuJg3T_IzXw/edit?usp=sharing) for data processing, including master mix and dilution calculations, and 96-well PCR platemaps.
