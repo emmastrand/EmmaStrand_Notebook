@@ -54,8 +54,8 @@ DNA/RNA Extractions from Danielle Becker's *Pocillopora* coral samples using the
 - 500 μl of tissue homogenate, 50 μl of Proteinase K Digestion buffer (1:10 ratio with tissue homogenate volume), and 25 μl of Proteinase K added to a new 1.5 mL microcentrifuge tube.  
 - 575 μl of Lysis Buffer added (1:1 ratio to tissue, Proteinase K Digestion buffer, and Proteinase K volume)  
 - 1,150 μl of 100% molecular grade ethanol added to tissue for RNA portion of the protocol (1:1 ratio)  
-- 50 μl Tris added to yellow spin column and incubated at room temperature for 5 minutes before centrifuged, and repeated for a total of 100 μl DNA.  
-- 50 μl Tris added to green spin column and incubated at room temperature for 5 minutes before centrifuged, and repeated for a total of 100 μl RNA.
+- 50 μl warmed Tris added to yellow spin column and incubated at room temperature for 5 minutes before centrifuged, and repeated for a total of 100 μl DNA.  
+- 50 μl warmed DNA RNA free water added to green spin column and incubated at room temperature for 5 minutes before centrifuged, and repeated for a total of 100 μl RNA.  
 
 Half of RNA flow-through from samples C30, E4, and E10 thrown out accidentally. 575 μl of sample (original sample, Proteinase K Digestion Buffer, and Proteinase K) and 575 μl of 100% molecular grade ethanol used. Spun down twice in total. All other samples followed 1,150 μl of sample and 1,150 μl of 100% ethanol protocol steps.  
 
@@ -103,8 +103,8 @@ DNA/RNA Extractions from Danielle Becker's *Pocillopora* coral samples using the
 - 600 μl of tissue homogenate, 60 μl of Proteinase K Digestion buffer (1:10 ratio with tissue homogenate volume), and 30 μl of Proteinase K added to a new 1.5 mL microcentrifuge tube.  
 - 690 μl of Lysis Buffer added (1:1 ratio to tissue, Proteinase K Digestion buffer, and Proteinase K volume)  
 - 1,380 μl of 100% molecular grade ethanol added to tissue for RNA portion of the protocol (1:1 ratio)  
-- 50 μl Tris added to yellow spin column and incubated at room temperature for 10 minutes before centrifuged, and repeated for 5 minutes for a total of 100 μl DNA.  
-- 50 μl Tris added to green spin column and incubated at room temperature for 5 minutes before centrifuged, and repeated for a total of 100 μl RNA.
+- 50 μl warmed Tris added to yellow spin column and incubated at room temperature for 5 minutes before centrifuged, and repeated for a total of 100 μl DNA.  
+- 50 μl warmed DNA RNA free water added to green spin column and incubated at room temperature for 5 minutes before centrifuged, and repeated for a total of 100 μl RNA.  
 
 Post tissue lyser: 1,000 μl DNA RNA Shield added to samples E5, C17, and E7 because there might be enough tissue on the skeleton to try another extraction if necessary. These samples had larger clippings.  
 
@@ -166,8 +166,8 @@ DNA/RNA Extractions from Danielle Becker's *Pocillopora* coral samples using the
 - 600 μl of tissue homogenate, 60 μl of Proteinase K Digestion buffer (1:10 ratio with tissue homogenate volume), and 30 μl of Proteinase K added to a new 1.5 mL microcentrifuge tube.  
 - 690 μl of Lysis Buffer added (1:1 ratio to tissue, Proteinase K Digestion buffer, and Proteinase K volume)  
 - 1,380 μl of 100% molecular grade ethanol added to tissue for RNA portion of the protocol (1:1 ratio)  
-- 50 μl Tris added to yellow spin column and incubated at room temperature for 10 minutes before centrifuged, and repeated for 5 minutes for a total of 100 μl DNA.  
-- 50 μl Tris added to green spin column and incubated at room temperature for 5 minutes before centrifuged, and repeated for a total of 100 μl RNA.
+- 50 μl warmed Tris added to yellow spin column and incubated at room temperature for 5 minutes before centrifuged, and repeated for a total of 100 μl DNA.  
+- 50 μl warmed DNA RNA free water added to green spin column and incubated at room temperature for 5 minutes before centrifuged, and repeated for a total of 100 μl RNA.  
 
 Post tissue lyser: 1,000 μl DNA RNA Shield added to larger sample clippings because there might be enough tissue on the skeleton to try another extraction if necessary. These samples had larger clippings.  
 
