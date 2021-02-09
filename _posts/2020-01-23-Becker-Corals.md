@@ -18,8 +18,8 @@ DNA/RNA Extractions from Danielle Becker's *Pocillopora* coral samples using the
 - 500 μl of tissue homogenate, 50 μl of Proteinase K Digestion buffer (1:10 ratio with tissue homogenate volume), and 25 μl of Proteinase K added to a new 1.5 mL microcentrifuge tube.  
 - 575 μl of Lysis Buffer added (1:1 ratio to tissue, Proteinase K Digestion buffer, and Proteinase K volume)  
 - 1,150 μl of 100% molecular grade ethanol added to tissue for RNA portion of the protocol (1:1 ratio)  
-- 50 μl Tris added to yellow spin column and incubated at room temperature for 5 minutes before centrifuged, and repeated for a total of 100 μl DNA.  
-- 50 μl Tris added to green spin column and incubated at room temperature for 5 minutes before centrifuged, and repeated for a total of 100 μl RNA.  
+- 50 μl warmed Tris added to yellow spin column and incubated at room temperature for 5 minutes before centrifuged, and repeated for a total of 100 μl DNA.  
+- 50 μl warmed DNA RNA free water added to green spin column and incubated at room temperature for 5 minutes before centrifuged, and repeated for a total of 100 μl RNA.  
 
 
 [Qubit](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2019-05-31-Qubit-Protocol.md) used to check DNA and RNA quantity (ng/μl).  
