@@ -142,8 +142,20 @@ I ran the below commands to [install JupyterLab](https://jupyterlab.readthedocs.
 % conda install -c conda-forge jupyterlab
 ```
 
-I ran the below commands to [install Jupyter console 6.0](https://jupyter-console.readthedocs.io/en/latest/). However, I got an error saying "Solving environment: failed with initial frozen solve. Retrying with flexible solve. PackagesNotFoundError: The following packages are not available from current channels:". I will come back to this. 
+I ran the below commands to [install Jupyter console 6.0](https://jupyter-console.readthedocs.io/en/latest/). However, I got an error saying "Solving environment: failed with initial frozen solve. Retrying with flexible solve. PackagesNotFoundError: The following packages are not available from current channels:". I will come back to this.
 
 ```
 % conda install -c conda-forge jupyter-console
 ```
+
+**Running Jupyter Lab**
+
+```
+% jupyter-lab
+
+# this output will result in Jupyter lab opening in a windows browswer
+```
+
+Click on the Notebook Python 3 options in Jupyter Lab to create a notebook. This can lead to an error permission denied. In that case 
+
+One of the biggest pros of working in Jupyter notebook and lab is that your commands and outut are saved as opposed to creating a markdown file like this and writing notes here.
