@@ -48,3 +48,20 @@ Full tapestation report [2021-01-31](https://github.com/emmastrand/EmmaStrand_No
 ![gel](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210131-gel%20copy.jpg?raw=true)
 
 All Oct 2 2019 samples are completely degraded. These samples likely thawed in transit at some point. Dec 4 2019 look great.
+
+### 2021-02-10 Extractions 7-12
+
+Since Oct 2 2019 was degraded, we wanted to try to extraction from 2 corals from Sept 2019, Oct 16 2019, and Oct 30 2019. All four timepoints from the Fall of 2019 are degraded: 2019-09-16, 2019-10-02, 2019-10-16, and 2019-10-30. 
+
+Qubit Standards:
+DNA BR St1: 193.97 St2: 22,049.17
+RNA HS St1: 48.07 St2: 810.29
+
+| ColonyID 	| Collection-Date 	| Bleach-    	| Extraction-ID 	| Extraction-Date 	| DNA reading 1 (ng/uL) 	| DNA reading 2 (ng/uL) 	| DNA reading Avg (ng/uL) 	| RNA reading 1 (ng/uL) 	| RNA reading 2 (ng/uL) 	| RNA reading Avg (ng/uL) 	| RIN 	| Gel Pass? 	| Final Extraction for this coral? 	| Notes    	|
+|----------	|-----------------	|------------	|---------------	|-----------------	|-----------------------	|-----------------------	|-------------------------	|-----------------------	|-----------------------	|-------------------------	|-----	|-----------	|----------------------------------	|----------	|
+| M-3      	| 2019-10-30      	| Bleach     	| 7             	| 20210210        	| 17.3                  	| 17.2                  	| 17.25                   	| 31.2                  	| 31                    	| 31.1                    	| 6.3 	| No        	| NA                               	| Degraded 	|
+| M-219    	| 2019-10-30      	| Bleach     	| 8             	| 20210210        	| 20.6                  	| 20.6                  	| 20.6                    	| 22.2                  	| 22.2                  	| 22.2                    	| 7.3 	| No        	| NA                               	| Degraded 	|
+| M-218    	| 2019-10-16      	| Non-Bleach 	| 9             	| 20210210        	| 8.08                  	| 8.02                  	| 8.05                    	| 45.6                  	| 45.6                  	| 45.6                    	| 2.9 	| No        	| NA                               	| Degraded 	|
+| M-202    	| 2019-10-16      	| Non-Bleach 	| 10            	| 20210210        	| 6.78                  	| 6.76                  	| 6.77                    	| 15.3                  	| 15.3                  	| 15.3                    	| 3.2 	| No        	| NA                               	| Degraded 	|
+| M-218    	| 2019-09-16      	| Non-Bleach 	| 11            	| 20210210        	| 4.48                  	| 4.44                  	| 4.46                    	| 54                    	| 53.8                  	| 53.9                    	| 3.2 	| No        	| NA                               	| Degraded 	|
+| M-201    	| 2019-09-16      	| Bleach     	| 12            	| 20210210        	| 21                    	| 21                    	| 21                      	| 37.8                  	| 37.8                  	| 37.8                    	| 5.3 	| No        	| NA                               	| Degraded 	|
