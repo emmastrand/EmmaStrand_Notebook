@@ -49,9 +49,9 @@ Full tapestation report [2021-01-31](https://github.com/emmastrand/EmmaStrand_No
 
 All Oct 2 2019 samples are completely degraded. These samples likely thawed in transit at some point. Dec 4 2019 look great.
 
-### 2021-02-10 Extractions 7-12
+### 2021-02-10 Extractions (7-12)
 
-Since Oct 2 2019 was degraded, we wanted to try to extraction from 2 corals from Sept 2019, Oct 16 2019, and Oct 30 2019. All four timepoints from the Fall of 2019 are degraded: 2019-09-16, 2019-10-02, 2019-10-16, and 2019-10-30. 
+Since Oct 2 2019 was degraded, we wanted to try to extraction from 2 corals from Sept 2019, Oct 16 2019, and Oct 30 2019. All four timepoints from the Fall of 2019 are degraded: 2019-09-16, 2019-10-02, 2019-10-16, and 2019-10-30.
 
 Qubit Standards:
 DNA BR St1: 193.97 St2: 22,049.17
@@ -65,3 +65,10 @@ RNA HS St1: 48.07 St2: 810.29
 | M-202    	| 2019-10-16      	| Non-Bleach 	| 10            	| 20210210        	| 6.78                  	| 6.76                  	| 6.77                    	| 15.3                  	| 15.3                  	| 15.3                    	| 3.2 	| No        	| NA                               	| Degraded 	|
 | M-218    	| 2019-09-16      	| Non-Bleach 	| 11            	| 20210210        	| 4.48                  	| 4.44                  	| 4.46                    	| 54                    	| 53.8                  	| 53.9                    	| 3.2 	| No        	| NA                               	| Degraded 	|
 | M-201    	| 2019-09-16      	| Bleach     	| 12            	| 20210210        	| 21                    	| 21                    	| 21                      	| 37.8                  	| 37.8                  	| 37.8                    	| 5.3 	| No        	| NA                               	| Degraded 	|
+
+Gel order: Ladder, 7, 8, 9, 10, 11, 12.
+![gel](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210210-gel.jpg?raw=true)
+
+![tape](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210210-tapestation.png?raw=true)
+
+Full tapestation report found [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2021-02-10%20-%2014.46.25.pdf).
