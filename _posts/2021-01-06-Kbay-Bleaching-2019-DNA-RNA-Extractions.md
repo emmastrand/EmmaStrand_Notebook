@@ -72,3 +72,28 @@ Gel order: Ladder, 7, 8, 9, 10, 11, 12.
 ![tape](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210210-tapestation.png?raw=true)
 
 Full tapestation report found [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2021-02-10%20-%2014.46.25.pdf).
+
+### 20210211 Nanodrop 12-4-2019 samples
+
+See K. Wong Nanodrop protocol [here]().
+
+Nandropped three *M. capitata* samples in the GSC.
+
+The ratio of absorbance at 260 nm and 280 nm is used to assess the purity of DNA and RNA. A ratio of ~1.8 is generally accepted as “pure” for DNA; a ratio of ~2.0 is generally accepted as “pure” for RNA.
+
+This ratio is used as a secondary measure of nucleic acid purity. The 260/230 values for “pure” nucleic acid are often higher than the respective 260/280 values. Expected 260/230 values are commonly in the range of 2.0-2.2. If the ratio is appreciably lower than expected, it may indicate the presence of contaminants which absorb at 230 nm. EDTA, carbohydrates and phenol all have absorbance near 230 nm.
+
+| Extraction-ID 	| Extraction-Date 	| ColonyID 	| Collection-Date 	| Bleach-Status 	| 260/280 	| 260/230 	| ng_uL 	|
+|---------------	|-----------------	|----------	|-----------------	|---------------	|---------	|---------	|-------	|
+| 2             	| 20210131        	| M-201    	| 2019-12-04      	| Bleach        	| 2.14    	| 1.07    	| 18.85 	|
+| 4             	| 20210131        	| M-11     	| 2019-12-04      	| Bleach        	| 2.43    	| 0.17    	| 14.55 	|
+| 6             	| 20210131        	| M-202    	| 2019-12-04      	| Non-Bleach    	| 2.26    	| 1.07    	| 16.62 	|
+
+Extraction ID 2 (M-201):
+![sample2](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210211-nanodrop2.JPG?raw=true)
+
+Extraction ID 4 (M-11):
+![sample4](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210211-nanodrop4.JPG?raw=true)
+
+Extraction ID 6 (M-202):
+![sample6](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210211-nanodrop6.JPG?raw=true)
