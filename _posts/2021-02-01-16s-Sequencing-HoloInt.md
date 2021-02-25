@@ -91,7 +91,7 @@ Finally, to calculate the volume of water needed, subtract the DNA volume requir
 | Master Mix                      	| uL 	| # of samples (X + X neg controls + X for error) 	| total needed (uL) 	|
 |---------------------------------	|----	|-------------------------------------------------	|-------------------	|
 | Phusion PCR master mix          	| 50 	| 1                                               	| 50                	|
-| UltraPure water                 	| 43 	| 1                                               	| 43                	|
+| UltraPure water                 	| 46 	| 1                                               	| 46                	|
 | 10uM working stock 515F primer  	| 2  	| 1                                               	| 2                 	|
 | 10uM working stock 806RB primer 	| 2  	| 1                                               	| 2                 	|
 
