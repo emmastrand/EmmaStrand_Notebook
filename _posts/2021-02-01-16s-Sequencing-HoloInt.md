@@ -440,8 +440,17 @@ Plate 1 - 20210225
 
 **Results**
 
-20210225 gel image - 33 uL reactions pooled back together and run on gel.  
+20210225 gel image - 33 uL reactions pooled back together and run on gel. Run gel on triplicates next time to make sure no PCR artifact.    
 
-![gel]()
+![gel](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210225-gel-16s.jpg?raw=true)
 
-Two bands - one at ~300-350 bp (bottom band) and one at ~750 bp. The expected band size is 300-350 bp. What is the band at ~750 bp?
+Two bands - one at ~300-350 bp (bottom band) and one at ~750 bp. The expected band size is 300-350 bp. What is the band at ~750 bp? This could be:  
+- **Non specific targets; aka targeting more than our desired product**     
+- Single vs. double strand products  
+- Heterozygosity at particular locus   
+- Not likely primer dimer b/c 300-350 bp is desired length and primer dimer is usually closer to 100 bp    
+- Mixed DNA sample - could this be picking up something in the coral or symbiont?  
+
+Next steps: I can try to increase the annealing temperature. Apprill et al had 55C but Rebecca had tried 57C before. I can take 3-4 samples from above do a PCR gradient - run one at 57; one at 58; one at 59 to see if there is a difference. Make sure to include negative control next time to exclude contamination!!
+
+Alternatively, I could up the volume of primer used.I don't want to change the number of cycles yet because the bands are so clear.
