@@ -437,3 +437,11 @@ Plate 1 - 20210225
 | F 	|      	|      	|      	|      	|      	|      	|      	|      	|   	|    	|    	|    	|
 | G 	|      	|      	|      	|      	|      	|      	|      	|      	|   	|    	|    	|    	|
 | H 	|      	|      	|      	|      	|      	|      	|      	|      	|   	|    	|    	|    	|
+
+**Results**
+
+20210225 gel image - 33 uL reactions pooled back together and run on gel.  
+
+![gel]()
+
+Two bands - one at ~300-350 bp (bottom band) and one at ~750 bp. The expected band size is 300-350 bp. What is the band at ~750 bp?
