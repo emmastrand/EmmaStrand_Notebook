@@ -75,8 +75,6 @@ Full tapestation report found [here](https://github.com/emmastrand/EmmaStrand_No
 
 ### 20210211 Nanodrop 12-4-2019 samples
 
-See K. Wong Nanodrop protocol [here]().
-
 Nandropped three *M. capitata* samples in the GSC.
 
 The ratio of absorbance at 260 nm and 280 nm is used to assess the purity of DNA and RNA. A ratio of ~1.8 is generally accepted as “pure” for DNA; a ratio of ~2.0 is generally accepted as “pure” for RNA.
@@ -97,3 +95,16 @@ Extraction ID 4 (M-11):
 
 Extraction ID 6 (M-202):
 ![sample6](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210211-nanodrop6.JPG?raw=true)
+
+### 20210225 Extractions
+
+We are trying to extraction 10/30/2019 instead of 10/2/2019 because in the 20210210 extractions, there was fair quality RNA that we might be able to work with.
+
+| ColonyID 	| Collection-Date 	| Bleach-    	| Extraction-ID 	| Extraction-Date 	| DNA reading 1 (ng/uL) 	| DNA reading 2 (ng/uL) 	| DNA reading Avg (ng/uL) 	| RNA reading 1 (ng/uL) 	| RNA reading 2 (ng/uL) 	| RNA reading Avg (ng/uL) 	| RIN 	| Gel Pass? 	| Final Extraction for this coral? 	| Notes                        	|
+|----------	|-----------------	|------------	|---------------	|-----------------	|-----------------------	|-----------------------	|-------------------------	|-----------------------	|-----------------------	|-------------------------	|-----	|-----------	|----------------------------------	|------------------------------	|
+| M-209    	| 2019-10-30      	| Bleach     	| 13            	| 20210225        	| 31.8                  	| 31.6                  	| 31.7                    	| 29.2                  	| 29.2                  	| 29.2                    	| 5   	| No        	| NA                               	| Degraded; but potential here 	|
+| M-4      	| 2019-10-30      	| Non-Bleach 	| 14            	| 20210225        	| 28.2                  	| 28.2                  	| 28.2                    	| 26                    	| 26                    	| 26                      	| 3.6 	| No        	| NA                               	| Degraded                     	|
+| M-202    	| 2019-10-30      	| Non-Bleach 	| 15            	| 20210225        	| 18.6                  	| 18.5                  	| 18.55                   	| 34                    	| 34                    	| 34                      	| 5   	| No        	| NA                               	| Degraded; but potential here 	|
+| M-217    	| 2019-12-04      	| Bleach     	| 16            	| 20210225        	| 36.6                  	| 36.4                  	| 36.5                    	| 34                    	| 34                    	| 34                      	| 7.7 	| Yes       	| Yes                              	| NA                           	|
+| M-212    	| 2019-12-04      	| Non-Bleach 	| 17            	| 20210225        	| 33                    	| 32.8                  	| 32.9                    	| 30.8                  	| 30.8                  	| 30.8                    	| 8.5 	| Yes       	| Yes                              	| NA                           	|
+| M-4      	| 2019-12-04      	| Non-Bleach 	| 18            	| 20210225        	| 31.4                  	| 31.2                  	| 31.3                    	| 16.4                  	| 16.4                  	| 16.4                    	| 8.7 	| Yes       	| Yes                              	| NA                           	|
