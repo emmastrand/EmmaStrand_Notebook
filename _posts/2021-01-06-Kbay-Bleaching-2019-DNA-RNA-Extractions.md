@@ -113,9 +113,8 @@ RNA HS St1: 46.26 St2: 777.31
 | M-212    	| 2019-12-04      	| Non-Bleach 	| 17            	| 20210225        	| 33                    	| 32.8                  	| 32.9                    	| 30.8                  	| 30.8                  	| 30.8                    	| 8.5 	| Yes       	| Yes                              	| NA                           	|
 | M-4      	| 2019-12-04      	| Non-Bleach 	| 18            	| 20210225        	| 31.4                  	| 31.2                  	| 31.3                    	| 16.4                  	| 16.4                  	| 16.4                    	| 8.7 	| Yes       	| Yes                              	| NA                           	|
 
-Gel order: Ladder, 13,14,15,16,17,18.
-![gel]()
+![gel](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210225-gel.jpg?raw=true)
 
-![tape]()
+![tape](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210225-tapestation.png?raw=true)
 
-Full tapestation report found [here]().
+Full tapestation report found [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2021-02-25%20-%2016.51.24.pdf).
