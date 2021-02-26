@@ -100,6 +100,10 @@ Extraction ID 6 (M-202):
 
 We are trying to extraction 10/30/2019 instead of 10/2/2019 because in the 20210210 extractions, there was fair quality RNA that we might be able to work with.
 
+Qubit Standards:  
+DNA BR St1: 180.23 St2: 19,486.52  
+RNA HS St1: 46.26 St2: 777.31
+
 | ColonyID 	| Collection-Date 	| Bleach-    	| Extraction-ID 	| Extraction-Date 	| DNA reading 1 (ng/uL) 	| DNA reading 2 (ng/uL) 	| DNA reading Avg (ng/uL) 	| RNA reading 1 (ng/uL) 	| RNA reading 2 (ng/uL) 	| RNA reading Avg (ng/uL) 	| RIN 	| Gel Pass? 	| Final Extraction for this coral? 	| Notes                        	|
 |----------	|-----------------	|------------	|---------------	|-----------------	|-----------------------	|-----------------------	|-------------------------	|-----------------------	|-----------------------	|-------------------------	|-----	|-----------	|----------------------------------	|------------------------------	|
 | M-209    	| 2019-10-30      	| Bleach     	| 13            	| 20210225        	| 31.8                  	| 31.6                  	| 31.7                    	| 29.2                  	| 29.2                  	| 29.2                    	| 5   	| No        	| NA                               	| Degraded; but potential here 	|
@@ -108,3 +112,10 @@ We are trying to extraction 10/30/2019 instead of 10/2/2019 because in the 20210
 | M-217    	| 2019-12-04      	| Bleach     	| 16            	| 20210225        	| 36.6                  	| 36.4                  	| 36.5                    	| 34                    	| 34                    	| 34                      	| 7.7 	| Yes       	| Yes                              	| NA                           	|
 | M-212    	| 2019-12-04      	| Non-Bleach 	| 17            	| 20210225        	| 33                    	| 32.8                  	| 32.9                    	| 30.8                  	| 30.8                  	| 30.8                    	| 8.5 	| Yes       	| Yes                              	| NA                           	|
 | M-4      	| 2019-12-04      	| Non-Bleach 	| 18            	| 20210225        	| 31.4                  	| 31.2                  	| 31.3                    	| 16.4                  	| 16.4                  	| 16.4                    	| 8.7 	| Yes       	| Yes                              	| NA                           	|
+
+Gel order: Ladder, 13,14,15,16,17,18.
+![gel]()
+
+![tape]()
+
+Full tapestation report found [here]().
