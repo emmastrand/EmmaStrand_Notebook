@@ -416,16 +416,19 @@ Plate 1 - started 20210225
 | G 	|      	|      	|      	|      	|      	|      	|      	|      	|   	|    	|    	|    	|
 | H 	|      	|      	|      	|      	|      	|      	|      	|      	|   	|    	|    	|    	|
 
-**PCR plates**
+
+### 20210225 Trial Run 1
 
 Plate 1 - 20210225
 
 | Master Mix                      	| uL 	| # of samples (8 + 0.5 for error) 	| total needed (uL) 	|
 |---------------------------------	|----	|-------------------------------------------------	|-------------------	|
 | Phusion PCR master mix          	| 50 	| 8.5                                             	| 425               	|
-| UltraPure water                 	| 43 	| 8.5                                             	| 365.5             	|
+| UltraPure water                 	| 46 	| 8.5                                             	| 391             	|
 | 10uM working stock 515F primer  	| 2  	| 8.5                                             	| 17                	|
 | 10uM working stock 806RB primer 	| 2  	| 8.5                                             	| 17                	|
+
+*The above H2O volume should have been 43 uL to equal 97 uL total not 100 uL.*
 
 |   	| 1    	| 2    	| 3    	| 4    	| 5    	| 6    	| 7    	| 8    	| 9 	| 10 	| 11 	| 12 	|
 |---	|------	|------	|------	|------	|------	|------	|------	|------	|---	|----	|----	|----	|
@@ -436,11 +439,9 @@ Plate 1 - 20210225
 | E 	|      	|      	|      	|      	|      	|      	|      	|      	|   	|    	|    	|    	|
 | F 	|      	|      	|      	|      	|      	|      	|      	|      	|   	|    	|    	|    	|
 | G 	|      	|      	|      	|      	|      	|      	|      	|      	|   	|    	|    	|    	|
-| H 	|      	|      	|      	|      	|      	|      	|      	|      	|   	|    	|    	|    	|
+| H 	|      	|      	|      	|      	|      	|      	|      	|      	|   	|    	|    	|    	|  
 
-**Results**
-
-20210225 gel image - 33 uL reactions pooled back together and run on gel. Run gel on triplicates next time to make sure no PCR artifact.    
+20210225 gel image - 33 uL reactions pooled back together and run on gel. Run gel on triplicates next time to make sure no PCR artifact.  
 
 ![gel](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210225-gel-16s.jpg?raw=true)
 
@@ -454,3 +455,44 @@ Two bands - one at ~300-350 bp (bottom band) and one at ~750 bp. The expected ba
 Next steps: I can try to increase the annealing temperature. Apprill et al had 55C but Rebecca had tried 57C before. I can take 3-4 samples from above do a PCR gradient - run one at 57; one at 58; one at 59 to see if there is a difference. Make sure to include negative control next time to exclude contamination!!
 
 Alternatively, I could up the volume of primer used.I don't want to change the number of cycles yet because the bands are so clear.
+
+### 20210302 Trial Run 2
+
+I did a gradient of annealing temperatures (56, 57, and 58 C) and two volumes (2 and 3 uL) of primer to optimize those two portions of the protocol. Trial 1 was 55 C annealing temp and 2 uL primer.
+
+The below program names need to edited to reflect the correct v-region.
+
+There were 9 samples done in duplicate in 33 uL reactions (2 x 33 uL reactions) for each primer volume option. I needed a total of 18 reactions, so the master mix volume was calculated to be enough for 19.6 reactions (18 reactions + room for error). The ratios from above protocol were kept.  
+
+| Strip Tube # 	| Annealing Temp 	| Primer added 	| Tube 1 	| Tube 2 	| Tube 3 	| Tube 4 	| Tube 5 	| Tube 6 	| Program Name  	| Thermocyler # 	|
+|--------------	|----------------	|--------------	|--------	|--------	|--------	|--------	|--------	|--------	|---------------	|---------------	|
+| 1            	| 56             	| 2 uL         	| 1321   	| 1701   	| 1083   	| 1321   	| 1701   	| 1083   	| 16s v4v5 a    	| 2             	|
+| 2            	| 56             	| 3 uL         	| 1321   	| 1701   	| 1083   	| 1321   	| 1701   	| 1083   	| 16s v4v5 a    	| 2             	|
+| 3            	| 57             	| 2 uL         	| 1154   	| 1581   	| 2743   	| 1154   	| 1581   	| 2743   	| 16s v4v5 b    	| 3             	|
+| 4            	| 57             	| 3 uL         	| 1154   	| 1581   	| 2743   	| 1154   	| 1581   	| 2743   	| 16s v4v5 b    	| 3             	|
+| 5            	| 58             	| 2 uL         	| 2743   	| 1628   	| 1050   	| 2743   	| 1628   	| 1050   	| 16s v4v5 c    	| 4             	|
+| 6            	| 58             	| 3 uL         	| 2743   	| 1628   	| 1050   	| 2743   	| 1628   	| 1050   	| 16s v4v5 c    	| 4             	|
+
+2 uL primer Master Mix calculation:  
+
+| Master Mix                      	| uL 	| # of samples (X + X neg controls + X for error) 	| total needed (uL) 	|
+|---------------------------------	|----	|-------------------------------------------------	|-------------------	|
+| Phusion PCR master mix          	| 50 	| 6.5                                             	| 325               	|
+| UltraPure water                 	| 46 	| 6.5                                             	| 299               	|
+| 10uM working stock 515F primer  	| 2  	| 6.5                                             	| 13                	|
+| 10uM working stock 806RB primer 	| 2  	| 6.5                                             	| 13                	|
+
+*The above H2O volume should have been 43 uL to equal 97 uL total not 100 uL.*
+
+3 uL primer Master Mix calculation:  
+
+| Master Mix                      	| uL 	| # of samples (X + X neg controls + X for error) 	| total needed (uL) 	|
+|---------------------------------	|----	|-------------------------------------------------	|-------------------	|
+| Phusion PCR master mix          	| 50 	| 6.5                                             	| 325               	|
+| UltraPure water                 	| 44 	| 6.5                                             	| 286               	|
+| 10uM working stock 515F primer  	| 3  	| 6.5                                             	| 19.5              	|
+| 10uM working stock 806RB primer 	| 3  	| 6.5                                             	| 19.5              	|
+
+*The above H2O volume should have been 41 uL to equal 97 uL total not 100 uL.*
+
+I made a new 806RB 10 uM diluted primer with 25 uL of 200 uM primer stock and 475 uL UP H2O. The original diluted primer was contaminated. 
