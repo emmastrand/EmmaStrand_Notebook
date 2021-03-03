@@ -445,16 +445,16 @@ Plate 1 - 20210225
 
 ![gel](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210225-gel-16s.jpg?raw=true)
 
-Two bands - one at ~300-350 bp (bottom band) and one at ~750 bp. The expected band size is 300-350 bp. What is the band at ~750 bp? This could be:  
+Two bands - one at ~300-350 bp (top band) and one at ~75 bp. The expected band size is 300-350 bp. What is the band at ~75 bp? This could be:  
 - **Non specific targets; aka targeting more than our desired product**     
 - Single vs. double strand products  
 - Heterozygosity at particular locus   
-- Not likely primer dimer b/c 300-350 bp is desired length and primer dimer is usually closer to 100 bp    
+- Primer dimer? b/c 300-350 bp is desired length and primer dimer is usually closer to 100 bp    
 - Mixed DNA sample - could this be picking up something in the coral or symbiont?  
 
-Next steps: I can try to increase the annealing temperature. Apprill et al had 55C but Rebecca had tried 57C before. I can take 3-4 samples from above do a PCR gradient - run one at 57; one at 58; one at 59 to see if there is a difference. Make sure to include negative control next time to exclude contamination!!
+Next steps: I can try to increase the annealing temperature. Apprill et al had 55C. I can take 3-4 samples from above do a PCR gradient - run one at 57; one at 58; one at 59 to see if there is a difference. Make sure to include negative control next time to exclude contamination!!
 
-Alternatively, I could up the volume of primer used.I don't want to change the number of cycles yet because the bands are so clear.
+Alternatively, I could up the volume of primer used. I don't want to change the number of cycles yet because the bands are so clear.
 
 ### 20210302 Trial Run 2
 
@@ -496,3 +496,7 @@ There were 9 samples done in duplicate in 33 uL reactions (2 x 33 uL reactions) 
 *Come back to whether the above H2O volume should have been 41 uL to equal 97 uL total not 100 uL.*
 
 I made a new 806RB 10 uM diluted primer with 25 uL of 200 uM primer stock and 475 uL UP H2O. The original diluted primer was contaminated.
+
+![gel-image](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210303-gel.jpg?raw=true)
+
+The primer
