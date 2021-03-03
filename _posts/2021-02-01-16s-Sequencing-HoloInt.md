@@ -443,7 +443,7 @@ Plate 1 - 20210225
 
 20210225 gel image - 33 uL reactions pooled back together and run on gel. Run gel on triplicates next time to make sure no PCR artifact.  
 
-![gel](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210225-gel-16s.jpg?raw=true)
+![gel](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210225-gel-ladder.png?raw=true)
 
 Two bands - one at ~300-350 bp (top band) and one at ~75 bp. The expected band size is 300-350 bp. What is the band at ~75 bp? This could be:  
 - **Non specific targets; aka targeting more than our desired product**     
@@ -499,4 +499,4 @@ I made a new 806RB 10 uM diluted primer with 25 uL of 200 uM primer stock and 47
 
 ![gel-image](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210303-gel.jpg?raw=true)
 
-The primer
+The extra band gets brighter with more primer. It is hard to see the bottom bands on the ladder so next time I will do a longer gel run time (60 minutes instead of 45 minutes). We are now thinking this could actually be primer dimer at the bottom and our band on the top? 
