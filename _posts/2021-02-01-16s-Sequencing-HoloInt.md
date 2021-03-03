@@ -482,7 +482,7 @@ There were 9 samples done in duplicate in 33 uL reactions (2 x 33 uL reactions) 
 | 10uM working stock 515F primer  	| 2  	| 6.5                                             	| 13                	|
 | 10uM working stock 806RB primer 	| 2  	| 6.5                                             	| 13                	|
 
-*The above H2O volume should have been 43 uL to equal 97 uL total not 100 uL.*
+*Come back to whether the above H2O volume should have been 41 uL to equal 97 uL total not 100 uL.*
 
 3 uL primer Master Mix calculation:  
 
@@ -493,6 +493,6 @@ There were 9 samples done in duplicate in 33 uL reactions (2 x 33 uL reactions) 
 | 10uM working stock 515F primer  	| 3  	| 6.5                                             	| 19.5              	|
 | 10uM working stock 806RB primer 	| 3  	| 6.5                                             	| 19.5              	|
 
-*The above H2O volume should have been 41 uL to equal 97 uL total not 100 uL.*
+*Come back to whether the above H2O volume should have been 41 uL to equal 97 uL total not 100 uL.*
 
-I made a new 806RB 10 uM diluted primer with 25 uL of 200 uM primer stock and 475 uL UP H2O. The original diluted primer was contaminated. 
+I made a new 806RB 10 uM diluted primer with 25 uL of 200 uM primer stock and 475 uL UP H2O. The original diluted primer was contaminated.
