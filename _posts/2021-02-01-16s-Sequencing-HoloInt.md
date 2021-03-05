@@ -535,4 +535,5 @@ Master Mix calculations:
 
 24 uL of Master Mix and 1 uL of DNA was added to each tube. 1 uL of Ultrapure water was used in the negative control instead of DNA.
 
-Next steps: run gel for 60 minutes on 20210305.
+57C with 10 uM primer seems to get good solid bands at ~350 bp and the bottom is primer dimer. My thought is we move forward with the above master mix ratios and cut the bands physically out of the gel.  
+![gel](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210305-gel-16s.jpg?raw=true)
