@@ -36,7 +36,7 @@ We took the primer sequences from Apprill et al 2015, and added the URI GSC spec
 | 515F forward 	| TCGTCGGCAGCGTCAGATGTGTATAAGAGACAG  	| GTGCCAGCMGCCGCGGTAA  	| TCGTCGGCAGCGTCAGATGTGTATAAGAGACAGGTGCCAGCMGCCGCGGTAA   	|
 | 806RB reverse 	| GTCTCGTGGGCTCGGAGATGTGTATAAGAGACAG 	| GGACTACNVGGGTWTCTAAT 	| GTCTCGTGGGCTCGGAGATGTGTATAAGAGACAGGGACTACNVGGGTWTCTAAT 	|
 
-## Lab Protocol
+## **WORKING** Lab Protocol
 
 Prerequisites:  
 - Snap-frozen or well-preserved tissue samples  
@@ -533,6 +533,6 @@ Master Mix calculations:
 |    Water   	|            	|                  	| 10.5        	|
 |            	|            	|                  	| 25 uL total 	|
 
-24 uL of Master Mix and 1 uL of DNA was added to each tube. 1 uL of Ultrapure water was used in the negative control instead of DNA. 
+24 uL of Master Mix and 1 uL of DNA was added to each tube. 1 uL of Ultrapure water was used in the negative control instead of DNA.
 
 Next steps: run gel for 60 minutes on 20210305.
