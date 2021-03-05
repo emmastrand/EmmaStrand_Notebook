@@ -499,4 +499,40 @@ I made a new 806RB 10 uM diluted primer with 25 uL of 200 uM primer stock and 47
 
 ![gel-image](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210303-gel.jpg?raw=true)
 
-The extra band gets brighter with more primer. It is hard to see the bottom bands on the ladder so next time I will do a longer gel run time (60 minutes instead of 45 minutes). We are now thinking this could actually be primer dimer at the bottom and our band on the top? 
+The extra band gets brighter with more primer. It is hard to see the bottom bands on the ladder so next time I will do a longer gel run time (60 minutes instead of 45 minutes). We are now thinking this could actually be primer dimer at the bottom and our band on the top?
+
+### 20210304 Trial Run 3
+
+I did another gradient of temperatures based on the melting temperature (Tm) of the primers we designed in the first section of this post and primer concentration to see if we could get rid of the primer dimer. This was done in 25 uL instead of 33 uL reactions to save money on supplies.
+
+Tm 515F = 73.4C; Tm 806RB = 68.8C  
+Melting temperatures are specific to the primers we designed.
+
+Best practices for PCR are to start 3-5C below the lowest melting temperature of the primer. This would be 63.8C so we started with 63C.
+
+3 samples were placed in each strip tube (no duplicates or triplicates) with a negative control. The 10 uM stock was diluted to 1 uM stock (5 uL 10 uM and 45 uL UltraPure water) and the same volumes in the master mix calculations were used for each.
+
+| Strip Tube # 	| Annealing Temp 	| Primer added 	| Tube 1 	| Tube 2 	| Tube 3 	| Tube 4           	| Program Name  	| Thermocyler # 	|
+|--------------	|----------------	|--------------	|--------	|--------	|--------	|------------------	|---------------	|---------------	|
+| 1            	| 63             	| 10 uM        	| 1321   	| 1321   	| 1701   	| Negative control 	| 16s v4v5 a    	| 1             	|
+| 2            	| 63             	| 1 uM         	| 1701   	| 1083   	| 1154   	| Negative control 	| 16s v4v5 a    	| 1             	|
+| 3            	| 60             	| 10 uM        	| 1581   	| 2743   	| 1628   	| Negative control 	| 16s v4v5 b    	| 2             	|
+| 4            	| 60             	| 1 uM         	| 1581   	| 2743   	| 1628   	| Negative control 	| 16s v4v5 b    	| 2             	|
+| 5            	| 57             	| 10 uM        	| 2743   	| 1628   	| 1050   	| Negative control 	| 16s v4v5 c    	| 3             	|
+| 6            	| 57             	| 1 uM         	| 2743   	| 1628   	| 1050   	| Negative control 	| 16s v4v5 c    	| 3             	|
+
+Master Mix calculations:  
+
+|            	|            	|                  	| 25µl RXN    	|
+|------------	|------------	|------------------	|-------------	|
+|   Reagent  	| Final Conc 	| Final Conc Units 	| Volume µl   	|
+| Phusion MM 	| 1          	| X                	| 12.5        	|
+|  F primer  	| 10 or 1    	| uM              	| 0.5         	|
+|  R primer  	| 10 or 1    	| uM              	| 0.5         	|
+|     DNA    	| 3.3        	| ng/µl            	| 1           	|
+|    Water   	|            	|                  	| 10.5        	|
+|            	|            	|                  	| 25 uL total 	|
+
+24 uL of Master Mix and 1 uL of DNA was added to each tube. 1 uL of Ultrapure water was used in the negative control instead of DNA. 
+
+Next steps: run gel for 60 minutes on 20210305.
