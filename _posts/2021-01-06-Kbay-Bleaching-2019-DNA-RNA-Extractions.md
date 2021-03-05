@@ -136,7 +136,8 @@ RNA HS St1: 46.34 St2: 755.64
 | M-219    	| 2019-12-04      	| Bleach     	| 23            	| 20210303        	| 35.8                  	| 35.6                  	| 35.7                    	| 30                    	| 30                    	| 30                      	| 9.1 	| Yes       	| Yes                              	| NA    	|
 | M-220    	| 2019-12-04      	| Non-Bleach 	| 24            	| 20210303        	| 69                    	| 68.8                  	| 68.9                    	| 44.8                  	| 44.8                  	| 44.8                    	| 9.3 	| Yes       	| Yes                              	| NA    	|
 
-![gel]()
+Gel - extraction samples are the first six: in order of extraction number (19, 20, 21, 22, 23, 24)  
+![gel](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210303-gel.jpg?raw=true)
 
 ![tape](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210303-tapestation.png?raw=true)
 
