@@ -141,3 +141,29 @@ RNA HS St1: 46.34 St2: 755.64
 ![tape](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210303-tapestation.png?raw=true)
 
 Full tapestation report found [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2021-03-03%20-%2014.39.04.pdf).
+
+### 20210305 Extractions
+
+Qubit Standards:  
+DNA BR St1: 163.81 St2: 17,152.69  
+RNA HS St1: 48.13 St2: 795.17
+
+| ColonyID 	| Collection-Date 	| Bleach-    	| Extraction-ID 	| Extraction-Date 	| DNA reading 1 (ng/uL) 	| DNA reading 2 (ng/uL) 	| DNA reading Avg (ng/uL) 	| RNA reading 1 (ng/uL) 	| RNA reading 2 (ng/uL) 	| RNA reading Avg (ng/uL) 	| RIN 	| Gel Pass? 	| Final Extraction for this coral? 	| Notes                     	|
+|----------	|-----------------	|------------	|---------------	|-----------------	|-----------------------	|-----------------------	|-------------------------	|-----------------------	|-----------------------	|-------------------------	|-----	|-----------	|----------------------------------	|---------------------------	|
+| M-222    	| 2019-12-04      	| Non-Bleach 	| 26            	| 20210305        	| 46.2                  	| 45.8                  	| 46                      	| 28.8                  	| 28.6                  	| 28.7                    	| 6.8 	|           	|                                  	|                           	|
+| M-3      	| 2019-12-04      	| Bleach     	| 27            	| 20210305        	| 21                    	| 20.8                  	| 20.9                    	| 12.2                  	| 12.3                  	| 12.25                   	| NA  	|           	| No                               	| RNA and RIN score too low 	|
+| M-221    	| 2019-12-04      	| Bleach     	| 28            	| 20210305        	| 30.4                  	| 30.8                  	| 30.6                    	| 30.8                  	| 30.6                  	| 30.7                    	| 8.6 	|           	|                                  	|                           	|
+| M-19     	| 2019-12-04      	| Bleach     	| 29            	| 20210305        	| 64.2                  	| 63.4                  	| 63.8                    	| 51.6                  	| 51.2                  	| 51.4                    	| 7.3 	|           	|                                  	|                           	|
+| M-204    	| 2019-12-04      	| Non-Bleach 	| 30            	| 20210305        	| 37.6                  	| 37.4                  	| 37.5                    	| 31.8                  	| 31.6                  	| 31.7                    	| 8.2 	|           	|                                  	|                           	|
+| M-203    	| 2019-12-04      	| Bleach     	| 31            	| 20210305        	| 21.2                  	| 21.2                  	| 21.2                    	| 23                    	| 23                    	| 23                      	| 8.7 	|           	|                                  	|                           	|
+| M-211    	| 2019-12-04      	| Bleach     	| 32            	| 20210305        	| 27                    	| 26.8                  	| 26.9                    	| 18.7                  	| 18.7                  	| 18.7                    	| 9.2 	|           	|                                  	|                           	|
+
+![gel]() - will be done on Monday 20210308
+
+![tape](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210305-tapestation.png?raw=true)
+
+Extraction ID 27 was re-done on the tapestation but the same result occured. Need to redo this coral.
+
+Full tapestation report found [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2021-03-05%20-%2012.01.20.pdf).
+
+List to re-do: M-3, M-210, M-218
