@@ -48,17 +48,19 @@ These fragments need to be kept cold at all times so do the following steps swif
 The coral chipping tool and sterilizing solutions (listed below) will be kept on the organismal benches 1/2 for the weeks we are clipping coral.
 
 1. Wipe down the organismal bench with 70% ethanol and DI water.  
-2. Set foil down on the benchtop to cover the small area you're working in. Sterilize this piece of foil with (in order): 10% bleach, Type II DI water, 70% ethanol, and Type II DI water. For each solution: add a small amount of that solution to a kimwipe, and wipe the foil side facing up.    
-3. Sterilize the [coral chipping tool](https://www.amazon.com/dp/B01EAGXF56/?coliid=I3SR5REHM9D4P7&colid=YVLE2UPC0DQ4&psc=1&ref_=lv_cv_lig_dp_it) with (in order): 10% bleach, Type II DI water, 70% ethanol, and Type II DI water. For each solution: add a small amount of that solution to a kimwipe, and wipe the metal portion used for chipping the coral. Wipe your gloves with a small amount of 70% ethanol.    
-4. Grab dry ice and cooler from the green -80C freezer across from the hood. If we do not have any dry ice, grab the big bin of cold freezer beads kept in the -20C freezer next to the chest freezer.  
-4. Grab the desired coral fragment from the freezer. Keep the fragment on dry ice (or in cold freezer beads) while you neatly label a new 2 mm screw cap tube with: 1.) colony ID (write this piece of information multiple times on the tube) 2.) Species ("Mcap", "Pcom") 3.) Timepoint (write this piece of information multiple times on the tube). See below image for an example.    
-> This is a running timeseries with the same corals sampled multiple times a year. Make sure you have both the colony ID and timepoint written correctly and multiple times on the tube.
+2. Get several dry ice coolers from the green -80C freezer across from the hood.   
+3. Sterilize a piece of foil with (in order): 10% bleach, Type II DI water, and 70% ethanol. Wipe dry. For each solution: add a small amount of that solution to a kimwipe, and wipe the foil side facing up. Place this piece of foil in one of the dry ice containers.     
+4. Sterilize the [coral chipping tool](https://www.amazon.com/dp/B01EAGXF56/?coliid=I3SR5REHM9D4P7&colid=YVLE2UPC0DQ4&psc=1&ref_=lv_cv_lig_dp_it) with (in order): 10% bleach, Type II DI water, and 70% ethanol. Wipe dry. Place these clippers on the piece of foil in dry ice. The clippers need to be cold prior to clipping the fragment to avoid melting the cut site.  
+5. Sterilized a set of tweezers as described above. These will be useful if you are having trouble moving the coral fragment or the small clipping.          
+6. Grab a set of 10 coral fragments from the freezer and keep them in a dry ice cooler with the lid closed. Neatly label a new 2 mm screw cap tube for each coral you just grabbed with: 1.) colony ID (write this piece of information multiple times on the tube) 2.) Species ("Mcap", "Pcom") 3.) Timepoint (write this piece of information multiple times on the tube). See below image for an example. Place the 2 mm screw cap tubes in dry ice to cool the tube itself.      
+> This is a running timeseries with the same corals sampled multiple times a year. Make sure you have both the colony ID and timepoint written correctly and multiple times on the tube.  
+Grab 10 corals at a time to avoid opening and closing the freezers so often.
 
-5. Once back at the organismal bench, unwrap the whirlpak and slowly move the coral fragment towards the opening of the whirlpak using your hands on the outside of the whirlpak so that you are not touching the coral fragment with your gloves.  
-6. While holding the fragment with one hand, take the coral chipping tool with the other hand and chip off ~2 cm piece of the coral fragment. Immediately place this fragment in a 2 mm screw cap tube.  
-7. Place both the 2 mm screw cap tube in the appropriate freezer box (see above section for photo) and the coral fragment back in the original mesh bag you pulled it from. Please be mindful that you are placing the fragment and screw cap tube in the correct mesh bag and freezer box.  
-8. Repeat these steps for as many fragments as you have time for.
-9. Clean the benchtops and equipment used according to our lab's COVID protocol.  
+7. Unwrap a whirlpake and slowly move the coral fragment towards the opening of the whirlpak using your hands on the outside of the whirlpak so that you are not touching the coral fragment with your gloves.  
+8. While holding the fragment with one hand, take the coral chipping tool with the other hand and chip off ~2 cm piece of the coral fragment. Immediately place this fragment in a 2 mm screw cap tube.  
+9. Place both the 2 mm screw cap tube in the appropriate freezer box (see above section for photo) and the coral fragment into the plastic bag that reads 'clipped corals' with the appropriate timepoint. Please be mindful that you are placing the fragment and screw cap tube in the correct timepoint's mesh bag and freezer box.  
+10. Repeat these steps for as many fragments as you have time for.
+11. Clean the benchtops and equipment used according to our lab's COVID protocol.  
 
 Send a slack message to Emma with what you were able to get done and update the [google spreadsheet](https://docs.google.com/spreadsheets/d/1m1qwjfMG3m0zj_tGrGIZ0ADjBRcVJbe9dgQbtz4K-hI/edit#gid=0) with the fragments you chipped. **Please do this before you leave lab so that another labmate doesn't come in after you and chip the same coral.**
 
