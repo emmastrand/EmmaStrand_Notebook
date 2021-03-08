@@ -58,4 +58,6 @@ These fragments need to be kept cold at all times so do the following steps swif
 
 Send a slack message to Emma with what you were able to get done and update the [google spreadsheet](https://docs.google.com/spreadsheets/d/1m1qwjfMG3m0zj_tGrGIZ0ADjBRcVJbe9dgQbtz4K-hI/edit#gid=0) with the fragments you chipped. **Please do this before you leave lab so that another labmate doesn't come in after you and chip the same coral.**
 
+![tube-labeling-photo]()
+
 #### Huge thank you for being such an amazing labmate for helping!! You are a star.
