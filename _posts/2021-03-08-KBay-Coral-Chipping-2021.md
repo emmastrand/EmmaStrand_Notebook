@@ -57,7 +57,9 @@ The coral chipping tool and sterilizing solutions (listed below) will be kept on
 Grab 10 corals at a time to avoid opening and closing the freezers so often.
 
 7. Unwrap a whirlpake and slowly move the coral fragment towards the opening of the whirlpak using your hands on the outside of the whirlpak so that you are not touching the coral fragment with your gloves.  
-8. While holding the fragment with one hand, take the coral chipping tool with the other hand and chip off ~2 cm piece of the coral fragment. Immediately place this fragment in a 2 mm screw cap tube.  
+8. While holding the fragment with one hand, take the coral chipping tool with the other hand and chip off ~0.5-1 cm piece of the coral fragment. Immediately place this fragment in a 2 mm screw cap tube.  
+> Please be mindful of how much fragment you are taking. Take no more than 1/2 of the fragment. If you are unsure about the size because the coral feels too small, feel free to ping Emma and save that fragment for another time. 
+
 9. Place both the 2 mm screw cap tube in the appropriate freezer box (see above section for photo) and the coral fragment into the plastic bag that reads 'clipped corals' with the appropriate timepoint. Please be mindful that you are placing the fragment and screw cap tube in the correct timepoint's mesh bag and freezer box.  
 10. Repeat these steps for as many fragments as you have time for.
 11. Clean the benchtops and equipment used according to our lab's COVID protocol.  
