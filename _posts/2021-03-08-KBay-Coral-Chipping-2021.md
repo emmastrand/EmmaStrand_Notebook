@@ -47,7 +47,7 @@ Insert photo of freezer box for coral chippings
 These fragments need to be kept cold at all times so do the following steps swiftly but do not rush.
 
 1. Wipe down the organismal bench with 70% ethanol and DI water.  
-2. Set clean paper towels down on the benchtop to cover the small area you're working in.  
+2. Set foil down on the benchtop to cover the small area you're working in. Sterilize this piece of foil with (in order): 10% bleach, Type II DI water, 70% ethanol, and Type II DI water. For each solution: add a small amount of that solution to a kimwipe, and wipe the foil side facing up.    
 3. Sterilize the [coral chipping tool](https://www.amazon.com/dp/B01EAGXF56/?coliid=I3SR5REHM9D4P7&colid=YVLE2UPC0DQ4&psc=1&ref_=lv_cv_lig_dp_it) with (in order): 10% bleach, Type II DI water, 70% ethanol, and Type II DI water. For each solution: add a small amount of that solution to a kimwipe, and wipe the metal portion used for chipping the coral. Wipe your gloves with a small amount of 70% ethanol.    
 4. Grab dry ice and cooler from the freezer. If we do not have any dry ice, grab the big bin of cold freezer beads kept in 20C freezer next to the chest freezer.  
 4. Grab the desired coral fragment from the freezer. Keep the fragment on dry ice (or in cold freezer beads) while you neatly label a new 2 mm screw cap tube with: 1.) colony ID (write this piece of information multiple times on the tube) 2.) Species ("Mcap", "Pcom") 3.) Timepoint (write this piece of information multiple times on the tube). See below image for an example.    
