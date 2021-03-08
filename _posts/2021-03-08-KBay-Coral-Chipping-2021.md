@@ -55,6 +55,7 @@ These fragments need to be kept cold at all times so do the following steps swif
 6. While holding the fragment with one hand, take the coral chipping tool with the other hand and chip off ~2 cm piece of the coral fragment. Immediately place this fragment in a 2 mm screw cap tube.  
 7. Place both the 2 mm screw cap tube in the appropriate freezer box (see above section for photo) and the coral fragment back in the original mesh bag you pulled it from. Please be mindful that you are placing the fragment and screw cap tube in the correct mesh bag and freezer box.  
 8. Repeat these steps for as many fragments as you have time for.
+9. Clean the benchtops and equipment used according to our lab's COVID protocol.  
 
 Send a slack message to Emma with what you were able to get done and update the [google spreadsheet](https://docs.google.com/spreadsheets/d/1m1qwjfMG3m0zj_tGrGIZ0ADjBRcVJbe9dgQbtz4K-hI/edit#gid=0) with the fragments you chipped. **Please do this before you leave lab so that another labmate doesn't come in after you and chip the same coral.**
 
