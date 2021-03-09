@@ -31,7 +31,7 @@ Vertebrates: located in promoters regions and usually associated with turning "o
 Differentially expressed methylated regions are not necessarily the same as differentially expressed genes (Li et al 2018). DNA methylation changes don't necessarily correlated with gene expression changes.
 
 DNA Methylation location in invertebrates (Li et al 2018)
-![location](https://advances.sciencemag.org/content/4/8/eaat2142/F1.large.jpg)
+![location](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/DNA-methylation/images/Li2018-fig1.jpg?raw=true)
 
 ## Gene body methylation is established and maintained as a result of active transcription  
 
