@@ -24,9 +24,11 @@ DNA methylation is established by DNA methyltransferases DNMT3A and DNMT3B in co
 
 ## Location of methylation
 
-Invertebrates: location is non-random and mainly located in gene bodies (Li et al 2018).  
+**Invertebrates**: location is non-random and mainly located in gene bodies (Li et al 2018). *From Eirin-Lopez and Putnam 2019*: Additionally, DNA methylation can commonly be found in gene bodies, where it hypothetically contributes to the reduction of transcriptional variation, reduction of spurious transcription, and facilitation of alternative splicing (reviewed in Roberts & Gavery 2012).   
 
-Vertebrates: located in promoters regions and usually associated with turning "on and off" genes or gene silencing.
+**Vertebrates**: located in promoters regions and usually associated with turning "on and off" genes or gene silencing. *From Eirin-Lopez and Putnam 2019*: Repetitive CpG sequences (CpG islands) can be found located upstream in promoter regions, and here the presence of methylation can silence transcription by blocking the binding of transcription factors (but see Ford et al. 2017).
+
+*From Eirin-Lopez and Putnam 2019*: Beyond the coding portions of the genome, DNA methylation can also be associated with intergenic regions and transposable elements, contributing to the silencing of transposable elements and viral elements that would otherwise result in genome disruption by sequence and DNA mutation (Rey et al. 2016).
 
 Differentially expressed methylated regions are not necessarily the same as differentially expressed genes (Li et al 2018). DNA methylation changes don't necessarily correlated with gene expression changes.
 
@@ -50,3 +52,7 @@ DNA methylation regulates transcriptional homeostasis of algal symbiosis in the 
 - Gene body methylation is (+) correlated with expression: DNA methylation either: 1.) increases expression or 2.) is increased as a consequence of transcription.  
 
 > Higher DNA methylation equals lower transcriptional variability.
+
+## Methylation's role in differing life stages
+
+Sex determination linked to differential methylation patterns: Half-smooth tongue sole (Shao et al 2014), 
