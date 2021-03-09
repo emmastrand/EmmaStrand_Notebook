@@ -18,6 +18,31 @@ From [compgenomr](https://compgenomr.github.io/book/what-is-dna-methylation.html
 **10.1.1 How DNA methylation is set?**  
 DNA methylation is established by DNA methyltransferases DNMT3A and DNMT3B in combination with DNMT3L and maintained through cell division by the methyltransferase DNMT1 and associated proteins. DNMT3a and DNMT3b are in charge of the de novo methylation during early development. Loss of 5mC can be achieved passively by dilution during replication or exclusion of DNMT1 from the nucleus. Recent discoveries of the ten-eleven translocation (TET) family of proteins and their ability to convert 5-methylcytosine (5mC) into 5-hydroxymethylcytosine (5hmC) in vertebrates provide a path for catalyzed active DNA demethylation (Tahiliani, Koh, Shen, et al. 2009). Iterative oxidations of 5hmC catalyzed by TET result in 5-formylcytosine (5fC) and 5-carboxylcytosine (5caC). 5caC mark is excised from DNA by G/T mismatch-specific thymine-DNA glycosylase (TDG), which as a result reverts cytosine residue to its unmodified state (He, Li, Li, et al. 2011). Apart from these, mainly bacteria, but possibly higher eukaryotes, contain base modifications on bases other than cytosine, such as methylated adenine or guanine (Clark, Spittle, Turner, et al. 2011).
 
+### Location of methylation
+
+Invertebrates: location is non-random and mainly located in gene bodies (Li et al 2018).  
+
+Vertebrates: located in promoters regions and usually associated with turning "on and off" genes or gene silencing.
+
+### Gene body methylation is established and maintained as a result of active transcription  
+
+Found in mouse embryonic stem cells: [insert citation and info]
+
+Li et al 2018: as a result of active transciption by RNA polymerase II and recruitment of histone-modifying protein SetD2 that trimethylates histone H3 at lysine 36 (H3K36me3). This histone mark is bound via PWWP (Pro-Trp-Trp-Pro) domain present in DNA methyltransferase DNMT3b (de novo) which then methylates surrounding DNA. 
+
+**come back to the above to full explore**
+
+## DNA Methylation regulates transcriptional noise
+
+DNA methylation regulates transcriptional homeostasis of algal symbiosis in the coral model Aiptasia ([Li et al 2018](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/DNA-methylation/Li%20et%20al%202018.pdf)):  
+- Methylated genes show significant reduction of spurius transcription and transcriptional noise.  
+- Spurious transcription can produce partial transcripts that when translated results in truncated proteins that would interfere with native function.  
+- Prefers CpG-poor regions  
+- Gene body methylation is (+) correlated with expression: DNA methylation either: 1.) increases expression or 2.) is increased as a consequence of transcription.  
+
+> Higher DNA methylation equals lower transcriptional variability.
+
+
 ## Bioinformatics pipelines
 
 [DNA methylation analysis using bisulfite sequencing data](https://compgenomr.github.io/book/bsseq.html)  
