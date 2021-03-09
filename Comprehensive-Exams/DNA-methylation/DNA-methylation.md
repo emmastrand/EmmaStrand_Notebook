@@ -28,6 +28,8 @@ Vertebrates: located in promoters regions and usually associated with turning "o
 
 Differentially expressed methylated regions are not necessarily the same as differentially expressed genes (Li et al 2018). DNA methylation changes don't necessarily correlated with gene expression changes.
 
+![location](https://advances.sciencemag.org/content/4/8/eaat2142/F1.large.jpg)
+
 ## Gene body methylation is established and maintained as a result of active transcription  
 
 Found in mouse embryonic stem cells: [insert citation and info]
