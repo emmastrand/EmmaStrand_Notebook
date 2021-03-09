@@ -1,6 +1,6 @@
 # Comprehensive Exam Study Guide
 
-A compilation of my resources for studying for comprehensive exams.  
+A compilation of my resources for studying for comprehensive exams. Each folder refers to a topic, each with several markdown files of notes and figures as well as the PDFs of papers referenced. 
 
 ### Table of Contents
 
@@ -9,4 +9,4 @@ A compilation of my resources for studying for comprehensive exams.
 [Methylation-Bioinfo](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/DNA-methylation/Methylation-Bioinfo.md) - How to analyze DNA methylation data and multiple bioinformatic pipelines.  
 
 **Epigenetics**:  
-[Epigenetic-Crosstalk.md](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Epigenetic-Crosstalk.md) - How epigenetic changes can interact with each other.  
+[Epigenetic-Modifications.md](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Epigenetic-Crosstalk.md) - Types of epigenetic modifications, epigenetic crosstalk, epigenetic reprogramming,   
