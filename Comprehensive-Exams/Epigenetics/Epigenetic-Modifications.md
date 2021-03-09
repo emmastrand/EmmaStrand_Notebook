@@ -1,7 +1,7 @@
 # Epigenetic Modifications
 
 
-#### Types of Modifications
+##  Types of Modifications
 
 - DNA Methylation: See [DNA-methylation.md](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/DNA-methylation/DNA-methylation.md) for breakdown of DNA methylation.  
 - Histone variants and posttranslational modifications   
@@ -9,7 +9,7 @@
 
 ![types](https://scienceofhealthy.com/wp-content/uploads/2019/04/Epigenetics.jpg)
 
-## Chromatin Organization
+### Chromatin Organization
 
 **Histone variants and posttranslational modifications**  
 
@@ -22,14 +22,25 @@ From [*Eirin-Lopez and Putnam 2019*](https://github.com/emmastrand/EmmaStrand_No
 - not only participate in the regulation of chromatin structure but also help recruit proteins and chromatin-remodeling complexes that influence transcription as well as many other DNA processes, such as repair, replication, and recombination (Bannister & Kouzarides 2011).  
 - chromatin metabolism and epigenetic memory (Feil & Fraga 2012).
 
-
-
 Acetylation:
 
 Methylation:
 
 Phosphorylation:
 
+**Germinal chromatin**
+
+Highly specialized epigenetic reprogramming that differs in male and female germ cells.
+
+From [*Eirin-Lopez and Putnam 2019*](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Epigenetics/annurev-marine-010318-095114.pdf): In order to be vertically transmitted to the offspring, epigenetic modifications need to be present in the germline and endure the extreme reorganization of chromatin during gametogenesis, especially in the case of males. Since nucleosomes are disassembled and histones are widely replaced by protamines in mature spermatozoa (Eirin-Lopez & Ausio 2009), the epigenetic contributions of sperm chromatin to embryo development have been considered highly limited.
+
+[insert hollie's sperm methylation data set]
+
+> Explain the below figure with no caption for comps
+
+![fig3](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Epigenetics/images/EnvEpi-Figure3.png?raw=true)
+
+### Noncoding RNAs
 
 
 ## Environmental Epigenetics
