@@ -20,6 +20,8 @@ From [compgenomr](https://compgenomr.github.io/book/what-is-dna-methylation.html
 **10.1.1 How DNA methylation is set?**  
 DNA methylation is established by DNA methyltransferases DNMT3A and DNMT3B in combination with DNMT3L and maintained through cell division by the methyltransferase DNMT1 and associated proteins. DNMT3a and DNMT3b are in charge of the de novo methylation during early development. Loss of 5mC can be achieved passively by dilution during replication or exclusion of DNMT1 from the nucleus. Recent discoveries of the ten-eleven translocation (TET) family of proteins and their ability to convert 5-methylcytosine (5mC) into 5-hydroxymethylcytosine (5hmC) in vertebrates provide a path for catalyzed active DNA demethylation (Tahiliani, Koh, Shen, et al. 2009). Iterative oxidations of 5hmC catalyzed by TET result in 5-formylcytosine (5fC) and 5-carboxylcytosine (5caC). 5caC mark is excised from DNA by G/T mismatch-specific thymine-DNA glycosylase (TDG), which as a result reverts cytosine residue to its unmodified state (He, Li, Li, et al. 2011). Apart from these, mainly bacteria, but possibly higher eukaryotes, contain base modifications on bases other than cytosine, such as methylated adenine or guanine (Clark, Spittle, Turner, et al. 2011).
 
+![meth-set](https://ars.els-cdn.com/content/image/1-s2.0-S0022283617300839-gr1.jpg)
+
 ## Location of methylation
 
 Invertebrates: location is non-random and mainly located in gene bodies (Li et al 2018).  
@@ -28,6 +30,7 @@ Vertebrates: located in promoters regions and usually associated with turning "o
 
 Differentially expressed methylated regions are not necessarily the same as differentially expressed genes (Li et al 2018). DNA methylation changes don't necessarily correlated with gene expression changes.
 
+DNA Methylation location in invertebrates (Li et al 2018)
 ![location](https://advances.sciencemag.org/content/4/8/eaat2142/F1.large.jpg)
 
 ## Gene body methylation is established and maintained as a result of active transcription  
