@@ -55,4 +55,19 @@ DNA methylation regulates transcriptional homeostasis of algal symbiosis in the 
 
 ## Methylation's role in differing life stages
 
-Sex determination linked to differential methylation patterns: Half-smooth tongue sole (Shao et al 2014), 
+Larvae and adult life stages can differ in methylation patterning:  
+- Sea lamprey (Covelo-Soto et al 2015)
+
+Sex determination linked to differential methylation patterns: Half-smooth tongue sole (Shao et al 2014), temperature-mediated sex determination in fish (Ellison et al 2015, Navarro-Martin et al 2011) and sea turtles (Venegas et al 2016).
+
+
+Other mds?
+
+## Env2Methylation-Methylation2Phenotype
+
+Ryu et al 2018  
+Putnam et al 2016  
+Metzger & Schulte 2016   
+Roberts & Gavery 2012
+
+##
