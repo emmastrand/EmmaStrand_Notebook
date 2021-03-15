@@ -137,7 +137,7 @@ RNA HS St1: 46.34 St2: 755.64
 | M-220    	| 2019-12-04      	| Non-Bleach 	| 24            	| 20210303        	| 69                    	| 68.8                  	| 68.9                    	| 44.8                  	| 44.8                  	| 44.8                    	| 9.3 	| Yes       	| Yes                              	| NA    	|
 
 Gel - extraction samples are the first six: in order of extraction number (19, 20, 21, 22, 23, 24)  
-![gel](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210303-gel.jpg?raw=true)
+![gel](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210303-gel-ext.jpg?raw=true)
 
 ![tape](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210303-tapestation.png?raw=true)
 
@@ -159,7 +159,7 @@ RNA HS St1: 48.13 St2: 795.17
 | M-203    	| 2019-12-04      	| Bleach     	| 31            	| 20210305        	| 21.2                  	| 21.2                  	| 21.2                    	| 23                    	| 23                    	| 23                      	| 8.7 	|           	|                                  	|                           	|
 | M-211    	| 2019-12-04      	| Bleach     	| 32            	| 20210305        	| 27                    	| 26.8                  	| 26.9                    	| 18.7                  	| 18.7                  	| 18.7                    	| 9.2 	|           	|                                  	|                           	|
 
-![gel]() - will be done on Monday 20210308
+![gel](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210313-gel.jpg?raw=true)
 
 ![tape](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210305-tapestation.png?raw=true)
 
