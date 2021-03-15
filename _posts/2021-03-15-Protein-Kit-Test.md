@@ -17,14 +17,16 @@ I used the Rapid Gold kit on my samples for the HoloInt project, but there was m
 
 All points color coded by treatment.
 
-![allpoints]()
+![allpoints](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/protein-test-1.png?raw=true)
 
 Boxplot of all points color coded by treatment.
 
-![boxplot]()
+![boxplot](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/protein-test-2.png?raw=true)
 
 Side by side of each sample's value on new, rapid gold kit (prot_mg.cm2) and the old, purple kit (prot_mg.cm2.562).
 
-![sidebyside]()
+![sidebyside](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/protein-test-3.png?raw=true)
 
-Correlation plot between the new, rapid gold kit (prot_mg.cm2) and the old, purple kit (prot_mg.cm2.562). 
+Correlation plot between the new, rapid gold kit (prot_mg.cm2) and the old, purple kit (prot_mg.cm2.562).
+
+![corr](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/protein-test-4.png?raw=true)
