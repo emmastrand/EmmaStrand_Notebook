@@ -36,16 +36,12 @@ Each timepoint is in its own mesh bag labeled with the timepoint and "KBay Bleac
 
 Sept 2019, Oct 2 2019, Oct 16 2019, Oct 30 2019 (all in separate plastic bags within the yellow mesh bag), and Dec 4 2019 (black mesh bag) are in the green freezer across from the hood. Start with these fragments for now.
 
-insert photo of mesh bags in freezer
-![chipsinfreezer]()
-
-Insert photo of freezer box for coral chippings
-![coralchipsbox]()
+See images at the bottom of the post.
 
 ### Chipping the coral fragment
 
 These fragments need to be kept cold at all times so do the following steps swiftly but do not rush.  
-The coral chipping tool and sterilizing solutions (listed below) will be kept on the organismal benches 1/2 for the weeks we are clipping coral.  
+The coral chipping tool and sterilizing solutions (listed below) will be kept on the organismal benches 1/2 for the weeks we are clipping coral. See bottom of this post for a video example of clipping a coral.  
 
 **We are waiting on the coral chipping tool to come in so in the meantime, you can use the clippers from the RNA bench.**
 
@@ -57,6 +53,8 @@ The coral chipping tool and sterilizing solutions (listed below) will be kept on
 6. Grab a set of 10 coral fragments from the freezer and keep them in a dry ice cooler with the lid closed. Neatly label a new 2 mm screw cap tube for each coral you just grabbed with: 1.) colony ID (write this piece of information multiple times on the tube) 2.) Species ("Mcap", "Pcom") 3.) Timepoint (write this piece of information multiple times on the tube). See below image for an example. Place the 2 mm screw cap tubes in dry ice to cool the tube itself. Unscrew the cap so that when you clip the coral piece it will be easier to place in the tube immediately.        
 > This is a running timeseries with the same corals sampled multiple times a year. Make sure you have both the colony ID and timepoint written correctly and multiple times on the tube.  
 Grab 10 corals at a time to avoid opening and closing the freezers so often.
+
+![setup](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/Kbay-clipping-setup.jpg?raw=true)
 
 ![labels](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210310-clipping1.jpg?raw=true)
 
@@ -75,4 +73,30 @@ Please be mindful of how much fragment you are taking. Take no more than 1/2 of 
 
 Send a slack message to Emma with what you were able to get done and update the [google spreadsheet](https://docs.google.com/spreadsheets/d/1m1qwjfMG3m0zj_tGrGIZ0ADjBRcVJbe9dgQbtz4K-hI/edit#gid=0) with the fragments you chipped. **Please do this before you leave lab so that another labmate doesn't come in after you and chip the same coral.**
 
-#### Huge thank you for being such an amazing labmate for helping!! You are a star.
+### Huge thank you for being such an amazing labmate for helping!! You are a star.
+
+### Video Example of Clipping
+
+Google drive video [here](https://drive.google.com/file/d/1p74FOl_Sf6-nyKjZfUQRvU2TQPs2pES5/view?usp=sharing).
+
+### Images of setup and supplies location
+
+Supplies on the organismal bench 1:
+
+![supporg1](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/Kbay-supplies-location.jpg?raw=true)
+
+Location of mesh bags in freezer:
+
+![meshbaginfreezer](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/Kbay-freezer-location.jpg?raw=true)
+
+Example of labeled mesh bag for post-clipping:
+
+![kaby](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/Kbay-clipped-coral-mesh.jpg?raw=true)
+
+Example of labeled freezer box:  
+
+![meshinfreezer](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/Kbay-clipped-coral-bag.jpg?raw=true)
+
+Location of dry ice:
+
+![dry-ice](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/Kbay-dry-ice.jpg?raw=true)
