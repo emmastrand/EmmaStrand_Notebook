@@ -9,7 +9,7 @@ projects: Putnam Lab
 
 # 16s Sequencing for HoloInt Project
 
-Written by Emma Strand 20210225.
+Written by Emma Strand 20210315.
 
 ## Next Gen 16s Sequencing Primer Design
 
@@ -23,7 +23,7 @@ Reverse Primer with Adapter Overhang:
 
 5’ **GTCTCGTGGGCTCGGAGATGTGTATAAGAGACAG‐[locus-specific sequence]**
 
-### 515F and 806RB for V4
+### 515F and 806RB for V4 region
 
 [Apprill et al 2015](https://www.int-res.com/articles/ame_oa/a075p129.pdf):  
 515F: 5’-**GTG CCA GCM GCC GCG GTA A**-3’    
@@ -53,7 +53,7 @@ Materials:
 - Phusion HiFi Mastermix (Thermo Scientific F531S): https://www.fishersci.com/shop/products/phusion-high-fidelity-pcr-master-mixes/f531s  
 - Ultra-pure water
 - 96-well plates, centrifuge, pipettes and filter tips, thermocycler  
-- 515F and 806R primers with appropriate adapter overhang
+- 515F and 806RB primers with appropriate adapter overhang
 
 
 This protocol is based on resources from on Earth Microbiome, Apprill et al 2015, and URI GSC.
@@ -88,14 +88,18 @@ Finally, to calculate the volume of water needed, subtract the DNA volume requir
 5. Make positive mixture control by adding 0.5 μl of each sample into its own well (if doing dilutions on plates) or tube (if doing dilutions in PCR strip tubes).  
 6. Make master mix stock solution. Forward and reverse primers will come in 100 uM stock solutions, dilute this to 10 uM. Keep master mix stock solution on ice.    
 
-| Master Mix                      	| uL 	| # of samples (X + X neg controls + X for error) 	| total needed (uL) 	|
-|---------------------------------	|----	|-------------------------------------------------	|-------------------	|
-| Phusion PCR master mix          	| 50 	| 1                                               	| 50                	|
-| UltraPure water                 	| 46 	| 1                                               	| 46                	|
-| 10uM working stock 515F primer  	| 2  	| 1                                               	| 2                 	|
-| 10uM working stock 806RB primer 	| 2  	| 1                                               	| 2                 	|
+Master Mix calculations:  
 
-> Amount of Ultrapure water is determined by  100 - (Phusion PCR master mix + F primer + R primer). Amount of primer can be increased or decreased as a part of troubleshooting.
+|      25µl RXN       	|    24 uL MM + 1 uL DNA        	|   	|  	|
+|------------	|------------	|------------------	|-------------	|
+|   Reagent  	| Final Conc 	| Final Conc Units 	| Volume µl   	|
+| Phusion MM 	| 1          	| X                	| 12.5        	|
+|  F primer  	| 10     	| uM              	| 0.5         	|
+|  R primer  	| 10     	| uM              	| 0.5         	|
+|    Water   	|            	|                  	| 10.5        	|
+|            	|            	|                  	| 24 uL total MM	|
+
+> Amount of Ultrapure water is determined by  24 - (Phusion PCR master mix + F primer + R primer). Amount of primer can be increased or decreased as a part of troubleshooting.
 
 7. Add 97 μl of master mix stock solution to each well.    
 8. Add 3 μl of DNA sample (from the 10 μl dilution mix) to each well.  
@@ -110,13 +114,13 @@ Finally, to calculate the volume of water needed, subtract the DNA volume requir
 12. Spin down plate.  
 13. Run the following PCR program (this cycle program is specific to 16s):  
 
-PCR program (Apprill et al 2015):  
+PCR program:  
 
 | Temperature 	| Time   	| Repeat 	|
 |-------------	|--------	|--------	|
 | 95 °C       	| 2 min  	| 1      	|
 | 95 °C       	| 20 s   	| x27-35 	|
-|  55 °C      	| 15s    	|        	|
+|  57 °C      	| 15s    	|        	|
 | 72 °C       	| 5 min  	|        	|
 | 72 °C       	| 10 min 	| 1      	|
 
@@ -142,7 +146,7 @@ Annealing temp: 57°
 
 Link to sample processing [google sheet](https://docs.google.com/spreadsheets/d/184gZr6-Bc48Q-48O8OhfnEsu5wRloLiekuJg3T_IzXw/edit#gid=0).
 
-**Dilution calculations**
+### Dilution calculations
 
 | Plug_ID 	| Extraction Date 	| Species     	| Hard DNA (ng_ul) 	| DNA for dilution (ul) 	| Water for dilution (ul) 	| Notes         	|
 |---------	|-----------------	|-------------	|------------------	|-----------------------	|-------------------------	|---------------	|
@@ -399,7 +403,7 @@ Link to sample processing [google sheet](https://docs.google.com/spreadsheets/d/
 | 2999    	| 20190801        	| Pocillopora 	| 44               	| 1.50                  	| 18.50                   	|               	|
 | 1169    	| 20191113        	| Pocillopora 	| 28.4             	| 2.32                  	| 17.68                   	|               	|
 
-**Dilution plates**
+### Dilution plates
 
 3.33 ng/uL dilutions to get 10 ng total for 3 reactions in PCR plates.  
 
@@ -416,6 +420,15 @@ Plate 1 - started 20210225
 | G 	|      	|      	|      	|      	|      	|      	|      	|      	|   	|    	|    	|    	|
 | H 	|      	|      	|      	|      	|      	|      	|      	|      	|   	|    	|    	|    	|
 
+### PCR Plates
+
+### Post-PCR Gel in Triplicate
+
+### Post-Pooling Gel prior to extraction
+
+
+
+## Troubleshooting "trials"
 
 ### 20210225 Trial Run 1
 
