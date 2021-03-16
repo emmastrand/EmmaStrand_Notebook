@@ -171,6 +171,10 @@ List to re-do: M-3, M-210, M-218
 
 ### 20210316 Extractions
 
+Qubit Standards:  
+DNA BR St1: 171.22 St2: 19,153.81    
+RNA HS St1: 47.58 St2: 836.09
+
 | ColonyID 	| Collection-Date 	| Bleach-    	| Extraction-ID 	| Extraction-Date 	| DNA reading 1 (ng/uL) 	| DNA reading 2 (ng/uL) 	| DNA reading Avg (ng/uL) 	| RNA reading 1 (ng/uL) 	| RNA reading 2 (ng/uL) 	| RNA reading Avg (ng/uL) 	| RIN 	| Gel Pass? 	| Final Extraction for this coral? 	| Notes 	|
 |----------	|-----------------	|------------	|---------------	|-----------------	|-----------------------	|-----------------------	|-------------------------	|-----------------------	|-----------------------	|-------------------------	|-----	|-----------	|----------------------------------	|-------	|
 | M-218    	| 2019-12-04      	| Non-Bleach 	| 33            	| 20210316        	| 89.6                  	| 89.2                  	| 89.4                    	| 56.8                  	| 56.8                  	| 56.8                    	| 8.4 	| Yes       	| Yes                              	|       	|
