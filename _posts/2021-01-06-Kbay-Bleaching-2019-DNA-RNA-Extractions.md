@@ -168,3 +168,11 @@ Extraction ID 27 was re-done on the tapestation but the same result occured. Nee
 Full tapestation report found [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2021-03-05%20-%2012.01.20.pdf).
 
 List to re-do: M-3, M-210, M-218
+
+### 20210316 Extractions
+
+| ColonyID 	| Collection-Date 	| Bleach-    	| Extraction-ID 	| Extraction-Date 	| DNA reading 1 (ng/uL) 	| DNA reading 2 (ng/uL) 	| DNA reading Avg (ng/uL) 	| RNA reading 1 (ng/uL) 	| RNA reading 2 (ng/uL) 	| RNA reading Avg (ng/uL) 	| RIN 	| Gel Pass? 	| Final Extraction for this coral? 	| Notes 	|
+|----------	|-----------------	|------------	|---------------	|-----------------	|-----------------------	|-----------------------	|-------------------------	|-----------------------	|-----------------------	|-------------------------	|-----	|-----------	|----------------------------------	|-------	|
+| M-218    	| 2019-12-04      	| Non-Bleach 	| 33            	| 20210316        	| 89.6                  	| 89.2                  	| 89.4                    	| 56.8                  	| 56.8                  	| 56.8                    	| 8.4 	| Yes       	| Yes                              	|       	|
+| M-210    	| 2019-12-04      	| Non-Bleach 	| 34            	| 20210316        	| 37.3                  	| 37                    	| 37.15                   	| 18.6                  	| 18.6                  	| 18.6                    	| 8.2 	| Yes       	| Yes                              	|       	|
+| M-3      	| 2019-12-04      	| Bleach     	| 35            	| 20210316        	| 32.2                  	| 32                    	| 32.1                    	| 17.3                  	| 17.2                  	| 17.25                   	| 8.9 	| Yes       	| Yes                              	|       	|
