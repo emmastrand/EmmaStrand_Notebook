@@ -86,9 +86,10 @@ Finally, to calculate the volume of water needed, subtract the DNA volume requir
 > 10 ng is widely used as a general starting point, this is usually enough DNA to amplify your desired gene. If the sample is suspected to contain more inhibitors, decrease this starting value. If the sample is not amplifying, a troubleshooting option is to decrease and increase this value. Starting with 10 ng in one 100 μl well that is split into triplicate wells for the PCR steps, 3.33 ng of DNA is needed per reaction (3.33 ng in 33 uL per reaction). Standardize the DNA concentration of each sample prior to amplification.   
 
 5. Make positive mixture control by adding 0.5 μl of each sample into its own well (if doing dilutions on plates) or tube (if doing dilutions in PCR strip tubes).  
-6. Make master mix stock solution. Forward and reverse primers will come in 100 uM stock solutions, dilute this to 10 uM. Keep master mix stock solution on ice.    
+6. Make master mix stock solution. Forward and reverse primers will come in 100 uM stock solutions, dilute this to 10 uM. Keep master mix stock solution on ice.  
+7. Multiply the below values by the number of samples (x # number of replicates) plus negative controls and buffer room for error (i.e. (8 samples x 3 replicates) + 1 negative control + 0.5 for error = 25.5 reactions). The amount you include for error will depend on your comfortability and experience level with pipetting.        
 
-Master Mix calculations:  
+Master Mix calculations (per reaction):  
 
 |      25µl RXN       	|    24 uL MM + 1 uL DNA        	|   	|  	|
 |------------	|------------	|------------------	|-------------	|
@@ -102,18 +103,18 @@ Master Mix calculations:
 
 > Amount of Ultrapure water is determined by  24 - (Phusion PCR master mix + F primer + R primer). Amount of primer can be increased or decreased as a part of troubleshooting.
 
-7. Add 72 μl of master mix stock solution to each well.    
-8. Add 3 μl of DNA sample (from the 3.33 ng/μl dilution mix) to each well. This will total 10 ng.  
-9. Add 3 μl ultra pure water to one well per plate as a negative control.  
-10. Add 3 μl of the positive mixture control to one well (total, not per plate) as a positive control.    
-11. Set up each reaction in duplicate or triplicate for the PCR by pipette mixing and moving 24 μl of DNA/master mix solution into each neighboring empty well or PCR strip tube.  
+8. Add 72 μl of master mix stock solution to each well.    
+9. Add 3 μl of DNA sample (from the 3.33 ng/μl dilution mix) to each well. This will total 10 ng.  
+10. Add 3 μl ultra pure water to one well per plate as a negative control.  
+11. Add 3 μl of the positive mixture control to one well (total, not per plate) as a positive control.    
+12. Set up each reaction in duplicate or triplicate for the PCR by pipette mixing and moving 24 μl of DNA/master mix solution into each neighboring empty well or PCR strip tube.  
 
 >   See below image for an example of 96-well plate setup with 30 samples (four digit values) and 2 negative controls (Neg. Control). To run samples in triplicate, add DNA and master mix to columns 1, 4, 7, and 10. Then in Step 11 above and image below, move 33 uL of Sample 1254's reaction from B1 to B2 and 33 uL of reaction from B1 to B3. Use a multi-channel pipette to save time and energy.  
 
 ![plate-setup](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/96wellplate-setup.png?raw=true)
 
-12. Spin down plate.  
-13. Run the following PCR program (this cycle program is specific to 16s):  
+13. Spin down plate.  
+14. Run the following PCR program (this cycle program is specific to 16s):  
 
 PCR program:  
 
@@ -125,13 +126,13 @@ PCR program:
 | 72 °C       	| 5 min  	|        	|
 | 72 °C       	| 10 min 	| 1      	|
 
-14. Triplicate Gel: Run 5 μl of each product (3 per sample because the PCR was done in triplicate) on a 1% agarose gel for 45 minutes using the following [Putnam Lab Gel Electrophoresis protocol](https://emmastrand.github.io/EmmaStrand_Notebook/Gel-Electrophoresis-Protocol/) to check for ~390 bp product.  
-15. Pool products into PCR strip tubes (75 μl total) appropriately labeled with the sample ID. *Pooling occurs only after duplicate or triplicate samples (based on if you chose duplicates or triplicates above) have successfully amplified and confirmed on the gel.* These will be the PCR product stock. Store at -20&deg;C.  
-16. Single Gel: Run 5 μl of each pooled sample on a 1% agarose gel for 60-75 minutes. The goal is to separate the mitochondrial V4 region band and the 16s V4 region band really well to be able to physically cut out of the gel.
+15. Triplicate Gel: Run 5 μl of each product (3 per sample because the PCR was done in triplicate) on a 1% agarose gel for 45 minutes using the following [Putnam Lab Gel Electrophoresis protocol](https://emmastrand.github.io/EmmaStrand_Notebook/Gel-Electrophoresis-Protocol/) to check for ~390 bp product.  
+16. Pool products into PCR strip tubes (75 μl total) appropriately labeled with the sample ID. *Pooling occurs only after duplicate or triplicate samples (based on if you chose duplicates or triplicates above) have successfully amplified and confirmed on the gel.* These will be the PCR product stock. Store at -20&deg;C.  
+17. Single Gel: Run 5 μl of each pooled sample on a 1% agarose gel for 60-75 minutes. The goal is to separate the mitochondrial V4 region band and the 16s V4 region band really well to be able to physically cut out of the gel.
 
 **insert gel extraction method details**
 
-17. Aliquot 45 μl of each product from the PCR product stock (in Step 11) into new PCR strip tubes appropriately labeled with the sample ID. These tubes will be delivered to the sequencing center. Store at -20&deg;C until delivering to the sequencing center.   
+18. Aliquot 45 μl of each product from the PCR product stock (in Step 11) into new PCR strip tubes appropriately labeled with the sample ID. These tubes will be delivered to the sequencing center. Store at -20&deg;C until delivering to the sequencing center.   
 
 Example of [google spreadsheet](https://docs.google.com/spreadsheets/d/184gZr6-Bc48Q-48O8OhfnEsu5wRloLiekuJg3T_IzXw/edit?usp=sharing) for data processing, including master mix and dilution calculations, and 96-well PCR platemaps.
 
@@ -140,7 +141,7 @@ Example of [google spreadsheet](https://docs.google.com/spreadsheets/d/184gZr6-B
 
 Link to sample processing [google sheet](https://docs.google.com/spreadsheets/d/184gZr6-Bc48Q-48O8OhfnEsu5wRloLiekuJg3T_IzXw/edit#gid=0).
 
-We will only be doing five timepoints: 30 hour, 2 week, 4 week, 8 week, and 12 week to match the metabolomics, DNA methylation, and gene expression data. 
+We will only be doing five timepoints: 30 hour, 2 week, 4 week, 8 week, and 12 week to match the metabolomics, DNA methylation, and gene expression data.
 
 ### Dilution calculations
 
