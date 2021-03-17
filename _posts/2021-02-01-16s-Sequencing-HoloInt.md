@@ -69,20 +69,20 @@ In our lab, we will complete the first PCR step and then we pay URI GSC to compl
 **Steps:**
 
 1. Check concentrations with [Qubit](https://emmastrand.github.io/EmmaStrand_Notebook/Qubit-Protocol/).  
-2. Calculate volumes of DNA and water needed to dilute sample to 3.33 ng/μl concentration in 10 μl. 3.33 ng is the minimum input to be used for one reaction. In this protocol, samples will be run in triplicate with each reaction containing 3.33 ng for a sample total of 10 ng. Dilutions can be done in any volume, but we recommend 10 or 20 μl depending on your starting concentration.    
+2. Calculate volumes of DNA and water needed to dilute sample to 4 ng/μl concentration in 20 μl. 4 ng is the minimum input to be used for one reaction. In this protocol, samples will be run in triplicate with each reaction containing 4 ng for a sample total of 12 ng. Dilutions can be done in any volume, but we recommend 10 or 20 μl depending on your starting concentration.    
 
 | Sample ID | DNA (ng_μl) | DNA for dilution (μl) | Water for Dilution (μl) |
 |----------|-------------|-----------------------|-------------------------|
-| Example       | Qubit value        | =33/Qubit value                  | 10 - DNA for dilution value                    |
-| Coral 1      | 6.82        | 4.84                  | 5.16                    |
+| Example       | Qubit value        | =40/Qubit value                  | 10 - DNA for dilution value                    |
+| Coral 1      | 37.4        | 1.07                  | 8.93                    |
 
 To calculate the DNA sample volume needed for the dilution in 10µl for example, use the following equation: V<sub>1</sub>M<sub>1</sub>=V<sub>2</sub>M<sub>2</sub>.   
-V<sub>1</sub>(Qubit value)=(3.33 ng/μl)(10 μl)  
-V<sub>1</sub>=33/Qubit value  
+V<sub>1</sub>(Qubit value)=(4 ng/μl)(10 μl)  
+V<sub>1</sub>=40/Qubit value  
 Finally, to calculate the volume of water needed, subtract the DNA volume required from 10 μl.
 
-3. Aliquot the appropriate volume of ultra pure water needed for dilution (for Coral 1, 5.16 μl) into each appropriately labeled PCR strip tube or well in a 96-well plate. To maximize efficiency, copy the PCR plate setup from Step 11 and the example image. Column 1 in the PCR 96-well plate should be the same as column 1 in the dilution plate so that you can use the multi-channel pipette to add 3 uL in Step 8.      
-4. Aliquot the appropriate volume of DNA sample needed for dilution (for Coral 1, 4.84 μl).  
+3. Aliquot the appropriate volume of ultra pure water needed for dilution (for Coral 1, 8.93 μl) into each appropriately labeled PCR strip tube or well in a 96-well plate. To maximize efficiency, copy the PCR plate setup from Step 11 and the example image. Column 1 in the PCR 96-well plate should be the same as column 1 in the dilution plate so that you can use the multi-channel pipette to add 3 uL in Step 8.      
+4. Aliquot the appropriate volume of DNA sample needed for dilution (for Coral 1, 1.07 μl).  
 > 10 ng is widely used as a general starting point, this is usually enough DNA to amplify your desired gene. If the sample is suspected to contain more inhibitors, decrease this starting value. If the sample is not amplifying, a troubleshooting option is to decrease and increase this value. Starting with 10 ng in one 100 μl well that is split into triplicate wells for the PCR steps, 3.33 ng of DNA is needed per reaction (3.33 ng in 33 uL per reaction). Standardize the DNA concentration of each sample prior to amplification.   
 
 5. Make positive mixture control by adding 0.5 μl of each sample into its own well (if doing dilutions on plates) or tube (if doing dilutions in PCR strip tubes).  
@@ -128,11 +128,18 @@ PCR program:
 
 15. Triplicate Gel: Run 5 μl of each product (3 per sample because the PCR was done in triplicate) on a 1% agarose gel for 45 minutes using the following [Putnam Lab Gel Electrophoresis protocol](https://emmastrand.github.io/EmmaStrand_Notebook/Gel-Electrophoresis-Protocol/) to check for ~390 bp product.  
 16. Pool products into PCR strip tubes (75 μl total) appropriately labeled with the sample ID. *Pooling occurs only after duplicate or triplicate samples (based on if you chose duplicates or triplicates above) have successfully amplified and confirmed on the gel.* These will be the PCR product stock. Store at -20&deg;C.  
-17. Single Gel: Run 5 μl of each pooled sample on a 1% agarose gel for 60-75 minutes. The goal is to separate the mitochondrial V4 region band and the 16s V4 region band really well to be able to physically cut out of the gel.
-
-**insert gel extraction method details**
-
-18. Aliquot 45 μl of each product from the PCR product stock (in Step 11) into new PCR strip tubes appropriately labeled with the sample ID. These tubes will be delivered to the sequencing center. Store at -20&deg;C until delivering to the sequencing center.   
+17. Single Gel: Run 5 μl of each pooled sample on a 1% agarose gel for 60-75 minutes. The goal is to separate the mitochondrial V4 region band and the 16s V4 region band really well to be able to physically cut out of the gel.  
+18. Excise the desired gel band from the agarose gel with 1 mm x 4 mm gel band pipette tips and transferred to a 1.5 mL microcentrifuge tube.    
+19.  Add 3 volumes of Agarose Dissolving Buffer (ADB) to each volume of agarose excised from the gel (e.g. for 100 µl (mg) of agarose gel slice add 300 µl of ADB). For this project: add ____ µl.
+20. Incubate at 37-55 &deg;C for 5-10 minutes until the gel slice is completely dissolved.   
+21. Transfer the melted agarose solution to a Zymo-Spin™ Column in a Collection Tube.  
+22. Centrifuge for 60 seconds at 16,000 rcf. Discard the flow-through.  
+23. Add 200 µl of DNA Wash Buffer to the column and centrifuge for 30 seconds. Discard the flow-through.   
+24. Repeat the above wash step.   
+25. Add 50 µl 10 uM Tris HCl directly to the column matrix.  
+26. Place column into a 1.5 ml tube and centrifuge for 30 seconds at 16,000 rcf to elute DNA.  
+27. Run 5 μl of each sample on a 1% agarose gel for 60 minutes. The goal is to see a single band instead of two (one mitochondrial and one bacterial).  
+28. Aliquot 45 μl of each product from the PCR product stock (in Step 11) into new PCR strip tubes appropriately labeled with the sample ID. These tubes will be delivered to the sequencing center. Store at -20&deg;C until delivering to the sequencing center.   
 
 Example of [google spreadsheet](https://docs.google.com/spreadsheets/d/184gZr6-Bc48Q-48O8OhfnEsu5wRloLiekuJg3T_IzXw/edit?usp=sharing) for data processing, including master mix and dilution calculations, and 96-well PCR platemaps.
 
@@ -145,6 +152,8 @@ We will only be doing five timepoints: 30 hour, 2 week, 4 week, 8 week, and 12 w
 
 ### Dilution calculations
 
+**From trials:**  
+
 | Plug_ID 	| Extraction Date 	| Species     	| Hard DNA (ng_ul) 	| DNA for dilution (ul) 	| Water for dilution (ul) 	| Notes         	|
 |---------	|-----------------	|-------------	|------------------	|-----------------------	|-------------------------	|---------------	|
 | 1050    	| 20190809        	| Pocillopora 	| 35.4             	| 1.86                  	| 18.14                   	| 2021-02-25 A8 	|
@@ -156,7 +165,12 @@ We will only be doing five timepoints: 30 hour, 2 week, 4 week, 8 week, and 12 w
 | 1701    	| 20190826        	| Pocillopora 	| 34.2             	| 1.93                  	| 18.07                   	| 2021-02-25 A2 	|
 | 2743    	| 20190724        	| Pocillopora 	| 101              	| 0.65                  	| 19.35                   	| 2021-02-25 A6 	|
 
+**From 5 timepoint processing:**
+
+
 ### Dilution plates
+
+**From trials:**    
 
 3.33 ng/uL dilutions to get 10 ng total for 3 reactions in PCR plates.  
 
@@ -173,12 +187,17 @@ Plate 1 - started 20210225
 | G 	|      	|      	|      	|      	|      	|      	|      	|      	|   	|    	|    	|    	|
 | H 	|      	|      	|      	|      	|      	|      	|      	|      	|   	|    	|    	|    	|
 
+**From 5 timepoint processing:**
+
 ### PCR Plates
 
 ### Post-PCR Gel in Triplicate
 
 ### Post-Pooling Gel prior to extraction
 
+### Post-Gel Band Extraction Gel  
+
+### Prep for GSC 
 
 
 ## Troubleshooting "trials"
@@ -303,3 +322,5 @@ Master Mix calculations:
 
 57C with 10 uM primer seems to get good solid bands at ~350 bp and the bottom is primer dimer. My thought is we move forward with the above master mix ratios and cut the bands physically out of the gel.  
 ![gel](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210305-gel-16s.jpg?raw=true)
+
+We decided to change the dilution concentration to 4 ng/uL instead of 3.33 ng/uL so that the total ng per sample across triplicates is 12 ng.
