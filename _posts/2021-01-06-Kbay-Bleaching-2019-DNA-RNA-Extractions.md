@@ -181,7 +181,7 @@ RNA HS St1: 47.58 St2: 836.09
 | M-210    	| 2019-12-04      	| Non-Bleach 	| 34            	| 20210316        	| 37.3                  	| 37                    	| 37.15                   	| 18.6                  	| 18.6                  	| 18.6                    	| 8.2 	| Yes       	| Yes                              	|       	|
 | M-3      	| 2019-12-04      	| Bleach     	| 35            	| 20210316        	| 32.2                  	| 32                    	| 32.1                    	| 17.3                  	| 17.2                  	| 17.25                   	| 8.9 	| Yes       	| Yes                              	|       	|
 
-![gel]()
+![gel](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210316-gel.jpg?raw=true)
 
 ![tape](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210316-tape.png?raw=true)
 
