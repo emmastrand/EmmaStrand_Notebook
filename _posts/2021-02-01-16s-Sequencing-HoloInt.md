@@ -53,7 +53,9 @@ Materials:
 - Phusion HiFi Mastermix (Thermo Scientific F531S): https://www.fishersci.com/shop/products/phusion-high-fidelity-pcr-master-mixes/f531s  
 - Ultra-pure water
 - 96-well plates, centrifuge, pipettes and filter tips, thermocycler  
-- 515F and 806RB primers with appropriate adapter overhang
+- 515F and 806RB primers with appropriate adapter overhang  
+- Zymoclean Gel DNA recovery kit: [protocol](https://files.zymoresearch.com/protocols/_d4001t_d4001_d4002_d4007_d4008_zymoclean_gel_dna_recovery_kit.pdf) and product [link](https://www.zymoresearch.com/products/zymoclean-gel-dna-recovery-kit?variant=32298390224978)  
+- Gel cutting pipette tips 
 
 
 This protocol is based on resources from on Earth Microbiome, Apprill et al 2015, and URI GSC.

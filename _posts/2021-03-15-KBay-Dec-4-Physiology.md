@@ -29,3 +29,9 @@ If the volume is >2 mL for a coral fragment, then only 1 mL will be spun down fo
 ![workflow1](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/Kbay-decphys-workflow1.png?raw=true)
 
 ![workflow2](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/Kbay-decphys-workflow2.png?raw=true)
+
+## Protocols
+
+Protein kit:
+
+https://benchling.com/s/prt-kaJmsboePaIXC1R9aATC/edit
