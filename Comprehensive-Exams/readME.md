@@ -2,6 +2,25 @@
 
 A compilation of my resources for studying for comprehensive exams. Each folder refers to a topic, each with several markdown files of notes and figures as well as the PDFs of papers referenced.
 
+## Dr. Hollie Putnam's Exam
+
+- signal transduction pathways; feedback loops, specific examples  
+- alternative interpretations for why methylation might not be the only player  
+- epigenetics/methylation details and history of the field  
+- interaction between genetics for evolutionary outcomes  
+
+semi-open book; HP chooses the resources available  
+will email in the morning with questions and need to return them by certain time.
+
+## Dr. Scott McWilliam's Exam
+
+Flexible Phenotype Chapters 4, 5, and 9  
+Biochemical Adaptation Chapters 1 and 2  
+Fox et al: Beyond buying time: the role of plasticity in phenotypic adaptation to rapid environmental change.  
+Snell-Rood et al: Mechanisms of plastic rescue.  
+
+## Dr. Roxanne Beinart's Exam
+
 ### Table of Contents
 
 **DNA Methylation**:  
