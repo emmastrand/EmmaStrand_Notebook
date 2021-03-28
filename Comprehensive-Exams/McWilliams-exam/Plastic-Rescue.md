@@ -101,4 +101,20 @@ Shuffling of different strains or species of symbionts may allow corals to cope 
 
 The microbiome can be selected on via the interaction with the environment and the active mechanisms of the host.
 
-For gene expression, stochastic expression can be beneficial in a variable environment. (Miller-Jensen et al 2011). And epigenetic patterning could focus this expression to lead to high performance. Selection could act on the higher performing patterning of gene expression (analogous to a learning process). 
+For gene expression, stochastic expression can be beneficial in a variable environment. (Miller-Jensen et al 2011). And epigenetic patterning could focus this expression to lead to high performance. Selection could act on the higher performing patterning of gene expression (analogous to a learning process).  
+- transcriptional memory of past developmental experiences; like priming effects  
+
+Plastic responses are likely a combination of evolved developmental switches that match temperature cues with physiological and behavioral responses and of learning as individuals gain information on whether new climate conditions match the best breeding conditions.
+
+### Costs of plasticity
+
+Global costs of plasticity explains the co-existence of specialists and generalists. Costs are only felt in an environment where plasticity is beneficial. 
+
+
+## Applied to corals
+
+The coral holobiont provides a fascinating study system: the coral host, endosymbiont, and associated microbiome. Each partner has the ability for developmental selection and generalized physiological mechanisms. Overall survival in a climate change context is dependent on all three partners working in unison (or unison enough..) to produce an adaptive response.
+
+Examples of learning and acquired immunity:
+
+Microbiome, gene expression, and epigenetics:
