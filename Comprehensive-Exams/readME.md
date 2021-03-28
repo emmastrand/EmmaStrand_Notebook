@@ -21,7 +21,7 @@ Snell-Rood et al: Mechanisms of plastic rescue.
 
 ## Dr. Roxanne Beinart's Exam
 
-### Table of Contents
+## Table of Contents
 
 **DNA Methylation**:  
 [DNA-Methylation.md](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/DNA-methylation/DNA-methylation.md) - DNA methylation pathways and processes, how methylation works, how to interpret this information in a biological context.  
@@ -37,4 +37,4 @@ Assisted evolution, environmental memory, etc.
 
 read more Snell-Rood papers
 
-exploration-exploitation trade-off notes 
+exploration-exploitation trade-off notes
