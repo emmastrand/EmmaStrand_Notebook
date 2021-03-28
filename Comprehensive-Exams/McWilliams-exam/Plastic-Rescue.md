@@ -38,7 +38,13 @@ These are in response to specific, predictive environmental cues.
 
 A polyphenic trait is a trait for which multiple, discrete phenotypes can arise from a single genotype as a result of differing environmental conditions. It is therefore a special case of phenotypic plasticity (Wikipedia). Polyphenisms are discrete compared to continuous scale (i.e. height and weight is continuous and the ability to curl your tongue is discrete).
 
-> Come back to thinking about if corals have any polyphenisms? There are some corals of the same species that develop in plate morphologies or pillar morphologies... 
+> Come back to thinking about if corals have any polyphenisms? There are some corals of the same species that develop in plate morphologies or pillar morphologies... then the cue would be sunlight exposure?
+
+Examples of cues: predator chemicals, photoperiod, temperature induced developmental regulatory program, UV light (can induce melanization in some species)
+
+How adaptive this is would depend on the context of the novel environment:  
+- If the novel condition was on a continuum then a preexisting plastic response could be adaptive in the new condition (i.e. rising temperatures)  
+- If the environment shifts to an extreme or in a discrete manner (i.e. toxins), the tailored switches may not be adaptive in this scenario. Also in this scenario, previously cryptic variation could be exposed and lead to adaptive responses. This could be more up to chance and only a subset of the population to survive. 
 
 #### Generalized physiological responses to stressors
 
