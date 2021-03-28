@@ -33,4 +33,6 @@ Snell-Rood et al: Mechanisms of plastic rescue.
 
 Environmental history  
 Innate immunity vs acquired immunity  
-Assisted evolution, environmental memory, etc. 
+Assisted evolution, environmental memory, etc.
+
+read more Snell-Rood papers 

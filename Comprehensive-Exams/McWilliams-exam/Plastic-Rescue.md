@@ -108,8 +108,28 @@ Plastic responses are likely a combination of evolved developmental switches tha
 
 ### Costs of plasticity
 
-Global costs of plasticity explains the co-existence of specialists and generalists. Costs are only felt in an environment where plasticity is beneficial. 
+Global costs of plasticity explains the co-existence of specialists and generalists. Costs are only felt in an environment where plasticity is beneficial.
 
+**Costs of plasticity**  
+> explain figure without the caption for exams.
+
+![fig3](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/PR-3.png?raw=true)
+
+Big picture is that this is costly regardless of mechanism.  
+- Process (vs. the ability) of learning has trade-offs with fecundity (Mery & Kawecki 2004)  
+- Induction of chemical and physical defenses comes with reproductive trade-offs (Agrawal et al 1999, Baldwin 1998)
+
+Costs can be higher in stressful conditions, reinforcing the general observation that costs are specific to certain induced phenotypes. Costs can be amplified in nutrient and resource poor environments.  
+- In environments where nutrients are increasing, this nutritional demand of plasticity could be ameliorated (Snell-Rood et al 2015a).
+
+> For DNA methylation, in nutrient rich area - the cost of plasticity could be taken out. If hypomethylation is consistent with phenotypic plasticity, then could higher nutrient rich areas be lower in methylation? Because the organism has learned that resource will be there to use?
+
+Costs to plasticity can lead to lower life histories.  
+- Upregulation of general stress mechs like antioxidant pathways and heat shock proteins is linked to longer life spans but with trade-offs in fecundity (Gruber et al 2007, Marshall & Sinclair 2010)  
+- come back to outlining the above....
+
+Developmental selection is particularly costly  
+- 
 
 ## Applied to corals
 
