@@ -30,7 +30,7 @@ The mechanism may influence proportion of population that survives a novel condi
 
 Big question: can this be optimized within an individual's lifespan?
 
-#### Evolved developmental switches
+### Evolved developmental switches: Least likely
 
 Polyphenism: where one of several discrete alternate phenotypes is induced in different conditions.  
 - nutrition-dependent mating tactics in beetles ([Moczek & Emlen 2000](https://www.sciencedirect.com/science/article/abs/pii/S0003347299913428))  
@@ -55,11 +55,50 @@ How adaptive this is would depend on the context of the novel environment:
 
 ![fig2](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/PR-2.png?raw=true)
 
+### Generalized physiological responses to stressors: More likely
 
-#### Generalized physiological responses to stressors
+Stress response pathways, toxin metabolism, innate immunity have been optimized over evolutionary time, but can be general to a variety of environments.  
+- i.e. higher expression of heat shock proteins confers resistance to not only temperature stress but oxidative damage, toxin exposure, and osmotic stress (Feder & Hoffman 1999, Kregel 2002, Wang et al 2004).
 
-More likely to result in adaptive responses to things like novel toxins, heat stress, pathogens
+Hormesis: sublethal stress can have beneficial effects on performance    
+- upregulating general responses when challenged with low levels of stress  
+- Examples found in other markdown sheets about environmental history
 
-#### Developmental selection
+Innate immunity can be "generalized":  
+- see another markdown sheet for details.  
+- a fever: heat stressor against pathogens, but also coordinates other immune processes and is effective against cancers and many pathogens  
 
-Rely on within-individual selective processes; shaping of tissue architecture, trial-and-error learning, acquired immunity. Likely to result in adaptive response.
+Physiological mechanisms that are generalized or cross-reactive can be extremely powerful survival method. But, sometimes generalized methods aren't specific or good enough to a particular stressor. Constant upregulation is also highly costly. These costs could favor a specialized process.
+
+### Developmental selection: Most likely
+
+Developmental selection: forms of plasticity that are reinforced over developmental time in response to feedback from the environment. This is powerful b/c it requires no prior evolutionary history with an environment for a potential phenotype match.  
+- allows adaptive responses to a wide range of conditions without suffering costs of relaxed selection on developmental programs (Snell-Rood et al 2010, Whitlock 1996)
+
+Selection can occur within or b/w cells, over space and time, or on the basis of the location/ID of the trait, and across a lifetime.
+
+**Tissue Architecture**:  
+
+Selection on location of cells  
+- i.e. jaw and skull morphology based on diet in fish and mammals; locomotor abilities based on experience in athletes; and *animals reared in different conditions**  
+- Corals branching arrangement can be altered by light levels and water flow (Bruno & Edmunds 1997)  
+- The above is similar to one of my questions above..
+
+> what is the selection pressure from thick-tissued corals in the same environment and/or adjacent to each other as thin-tissued corals?
+
+**Learning and acquired immunity**:
+
+Individuals can "sample" phenotypes over time and reinforce the traits that match local conditions and atrophying those that do not (leading to specialized local adaptation). With behavior (i.e. motor response to sensory input) this can be done by attending to a range of cues or varying motor patterns in response to a cue (basically this can happen at the input and the output level).
+
+> In corals, maybe this could look like extending polyps for feeding - after sampling several times of the day, they eventually learn what time is best to feed.
+Come back to adding to this....
+
+**Microbiome and patterns of gene expression**:
+
+Shuffling of different strains or species of symbionts may allow corals to cope with increasing temperature b/c harboring a more diverse microbiome can allow for a greater range of acclimation responses (Baker 2003, Berkelmans & van Oppen 2006).
+
+> Could this also be a "learned" behavior, sampling various microbiomes and keeping the "strongest" that match the new condition?
+
+The microbiome can be selected on via the interaction with the environment and the active mechanisms of the host.
+
+For gene expression, stochastic expression can be beneficial in a variable environment. (Miller-Jensen et al 2011). And epigenetic patterning could focus this expression to lead to high performance. Selection could act on the higher performing patterning of gene expression (analogous to a learning process). 

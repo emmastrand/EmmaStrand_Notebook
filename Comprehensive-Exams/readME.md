@@ -29,3 +29,8 @@ Snell-Rood et al: Mechanisms of plastic rescue.
 
 **Epigenetics**:  
 [Epigenetic-Modifications.md](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Epigenetics/Epigenetic-Modifications.md) - Types of epigenetic modifications, epigenetic crosstalk, epigenetic reprogramming,   
+
+
+Environmental history  
+Innate immunity vs acquired immunity  
+Assisted evolution, environmental memory, etc. 
