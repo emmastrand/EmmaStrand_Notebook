@@ -23,6 +23,9 @@ The mechanism may influence proportion of population that survives a novel condi
 
 > Most interested in the learning and acquired immunity section of this.. potential of environmental memory.. but this means it is highly costly. High risk, high reward.
 
+**3 categories of developmental mechanisms**
+> be able to explain this figure without the caption for exams.
+
 ![fig1](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/PR-1.png?raw=true)
 
 Big question: can this be optimized within an individual's lifespan?
@@ -44,7 +47,14 @@ Examples of cues: predator chemicals, photoperiod, temperature induced developme
 
 How adaptive this is would depend on the context of the novel environment:  
 - If the novel condition was on a continuum then a preexisting plastic response could be adaptive in the new condition (i.e. rising temperatures)  
-- If the environment shifts to an extreme or in a discrete manner (i.e. toxins), the tailored switches may not be adaptive in this scenario. Also in this scenario, previously cryptic variation could be exposed and lead to adaptive responses. This could be more up to chance and only a subset of the population to survive. 
+- If the environment shifts to an extreme or in a discrete manner (i.e. toxins), the tailored switches may not be adaptive in this scenario. Also in this scenario, previously cryptic variation could be exposed and lead to adaptive responses. This could be more up to chance and only a subset of the population to survive.
+
+**Responses of evolved developmental switches in novel environments.**  
+
+> be able to explain this figure without the caption for exams.
+
+![fig2](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/PR-2.png?raw=true)
+
 
 #### Generalized physiological responses to stressors
 
