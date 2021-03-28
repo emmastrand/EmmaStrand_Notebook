@@ -110,7 +110,7 @@ Plastic responses are likely a combination of evolved developmental switches tha
 
 Global costs of plasticity explains the co-existence of specialists and generalists. Costs are only felt in an environment where plasticity is beneficial.
 
-**Costs of plasticity**  
+**Costs of plasticity Figure 3**  
 > explain figure without the caption for exams.
 
 ![fig3](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/PR-3.png?raw=true)
@@ -129,7 +129,15 @@ Costs to plasticity can lead to lower life histories.
 - come back to outlining the above....
 
 Developmental selection is particularly costly  
-- 
+- species that rely on learning have a delay in performance; the cost of being naive or exploration-exploitation trade-off  
+- Therefore, benefits of exploration has more likely to pay off with longer lifespans (Eliassen et al 2007, Kaplan et al 2000)
+
+Critical variables of plasticity:  
+- costs of plasticity  
+- generation time  
+- population growth rate  
+- degree the population is shifted toward a new optimal phenotype
+
 
 ## Applied to corals
 
@@ -138,3 +146,12 @@ The coral holobiont provides a fascinating study system: the coral host, endosym
 Examples of learning and acquired immunity:
 
 Microbiome, gene expression, and epigenetics:
+
+Come back to ending of the above paper and the following questions:  
+- Pros and cons of each strategy?  
+- Is plasticity always adaptive?  
+- How is plasticity selected upon?  
+- Integrating plasticity and genetic variation?  
+- Interaction of trans-generational plasticity  
+- epiphenotype hypothesis  
+-

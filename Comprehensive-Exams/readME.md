@@ -35,4 +35,6 @@ Environmental history
 Innate immunity vs acquired immunity  
 Assisted evolution, environmental memory, etc.
 
-read more Snell-Rood papers 
+read more Snell-Rood papers
+
+exploration-exploitation trade-off notes 
