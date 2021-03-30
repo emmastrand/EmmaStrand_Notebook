@@ -37,4 +37,7 @@ Assisted evolution, environmental memory, etc.
 
 read more Snell-Rood papers
 
-exploration-exploitation trade-off notes
+exploration-exploitation trade-off notes  
+
+GxE interactions  
+rates of population fitness evolution vs natural selection 
