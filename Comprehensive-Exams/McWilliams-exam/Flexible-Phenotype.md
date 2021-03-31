@@ -89,4 +89,36 @@ After losing it, it is possible to regain it:
 
 Dynamic gut: snakes go through veritable 'gastrointestinal rebirths': going without meals for so long that stonachs, intestines, and accesory organs shrink and become 'dormant'  
 - when they eat again, it is a huge meal and there is a burst of physiological activity by orders of magnitude  
-- 
+- there is a higher cycling of cells post meal while preparing for another meals
+
+### Classical phenotypic plasticity: developmental reaction norms
+
+developmental plasticity: where environmental conditions during ontogeny determine the size, shape, construction, and behavior of the mature phenotype.  
+- water fleas *Daphnia* show hoods, helmets, spines, and longer tails in response to predators or to the chemical identifiers ('kai hormones'). also called induced defenses  
+- density levels drive urchin size  
+- water flow drives scleractinian corals to be denser or more spaced out structures  
+- seasonal polyphenism: the tropical butterfly *Precis almana* has either angular wing shapes and a dull brown color (resembling a dead leaf) in the dry season or rounded and colorful wings with eye spots in the wet season
+
+Size, age, condition, context-dependent sex change occurs in plants, annelids, echinoderms, crustaceans, molluscs, and fish
+
+Seasonal phenotypic change:  
+- plumage of birds and antlers of deer  
+- *Bicyclus* butterflies show what is typical of 'classic' developmental plasticity: hormonal effects in larva and pupa and physiological acclimatization: induced in the reproductive adult stage and maternally contributed to the eggs
+
+Seasonal polyphenism in insects is called life-cycle staging in birds and animals..
+
+Mismatches of environment and phenotype can happen in an unpredictable environment and this can be a large cost of developmental plasticity. If organisms are capable of fast and reversible phenotypic change then that cost isn't as big of a deal or risk.
+
+Below is a conceptual diagram of types of plasticity defined in 2-D space. Variability: degree of environmental variability (relative to the organism) and Predictability: the degree to which this variability is predictable.
+
+![fp3](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/FP-3.png?raw=true)
+
+Between individuals/generations would include short-lived organisms and within individuals/generations would include long-lived organims (corals are long-lived).
+
+Lower predictability means it would be better for an organism to respond opportunistically rather than seasonally scheduled.
+
+Variable responses: organisms encountering unpredictably variable environments in the course of their lifetime would benefit from plasticity being reversible; i.e. showing *phenotypic flexibility*.
+
+In a low predictability environment, organisms could *bet-hedge* and development phenotypic changes at random in short-lived organisms. Long-lived organisms could deal with this by not changing at all and show *robustness*. 
+
+> why couldn't bet-hedging be true for long-lived organisms? and vice versa with robustness?
