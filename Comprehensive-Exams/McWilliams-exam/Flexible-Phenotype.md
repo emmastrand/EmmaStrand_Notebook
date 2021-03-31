@@ -29,9 +29,51 @@ Cold-induced factorial scope vs. exercise-induced scope
 
 Importance of energy balance during sustained higher metabolic rates.
 
-Weiner's barrel model: metabolic ceilings  
-- energy absorbed into the body (bow-tie B) is not the only process that can constrain sustined energy intake and expenditure.  
-- four other processes:
-- five total:
+### Weiner's barrel model: metabolic ceilings  
 
-![fig2-FP]()
+**Five constraints on energy (bow-ties):**   
+Bow-tie A: availability of energy in the environment  
+- But it is unlikely that this restrains maximal performance  
+- The rate at which energy can be harvested often exceeds the rate at which it can be processed.
+
+Bow-tie C: limited by capacity to excrete metabolic end-products.  
+- i.e. kidneys to excrete urea
+
+For awhile 2 main hypotheses existed to explain maximal performance.  
+1.) *central limitation hypothesis* (Bow-tie B): related to the capacity of the alimentary tract to absorb energy (food-processing chain)  
+2.) *peripheral limitation hypothesis* (Bow-tie D): related to the capacity to expend energy at the different sites of utilization (i.e. respiratory chain, with muscles, mammalian brown adipose tissue and mammary glands)
+
+Performance limits are not set centrally:  
+- Mice that increased food-intake rates when muscles and BAT were made to work harder in the cold, suggested that it was actually the capacity of the mammary glands that set the upper limit -- so back to the hypothesis #2.
+
+heat-dissipation limits
+> come back to this..
+
+![fig2-FP](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/FP-2.png?raw=true)
+
+allometric scaling constant  
+- in mammals this is consistently higher in maximal metabolic rate compared to BMR  
+
+#### Long term fitness assets
+
+Increase body size, increase in energy required to maintain, increase in BMR levels.
+
+Symmorphosis: a single site does not limit aerobic performance.
+
+If very hard work precipitously increases the likelihood of death (b/c of free radical derived oxidative DNA and tissue damage), without leading to compensatory increases in reproductive output, **evolutionary trade-offs would select for animals that are not prepared to work harder than what is called the 'optimal working capacity'**. Emphasizes the cost of high performance.
+
+allostatic loads
+> come back to this
+
+mass-specific lifetime energy expenditure
+> come back to this
+
+lifetime energy expenditure
+
+In birds: The mechanisms for a lower rate of ageing and bodily decline, which relate to mitochondrial functioning and the ways that electron leakage and free-radical production are balanced under conditions of high and low energy demands.
+
+animals are reluctant habitually to spend as much as they are physiologically capable of.
+
+how would you measure metabolic ceiling in a coral? See Barott papers?
+
+## Chapter 5: Phenotypic plasticity: matching phenotypes to environmental demands 
