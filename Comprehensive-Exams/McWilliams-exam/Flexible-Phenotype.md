@@ -76,4 +76,17 @@ animals are reluctant habitually to spend as much as they are physiologically ca
 
 how would you measure metabolic ceiling in a coral? See Barott papers?
 
-## Chapter 5: Phenotypic plasticity: matching phenotypes to environmental demands 
+## Chapter 5: Phenotypic plasticity: matching phenotypes to environmental demands
+
+Plastic barnacle penis example of environment influencing phenotype and function.
+
+Use it or lose it:  
+- heart morphology based on usage: atrophy vs. hypertrophy  
+- in space calf muscle decreases by 20% and in on earth weightless scenarios. positive correlation of decrease in leg muscles (%) and duration of unloading experiment
+
+After losing it, it is possible to regain it:  
+- astronauts 6 mos post flight can regain % muscle
+
+Dynamic gut: snakes go through veritable 'gastrointestinal rebirths': going without meals for so long that stonachs, intestines, and accesory organs shrink and become 'dormant'  
+- when they eat again, it is a huge meal and there is a burst of physiological activity by orders of magnitude  
+- 
