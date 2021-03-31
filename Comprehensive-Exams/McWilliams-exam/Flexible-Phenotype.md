@@ -119,6 +119,20 @@ Lower predictability means it would be better for an organism to respond opportu
 
 Variable responses: organisms encountering unpredictably variable environments in the course of their lifetime would benefit from plasticity being reversible; i.e. showing *phenotypic flexibility*.
 
-In a low predictability environment, organisms could *bet-hedge* and development phenotypic changes at random in short-lived organisms. Long-lived organisms could deal with this by not changing at all and show *robustness*. 
+In a low predictability environment, organisms could *bet-hedge* and development phenotypic changes at random in short-lived organisms. Long-lived organisms could deal with this by not changing at all and show *robustness*.
 
 > why couldn't bet-hedging be true for long-lived organisms? and vice versa with robustness?
+
+**Costs and limits of plasticity**
+
+![FP4](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/FP-4.png?raw=true)
+
+**Degrees of flexibility**
+
+Cell types could have differing responses to functionality  
+- Sled dogs in the summer when not in use, had thinner muscle and decreases in mitochondrial numbers, lipid droplet size, and number of contractile myofibrillar elements but capillary networks remained the same
+
+In theory for phenotypic plasticity to evolve, no single phenotype can be optimal in all environments experienced by the organism.  
+- Therefore, there must be trade-offs. and reliable cues to inform the organism about the state of its variable environment.
+
+Plasticity itself is a trait with a genetic basis
