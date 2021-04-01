@@ -9,7 +9,7 @@ A compilation of my resources for studying for comprehensive exams. Each folder 
 - epigenetics/methylation details and history of the field  
 - interaction between genetics for evolutionary outcomes  
 
-semi-open book; HP chooses the resources available  
+semi-open book; HP chooses the resources available. In the past her exam has been 8 hours.  
 will email in the morning with questions and need to return them by certain time.
 
 ## Dr. Scott McWilliam's Exam
@@ -23,7 +23,7 @@ Snell-Rood et al: Mechanisms of plastic rescue.
 
 Focus on the topics covered in OCG594 this semester with a focus on the background readings from each week. I suggested mutualism with multicellular organisms and cooperation/communication topics in particular.
 
-In the past she has done open book and allowed for 12 hours. 
+In the past she has done open book and allowed for 12 hours.
 
 ## Table of Contents
 
