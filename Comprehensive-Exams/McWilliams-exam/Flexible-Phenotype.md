@@ -136,3 +136,14 @@ In theory for phenotypic plasticity to evolve, no single phenotype can be optima
 - Therefore, there must be trade-offs. and reliable cues to inform the organism about the state of its variable environment.
 
 Plasticity itself is a trait with a genetic basis
+
+Traits are only so plastic, there is likely to be a leveling off point where the organism isn't able to continuously increase their plasticity even if the signal is continued or increased.  
+- organizational limit or functional limit that reflects the high cost of a phenotype i.e. a defensive phenotype (frog with predator presence example)
+
+Reductions in metabolically active tissue dramatically reduce basal energy requirements.
+
+Reproductively successful phenotypes will satisfy ecological demands by optimizing the balance between various cost and benefit functions of specific kinds of phenotypic (trait) variation. 
+
+## Chapter 9: Population consequences: conservation and management of flexible phenotypes
+
+Information other than genes influence phenotype, but there is a limit to coping to environment pertubations.

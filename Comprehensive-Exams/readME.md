@@ -21,6 +21,8 @@ Snell-Rood et al: Mechanisms of plastic rescue.
 
 ## Dr. Roxanne Beinart's Exam
 
+Focus on the topics covered in OCG594 this semester with a focus on the background readings from each week. I suggested mutualism with multicellular organisms and cooperation/communication topics in particular. 
+
 ## Table of Contents
 
 **DNA Methylation**:  
@@ -40,4 +42,4 @@ read more Snell-Rood papers
 exploration-exploitation trade-off notes  
 
 GxE interactions  
-rates of population fitness evolution vs natural selection 
+rates of population fitness evolution vs natural selection
