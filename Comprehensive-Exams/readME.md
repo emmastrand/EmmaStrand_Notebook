@@ -21,7 +21,9 @@ Snell-Rood et al: Mechanisms of plastic rescue.
 
 ## Dr. Roxanne Beinart's Exam
 
-Focus on the topics covered in OCG594 this semester with a focus on the background readings from each week. I suggested mutualism with multicellular organisms and cooperation/communication topics in particular. 
+Focus on the topics covered in OCG594 this semester with a focus on the background readings from each week. I suggested mutualism with multicellular organisms and cooperation/communication topics in particular.
+
+In the past she has done open book and allowed for 12 hours. 
 
 ## Table of Contents
 
