@@ -19,4 +19,87 @@ Ultimate vs proximate causes:
 - Ultimate: selective advantages that led to the origin and retention of a trait; *"why?"*  
 - Proximate: refer to the "mechanism"/the means by which the beneficial trait is achieved.
 
-intermediate level of protein structural stability (not too rigid or too flexible) is important to ensure optimal protein function. the proximate cause would be amino acid substitutions that modify the inherent structural stability of the protein OR modulating the intracellular fluid that bathes the protein. Either way the same result could occur of intermediate level of protein stability 
+Intermediate level of protein structural stability (not too rigid or too flexible) is important to ensure optimal protein function. the proximate cause would be amino acid substitutions that modify the inherent structural stability of the protein OR modulating the intracellular fluid that bathes the protein. Either way the same result could occur of intermediate level of protein stability
+
+Exaptations: subsequent exploitations of a trait (that was adapted and had beneifical function) for other functions  
+- BAT from previous mechanisms that reduced production of ROS
+
+#### Sources of genetic and phenotypic variation that provide the "raw material" for adaptive change
+
+**Horizontal gene transfer (HGT)**:  
+
+Genes are exchanged either between different evolutionary lineages or between conspecifics  
+- organisms can acquire types of genes needed for local environments  
+- can favor rapid and extensive rebuilding of genetic "toolkit" (in microbiome)  
+
+> Organisms can shuffle genes?? how does that even work?? come back to this..
+
+**Gene duplication**
+
+Duplication of genes followed by sequence changes that lead to adaptive variations on different protein themes -- major mechanism for facilitating exaptation at the protein level.
+
+ploidy: the entire genome is duplicated  
+tandem gene duplication: individual gene is copied but this can also include blocks of genes that support specific biochemical functions
+
+> Interaction with methylation? If a gene is methylated/modified epigenetically, is it physically possible to copy that? Does the methyl mark continue or does it have to expend the energy to get rid of it?
+
+Increases in ploidy or tandem gene duplication creates paralogous genes that encode protein paralogs.
+
+**Allelic polymorphism**
+
+allozyme: when non-synonymous nucleotide changes in one allele for a protein-coding gene lead to alterations in amino acid sequence.
+
+In a changing environment, it would be advantageous to keep allozyme variants that have different environmental optima
+
+Lyon effect: one of two X chromosomes is silened by epigenetic mechanisms
+
+Allel-specific expression (ASE): regulation involving specific genes rather than full chromosomes.
+
+**Local adaptation**
+
+Assembling the right types of genetic variation to enhance the population's success under its particular set of local habitat conditions, which likely differs significantly form another location.  
+- selection for allelic variations of proteins that differ in thermal optima  
+- altered patterns of gene expression   
+
+**RNA editing: splice variants**
+
+Post transcription, pre translation; during preparation to be translated
+
+introns are removed and exons are joined
+
+Intron-free RNA: has been seen to be stress-induced proteins; these have to be expressed without delay so it would be advantageous to skip the splicing step
+
+Splice variants: one expressed gene can be spliced in different patterns and thus result in mature mRNA variants from the same original mRNA
+
+**RNA editing: changing base composition**
+
+mRNA can be chemically modified to alter amino acid sequence. This involves a change in codons and thus can give rise to multiple protein isoforms.
+
+i.e. adenine to inosine by the enzyme adenosine deaminase
+
+**Small regulatory (noncoding) RNAs**
+
+gene that encode small RNA molecules that are transcibed but not translated.  
+- determine whether a specific mRNA gets translated into a protein  
+- controlling half-lives of mRNA  
+
+**Stress-induced unmasking of cryptic genetic variation**
+
+Hsp90 example: in not stressful conditions, this protein is a part of signal transduction pathways as a molecular chaperone to montior the protein folding in that pathway. In stressful conditions, Hsp90 moves to be a chaperone of another class of proteins. Upon leaving the previous function, proteins could be folded incorrectly and lead to disrupted processes and potentially change the phenotype. This has the potential to unmask genetic variation, which has the potential to be adaptive.
+
+**Transgenerational inheritance of epigenetic changes (TGI)**
+
+epigenetic changes that modify gene transcription pass from one generation to the next = TGI
+
+Do epigenetic changes to a chromosome "wash out" after a few generations or are they long-lasting?  
+Epigenetic modifications, if inherited, exist on chromosomes that segregate in the same manner that all nuclear genetic material and thus are subject to the same evolutionary genetic processes that ultimately determine whether they will persist or be lost from a population. Caused by proteins that are themselves genetically encoded and subject to all evolutionary forces like mutuations, genetic drift, and natural selection
+
+**Symbiosis with other organisms**
+
+Symbionts and microbiome.
+
+Eukaryotes have a slower translation rate, which could enable more complex protein structures.
+
+Steno vs. eury therm: stenos may 1.) not have the appropriate proteins any more b/c of evolving in a highly predictable environment 2.) lost the ability to upregulated or expression those genes if even they have them
+
+Smaller changes that can have a big impact: micromolecules (low-molecular-mass constituents) can regulate function or stability of macromolecules, and adjustments to micromolecules themselves -- proton activity (pH) organic osmolyte concentrations 
