@@ -261,5 +261,9 @@ Electron transport system (ETS) use reducing equivalents: NADH and FADH2 at comp
 
 ![fig5](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/biochem2-fig5.jpg?raw=true)
 
+B-oxidation of fatty acids generates acetyl-CoA for the TCA cycle
+
+![fig6](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/biochem2-fig6.1.jpg?raw=true)
+
 
 ## All of that to say that these metabolic pathways are critical to keep regulated, and oxygen levels are critical for the function of metabolism.
