@@ -119,6 +119,27 @@ Metabolic depression (hypometabolism): reducing the requirement for ATP, often i
 
 therefore efficiently functioning cytochrome c oxidase systems is essential
 
-Oxygen's "good side" is generating biologically useful forms of energy (ATP) and "bad side" is
+Oxygen's "good side" is generating biologically useful forms of energy (ATP) and "bad side" is ROS production.
 
 > Can a coral go into an oxygen depleted state if the symbionts are expelled? Lower biproduct consumption of oxygen from photosynthetic pathways of the symbiont?
+
+Oxygen-dependent biosynthetic pathways includes ones that produce collagen, steroid compounds like cholesterol.
+
+Dioxygen (O2) can accept pairs of e- (later used in ATP production) or single e- which leads to production of **reactive oxygen species (ROS)**.  
+- highly reactive; damage DNA, lipids, proteins, integrity of genome and biomolecules  
+- increases as result of cellular stress
+
+Oxygen demands per unit mass are reduced in larger species.
+> how does this differ with tissue thickness?
+How does oxygen enter the coral's body?
+
+Critical oxygen partial pressure (Pcrit): Oxygen concentration below a certain point where performance begins to decline. Higher Pcrit = greater sensitivity to oxygen limitation. This limit is driven by metabolic requirements of partiuclar developmental stages or modes of activity
+
+#### Organismal properties that establish animals' matabolic requirements
+
+Energy metabolism: base function is to provide adequate supply of ATP
+
+Standard metabolic rate: ectotherms (depend on external sources of heat) i.e. corals
+Basal metabolic rate: endothermic homeotherm
+
+![fig1](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/biochem2-1.jpg?raw=true)
