@@ -199,6 +199,8 @@ Flavin-containing nucleotides (FAD): important in reversible oxidation-reduction
 
 Voltage-dependent anion channel (VDAC): regulates transport of ADP and ATP across inner and outer membranes of the mitochondria  
 
+![fig2](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/biochem2-fig2.jpg?raw=true)
+
 #### Bi products of metabolism
 
 metabolite of glycolysis can be coverted to yield fatty acids, triacylglycerides for fat storage and phosphyoglyceride lipids for membranes
@@ -220,6 +222,30 @@ inorganic phospate (Pi):
 
 Different isoforms of these kinases can be expressed within one cell; localized kinases are utilized for optimal fxn
 
+Recycling of mitochondrial ADP by creatine kinases activites oxidative phosphorylation, this enzyme regulates rates of mitochondrial respiration and therefore reduces ROS production.
 
+Reactive Nitrogen Species (RNS) is similar to ROS.
+
+#### Posttranslational modifications and signaling by metabolic pathways
+
+Posttranslational modifications (PTMs) change the activity, location, turnover of proteins in response to shifts in metabolism.
+
+Acetyl-CoA: central metabolite of both carbohydrate and fatty acid catabolism and key building block for synthesis of lipids and cholesterol.
+
+Acetylases: use ACoA as substrate to acetylate proteins, deacetylases remove the acetyl group from proteins  
+- affects almost all metabolic enzymes and nuclear regulatory proteins  
+- increase in levels of ACoA indicate a high energy charge, signaling to the cell the potential for enhancing activities  
+- high levels in nucleus trigger acetylation on histones which leads to loosening of chromatin structure and activation of gene expression
+
+HDACs reverse this process  
+Sirtuins are are a type of HDAC and used NAD+ as a substrate to remove the acetyl group
+
+#### Metabolic control theory
+
+suggests that all enzyme-catalyzed steps in a pathway can contribute to the regulation of flux
+
+#### Aerobic metabolism
+
+Infoldings of inner membrane form **cristase**. 
 
 ## All of that to say that these metabolic pathways are critical to keep regulated, and oxygen levels are critical for the function of metabolism.
