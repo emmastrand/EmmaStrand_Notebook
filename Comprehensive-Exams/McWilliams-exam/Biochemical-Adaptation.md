@@ -246,6 +246,14 @@ suggests that all enzyme-catalyzed steps in a pathway can contribute to the regu
 
 #### Aerobic metabolism
 
-Infoldings of inner membrane form **cristase**. 
+Infoldings of inner membrane form **cristase** that reach into the matrix and serve to increase the surface area of the inner membrane (forms classic shape of mitochondria). Products of metabolic pathways need to be transported across several membranes.
+
+Exchange of metabolites b/w cytosol and intermembrane space is controlled by a **porin** (voltage-dependent anion channel VDAC). VDAC has low selectivity.  
+Exchange across intermembrane into matrix is controlled by adenine nucleotide translactor (ANT), mainly controls exchange of ATP and ADP. NADH is transported into the matrix through malate-aspartate shuttle (**below**).
+
+![fig3](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/biochem2-fig3.jpg?raw=true)
+
+
+
 
 ## All of that to say that these metabolic pathways are critical to keep regulated, and oxygen levels are critical for the function of metabolism.
