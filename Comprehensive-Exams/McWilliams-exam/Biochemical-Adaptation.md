@@ -253,7 +253,11 @@ Exchange across intermembrane into matrix is controlled by adenine nucleotide tr
 
 ![fig3](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/biochem2-fig3.jpg?raw=true)
 
+Pyruvate oxidized by PDH rxn, forming NADH and Acetyl-CoA. Acetyl-CoA feeds into TCA/citrate synthase reaction to form citrate (below)
 
+![fig4](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/biochem2-fig4..1jpg.jpg?raw=true)
+
+Electron transport system (ETS) use reducing equivalents: NADH and FADH2 at complexes I and II. Complex IV = cytochrome c oxidase (see notes above). This builds a chemical and electrical gradient called **proton motive force** that is used in oxidative phosphorylation. 
 
 
 ## All of that to say that these metabolic pathways are critical to keep regulated, and oxygen levels are critical for the function of metabolism.
