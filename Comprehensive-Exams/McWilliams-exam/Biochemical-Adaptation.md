@@ -102,4 +102,23 @@ Eukaryotes have a slower translation rate, which could enable more complex prote
 
 Steno vs. eury therm: stenos may 1.) not have the appropriate proteins any more b/c of evolving in a highly predictable environment 2.) lost the ability to upregulated or expression those genes if even they have them
 
-Smaller changes that can have a big impact: micromolecules (low-molecular-mass constituents) can regulate function or stability of macromolecules, and adjustments to micromolecules themselves -- proton activity (pH) organic osmolyte concentrations 
+Smaller changes that can have a big impact: micromolecules (low-molecular-mass constituents) can regulate function or stability of macromolecules, and adjustments to micromolecules themselves -- proton activity (pH) organic osmolyte concentrations
+
+## Chapter 2: Oxygen and Metabolism
+
+Metabolic depression (hypometabolism): reducing the requirement for ATP, often in response to reduced levels of oxygen.
+
+#### Energy metabolism pathways
+
+**Cytochrome c oxidase system**: supports enhanced yield of ATP per substrate molecule but also a mechanism for decreasing the amounts of toxic oxygen by-products produced during aerobic ATP generation.  
+- via electron transport system (ETS), serving as electron capacitor that stores 4 electrons until the system can be discharged to generate the nontoxic end product, water.  
+- tetravalent reduction of oxygen (4 electrons to dioxygen molecule to from 2 molecules of water)  
+- capacitor function reduces risk of univalent reduction of dioxygen, which generates ROS  
+- five components in oxidase enzyme: 2 heme irons, 2 copper centers with 2 and 1 coppers each  
+- cytochrome c enzyme + cytochome oxidase enzyme
+
+therefore efficiently functioning cytochrome c oxidase systems is essential
+
+Oxygen's "good side" is generating biologically useful forms of energy (ATP) and "bad side" is
+
+> Can a coral go into an oxygen depleted state if the symbionts are expelled? Lower biproduct consumption of oxygen from photosynthetic pathways of the symbiont?
