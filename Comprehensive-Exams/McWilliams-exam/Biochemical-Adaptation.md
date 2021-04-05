@@ -159,7 +159,7 @@ Specific dynamic action (SDA): postabsorptive increase in energy metabolism
 6. abiotic factors: temperature, oxygen concentration, cellular stress b/c of the need to maintain cellular homeostasis and repair tissue damage
 
 2 types of biochemical responses: types of metabolic pathways AND alterations in the flux rates through those pathways.
-> Are all coral pathways the same? 
+> Are all coral pathways the same?
 
 #### Main pathways of ATP production
 
@@ -196,6 +196,8 @@ NADPH: used in many anabolic reduction rxns; pentose phosphate pathway (PPP) is 
 
 Flavin-containing nucleotides (FAD): important in reversible oxidation-reduction rxns; ATP generation  
 - FADH2 used in TCA cycle and deliver e- to ETS in complex II
+
+Voltage-dependent anion channel (VDAC): regulates transport of ADP and ATP across inner and outer membranes of the mitochondria  
 
 #### Bi products of metabolism
 
