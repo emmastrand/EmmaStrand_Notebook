@@ -265,5 +265,45 @@ B-oxidation of fatty acids generates acetyl-CoA for the TCA cycle
 
 ![fig6](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/biochem2-fig6.1.jpg?raw=true)
 
+Mitochondrial functions
+
+![fig7](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/mitochondria-cycles.png?raw=true)
+
+#### Genetic aspects
+
+Hybrid breakdown: breakdown in fitness in F2 hybrid generation in crosses between population.
+
+Maternal inheritance of the mitochondrial genome is essentially clonal.
+
+Intergenomic (nuclear and mitochondrial) coadaptation between gentically distinct populations of copepods caused hybrid breakdown (disrupted function) when populations were hybridized.  
+- divergence of mitochondrial sequences of COI of subunit of cytochrome c oxidase (complex IV) can be high in populations (especially in those locally adapted)
+
+#### Oxidative Stress: Production and Scavenging of ROS
+
+Cytochrome c oxidase (COX) is an electron capacitor, holding e- until the system can discharge a univalent reduction of molecular oxygen into water. Sometimes this reduction can produce ROS instead.
+
+Reactive species: strong tendency to either provide (reduce) or extract (oxidize) e- to or from other molecules.  
+Radicals: unpaired e- on the outer shell and are ore strongly oxidizing
+
+ROS:  
+**1. Superoxide anion (O2 -)**  
+**2. Hydrogen peroxide (H2O2)**: longer half life and less radical, allowing it to diffuse easily across inner mitochondrial membrane, ER, and peroxisomal membranes. This is facilitated by aquaporins. Therefore H2O2 can affect processes far from its origin.  
+- when reacts with ferrous iron (Fe 2+) its converted into OH (this is the Fenton rxn)  
+
+**3. Hydroxyl radical (OH)**: most reactive ROS, most scavenging is targeted at H2O2 so that it doesn't turn into OH
+
+Manganese superoxide dismutase (Mn-SOD)
+
+ROS scavenging systems:  
+- glutathione and thioredoxin-peroxiredoxin systems  
+- catalase
+
+ROS causes oxidative damage which changes the structure and fxn of DNA. This is fixed by base excision repair and nucleotide excision repair mechanism -- DNA damage recognition and repair enzymes.
+
+ROS causes oxidation of fatty acids and cholesterol, causes leaking membranes and alteration of lipid-protein interactions with membranes.
+
+Oxidation of proteins is a removal of hydrogen from alpha carbon atom of an amino acid residue. This triggers a downstream cycle that results in degradation of proteins and protein function.
+
+Metabolic depression (reduction of mitochondrial activity) can reduce rates of ROS generation.
 
 ## All of that to say that these metabolic pathways are critical to keep regulated, and oxygen levels are critical for the function of metabolism.
