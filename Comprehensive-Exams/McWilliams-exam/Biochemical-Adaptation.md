@@ -292,6 +292,16 @@ ROS:
 
 **3. Hydroxyl radical (OH)**: most reactive ROS, most scavenging is targeted at H2O2 so that it doesn't turn into OH
 
+Generates from:  
+1. Complexes I and III of ETS  
+2. PDH  
+3. aKGH of the TCA cycle
+
+In conditions of:  
+1. high CoQH2/CoQ ratios  
+2. high NADH/NAD+ ratios  
+3. large proton gradients
+
 Manganese superoxide dismutase (Mn-SOD)
 
 ROS scavenging systems:  
@@ -305,5 +315,17 @@ ROS causes oxidation of fatty acids and cholesterol, causes leaking membranes an
 Oxidation of proteins is a removal of hydrogen from alpha carbon atom of an amino acid residue. This triggers a downstream cycle that results in degradation of proteins and protein function.
 
 Metabolic depression (reduction of mitochondrial activity) can reduce rates of ROS generation.
+
+In mitochondria:
+
+![mito](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/biochem2-fig7.1.jpg?raw=true)
+
+Pyruvate and aKG function like antioxidants and facilitate scavenging of ROS. They protect neurons from H2O2
+
+**Example of response in mussels**
+
+Decreases in abundance, changes in subunit composition, and posttranslational modifications of metabolic enzymes are potential mechanisms of regulation. All towards down regulation of metabolism and possbily ROS production with a switch to production of NADPH, which can serve as a reducing equivalent for ROS scavenging.
+
+
 
 ## All of that to say that these metabolic pathways are critical to keep regulated, and oxygen levels are critical for the function of metabolism.
