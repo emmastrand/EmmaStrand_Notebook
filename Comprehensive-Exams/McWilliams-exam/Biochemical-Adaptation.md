@@ -332,8 +332,17 @@ Decreases in abundance, changes in subunit composition, and posttranslational mo
 
 Supply of ADP to ATP synthase rxn is needed to allow reentry of protons that have been moved outward across inner membrane by ETS (see below). The supply of ADP depends on the use of ATP that drives various work in the cell. When ATP use rates are low, e- builds up and leakage of those e- will produce superoxide. "safety valve" = uncoupled proteins that allow transport of e- back into the inner membrane space for COX that isn't dependent on ATP production and ADP use.
 
-![fi9]()
+![fi9](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/biochem2-fig9.jpg?raw=true)
 
 But potential is high to waste large amounts of E so it is very tightly regulated and only when danger of ROS generation arises.
+
+**ROS scavenging**  
+
+First line of defense:  
+Manganese superoxide dismutase (MnSOD): converts superoxide into hydrogen peroxide in mitochondria  
+Copper-zinc SOD (Cu-Zn-SOD): does the above in the inner membrane space  
+
+Second line of defense:  
+Hydrogen peroxide dismutation by catalase in peroxisome, AND glutathione peroxidase (GPx) and peroxiredoxin (Prx) in mitochondria. 
 
 ## All of that to say that these metabolic pathways are critical to keep regulated, and oxygen levels are critical for the function of metabolism.
