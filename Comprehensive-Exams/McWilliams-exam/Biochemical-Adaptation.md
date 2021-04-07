@@ -349,4 +349,47 @@ Hydrogen peroxide dismutation by catalase in peroxisome, AND glutathione peroxid
 
 ![fig11](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/biochem2-fig11.jpg?raw=true)
 
+Thioredoxin-peroxiredoxin system: H2O2 scavenging; Trx, Prx.
+
+In polychaetes during acute thermal stress: heat tolerant species did not change SOD isoforms. GR = gutathione reductase.
+> This lines up with 1st chapter data. Mcap didn't change TAC, but there is higher variation and higher values of TAC in Pacuta.
+
+![fig12](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/biochem2-fig12.1.jpg?raw=true)
+
+Low pH may cause increase in ROS production through release of heavy metals such as Fe2+ from intracellular stores, triggering the Fenton rxn, or through intxn of CO2 with peroxynritrite resulting in reactive O, N, C species.
+
+**Non-enzymatic antioxidant responses**
+
+Glutathione (main cellular non-enzymatic antioxidant), ascorbic acid (vitamin C), a-tocopherol (vitamin E), and carotenoids.
+
+Ascorbate is a co-factor for several enzymes.
+
+Antartic fishes might have higher levels of the above systems and a creater capacity to scavenge ROS.
+
+**Sources of reducing power (NADPH)**
+
+GR and TR require NADPH to maintain levels of reduced Glutathione and thioredoxin, therefore the pathways to produce NADPH are important in antioxidant response too.
+
+Pathways to produce NADPH: cystolic pentose phosphate pathway (PPP), NADP-dependent dehyrdogenases, and transhydrogenase. NADP-IDH and ALDH.
+
+Acute stress in Mytilus caused increase in the above and in the non-oxidative PPP process that resulted in many NADPH.
+
+**Oxidative stress in the ER**
+
+Secreted and membrane proteins fold and mature in the ER; newly translated proteins, formation and proof-reading and disulfide bond formation.
+
+Maturation of proteins in the ER happens before glycosylation and then are exported can be a source of ROS.
+
+ER is a compartment that is highly sensitive to environmental challenge. ER molecular chaperones: PDI, Grp78, Grp94. Studies in mussels have shown that these increase in response to acute salinity stress and decreased in recovery.
+
+Rates of H2O2 production from disulfide bond formation would follow the same pattern of increase/decrease of use of molecular chaperone. Then, this effect would be mirrored in changes in antioxidant protein expression.
+
+#### Metabolic Rates and Oxygen
+
+States where metabolic rates drop well below the BMR/SMR is referred to metabolic depression / hypometabolism. Hypermetabolism = Maximum metabolic rates (MMR) achieved during exhaustive physical activity. Field metabolic rate = organisms going about their lives sustain varying metabolic rates for various activities.
+
+This is measured by calorimetry: production of heat is most direct way to quantify metabolic rate = direct calorimetry  
+Measurements of oxygen consumption = indirect calorimetry  
+
+
 ## All of that to say that these metabolic pathways are critical to keep regulated, and oxygen levels are critical for the function of metabolism.
