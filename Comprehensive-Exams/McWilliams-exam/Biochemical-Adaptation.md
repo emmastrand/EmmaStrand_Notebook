@@ -343,6 +343,10 @@ Manganese superoxide dismutase (MnSOD): converts superoxide into hydrogen peroxi
 Copper-zinc SOD (Cu-Zn-SOD): does the above in the inner membrane space  
 
 Second line of defense:  
-Hydrogen peroxide dismutation by catalase in peroxisome, AND glutathione peroxidase (GPx) and peroxiredoxin (Prx) in mitochondria. 
+Hydrogen peroxide dismutation by catalase in peroxisome, AND glutathione peroxidase (GPx) (glutathione system) and peroxiredoxin (Prx) in mitochondria.
+
+![fig10](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/biochem2-fig10.jpg?raw=true)
+
+![fig11](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/biochem2-fig11.jpg?raw=true)
 
 ## All of that to say that these metabolic pathways are critical to keep regulated, and oxygen levels are critical for the function of metabolism.
