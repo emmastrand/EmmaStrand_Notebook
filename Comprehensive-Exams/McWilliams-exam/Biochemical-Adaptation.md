@@ -286,7 +286,7 @@ Reactive species: strong tendency to either provide (reduce) or extract (oxidize
 Radicals: unpaired e- on the outer shell and are ore strongly oxidizing
 
 ROS:  
-**1. Superoxide anion (O2 -)**  
+**1. Superoxide anion (O2 -)**: causes by leakage of e- from ETS   
 **2. Hydrogen peroxide (H2O2)**: longer half life and less radical, allowing it to diffuse easily across inner mitochondrial membrane, ER, and peroxisomal membranes. This is facilitated by aquaporins. Therefore H2O2 can affect processes far from its origin.  
 - when reacts with ferrous iron (Fe 2+) its converted into OH (this is the Fenton rxn)  
 
@@ -324,8 +324,16 @@ Pyruvate and aKG function like antioxidants and facilitate scavenging of ROS. Th
 
 **Example of response in mussels**
 
-Decreases in abundance, changes in subunit composition, and posttranslational modifications of metabolic enzymes are potential mechanisms of regulation. All towards down regulation of metabolism and possbily ROS production with a switch to production of NADPH, which can serve as a reducing equivalent for ROS scavenging.
+Decreases in abundance, changes in subunit composition, and posttranslational modifications of metabolic enzymes are potential mechanisms of regulation. All towards down regulation of metabolism and possbily ROS production with a switch to production of NADPH from pro-oxidant NADH, which can serve as a reducing equivalent for ROS scavenging.
 
+![fig8](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/biochem2-fig8.jpg?raw=true)
 
+**Uncoupling proteins**
+
+Supply of ADP to ATP synthase rxn is needed to allow reentry of protons that have been moved outward across inner membrane by ETS (see below). The supply of ADP depends on the use of ATP that drives various work in the cell. When ATP use rates are low, e- builds up and leakage of those e- will produce superoxide. "safety valve" = uncoupled proteins that allow transport of e- back into the inner membrane space for COX that isn't dependent on ATP production and ADP use.
+
+![fi9]()
+
+But potential is high to waste large amounts of E so it is very tightly regulated and only when danger of ROS generation arises.
 
 ## All of that to say that these metabolic pathways are critical to keep regulated, and oxygen levels are critical for the function of metabolism.
