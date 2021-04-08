@@ -1,5 +1,7 @@
 # History matters: influence of variability
 
+## pCO2 variability
+
 ### Wall et al 2020: shifting baselines; physiotypes
 
 paper link [here](https://www.biorxiv.org/content/biorxiv/early/2020/08/11/2020.04.23.056457.full.pdf).
@@ -79,3 +81,72 @@ When calculating response ratios across the two ways to estimate difference in e
 3.) Limited environmental measurements limit our ability to seperate differential mean conditions from variable conditions. This has not been tested adequately in pH variable conditions.
 
 4.) If local adaptation is the main driver, translocation from HV to LV environments may not be effective since the signal has disappeared and that coral's history would have come from several generations.
+
+### Cornwall et al 2018: Corals/CCA to OA: phys control under pH var
+
+Paper link [here](https://royalsocietypublishing.org/doi/pdf/10.1098/rspb.2018.1168).
+
+Goniopora sp. (coral) and Hydrolithon reinboldii (CCA) from two sites of distinct pH variability grown for 100 days under differing variability and means.
+
+1. Coral calcification rates were unaffected by the above.  
+2. Calcification rates of CCA were faster in HV and HV high mean conditions.  
+3. Only mean seawater pH influenced pH calcifying fluid (pHcf).  
+4. calcifying taxa may be capable of maintaining rates by actively modifying omega cf (Ocf).  
+
+Corals and CCA from greater variability in pH are not more tolerant to OA than those from LV. Species specific mechanisms seem to be more important. Both spp are capable of physiological control.
+
+Maintenance of constant aragonite saturation state of calcifying fluid could occur via 3 possibly complementary mechanisms:  
+1. maintenance of constant pHcf  
+2. elevation of DICcf  
+3. elevation of Ca2+ cf  
+
+## Thermal variability
+
+[Castillo et al 2012](https://www.nature.com/articles/nclimate1577.pdf)
+
+[Barshis et al 2013](https://www.pnas.org/content/pnas/110/4/1387.full.pdf)
+
+[Barshis et al 2018](https://jeb.biologists.org/content/jexbio/221/24/jeb188581.full.pdf)
+
+High variability reduces the risk of coral bleaching: [Safaie et al 2018](https://www.nature.com/articles/s41467%20018%2004074%202)
+
+Thermal variability did not enhance tolerance: [Klepac and Barshis 2020](https://royalsocietypublishing.org/doi/full/10.1098/rspb.2020.1379)
+
+[Thompson and van Woesik 2009](https://royalsocietypublishing.org/doi/pdf/10.1098/rspb.2009.0591?casa_token=jCoc80ValSgAAAAA:kE5yyWuPR5V5TbFDIQGdPb0w7-PPMfQMqlTYEZkIH7Nbgnb5-sKtmZO76aMWiFGwGtqs8tko5UNCwsI)
+
+Seasonal variability/range and influence on microbiome: [Shiu et al 2017](https://www.nature.com/articles/s41598-017-14927-3/briefing/signup/)
+
+Thermal variability did not play a role in symbiont community determination: [Baumann et al 2018](https://link.springer.com/article/10.1007/s00248-017-1096-6)  
+Same sites as above: microbiome vs symbiont in those HV and LV sites: [Speare et al 2020](https://onlinelibrary.wiley.com/doi/pdf/10.1111/mec.15497?casa_token=Swd_mEpWHhIAAAAA:vVFU01FtXpVy--7dWFU4-kLOxCY921uRQJHempithQiWteR_3XL_IgdtXfNuL8GynD2AD2KiHc3DgMxX)
+
+Corals from most extreme thermal environments escape mortality: [Pineda et al 2013](https://aslopubs.onlinelibrary.wiley.com/doi/pdfdirect/10.4319/lo.2013.58.5.1531)
+
+# History matters: influence of recurrent stress events / pre conditioning
+
+[Middlebrook et al 2008](https://jeb.biologists.org/content/jexbio/211/7/1050.full.pdf).
+
+[Maynard et al 2008](https://link.springer.com/content/pdf/10.1007/s00227-008-1015-y.pdf)
+
+Short term preconditioning to higher temperatures provides tolerance: [Bellantuono et al 2012](https://royalsocietypublishing.org/doi/pdf/10.1098/rspb.2011.1780)
+
+# History matters: influence of origin (general)
+
+Warmer water gorgonians have increased tolerance: [Linares et al 2013](https://www.sciencedirect.com/science/article/pii/S0141113613000743?casa_token=why3jFweb3cAAAAA:aknTxZ89KEgXaW3pu1doFDpL-AKpJUSA84TgEY0d3z79wciMmI58vN5es5RRPryP6b3lNptrD8A)
+
+### Castillo and Helmuth 2005
+
+Paper link [here](https://link.springer.com/article/10.1007/s00227-005-0046-x)
+
+### Kev's Global change biology paper
+
+#### General to sort through later
+
+Reefs with higher frequency of thermal anomalies displayed differential susceptability to coral disease ([Randall et al 2014](https://esajournals.onlinelibrary.wiley.com/doi/pdf/10.1890/13-0774.1?casa_token=J6jJeDbwpSsAAAAA:sKK-bZtFpm9FMSi4Q24yr_YTQLuoyb5c-gNUoeLKBJixUYhR-1pZJvFNoEaxVNcYNNb2QlbymYX-UNaY)).
+
+Differential thermal regimes influence lesion recovery: [Kaufman et al 2021](https://link.springer.com/article/10.1007/s00338-020-02025-2)
+
+# Environmental memory
+
+Squirts and antioxidant capacity and how they define ways of environmental memory.
+
+Decadal 'memory' after previous high solar irradiance exposure: [Brown et al 2014](https://link.springer.com/article/10.1007/s00227-014-2596-2)
