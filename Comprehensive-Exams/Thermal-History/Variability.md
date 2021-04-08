@@ -61,3 +61,21 @@ Cites ~6 experiments that all yielded no significance in response from pH distin
 Two ways to estimate difference b/w expt condition and natural regime of env. conditions:  
 1. diff b/w expt conditions and mean condition reported from collection site  
 2. diff b/w expt conditions and min or max of env. condition
+
+When calculating response ratios across the two ways to estimate difference in expt condition and natural regime:  
+
+![fig2-rivest](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Thermal-History/Rivestetal2017.png?raw=true)
+
+**Caveats to higher variability environments act as a refugee:**  
+
+1.) Greater pH variability might not select solely for low-pH tolerance in resident organisms b/c high pH during the day may impose independent selective pressures for photosynthetic spp.  
+- seawater carbonate chemistry affects calcification and photosynthesis.  
+- Higher pH during the day = lower concentrations of CO2 (opposite effect of OA), which could be a brief period of recovery that allows for faster calcification.  
+- increases in pH could constrain photosynthesis or increase use of E expensive carbonate concentrating mechanisms CCMs. CCMs allow uptake of dissolved inorganic carbon as bicarbonate during periods of low [CO2] - which happens during high variability.  
+- use of CCMs becomes more prevalent when [oxygen] co-occur with high pH - during the day in diurnally variable pH. HV pH env may select for organisms that are efficient at using bicarbonate when pH is high, these organisms may be outcompeted by organisms that don't investe their E heavily in CCMs when OA results in lower pHs.  
+
+2.) Organisms living in highly variable environments could be living on the edge of their physiological capacity to cope with multiple varying stressors. Integration of stressors may push organisms over their tolerance levels - diel variation in temp AND pH. Shifting means could push this over.  
+
+3.) Limited environmental measurements limit our ability to seperate differential mean conditions from variable conditions. This has not been tested adequately in pH variable conditions.
+
+4.) If local adaptation is the main driver, translocation from HV to LV environments may not be effective since the signal has disappeared and that coral's history would have come from several generations.
