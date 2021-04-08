@@ -429,8 +429,11 @@ Oxygen- and capacity- limited thermal tolerance (OCLTT): framework for how oxyge
 
 The available energy flux  through any organism will have to prioritize the maintenance of BMR/SMR. Sometimes to the detriment of growth, storage, reproduction.
 
-Surplus metabolic capacity: difference between BMR and MMR = aerobic scope. An organism's aerobic scope plays a role in setting an organism's capacity to cope with stress. 
+Surplus metabolic capacity: difference between BMR and MMR = aerobic scope. An organism's aerobic scope plays a role in setting an organism's capacity to cope with stress.
 
+Bioenergetic framework:
+
+![fig14](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/biochem2-fig14.jpg?raw=true)
 
 
 ## All of that to say that these metabolic pathways are critical to keep regulated, and oxygen levels are critical for the function of metabolism.
