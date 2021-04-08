@@ -294,7 +294,7 @@ ROS:
 
 Generates from:  
 1. Complexes I and III of ETS  
-2. PDH  
+2. PDH (pyruvate dehydrogenase)
 3. aKGH of the TCA cycle
 
 In conditions of:  
@@ -390,6 +390,47 @@ States where metabolic rates drop well below the BMR/SMR is referred to metaboli
 
 This is measured by calorimetry: production of heat is most direct way to quantify metabolic rate = direct calorimetry  
 Measurements of oxygen consumption = indirect calorimetry  
+
+![fig13](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/biochem2-fig13.jpg?raw=true)
+
+Metabolic rates of single cells decrease with increasing body mass in birds, animals, and non-avian reptiles.
+> I don't think corals would follow the same trend? How is energy dissipated across the whole colony? I don't think a polyp on one side is providing a major amount of resources to other side in the same way other animals' bodies do.
+
+Potential differences in metabolic function:  
+1. more mitochondria per unit of mass of tissue  
+2. more enzymes per unit of mass of mitochondria  
+3. enzymes with different specific activities
+
+Differential enzyme function:  
+1. intrinsic catalytic power of an enzyme: rate at which an active site can convert substrate to product  
+2. posttranslational modifications that modify the Kcat value of the proteins  
+3. change the milieu in which enzymes work to alter the specific activity of the enzyme. In respiration, the milieu is the lipid composition of the inner mitochondrial membrane. The lipid environment surrounding the proteins involved in respiration modulates their activity = viscoptropic effect.
+
+highly viscous lipid environment = more resistance for proteins. Decreasing viscuosity = increase rate of protein function
+
+#### Metabolic depression and hypometabolism
+
+Adverse conditions challenge organisms' ability to maintain ATP turnover rates. One common response is to down-regulate metabolism or overall ATP turnover rate. Characterized by a reduction in mitochondrial respiration and ATP synthesis, down-regulating ATP-consuming processes, reduction in ion regulation (activity of NA+ - K+ - ATPase), protein synthesis, biosynthesis of other macromolecules and cellular assemblages. Increase in protein stabilization to prolong lifespan.
+
+In brine shrimp during metabolic depression, they downregulated processes that generated Acetyl-CoA that goes into the TCA cycle: PDH. Which also generates ROS.
+
+Drops in pH: response likely depends on function of vacuolar proton pump / V-ATPase. Its purpose is to acidify cellular components such as lysosomal vesicles.
+
+Energetic cost of transcription is a lot smaller than protein synthesis. MicroRNAs regulate the expression of 60% of all protein-coding genes.
+
+Nuclear factor erythroid 2-related factor 2 (Nrf2) = txn factor that increases expression of several antioxidant proteins.
+> Check this in invertebrates?
+
+#### Energy Homeostasis and Environmental Stress: A Conceptual Framework
+
+Dynamic Energy Budget (DEB) model: balances energy acquisition and allocation among competing phys processes within an individual.
+
+Oxygen- and capacity- limited thermal tolerance (OCLTT): framework for how oxygen supply sets limits to stress tolerance.
+
+The available energy flux  through any organism will have to prioritize the maintenance of BMR/SMR. Sometimes to the detriment of growth, storage, reproduction.
+
+Surplus metabolic capacity: difference between BMR and MMR = aerobic scope. An organism's aerobic scope plays a role in setting an organism's capacity to cope with stress. 
+
 
 
 ## All of that to say that these metabolic pathways are critical to keep regulated, and oxygen levels are critical for the function of metabolism.
