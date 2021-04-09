@@ -46,6 +46,10 @@ TRPs can also be involved in phototransduction.
 
 TRPM3 (found in mammals) is conserved in Hydra vulgaris: nociceptor calcium channel involved in detection of noxious heat. heat shock protein and TRPM3 (i.e. pregnenolone sulfate) induces modulation of heat shock protein 70 and nitric oxide synthase (NOS). TRPM3 agonist and heat shock induce expression of nuclear txn enrythroid 2-related factor (Nrf2) and superoxide dismutase (SOD) ([Malafoglia et al 2016](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0151386)).
 
+[Glauser and Goodman 2016](https://core.ac.uk/download/pdf/79427351.pdf) figure below:  
+
+![thermo](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/thermal-transduction.png?raw=true)
+
 ## Photo-related signaling
 
 ### Photoreception
