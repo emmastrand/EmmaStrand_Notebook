@@ -26,9 +26,31 @@ For Holobiont Integration, we are processing 5 timepoints: 30 hour, 2 weeks, 4 w
 - P. acuta 2878 has already been sequenced from this project for the methylation methods comparison paper so we won't need to do this one again.  
 - I started with n=3 and n=4 during trial runs but worked my way up to n=8 and n=10 at a time for this protocol. My maximum will probably be 16 samples at a time.  
 - These samples will be sequenced with K. Wong and my 2nd chapter Hawaii Bleaching Pairs project. This will span across 4 lanes, each project taking up its own lane and HoloInt using 2 lanes.  
-- HoloInt indices: #1-60
+- HoloInt indices: #1-60  
+- I give every sample a Pico # which is the number of the pico methylation prep I have done. There are going to be some samples that need to be re-done and for ease of labeling tubes, I will refer to each sample by their Pico # instead of the Plug ID. This will make it easier to set aside the desired tubes for sequencing rather than going by Plug ID and date of PMS protocol. 
 
-##
+## Post Pico Methylation Protocol Quantification
+
+As of 2021-03-31: 6/60 are done.
+
+| Plug_ID 	| Pico # 	| PMS_Date 	| DNA 1 	| DNA 2 	| Qubit (ng/uL) 	| Tapestation pass? 	| Final Pico Prep? 	|
+|---------	|--------	|----------	|-------	|-------	|---------------	|-------------------	|------------------	|
+| 1296    	| 1      	| 20210331 	| 23.2  	| 23    	| 23.1          	| Yes               	| Yes              	|
+| 2197    	| 2      	| 20210331 	| 20.4  	| 20.4  	| 20.4          	| Yes               	| Yes              	|
+| 1225    	| 3      	| 20210331 	| 13.3  	| 13.2  	| 13.25         	| Yes               	| Yes              	|
+| 1728    	| 4      	| 20210331 	| 9.38  	| 9.34  	| 9.36          	| Yes               	| Yes              	|
+| 2413    	| 5      	| 20210331 	| 21.2  	| 21.2  	| 21.2          	| Yes               	| Yes              	|
+| 1445    	| 6      	| 20210331 	| 17    	| 16.9  	| 16.95         	| Yes               	| Yes              	|
+| 1707    	| 7      	| 20210331 	| 2.78  	| 2.78  	| 2.78          	| No                	| No               	|
+| 2212    	| 8      	| 20210331 	| 5.96  	| 5.92  	| 5.94          	| No                	| No               	|
+
+Example of acceptable tapestation result:  
+
+![goodtape](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/WGBS-good-tapestation.png?raw=true)
+
+Example of one I would re-do:  
+
+![badtape](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/WGBS-bad-tapestation.png?raw=true)
 
 Pico #1-3 tapestation [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2021-04-01%20-%2015.23.20.pdf).  
 Pico #4-8 tapestation [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2021-04-01%20-%2015.49.25.pdf).  
