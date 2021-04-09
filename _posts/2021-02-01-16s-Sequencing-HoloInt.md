@@ -160,6 +160,14 @@ We are doing all 11 timepoints: 0, 6, 12, 30 hour, and 1, 2, 4, 6, 8, 12, and 16
 
 In trial runs, we ran 3.33 ng/uL dilutions, but in the rest of the sample processing I decided to run 4 ng/uL for ease of calculations. This results in 12 ng total across 3 replicates (4 ng per replicate) for each sample.
 
+Below is 6 samples from the PCR plates run on a D5000 tapestation. All samples have a high peak at ~80-90 basepairs, which is likely primer dimer. There are 2 other peaks that can also be seen in a gel.
+
+Full tapestation report [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2021-04-08%20-%2015.58.05.pdf).
+
+Below is a representative of the samples run on the tapestation.
+
+![16s](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16s-tapestation.png?raw=true)
+
 ### Post-PCR Gel in Triplicate
 
 Each sample will have 3 gel wells (one per replicate).
@@ -168,7 +176,7 @@ Each sample will have 3 gel wells (one per replicate).
 
 Each sample will have 1 gel well (replicates pooled).
 
-### Prep for GSC
+### Prep for URI GSC
 
 
 ## Troubleshooting "trials"
