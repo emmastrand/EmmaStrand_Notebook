@@ -1,6 +1,52 @@
 # Signal transduction pathways in corals
 
-## Photo-related
+## Thermostranduction  
+
+Neurobiology of TRP Channels in invertebrates [book chapter 4](https://www.ncbi.nlm.nih.gov/books/NBK476114/) (cross reference with what is in corals):  
+- Mechanosensory neurons have to detect mechanical stimuli and thermosensory neurons have to detect temperatures warmer and cooler than the preferred.  
+- Transient receptor potential (TRP) genes encode cation channels with key roles in fxn of sensory neurons. TRP channel subunits detect mechanical and thermal stimuli.
+
+Calcium dependent protein kinase 2 is uprelated in heat stress and plays a role in signal transduction pathways that involve calcium as a second messenger ([Bellantuono et al 2018](https://www.biorxiv.org/content/10.1101/508184v1.full)).
+
+Pre-conditioning-based improvements in thermal tolerance in *P. acuta* are accompanied by host increases in glutathione reductase (GR) activity and expression. This supports reducing intracellular environment that facilitates ROS scavenging and prevents DNA damage. Bax-inhibitor 1 (BI-1) could regulate GR expression in corals through Nrf2/ARE pathway ([Majerova and Drury 2021](https://www.biorxiv.org/content/10.1101/2021.03.15.435543v1.full)).
+
+Transient receptor potential multigene superfamily encodes integral membrane proteins that function as ion channels (](https://genomebiology.biomedcentral.com/articles/10.1186/gb-2011-12-3-218)).  
+- Most are non selective cation channels, only a few are Ca2+ selective  
+- Gating mechanims include: ligand binding, voltage, and changes in temperature, covalent modifications of nucleophilic residues  
+- Activated TRP channels cause depolarization of the cellular membrane, which in turn activates voltage-dependent ion channels and a change of intracellular Ca2+ concentration.
+
+### Thermosensing
+
+Chapter 3 of biochemical adaptation (Somero et al):  
+
+TRP proteins = cation (positive charge) channels that when are thermosensors they are called thermoTRPs. TRP proteins can have differing fxns based on what cell they are in.  
+- D. melanogaster genome encodes for 16 TRPs and the human genome encodes for 28 TRPs.  
+
+Different types of channels:  
+
+![channels](https://www.zoology.ubc.ca/~gardner/F21-08.GIF)
+
+![ion-channel](https://www.researchgate.net/profile/Thomas-Hinze/publication/300113655/figure/fig1/AS:390564332752897@1470129201663/Schematic-representation-of-an-ion-channel-and-its-functional-principle-Cations.png)
+
+Thermal response of thermoTRP variants depends on:  
+1. Temperature at which an ortholog is activated, at which the ion channel opens and therefore neurofiring to occur. Activation temps of TRP channels can reflect differential thermal phenotypes.  
+2. thermoTRPs differ in fxn for increases or decreases in temps.  
+3. Responses of different paralogs of thermoTRPs to increases in temp differ with respecto severity of thermal stress. thermoTRPs are tuned to respond to either 1.) not harmful/moderate temps just beyond optimal range or 2.) potentially damaging temps that are well outside thermal range.
+
+thermoTRPs fxn in conjunction with other temperature-sensing ion channel systems:  
+- An alternative relies on cGMP as a regulatory signal: [cGMP] varies with temperature, so do activities of cGMP-gated ion channels thta modulate activities of thermosensing neurons.
+
+In thermosensing neurons, ion flux rates through temp-sensing ion channels are very responsive to slight changes in temp.
+
+dTRPA1 responds to mild heating  
+TRP PYREXIA: activated at more extreme temperatures  
+TRP PAINLESS: even more extreme temperatures
+
+TRPs can also be involved in phototransduction.
+
+TRPM3 (found in mammals) is conserved in Hydra vulgaris: nociceptor calcium channel involved in detection of noxious heat. heat shock protein and TRPM3 (i.e. pregnenolone sulfate) induces modulation of heat shock protein 70 and nitric oxide synthase (NOS). TRPM3 agonist and heat shock induce expression of nuclear txn enrythroid 2-related factor (Nrf2) and superoxide dismutase (SOD) ([Malafoglia et al 2016](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0151386)).
+
+## Photo-related signaling
 
 ### Photoreception
 
