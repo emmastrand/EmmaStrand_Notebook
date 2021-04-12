@@ -2,6 +2,9 @@
 
 A compilation of my resources for studying for comprehensive exams. Each folder refers to a topic, each with several markdown files of notes and figures as well as the PDFs of papers referenced.
 
+**Logistics**    
+"The graduate manual has not been updated with the changes quite yet. You are not required to go through our office to schedule your comprehensive exams. You will schedule with your committee and then your major professor will submit the results." - Graduate School
+
 ## Dr. Hollie Putnam's Exam
 
 - signal transduction pathways; feedback loops, specific examples  
@@ -25,23 +28,20 @@ Focus on the topics covered in OCG594 this semester with a focus on the backgrou
 
 In the past she has done open book and allowed for 12 hours.
 
-## Table of Contents
+## Notes / To-Do
 
-**DNA Methylation**:  
-[DNA-Methylation.md](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/DNA-methylation/DNA-methylation.md) - DNA methylation pathways and processes, how methylation works, how to interpret this information in a biological context.  
-[Methylation-Bioinfo](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/DNA-methylation/Methylation-Bioinfo.md) - How to analyze DNA methylation data and multiple bioinformatic pipelines.  
+- Environmental history - flush out last details  
+- GxE interactions md. -- phys textbook HP teaches from  
+- Methylation papers at the end of methylation.md and the connected papers.com web   
+- Coral bleaching biology .md -- finish  
+- feedback loops .md -- finish  
+- chapter 3 thermal adaptation finish   
+- Roxanne's folder w/ mds -- regulation of symbiont population within coral cells  
+- Review/whiteboard Scott's exam
 
-**Epigenetics**:  
-[Epigenetic-Modifications.md](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Epigenetics/Epigenetic-Modifications.md) - Types of epigenetic modifications, epigenetic crosstalk, epigenetic reprogramming,   
-
-
-Environmental history  
-Innate immunity vs acquired immunity  
-Assisted evolution, environmental memory, etc.
-
-read more Snell-Rood papers
-
-exploration-exploitation trade-off notes  
-
-GxE interactions  
-rates of population fitness evolution vs natural selection
+Briefly summarize:   
+- Innate immunity vs acquired immunity   
+- Assisted evolution, environmental memory, etc.: its own md?  
+- read more Snell-Rood papers  
+- exploration-exploitation trade-off notes  
+- rates of population fitness evolution vs natural selection
