@@ -36,6 +36,7 @@ In the past she has done open book and allowed for 12 hours.
 - Coral bleaching biology .md -- finish  
 - feedback loops .md -- finish  
 - chapter 3 thermal adaptation finish   
+- HP papers  
 - Roxanne's folder w/ mds -- regulation of symbiont population within coral cells  
 - Review/whiteboard Scott's exam
 
