@@ -45,4 +45,6 @@ Briefly summarize:
 - Assisted evolution, environmental memory, etc.: its own md?  
 - read more Snell-Rood papers  
 - exploration-exploitation trade-off notes  
-- rates of population fitness evolution vs natural selection
+- rates of population fitness evolution vs natural selection  
+- coenzyme Q pool  
+- coral anatomy 

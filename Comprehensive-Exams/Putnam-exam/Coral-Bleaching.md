@@ -2,7 +2,7 @@
 
 Lab copy of Coral Bleaching: Patterns, Processes, Causes, and Consequences ([van Oppen and Lough 2018](https://drive.google.com/drive/u/0/folders/1oV94QeIa_lDELfBGx3MmiYcWrxikD8Uk))
 
-Chapter 8.2: Thermal Response of Algal Symbiont
+## Chapter 8.2: Thermal Response of Algal Symbiont
 
 Symbiosis = dependent on productivity of intracellular algal symbionts and requires photosynthetic production in each host cell.
 
@@ -60,7 +60,43 @@ High demand for DIC from seawater by coral holobiont to support photosynthesis a
 - adequate supply of DIC to algal symbionts = critical for productivity and redox state as carbon fixation is ultimate result of electron transport  
 - b/c of many layers of membranes and high density of symbionts in coral tissues, carbon-concentrating mechanisms are required by both partners
 
-High temps inhibit the Calvin-Benson cycle, limiting carbon fixation as an E sink
+High temps inhibit the Calvin-Benson cycle, limiting carbon fixation as an E sink (not demonstrated in Symbiodiniaceae specifically yet). Photorespiration = fixation of O2 by rubisco, enhanced by high O2:CO2 concentrations. This is not metabolically useful, it is primarily used as an E sink but may consume some abundant O2 and therefore limit ROS production.
 
 Calvin benson cycle:  
 ![calvin](https://useruploads.socratic.org/jnN3z9JNQ2Wx75tr1Pcc_2f4bdc8f8275834d3f5ef434d93bf16b991b2357.png)
+
+Symbiosome pathways:
+
+![sym](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/DNA-methylation/symbiosome.png?raw=true)
+
+Algal mitochondria result in steady state of ROS production, particularly as H2O2.
+
+## Chapter 8.3: Thermal Response of the Coral Host
+
+ROS and reactive nitrogen species are important signaling molecules. Host reaction based on elevated antioxidant activity was seen several days prior to the symbiont's antioxidant reaction.  
+- coenzyme Q pool measurement (look into this later..?)  
+- heat shock response can occur in host without photoinhibition or bleaching  
+- primary source of ROS in host is the mitochondrian b/c of its role in central metabolism, calcium storage, and apoptosis  
+
+*Aiptasia* host mitochondria undergo morphological changes after thermal shock, followed by mitochondrial permeabilization and degradation, host cell apoptosis, symbiont cell degradation.
+
+Reduced mRNA abundane of cytochrome c and ATP synthase - both central to ETS.
+
+Mitochondria also store calcium, a secondary messenger regulating cell function and sensing cell stress (See [Signal-Transduction notes](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/Signal-transduction.md)).  
+- Calcium pool greatly increases, resulting in mitochondrial permeabilization and release of calcium into the cell which triggers the caspase-mediated apoptosis.  
+- ER is primary store of Ca2+
+
+Calumenin (ER protein) that binds calcium is upregulated in symbiosis, higher temperatures. Particularly in gastrodermal layer  
+- Calcium-binding proteins may be generally involved in the heat stress response. Seen in *A. microphtalma* with concurrent higher expression of antioxidant, heat shock, and Ca2+-binding proteins in symbiont population.  
+
+**Bleaching resistance therefore can depend on the host's ability to maintain calcium homeostasis.**  
+
+ER and mitochondria communicate during cellular response. One of ER's main functions is protein-folding: which is temperature-sensitive and requires the activity of molecular chaperones known as heat shock proteins. Mis-folded proteins trigger the unfolded protein response (UPR): decreased overall protein synthesis, increased protein chaperone and degradation activity, and if stress persists then cell death.
+
+Protein degradation and re-folding in the ER performed by protein disulfide isomerases.  
+
+Caspase activity is induced by NO and involved in pro-apoptotic pathways. Apoptosis (programmed cell death) follows a caspase-mediated signaling cascade. Cnidarian apoptosis pathways are highly conserved and more related to vertebrates than other invertebrates.
+
+B-cell lymphoma 2 (Bcl-2): anti-apoptotic protein that mediates mitochondrial membrane permeability; and indirect antioxidant fxn
+
+## 8.4: Mechanisms of symbiont loss
