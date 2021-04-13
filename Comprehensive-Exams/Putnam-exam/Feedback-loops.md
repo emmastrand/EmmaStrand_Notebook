@@ -25,7 +25,6 @@ Content from Environmental Physiology of Animals: Willmer et al. lab copy [here]
 ![feedbackloop](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/fdbk-loop.png?raw=true)
 
 
-
 ## Examples in corals:
 
 **Negative feedback**  

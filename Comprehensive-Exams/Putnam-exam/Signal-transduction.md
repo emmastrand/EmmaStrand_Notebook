@@ -32,6 +32,9 @@ Ionic calcium: can act as messenger by opening Ca2+ channels and producing an au
 
 ![ca](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/Ca2-path.png?raw=true)
 
+Heat shock pathway:
+
+![heat](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/heat-shock-path.png?raw=true)
 
 ## Thermostranduction  
 

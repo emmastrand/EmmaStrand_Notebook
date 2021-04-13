@@ -64,3 +64,5 @@ Transposable elements:
 - "jumping genes" that can move around the genome as DNA or an RNA intermediate  
 - some carry information for transposition and may accelerate mutation at the sites where they insert and exit. Others carry both instructions for transposition and some other gene  
 - i.e. antibiotic resistance in bacteria
+
+## Chapter 8: Thermal Effects 
