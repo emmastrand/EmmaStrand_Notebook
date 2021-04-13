@@ -33,11 +33,10 @@ In the past she has done open book and allowed for 12 hours.
 - Environmental history - flush out last details  
 - GxE interactions md. -- phys textbook HP teaches from  
 - Methylation papers at the end of methylation.md and the connected papers.com web   
-- Coral bleaching biology .md -- finish  
 - feedback loops .md -- finish  
 - chapter 3 thermal adaptation finish   
 - HP papers  
-- Roxanne's folder w/ mds -- regulation of symbiont population within coral cells  
+- Roxanne's folder w/ mds -- regulation of symbiont population within coral cells  : coral-algal DEB  
 - Review/whiteboard Scott's exam
 
 Briefly summarize:   
@@ -47,4 +46,4 @@ Briefly summarize:
 - exploration-exploitation trade-off notes  
 - rates of population fitness evolution vs natural selection  
 - coenzyme Q pool  
-- coral anatomy 
+- coral anatomy

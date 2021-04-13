@@ -100,3 +100,11 @@ Caspase activity is induced by NO and involved in pro-apoptotic pathways. Apopto
 B-cell lymphoma 2 (Bcl-2): anti-apoptotic protein that mediates mitochondrial membrane permeability; and indirect antioxidant fxn
 
 ## 8.4: Mechanisms of symbiont loss
+
+Exocytosis of whole symbiont cells: algal cells are expelled from the host cells in the gastrovascular cavity and out of the mouth of the animal.  
+Symbiophagy: host autophagic pathways will degrade algal cell within the host cell.  
+See below figure for the remaining mechanisms. 
+
+Symbiont expulsion occurs normally on daily basis as a way to control the symbiont population in a lot of Cnidarians.
+
+![fig](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/symbiont-explusion.png?raw=true)

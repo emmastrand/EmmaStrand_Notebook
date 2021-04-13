@@ -6,7 +6,7 @@ Neurobiology of TRP Channels in invertebrates [book chapter 4](https://www.ncbi.
 - Mechanosensory neurons have to detect mechanical stimuli and thermosensory neurons have to detect temperatures warmer and cooler than the preferred.  
 - Transient receptor potential (TRP) genes encode cation channels with key roles in fxn of sensory neurons. TRP channel subunits detect mechanical and thermal stimuli.
 
-Calcium dependent protein kinase 2 is uprelated in heat stress and plays a role in signal transduction pathways that involve calcium as a second messenger ([Bellantuono et al 2018](https://www.biorxiv.org/content/10.1101/508184v1.full)).
+Calcium dependent protein kinase 2 is upregulated in heat stress and plays a role in signal transduction pathways that involve calcium as a second messenger ([Bellantuono et al 2018](https://www.biorxiv.org/content/10.1101/508184v1.full)).
 
 Pre-conditioning-based improvements in thermal tolerance in *P. acuta* are accompanied by host increases in glutathione reductase (GR) activity and expression. This supports reducing intracellular environment that facilitates ROS scavenging and prevents DNA damage. Bax-inhibitor 1 (BI-1) could regulate GR expression in corals through Nrf2/ARE pathway ([Majerova and Drury 2021](https://www.biorxiv.org/content/10.1101/2021.03.15.435543v1.full)).
 
