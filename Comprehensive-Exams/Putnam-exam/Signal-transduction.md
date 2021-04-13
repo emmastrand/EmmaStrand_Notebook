@@ -12,10 +12,17 @@ Four types of receptor proteins:
 
 ![gprotein](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/receptor-protein.png?raw=true)
 
+![path](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/signaling-path.png?raw=true)
+
 **Intracellular mediators and second messengers:**    
 - messengers are small enough to move through gap junctions b/w adjacent cells so that signaling can be shared amongst cell communities. Extracellular signaling is therefore amplified and integrated together.  
 
-cAMP  
+cAMP:  
+- synthesized from ATP from a membrane-bound enzyme adenyl cyclase  
+- rapidly destroyed by cAMP phosphodiesterase enzymes  
+- can increase five-fold in a few seconds (that's insane..)  
+- works through cAMP-dependent protein kinase (kinase A), being linked to receptor via one or two G-proteins (see diagram above) that are stimulatory or inhibitory    
+- Eventual product of cAMP-induced phosphorylations may bind to a cAMP-response element, adjacent to the transcribed gene, to produce the final response.
 
 Ionic calcium
 
