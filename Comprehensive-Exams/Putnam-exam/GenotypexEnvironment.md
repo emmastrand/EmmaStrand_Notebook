@@ -15,6 +15,8 @@ Evidence of adaptation: only if a trait has changed through time in ways that it
 2. Comparisons of individual differences w/in a species.  
 3. Observation of the effects of altering a character.
 
+Selection for plasticity itself is an adaptation. 
+
 Traits become fixed b/c of natural selection, either presently selected on or previously selected on but now present for reasons that don't have much to do with the original reason for selection. The latter = phylogenetic inertia
 
 **Optimality** is a relative concept and a particular design need only to be sufficient to do better than the existing alternatives (there is such thing as good enough). Natural selection doesn't necessarily provide maximal or even optimal solutions.
@@ -29,3 +31,9 @@ Phylogeny matters:
 The environment can act on many developmental stages:  
 
 ![dev](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/developmental-plasticity.png?raw=true)
+
+Developmental switch: i.e. temperature dependent sex determination (TSD)
+
+Understanding phenotypic plasticity in reaction norms:
+
+![rxn-norm](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/rxn-norm.png?raw=true)
