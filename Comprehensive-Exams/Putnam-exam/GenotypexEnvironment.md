@@ -48,6 +48,25 @@ Reality of conforming and regulating to/in an environment:
 
 Amount of RNA made from a particular region of DNA must therefore be very tightly controlled, and is partly determined by the goodness of match b/w promoter region sequence and the RNA polymerase.
 
-Six points where gene expression can be controlled:
+Six points where gene expression can be controlled:  
+1. Txn control: gene regulatory proteins (bind to specific sites on the DNA close to the gene coding sequence). Either transcriptional activators or transcriptional repressors.
+
+Zinc-finger motif: where areas of alpha and beta helices  are linked by a zinc molecule.
 
 ![geneexp](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/geneexp-control.png?raw=true)
+
+![txn](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/txn-control.png?raw=true)
+
+Protein degradation control:  
+- Ubiquitin links to destruction-bound proteins and serves as a degradation signal
+
+Transposable elements:
+- "jumping genes" that can move around the genome as DNA or an RNA intermediate  
+- some carry information for transposition and may accelerate mutation at the sites where they insert and exit. Others carry both instructions for transposition and some other gene  
+- i.e. antibiotic resistance in bacteria
+
+Four types of receptor proteins:  
+1. Intracellular receptors  
+2. Enzyme-linked receptors: mostly linked to a protein kinase and the ligand-binding site is outside the cell and the catalytic side on the inside of the cell.  
+3. Ion channel-linked receptors: perform function of both channels and receptors; rapid signaling; the signal molecule causes a transient opening or closing of a channel through the protein structure  
+4. G-protein-linked-receptor: 
