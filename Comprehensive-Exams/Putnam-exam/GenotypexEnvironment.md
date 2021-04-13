@@ -2,6 +2,8 @@
 
 Content from Environmental Physiology of Animals: Willmer et al. lab copy [here](https://drive.google.com/drive/u/0/folders/1oV94QeIa_lDELfBGx3MmiYcWrxikD8Uk).
 
+## Chapter 1: Nature and Levels of Adaptation
+
 The relationships of genotype x environment x physiology:
 
 ![gxe](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/GenxEnv.png?raw=true)
@@ -15,7 +17,7 @@ Evidence of adaptation: only if a trait has changed through time in ways that it
 2. Comparisons of individual differences w/in a species.  
 3. Observation of the effects of altering a character.
 
-Selection for plasticity itself is an adaptation. 
+Selection for plasticity itself is an adaptation.
 
 Traits become fixed b/c of natural selection, either presently selected on or previously selected on but now present for reasons that don't have much to do with the original reason for selection. The latter = phylogenetic inertia
 
@@ -37,3 +39,9 @@ Developmental switch: i.e. temperature dependent sex determination (TSD)
 Understanding phenotypic plasticity in reaction norms:
 
 ![rxn-norm](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/rxn-norm.png?raw=true)
+
+Reality of conforming and regulating to/in an environment:  
+
+![conformer-norm](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/conformer-norm.png?raw=true)
+
+## Chapter 2: Fundamental Mechanisms of Adaptation
