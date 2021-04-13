@@ -31,9 +31,9 @@ In the past she has done open book and allowed for 12 hours.
 ## Notes / To-Do
 
 - Environmental history - flush out last details  
-- GxE interactions md. -- phys textbook HP teaches from  
+- GxE interactions md. -- finish
 - Methylation papers at the end of methylation.md and the connected papers.com web   
-- feedback loops .md -- finish  
+- feedback loops .md -- finish; keep adding  
 - chapter 3 thermal adaptation finish   
 - HP papers  
 - Roxanne's folder w/ mds -- regulation of symbiont population within coral cells  : coral-algal DEB  

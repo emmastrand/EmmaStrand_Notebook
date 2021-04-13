@@ -1,14 +1,29 @@
 # Genotype x Environment Interactions
 
-Content from Environmental Physiology of Animals: Willmer et al. lab copy [here](https://drive.google.com/drive/u/0/folders/1oV94QeIa_lDELfBGx3MmiYcWrxikD8Uk).
 
-## Chapter 1: Nature and Levels of Adaptation
+![intxn](https://image.slidesharecdn.com/genotypeenvironmentinteraction-180407162138/95/genotype-environment-interaction-7-638.jpg?cb=1523118289)  
+[Slide-share: Sania Saher](https://www.slideshare.net/SaniaSaher/genotype-environment-interaction-93194899)
+
+Panel A and B = no GxE interaction; A = Genotype interaction, B = environment interaction.  
+Panel C = Non-crossover G x E interaction; GxE but ranks remain unchanged.  
+Panels D-F = Crossover G x E interaction
+
+![in](https://www.intechopen.com/media/chapter/62376/media/F3.png)  
+[Osei et al 2017](https://www.intechopen.com/books/recent-advances-in-tomato-breeding-and-production/genotype-environment-interaction-a-prerequisite-for-tomato-variety-development)  
+[Baye et al 2011](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3108095/#R38)
+
+Plasticity and reaction norms (Nicotra et al 2010):  
+
+![rxn](https://ars.els-cdn.com/content/image/1-s2.0-S1360138510001986-gr1.jpg)
+
+## Adaptation: Content from Environmental Physiology of Animals: Willmer et al. lab copy [here](https://drive.google.com/drive/u/0/folders/1oV94QeIa_lDELfBGx3MmiYcWrxikD8Uk).
+
 
 The relationships of genotype x environment x physiology:
 
 ![gxe](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/GenxEnv.png?raw=true)
 
-Adaptation:  
+#### Adaptation:  
 1. characters or traits observed in an organism that are a result of selection  
 2. process in which natural selection adjusts the frequency of genes that code for traits affecting fitness.
 
@@ -44,7 +59,7 @@ Reality of conforming and regulating to/in an environment:
 
 ![conformer-norm](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/conformer-norm.png?raw=true)
 
-## Chapter 2: Fundamental Mechanisms of Adaptation
+#### Genomic control
 
 Amount of RNA made from a particular region of DNA must therefore be very tightly controlled, and is partly determined by the goodness of match b/w promoter region sequence and the RNA polymerase.
 
@@ -65,4 +80,11 @@ Transposable elements:
 - some carry information for transposition and may accelerate mutation at the sites where they insert and exit. Others carry both instructions for transposition and some other gene  
 - i.e. antibiotic resistance in bacteria
 
-## Chapter 8: Thermal Effects 
+#### Four types of acclimation
+
+Solid line = initial rate-temperature curve  
+Dashed line = curve after thermal acclimation (to higher temp).  
+C = cold-acclimatized  
+W = warm-acclimatized
+
+![four](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/four-acclimation.png?raw=true)
