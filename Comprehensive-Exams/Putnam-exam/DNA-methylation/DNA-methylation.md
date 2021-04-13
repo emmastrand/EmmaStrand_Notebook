@@ -67,6 +67,10 @@ Roberts & Gavery 2012
 
 Dimond and Roberts 2016
 
+## Methylation is modulator of alternative splicing
+
+Lev Maor et al 2015
+
 
 ## Coral methylation patterns are dynamic
 
@@ -96,22 +100,17 @@ Dimond et al 2017
 
 7 day exposure to extremely elevated pCO2 conditions in pteropod resulted in reduced global methylation after 1 day exposure and leveled off to control after 6 days. MethylFlash Quantification Kit methods ([Bogan et al 2020](https://www.frontiersin.org/articles/10.3389/fmars.2019.00788/full)).
 
+## Transgenerational methylation
+
+Sea urchins were acclimated during gametogenesis in up-welling and non-upwelling conditions and progeny from these populations were raised in high and low pCO2 treatments. Sampled across 3 developmental stages. Differential progeny methylation correlated to differential paternal condition and progeny condition correlated very little to progeny methylation. Methods: Pico methyl-seq library prep kit, Illumina HiSeq4000 lanes ([Strader et al 2019](https://reader.elsevier.com/reader/sd/pii/S0022098118304428?token=7A673DBF0F9364D45CC3CA59338F1AD9F7BA84D41CFC4B2A716B9B82295F12545FE507016A8B3B4237FA9EC1E967E3E4&originRegion=us-east-1&originCreation=20210413191404)).
+
+Transmission of CpG methylation from adults to sperm and larvae demonstrates genome-wide inheritance. ([Liew et al 2020](https://www.nature.com/articles/s41558-019-0687-2))
+
+Rondon et al 2017
+
+Ocean acidification conditions for 28 days resulted in 598 differentially methylated loci (DML), mostly in exons. Changes seen in reproductive tissue in eastern oyster means that these changes could be inherited. Measured by MBD-BS methods. DML involved in protein ubiquitination ([Venkataraman et al 2020](https://www.frontiersin.org/articles/10.3389/fmars.2020.00225/full)).
 
 ## Env2Methylation-Methylation2Phenotype
 
 Ryu et al 2018  
 Metzger & Schulte 2016   
-
-## Methylation is modulator of alternative splicing
-
-Lev Maor et al 2015
-
-## Transgenerational methylation
-
-Sea urchins were acclimated during gametogenesis in up-welling and non-upwelling conditions and progeny from these populations were raised in high and low pCO2 treatments. Sampled across 3 developmental stages. Differential progeny methylation correlated to differential paternal condition and progeny condition correlated very little to progeny methylation. Methods: Pico methyl-seq library prep kit, Illumina HiSeq4000 lanes ([Strader et al 2019](https://reader.elsevier.com/reader/sd/pii/S0022098118304428?token=7A673DBF0F9364D45CC3CA59338F1AD9F7BA84D41CFC4B2A716B9B82295F12545FE507016A8B3B4237FA9EC1E967E3E4&originRegion=us-east-1&originCreation=20210413191404)).
-
-Liew et al 2018
-
-Rondon et al 2017
-
-Ocean acidification conditions for 28 days resulted in 598 differentially methylated loci (DML), mostly in exons. Changes seen in reproductive tissue in eastern oyster means that these changes could be inherited. Measured by MBD-BS methods. DML involved in protein ubiquitination ([Venkataraman et al 2020](https://www.frontiersin.org/articles/10.3389/fmars.2020.00225/full)).
