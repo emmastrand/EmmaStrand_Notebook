@@ -1,8 +1,8 @@
 # Project ideas
 
 Holobiont Integration: comparison between two spp:  
-- in-depth comparison of antioxidant system function; enzyme expression in both thermal and ocean acidification systems  
-- algal gene expression analysis: difference in communities and photosystem and antioxidant related function  
+- in-depth comparison of antioxidant system function; enzyme expression in both thermal and ocean acidification systems  (might be answered in mega paper?)  
+- algal gene expression analysis: difference in communities and photosystem and antioxidant related function  (might be answered in mega paper?)  
 - TET enzyme function difference b/w 2 spp (Erin M.)  
 - Physiological variability differences (1st chapter)
 
@@ -14,4 +14,4 @@ Difference in bleaching states: methylation patterns and GE expression (2nd chap
 
 Higher thermal variability leads to higher tolerance, methylation patterns are dynamic and plastic so a transplant to HV will have a consistent enough signal to change this (ch 3). Methylation isn't set and is dynamic to consistent signal and inducible by env. change
 
-CRISPR and epigenetics link --- see paper in #newpapers channel on slack 
+CRISPR and epigenetics link --- see paper in #newpapers channel on slack
