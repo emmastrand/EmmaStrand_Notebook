@@ -22,7 +22,7 @@ Example in homeostasis:
 
 Content from Environmental Physiology of Animals: Willmer et al. lab copy [here](https://drive.google.com/drive/u/0/folders/1oV94QeIa_lDELfBGx3MmiYcWrxikD8Uk).
 
-
+![feedbackloop](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/fdbk-loop.png?raw=true)
 
 
 
