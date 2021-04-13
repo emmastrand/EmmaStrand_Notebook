@@ -45,3 +45,9 @@ Reality of conforming and regulating to/in an environment:
 ![conformer-norm](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/conformer-norm.png?raw=true)
 
 ## Chapter 2: Fundamental Mechanisms of Adaptation
+
+Amount of RNA made from a particular region of DNA must therefore be very tightly controlled, and is partly determined by the goodness of match b/w promoter region sequence and the RNA polymerase.
+
+Six points where gene expression can be controlled:
+
+![geneexp](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/geneexp-control.png?raw=true)
