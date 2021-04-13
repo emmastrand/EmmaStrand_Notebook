@@ -18,3 +18,10 @@ Evidence of adaptation: only if a trait has changed through time in ways that it
 Traits become fixed b/c of natural selection, either presently selected on or previously selected on but now present for reasons that don't have much to do with the original reason for selection. The latter = phylogenetic inertia
 
 **Optimality** is a relative concept and a particular design need only to be sufficient to do better than the existing alternatives (there is such thing as good enough). Natural selection doesn't necessarily provide maximal or even optimal solutions.
+
+Genetic drift: chance shifts in gene frequencies  
+Genetic bottleneck: the above can be particularly true in small pop sizes
+
+Phylogeny matters:
+
+![phylo](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/phylo-vs-env.png?raw=true)
