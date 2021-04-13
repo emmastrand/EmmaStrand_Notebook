@@ -69,4 +69,6 @@ Four types of receptor proteins:
 1. Intracellular receptors  
 2. Enzyme-linked receptors: mostly linked to a protein kinase and the ligand-binding site is outside the cell and the catalytic side on the inside of the cell.  
 3. Ion channel-linked receptors: perform function of both channels and receptors; rapid signaling; the signal molecule causes a transient opening or closing of a channel through the protein structure  
-4. G-protein-linked-receptor: 
+4. G-protein-linked-receptor: GTP-binding regulatory protein; sit in membranes adjacent to a receptor protein and another target protein (could be either #2 or #3 as well).
+
+![gprotein](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/receptor-protein.png?raw=true)

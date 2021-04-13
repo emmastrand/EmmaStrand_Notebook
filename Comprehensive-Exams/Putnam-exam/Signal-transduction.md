@@ -1,5 +1,27 @@
 # Signal transduction pathways in corals
 
+## General signal transduction
+
+Content from Environmental Physiology of Animals: Willmer et al. lab copy [here](https://drive.google.com/drive/u/0/folders/1oV94QeIa_lDELfBGx3MmiYcWrxikD8Uk).
+
+Four types of receptor proteins:  
+1. Intracellular receptors  
+2. Enzyme-linked receptors: mostly linked to a protein kinase and the ligand-binding site is outside the cell and the catalytic side on the inside of the cell.  
+3. Ion channel-linked receptors: perform function of both channels and receptors; rapid signaling; the signal molecule causes a transient opening or closing of a channel through the protein structure  
+4. G-protein-linked-receptor: GTP-binding regulatory protein; sit in membranes adjacent to a receptor protein and another target protein (could be either #2 or #3 as well).
+
+![gprotein](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/receptor-protein.png?raw=true)
+
+**Intracellular mediators and second messengers:**    
+- messengers are small enough to move through gap junctions b/w adjacent cells so that signaling can be shared amongst cell communities. Extracellular signaling is therefore amplified and integrated together.  
+
+cAMP  
+
+Ionic calcium
+
+
+
+
 ## Thermostranduction  
 
 Neurobiology of TRP Channels in invertebrates [book chapter 4](https://www.ncbi.nlm.nih.gov/books/NBK476114/) (cross reference with what is in corals):  
