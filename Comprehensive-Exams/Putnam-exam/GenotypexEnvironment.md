@@ -25,3 +25,7 @@ Genetic bottleneck: the above can be particularly true in small pop sizes
 Phylogeny matters:
 
 ![phylo](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/phylo-vs-env.png?raw=true)
+
+The environment can act on many developmental stages:  
+
+![dev](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/developmental-plasticity.png?raw=true)
