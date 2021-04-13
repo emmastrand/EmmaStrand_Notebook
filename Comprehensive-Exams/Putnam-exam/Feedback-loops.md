@@ -18,7 +18,15 @@ Example in homeostasis:
 
 ![home](https://images.slideplayer.com/17/5281984/slides/slide_2.jpg)
 
-Examples in corals:
+## Environmental Physiology (Willmer et al): Chapter 2.5.4: Feedback systems and metabolic control
+
+Content from Environmental Physiology of Animals: Willmer et al. lab copy [here](https://drive.google.com/drive/u/0/folders/1oV94QeIa_lDELfBGx3MmiYcWrxikD8Uk).
+
+
+
+
+
+## Examples in corals:
 
 **Negative feedback**  
 1. Temperature increases in the water, therefore increasing the coral's body temperature.  

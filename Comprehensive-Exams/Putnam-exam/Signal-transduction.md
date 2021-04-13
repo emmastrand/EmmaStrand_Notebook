@@ -24,9 +24,13 @@ cAMP:
 - works through cAMP-dependent protein kinase (kinase A), being linked to receptor via one or two G-proteins (see diagram above) that are stimulatory or inhibitory    
 - Eventual product of cAMP-induced phosphorylations may bind to a cAMP-response element, adjacent to the transcribed gene, to produce the final response.
 
-Ionic calcium
+Ionic calcium: can act as messenger by opening Ca2+ channels and producing an automatic inward flux w/ rise of cytoplasmic Ca2+ concentration.  
+- When G-protein is activated by an appropriate signal, it in turn activates a membrane-bound enzyme, phospholipase C.  
+- which hydrolyzes a specific phospholipid in the cell membrane to produe a soluble intermediate: inositol triphosphate (IP3).  
+- IP3 travels through cytoplasm and releases calcium via IP3-gated Ca2+ channels from internal membrane stores.  
+- Ca2+ can activate targets by directly binding enzymes as an allosteric ligand or active indirectly via binding to calmodulin (CaM). As more Ca2+ binds to CaM, it then binds to enzymes or indirectly through a CaM-dependent multifunctional kinase (PKII or CaM-kinase II).
 
-
+![ca](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/Ca2-path.png?raw=true)
 
 
 ## Thermostranduction  
@@ -39,7 +43,7 @@ Calcium dependent protein kinase 2 is upregulated in heat stress and plays a rol
 
 Pre-conditioning-based improvements in thermal tolerance in *P. acuta* are accompanied by host increases in glutathione reductase (GR) activity and expression. This supports reducing intracellular environment that facilitates ROS scavenging and prevents DNA damage. Bax-inhibitor 1 (BI-1) could regulate GR expression in corals through Nrf2/ARE pathway ([Majerova and Drury 2021](https://www.biorxiv.org/content/10.1101/2021.03.15.435543v1.full)).
 
-Transient receptor potential multigene superfamily encodes integral membrane proteins that function as ion channels (](https://genomebiology.biomedcentral.com/articles/10.1186/gb-2011-12-3-218)).  
+Transient receptor potential multigene superfamily encodes integral membrane proteins that function as ion channels ([Nilius nad Owsianik 2011](https://genomebiology.biomedcentral.com/articles/10.1186/gb-2011-12-3-218)).  
 - Most are non selective cation channels, only a few are Ca2+ selective  
 - Gating mechanims include: ligand binding, voltage, and changes in temperature, covalent modifications of nucleophilic residues  
 - Activated TRP channels cause depolarization of the cellular membrane, which in turn activates voltage-dependent ion channels and a change of intracellular Ca2+ concentration.
