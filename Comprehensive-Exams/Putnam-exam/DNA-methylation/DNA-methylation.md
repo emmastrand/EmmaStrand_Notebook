@@ -24,7 +24,7 @@ DNA methylation is established by DNA methyltransferases DNMT3A and DNMT3B in co
 
 ## Location of methylation
 
-**Invertebrates**: location is non-random and mainly located in gene bodies (Li et al 2018). *From Eirin-Lopez and Putnam 2019*: Additionally, DNA methylation can commonly be found in gene bodies, where it hypothetically contributes to the reduction of transcriptional variation, reduction of spurious transcription, and facilitation of alternative splicing (reviewed in Roberts & Gavery 2012).   
+**Invertebrates**: location is non-random and mainly located in gene bodies (Li et al 2018). *From Eirin-Lopez and Putnam 2019*: Additionally, DNA methylation can commonly be found in gene bodies, where it hypothetically contributes to the reduction of transcriptional variation, reduction of spurious transcription, and facilitation of alternative splicing (reviewed in Roberts & Gavery 2012). Methylation is spread evenly across a gene.
 
 **Vertebrates**: located in promoters regions and usually associated with turning "on and off" genes or gene silencing. *From Eirin-Lopez and Putnam 2019*: Repetitive CpG sequences (CpG islands) can be found located upstream in promoter regions, and here the presence of methylation can silence transcription by blocking the binding of transcription factors (but see Ford et al. 2017).
 
@@ -39,9 +39,10 @@ DNA Methylation location in invertebrates (Li et al 2018)
 
 Found in mouse embryonic stem cells: [insert citation and info]
 
-Li et al 2018: as a result of active transciption by RNA polymerase II and recruitment of histone-modifying protein SetD2 that trimethylates histone H3 at lysine 36 (H3K36me3). This histone mark is bound via PWWP (Pro-Trp-Trp-Pro) domain present in DNA methyltransferase DNMT3b (de novo) which then methylates surrounding DNA.
+Li et al 2018: as a result of active transcription by RNA polymerase II and recruitment of histone-modifying protein SetD2 that trimethylates histone H3 at lysine 36 (H3K36me3). This histone mark is bound via PWWP (Pro-Trp-Trp-Pro) domain present in DNA methyltransferase DNMT3b (de novo) which then methylates surrounding DNA.
 
-**come back to the above to full explore**
+**come back to the above to full explore**  
+Sarda et al 2012
 
 ## DNA Methylation regulates transcriptional noise
 
@@ -60,14 +61,57 @@ Larvae and adult life stages can differ in methylation patterning:
 
 Sex determination linked to differential methylation patterns: Half-smooth tongue sole (Shao et al 2014), temperature-mediated sex determination in fish (Ellison et al 2015, Navarro-Martin et al 2011) and sea turtles (Venegas et al 2016).
 
+## Methylation occurs in a bimodal distribution
 
-Other mds?
+Roberts & Gavery 2012
+
+Dimond and Roberts 2016
+
+
+## Coral methylation patterns are dynamic
+
+Methylation profiles (RADSeq techniques) of *Porites asteroides* converged in a common garden setting (decreased in % methylated CpGs). Corals from several reefs in Belize were transplanted to a common garden for 1 year. Positive & significant relationship b/w genetic and epigenetic variation = evidence for methylation heritability. Differentially methylated loci = intracellular signaling, apoptosis, gene regulation, epigenetic crosstalk ([Dimond and Roberts 2019](https://www.frontiersin.org/articles/10.3389/fmars.2019.00792/full)).  
+- calcium-independent protein kinase C-like: involved in intracellular signaling (typically associated with hypomethylation)  
+- tax1-binding protein homolog: negative regulation of apoptotic processes via negative regulation of NF=kB transcription factor activity. Loss of symbionts is associated with elevated levels of NF-kB.  
+- U5 small nuclear ribonucleoprotein 200 kDa helicase: mRNA splicing via role in the spliceosome.  
+- putative FAM98A protein: positive regulation of cell proliferation, gene expression, and protein methylation.  
+
+> The above functions seem to be housekeeping functions that were differentially methylated? This involved in heritability? Long term change in housekeeping methylation levels. Not short-term env. inducible?
+
+In reduced pH conditions, *Montipora capitata* global methylation levels did not change, but *Pocillopora acuta*'s increased after 6 week exposure. Caveat: Mcap could have undergone increases and decreases that leveled out to an appearance of no response(Putnam et al 2016()).  
+
+Dixon et al 2018
+
+Increase in genome-wide methylation in *Stylophora pistillata* when exposed to pH conditions for 2 years. Changes modified gene expression and altered pathways in cell cycle regulation. [Liew et al 2018](https://advances.sciencemag.org/content/4/6/eaar8028/tab-pdf)
+
+Dimond et al 2017
+
+## Seasonal changes in methylation
+
+*Acropora cervicornis*, over a 17-month period, displayed methylation changes that correlated to sea surface temperature change and this is consist across genets, source sites, and site-specific conditions. Methylation-Sensitive Amplified Polymorphism (MSAP) methods. ([Rodriquez-Casariego et al 2020](https://environmentalepigenetics.com/wp-content/uploads/2020/09/71_Rodriguez-Casariego_FMARS2020.pdf)).
+
+## Ocean acidification induced methylation changes
+
+([Venkataraman et al 2020](https://www.frontiersin.org/articles/10.3389/fmars.2020.00225/full)) description below.
+
+7 day exposure to extremely elevated pCO2 conditions in pteropod resulted in reduced global methylation after 1 day exposure and leveled off to control after 6 days. MethylFlash Quantification Kit methods ([Bogan et al 2020](https://www.frontiersin.org/articles/10.3389/fmars.2019.00788/full)).
+
 
 ## Env2Methylation-Methylation2Phenotype
 
 Ryu et al 2018  
-Putnam et al 2016  
 Metzger & Schulte 2016   
-Roberts & Gavery 2012
 
-##
+## Methylation is modulator of alternative splicing
+
+Lev Maor et al 2015
+
+## Transgenerational methylation
+
+Sea urchins were acclimated during gametogenesis in up-welling and non-upwelling conditions and progeny from these populations were raised in high and low pCO2 treatments. Sampled across 3 developmental stages. Differential progeny methylation correlated to differential paternal condition and progeny condition correlated very little to progeny methylation. Methods: Pico methyl-seq library prep kit, Illumina HiSeq4000 lanes ([Strader et al 2019](https://reader.elsevier.com/reader/sd/pii/S0022098118304428?token=7A673DBF0F9364D45CC3CA59338F1AD9F7BA84D41CFC4B2A716B9B82295F12545FE507016A8B3B4237FA9EC1E967E3E4&originRegion=us-east-1&originCreation=20210413191404)).
+
+Liew et al 2018
+
+Rondon et al 2017
+
+Ocean acidification conditions for 28 days resulted in 598 differentially methylated loci (DML), mostly in exons. Changes seen in reproductive tissue in eastern oyster means that these changes could be inherited. Measured by MBD-BS methods. DML involved in protein ubiquitination ([Venkataraman et al 2020](https://www.frontiersin.org/articles/10.3389/fmars.2020.00225/full)).

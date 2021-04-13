@@ -30,14 +30,13 @@ In the past she has done open book and allowed for 12 hours.
 
 ## Notes / To-Do
 
-- Environmental history - flush out last details  
-- GxE interactions md. -- finish
 - Methylation papers at the end of methylation.md and the connected papers.com web   
-- feedback loops .md -- finish; keep adding  
+- Environmental history - flush out last details   
 - chapter 3 thermal adaptation finish   
 - HP papers  
 - Roxanne's folder w/ mds -- regulation of symbiont population within coral cells  : coral-algal DEB  
-- Review/whiteboard Scott's exam
+- Review/whiteboard Scott's exam  
+- feedback loops .md -- finish; keep adding
 
 Briefly summarize:   
 - Innate immunity vs acquired immunity   

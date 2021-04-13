@@ -1,5 +1,6 @@
 # Epigenetic Modifications
 
+Epigenetic factors are involved in alternative mRNA splicing = major source of protein diversity and therefore, phenotypic variation (Luco et al 2011). 
 
 ##  Types of Modifications
 
