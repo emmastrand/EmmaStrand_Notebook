@@ -72,6 +72,10 @@ Over time, methylation causes hypermutability of cytosines to thymines. Which re
 ![cpg corals](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/DNA-methylation/cpgoe-patterns.png?raw=true)  
 [Dimond and Roberts 2016](https://onlinelibrary.wiley.com/doi/pdf/10.1111/mec.13414)
 
+Functional annotation of CpG O/E genes from [Dixon et al 2014](https://bmcgenomics.biomedcentral.com/track/pdf/10.1186/1471-2164-15-1109.pdf). Genes with high CpG O/E values are more likely to be environmentally inducible. 
+
+![fn](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/DNA-methylation/cpg-bimodal.png?raw=true)
+
 ## Methylation is modulator of alternative splicing
 
 Lev Maor et al 2015
