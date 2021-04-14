@@ -49,9 +49,9 @@ Focus on the topics covered in Microbial Interactions: OCG594 this semester with
 Open book; 12 hour time limit.
 
 [Basics of Symbiotic Interactions](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Roxanne-exam/Basics-Symbiotic-Intxn.md)  
-[The Coral Holobiont]()  
-[Microbial methodology]()  
-[Cross Feeding]()  
+[The Coral Holobiont](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Roxanne-exam/Coral-Holobiont.md)   
+[Microbial methodology](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Roxanne-exam/Microbial-methodology.md)   
+[Cross Feeding](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Roxanne-exam/Cross-Feeding.md)  
 
 
 ## Notes / To-Do
