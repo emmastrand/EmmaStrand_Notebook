@@ -65,7 +65,7 @@ Sex determination linked to differential methylation patterns: Half-smooth tongu
 
 Roberts & Gavery 2012
 
-Dimond and Roberts 2016
+[Dimond and Roberts 2016](https://onlinelibrary.wiley.com/doi/pdf/10.1111/mec.13414)
 
 ## Methylation is modulator of alternative splicing
 
@@ -82,9 +82,10 @@ Methylation profiles (RADSeq techniques) of *Porites asteroides* converged in a 
 
 > The above functions seem to be housekeeping functions that were differentially methylated? This involved in heritability? Long term change in housekeeping methylation levels. Not short-term env. inducible?
 
-In reduced pH conditions, *Montipora capitata* global methylation levels did not change, but *Pocillopora acuta*'s increased after 6 week exposure. Caveat: Mcap could have undergone increases and decreases that leveled out to an appearance of no response(Putnam et al 2016()).  
+In reduced pH conditions, *Montipora capitata* global methylation levels did not change, but *Pocillopora acuta*'s increased after 6 week exposure. Caveat: Mcap could have undergone increases and decreases that leveled out to an appearance of no response([Putnam et al 2016](https://onlinelibrary.wiley.com/doi/pdf/10.1111/eva.12408)).  
 
-Dixon et al 2018
+3 month reciprocal transplant of *Acropora millepora* from GBR; reefs were different in mean temperature and other abiotic factors. MBD-seq methods. Fitness higher at colder reef (possibly b/c higher concentration of nutrients). Methylation shift in genic regions. Transplant from hot to cold resulted in highly methylated genes becoming less methylated and less methylated genes becoming more methylated. This was mirrored but less pronounced from cold to hot reef. Transplated corals GBM shifted to reflect the location transplanted to: aka dynamic not fixed patterns. [Dixon et al 2018](https://www.pnas.org/content/pnas/115/52/13342.full.pdf); [Dixon et al 2017](https://pdfs.semanticscholar.org/6adf/d8444086db37f6d5942368962dafe2d39816.pdf)
+> cold reef was also higher in nutrients -- more nutrients allowing for more methylation activity via more metabolites and energy?
 
 Increase in genome-wide methylation in *Stylophora pistillata* when exposed to pH conditions for 2 years. Changes modified gene expression and altered pathways in cell cycle regulation. [Liew et al 2018](https://advances.sciencemag.org/content/4/6/eaar8028/tab-pdf)
 
