@@ -60,21 +60,33 @@ Sex determination linked to differential methylation patterns: Half-smooth tongu
 
 ## Methylation occurs in a bimodal distribution
 
-Roberts & Gavery 2012
-
 Over time, methylation causes hypermutability of cytosines to thymines. Which results in a reduction of CpG dinucleotides; therefore, if an organism has heavy historical methylation on a gene set then the abundance of CpG dinucleotides observed (O) would lower than expected (E). A higher CpG O/E value means there is low historical methylation (lower observed # creates a higher CpG O/E value). A lower CpG O/E value means there is high historical methylation (higher observed # creates a lower CpG O/E value).
 
+CpG O/E calculation from Dimond and Roberts 2016:  
 ![cpg](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/DNA-methylation/CpGO:E.png?raw=true)
 
+CpG O/E calculation from Dixon et al 2014:  
+![dix](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/DNA-methylation/CpGOE-calc-Dixon.png?raw=true)
+
+CpG O/E distribution from an eastern oyster in [Gavery and Roberts 2010](https://bmcgenomics.biomedcentral.com/articles/10.1186/1471-2164-11-483):
+
+![wk-hv](https://media.springernature.com/lw685/springer-static/image/art%3A10.1186%2F1471-2164-11-483/MediaObjects/12864_2010_Article_3077_Fig2_HTML.jpg?as=webp)
+
+CpG O/E distributions in corals from [Dimond and Roberts 2016](https://onlinelibrary.wiley.com/doi/pdf/10.1111/mec.13414):  
+
 ![cpgcorals](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/DNA-methylation/CpG-OE-corals.png?raw=true)  
-[Dimond and Roberts 2016](https://onlinelibrary.wiley.com/doi/pdf/10.1111/mec.13414)
+
+Function annotation of gene sets in weakly and heavily methylated categories from [Dimond and Roberts 2016](https://onlinelibrary.wiley.com/doi/pdf/10.1111/mec.13414):  
 
 ![cpg corals](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/DNA-methylation/cpgoe-patterns.png?raw=true)  
-[Dimond and Roberts 2016](https://onlinelibrary.wiley.com/doi/pdf/10.1111/mec.13414)
 
-Functional annotation of CpG O/E genes from [Dixon et al 2014](https://bmcgenomics.biomedcentral.com/track/pdf/10.1186/1471-2164-15-1109.pdf). Genes with high CpG O/E values are more likely to be environmentally inducible. 
+Functional annotation of CpG O/E genes from [Dixon et al 2014](https://bmcgenomics.biomedcentral.com/track/pdf/10.1186/1471-2164-15-1109.pdf). Genes with high CpG O/E values are more likely to be environmentally inducible.
 
 ![fn](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/DNA-methylation/cpg-bimodal.png?raw=true)
+
+Relationship between measured methylation and CpG O/E values from [Gavery and Roberts 2012](https://www.frontiersin.org/articles/10.3389/fphys.2011.00116/full):
+
+![cpgoe](https://www.frontiersin.org/files/Articles/19155/fphys-02-00116-HTML/image_m/fphys-02-00116-g001.jpg)
 
 ## Methylation is modulator of alternative splicing
 
@@ -98,7 +110,7 @@ In reduced pH conditions, *Montipora capitata* global methylation levels did not
 
 Increase in genome-wide methylation in *Stylophora pistillata* when exposed to pH conditions for 2 years. Changes modified gene expression and altered pathways in cell cycle regulation. [Liew et al 2018](https://advances.sciencemag.org/content/4/6/eaar8028/tab-pdf)
 
-Dimond et al 2017
+Comparison of genetic and epigenetic variation in *Porites spp.* of different morphotypes and variety of habitats in Belize. Stronger evidence for genetic structuring rather than epigenetic. Weak positive correlation b/w pairwise genetic and epigenetic distance. 2 pairs of clone showed substantial epigenetic difference = strong env. effect. Methylation is likely strong mix of Environment x Genotype. RRBS methods used. [Dimond et al 2017](https://onlinelibrary.wiley.com/doi/pdf/10.1111/mec.14252)
 
 ## Seasonal changes in methylation
 
@@ -118,9 +130,6 @@ Transmission of CpG methylation from adults to sperm and larvae demonstrates gen
 
 Rondon et al 2017
 
+[Ryu et al 2018](https://www.nature.com/articles/s41558-018-0159-0)
+
 Ocean acidification conditions for 28 days resulted in 598 differentially methylated loci (DML), mostly in exons. Changes seen in reproductive tissue in eastern oyster means that these changes could be inherited. Measured by MBD-BS methods. DML involved in protein ubiquitination ([Venkataraman et al 2020](https://www.frontiersin.org/articles/10.3389/fmars.2020.00225/full)).
-
-## Env2Methylation-Methylation2Phenotype
-
-Ryu et al 2018  
-Metzger & Schulte 2016   
