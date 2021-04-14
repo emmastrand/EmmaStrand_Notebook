@@ -15,12 +15,26 @@ A compilation of my resources for studying for comprehensive exams. Each folder 
 semi-open book; HP chooses the resources available. In the past her exam has been 8 hours.  
 will email in the morning with questions and need to return them by certain time.
 
+[DNA Methylation](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/DNA-methylation/DNA-methylation.md)  
+[Epigenetic Modifications](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/Epigenetics/Epigenetic-Modifications.md)  
+[Biology of Coral Bleaching](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/Coral-Bleaching.md)  
+[Feedback Loops](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/Feedback-loops.md)  
+[Genotype x Environment](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/GenotypexEnvironment.md)  
+[Signal Transduction](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/Signal-transduction.md)
+
 ## Dr. Scott McWilliam's Exam
 
 Flexible Phenotype Chapters 4, 5, and 9  
 Biochemical Adaptation Chapters 1 and 2  
 Fox et al: Beyond buying time: the role of plasticity in phenotypic adaptation to rapid environmental change.  
 Snell-Rood et al: Mechanisms of plastic rescue.  
+
+Open-book; 1 day time limit (10 hours)
+
+[Biochemical Adaptation](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/Biochemical-Adaptation.md)  
+[Flexible Phenotype](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/Flexible-Phenotype.md)  
+[Plastic Rescue](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/Plastic-Rescue.md)  
+[Plasticity and Phenotypic Adaptation](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/Plasticity-in-Adaptation.md)
 
 ## Dr. Roxanne Beinart's Exam
 
@@ -30,13 +44,16 @@ In the past she has done open book and allowed for 12 hours.
 
 ## Notes / To-Do
 
-- Methylation papers at the end of methylation.md and the connected papers.com web   
+- Roxanne's folder w/ mds -- regulation of symbiont population within coral cells  : coral-algal DEB  
 - Environmental history - flush out last details   
 - chapter 3 thermal adaptation finish   
 - HP papers  
-- Roxanne's folder w/ mds -- regulation of symbiont population within coral cells  : coral-algal DEB  
-- Review/whiteboard Scott's exam  
 - feedback loops .md -- finish; keep adding
+
+
+- Review/whiteboard Scott's exam  
+- Review/whiteboard HP's exam   
+- Review/whiteboard Roxanne's exam  
 
 Briefly summarize:   
 - Innate immunity vs acquired immunity   
