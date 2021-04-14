@@ -65,6 +65,10 @@ Sex determination linked to differential methylation patterns: Half-smooth tongu
 
 Roberts & Gavery 2012
 
+Over time, methylation causes hypermutability of cytosines to thymines. Which results in a reduction of CpG dinucleotides; therefore, if an organism has heavy historical methylation on a gene set then the abundance of CpG dinucleotides observed (O) would lower than expected (E). A higher CpG O/E value means there is low historical methylation (lower observed # creates a higher CpG O/E value). A lower CpG O/E value means there is high historical methylation (higher observed # creates a lower CpG O/E value). 
+
+![cpg](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/DNA-methylation/CpGO:E.png?raw=true)
+
 [Dimond and Roberts 2016](https://onlinelibrary.wiley.com/doi/pdf/10.1111/mec.13414)
 
 ## Methylation is modulator of alternative splicing
