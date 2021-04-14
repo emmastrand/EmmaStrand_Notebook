@@ -45,3 +45,10 @@ Altruism = intra-specific intxn; release of metabolically expensive metabolite t
 
 Resource (exploitative) competition: both organisms competing for same resource  
 Interference competition (antagonism): organisms exert direct, negative effects on one another
+
+**In reality, this is all happening at the same time in a network**:
+
+Beinart, class slides:  
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Roxanne-exam/community-network.png?raw=true)
+
+Interaction 'barcode' = list of variables/attributes that describe the interaction ([Pacheco and Segre 2019](https://academic.oup.com/femsle/article/366/11/fnz125/5513995)).

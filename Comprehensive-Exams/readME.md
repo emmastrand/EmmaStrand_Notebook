@@ -1,11 +1,16 @@
 # Comprehensive Exam Study Guide
 
-A compilation of my resources for studying for comprehensive exams. Each folder refers to a topic, each with several markdown files of notes and figures as well as the PDFs of papers referenced.
+Welcome to my study guide that I used to prepare for my comprehensive exams. This is a general work in progress but it helped me compile all of the resources I needed for this exam set.
 
-**Logistics**    
-"The graduate manual has not been updated with the changes quite yet. You are not required to go through our office to schedule your comprehensive exams. You will schedule with your committee and then your major professor will submit the results." - Graduate School
+## Comprehensive Exam Description and Logistics
+A compilation of my resources for studying for comprehensive exams. Each folder refers to a committee member's exam, each with several markdown files of notes and figures (cited).
 
-## Dr. Hollie Putnam's Exam
+Comprehensive exams at the University of Rhode Island are taken ~completion of 3rd year - 4th year and result in moving from Level II to Level III graduate student as well as moving from Ph.D. Student to Ph.D Candidate. Each committee member gives a day-long written exam (usually 3) and ~2-4 weeks later there is a 2 hour oral comprehensive exam with all committee members (addition of an outside department chair = 4 members).
+
+"The graduate manual has not been updated with the changes quite yet. You are not required to go through our office to schedule your comprehensive exams. You will schedule with your committee and then your major professor will submit the results." - URI Graduate School (Spring 2021)
+
+## Overview of each written exam by committee member
+### Dr. Hollie Putnam's Exam
 
 - signal transduction pathways; feedback loops, specific examples  
 - alternative interpretations for why methylation might not be the only player  
@@ -20,9 +25,10 @@ will email in the morning with questions and need to return them by certain time
 [Biology of Coral Bleaching](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/Coral-Bleaching.md)  
 [Feedback Loops](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/Feedback-loops.md)  
 [Genotype x Environment](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/GenotypexEnvironment.md)  
-[Signal Transduction](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/Signal-transduction.md)
+[Signal Transduction](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/Signal-transduction.md)  
+[Thermal History and Variability](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Thermal-History/Variability.md)
 
-## Dr. Scott McWilliam's Exam
+### Dr. Scott McWilliam's Exam
 
 Flexible Phenotype Chapters 4, 5, and 9  
 Biochemical Adaptation Chapters 1 and 2  
@@ -36,13 +42,17 @@ Open-book; 1 day time limit (10 hours)
 [Plastic Rescue](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/Plastic-Rescue.md)  
 [Plasticity and Phenotypic Adaptation](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/Plasticity-in-Adaptation.md)
 
-## Dr. Roxanne Beinart's Exam
+### Dr. Roxanne Beinart's Exam
 
-Focus on the topics covered in OCG594 this semester with a focus on the background readings from each week. I suggested mutualism with multicellular organisms and cooperation/communication topics in particular.
+Focus on the topics covered in Microbial Interactions: OCG594 this semester with a focus on the background readings from each week. I suggested mutualism with multicellular organisms and cooperation/communication topics in particular.
 
 Open book; 12 hour time limit.
 
-[Basics of Symbiotic Interactions]()
+[Basics of Symbiotic Interactions](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Roxanne-exam/Basics-Symbiotic-Intxn.md)  
+[The Coral Holobiont]()  
+[Microbial methodology]()  
+[Cross Feeding]()  
+
 
 ## Notes / To-Do
 
