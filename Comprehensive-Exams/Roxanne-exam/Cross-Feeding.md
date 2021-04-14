@@ -2,5 +2,87 @@
 
 Content taken from Dr. Roxanne Beinart's class OCG594. Papers and figures cited from research/review papers we focused on this semester.
 
+### Broad definition of cross-feeding:
+Microbes release various molecules that can be consumed by neighboring microbes, influence cross-feeding between cells, or influence host cell. Can be secreted passively or actively (figure 1 below; [Fritts et al 2021](https://mmbr.asm.org/content/mmbr/85/1/e00135-20.full.pdf)).
 
-Broad definition of cross-feeding:
+![cf1](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Roxanne-exam/crossfeeding1.png?raw=true)
+
+Fritts et al 2021 defines cross-feeding as:  
+1. Material must be transferred from producer to a recipient (molecules, electrons, protons).  
+2. That material must be assimilated by recipient or participate in energy transformation in the recipient and/or producer. This is not detoxification or degradation of molecules not used for E or assimilation.  
+3. Fitness of the producer and/or recipient must be altered as result of assimilation or E derived from material  
+4. Involve different spp or genotypically/phenotypically distinct populations.
+
+Cross-feeding mechanisms ([D’Souza et al., 2018](https://pubs.rsc.org/en/content/articlehtml/2018/np/c8np00009c)):
+
+![mech](https://pubs.rsc.org/image/article/2018/NP/c8np00009c/c8np00009c-f4.gif)
+
+Passive transport can include:  
+- small molecules like hydrogen, formate, potassium  
+- volatile compounds like methanol  
+- vitamins  
+- acetate  
+- amino acids  
+- intermediates of TCA cycle  
+
+Active transport can include:  
+- amino acids  
+- siderophore  
+- exoenzymes  
+- polymers  
+- vitamins
+
+### Extracellular molecules that promote cross-feeding (Fritts et al 2021)
+
+**Metabolites**
+
+- common examples: sugars, organic acids, amino acids, vitamins, gasses, reduced or oxidized inorganic elements and molecules  
+- this can be unidirectional, bidirectional, or multidirectional  
+- Can be metabolic waste: provides no further benefit to producer after excretion
+- Can be communally valuable: benefits can be reaped by whichever producer or recipient cell acquires metabolite  
+
+Syntrophy: energetically unfavorable metabolism is pulled forward by coupling to the metabolism of a recipient partner. Consumption of metabolic waste is essential for producer viability (Fritts et al 2021).
+
+Obligate cross-feeding that was initially imposed by env. conditions can become fixed as genes for independent lifestyles decay. Evolution of symbiosis
+
+Communally valuable metabolites: common compunds like ammonia/ammonium, amino acids, nucleobases, vitamins. There does not appear to be a limitation to what valuable metabolites are cross fed (Fritts et al 2021).
+
+Reasons for release of costly metabolites (this is still largely unknown; Fritts et al 2021):  
+1. Secretion of these metabolites could be accidental, from leaky membranes or systems.  
+2. Cell lysis causes nutrient transfer  
+3. Selection for excretion of compounds if this stimulates enough reciprocation from recipient to outweigh cost of giving. This can be the basis of mutualism. One effective mechanism to achieve this is spatial orientation.
+
+**Exoenzymes**
+
+Extracellular enzymes (exoenzymes) degrade large polymers intro transportable monomers; have diverse substrates:  
+- glycosidases, proteases, nucleases, lipases, lignin-cleaving laccases, peroxidases  
+- release rapidly consumable nutrients into extracellular milieu, therefore supports cross-feeding b/c the nutrients can be taken up by neighboring cells.
+
+"Cheater" subpopulations are those that lose the ability to secrete exoenzymes but benefit from nearby exoenzyme-secreting cells. Organisms that still secrete exoenzymes can be overrun by exploitive neighbors so they 1.) can have the exoenzymes attached to the surface so that nutrient uptake requires physical contact or 2.) have exoenzymes release soluble oligomers instead of monomers so it limits who can consume this b/c it requires the function to degrade oligomers.
+
+**Siderophores**
+
+Small molecules that chelate iron or other metals like copper, manganese, or zinc, and facilitate uptake through cell surface receptors. Trace metals are essential cofactors for numerous enzymes.
+
+**Toxins**
+
+Facilitate nutrient acquisition by damaging or lysing cells and releasing the intracellular contents.
+
+**Quorum-Sensing Signals**
+
+Microbial cell-cell communication system that coordinates gene expression based on population density through production and subsequent recognition of diffusible signal molecules.
+
+**Extracellular Matrix Components of Biofilms**
+
+Microbes attach to surfaces and to each other to form multicellular biofilms. This is mediated by secretion of an extracellular matrix that can be composed of polysacchrides, nucleic acids, and/or protein.
+
+Other:  
+- Extracellular vesciles  
+- Contact-dependent cross-feeding; nano-tubes and/or nano-wires
+
+### Promotion of cross-feeding co-evolution
+
+Leaky, valuable public goods (drives Black Queen Hypothesis: adaptive gene loss)  
+
+Maintaining partner fidelity:   
+- limited dispersal, proximity
