@@ -37,11 +37,8 @@ DNA Methylation location in invertebrates (Li et al 2018)
 
 ## Gene body methylation is established and maintained as a result of active transcription  
 
-Found in mouse embryonic stem cells: [insert citation and info]
-
 Li et al 2018: as a result of active transcription by RNA polymerase II and recruitment of histone-modifying protein SetD2 that trimethylates histone H3 at lysine 36 (H3K36me3). This histone mark is bound via PWWP (Pro-Trp-Trp-Pro) domain present in DNA methyltransferase DNMT3b (de novo) which then methylates surrounding DNA.
 
-**come back to the above to full explore**  
 Sarda et al 2012
 
 ## DNA Methylation regulates transcriptional noise
@@ -69,7 +66,10 @@ Over time, methylation causes hypermutability of cytosines to thymines. Which re
 
 ![cpg](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/DNA-methylation/CpGO:E.png?raw=true)
 
-![cpgcorals](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/DNA-methylation/CpG-OE-corals.png?raw=true)
+![cpgcorals](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/DNA-methylation/CpG-OE-corals.png?raw=true)  
+[Dimond and Roberts 2016](https://onlinelibrary.wiley.com/doi/pdf/10.1111/mec.13414)
+
+![cpg corals](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/DNA-methylation/cpgoe-patterns.png?raw=true)  
 [Dimond and Roberts 2016](https://onlinelibrary.wiley.com/doi/pdf/10.1111/mec.13414)
 
 ## Methylation is modulator of alternative splicing
