@@ -40,7 +40,7 @@ Open-book; 1 day time limit (10 hours)
 
 Focus on the topics covered in OCG594 this semester with a focus on the background readings from each week. I suggested mutualism with multicellular organisms and cooperation/communication topics in particular.
 
-In the past she has done open book and allowed for 12 hours.
+Open book; 12 hour time limit. 
 
 ## Notes / To-Do
 
