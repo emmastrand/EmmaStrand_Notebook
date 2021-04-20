@@ -28,6 +28,8 @@ will email in the morning with questions and need to return them by certain time
 [Signal Transduction](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/Signal-transduction.md)  
 [Thermal History and Variability](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Thermal-History/Variability.md)
 
+Practice writing questions: [here]().
+
 ### Dr. Scott McWilliam's Exam
 
 Flexible Phenotype Chapters 4, 5, and 9  

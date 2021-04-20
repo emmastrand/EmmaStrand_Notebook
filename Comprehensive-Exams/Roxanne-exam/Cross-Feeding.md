@@ -85,4 +85,16 @@ Other:
 Leaky, valuable public goods (drives Black Queen Hypothesis: adaptive gene loss)  
 
 Maintaining partner fidelity:   
-- limited dispersal, proximity
+- limited dispersal, proximity  
+- physical attachment through endo- or epi-symbiosis
+
+Partner choice (finding and selecting partner):  
+- direct = selecting preferred partner (chemotaxis, chemical recognition)  
+- indirect = gate-keeping (chemical or physical gauntlet keeps out non-preferred partners)
+
+Dynamics to keep in mind:  
+1. Cross-feeding rates determine the relative benefit or detriment of a cross-fed metabolite (a metabolite can shift from being a nutrient to a toxin)  
+2. Cross-feeding is not always coupled with growth  
+3. Production rates can exceed consumption rates (and vice versa) which can lead to an unbalanced
+
+See Black Queen Hypothesis
