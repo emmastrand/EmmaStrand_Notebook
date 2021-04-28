@@ -168,13 +168,18 @@ Below is a representative of the samples run on the tapestation.
 
 ![16s](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16s-tapestation.png?raw=true)
 
-### Post-PCR Gel in Triplicate
+### Post-Pooling Gel (1 well per sample)
 
-Each sample will have 3 gel wells (one per replicate).
+See the google sheet attached above for platemaps and corresponding coral IDs.
 
-### Post-Pooling Gel prior to extraction
+![small-gel1](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210427-smallgel.jpg?raw=true)
 
-Each sample will have 1 gel well (replicates pooled).
+![med-gel1](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210427-mediumgel.jpg?raw=true)
+
+![small-gel2]()
+
+![med-gel2]()
+
 
 ### Prep for URI GSC
 
