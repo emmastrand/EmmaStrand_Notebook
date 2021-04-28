@@ -28,7 +28,7 @@ will email in the morning with questions and need to return them by certain time
 [Signal Transduction](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/Signal-transduction.md)  
 [Thermal History and Variability](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Thermal-History/Variability.md)
 
-Practice writing questions: [here]().
+Practice writing questions: [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/Practice-writing.md).
 
 ### Dr. Scott McWilliam's Exam
 
@@ -56,24 +56,4 @@ Open book; 12 hour time limit.
 [Cross Feeding](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Roxanne-exam/Cross-Feeding.md)  
 
 
-## Notes / To-Do
-
-- Roxanne's folder w/ mds -- regulation of symbiont population within coral cells  : coral-algal DEB  
-- Environmental history - flush out last details   
-- chapter 3 thermal adaptation finish   
-- HP papers  
-- feedback loops .md -- finish; keep adding
-
-
-- Review/whiteboard Scott's exam  
-- Review/whiteboard HP's exam   
-- Review/whiteboard Roxanne's exam  
-
-Briefly summarize:   
-- Innate immunity vs acquired immunity   
-- Assisted evolution, environmental memory, etc.: its own md?  
-- read more Snell-Rood papers  
-- exploration-exploitation trade-off notes  
-- rates of population fitness evolution vs natural selection  
-- coenzyme Q pool  
-- coral anatomy
+## 
