@@ -190,3 +190,21 @@ RNA HS St1: 47.58 St2: 836.09
 Full tapestation report found [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2021-03-16%20-%2013.58.17.pdf).
 
 ## July 2019 Extractions
+
+### 20210430 Extractions
+
+Qubit Standards:  
+DNA BR St1: 132.73 St2: 25,435.25    
+RNA HS St1: 48.59 St2: 941.24
+
+| ColonyID 	| Collection-Date 	| Bleach- 	| Extraction-ID 	| Extraction-Date 	| DNA reading 1 (ng/uL) 	| DNA reading 2 (ng/uL) 	| DNA reading Avg (ng/uL) 	| RNA reading 1 (ng/uL) 	| RNA reading 2 (ng/uL) 	| RNA reading Avg (ng/uL) 	| RIN 	| Gel Pass? 	| Final Extraction for this coral? 	| Notes                                           	|
+|----------	|-----------------	|---------	|---------------	|-----------------	|-----------------------	|-----------------------	|-------------------------	|-----------------------	|-----------------------	|-------------------------	|-----	|-----------	|----------------------------------	|-------------------------------------------------	|
+| M-11     	| 2019-07-20      	| Bleach  	| 36            	| 20210430        	| 28.4                  	| 28.2                  	| 28.3                    	| 64.8                  	| 64.4                  	| 64.6                    	| 5.6 	| No        	| No                               	| RIN too low                                     	|
+| M-219    	| 2019-07-20      	| Bleach  	| 37            	| 20210430        	| 34                    	| 33.8                  	| 33.9                    	| 32.8                  	| 32.8                  	| 32.8                    	| 8   	| No        	| TBD                              	| maybe re-do this one b/c the DNA quality is low 	|
+| M-203    	| 2019-07-20      	| Bleach  	| 38            	| 20210430        	| 15.2                  	| 15                    	| 15.1                    	| 13.5                  	| 13.6                  	| 13.55                   	| 8.4 	| Yes       	| Yes                              	| NA                                              	|
+
+![gel]()
+
+![tape](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210430-tapestation.png?raw=true)
+
+Full tapestation report found [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2021-04-30%20-%2011.42.22.pdf).
