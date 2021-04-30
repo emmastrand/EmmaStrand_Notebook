@@ -25,6 +25,8 @@ After 2 minute vortex step, this is what the sample tube will look like. The goa
 
 ![coral](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210131-postvortex.jpg?raw=true)
 
+## September, October, and December 2019 Extractions
+
 ### 2021-01-31 Extractions (1-6)
 
 Qubit Standards:
@@ -186,3 +188,5 @@ RNA HS St1: 47.58 St2: 836.09
 ![tape](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210316-tape.png?raw=true)
 
 Full tapestation report found [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2021-03-16%20-%2013.58.17.pdf).
+
+## July 2019 Extractions
