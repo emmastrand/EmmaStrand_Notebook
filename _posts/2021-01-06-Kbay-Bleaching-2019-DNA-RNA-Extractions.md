@@ -203,7 +203,7 @@ RNA HS St1: 48.59 St2: 941.24
 | M-219    	| 2019-07-20      	| Bleach  	| 37            	| 20210430        	| 34                    	| 33.8                  	| 33.9                    	| 32.8                  	| 32.8                  	| 32.8                    	| 8   	| No        	| TBD                              	| maybe re-do this one b/c the DNA quality is low 	|
 | M-203    	| 2019-07-20      	| Bleach  	| 38            	| 20210430        	| 15.2                  	| 15                    	| 15.1                    	| 13.5                  	| 13.6                  	| 13.55                   	| 8.4 	| Yes       	| Yes                              	| NA                                              	|
 
-![gel]()
+![gel](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210430-gel.jpg?raw=true)
 
 ![tape](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210430-tapestation.png?raw=true)
 
