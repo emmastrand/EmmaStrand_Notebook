@@ -208,3 +208,88 @@ RNA HS St1: 48.59 St2: 941.24
 ![tape](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210430-tapestation.png?raw=true)
 
 Full tapestation report found [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2021-04-30%20-%2011.42.22.pdf).
+
+Corals to re-do:
+
+![fail1](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/Kbay-July-2019/M-11-1.png?raw=true)
+
+![fail2](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/Kbay-July-2019/M-219-1.png?raw=true)
+
+### 20210503 Extractions
+
+Qubit Standards:  
+DNA BR St1: 192.69 St2: 21,389.02    
+RNA HS St1: 48.65 St2: 827.45
+
+| ColonyID 	| Collection-Date 	| Bleach-    	| Extraction-ID 	| Extraction-Date 	| DNA reading 1 (ng/uL) 	| DNA reading 2 (ng/uL) 	| DNA reading Avg (ng/uL) 	| RNA reading 1 (ng/uL) 	| RNA reading 2 (ng/uL) 	| RNA reading Avg (ng/uL) 	| RIN 	| Gel Pass? 	| Final Extraction for this coral? 	|
+|----------	|-----------------	|------------	|---------------	|-----------------	|-----------------------	|-----------------------	|-------------------------	|-----------------------	|-----------------------	|-------------------------	|-----	|-----------	|----------------------------------	|
+| M-212    	| 2019-07-20      	| Non-Bleach 	| 39            	| 20210503        	| 105                   	| 103                   	| 104                     	| 73.6                  	| 72.8                  	| 73.2                    	| 6.2 	| No        	| TBD                              	|
+| M-209    	| 2019-07-20      	| Bleach     	| 40            	| 20210503        	| 40.2                  	| 39.8                  	| 40                      	| 16.1                  	| 16                    	| 16.05                   	| 8.2 	| No        	| TBD                              	|
+| M-3      	| 2019-07-20      	| Bleach     	| 41            	| 20210503        	| 28.8                  	| 28.4                  	| 28.6                    	| 11.2                  	| 11.2                  	| 11.2                    	| 6.5 	| No        	| TBD                              	|
+| M-222    	| 2019-07-20      	| Non-Bleach 	| 42            	| 20210503        	| 80.6                  	| 79.8                  	| 80.2                    	| 36.8                  	| 37                    	| 36.9                    	| 7.1 	| No        	| TBD                              	|
+| M-210    	| 2019-07-20      	| Non-Bleach 	| 43            	| 20210503        	| 47.6                  	| 47.2                  	| 47.4                    	| 26                    	| 26                    	| 26                      	| 7.2 	| No        	| TBD                              	|
+| M-201    	| 2019-07-20      	| Bleach     	| 44            	| 20210503        	| 37.2                  	| 37                    	| 37.1                    	| 12.8                  	| 12.7                  	| 12.75                   	| 8.1 	| No        	| TBD                              	|
+| M-11     	| 2019-07-20      	| Bleach     	| 45            	| 20210503        	| 73.8                  	| 73.2                  	| 73.5                    	| 76.6                  	| 76.2                  	| 76.4                    	| 5.9 	| No        	| TBD                              	|
+| M-202    	| 2019-07-20      	| Non-Bleach 	| 46            	| 20210503        	| 89                    	| 88.2                  	| 88.6                    	| 71.8                  	| 71.4                  	| 71.6                    	| 6.8 	| No        	| TBD                              	|
+| M-217    	| 2019-07-20      	| Bleach     	| 47            	| 20210503        	| 80.4                  	| 79.6                  	| 80                      	| 46                    	| 45.8                  	| 45.9                    	| 9   	| No        	| TBD                              	|
+| M-219    	| 2019-07-20      	| Bleach     	| 48            	| 20210503        	| 149                   	| 148                   	| 148.5                   	| 96.9                  	| 95.8                  	| 96.35                   	| 6.9 	| No        	| TBD                              	|
+| M-20     	| 2019-07-20      	| Non-Bleach 	| 49            	| 20210503        	| 17.7                  	| 17.5                  	| 17.6                    	| 21.4                  	| 21.4                  	| 21.4                    	| 3.8 	| No        	| TBD                              	|
+| M-204    	| 2019-07-20      	| Non-Bleach 	| 50            	| 20210503        	| 69.6                  	| 69                    	| 69.3                    	| 44.4                  	| 44.2                  	| 44.3                    	| 6   	| No        	| TBD                              	|
+| M-221    	| 2019-07-20      	| Bleach     	| 51            	| 20210503        	| 40.4                  	| 40.2                  	| 40.3                    	| 24.6                  	| 24.6                  	| 24.6                    	| 7.9 	| No        	| TBD                              	|
+| M-211    	| 2019-07-20      	| Bleach     	| 52            	| 20210503        	| 75                    	| 74.4                  	| 74.7                    	| 40.2                  	| 40                    	| 40.1                    	| 6.7 	| No        	| TBD                              	|
+| M-220    	| 2019-07-20      	| Non-Bleach 	| 53            	| 20210503        	| 21.4                  	| 21.2                  	| 21.3                    	| 10.2                  	| 10.3                  	| 10.25                   	| NA  	| Yes       	| TBD                              	|
+| M-4      	| 2019-07-20      	| Non-Bleach 	| 54            	| 20210503        	| 112                   	| 111                   	| 111.5                   	| 72.4                  	| 72                    	| 72.2                    	| 7.3 	| No        	| TBD                              	|
+| M-12     	| 2019-07-20      	| Non-Bleach 	| 55            	| 20210503        	| 72.8                  	| 72                    	| 72.4                    	| 55.6                  	| 55.4                  	| 55.5                    	| 7.3 	| No        	| TBD                              	|
+| M-218    	| 2019-07-20      	| Non-Bleach 	| 56            	| 20210503        	| 82.2                  	| 81.4                  	| 81.8                    	| 60.4                  	| 60.4                  	| 60.4                    	| 6.6 	| No        	| TBD                              	|
+| M-19     	| 2019-07-20      	| Bleach     	| 57            	| 20210503        	| 65.6                  	| 65.2                  	| 65.4                    	| 34.8                  	| 34.8                  	| 34.8                    	| 8.1 	| No        	| TBD                              	|
+
+![gel]()
+
+
+Full tapestation report found [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2021-05-03%20-%2015.26.58.pdf) and [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2021-05-03%20-%2015.52.41.pdf).
+
+### July 2019 Extraction Notes
+
+These fragments look closer to October and September fragments - maybe they were partially degraded? There is a bright band on the gel that is usually found with fragments that melted. However, the RNA is higher quality than the DNA on most fragments. There are some high molecular weight fragments, but not many. Can we actually use these for methylation analysis and WGBS?
+
+### RNA Quality
+
+![11-2](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/Kbay-July-2019/M-11-2.png?raw=true)
+
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/Kbay-July-2019/M-12.png?raw=true)
+
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/Kbay-July-2019/M-19.png?raw=true)
+
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/Kbay-July-2019/M-20.png?raw=true)
+
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/Kbay-July-2019/M-201.png?raw=true)
+
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/Kbay-July-2019/M-202.png?raw=true)
+
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/Kbay-July-2019/M-203.png?raw=true)
+
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/Kbay-July-2019/M-204.png?raw=true)
+
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/Kbay-July-2019/M-209.png?raw=true)
+
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/Kbay-July-2019/M-210.png?raw=true)
+
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/Kbay-July-2019/M-211.png?raw=true)
+
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/Kbay-July-2019/M-212.png?raw=true)
+
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/Kbay-July-2019/M-217.png?raw=true)
+
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/Kbay-July-2019/M-218.png?raw=true)
+
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/Kbay-July-2019/M-219-2.png?raw=true)
+
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/Kbay-July-2019/M-220.png?raw=true)
+
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/Kbay-July-2019/M-221.png?raw=true)
+
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/Kbay-July-2019/M-222.png?raw=true)
+
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/Kbay-July-2019/M-3.png?raw=true)
+
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/Kbay-July-2019/M-4.png?raw=true)
