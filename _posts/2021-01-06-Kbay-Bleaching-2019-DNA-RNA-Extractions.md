@@ -243,8 +243,7 @@ RNA HS St1: 48.65 St2: 827.45
 | M-218    	| 2019-07-20      	| Non-Bleach 	| 56            	| 20210503        	| 82.2                  	| 81.4                  	| 81.8                    	| 60.4                  	| 60.4                  	| 60.4                    	| 6.6 	| No        	| TBD                              	|
 | M-19     	| 2019-07-20      	| Bleach     	| 57            	| 20210503        	| 65.6                  	| 65.2                  	| 65.4                    	| 34.8                  	| 34.8                  	| 34.8                    	| 8.1 	| No        	| TBD                              	|
 
-![gel]()
-
+![gel](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210503-gel2.jpg?raw=true)
 
 Full tapestation report found [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2021-05-03%20-%2015.26.58.pdf) and [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2021-05-03%20-%2015.52.41.pdf).
 
