@@ -10,7 +10,7 @@ Notes and literature search based on several review papers below. These notes ar
 
 Definitions for microbiome, symbiosis, ecosystem functions, and health status of microbes are well described in Wilkins et al 2019 (link above).
 
-More in-depth descriptions and diagrams of the Coral Holobiont found [here]().
+More in-depth descriptions and diagrams of the Coral Holobiont found [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Roxanne-exam/Coral-Holobiont.md).
 
 ### Hologenome theory
 

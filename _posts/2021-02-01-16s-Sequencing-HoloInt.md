@@ -172,17 +172,27 @@ Below is a representative of the samples run on the tapestation.
 
 See the google sheet attached above for platemaps and corresponding coral IDs.
 
-![small-gel1](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210427-smallgel.jpg?raw=true)
+Three asterisks denotes a sample that does not have as clear of a band - potentially re-do PCR?  
+A white box outline denotes a sample that did not work - either DNA was not added in dilution plate or PCR.
 
-![med-gel1](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210427-mediumgel.jpg?raw=true)
+![plate2](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210427-smallgel.jpg?raw=true)
 
-![small-gel2]()
+![plate2-3](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210427-mediumgel.jpg?raw=true)
 
-![med-gel2]()
 
+
+![plate8]()
+
+
+![plate9]()
+
+Re-do:  
+- Plate 8 Column 7,8,9 Row #6 = 1218
 
 ### Prep for URI GSC
 
+
+***
 
 ## Troubleshooting "trials"
 
