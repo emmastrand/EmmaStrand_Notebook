@@ -179,7 +179,13 @@ A white box outline denotes a sample that did not work - either DNA was not adde
 
 ![plate2-3](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210427-mediumgel.jpg?raw=true)
 
-![plate7](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210504-plate7gel.jpg?raw=true) 
+![plate4](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210428-plate4gel.jpg?raw=true)
+
+![plate4-5](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210428-plate4:5gel.jpg?raw=true)
+
+![plate6](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210503-plate6gel.jpg?raw=true)
+
+![plate7](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210504-plate7gel.jpg?raw=true)
 
 ![plate8](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210504-plate8gel.jpg?raw=true)
 
