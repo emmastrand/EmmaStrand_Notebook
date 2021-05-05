@@ -181,8 +181,7 @@ A white box outline denotes a sample that did not work - either DNA was not adde
 
 
 
-![plate8]()
-
+![plate8](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210504-plate8gel.jpg?raw=true)
 
 ![plate9](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210504-plate9gel.jpg?raw=true)
 
