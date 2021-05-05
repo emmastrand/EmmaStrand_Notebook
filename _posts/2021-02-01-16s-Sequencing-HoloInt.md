@@ -184,7 +184,7 @@ A white box outline denotes a sample that did not work - either DNA was not adde
 ![plate8]()
 
 
-![plate9]()
+![plate9](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210504-plate9gel.jpg?raw=true)
 
 Re-do:  
 - Plate 8 Column 7,8,9 Row #6 = 1218
