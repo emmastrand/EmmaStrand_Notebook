@@ -3,7 +3,8 @@
 These notes serve as bookmarks for further exploration and meant to serve as a document to concentrate the diagrams I've found to be most helpful in understanding this relationship.
 
 The coral holobiont is mutualistic and symbiotic relationship between a coral host, endosymbiont dinoflagellate, and both intra- and extra-cellular microbiome communities. All three partners play a role in the overall health, phenotype, and tolerance of the organism (Dittami et al 2021).  
--   
+- Symbiodiniaceae provides coral with glucose, glycerol, and amino acids.  
+- Coral provides a protected environment and limiting compounds like nitrogen species   
 
 ### Symbiodiniaceae and coral host relationship   
 

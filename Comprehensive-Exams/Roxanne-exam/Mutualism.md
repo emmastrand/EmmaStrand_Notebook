@@ -39,9 +39,23 @@ Microbes are drivers of global biogeochemical cycles; including mass amounts of 
 Thus **expanding metabolic capacity** with new abilities via biochemical machineries (anaerobic and aerobic pathways) (Dittami et al has examples):  
 - production of essential amino acids, photosynthesis, and/or chemosynthesis  
 - could enhance resilience to environmental change (Van Oppen papers; several citations in Dittami et al)  
-- Or cross biotope boundaries (Woyke et al 2006) or colonize extreme environments (Bang et al 2018)
+- Or cross biotope boundaries (Woyke et al 2006) or colonize extreme environments (Bang et al 2018)  
 
 Biotope boundaries: biotope = an environment or habitat. If a biotope boundary is crossed, then the organism is inhabiting a new environment that they wouldn't otherwise cross.
+
+**Nutritional value**  
+- Bacteria in the gut of surgeonfishes produce enzymes that allow hosts to digest complex polysaccharides, enabling the host fish to feed on tough, leathery red and brown macroalgae (Wilkins et al example: Ngugi et al 2017)  
+- Gammaproteobacteria nourish ciliate host and recycle acetate and propionate (low value cellular waste products from host) into biomass (Wilkins et al example: BKB et al 2019);  
+- Wilkins et al has a couple other examples of nutritional value symbioses
+
+**Reproduction and host development**
+
+- Several examples of settlement cues by microbiota in Wilkins et al and influencing growth of host: some microbiota can secrete phytohormones  
+- Host development classic example of the squid and bacteria
+
+
+
+
 
 ### Establishment of symbiosis: Vertical and Horizontal Transmission
 
