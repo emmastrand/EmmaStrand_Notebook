@@ -1,25 +1,40 @@
-# Comprehensive Exam Study Guide
+--- 
+title: "Comprehensive Exam Study Guide"
+author: "Author: Emma Strand; Ph.D. Student at the University of Rhode Island"
+date: "Created Spring 2021"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+description: "Welcome to my study guide that I used to prepare for my comprehensive exams. This is a general work in progress but it helped me compile all of the resources I needed for this exam set."
+---
 
-Welcome to my study guide that I used to prepare for my comprehensive exams. This is a general work in progress but it helped me compile all of the resources I needed for this exam set.
+# Comprehensive Exam Description and Logistics {-}
 
-**Disclaimer**: Some pages of notes are more comprehensive and descriptive than others. This study guide is meant to be a foundation to bounce off of the topics I learned more about for this exam set. And of course is in no way a completely thorough literature review on this topic - for every paper cited or mentioned, I'm sure there are 3-4 more great papers on that topic.
+Welcome to my study guide that I used to prepare for my comprehensive exams. This is a compilation of resources that I used while studying for my comprehensive exams. Each tab and chapter in this R-book are organized by the committee member this was used for.
 
-## Comprehensive Exam Description and Logistics
-A compilation of my resources for studying for comprehensive exams. Each folder refers to a committee member's exam, each with several markdown files of notes and figures (cited).
+*Disclaimer*: Some pages of notes are more comprehensive and descriptive than others. This study guide is meant to be a foundation to bounce off of the topics I learned more about for this exam set. And of course is in no way a completely thorough literature review on this topic - for every paper cited or mentioned, I'm sure there are 3-4 more great papers on that topic.
 
+**University of Rhode Island specifics**  
 Comprehensive exams at the University of Rhode Island are taken ~completion of 3rd year - 4th year and result in moving from Level II to Level III graduate student as well as moving from Ph.D. Student to Ph.D Candidate. Each committee member gives a day-long written exam (usually 3) and ~2-4 weeks later there is a 2 hour oral comprehensive exam with all committee members (addition of an outside department chair = 4 members).
 
 "The graduate manual has not been updated with the changes quite yet. You are not required to go through our office to schedule your comprehensive exams. You will schedule with your committee and then your major professor will submit the results." - URI Graduate School (Spring 2021)
 
-## Overview of each written exam by committee member
-### Dr. Hollie Putnam's Exam
+No forms are necessary for scheduling the exam, just schedule both portions with your committee. I would advise scheduling your oral exam ahead of time and if you need to change it you can later.
+
+## Exam Content by Committee Member {-}
+
+**Dr. Hollie Putnam's Exam**
 
 - signal transduction pathways; feedback loops, specific examples  
 - alternative interpretations for why methylation might not be the only player  
 - epigenetics/methylation details and history of the field  
 - interaction between genetics for evolutionary outcomes  
 
-semi-open book; HP chooses the resources available. In the past her exam has been 8 hours.  
+semi-open book; HP chooses the resources available; 12 hour time limit.  
 will email in the morning with questions and need to return them by certain time.
 
 [DNA Methylation](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/DNA-methylation/DNA-methylation.md)  
@@ -32,32 +47,32 @@ will email in the morning with questions and need to return them by certain time
 
 Practice writing questions: [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/Practice-writing.md).
 
-### Dr. Scott McWilliam's Exam
+**Dr. Scott McWilliam's Exam**
 
 Flexible Phenotype Chapters 4, 5, and 9  
 Biochemical Adaptation Chapters 1 and 2  
 Fox et al: Beyond buying time: the role of plasticity in phenotypic adaptation to rapid environmental change.  
 Snell-Rood et al: Mechanisms of plastic rescue.  
 
-Open-book; 1 day time limit (10 hours)
+Open-book; 1 day time limit (24 hours)
 
 [Biochemical Adaptation](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/Biochemical-Adaptation.md)  
 [Flexible Phenotype](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/Flexible-Phenotype.md)  
 [Plastic Rescue](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/Plastic-Rescue.md)  
 [Plasticity and Phenotypic Adaptation](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/Plasticity-in-Adaptation.md)
 
-### Dr. Roxanne Beinart's Exam
+**Dr. Roxanne Beinart's Exam**
 
 Focus on the topics covered in Microbial Interactions: OCG594 this semester with a focus on the background readings from each week. I suggested mutualism with multicellular organisms and cooperation/communication topics in particular. The bulk of notes for this exam are in the Mutualism markdown below.
 
 Open book; 12 hour time limit.
 
 [Basics of Symbiotic Interactions](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Roxanne-exam/Basics-Symbiotic-Intxn.md)  
-[Mutualism](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Roxanne-exam/Mutualism.md)  
-[Coral-Holobiont](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Roxanne-exam/Coral-Holobiont.md)  
+[Mutualism](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Roxanne-exam/Coral-Holobiont.md)   
+[Coral Holobiont](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Roxanne-exam/Coral-Holobiont.md)  
 [Cross Feeding](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Roxanne-exam/Cross-Feeding.md)  
 
-## Post-Completion of Comprehensive Exam Reflection and Suggestions: What I Wish I Knew
+## Exam Reflection and Suggestions: What I Wish I Knew {-}
 
 My advice to a future me if I were to go back in time and do this all over again ..
 
@@ -93,7 +108,12 @@ Creating this study guide was the most helpful resource for me - a concentrated 
 
 It is fair game to ask for peer's exam questions and answers. I didn't realize how open this may be prior to my exams - it helps to see how others structured their answers and what literature they relied on. I am more than happy to share all three-four written exams I took - both the best and worst answers I wrote (email emma_strand@uri.edu).
 
-## Comprehensive Exam Tips
+**Burn-out** 
+
+I completely burnt myself out during this studying process and by the end, didn't enjoy the process - which is such a bummer because several people reflect positively on their time during comps because you get to spend so much more time just learning. My notes for the third exam I took were not nearly as detailed as the first two sets and by the time the third written exam came around it took a huge amount of brain power to get through the exam. 
+
+
+## General Comprehensive Exam Tips {-}
 
 **Role of the Comprehensive Exam**  
 

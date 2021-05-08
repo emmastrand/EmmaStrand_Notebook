@@ -1,0 +1,2728 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{book}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+  \usepackage{amssymb}
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Comprehensive Exam Study Guide},
+  pdfauthor={Author: Emma Strand; Ph.D.~Student at the University of Rhode Island},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{longtable,booktabs}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage{booktabs}
+\usepackage{amsthm}
+\makeatletter
+\def\thm@space@setup{%
+  \thm@preskip=8pt plus 2pt minus 4pt
+  \thm@postskip=\thm@preskip
+}
+\makeatother
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage[]{natbib}
+\bibliographystyle{apalike}
+
+\title{Comprehensive Exam Study Guide}
+\author{Author: Emma Strand; Ph.D.~Student at the University of Rhode Island}
+\date{Created Spring 2021}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\hypertarget{comprehensive-exam-description-and-logistics}{%
+\chapter*{Comprehensive Exam Description and Logistics}\label{comprehensive-exam-description-and-logistics}}
+\addcontentsline{toc}{chapter}{Comprehensive Exam Description and Logistics}
+
+Welcome to my study guide that I used to prepare for my comprehensive exams. This is a compilation of resources that I used while studying for my comprehensive exams. Each tab and chapter in this R-book are organized by the committee member this was used for.
+
+\emph{Disclaimer}: Some pages of notes are more comprehensive and descriptive than others. This study guide is meant to be a foundation to bounce off of the topics I learned more about for this exam set. And of course is in no way a completely thorough literature review on this topic - for every paper cited or mentioned, I'm sure there are 3-4 more great papers on that topic.
+
+\textbf{University of Rhode Island specifics}\\
+Comprehensive exams at the University of Rhode Island are taken \textasciitilde completion of 3rd year - 4th year and result in moving from Level II to Level III graduate student as well as moving from Ph.D.~Student to Ph.D Candidate. Each committee member gives a day-long written exam (usually 3) and \textasciitilde2-4 weeks later there is a 2 hour oral comprehensive exam with all committee members (addition of an outside department chair = 4 members).
+
+``The graduate manual has not been updated with the changes quite yet. You are not required to go through our office to schedule your comprehensive exams. You will schedule with your committee and then your major professor will submit the results.'' - URI Graduate School (Spring 2021)
+
+No forms are necessary for scheduling the exam, just schedule both portions with your committee. I would advise scheduling your oral exam ahead of time and if you need to change it you can later.
+
+\hypertarget{exam-content-by-committee-member}{%
+\section*{Exam Content by Committee Member}\label{exam-content-by-committee-member}}
+\addcontentsline{toc}{section}{Exam Content by Committee Member}
+
+\textbf{Dr.~Hollie Putnam's Exam}
+
+\begin{itemize}
+\tightlist
+\item
+  signal transduction pathways; feedback loops, specific examples\\
+\item
+  alternative interpretations for why methylation might not be the only player\\
+\item
+  epigenetics/methylation details and history of the field\\
+\item
+  interaction between genetics for evolutionary outcomes
+\end{itemize}
+
+semi-open book; HP chooses the resources available; 12 hour time limit.\\
+will email in the morning with questions and need to return them by certain time.
+
+\href{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/DNA-methylation/DNA-methylation.md}{DNA Methylation}\\
+\href{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/Epigenetics/Epigenetic-Modifications.md}{Epigenetic Modifications}\\
+\href{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/Coral-Bleaching.md}{Biology of Coral Bleaching}\\
+\href{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/Feedback-loops.md}{Feedback Loops}\\
+\href{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/GenotypexEnvironment.md}{Genotype x Environment}\\
+\href{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/Signal-transduction.md}{Signal Transduction}\\
+\href{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Thermal-History/Variability.md}{Thermal History and Variability}
+
+Practice writing questions: \href{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/Practice-writing.md}{here}.
+
+\textbf{Dr.~Scott McWilliam's Exam}
+
+Flexible Phenotype Chapters 4, 5, and 9\\
+Biochemical Adaptation Chapters 1 and 2\\
+Fox et al: Beyond buying time: the role of plasticity in phenotypic adaptation to rapid environmental change.\\
+Snell-Rood et al: Mechanisms of plastic rescue.
+
+Open-book; 1 day time limit (24 hours)
+
+\href{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/Biochemical-Adaptation.md}{Biochemical Adaptation}\\
+\href{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/Flexible-Phenotype.md}{Flexible Phenotype}\\
+\href{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/Plastic-Rescue.md}{Plastic Rescue}\\
+\href{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/Plasticity-in-Adaptation.md}{Plasticity and Phenotypic Adaptation}
+
+\textbf{Dr.~Roxanne Beinart's Exam}
+
+Focus on the topics covered in Microbial Interactions: OCG594 this semester with a focus on the background readings from each week. I suggested mutualism with multicellular organisms and cooperation/communication topics in particular. The bulk of notes for this exam are in the Mutualism markdown below.
+
+Open book; 12 hour time limit.
+
+\href{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Roxanne-exam/Basics-Symbiotic-Intxn.md}{Basics of Symbiotic Interactions}\\
+\href{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Roxanne-exam/Coral-Holobiont.md}{Mutualism}\\
+\href{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Roxanne-exam/Coral-Holobiont.md}{Coral Holobiont}\\
+\href{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Roxanne-exam/Cross-Feeding.md}{Cross Feeding}
+
+\hypertarget{exam-reflection-and-suggestions-what-i-wish-i-knew}{%
+\section*{Exam Reflection and Suggestions: What I Wish I Knew}\label{exam-reflection-and-suggestions-what-i-wish-i-knew}}
+\addcontentsline{toc}{section}{Exam Reflection and Suggestions: What I Wish I Knew}
+
+My advice to a future me if I were to go back in time and do this all over again ..
+
+\textbf{Use citations to build a case, not solely as needed}
+
+While I was writing my exams, I made the mistake of citing as needed - as in I cited when I used a reference to explain concepts and answers rather than using the literature and citations to build a case and story. References and literature is the base of the answer that you construct. See below Comprehensive Exam Tips for more details on this.
+
+\textbf{Notes and study guide structure}
+
+I would suggest to structure notes based on the type of exam rather than the content:
+
+For a 12-hour open exam: I would keep a heavy focus on the bigger picture of how concepts connect to each other instead of in-depth notes on the small details of pathways and examples. I would use my notes as bookmarks for examples (i.e.~come back to this paper for an example of this) that I could reference for more detail during the exam if needed.
+
+For a closed exam: I would need to know the citations and exactly what information I would cite from them prior to the exam since I would not be able to reference or read the paper again. I would also practice writing out the questions and answers. For example, I expected to have to explain a signal transduction pathway from environmental signal to change in methylation pattern. For this I needed to understand (not just memorize) how the signal pathways in corals worked. I wrote the following bullet points:
+
+Signal transduction:\\
+- Receptor (2)\\
+- 2nd messenger (2)\\
+- Example in corals (4 steps)\\
+- Alternative to temperature (1)
+
+``Receptor (2)'' prompted me to explain to myself how the cell is able to receive a signal and the 2 denotes that in my notes I had 2 examples of this or 2 mechanisms. I use these bullet points to guide explaining this out loud (usually to myself but a kind friend will do too). If I can teach it without referencing my notes, then I know I understand it well. During the exam if I have forgotten a specific, then it's easier for me to remember when I know the numbers I had associated with each bullet point - this (in a similar way to colored notecards for some people) guides my brain to associated information together.
+
+I struggled for so long in high school and college to keep up with material when notecards and different forms of study guides didn't work that well for me. I found that teaching does - using bullet points like the above and then `teaching' it back to myself is the most effective studying method for me.
+
+Creating this study guide was the most helpful resource for me - a concentrated document where all my citations and references lived for easy access during open book exams.
+
+\textbf{Exam Week}
+
+\emph{Absolutely} put a day in between exams - I had two back to back and did not leave myself enough time to re-group and prepare for the next one.
+
+\textbf{Get other people's exams}
+
+It is fair game to ask for peer's exam questions and answers. I didn't realize how open this may be prior to my exams - it helps to see how others structured their answers and what literature they relied on. I am more than happy to share all three-four written exams I took - both the best and worst answers I wrote (email \href{mailto:emma_strand@uri.edu}{\nolinkurl{emma\_strand@uri.edu}}).
+
+\textbf{Burn-out}
+
+I completely burnt myself out during this studying process and by the end, didn't enjoy the process - which is such a bummer because several people reflect positively on their time during comps because you get to spend so much more time just learning. My notes for the third exam I took were not nearly as detailed as the first two sets and by the time the third written exam came around it took a huge amount of brain power to get through the exam.
+
+\hypertarget{general-comprehensive-exam-tips}{%
+\section*{General Comprehensive Exam Tips}\label{general-comprehensive-exam-tips}}
+\addcontentsline{toc}{section}{General Comprehensive Exam Tips}
+
+\textbf{Role of the Comprehensive Exam}
+
+``The comprehensive examination is a critical part of a PhD program. You should not view it simply as a bureaucratic hurdle to pass over on your way to the dissertation. Instead, before embarking on narrowly focused dissertation work, the comprehensive examination establishes that you have the broad familiarity and expertise with the field that is the mark of a doctoral education. It is the checkpoint that confirms that you are ready to pass from being a student to a scholar. The process of preparing for the comprehensive exam should help you organize and reflect on the variety of things you have learned over the past few years. While to this point, each of your seminars has been a distinct learning experience, you now have the opportunity to think about how your interdisciplinary work in international studies fits together. Preparation for the comprehensive exam should help you become better able to integrate and utilize the knowledge you have gained in your graduate study. It is also critically important for embarking on the dissertation. The best dissertations are effectively connected to the central questions and literature of the field. Unless you have developed an integrated overview of the field you will not have the necessary foundation for dissertation work. This written exam process allows the committee insight into your capacity for integration, synthesis, and expression of your knowledge around particular research topics/questions. It then enables us to more effectively guide you and challenge you in the rest of the dissertation process.''
+
+\textbf{Tips for Writing an Effective Comprehensive Exam}
+
+From Old Dominion University \href{https://odu.edu/intlstudies/gpis/resources/student-guide-phd-comprehensive-examination\#}{webpage}.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Make sure you answer the questions explicitly and clearly.
+\end{enumerate}
+
+The most common comprehensive exam mistake is to not explicitly and clearly answer the question. Read the question very carefully and make sure that you offer an explicit answer to the question. Do not rely on the readers to draw out implicit answers.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Make appropriate reference to the literature and relevant scholarly debates.
+\end{enumerate}
+
+You should demonstrate familiarity and facility with a range of the literature. You should be able to appropriately reference the scholars whose arguments are relevant to a particular issue.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Make appropriate use of theory and of empirical and historical knowledge.
+\end{enumerate}
+
+If appropriately done, it is particularly effective to use theory to inform answers on history questions and history to inform answers on theory questions.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Write full answers that are structured with an introduction and conclusion.
+\end{enumerate}
+
+As in all writing, structure and organization are important to effective communication. Just because it is a time-limited exam is no excuse for jumbled, incoherent writing. Take the time to think through and outline your argument and its structure before you write. As in all writing, signposting, headings, and clear explicit language can help communicate your ideas. Provide a clear introduction and conclusion that can help you summarize your central point and will reassure the readers that you have, in fact, explicitly answered the question.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Make an argument
+\end{enumerate}
+
+As a scholar prepared to embark on independent thesis work, it is important that you demonstrate an ability to effectively articulate your own views. The comprehensive exam is not just about knowing the literature. It is also about demonstrating that you can think about international issues critically and come to your own conclusions. Avoid wishy-washy answers that simply describe some of the ideas extant in the field and then conclude that they are all correct. Take a stand and defend it with appropriate theoretical, analytical, and empirical material.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Make choices
+\end{enumerate}
+
+You will notice that most of the questions are a lot bigger than can be fully answered in the two-hours you will have on average during the written exam. You have to make choices on how you will answer so that you can display your breadth and depth of knowledge while satisfying the committee that you have effectively addressed the question. It usually helps if you can be explicit about how you are managing the question. It is rarely a good strategy to try to present a broad and superficial survey of too many things.
+
+\hypertarget{intro}{%
+\chapter{DNA Methylation}\label{intro}}
+
+A compilation of resources on understanding why the addition of that little methyl group matters.
+
+\hypertarget{what-is-dna-methylation}{%
+\section*{What is DNA methylation?}\label{what-is-dna-methylation}}
+\addcontentsline{toc}{section}{What is DNA methylation?}
+
+From \href{https://compgenomr.github.io/book/what-is-dna-methylation.html}{compgenomr}:
+
+\textbf{10.1 What is DNA methylation?}\\
+Cytosine methylation (5-methylcytosine, 5mC) is one of the main covalent base modifications in eukaryotic genomes, generally observed on CpG dinucleotides. Methylation can also rarely occur in a non-CpG context, but this was mainly observed in human embryonic stem and neuronal cells (Lister, Pelizzola, Dowen, et al.~2009; Lister, Mukamel, Nery, et al.~2013). DNA methylation is a part of the epigenetic regulation mechanism of gene expression. It is cell-type-specific DNA modification. It is reversible but mostly remains stable through cell division. There are roughly 28 million CpGs in the human genome, 60--80\% are generally methylated. Less than 10\% of CpGs occur in CG-dense regions that are termed CpG islands in the human genome (Smith and Meissner 2013). It has been demonstrated that DNA methylation is also not uniformly distributed over the genome, but rather is associated with CpG density. In vertebrate genomes, cytosine bases are usually unmethylated in CpG-rich regions such as CpG islands and tend to be methylated in CpG-deficient regions. Vertebrate genomes are largely CpG deficient except at CpG islands. \textbf{Conversely, invertebrates such as Drosophila melanogaster and Caenorhabditis elegans do not exhibit cytosine methylation and consequently do not have CpG rich and poor regions but rather a steady CpG frequency over their genomes (Deaton and Bird 2011).}
+
+\hypertarget{how-does-dna-methylation-work}{%
+\section*{How does DNA methylation work?}\label{how-does-dna-methylation-work}}
+\addcontentsline{toc}{section}{How does DNA methylation work?}
+
+Diagram I made of methylation and de-methylation: found \href{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/DNA-methylation/DNA_methylation_20201007.pdf}{here}.
+
+From \href{https://compgenomr.github.io/book/what-is-dna-methylation.html}{compgenomr}:
+
+\textbf{10.1.1 How DNA methylation is set?}\\
+DNA methylation is established by DNA methyltransferases DNMT3A and DNMT3B in combination with DNMT3L and maintained through cell division by the methyltransferase DNMT1 and associated proteins. DNMT3a and DNMT3b are in charge of the de novo methylation during early development. Loss of 5mC can be achieved passively by dilution during replication or exclusion of DNMT1 from the nucleus. Recent discoveries of the ten-eleven translocation (TET) family of proteins and their ability to convert 5-methylcytosine (5mC) into 5-hydroxymethylcytosine (5hmC) in vertebrates provide a path for catalyzed active DNA demethylation (Tahiliani, Koh, Shen, et al.~2009). Iterative oxidations of 5hmC catalyzed by TET result in 5-formylcytosine (5fC) and 5-carboxylcytosine (5caC). 5caC mark is excised from DNA by G/T mismatch-specific thymine-DNA glycosylase (TDG), which as a result reverts cytosine residue to its unmodified state (He, Li, Li, et al.~2011). Apart from these, mainly bacteria, but possibly higher eukaryotes, contain base modifications on bases other than cytosine, such as methylated adenine or guanine (Clark, Spittle, Turner, et al.~2011).
+
+\includegraphics{https://ars.els-cdn.com/content/image/1-s2.0-S0022283617300839-gr1.jpg}
+
+\hypertarget{location-of-methylation}{%
+\section*{Location of methylation}\label{location-of-methylation}}
+\addcontentsline{toc}{section}{Location of methylation}
+
+\textbf{Invertebrates}: location is non-random and mainly located in gene bodies (Li et al 2018). \emph{From Eirin-Lopez and Putnam 2019}: Additionally, DNA methylation can commonly be found in gene bodies, where it hypothetically contributes to the reduction of transcriptional variation, reduction of spurious transcription, and facilitation of alternative splicing (reviewed in Roberts \& Gavery 2012). Methylation is spread evenly across a gene.
+
+\textbf{Vertebrates}: located in promoters regions and usually associated with turning ``on and off'' genes or gene silencing. \emph{From Eirin-Lopez and Putnam 2019}: Repetitive CpG sequences (CpG islands) can be found located upstream in promoter regions, and here the presence of methylation can silence transcription by blocking the binding of transcription factors (but see Ford et al.~2017).
+
+\emph{From Eirin-Lopez and Putnam 2019}: Beyond the coding portions of the genome, DNA methylation can also be associated with intergenic regions and transposable elements, contributing to the silencing of transposable elements and viral elements that would otherwise result in genome disruption by sequence and DNA mutation (Rey et al.~2016).
+
+Differentially expressed methylated regions are not necessarily the same as differentially expressed genes (Li et al 2018). DNA methylation changes don't necessarily correlated with gene expression changes.
+
+DNA Methylation location in invertebrates (Li et al 2018)
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/DNA-methylation/images/Li2018-fig1.jpg?raw=true}
+
+\hypertarget{consequences-of-methylation}{%
+\section*{Consequences of methylation}\label{consequences-of-methylation}}
+\addcontentsline{toc}{section}{Consequences of methylation}
+
+\textbf{Gene body methylation is established and maintained as a result of active transcription}
+
+Li et al 2018: as a result of active transcription by RNA polymerase II and recruitment of histone-modifying protein SetD2 that trimethylates histone H3 at lysine 36 (H3K36me3). This histone mark is bound via PWWP (Pro-Trp-Trp-Pro) domain present in DNA methyltransferase DNMT3b (de novo) which then methylates surrounding DNA.
+
+Sarda et al 2012
+
+\textbf{DNA Methylation regulates transcriptional noise}
+
+DNA methylation regulates transcriptional homeostasis of algal symbiosis in the coral model Aiptasia (\href{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/DNA-methylation/Li\%20et\%20al\%202018.pdf}{Li et al 2018}):\\
+- Methylated genes show significant reduction of spurius transcription and transcriptional noise.\\
+- Spurious transcription can produce partial transcripts that when translated results in truncated proteins that would interfere with native function.\\
+- Prefers CpG-poor regions\\
+- Gene body methylation is (+) correlated with expression: DNA methylation either: 1.) increases expression or 2.) is increased as a consequence of transcription.
+
+\begin{quote}
+Higher DNA methylation equals lower transcriptional variability.
+\end{quote}
+
+\textbf{Methylation's role in differing life stages}
+
+Larvae and adult life stages can differ in methylation patterning:\\
+- Sea lamprey (Covelo-Soto et al 2015)
+
+Sex determination linked to differential methylation patterns: Half-smooth tongue sole (Shao et al 2014), temperature-mediated sex determination in fish (Ellison et al 2015, Navarro-Martin et al 2011) and sea turtles (Venegas et al 2016).
+
+\textbf{Methylation occurs in a bimodal distribution}
+
+Over time, methylation causes hypermutability of cytosines to thymines. Which results in a reduction of CpG dinucleotides; therefore, if an organism has heavy historical methylation on a gene set then the abundance of CpG dinucleotides observed (O) would lower than expected (E). A higher CpG O/E value means there is low historical methylation (lower observed \# creates a higher CpG O/E value). A lower CpG O/E value means there is high historical methylation (higher observed \# creates a lower CpG O/E value).
+
+CpG O/E calculation from Dimond and Roberts 2016:\\
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/DNA-methylation/CpGO:E.png?raw=true}
+
+CpG O/E calculation from Dixon et al 2014:\\
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/DNA-methylation/CpGOE-calc-Dixon.png?raw=true}
+
+CpG O/E distribution from an eastern oyster in \href{https://bmcgenomics.biomedcentral.com/articles/10.1186/1471-2164-11-483}{Gavery and Roberts 2010}:
+
+\begin{figure}
+\centering
+\includegraphics{https://media.springernature.com/lw685/springer-static/image/art\%3A10.1186\%2F1471-2164-11-483/MediaObjects/12864_2010_Article_3077_Fig2_HTML.jpg?as=webp}
+\caption{wk-hv}
+\end{figure}
+
+CpG O/E distributions in corals from \href{https://onlinelibrary.wiley.com/doi/pdf/10.1111/mec.13414}{Dimond and Roberts 2016}:
+
+\begin{figure}
+\centering
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/DNA-methylation/CpG-OE-corals.png?raw=true}
+\caption{cpgcorals}
+\end{figure}
+
+Function annotation of gene sets in weakly and heavily methylated categories from \href{https://onlinelibrary.wiley.com/doi/pdf/10.1111/mec.13414}{Dimond and Roberts 2016}:
+
+\begin{figure}
+\centering
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/DNA-methylation/cpgoe-patterns.png?raw=true}
+\caption{cpg corals}
+\end{figure}
+
+Functional annotation of CpG O/E genes from \href{https://bmcgenomics.biomedcentral.com/track/pdf/10.1186/1471-2164-15-1109.pdf}{Dixon et al 2014}. Genes with high CpG O/E values are more likely to be environmentally inducible.
+
+\begin{figure}
+\centering
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/DNA-methylation/cpg-bimodal.png?raw=true}
+\caption{fn}
+\end{figure}
+
+Relationship between measured methylation and CpG O/E values from \href{https://www.frontiersin.org/articles/10.3389/fphys.2011.00116/full}{Gavery and Roberts 2012}:
+
+\begin{figure}
+\centering
+\includegraphics{https://www.frontiersin.org/files/Articles/19155/fphys-02-00116-HTML/image_m/fphys-02-00116-g001.jpg}
+\caption{cpgoe}
+\end{figure}
+
+\textbf{Methylation is modulator of alternative splicing}
+
+Come back to Lev Maor et al 2015
+
+\textbf{Coral methylation patterns are dynamic}
+
+Methylation profiles (RADSeq techniques) of \emph{Porites asteroides} converged in a common garden setting (decreased in \% methylated CpGs). Corals from several reefs in Belize were transplanted to a common garden for 1 year. Positive \& significant relationship b/w genetic and epigenetic variation = evidence for methylation heritability. Differentially methylated loci = intracellular signaling, apoptosis, gene regulation, epigenetic crosstalk (\href{https://www.frontiersin.org/articles/10.3389/fmars.2019.00792/full}{Dimond and Roberts 2019}).\\
+- calcium-independent protein kinase C-like: involved in intracellular signaling (typically associated with hypomethylation)\\
+- tax1-binding protein homolog: negative regulation of apoptotic processes via negative regulation of NF=kB transcription factor activity. Loss of symbionts is associated with elevated levels of NF-kB.\\
+- U5 small nuclear ribonucleoprotein 200 kDa helicase: mRNA splicing via role in the spliceosome.\\
+- putative FAM98A protein: positive regulation of cell proliferation, gene expression, and protein methylation.
+
+\begin{quote}
+The above functions seem to be housekeeping functions that were differentially methylated? This involved in heritability? Long term change in housekeeping methylation levels. Not short-term env. inducible?
+\end{quote}
+
+In reduced pH conditions, \emph{Montipora capitata} global methylation levels did not change, but \emph{Pocillopora acuta}'s increased after 6 week exposure. Caveat: Mcap could have undergone increases and decreases that leveled out to an appearance of no response(\href{https://onlinelibrary.wiley.com/doi/pdf/10.1111/eva.12408}{Putnam et al 2016}).
+
+3 month reciprocal transplant of \emph{Acropora millepora} from GBR; reefs were different in mean temperature and other abiotic factors. MBD-seq methods. Fitness higher at colder reef (possibly b/c higher concentration of nutrients). Methylation shift in genic regions. Transplant from hot to cold resulted in highly methylated genes becoming less methylated and less methylated genes becoming more methylated. This was mirrored but less pronounced from cold to hot reef. Transplated corals GBM shifted to reflect the location transplanted to: aka dynamic not fixed patterns. \href{https://www.pnas.org/content/pnas/115/52/13342.full.pdf}{Dixon et al 2018}; \href{https://pdfs.semanticscholar.org/6adf/d8444086db37f6d5942368962dafe2d39816.pdf}{Dixon et al 2017}
+\textgreater{} cold reef was also higher in nutrients -- more nutrients allowing for more methylation activity via more metabolites and energy?
+
+Increase in genome-wide methylation in \emph{Stylophora pistillata} when exposed to pH conditions for 2 years. Changes modified gene expression and altered pathways in cell cycle regulation. \href{https://advances.sciencemag.org/content/4/6/eaar8028/tab-pdf}{Liew et al 2018}
+
+Comparison of genetic and epigenetic variation in \emph{Porites spp.} of different morphotypes and variety of habitats in Belize. Stronger evidence for genetic structuring rather than epigenetic. Weak positive correlation b/w pairwise genetic and epigenetic distance. 2 pairs of clone showed substantial epigenetic difference = strong env. effect. Methylation is likely strong mix of Environment x Genotype. RRBS methods used. \href{https://onlinelibrary.wiley.com/doi/pdf/10.1111/mec.14252}{Dimond et al 2017}
+
+\textbf{Seasonal changes in methylation}
+
+\emph{Acropora cervicornis}, over a 17-month period, displayed methylation changes that correlated to sea surface temperature change and this is consist across genets, source sites, and site-specific conditions. Methylation-Sensitive Amplified Polymorphism (MSAP) methods. (\href{https://environmentalepigenetics.com/wp-content/uploads/2020/09/71_Rodriguez-Casariego_FMARS2020.pdf}{Rodriquez-Casariego et al 2020}).
+
+\textbf{Ocean acidification induced methylation changes}
+
+(\href{https://www.frontiersin.org/articles/10.3389/fmars.2020.00225/full}{Venkataraman et al 2020}) description below.
+
+7 day exposure to extremely elevated pCO2 conditions in pteropod resulted in reduced global methylation after 1 day exposure and leveled off to control after 6 days. MethylFlash Quantification Kit methods (\href{https://www.frontiersin.org/articles/10.3389/fmars.2019.00788/full}{Bogan et al 2020}).
+
+\textbf{Transgenerational methylation}
+
+Sea urchins were acclimated during gametogenesis in up-welling and non-upwelling conditions and progeny from these populations were raised in high and low pCO2 treatments. Sampled across 3 developmental stages. Differential progeny methylation correlated to differential paternal condition and progeny condition correlated very little to progeny methylation. Methods: Pico methyl-seq library prep kit, Illumina HiSeq4000 lanes (\href{https://reader.elsevier.com/reader/sd/pii/S0022098118304428?token=7A673DBF0F9364D45CC3CA59338F1AD9F7BA84D41CFC4B2A716B9B82295F12545FE507016A8B3B4237FA9EC1E967E3E4\&originRegion=us-east-1\&originCreation=20210413191404}{Strader et al 2019}).
+
+Transmission of CpG methylation from adults to sperm and larvae demonstrates genome-wide inheritance. (\href{https://www.nature.com/articles/s41558-019-0687-2}{Liew et al 2020})
+
+Rondon et al 2017
+
+\href{https://www.nature.com/articles/s41558-018-0159-0}{Ryu et al 2018}
+
+Ocean acidification conditions for 28 days resulted in 598 differentially methylated loci (DML), mostly in exons. Changes seen in reproductive tissue in eastern oyster means that these changes could be inherited. Measured by MBD-BS methods. DML involved in protein ubiquitination (\href{https://www.frontiersin.org/articles/10.3389/fmars.2020.00225/full}{Venkataraman et al 2020}).
+
+\hypertarget{epigenetic-modifications}{%
+\chapter{Epigenetic Modifications}\label{epigenetic-modifications}}
+
+\emph{Page still in progress..}
+
+Epigenetic factors are involved in alternative mRNA splicing = major source of protein diversity and therefore, phenotypic variation (Luco et al 2011).
+
+\textbf{Types of Modifications}
+
+\begin{itemize}
+\tightlist
+\item
+  DNA Methylation: See \href{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/DNA-methylation/DNA-methylation.md}{DNA-methylation.md} for breakdown of DNA methylation.\\
+\item
+  Histone variants and posttranslational modifications\\
+\item
+  Non-coding RNAs
+\end{itemize}
+
+\begin{figure}
+\centering
+\includegraphics{https://scienceofhealthy.com/wp-content/uploads/2019/04/Epigenetics.jpg}
+\caption{types}
+\end{figure}
+
+\textbf{Chromatin Organization}
+
+\textbf{Histone variants and posttranslational modifications}
+
+From \href{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Epigenetics/annurev-marine-010318-095114.pdf}{\emph{Eirin-Lopez and Putnam 2019}}: Some of these variants have been identified in marine invertebrates, including H2A.X, H2A.Z, and macroH2A, which are involved in critical roles in the epigenetic regulation of DNA structure and metabolism (Gonzalez-Romero et al.~2012, Moosmann et al.~2011).\\
+- histone H2A.Z is the most studied histone variant\\
+- histone H2A.X is also well studied, partially because of its involvement in maintenance of genome integrity\\
+- histone macroH2A is involved in gene repression at heterochromatic regions (Rivera-Casas et al 2016)
+
+From \href{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Epigenetics/annurev-marine-010318-095114.pdf}{\emph{Eirin-Lopez and Putnam 2019}}: These modifications:\\
+- not only participate in the regulation of chromatin structure but also help recruit proteins and chromatin-remodeling complexes that influence transcription as well as many other DNA processes, such as repair, replication, and recombination (Bannister \& Kouzarides 2011).\\
+- chromatin metabolism and epigenetic memory (Feil \& Fraga 2012).
+
+Acetylation:
+
+Methylation:
+
+Phosphorylation:
+
+\textbf{Germinal chromatin}
+
+Highly specialized epigenetic reprogramming that differs in male and female germ cells.
+
+From \href{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Epigenetics/annurev-marine-010318-095114.pdf}{\emph{Eirin-Lopez and Putnam 2019}}: In order to be vertically transmitted to the offspring, epigenetic modifications need to be present in the germline and endure the extreme reorganization of chromatin during gametogenesis, especially in the case of males. Since nucleosomes are disassembled and histones are widely replaced by protamines in mature spermatozoa (Eirin-Lopez \& Ausio 2009), the epigenetic contributions of sperm chromatin to embryo development have been considered highly limited.
+
+{[}insert hollie's sperm methylation data set{]}
+
+\begin{quote}
+Explain the below figure with no caption for comps
+\end{quote}
+
+\begin{figure}
+\centering
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Epigenetics/images/EnvEpi-Figure3.png?raw=true}
+\caption{fig3}
+\end{figure}
+
+\textbf{Noncoding RNAs}
+
+\textbf{Environmental Epigenetics}
+
+The idea that epigenetic modifications and changes can lead to individual phenotypic changes (intragenerational plasticity) and phenotypic changes across progeny (transgenerational plasticity).
+
+Marine Environmental Epigenetics (\href{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Epigenetics/annurev-marine-010318-095114.pdf}{Eirin-Lopez and Putnam 2019}):\\
+- Challenge 1: Elucidating cause--effects relationships among environmental signals, epigenetic modifications, and the dynamics of wash-in and wash-out of epigenetic effects.\\
+- Challenge 2: Generating a detailed mechanistic understanding of epigenetic mechanisms and their interplay.\\
+- Challenge 3: Demonstrating the capacity for and mechanisms of transgenerational epigenetic inheritance.\\
+- Challenge 4: Clarifying the interplay of genetic and epigenetic features and evolutionary consequences
+
+\begin{quote}
+For comps, be able to explain both of the below figures without the caption.
+\end{quote}
+
+\begin{figure}
+\centering
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Epigenetics/images/EnvEpi-Figure1.png?raw=true}
+\caption{fig1}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Epigenetics/images/EnvEpi-Figure2.png?raw=true}
+\caption{fig2}
+\end{figure}
+
+\textbf{Epigenetic conditioning or hardening}
+
+\textbf{Epigenetic Crosstalk}
+H3K36me3 histone modification and gene body methylation is conserved in cnidarians
+
+\textbf{Epigenetic reprogramming}
+
+\hypertarget{biology-of-coral-bleaching}{%
+\chapter{Biology of Coral Bleaching}\label{biology-of-coral-bleaching}}
+
+Putnam lab copy of Coral Bleaching: Patterns, Processes, Causes, and Consequences (\href{https://drive.google.com/drive/u/0/folders/1oV94QeIa_lDELfBGx3MmiYcWrxikD8Uk}{van Oppen and Lough 2018}). This link will only be accessible to Putnam Lab members.
+
+\hypertarget{thermal-response-of-algal-symbiont}{%
+\section*{Thermal Response of Algal Symbiont}\label{thermal-response-of-algal-symbiont}}
+\addcontentsline{toc}{section}{Thermal Response of Algal Symbiont}
+
+Chapter 8.2 in the book above
+
+Symbiosis = dependent on productivity of intracellular algal symbionts and requires photosynthetic production in each host cell.
+
+Oxidative theory of coral bleaching:\\
+- ROS generation by algal photosynthesis then overwhelms host and symbiont mechanisms to detoxify ROS and repair oxidative damage.\\
+- High temps and irradiance = large quantify and rate of energy entering/being processed by photosystems (light-harvesting complexes, photosynthetic ETS in algal chloroplast)\\
+- surrounding host membranes and tissues constrain efflux of photosynthetically generated O2 away from algae and import of dissolved inorganic carbon to maintain photosynthetic carbon fixation\\
+- thus susceptible to oxidative damage\\
+- failure of the above is likely driving coral bleaching cascades
+
+Mechanisms of agal thermal stress:
+
+\begin{figure}
+\centering
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/algal-thermal-stress.png?raw=true}
+\caption{mech}
+\end{figure}
+
+Carotenoid peridinin:\\
+- possesses a higher absorbance of green to blue light relative to chlorophyll.\\
+- symbionts use this together with chlorophyll a and c pigmentation.\\
+- gives the symbionts the golden brown color and dark tone to the coral\\
+- integrated into intrinsic membrane-bound antenna chlorophyll a and c2-peridinin-protein-complex that transfers E to photosystems.
+
+\begin{figure}
+\centering
+\includegraphics{https://haygot.s3.amazonaws.com/questions/1003190_1082542_ans_07c493eaacee4f4fabc704ab696cc282.jpg}
+\caption{carto}
+\end{figure}
+
+Light goes through the above complexes and enters the ETS from PSII to PSI to ferredoxin-nicotinamide adenine dinucleotide phosphate (NADP+) reductase. Efficiency of this can be assessed by active chlorophyll induction fluorometry.\\
+- Maximum quantum yield of PSII chl-a flourescence = Fv/Fm = proportion of absorbed light E that enters ETS from PSII\\
+- Decline in above = nonspecific photoinactivation due to PSII damage
+- reaction center protein D1 = particularly susceptible to photodamage\\
+- PSII and PSI are right next to each other within the thylakoid = bidirectional E transfer can happen, esp during thermal stress\\
+- Because of the above, excess light E can be directed away from PSII to PSI to be converted to heat and quenched by reduced reaction center chlorophyll P700+.
+
+PSII degradation:\\
+- reduces capacity of photosynthetic apparatus to use light E and therefore increased pressure on the remaining PSII units
+
+High O2 env (hyperoxic) = increase in rate of spontaneous/catalyzed ROS production by ETS. Release of ROS from algae is b/c of overexcitation of photosynthetic apparatus.\\
+- mostly occurs via water-water cycle/Mehler rxn: direct reduction of O2 by PSI to superoxide (O2-), which is caused by high light or combination of high light and temperature.\\
+- results in enhanced ATP production at expense of NADPH (antioxidant systems need NADPH)
+
+High light = condensation of thylakoid lamellae\\
+High temp = thylakoid membrane disorganization
+
+Leakage of ROS from algal cell initiates bleaching cascade.
+
+Nitric oxide (NO) = important cellular signaling molecule that is involved in immunity, response to endosymbiotic microbes, and apoptosis pathways\\
+- in high temps and bleaching, symbionts increase NO production\\
+- NO is lipophilic and can cross membranes into the host cell\\
+- NO is also reactive nitrogen species that reacts with superoxide to form a highly toxic oxidant and electron transport inhibitor
+
+DMSP = ROS scavenger and readily crosses membranes\\
+- increased production by host in stress\\
+- Differentially produced by hosts in response to osmotic stress; may be additional antioxidant system
+
+\textbf{Calvin-Benson Cycle}
+
+High demand for DIC from seawater by coral holobiont to support photosynthesis and host calcification.\\
+- DIC in seawater is overwhelmingly bicarbonate (HCO3-) and b/c of its charge cannot cross membranes\\
+- adequate supply of DIC to algal symbionts = critical for productivity and redox state as carbon fixation is ultimate result of electron transport\\
+- b/c of many layers of membranes and high density of symbionts in coral tissues, carbon-concentrating mechanisms are required by both partners
+
+High temps inhibit the Calvin-Benson cycle, limiting carbon fixation as an E sink (not demonstrated in Symbiodiniaceae specifically yet). Photorespiration = fixation of O2 by rubisco, enhanced by high O2:CO2 concentrations. This is not metabolically useful, it is primarily used as an E sink but may consume some abundant O2 and therefore limit ROS production.
+
+Calvin benson cycle:\\
+\includegraphics{https://useruploads.socratic.org/jnN3z9JNQ2Wx75tr1Pcc_2f4bdc8f8275834d3f5ef434d93bf16b991b2357.png}
+
+Symbiosome pathways:
+
+\begin{figure}
+\centering
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/DNA-methylation/symbiosome.png?raw=true}
+\caption{sym}
+\end{figure}
+
+Algal mitochondria result in steady state of ROS production, particularly as H2O2.
+
+\hypertarget{thermal-response-of-the-coral-host}{%
+\section*{Thermal Response of the Coral Host}\label{thermal-response-of-the-coral-host}}
+\addcontentsline{toc}{section}{Thermal Response of the Coral Host}
+
+Chapter 8.3 in the book above.
+
+ROS and reactive nitrogen species are important signaling molecules. Host reaction based on elevated antioxidant activity was seen several days prior to the symbiont's antioxidant reaction.\\
+- coenzyme Q pool measurement (look into this later..?)\\
+- heat shock response can occur in host without photoinhibition or bleaching\\
+- primary source of ROS in host is the mitochondrian b/c of its role in central metabolism, calcium storage, and apoptosis
+
+\emph{Aiptasia} host mitochondria undergo morphological changes after thermal shock, followed by mitochondrial permeabilization and degradation, host cell apoptosis, symbiont cell degradation.
+
+Reduced mRNA abundane of cytochrome c and ATP synthase - both central to ETS.
+
+Mitochondria also store calcium, a secondary messenger regulating cell function and sensing cell stress (See \href{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/Signal-transduction.md}{Signal-Transduction notes}).\\
+- Calcium pool greatly increases, resulting in mitochondrial permeabilization and release of calcium into the cell which triggers the caspase-mediated apoptosis.\\
+- ER is primary store of Ca2+
+
+Calumenin (ER protein) that binds calcium is upregulated in symbiosis, higher temperatures. Particularly in gastrodermal layer\\
+- Calcium-binding proteins may be generally involved in the heat stress response. Seen in \emph{A. microphtalma} with concurrent higher expression of antioxidant, heat shock, and Ca2+-binding proteins in symbiont population.
+
+\textbf{Bleaching resistance therefore can depend on the host's ability to maintain calcium homeostasis.}
+
+ER and mitochondria communicate during cellular response. One of ER's main functions is protein-folding: which is temperature-sensitive and requires the activity of molecular chaperones known as heat shock proteins. Mis-folded proteins trigger the unfolded protein response (UPR): decreased overall protein synthesis, increased protein chaperone and degradation activity, and if stress persists then cell death.
+
+Protein degradation and re-folding in the ER performed by protein disulfide isomerases.
+
+Caspase activity is induced by NO and involved in pro-apoptotic pathways. Apoptosis (programmed cell death) follows a caspase-mediated signaling cascade. Cnidarian apoptosis pathways are highly conserved and more related to vertebrates than other invertebrates.
+
+B-cell lymphoma 2 (Bcl-2): anti-apoptotic protein that mediates mitochondrial membrane permeability; and indirect antioxidant fxn
+
+\textbf{Mechanisms of symbiont loss}
+
+Exocytosis of whole symbiont cells: algal cells are expelled from the host cells in the gastrovascular cavity and out of the mouth of the animal.\\
+Symbiophagy: host autophagic pathways will degrade algal cell within the host cell.\\
+See below figure for the remaining mechanisms.
+
+Symbiont expulsion occurs normally on daily basis as a way to control the symbiont population in a lot of Cnidarians.
+
+\begin{figure}
+\centering
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/symbiont-explusion.png?raw=true}
+\caption{fig}
+\end{figure}
+
+\hypertarget{physiological-feedback-loops}{%
+\chapter{Physiological Feedback Loops}\label{physiological-feedback-loops}}
+
+\emph{Page in progress..}
+
+Feedback loop: when a stimulus or change in the environment is present, feedback loops respond to keep systems functioning near a set point, or ideal level.
+
+Homeostasis is keeping that steady state to function at optimal levels regardless of external change. This is predominantly regulated by negative feedback loops.
+
+Hormesis: conditioning or priming effects of a mild level of a stressor results in the organism being better able to cope with exposure to higher levels of the stressor when encountered on subsequent occasions.
+
+Positive feedback loop:
+
+\begin{figure}
+\centering
+\includegraphics{https://s3-us-west-2.amazonaws.com/courses-images-archive-read-only/wp-content/uploads/sites/167/2014/11/20062422/feedback_pos.jpg}
+\caption{pos}
+\end{figure}
+
+Negative feedback loop:
+
+\begin{figure}
+\centering
+\includegraphics{https://s3-us-west-2.amazonaws.com/courses-images-archive-read-only/wp-content/uploads/sites/167/2014/11/20062424/feedback_neg.jpg}
+\caption{negat}
+\end{figure}
+
+Example in homeostasis:
+
+\begin{figure}
+\centering
+\includegraphics{https://images.slideplayer.com/17/5281984/slides/slide_2.jpg}
+\caption{home}
+\end{figure}
+
+\textbf{Environmental Physiology (Willmer et al): Chapter 2.5.4: Feedback systems and metabolic control}
+
+Content from Environmental Physiology of Animals: Willmer et al.~lab copy (only accessible to putnam lab members) \href{https://drive.google.com/drive/u/0/folders/1oV94QeIa_lDELfBGx3MmiYcWrxikD8Uk}{here}.
+
+\begin{figure}
+\centering
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/fdbk-loop.png?raw=true}
+\caption{feedbackloop}
+\end{figure}
+
+Examples in corals:
+
+\textbf{Negative feedback}\\
+1. Temperature increases in the water, therefore increasing the coral's body temperature.\\
+2. Temperature increases activity of mitochondria and thus production of ROS. Also, TRP channel subunits detect thermal stimuli. See \href{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/Signal-transduction.md}{Signal-Transduction} for full pathway that can also enduce thermo-regulated processes.\\
+3. Coral increases antioxidant function to reduce ROS.
+
+\textbf{Positive feedback loops}
+
+Symbiosis?
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Endosymbiont exchange of nutrients\\
+\item
+  Coral receiving excess nitrogen\\
+\item
+  Keeps endosymbiont within cells to then continue the exchange of nutrients
+\end{enumerate}
+
+\hypertarget{genotype-x-environment-interactions}{%
+\chapter{Genotype x Environment Interactions}\label{genotype-x-environment-interactions}}
+
+\includegraphics{https://image.slidesharecdn.com/genotypeenvironmentinteraction-180407162138/95/genotype-environment-interaction-7-638.jpg?cb=1523118289}\\
+\href{https://www.slideshare.net/SaniaSaher/genotype-environment-interaction-93194899}{Slide-share: Sania Saher}
+
+Panel A and B = no GxE interaction; A = Genotype interaction, B = environment interaction.\\
+Panel C = Non-crossover G x E interaction; GxE but ranks remain unchanged.\\
+Panels D-F = Crossover G x E interaction
+
+\includegraphics{https://www.intechopen.com/media/chapter/62376/media/F3.png}\\
+\href{https://www.intechopen.com/books/recent-advances-in-tomato-breeding-and-production/genotype-environment-interaction-a-prerequisite-for-tomato-variety-development}{Osei et al 2017}\\
+\href{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3108095/\#R38}{Baye et al 2011}
+
+Plasticity and reaction norms (Nicotra et al 2010):
+
+\begin{figure}
+\centering
+\includegraphics{https://ars.els-cdn.com/content/image/1-s2.0-S1360138510001986-gr1.jpg}
+\caption{rxn}
+\end{figure}
+
+Adaptation: Content from Environmental Physiology of Animals: Willmer et al.~lab copy \href{https://drive.google.com/drive/u/0/folders/1oV94QeIa_lDELfBGx3MmiYcWrxikD8Uk}{here}. Only accessible to Putnam Lab members.
+
+The relationships of genotype x environment x physiology:
+
+\begin{figure}
+\centering
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/GenxEnv.png?raw=true}
+\caption{gxe}
+\end{figure}
+
+\textbf{Adaptation}\\
+1. characters or traits observed in an organism that are a result of selection\\
+2. process in which natural selection adjusts the frequency of genes that code for traits affecting fitness.
+
+Evidence of adaptation: only if a trait has changed through time in ways that it will make it more effective at its task, therefore enhance fitness. The below are three types of correlative evidence (which is never concrete):\\
+1. Correlation b/w character and environment/use.\\
+2. Comparisons of individual differences w/in a species.\\
+3. Observation of the effects of altering a character.
+
+Selection for plasticity itself is an adaptation.
+
+Traits become fixed b/c of natural selection, either presently selected on or previously selected on but now present for reasons that don't have much to do with the original reason for selection. The latter = phylogenetic inertia
+
+\textbf{Optimality} is a relative concept and a particular design need only to be sufficient to do better than the existing alternatives (there is such thing as good enough). Natural selection doesn't necessarily provide maximal or even optimal solutions.
+
+Genetic drift: chance shifts in gene frequencies\\
+Genetic bottleneck: the above can be particularly true in small pop sizes
+
+Phylogeny matters:
+
+\begin{figure}
+\centering
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/phylo-vs-env.png?raw=true}
+\caption{phylo}
+\end{figure}
+
+The environment can act on many developmental stages:
+
+\begin{figure}
+\centering
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/developmental-plasticity.png?raw=true}
+\caption{dev}
+\end{figure}
+
+Developmental switch: i.e.~temperature dependent sex determination (TSD)
+
+Understanding phenotypic plasticity in reaction norms:
+
+\begin{figure}
+\centering
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/rxn-norm.png?raw=true}
+\caption{rxn-norm}
+\end{figure}
+
+Reality of conforming and regulating to/in an environment:
+
+\begin{figure}
+\centering
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/conformer-norm.png?raw=true}
+\caption{conformer-norm}
+\end{figure}
+
+\textbf{Genomic control}
+
+Amount of RNA made from a particular region of DNA must therefore be very tightly controlled, and is partly determined by the goodness of match b/w promoter region sequence and the RNA polymerase.
+
+Six points where gene expression can be controlled:\\
+1. Txn control: gene regulatory proteins (bind to specific sites on the DNA close to the gene coding sequence). Either transcriptional activators or transcriptional repressors.
+
+Zinc-finger motif: where areas of alpha and beta helices are linked by a zinc molecule.
+
+\begin{figure}
+\centering
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/geneexp-control.png?raw=true}
+\caption{geneexp}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/txn-control.png?raw=true}
+\caption{txn}
+\end{figure}
+
+Protein degradation control:\\
+- Ubiquitin links to destruction-bound proteins and serves as a degradation signal
+
+Transposable elements:
+- ``jumping genes'' that can move around the genome as DNA or an RNA intermediate\\
+- some carry information for transposition and may accelerate mutation at the sites where they insert and exit. Others carry both instructions for transposition and some other gene\\
+- i.e.~antibiotic resistance in bacteria
+
+\textbf{Four types of acclimation}
+
+Solid line = initial rate-temperature curve\\
+Dashed line = curve after thermal acclimation (to higher temp).\\
+C = cold-acclimatized\\
+W = warm-acclimatized
+
+\begin{figure}
+\centering
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/four-acclimation.png?raw=true}
+\caption{four}
+\end{figure}
+
+\hypertarget{signal-transduction-pathways}{%
+\chapter{Signal Transduction Pathways}\label{signal-transduction-pathways}}
+
+\hypertarget{general-signal-transduction}{%
+\section*{General signal transduction}\label{general-signal-transduction}}
+\addcontentsline{toc}{section}{General signal transduction}
+
+Content from Environmental Physiology of Animals: Willmer et al.~lab copy \href{https://drive.google.com/drive/u/0/folders/1oV94QeIa_lDELfBGx3MmiYcWrxikD8Uk}{here}.
+
+Four types of receptor proteins:\\
+1. Intracellular receptors\\
+2. Enzyme-linked receptors: mostly linked to a protein kinase and the ligand-binding site is outside the cell and the catalytic side on the inside of the cell.\\
+3. Ion channel-linked receptors: perform function of both channels and receptors; rapid signaling; the signal molecule causes a transient opening or closing of a channel through the protein structure\\
+4. G-protein-linked-receptor: GTP-binding regulatory protein; sit in membranes adjacent to a receptor protein and another target protein (could be either \#2 or \#3 as well).
+
+\begin{figure}
+\centering
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/receptor-protein.png?raw=true}
+\caption{gprotein}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/signaling-path.png?raw=true}
+\caption{path}
+\end{figure}
+
+\textbf{Intracellular mediators and second messengers:}\\
+- messengers are small enough to move through gap junctions b/w adjacent cells so that signaling can be shared amongst cell communities. Extracellular signaling is therefore amplified and integrated together.
+
+cAMP:\\
+- synthesized from ATP from a membrane-bound enzyme adenyl cyclase\\
+- rapidly destroyed by cAMP phosphodiesterase enzymes\\
+- can increase five-fold in a few seconds (that's insane..)\\
+- works through cAMP-dependent protein kinase (kinase A), being linked to receptor via one or two G-proteins (see diagram above) that are stimulatory or inhibitory\\
+- Eventual product of cAMP-induced phosphorylations may bind to a cAMP-response element, adjacent to the transcribed gene, to produce the final response.
+
+Ionic calcium: can act as messenger by opening Ca2+ channels and producing an automatic inward flux w/ rise of cytoplasmic Ca2+ concentration.\\
+- When G-protein is activated by an appropriate signal, it in turn activates a membrane-bound enzyme, phospholipase C.\\
+- which hydrolyzes a specific phospholipid in the cell membrane to produe a soluble intermediate: inositol triphosphate (IP3).\\
+- IP3 travels through cytoplasm and releases calcium via IP3-gated Ca2+ channels from internal membrane stores.\\
+- Ca2+ can activate targets by directly binding enzymes as an allosteric ligand or active indirectly via binding to calmodulin (CaM). As more Ca2+ binds to CaM, it then binds to enzymes or indirectly through a CaM-dependent multifunctional kinase (PKII or CaM-kinase II).
+
+\begin{figure}
+\centering
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/Ca2-path.png?raw=true}
+\caption{ca}
+\end{figure}
+
+Heat shock pathway:
+
+\begin{figure}
+\centering
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/heat-shock-path.png?raw=true}
+\caption{heat}
+\end{figure}
+
+\hypertarget{thermostranduction}{%
+\section*{Thermostranduction}\label{thermostranduction}}
+\addcontentsline{toc}{section}{Thermostranduction}
+
+Neurobiology of TRP Channels in invertebrates \href{https://www.ncbi.nlm.nih.gov/books/NBK476114/}{book chapter 4} (cross reference with what is in corals):\\
+- Mechanosensory neurons have to detect mechanical stimuli and thermosensory neurons have to detect temperatures warmer and cooler than the preferred.\\
+- Transient receptor potential (TRP) genes encode cation channels with key roles in fxn of sensory neurons. TRP channel subunits detect mechanical and thermal stimuli.
+
+Calcium dependent protein kinase 2 is upregulated in heat stress and plays a role in signal transduction pathways that involve calcium as a second messenger (\href{https://www.biorxiv.org/content/10.1101/508184v1.full}{Bellantuono et al 2018}).
+
+Pre-conditioning-based improvements in thermal tolerance in \emph{P. acuta} are accompanied by host increases in glutathione reductase (GR) activity and expression. This supports reducing intracellular environment that facilitates ROS scavenging and prevents DNA damage. Bax-inhibitor 1 (BI-1) could regulate GR expression in corals through Nrf2/ARE pathway (\href{https://www.biorxiv.org/content/10.1101/2021.03.15.435543v1.full}{Majerova and Drury 2021}).
+
+Transient receptor potential multigene superfamily encodes integral membrane proteins that function as ion channels (\href{https://genomebiology.biomedcentral.com/articles/10.1186/gb-2011-12-3-218}{Nilius nad Owsianik 2011}).\\
+- Most are non selective cation channels, only a few are Ca2+ selective\\
+- Gating mechanims include: ligand binding, voltage, and changes in temperature, covalent modifications of nucleophilic residues\\
+- Activated TRP channels cause depolarization of the cellular membrane, which in turn activates voltage-dependent ion channels and a change of intracellular Ca2+ concentration.
+
+\hypertarget{thermosensing}{%
+\subsection*{Thermosensing}\label{thermosensing}}
+\addcontentsline{toc}{subsection}{Thermosensing}
+
+Chapter 3 of biochemical adaptation (Somero et al):
+
+TRP proteins = cation (positive charge) channels that when are thermosensors they are called thermoTRPs. TRP proteins can have differing fxns based on what cell they are in.\\
+- D. melanogaster genome encodes for 16 TRPs and the human genome encodes for 28 TRPs.
+
+Different types of channels:
+
+\begin{figure}
+\centering
+\includegraphics{https://www.zoology.ubc.ca/~gardner/F21-08.GIF}
+\caption{channels}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{https://www.researchgate.net/profile/Thomas-Hinze/publication/300113655/figure/fig1/AS:390564332752897@1470129201663/Schematic-representation-of-an-ion-channel-and-its-functional-principle-Cations.png}
+\caption{ion-channel}
+\end{figure}
+
+Thermal response of thermoTRP variants depends on:\\
+1. Temperature at which an ortholog is activated, at which the ion channel opens and therefore neurofiring to occur. Activation temps of TRP channels can reflect differential thermal phenotypes.\\
+2. thermoTRPs differ in fxn for increases or decreases in temps.\\
+3. Responses of different paralogs of thermoTRPs to increases in temp differ with respecto severity of thermal stress. thermoTRPs are tuned to respond to either 1.) not harmful/moderate temps just beyond optimal range or 2.) potentially damaging temps that are well outside thermal range.
+
+thermoTRPs fxn in conjunction with other temperature-sensing ion channel systems:\\
+- An alternative relies on cGMP as a regulatory signal: {[}cGMP{]} varies with temperature, so do activities of cGMP-gated ion channels thta modulate activities of thermosensing neurons.
+
+In thermosensing neurons, ion flux rates through temp-sensing ion channels are very responsive to slight changes in temp.
+
+dTRPA1 responds to mild heating\\
+TRP PYREXIA: activated at more extreme temperatures\\
+TRP PAINLESS: even more extreme temperatures
+
+TRPs can also be involved in phototransduction.
+
+TRPM3 (found in mammals) is conserved in Hydra vulgaris: nociceptor calcium channel involved in detection of noxious heat. heat shock protein and TRPM3 (i.e.~pregnenolone sulfate) induces modulation of heat shock protein 70 and nitric oxide synthase (NOS). TRPM3 agonist and heat shock induce expression of nuclear txn enrythroid 2-related factor (Nrf2) and superoxide dismutase (SOD) (\href{https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0151386}{Malafoglia et al 2016}).
+
+\href{https://core.ac.uk/download/pdf/79427351.pdf}{Glauser and Goodman 2016} figure below:
+
+\begin{figure}
+\centering
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/thermal-transduction.png?raw=true}
+\caption{thermo}
+\end{figure}
+
+\hypertarget{photo-related-signaling}{%
+\section*{Photo-related signaling}\label{photo-related-signaling}}
+\addcontentsline{toc}{section}{Photo-related signaling}
+
+\textbf{Photoreception:}
+
+\href{https://www.journals.uchicago.edu/doi/pdfplus/10.1086/BBLv223n3p291?casa_token=IX5qI1PAmd0AAAAA:xmBWtl2_7mRXR87MmimOYBAKBJCqAvGhDh4PphSNgHGE3fJK88Fh4aN0OmCpRw4ZfVg2V_Y7SPy8}{Hilton et al 2012}:\\
+- Photoreceptors responding to light elevate calcium levels; calcium is a second messenger relaying light responses in corals\\
+- Photoreceptive cells of corals detect and respond to light by altering cytoplasmic calcium levels, similarly to transduction pathways in complex invertebrate eyes\\
+- Spawning timing can be altered by altering these levels of Ca2+\\
+- Corals have rhodopsins (visual) and melanopsins (non-visual) that are used as visual and nonvisual photoreceptors that act via calcium second messengers\\
+- Other proposed mechanisms prior to this were cryptochromes (Cry), which is a txn factor that shuttle between cytoplasm and nucleus as photoreceptor. This is confirmed in plants and in animals it serves as a txn factor regulated entrained circadian clocks. Cry is photosensitive in invertebrates, there is no evidence this acts as a photoreceptor\\
+- In an organism that uses calcium as a second messenger in light transduction, Ca2+ levels will oscillate accordingly and can be used to synchronize a circadian rhythm along with cyclic nucleotides
+
+photoreceptor: initiator of light signaling cascades)
+
+\textbf{Pathway in arthropods (use of calcium), proposed to be in corals}:\\
+1. Light strikes a rhodopsin photoreceptor\\
+2. This changes activity of a G-protein\\
+3. Specific to this arthropod example: G-protein regulates the activity of membrane-associated enzyme (phospholipase C: PLC)\\
+4. PLC drives the production of inositol triphosphate (IP3): soluble messenger that crosses from the membrane to ER where it binds to IP3 gated calcium channels\\
+5. This opens the Ca2+ channels and allowing the calcium in the ER to flood the cytoplasm and propogate the effects of the photon strike
+
+Mammalian pathway (cyclic nucleotide pathway):\\
+1. Photon striking a rhodopsin or opsin class photoreceptor activates a trimeric G-protein.\\
+2. In turn this regulates cyclic nucleotide levels in the cytoplasm and the level of this second messenger relay the effect of photo strike to cellular metabolism.
+
+cyclic nucleotides (two most well documented):\\
+- cAMP (cyclic adenosine monophosphate) is a second messenger; derivative of ATP; used for intracellular signal transduction; cAMP-dependent pathway; cellular messaging\\
+- cGMP (cyclic guanosine monophosphate) regulates activity of protein kinase A (PKA) and protein kinase G (PKG).
+
+Cndarians pathway; very similar to mammalian above:\\
+1. Ocelli = light-sensing organ utilized\\
+2. cAMP levels increase in response to light and sensing is relayed to muscles and allows jellyfish to swim in appropriate direction.\\
+Jellyfish planulae, single dispersed cells are photoreceptive. these microvillar cells have a motor cilium but this pathway is uncharacterized. Microvillar-type photoreceptive cells typically signal via calcium as a second messenger.
+
+\textbf{Photosensory}
+
+Blue-light sensing cryptochromes described in corals (but see rebuttle above).
+
+\textbf{Mason et al 2012: phototransduction pathways in corals}
+
+paper link \href{https://storage.googleapis.com/plos-corpus-prod/10.1371/journal.pone.0050371/1/pone.0050371.pdf?X-Goog-Algorithm=GOOG4-RSA-SHA256\&X-Goog-Credential=wombat-sa\%40plos-prod.iam.gserviceaccount.com\%2F20210408\%2Fauto\%2Fstorage\%2Fgoog4_request\&X-Goog-Date=20210408T205403Z\&X-Goog-Expires=3600\&X-Goog-SignedHeaders=host\&X-Goog-Signature=24daf84fb0cb4b736d01d4e4b516720ff64b78561156b8e26290ddfb1e603e1908e95dd2736ee5c02c5dc142eb9d25c4ffff606f071ccd2dd58148e3249c0a18f0b5aa2720c21d90269d8616986711b349d4615c998a6915f9fa823d862c4a4f11b73b713498cce7f98c59e9fc163ce682d6a6ac71f34033c4c52c981307c540db36353c2bbbee0a3da8a7225ffb02f4d491546f12b2fe5157981a13b9a7c17a414bb821b2bfdad83fdcdeb023ed2fa02791891f6d33c2a0fb025a0fa9f7e2dda70b53069887c62bc73cc66527eab40f46c5946ed184085fa04c5a7906d27fc03d6158255c91ba86409424b6b1fa5b5fd2eaf8ffd10e56f7c74cf53a2d55f682}{here}.
+
+Corals have red-photosensitivity and preference for red-substrate during settlement. Hypothesis that long-wavelength sensitivity and color discrimination via rhodopsin-based visual system.
+
+Rhodopsins are G protein-coupled receptors (GPCRs): initiate signaling through heterotrimeric G proteins. This intxn results in GDP/GTP exchange and subsequent activation of enzymes or ion channels.
+
+3 main takeaways:\\
+1. Acropsin 3 interacted with mammalian Gq transduction pathway.\\
+2. Acroposin 2 might fxn as RGR/peropsin family. Might play a role in phototaxis and directional light sensing.\\
+3. Acropsin 1 likely cannot determine directionality of light and probably not involved in larval phototaxis; possibly behaves in similar ways to vertebrate melanopsin.
+
+\textbf{Reproduction}
+
+Gamete release from a broadcast spawning coral is potentially controlled by a series of G-protein-coupled signaling pathways; this might be a non-visual ocular photoreceptor such as melanopsin-like coral homolog and/or range of neuropeptide candidates. See below
+
+\href{https://elifesciences.org/articles/09991}{Kaniewska et al 2015} proposed model for signaling events during spawning and gamete release in A. millepora:\\
+\includegraphics{https://iiif.elifesciences.org/lax/09991\%2Felife-09991-fig4-v1.tif/full/1234,/0/default.webp}
+
+Neuropeptides: act through G-protein coupled receptors; implicated in reproduction, metabolism, feeding, circadian rhythms, adaptive behaviors, cognition, etc.
+
+\textbf{Polyp bailout and apoptosis}
+
+Pathways involved in polyp bail-out.\\
+TNF pathway = tumor necrosis factor mediated signaling pathway
+
+Come back to these details\ldots{}
+
+\includegraphics{https://media.springernature.com/lw685/springer-static/image/art\%3A10.1007\%2Fs00338-020-01983-x/MediaObjects/338_2020_1983_Fig5_HTML.png?as=webp}
+\href{https://link.springer.com/article/10.1007/s00338-020-01983-x}{Chuang and Mitarari 2020}
+
+\hypertarget{environmental-variability}{%
+\chapter{Environmental Variability}\label{environmental-variability}}
+
+\hypertarget{pco2-variability}{%
+\section*{pCO2 variability}\label{pco2-variability}}
+\addcontentsline{toc}{section}{pCO2 variability}
+
+\textbf{Wall et al 2020: shifting baselines; physiotypes}
+
+paper link \href{https://www.biorxiv.org/content/biorxiv/early/2020/08/11/2020.04.23.056457.full.pdf}{here}.
+
+Back to back regional bleaching events 2014, 2015. Compared C vs.~D symbiont dominated corals from 2 pCO2 variability distinct reefs (see Wall 2018 paper below for start).
+
+Physiological legacy effects / coral multivariate trait space (physiotype)
+
+Melanin - immune cytotoxic response can provide an initial first line of defense and potentially primes antioxidant activity (legacy effect). Melanin synthesis pathway that is active in wound-healing and pathogen invasion while serving as a photoprotectant.
+
+Host and symbiont have enzymatic defenses to mitigate oxidative stress (peroxidase, catalase, superoxidate dismutase). Sources of damage in host = heat-damaged mitochondrial membranes); symbiont source of damage = D1 protein of photosystem II (PSII). Ultimately lead to apoptosis and dysbiosis.
+
+Bleaching was strongly related to symbiont community and their sensitivity to thermal stress, which was influenced by site environmental history. Physiotypes were shaped by immune and antioxidant activity in bleaching and recovery periods not related to symbiont community = host driven. Constitutive immunity from one year to the next.
+
+Shifting baselines concept:
+
+\begin{figure}
+\centering
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Thermal-History/Walletal2020.png?raw=true}
+\caption{fig1}
+\end{figure}
+
+\textbf{Wall et al 2018: Env hist / Thermal stress on coral phys / immunity}
+
+Paper link \href{https://par.nsf.gov/servlets/purl/10056422}{here}.
+
+Effect of env. history of low vs.~high variable pCO2 in Mcap on response to elevated temp to 30.5C (+6C above ambient).
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Heating decreased maximum photochemical efficiency (Fv/Fm) and chlorophyll a pigmentation, but increased melanin.\\
+\item
+  Intxn of env. history \& temp treatment not observed.\\
+\item
+  Greater pCO2 variability had higher constitutive antioxidative and immune activity (catalase, superoxide dismutase, prophenoloxidase) and Fv/Fm but lower melanin and chl-a.\\
+\item
+  Greater variability promotes greater antioxidant and immune activity.\\
+\item
+  Antioxidant levels were not influenced by thermal treatment, just as a fxn of environmental history.\\
+\item
+  History did not interact with thermal stress to determine physiological state. Env history shaped starting point not during stress response.
+\end{enumerate}
+
+Higher constitutive melanin exp in coral spp considered thermally tolerant (see Palmer papers).
+
+\textbf{Rivest et al 2017: natural variability in shaping response}
+
+Paper link \href{https://link.springer.com/content/pdf/10.1007/s40641-017-0082-x.pdf}{here}.
+
+Temp \& pCO2 variability review.
+
+Lagoons and back reefs experience greater daily temp/pCO2 than fore-reef. Habitats dominated by corals rather than algal expression a smaller diel pH variability b/c photosynthesis elevates pH.
+
+History can present itself in four general ways:\\
+1. recent env. conditions can prime future responses to stress.\\
+2. Experience of one life history stage can carry over to affect the performance of a later life history stage.\\
+3. Transgenerational acclimatization - parents can integrate information from their environment and affect performance phenotypes of offspring.\\
+4. Local adaptation of populations.
+
+Site five papers that tested variability:\\
+1. A. hyacinthus in American Samoa; high temp var = less mortality and retained higher photosynthetic efficiency when exposed to heat stress (Oliver and Palumbi 2011)\\
+2. Corals transplanted to high variability site showed greater bleaching resistance in a thermal challenge (Palumbi et al 2014), but corals from HV and stayed at HV had the highest performance.\\
+3. Coral spp in NW Australia from thermally HV were more thermotolerant and less bleaching (Schoepf et al 2015)\\
+4. Coral larvae in Mo'orea with lower temp var but higher mean temp had more tolerance than larvae in Taiwan with higher temp var but lower mean temp (Rivest et al papers)\\
+5. No effect of temp history in thermal stress of +2C (Camp et al 2016).
+
+pH variability:
+Cites \textasciitilde6 experiments that all yielded no significance in response from pH distinct reefs.\\
+\textgreater{} This similarly lines up with Wall et al in that pH history didn't influence response in thermal stress but there were baseline differences. pH variability might not be critical in immediate stress response but chronic environmental signal may change physiological baselines.
+
+Two ways to estimate difference b/w expt condition and natural regime of env. conditions:\\
+1. diff b/w expt conditions and mean condition reported from collection site\\
+2. diff b/w expt conditions and min or max of env. condition
+
+When calculating response ratios across the two ways to estimate difference in expt condition and natural regime:
+
+\begin{figure}
+\centering
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Thermal-History/Rivestetal2017.png?raw=true}
+\caption{fig2-rivest}
+\end{figure}
+
+\textbf{Caveats to higher variability environments act as a refugee:}
+
+1.) Greater pH variability might not select solely for low-pH tolerance in resident organisms b/c high pH during the day may impose independent selective pressures for photosynthetic spp.\\
+- seawater carbonate chemistry affects calcification and photosynthesis.\\
+- Higher pH during the day = lower concentrations of CO2 (opposite effect of OA), which could be a brief period of recovery that allows for faster calcification.\\
+- increases in pH could constrain photosynthesis or increase use of E expensive carbonate concentrating mechanisms CCMs. CCMs allow uptake of dissolved inorganic carbon as bicarbonate during periods of low {[}CO2{]} - which happens during high variability.\\
+- use of CCMs becomes more prevalent when {[}oxygen{]} co-occur with high pH - during the day in diurnally variable pH. HV pH env may select for organisms that are efficient at using bicarbonate when pH is high, these organisms may be outcompeted by organisms that don't investe their E heavily in CCMs when OA results in lower pHs.
+
+2.) Organisms living in highly variable environments could be living on the edge of their physiological capacity to cope with multiple varying stressors. Integration of stressors may push organisms over their tolerance levels - diel variation in temp AND pH. Shifting means could push this over.
+
+3.) Limited environmental measurements limit our ability to seperate differential mean conditions from variable conditions. This has not been tested adequately in pH variable conditions.
+
+4.) If local adaptation is the main driver, translocation from HV to LV environments may not be effective since the signal has disappeared and that coral's history would have come from several generations.
+
+\textbf{Cornwall et al 2018: Corals/CCA to OA: phys control under pH var}
+
+Paper link \href{https://royalsocietypublishing.org/doi/pdf/10.1098/rspb.2018.1168}{here}.
+
+Goniopora sp. (coral) and Hydrolithon reinboldii (CCA) from two sites of distinct pH variability grown for 100 days under differing variability and means.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Coral calcification rates were unaffected by the above.\\
+\item
+  Calcification rates of CCA were faster in HV and HV high mean conditions.\\
+\item
+  Only mean seawater pH influenced pH calcifying fluid (pHcf).\\
+\item
+  calcifying taxa may be capable of maintaining rates by actively modifying omega cf (Ocf).
+\end{enumerate}
+
+Corals and CCA from greater variability in pH are not more tolerant to OA than those from LV. Species specific mechanisms seem to be more important. Both spp are capable of physiological control.
+
+Maintenance of constant aragonite saturation state of calcifying fluid could occur via 3 possibly complementary mechanisms:\\
+1. maintenance of constant pHcf\\
+2. elevation of DICcf\\
+3. elevation of Ca2+ cf
+
+\hypertarget{thermal-variability}{%
+\section*{Thermal variability}\label{thermal-variability}}
+\addcontentsline{toc}{section}{Thermal variability}
+
+\href{https://www.nature.com/articles/nclimate1577.pdf}{Castillo et al 2012}
+
+\href{https://www.pnas.org/content/pnas/110/4/1387.full.pdf}{Barshis et al 2013}
+
+\href{https://jeb.biologists.org/content/jexbio/221/24/jeb188581.full.pdf}{Barshis et al 2018}
+
+High variability reduces the risk of coral bleaching: \href{https://www.nature.com/articles/s41467\%20018\%2004074\%202}{Safaie et al 2018}
+
+Thermal variability did not enhance tolerance: \href{https://royalsocietypublishing.org/doi/full/10.1098/rspb.2020.1379}{Klepac and Barshis 2020}
+
+\href{https://royalsocietypublishing.org/doi/pdf/10.1098/rspb.2009.0591?casa_token=jCoc80ValSgAAAAA:kE5yyWuPR5V5TbFDIQGdPb0w7-PPMfQMqlTYEZkIH7Nbgnb5-sKtmZO76aMWiFGwGtqs8tko5UNCwsI}{Thompson and van Woesik 2009}
+
+Seasonal variability/range and influence on microbiome: \href{https://www.nature.com/articles/s41598-017-14927-3/briefing/signup/}{Shiu et al 2017}
+
+Thermal variability did not play a role in symbiont community determination: \href{https://link.springer.com/article/10.1007/s00248-017-1096-6}{Baumann et al 2018}\\
+Same sites as above: microbiome vs symbiont in those HV and LV sites: \href{https://onlinelibrary.wiley.com/doi/pdf/10.1111/mec.15497?casa_token=Swd_mEpWHhIAAAAA:vVFU01FtXpVy--7dWFU4-kLOxCY921uRQJHempithQiWteR_3XL_IgdtXfNuL8GynD2AD2KiHc3DgMxX}{Speare et al 2020}
+
+Corals from most extreme thermal environments escape mortality: \href{https://aslopubs.onlinelibrary.wiley.com/doi/pdfdirect/10.4319/lo.2013.58.5.1531}{Pineda et al 2013}
+
+\hypertarget{preconditioning-and-recurrent-signal}{%
+\section*{Preconditioning and recurrent signal}\label{preconditioning-and-recurrent-signal}}
+\addcontentsline{toc}{section}{Preconditioning and recurrent signal}
+
+\href{https://jeb.biologists.org/content/jexbio/211/7/1050.full.pdf}{Middlebrook et al 2008}.
+
+\href{https://link.springer.com/content/pdf/10.1007/s00227-008-1015-y.pdf}{Maynard et al 2008}
+
+Short term preconditioning to higher temperatures provides tolerance: \href{https://royalsocietypublishing.org/doi/pdf/10.1098/rspb.2011.1780}{Bellantuono et al 2012}
+
+\textbf{History matters: influence of origin (general)}
+
+Warmer water gorgonians have increased tolerance: \href{https://www.sciencedirect.com/science/article/pii/S0141113613000743?casa_token=why3jFweb3cAAAAA:aknTxZ89KEgXaW3pu1doFDpL-AKpJUSA84TgEY0d3z79wciMmI58vN5es5RRPryP6b3lNptrD8A}{Linares et al 2013}
+
+Castillo and Helmuth 2005 \href{https://link.springer.com/article/10.1007/s00227-005-0046-x}{here}
+
+Kevin Wong's Global change biology paper
+
+\textbf{Papers to sort through later..}
+
+Reefs with higher frequency of thermal anomalies displayed differential susceptability to coral disease (\href{https://esajournals.onlinelibrary.wiley.com/doi/pdf/10.1890/13-0774.1?casa_token=J6jJeDbwpSsAAAAA:sKK-bZtFpm9FMSi4Q24yr_YTQLuoyb5c-gNUoeLKBJixUYhR-1pZJvFNoEaxVNcYNNb2QlbymYX-UNaY}{Randall et al 2014}).
+
+Differential thermal regimes influence lesion recovery: \href{https://link.springer.com/article/10.1007/s00338-020-02025-2}{Kaufman et al 2021}
+
+\textbf{Environmental memory}
+
+Squirts and antioxidant capacity and how they define ways of environmental memory.
+
+Decadal `memory' after previous high solar irradiance exposure: \href{https://link.springer.com/article/10.1007/s00227-014-2596-2}{Brown et al 2014}
+
+\hypertarget{biochemical-adaptation-somero-et-al}{%
+\chapter{Biochemical Adaptation: Somero et al}\label{biochemical-adaptation-somero-et-al}}
+
+\hypertarget{chapter-1-conceptual-foundation-for-understanding-biochemical-adaptation}{%
+\section*{Chapter 1: Conceptual Foundation for Understanding Biochemical Adaptation}\label{chapter-1-conceptual-foundation-for-understanding-biochemical-adaptation}}
+\addcontentsline{toc}{section}{Chapter 1: Conceptual Foundation for Understanding Biochemical Adaptation}
+
+Stressor: env. factor that perturbs biochem structures/fxn\\
+Stress: change induced in the system by stressor
+
+biochemical systems: \emph{efficient}: enzymatic enhancement of chemical reaction rates; \emph{accurate}: copying, transcribing, translating genetically coded information in the cell; \emph{responsive}: rapid and sophisticated signaling and subsequent effector responses that make changes internally or externally.\\
+- This all depends on reversible changes in molecular shape during function
+
+Marginal stability and fluidity:\\
+- a middle ground between stability to ensure existence but not so rigid that a molecular cannot undergo changes when needed. a balancing act and spectrum of rigid conformation to marginally stable conformation to too flexible a conformation\\
+- fluidity reflects a capacity for altering shape
+
+ligand: substrate of enzymatic rxn\\
+protein ``softness'': ease at which a protein's surface can alter geometry
+
+Ultimate vs proximate causes:\\
+- Ultimate: selective advantages that led to the origin and retention of a trait; \emph{``why?''}\\
+- Proximate: refer to the ``mechanism''/the means by which the beneficial trait is achieved.
+
+Intermediate level of protein structural stability (not too rigid or too flexible) is important to ensure optimal protein function. the proximate cause would be amino acid substitutions that modify the inherent structural stability of the protein OR modulating the intracellular fluid that bathes the protein. Either way the same result could occur of intermediate level of protein stability
+
+Exaptations: subsequent exploitations of a trait (that was adapted and had beneifical function) for other functions\\
+- BAT from previous mechanisms that reduced production of ROS
+
+\hypertarget{sources-of-genetic-and-phenotypic-variation-that-provide-the-raw-material-for-adaptive-change}{%
+\subsection*{Sources of genetic and phenotypic variation that provide the ``raw material'' for adaptive change}\label{sources-of-genetic-and-phenotypic-variation-that-provide-the-raw-material-for-adaptive-change}}
+\addcontentsline{toc}{subsection}{Sources of genetic and phenotypic variation that provide the ``raw material'' for adaptive change}
+
+\textbf{Horizontal gene transfer (HGT)}:
+
+Genes are exchanged either between different evolutionary lineages or between conspecifics\\
+- organisms can acquire types of genes needed for local environments\\
+- can favor rapid and extensive rebuilding of genetic ``toolkit'' (in microbiome)
+
+\begin{quote}
+Organisms can shuffle genes?? how does that even work?? come back to this..
+\end{quote}
+
+\textbf{Gene duplication}
+
+Duplication of genes followed by sequence changes that lead to adaptive variations on different protein themes -- major mechanism for facilitating exaptation at the protein level.
+
+ploidy: the entire genome is duplicated\\
+tandem gene duplication: individual gene is copied but this can also include blocks of genes that support specific biochemical functions
+
+\begin{quote}
+Interaction with methylation? If a gene is methylated/modified epigenetically, is it physically possible to copy that? Does the methyl mark continue or does it have to expend the energy to get rid of it?
+\end{quote}
+
+Increases in ploidy or tandem gene duplication creates paralogous genes that encode protein paralogs.
+
+\textbf{Allelic polymorphism}
+
+allozyme: when non-synonymous nucleotide changes in one allele for a protein-coding gene lead to alterations in amino acid sequence.
+
+In a changing environment, it would be advantageous to keep allozyme variants that have different environmental optima
+
+Lyon effect: one of two X chromosomes is silened by epigenetic mechanisms
+
+Allel-specific expression (ASE): regulation involving specific genes rather than full chromosomes.
+
+\textbf{Local adaptation}
+
+Assembling the right types of genetic variation to enhance the population's success under its particular set of local habitat conditions, which likely differs significantly form another location.\\
+- selection for allelic variations of proteins that differ in thermal optima\\
+- altered patterns of gene expression
+
+\textbf{RNA editing: splice variants}
+
+Post transcription, pre translation; during preparation to be translated
+
+introns are removed and exons are joined
+
+Intron-free RNA: has been seen to be stress-induced proteins; these have to be expressed without delay so it would be advantageous to skip the splicing step
+
+Splice variants: one expressed gene can be spliced in different patterns and thus result in mature mRNA variants from the same original mRNA
+
+\textbf{RNA editing: changing base composition}
+
+mRNA can be chemically modified to alter amino acid sequence. This involves a change in codons and thus can give rise to multiple protein isoforms.
+
+i.e.~adenine to inosine by the enzyme adenosine deaminase
+
+\textbf{Small regulatory (noncoding) RNAs}
+
+gene that encode small RNA molecules that are transcibed but not translated.\\
+- determine whether a specific mRNA gets translated into a protein\\
+- controlling half-lives of mRNA
+
+\textbf{Stress-induced unmasking of cryptic genetic variation}
+
+Hsp90 example: in not stressful conditions, this protein is a part of signal transduction pathways as a molecular chaperone to montior the protein folding in that pathway. In stressful conditions, Hsp90 moves to be a chaperone of another class of proteins. Upon leaving the previous function, proteins could be folded incorrectly and lead to disrupted processes and potentially change the phenotype. This has the potential to unmask genetic variation, which has the potential to be adaptive.
+
+\textbf{Transgenerational inheritance of epigenetic changes (TGI)}
+
+epigenetic changes that modify gene transcription pass from one generation to the next = TGI
+
+Do epigenetic changes to a chromosome ``wash out'' after a few generations or are they long-lasting?\\
+Epigenetic modifications, if inherited, exist on chromosomes that segregate in the same manner that all nuclear genetic material and thus are subject to the same evolutionary genetic processes that ultimately determine whether they will persist or be lost from a population. Caused by proteins that are themselves genetically encoded and subject to all evolutionary forces like mutuations, genetic drift, and natural selection
+
+\textbf{Symbiosis with other organisms}
+
+Symbionts and microbiome.
+
+Eukaryotes have a slower translation rate, which could enable more complex protein structures.
+
+Steno vs.~eury therm: stenos may 1.) not have the appropriate proteins any more b/c of evolving in a highly predictable environment 2.) lost the ability to upregulated or expression those genes if even they have them
+
+Smaller changes that can have a big impact: micromolecules (low-molecular-mass constituents) can regulate function or stability of macromolecules, and adjustments to micromolecules themselves -- proton activity (pH) organic osmolyte concentrations
+
+\hypertarget{chapter-2-oxygen-and-metabolism}{%
+\section*{Chapter 2: Oxygen and Metabolism}\label{chapter-2-oxygen-and-metabolism}}
+\addcontentsline{toc}{section}{Chapter 2: Oxygen and Metabolism}
+
+Metabolic depression (hypometabolism): reducing the requirement for ATP, often in response to reduced levels of oxygen.
+
+\hypertarget{energy-metabolism-pathways}{%
+\subsection*{Energy metabolism pathways}\label{energy-metabolism-pathways}}
+\addcontentsline{toc}{subsection}{Energy metabolism pathways}
+
+\textbf{Cytochrome c oxidase system}: supports enhanced yield of ATP per substrate molecule but also a mechanism for decreasing the amounts of toxic oxygen by-products produced during aerobic ATP generation.\\
+- via electron transport system (ETS), serving as electron capacitor that stores 4 electrons until the system can be discharged to generate the nontoxic end product, water.\\
+- tetravalent reduction of oxygen (4 electrons to dioxygen molecule to from 2 molecules of water)\\
+- capacitor function reduces risk of univalent reduction of dioxygen, which generates ROS\\
+- five components in oxidase enzyme: 2 heme irons, 2 copper centers with 2 and 1 coppers each\\
+- cytochrome c enzyme + cytochome oxidase enzyme
+
+therefore efficiently functioning cytochrome c oxidase systems is essential
+
+Oxygen's ``good side'' is generating biologically useful forms of energy (ATP) and ``bad side'' is ROS production.
+
+\begin{quote}
+Can a coral go into an oxygen depleted state if the symbionts are expelled? Lower biproduct consumption of oxygen from photosynthetic pathways of the symbiont?
+\end{quote}
+
+Oxygen-dependent biosynthetic pathways includes ones that produce collagen, steroid compounds like cholesterol.
+
+Dioxygen (O2) can accept pairs of e- (later used in ATP production) or single e- which leads to production of \textbf{reactive oxygen species (ROS)}.\\
+- highly reactive; damage DNA, lipids, proteins, integrity of genome and biomolecules\\
+- increases as result of cellular stress\\
+- env stress from high temperature, osmotic challenges, transition between high and low levels of oxygen\\
+- to reduce (scavenge) ROS, requires NADPH as a co-factor (or reducing equivalent)
+
+Oxygen demands per unit mass are reduced in larger species.
+\textgreater{} how does this differ with tissue thickness?
+How does oxygen enter the coral's body?
+
+Critical oxygen partial pressure (Pcrit): Oxygen concentration below a certain point where performance begins to decline. Higher Pcrit = greater sensitivity to oxygen limitation. This limit is driven by metabolic requirements of partiuclar developmental stages or modes of activity
+
+\textbf{Organismal properties that establish animals' matabolic requirements}
+
+Energy metabolism: base function is to provide adequate supply of ATP
+
+Standard metabolic rate: ectotherms (depend on external sources of heat) i.e.~corals\\
+Basal metabolic rate: endothermic homeotherm
+
+ATP consuming pathways:\\
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/biochem2-fig1.jpg?raw=true}
+
+Specific dynamic action (SDA): postabsorptive increase in energy metabolism\\
+- thought to be caused by production of proteins
+
+\textbf{Factors that establish metabolic rate:}\\
+1. physical activity (i.e.~locomotory activity driven by ATP turnover in muscle)\\
+2. digestion\\
+3. reproduction\\
+4. time of day\\
+5. age\\
+6. abiotic factors: temperature, oxygen concentration, cellular stress b/c of the need to maintain cellular homeostasis and repair tissue damage
+
+2 types of biochemical responses: types of metabolic pathways AND alterations in the flux rates through those pathways.
+\textgreater{} Are all coral pathways the same?
+
+\textbf{Main pathways of ATP production}
+
+\emph{see DNA methylation PDF figure for the below pathways}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Glycolysis\\
+\item
+  Tricarboxylic acid (TCA) cycle or Krebs or Citric Acid Cycle\\
+\item
+  Mitochondrial ATP synthase complex: uses proton gradient generated by the electron transport system (ETS) across the inner mitochondrial membrane to synthesize ATP.
+\end{enumerate}
+
+2 mechanisms to add the terminal phosphate to ADP:\\
+1. Substrate-level phosphorylation: transfer of ``high-energy'' phosphate group from metabolite (i.e.~PEP) to ADP = ATP. Used in 2 rxns in glycolysis and 1 rxn in TCA cycle\\
+2. Oxidative phosphorylation: phosphorylation of ADP by the ATP synthase complex of mitochondrial inner membrane. E- for this come from reducing equivalents in the form of NADH produced by glycolysis, TCA cycle, B-oxidation of fatty acids.
+
+Short-term increase in ATP production / buffering ATP fluctuation: 1. phosphagens creatine and 2. arginine-phosphate kinases: catalyze exchange of terminal phosphate groups between ADP and creatine-phosphate or arginine-phosphate. These are reversible phosphorylation rxns
+
+Production of reducing equivalents: NADH, NADPH, FADH2. Functions of these:\\
+- deliver e- to ETS; therefore provide force to drive transport of protons across inner membrane and establishing proton gradient whose subsequent dissipation drives oxidative phosphorylation
+
+NADH: essential at complex I in ETS to maintain flux rates through catabolic pathways that break down substrates like glucose. Rxns in TCA cycle are primary source of NADH\\
+NAD+: essential cofactor in one of rxns in glycosis and rxns in TCA cycle
+
+Oxidative phosphorylation: involving reduction of oxygen through the cytochrome c oxidase rxn: highest yield of ATP per substrate molecule catabolized BUT there needs to be oxygen to support this pathway
+
+Reduced oxygen availability can arise via:\\
+1. physiological (functional) hypoxia: transport of O2 from environment to respiring tissues cannot keep up with oxygen demand\\
+2. oxygen levels below what is needed to support ATP production, environmental hypoxia occurs\\
+In either type of hypoxic situation, molecules other than oxygen serve as electron acceptors for continued catabolic activity
+
+Fermentation: reduction of an organic molecule to regenerate the oxidized cofactor\\
+Lactate dehydrogenase (LDH): enzyme used in NADH-requiring fermentation rxn which reduces pyruvate to lactate
+
+NADPH: used in many anabolic reduction rxns; pentose phosphate pathway (PPP) is major supplier of NADPH.\\
+- used to reduce ROS so when ROS is high, demand for NADPH increases
+
+Flavin-containing nucleotides (FAD): important in reversible oxidation-reduction rxns; ATP generation\\
+- FADH2 used in TCA cycle and deliver e- to ETS in complex II
+
+Voltage-dependent anion channel (VDAC): regulates transport of ADP and ATP across inner and outer membranes of the mitochondria
+
+\begin{figure}
+\centering
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/biochem2-fig2.jpg?raw=true}
+\caption{fig2}
+\end{figure}
+
+\textbf{Bi products of metabolism}
+
+metabolite of glycolysis can be coverted to yield fatty acids, triacylglycerides for fat storage and phosphyoglyceride lipids for membranes
+
+Glycosis products can be reversible thermodynamically and energy storage molecules can be converted to sustain glucose levels when needed.
+
+TCA cycle = provides building blocks for fatty acid synthesis and carboxylic acid skeletons for amino acid biosynthesis
+
+PPP pathway = building blocks for nucleotides of DNA and RNA
+
+\textbf{Temporal and spatial ATP buffering by phosphagens}
+
+High ATP turnover rates results in first line of defense = increase in rxn rates of creatine kinase (CK) and arginine kinase (AK). AK is the main source in invertebrates\\
+- AK most effective at buffering ATP during prolonged conditions of lower ATP/ADP ratios and low pH.
+
+inorganic phospate (Pi):\\
+- assists in intracellular pH buffering mediated by activity of AK
+- substrate for glycogen phosphorylase and thus promote glycogenolysis
+
+Different isoforms of these kinases can be expressed within one cell; localized kinases are utilized for optimal fxn
+
+Recycling of mitochondrial ADP by creatine kinases activites oxidative phosphorylation, this enzyme regulates rates of mitochondrial respiration and therefore reduces ROS production.
+
+Reactive Nitrogen Species (RNS) is similar to ROS.
+
+\textbf{Posttranslational modifications and signaling by metabolic pathways}
+
+Posttranslational modifications (PTMs) change the activity, location, turnover of proteins in response to shifts in metabolism.
+
+Acetyl-CoA: central metabolite of both carbohydrate and fatty acid catabolism and key building block for synthesis of lipids and cholesterol.
+
+Acetylases: use ACoA as substrate to acetylate proteins, deacetylases remove the acetyl group from proteins\\
+- affects almost all metabolic enzymes and nuclear regulatory proteins\\
+- increase in levels of ACoA indicate a high energy charge, signaling to the cell the potential for enhancing activities\\
+- high levels in nucleus trigger acetylation on histones which leads to loosening of chromatin structure and activation of gene expression
+
+HDACs reverse this process\\
+Sirtuins are are a type of HDAC and used NAD+ as a substrate to remove the acetyl group
+
+\textbf{Metabolic control theory}
+
+suggests that all enzyme-catalyzed steps in a pathway can contribute to the regulation of flux
+
+\textbf{Aerobic metabolism}
+
+Infoldings of inner membrane form \textbf{cristase} that reach into the matrix and serve to increase the surface area of the inner membrane (forms classic shape of mitochondria). Products of metabolic pathways need to be transported across several membranes.
+
+Exchange of metabolites b/w cytosol and intermembrane space is controlled by a \textbf{porin} (voltage-dependent anion channel VDAC). VDAC has low selectivity.\\
+Exchange across intermembrane into matrix is controlled by adenine nucleotide translactor (ANT), mainly controls exchange of ATP and ADP. NADH is transported into the matrix through malate-aspartate shuttle (\textbf{below}).
+
+\begin{figure}
+\centering
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/biochem2-fig3.jpg?raw=true}
+\caption{fig3}
+\end{figure}
+
+Pyruvate oxidized by PDH rxn, forming NADH and Acetyl-CoA. Acetyl-CoA feeds into TCA/citrate synthase reaction to form citrate (below)
+
+\begin{figure}
+\centering
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/biochem2-fig4..1jpg.jpg?raw=true}
+\caption{fig4}
+\end{figure}
+
+Electron transport system (ETS) use reducing equivalents: NADH and FADH2 at complexes I and II. Complex IV = cytochrome c oxidase (see notes above). This builds a chemical and electrical gradient called \textbf{proton motive force} that is used in oxidative phosphorylation.
+
+\begin{figure}
+\centering
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/biochem2-fig5.jpg?raw=true}
+\caption{fig5}
+\end{figure}
+
+B-oxidation of fatty acids generates acetyl-CoA for the TCA cycle
+
+\begin{figure}
+\centering
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/biochem2-fig6.1.jpg?raw=true}
+\caption{fig6}
+\end{figure}
+
+Mitochondrial functions
+
+\begin{figure}
+\centering
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/mitochondria-cycles.png?raw=true}
+\caption{fig7}
+\end{figure}
+
+\textbf{Genetic aspects}
+
+Hybrid breakdown: breakdown in fitness in F2 hybrid generation in crosses between population.
+
+Maternal inheritance of the mitochondrial genome is essentially clonal.
+
+Intergenomic (nuclear and mitochondrial) coadaptation between gentically distinct populations of copepods caused hybrid breakdown (disrupted function) when populations were hybridized.\\
+- divergence of mitochondrial sequences of COI of subunit of cytochrome c oxidase (complex IV) can be high in populations (especially in those locally adapted)
+
+\hypertarget{oxidative-stress-production-and-scavenging-of-ros}{%
+\subsection*{Oxidative Stress: Production and Scavenging of ROS}\label{oxidative-stress-production-and-scavenging-of-ros}}
+\addcontentsline{toc}{subsection}{Oxidative Stress: Production and Scavenging of ROS}
+
+Cytochrome c oxidase (COX) is an electron capacitor, holding e- until the system can discharge a univalent reduction of molecular oxygen into water. Sometimes this reduction can produce ROS instead.
+
+Reactive species: strong tendency to either provide (reduce) or extract (oxidize) e- to or from other molecules.\\
+Radicals: unpaired e- on the outer shell and are ore strongly oxidizing
+
+ROS:\\
+\textbf{1. Superoxide anion (O2 -)}: causes by leakage of e- from ETS\\
+\textbf{2. Hydrogen peroxide (H2O2)}: longer half life and less radical, allowing it to diffuse easily across inner mitochondrial membrane, ER, and peroxisomal membranes. This is facilitated by aquaporins. Therefore H2O2 can affect processes far from its origin.\\
+- when reacts with ferrous iron (Fe 2+) its converted into OH (this is the Fenton rxn)
+
+\textbf{3. Hydroxyl radical (OH)}: most reactive ROS, most scavenging is targeted at H2O2 so that it doesn't turn into OH
+
+Generates from:\\
+1. Complexes I and III of ETS\\
+2. PDH (pyruvate dehydrogenase)
+3. aKGH of the TCA cycle
+
+In conditions of:\\
+1. high CoQH2/CoQ ratios\\
+2. high NADH/NAD+ ratios\\
+3. large proton gradients
+
+Manganese superoxide dismutase (Mn-SOD)
+
+ROS scavenging systems:\\
+- glutathione and thioredoxin-peroxiredoxin systems\\
+- catalase
+
+ROS causes oxidative damage which changes the structure and fxn of DNA. This is fixed by base excision repair and nucleotide excision repair mechanism -- DNA damage recognition and repair enzymes.
+
+ROS causes oxidation of fatty acids and cholesterol, causes leaking membranes and alteration of lipid-protein interactions with membranes.
+
+Oxidation of proteins is a removal of hydrogen from alpha carbon atom of an amino acid residue. This triggers a downstream cycle that results in degradation of proteins and protein function.
+
+Metabolic depression (reduction of mitochondrial activity) can reduce rates of ROS generation.
+
+In mitochondria:
+
+\begin{figure}
+\centering
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/biochem2-fig7.1.jpg?raw=true}
+\caption{mito}
+\end{figure}
+
+Pyruvate and aKG function like antioxidants and facilitate scavenging of ROS. They protect neurons from H2O2
+
+\textbf{Example of response in mussels}
+
+Decreases in abundance, changes in subunit composition, and posttranslational modifications of metabolic enzymes are potential mechanisms of regulation. All towards down regulation of metabolism and possbily ROS production with a switch to production of NADPH from pro-oxidant NADH, which can serve as a reducing equivalent for ROS scavenging.
+
+\begin{figure}
+\centering
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/biochem2-fig8.jpg?raw=true}
+\caption{fig8}
+\end{figure}
+
+\textbf{Uncoupling proteins}
+
+Supply of ADP to ATP synthase rxn is needed to allow reentry of protons that have been moved outward across inner membrane by ETS (see below). The supply of ADP depends on the use of ATP that drives various work in the cell. When ATP use rates are low, e- builds up and leakage of those e- will produce superoxide. ``safety valve'' = uncoupled proteins that allow transport of e- back into the inner membrane space for COX that isn't dependent on ATP production and ADP use.
+
+\begin{figure}
+\centering
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/biochem2-fig9.jpg?raw=true}
+\caption{fi9}
+\end{figure}
+
+But potential is high to waste large amounts of E so it is very tightly regulated and only when danger of ROS generation arises.
+
+\textbf{ROS scavenging}
+
+First line of defense:\\
+Manganese superoxide dismutase (MnSOD): converts superoxide into hydrogen peroxide in mitochondria\\
+Copper-zinc SOD (Cu-Zn-SOD): does the above in the inner membrane space
+
+Second line of defense:\\
+Hydrogen peroxide dismutation by catalase in peroxisome, AND glutathione peroxidase (GPx) (glutathione system) and peroxiredoxin (Prx) in mitochondria.
+
+\begin{figure}
+\centering
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/biochem2-fig10.jpg?raw=true}
+\caption{fig10}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/biochem2-fig11.jpg?raw=true}
+\caption{fig11}
+\end{figure}
+
+Thioredoxin-peroxiredoxin system: H2O2 scavenging; Trx, Prx.
+
+In polychaetes during acute thermal stress: heat tolerant species did not change SOD isoforms. GR = gutathione reductase.
+\textgreater{} This lines up with 1st chapter data. Mcap didn't change TAC, but there is higher variation and higher values of TAC in Pacuta.
+
+\begin{figure}
+\centering
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/biochem2-fig12.1.jpg?raw=true}
+\caption{fig12}
+\end{figure}
+
+Low pH may cause increase in ROS production through release of heavy metals such as Fe2+ from intracellular stores, triggering the Fenton rxn, or through intxn of CO2 with peroxynritrite resulting in reactive O, N, C species.
+
+\textbf{Non-enzymatic antioxidant responses}
+
+Glutathione (main cellular non-enzymatic antioxidant), ascorbic acid (vitamin C), a-tocopherol (vitamin E), and carotenoids.
+
+Ascorbate is a co-factor for several enzymes.
+
+Antartic fishes might have higher levels of the above systems and a creater capacity to scavenge ROS.
+
+\textbf{Sources of reducing power (NADPH)}
+
+GR and TR require NADPH to maintain levels of reduced Glutathione and thioredoxin, therefore the pathways to produce NADPH are important in antioxidant response too.
+
+Pathways to produce NADPH: cystolic pentose phosphate pathway (PPP), NADP-dependent dehyrdogenases, and transhydrogenase. NADP-IDH and ALDH.
+
+Acute stress in Mytilus caused increase in the above and in the non-oxidative PPP process that resulted in many NADPH.
+
+\textbf{Oxidative stress in the ER}
+
+Secreted and membrane proteins fold and mature in the ER; newly translated proteins, formation and proof-reading and disulfide bond formation.
+
+Maturation of proteins in the ER happens before glycosylation and then are exported can be a source of ROS.
+
+ER is a compartment that is highly sensitive to environmental challenge. ER molecular chaperones: PDI, Grp78, Grp94. Studies in mussels have shown that these increase in response to acute salinity stress and decreased in recovery.
+
+Rates of H2O2 production from disulfide bond formation would follow the same pattern of increase/decrease of use of molecular chaperone. Then, this effect would be mirrored in changes in antioxidant protein expression.
+
+\textbf{Metabolic Rates and Oxygen}
+
+States where metabolic rates drop well below the BMR/SMR is referred to metabolic depression / hypometabolism. Hypermetabolism = Maximum metabolic rates (MMR) achieved during exhaustive physical activity. Field metabolic rate = organisms going about their lives sustain varying metabolic rates for various activities.
+
+This is measured by calorimetry: production of heat is most direct way to quantify metabolic rate = direct calorimetry\\
+Measurements of oxygen consumption = indirect calorimetry
+
+\begin{figure}
+\centering
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/biochem2-fig13.jpg?raw=true}
+\caption{fig13}
+\end{figure}
+
+Metabolic rates of single cells decrease with increasing body mass in birds, animals, and non-avian reptiles.
+\textgreater{} I don't think corals would follow the same trend? How is energy dissipated across the whole colony? I don't think a polyp on one side is providing a major amount of resources to other side in the same way other animals' bodies do.
+
+Potential differences in metabolic function:\\
+1. more mitochondria per unit of mass of tissue\\
+2. more enzymes per unit of mass of mitochondria\\
+3. enzymes with different specific activities
+
+Differential enzyme function:\\
+1. intrinsic catalytic power of an enzyme: rate at which an active site can convert substrate to product\\
+2. posttranslational modifications that modify the Kcat value of the proteins\\
+3. change the milieu in which enzymes work to alter the specific activity of the enzyme. In respiration, the milieu is the lipid composition of the inner mitochondrial membrane. The lipid environment surrounding the proteins involved in respiration modulates their activity = viscoptropic effect.
+
+highly viscous lipid environment = more resistance for proteins. Decreasing viscuosity = increase rate of protein function
+
+\textbf{Metabolic depression and hypometabolism}
+
+Adverse conditions challenge organisms' ability to maintain ATP turnover rates. One common response is to down-regulate metabolism or overall ATP turnover rate. Characterized by a reduction in mitochondrial respiration and ATP synthesis, down-regulating ATP-consuming processes, reduction in ion regulation (activity of NA+ - K+ - ATPase), protein synthesis, biosynthesis of other macromolecules and cellular assemblages. Increase in protein stabilization to prolong lifespan.
+
+In brine shrimp during metabolic depression, they downregulated processes that generated Acetyl-CoA that goes into the TCA cycle: PDH. Which also generates ROS.
+
+Drops in pH: response likely depends on function of vacuolar proton pump / V-ATPase. Its purpose is to acidify cellular components such as lysosomal vesicles.
+
+Energetic cost of transcription is a lot smaller than protein synthesis. MicroRNAs regulate the expression of 60\% of all protein-coding genes.
+
+Nuclear factor erythroid 2-related factor 2 (Nrf2) = txn factor that increases expression of several antioxidant proteins.
+\textgreater{} Check this in invertebrates?
+
+\textbf{Energy Homeostasis and Environmental Stress: A Conceptual Framework}
+
+Dynamic Energy Budget (DEB) model: balances energy acquisition and allocation among competing phys processes within an individual.
+
+Oxygen- and capacity- limited thermal tolerance (OCLTT): framework for how oxygen supply sets limits to stress tolerance.
+
+The available energy flux through any organism will have to prioritize the maintenance of BMR/SMR. Sometimes to the detriment of growth, storage, reproduction.
+
+Surplus metabolic capacity: difference between BMR and MMR = aerobic scope. An organism's aerobic scope plays a role in setting an organism's capacity to cope with stress.
+
+Bioenergetic framework:
+
+\begin{figure}
+\centering
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/biochem2-fig14.jpg?raw=true}
+\caption{fig14}
+\end{figure}
+
+\textbf{All of that to say that these metabolic pathways are critical to keep regulated, and oxygen levels are critical for the function of metabolism.}
+
+\hypertarget{the-flexible-phenotype}{%
+\chapter{The Flexible Phenotype}\label{the-flexible-phenotype}}
+
+Metabolic ceiling: the maximum energy output that can possibly be sustained by an organism that eats enough to stay in energy balance.
+
+Basal metabolic rate (BMR): standard conditions, baseline before any extra energy exerted.
+
+\textbf{Maximal sustained working levels}: the aerobic capacity for work of animals as it is limited by evolutionarily shaped physiological constraints.\\
+- Animals that choose to ignore this `physiological warning level' would lose body condition and face precipitous increases in mortality risk.
+
+\textbf{Optimal working capacity}: energetic performance level of parents beyond which they would suffer from increased risks due to physical fatigue, infection, and predation.
+
+`Capital' energy spender: rely on stored resources\\
+`Income' spender: rely on concurrent intake of nutrients or energy
+
+One can argue that `maximum sustained working levels' are only achieved by animals that are `income' spenders\\
+- b/c they maintain energy balance over the period of peak performance.
+
+`Sustained metabolic scope' (factorial scope):
+
+\emph{What is true endurance?}
+
+\begin{quote}
+explain the below figure without caption for exams
+\end{quote}
+
+\begin{figure}
+\centering
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/FP-1.png?raw=true}
+\caption{FP-1}
+\end{figure}
+
+Cold-induced factorial scope vs.~exercise-induced scope
+
+Importance of energy balance during sustained higher metabolic rates.
+
+\textbf{Weiner's barrel model: metabolic ceilings}
+
+\textbf{Five constraints on energy (bow-ties):}\\
+Bow-tie A: availability of energy in the environment\\
+- But it is unlikely that this restrains maximal performance\\
+- The rate at which energy can be harvested often exceeds the rate at which it can be processed.
+
+Bow-tie C: limited by capacity to excrete metabolic end-products.\\
+- i.e.~kidneys to excrete urea
+
+For awhile 2 main hypotheses existed to explain maximal performance.\\
+1.) \emph{central limitation hypothesis} (Bow-tie B): related to the capacity of the alimentary tract to absorb energy (food-processing chain)\\
+2.) \emph{peripheral limitation hypothesis} (Bow-tie D): related to the capacity to expend energy at the different sites of utilization (i.e.~respiratory chain, with muscles, mammalian brown adipose tissue and mammary glands)
+
+Performance limits are not set centrally:\\
+- Mice that increased food-intake rates when muscles and BAT were made to work harder in the cold, suggested that it was actually the capacity of the mammary glands that set the upper limit -- so back to the hypothesis \#2.
+
+heat-dissipation limits
+\textgreater{} come back to this..
+
+\begin{figure}
+\centering
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/FP-2.png?raw=true}
+\caption{fig2-FP}
+\end{figure}
+
+allometric scaling constant\\
+- in mammals this is consistently higher in maximal metabolic rate compared to BMR
+
+\textbf{Long term fitness assets}
+
+Increase body size, increase in energy required to maintain, increase in BMR levels.
+
+Symmorphosis: a single site does not limit aerobic performance.
+
+If very hard work precipitously increases the likelihood of death (b/c of free radical derived oxidative DNA and tissue damage), without leading to compensatory increases in reproductive output, \textbf{evolutionary trade-offs would select for animals that are not prepared to work harder than what is called the `optimal working capacity'}. Emphasizes the cost of high performance.
+
+allostatic loads
+\textgreater{} come back to this
+
+mass-specific lifetime energy expenditure
+\textgreater{} come back to this
+
+lifetime energy expenditure
+
+In birds: The mechanisms for a lower rate of ageing and bodily decline, which relate to mitochondrial functioning and the ways that electron leakage and free-radical production are balanced under conditions of high and low energy demands.
+
+animals are reluctant habitually to spend as much as they are physiologically capable of.
+
+how would you measure metabolic ceiling in a coral? See Barott papers?
+
+\hypertarget{phenotypic-plasticity-matching-phenotypes-to-environmental-demands}{%
+\section*{Phenotypic plasticity: matching phenotypes to environmental demands}\label{phenotypic-plasticity-matching-phenotypes-to-environmental-demands}}
+\addcontentsline{toc}{section}{Phenotypic plasticity: matching phenotypes to environmental demands}
+
+Plastic barnacle penis example of environment influencing phenotype and function.
+
+Use it or lose it:\\
+- heart morphology based on usage: atrophy vs.~hypertrophy\\
+- in space calf muscle decreases by 20\% and in on earth weightless scenarios. positive correlation of decrease in leg muscles (\%) and duration of unloading experiment
+
+After losing it, it is possible to regain it:\\
+- astronauts 6 mos post flight can regain \% muscle
+
+Dynamic gut: snakes go through veritable `gastrointestinal rebirths': going without meals for so long that stonachs, intestines, and accesory organs shrink and become `dormant'\\
+- when they eat again, it is a huge meal and there is a burst of physiological activity by orders of magnitude\\
+- there is a higher cycling of cells post meal while preparing for another meals
+
+\textbf{Classical phenotypic plasticity: developmental reaction norms}
+
+developmental plasticity: where environmental conditions during ontogeny determine the size, shape, construction, and behavior of the mature phenotype.\\
+- water fleas \emph{Daphnia} show hoods, helmets, spines, and longer tails in response to predators or to the chemical identifiers (`kai hormones'). also called induced defenses\\
+- density levels drive urchin size\\
+- water flow drives scleractinian corals to be denser or more spaced out structures\\
+- seasonal polyphenism: the tropical butterfly \emph{Precis almana} has either angular wing shapes and a dull brown color (resembling a dead leaf) in the dry season or rounded and colorful wings with eye spots in the wet season
+
+Size, age, condition, context-dependent sex change occurs in plants, annelids, echinoderms, crustaceans, molluscs, and fish
+
+Seasonal phenotypic change:\\
+- plumage of birds and antlers of deer\\
+- \emph{Bicyclus} butterflies show what is typical of `classic' developmental plasticity: hormonal effects in larva and pupa and physiological acclimatization: induced in the reproductive adult stage and maternally contributed to the eggs
+
+Seasonal polyphenism in insects is called life-cycle staging in birds and animals..
+
+Mismatches of environment and phenotype can happen in an unpredictable environment and this can be a large cost of developmental plasticity. If organisms are capable of fast and reversible phenotypic change then that cost isn't as big of a deal or risk.
+
+Below is a conceptual diagram of types of plasticity defined in 2-D space. Variability: degree of environmental variability (relative to the organism) and Predictability: the degree to which this variability is predictable.
+
+\begin{figure}
+\centering
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/FP-3.png?raw=true}
+\caption{fp3}
+\end{figure}
+
+Between individuals/generations would include short-lived organisms and within individuals/generations would include long-lived organims (corals are long-lived).
+
+Lower predictability means it would be better for an organism to respond opportunistically rather than seasonally scheduled.
+
+Variable responses: organisms encountering unpredictably variable environments in the course of their lifetime would benefit from plasticity being reversible; i.e.~showing \emph{phenotypic flexibility}.
+
+In a low predictability environment, organisms could \emph{bet-hedge} and development phenotypic changes at random in short-lived organisms. Long-lived organisms could deal with this by not changing at all and show \emph{robustness}.
+
+\begin{quote}
+why couldn't bet-hedging be true for long-lived organisms? and vice versa with robustness?
+\end{quote}
+
+\textbf{Costs and limits of plasticity}
+
+\begin{figure}
+\centering
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/FP-4.png?raw=true}
+\caption{FP4}
+\end{figure}
+
+\textbf{Degrees of flexibility}
+
+Cell types could have differing responses to functionality\\
+- Sled dogs in the summer when not in use, had thinner muscle and decreases in mitochondrial numbers, lipid droplet size, and number of contractile myofibrillar elements but capillary networks remained the same
+
+In theory for phenotypic plasticity to evolve, no single phenotype can be optimal in all environments experienced by the organism.\\
+- Therefore, there must be trade-offs. and reliable cues to inform the organism about the state of its variable environment.
+
+Plasticity itself is a trait with a genetic basis
+
+Traits are only so plastic, there is likely to be a leveling off point where the organism isn't able to continuously increase their plasticity even if the signal is continued or increased.\\
+- organizational limit or functional limit that reflects the high cost of a phenotype i.e.~a defensive phenotype (frog with predator presence example)
+
+Reductions in metabolically active tissue dramatically reduce basal energy requirements.
+
+Reproductively successful phenotypes will satisfy ecological demands by optimizing the balance between various cost and benefit functions of specific kinds of phenotypic (trait) variation.
+
+\textbf{Chapter 9: Population consequences: conservation and management of flexible phenotypes}
+
+Information other than genes influence phenotype, but there is a limit to coping to environment pertubations.
+
+\hypertarget{mechanisms-of-plastic-rescue}{%
+\chapter{Mechanisms of Plastic Rescue}\label{mechanisms-of-plastic-rescue}}
+
+\emph{Notes may not be my own language, as some sections were directly taken from the manuscripts I studied and are cited in the main header or in a parenthesis.}
+
+\textbf{Snell-Rood et al 2018}
+
+Mechanisms (i.e.~developmental switches) can move an organism towards a new adaptive peak or could result in a maladaptive response. Ability to be plastic and plastic responses come with high energetic demand (i.e.~delays in reproduction, increased individual investment, reduced fecundity).
+
+Plasticity: the ability of a genotype to develop different phenotypes in response to cues like environmental conditions. Includes morphological development, regulation of gene expression, and behavior.
+
+This process of \emph{individual} plasticity can be immediate and within a single generation, thus providing a potential first stage of rescue that comes before adaptation and evolutionary rescue of a \emph{population}. \textbf{BUT, this is not always beneficial. Immediate plastic responses can be maladaptive because little to no selection has occured on this response to completely new conditions.}
+
+Developmental mechanisms (causes) of plasticity (in order of least likely to most likely to produce an adaptive response):\\
+1. Evolved developmental switches\\
+2. Generalized physiological responses to stressors\\
+3. Development selection
+
+The mechanism may influence proportion of population that survives a novel condition, fecundity, time between generations, rate of population growth, and how evolution plays out.
+
+\textbf{The mechanisms that are likely to produce a highly adaptive response to a novel environment are also the most costly, shifting a slower life history and less pronounced evolutionary response at the population level.}
+
+1.) Evolved developmental switches are least likely to result in an adaptive response because they are specific to historically relevant environments. 2.) Generalized physiological responses are relatively more likely because these are general to a range of environments. 3.) Developmental selection are most likely because individuals sample phenotypes over developmental time, adopting those that specifically match the new condition.
+
+\begin{quote}
+Most interested in the learning and acquired immunity section of this.. potential of environmental memory.. but this means it is highly costly. High risk, high reward.
+\end{quote}
+
+\textbf{3 categories of developmental mechanisms}
+\textgreater{} be able to explain this figure without the caption for exams.
+
+\begin{figure}
+\centering
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/PR-1.png?raw=true}
+\caption{fig1}
+\end{figure}
+
+Big question: can this be optimized within an individual's lifespan?
+
+\textbf{Evolved developmental switches: Least likely}
+
+Polyphenism: where one of several discrete alternate phenotypes is induced in different conditions.\\
+- nutrition-dependent mating tactics in beetles (\href{https://www.sciencedirect.com/science/article/abs/pii/S0003347299913428}{Moczek \& Emlen 2000})\\
+- smaller males are hornless, large males that exceed a critical body size develop a pair of long, curved horns\\
+- ``Thus, horn possession confers a clear advantage to males using fighting behaviours to access females, whereas hornlessness may be favoured in males that rely primarily on sneaking behaviours. Combined, the two alternative reproductive tactics used by male O. taurus appear to favour opposite horn phenotypes, which may explain the paucity of intermediate morphologies in natural populations of O. taurus.''
+
+These are in response to specific, predictive environmental cues.
+
+A polyphenic trait is a trait for which multiple, discrete phenotypes can arise from a single genotype as a result of differing environmental conditions. It is therefore a special case of phenotypic plasticity (Wikipedia). Polyphenisms are discrete compared to continuous scale (i.e.~height and weight is continuous and the ability to curl your tongue is discrete).
+
+\begin{quote}
+Come back to thinking about if corals have any polyphenisms? There are some corals of the same species that develop in plate morphologies or pillar morphologies\ldots{} then the cue would be sunlight exposure?
+\end{quote}
+
+Examples of cues: predator chemicals, photoperiod, temperature induced developmental regulatory program, UV light (can induce melanization in some species)
+
+How adaptive this is would depend on the context of the novel environment:\\
+- If the novel condition was on a continuum then a preexisting plastic response could be adaptive in the new condition (i.e.~rising temperatures)\\
+- If the environment shifts to an extreme or in a discrete manner (i.e.~toxins), the tailored switches may not be adaptive in this scenario. Also in this scenario, previously cryptic variation could be exposed and lead to adaptive responses. This could be more up to chance and only a subset of the population to survive.
+
+\textbf{Responses of evolved developmental switches in novel environments.}
+
+\begin{quote}
+be able to explain this figure without the caption for exams.
+\end{quote}
+
+\begin{figure}
+\centering
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/PR-2.png?raw=true}
+\caption{fig2}
+\end{figure}
+
+\textbf{Generalized physiological responses to stressors: More likely}
+
+Stress response pathways, toxin metabolism, innate immunity have been optimized over evolutionary time, but can be general to a variety of environments.\\
+- i.e.~higher expression of heat shock proteins confers resistance to not only temperature stress but oxidative damage, toxin exposure, and osmotic stress (Feder \& Hoffman 1999, Kregel 2002, Wang et al 2004).
+
+Hormesis: sublethal stress can have beneficial effects on performance\\
+- upregulating general responses when challenged with low levels of stress\\
+- Examples found in other markdown sheets about environmental history
+
+Innate immunity can be ``generalized'':\\
+- see another markdown sheet for details.\\
+- a fever: heat stressor against pathogens, but also coordinates other immune processes and is effective against cancers and many pathogens
+
+Physiological mechanisms that are generalized or cross-reactive can be extremely powerful survival method. But, sometimes generalized methods aren't specific or good enough to a particular stressor. Constant upregulation is also highly costly. These costs could favor a specialized process.
+
+\textbf{Developmental selection: Most likely}
+
+Developmental selection: forms of plasticity that are reinforced over developmental time in response to feedback from the environment. This is powerful b/c it requires no prior evolutionary history with an environment for a potential phenotype match.\\
+- allows adaptive responses to a wide range of conditions without suffering costs of relaxed selection on developmental programs (Snell-Rood et al 2010, Whitlock 1996)
+
+Selection can occur within or b/w cells, over space and time, or on the basis of the location/ID of the trait, and across a lifetime.
+
+\textbf{Tissue Architecture}:
+
+Selection on location of cells\\
+- i.e.~jaw and skull morphology based on diet in fish and mammals; locomotor abilities based on experience in athletes; and *animals reared in different conditions**\\
+- Corals branching arrangement can be altered by light levels and water flow (Bruno \& Edmunds 1997)\\
+- The above is similar to one of my questions above..
+
+\begin{quote}
+what is the selection pressure from thick-tissued corals in the same environment and/or adjacent to each other as thin-tissued corals?
+\end{quote}
+
+\textbf{Learning and acquired immunity}:
+
+Individuals can ``sample'' phenotypes over time and reinforce the traits that match local conditions and atrophying those that do not (leading to specialized local adaptation). With behavior (i.e.~motor response to sensory input) this can be done by attending to a range of cues or varying motor patterns in response to a cue (basically this can happen at the input and the output level).
+
+\begin{quote}
+In corals, maybe this could look like extending polyps for feeding - after sampling several times of the day, they eventually learn what time is best to feed.
+Come back to adding to this\ldots.
+\end{quote}
+
+\textbf{Microbiome and patterns of gene expression}:
+
+Shuffling of different strains or species of symbionts may allow corals to cope with increasing temperature b/c harboring a more diverse microbiome can allow for a greater range of acclimation responses (Baker 2003, Berkelmans \& van Oppen 2006).
+
+\begin{quote}
+Could this also be a ``learned'' behavior, sampling various microbiomes and keeping the ``strongest'' that match the new condition?
+\end{quote}
+
+The microbiome can be selected on via the interaction with the environment and the active mechanisms of the host.
+
+For gene expression, stochastic expression can be beneficial in a variable environment. (Miller-Jensen et al 2011). And epigenetic patterning could focus this expression to lead to high performance. Selection could act on the higher performing patterning of gene expression (analogous to a learning process).\\
+- transcriptional memory of past developmental experiences; like priming effects
+
+Plastic responses are likely a combination of evolved developmental switches that match temperature cues with physiological and behavioral responses and of learning as individuals gain information on whether new climate conditions match the best breeding conditions.
+
+\textbf{Costs of plasticity}
+
+Global costs of plasticity explains the co-existence of specialists and generalists. Costs are only felt in an environment where plasticity is beneficial.
+
+\textbf{Costs of plasticity Figure 3}\\
+\textgreater{} explain figure without the caption for exams.
+
+\begin{figure}
+\centering
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/McWilliams-exam/PR-3.png?raw=true}
+\caption{fig3}
+\end{figure}
+
+Big picture is that this is costly regardless of mechanism.\\
+- Process (vs.~the ability) of learning has trade-offs with fecundity (Mery \& Kawecki 2004)\\
+- Induction of chemical and physical defenses comes with reproductive trade-offs (Agrawal et al 1999, Baldwin 1998)
+
+Costs can be higher in stressful conditions, reinforcing the general observation that costs are specific to certain induced phenotypes. Costs can be amplified in nutrient and resource poor environments.\\
+- In environments where nutrients are increasing, this nutritional demand of plasticity could be ameliorated (Snell-Rood et al 2015a).
+
+\begin{quote}
+For DNA methylation, in nutrient rich area - the cost of plasticity could be taken out. If hypomethylation is consistent with phenotypic plasticity, then could higher nutrient rich areas be lower in methylation? Because the organism has learned that resource will be there to use?
+\end{quote}
+
+Costs to plasticity can lead to lower life histories.\\
+- Upregulation of general stress mechs like antioxidant pathways and heat shock proteins is linked to longer life spans but with trade-offs in fecundity (Gruber et al 2007, Marshall \& Sinclair 2010)\\
+- come back to outlining the above\ldots.
+
+Developmental selection is particularly costly\\
+- species that rely on learning have a delay in performance; the cost of being naive or exploration-exploitation trade-off\\
+- Therefore, benefits of exploration has more likely to pay off with longer lifespans (Eliassen et al 2007, Kaplan et al 2000)
+
+Critical variables of plasticity:\\
+- costs of plasticity\\
+- generation time\\
+- population growth rate\\
+- degree the population is shifted toward a new optimal phenotype
+
+\textbf{Applied to corals}
+
+The coral holobiont provides a fascinating study system: the coral host, endosymbiont, and associated microbiome. Each partner has the ability for developmental selection and generalized physiological mechanisms. Overall survival in a climate change context is dependent on all three partners working in unison (or unison enough..) to produce an adaptive response.
+
+Examples of learning and acquired immunity:
+
+Microbiome, gene expression, and epigenetics:
+
+Come back to ending of the above paper and the following questions:\\
+- Pros and cons of each strategy?\\
+- Is plasticity always adaptive?\\
+- How is plasticity selected upon?\\
+- Integrating plasticity and genetic variation?\\
+- Interaction of trans-generational plasticity\\
+- epiphenotype hypothesis
+
+\hypertarget{plasticity-in-phenotypic-adaptation}{%
+\chapter{Plasticity in phenotypic adaptation}\label{plasticity-in-phenotypic-adaptation}}
+
+\emph{Notes may not be my own language, as some sections were directly taken from the manuscripts I studied and are cited in the main header or in a parenthesis.}
+
+\textbf{Fox et al 2018: Beyond buying time: the role of plasticity in phenotypic adaptation to rapid environmental change}
+
+Process of adaptation can occur via two mechanisms:\\
+1. expression of phenotypic plasticity (happens at the individual level)\\
+2. evolution via selection for particular phenotypes, resulting in the modification of genetic variation in the population
+
+Phenotypic plasticity:\\
+- rapid-response that could enable organisms to adapt and survive (also termed plastic rescue) OR\\
+- this could also slow adaptation by shifting the distribution of phenotypes in a population closer to an optimum and shielding it from natural selection.
+
+Not all phenotypes are adaptive; in the cases of ecological traps.
+
+\textbf{Four key themes}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Need to measure plasticity across space and time\\
+\item
+  Importance of the past in predicting the future\\
+\item
+  Importance of the link between plasticity and sexual selection\\
+\item
+  Need to understand more about nature of selection on plasticity itself.
+\end{enumerate}
+
+Debate is centered on:\\
+- When plasticity is an adaptation = itself the result of evolution via natural selection OR\\
+- When plasticity simply yields an adaptive outcome (i.e.~fortuitously increases fitness)
+
+\begin{quote}
+My assumption was the second option above.. come back to think about how the first may be true\ldots{}
+\end{quote}
+
+This paper is about phenotypic plasticity relative to adaptive evolution in promoting adaptation to novel environments.
+
+Different types of plasticity act on very different timescales\\
+- Activational behavioral plasticity: high-cost, rapid response\\
+- Developmental behavioral plasticity: low-cost, slower-acting with more integrated outcomes\\
+- Transgenerational plasticity (TGP): slower timescale more on par with adaptive evolution
+
+Big question: Is the type of plasticity relevant to the pace of environmental change?\\
+Can't assume that individual plasticity is always faster-acting than evolutionary
+
+Evolutionary rescue vs.~plastic rescue
+
+\begin{quote}
+come back to fill this in..
+\end{quote}
+
+`Matthew' effect: initial advantages lead to further cumulative advantages.\\
+- plasticity essentially functions as an amplifier for traits that already show condition-dependence, increasing the strength of the signal
+
+Ecological trap: change towards a lower-quality environment, trigged by a decline in the reliability of the cue.
+
+Genetic variation is known to be an important predictor of plastic and adaptive potential:\\
+- Reduced genetic variation owing to strong positive selection or limitations on recruitment or migration can reduce the capacity for phenotypic plasticity\\
+- OR traits that were once plastic can become fixed or expressed constitutively in the population (genetic assimilation)
+
+The process of adaptation requires an increase in mean population fitness over time, so this requires the more fit phenotypes to mate with each other and/or often.
+
+Sexual selection often results in healthier males having higher mating success, this should result in accelerated purging of mutations from the genome and an associated increased in female fitness through time.
+
+Therefore, should promote adaptation to novel environments when:\\
+- There is a positive genetic correlation between male sexual traits and female fitness,\\
+- \emph{and} if additive genetic variation persists under conditions of stress,\\
+- \emph{and} if these advantageous male traits are still reliable indicators of female fitness in the novel environment
+
+Sexual selection isn't always beneficial.
+
+Plasticity may affect the strength and direction of sexual selection in novel environments.
+
+``Physiological toolkit'': metabolic adjustments involve changes in the rates of energy uptake and allocation (i.e.~metabolic rates) among competing function at the whole-organism level (i.e.~maintenance, reproduction, growth, storage), which are conditioned by the capacity of mitochondria to provide sufficient aerobic energy at the cellular level (ATP).
+
+Variation in metabolic rates:\\
+- across time within individuals (i.e.~owing to seasonal changes)\\
+- among individuals (i.e.~intra-population differences in energy demands)\\
+- among populations (i.e.~local adaptation)
+
+\hypertarget{basics-of-symbiotic-interactions}{%
+\chapter{Basics of Symbiotic Interactions}\label{basics-of-symbiotic-interactions}}
+
+Content taken from Dr.~Roxanne Beinart's class OCG594. Papers and figures cited from research/review papers we focused on this semester.
+
+Ecological Interactions = biological interactions b/w and among organisms; doesn't necessarily require contact.\\
+- Inter-specific: co-actions\\
+- Intra-specific: Intra-actions
+
+Mechanisms of interaction and/or metabolite transfer; contact-independent based on the diffusion through extracellular environment (\href{https://pubs.rsc.org/en/content/articlehtml/2018/np/c8np00009c}{D'Souza et al., 2018}).\\
+\includegraphics{https://pubs.rsc.org/image/article/2018/NP/c8np00009c/c8np00009c-f4.gif}
+
+Interactions defined by effect on participants: 1.) individual level: reproductive performance, changes of survival, weight change, health 2.) population level: persistance, reproductive productivity, average condition of individuals, average density (biomass). Individual effect do not always = population effects.
+
+There are also indirect effects: organisms exist in interaction networks (i.e.~3+ taxa). An interaction between two organisms may have an impact on another not directly involved.
+
+Defining cost/benefit = net cost/benefit: does intxn increase, decrease, or not change the fitness/reproductive success of partners?
+
+Types of symbiosis:\\
+1. Cooperation +/+ (mutualism = obligate, protocooperation = not obligate)\\
+2. Commensalism +/0\\
+3. Exploitation +/- (predation, parasitism, altruism)\\
+4. Amensalism 0/- (i.e.~waste product of one organism toxic for another)\\
+5. Competition -/- (active vs.~passive)
+
+\textbf{Cooperation}
+
+Types of cross-feeding = forms of cooperation (\href{https://pubs.rsc.org/en/content/articlehtml/2018/np/c8np00009c}{D'Souza et al., 2018}). Blank arrows = by-product release; black arrows = costly metabolite. This can be classified in terms of degree of reciprocity. Cooperative is the bottom panel.
+
+\includegraphics{https://pubs.rsc.org/image/article/2018/NP/c8np00009c/c8np00009c-f1.gif}
+
+Corals would fall into E or C: bidirectional.. come back to bi-product vs.~costly metabolite.
+
+\textbf{Commensalism}
+
+In the above figure, commensalism = panel A.\\
+i.e.~microbes attached to surfaces of larger organisms.
+
+\textbf{Exploitation}
+
+Parasitism = sustained over time (parasite = might not kill partner; parisitoid = kills partner)\\
+Predation = short duration, kills partner\\
+Altruism = intra-specific intxn; release of metabolically expensive metabolite that benefits others of same spp but not individual (i.e.~programmed cell death release nutrients, takes damaged cell out of population and leaves nutrients for others)
+
+\textbf{Competition}
+
+Resource (exploitative) competition: both organisms competing for same resource\\
+Interference competition (antagonism): organisms exert direct, negative effects on one another
+
+\textbf{In reality, this is all happening at the same time in a network}:
+
+Beinart, class slides:\\
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Roxanne-exam/community-network.png?raw=true}
+
+Interaction `barcode' = list of variables/attributes that describe the interaction (\href{https://academic.oup.com/femsle/article/366/11/fnz125/5513995}{Pacheco and Segre 2019}).
+
+\hypertarget{mutualism-with-multicellular-organisms}{%
+\chapter{Mutualism with multicellular organisms}\label{mutualism-with-multicellular-organisms}}
+
+Notes and literature search based on several review papers below. These notes are designed for an open-book exam, where I can return to a section of a review for more examples or revisit the cited work for more details. These notes may be direct quotes or phrases from the reviews, the below information is not my own work or research.
+
+\href{https://peerj.com/articles/10911/}{Dittami et al 2021}: A community perspective on the concept of marine holobionts: current status, challenges, and future directions
+
+\href{https://journals.plos.org/plosbiology/article?rev=2\&id=10.1371/journal.pbio.3000533}{Wilkins et al 2019}: Host-associated microbiomes drive structure and function of marine ecosystems.
+
+\hypertarget{symbiosis}{%
+\section*{Symbiosis}\label{symbiosis}}
+\addcontentsline{toc}{section}{Symbiosis}
+
+Definitions for microbiome, symbiosis, ecosystem functions, and health status of microbes are well described in Wilkins et al 2019 (link above).
+
+More in-depth descriptions and diagrams of the Coral Holobiont found \href{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Roxanne-exam/Coral-Holobiont.md}{here}.
+
+\textbf{Hologenome theory}
+
+This suggests that natural selection acts at the level of the holobiont and its hologenome.
+
+\textbf{Marine symbionts and holobionts on ecological processes}:
+
+\textbf{`Ecosystem engineers'}
+
+= corals, deep-sea mussels, hydrothermal vent tubeworms -- all contribute to primary productivity and create the structural habitat and nutrient resources for foundation of ecocystems (Wilkins et al; Seemann et al 2018). All of which deeply relies on symbiosis with other organisms to be the basis of that ecosystem.
+
+\textbf{Sustaining populations and diversity}:
+
+Host organisms can enhance dispersion rate of microbiota (Troussellier et al 2017) and act as bio-vectors like marine birds (Bouchard Marmen et al 2017). Host-driven dispersal of microbiota.
+
+Hosts can sustain rare species by providing a nutrient rich environment that otherwise wouldn't exist and this favors the growth of microbiomes (5 citations in Dittami et al).\\
+- reduced and anoxic sediments: lucinid clams, stilbonematid nematodes, gutless oligocahetes (examples in Wilkins et al)\\
+- hydrothermal vents: giant tube worm and deep-sea mussels (examples in Wilkins et al)
+
+\textbf{Global biogeochemical cycles}
+
+Microbes are drivers of global biogeochemical cycles; including mass amounts of nitrogen fixation (several examples in Dittami et al). Functions as sinks and sources of nutrients for the entire ecosystem (corals and sponges for reefs).\\
+- ``Sponge loop'': recycles dissolved organic matter and makes it available to higher trophic levels via detritus.\\
+- Alternatively, in coastal areas: bivalves that host methanogenic archaea = increase benthic methane efflux
+
+Thus \textbf{expanding metabolic capacity} with new abilities via biochemical machineries (anaerobic and aerobic pathways) (Dittami et al has examples):\\
+- production of essential amino acids, photosynthesis, and/or chemosynthesis\\
+- could enhance resilience to environmental change (Van Oppen papers; several citations in Dittami et al)\\
+- Or cross biotope boundaries (Woyke et al 2006) or colonize extreme environments (Bang et al 2018)
+
+Biotope boundaries: biotope = an environment or habitat. If a biotope boundary is crossed, then the organism is inhabiting a new environment that they wouldn't otherwise cross.
+
+\textbf{Nutritional value}\\
+- Bacteria in the gut of surgeonfishes produce enzymes that allow hosts to digest complex polysaccharides, enabling the host fish to feed on tough, leathery red and brown macroalgae (Wilkins et al example: Ngugi et al 2017)\\
+- Gammaproteobacteria nourish ciliate host and recycle acetate and propionate (low value cellular waste products from host) into biomass (Wilkins et al example: BKB et al 2019);\\
+- Wilkins et al has a couple other examples of nutritional value symbioses
+
+\textbf{Reproduction and host development}
+
+\begin{itemize}
+\tightlist
+\item
+  Several examples of settlement cues by microbiota in Wilkins et al and influencing growth of host: some microbiota can secrete phytohormones\\
+\item
+  Host development classic example of the squid and bacteria
+\end{itemize}
+
+\textbf{Establishment of symbiosis: Vertical and Horizontal Transmission}
+
+Bivalves transmit part of microbiota maternally (Bright and Bulgheresi 2010; Funkhouser and Bordenstein 2013)
+
+Mixed modes or intermediate modes are common (pseudo-vertical -- horizontal acquisition frequently involves symbionts of parental origin) (Bjork et al 2019)
+
+During either mode of transmission, selection occurs by the host or components of the microbiome and establishes the internal/associated community that is then separate from the surrounding environment. This can lead to co-evolution and/or `phylosymbiosis' as described below.
+
+\textbf{Co-evolution / `phylosymbiosis'}
+
+Assembly of a community: actively selecting a community, ecological drift, dispersal and evolutionary diversification
+
+\textbf{Actively selecting a community}
+
+The host immune system plays a large role in establishing symbiotic relationship: secretion of antimicrobial peptides (examples listed in Dittami et al) is seen to perform this selection.
+
+Microbial gardening: chemically mediated act of frequently releasing growth-enhancing or inhibiting chemicals or metabolites that favor the development of a microbial community beneficial to the host. (Saha and Weinberger 2019):\\
+- Examples from Dittami et al: seaweeds do this and facilitate normal morphogenesis and increase disease resistance; seaweeds and corals structure surface-associated microbiome by producing chemo-attractants and anti-bacterial compounds
+
+\textbf{Dispersal}
+
+A marine environment has high connectivity (because of factors like high water flow), and therefore high microbial flow and connectivity. There is high dispersion and drift rather than limited dispersal.
+
+\textbf{Diversification}
+
+Driven by horizontal acquisition of genes or co-evolution or adaptation to host selection (Dittami et al)
+
+\textbf{Co-speciation} is very difficult to prove: few studies = Peek et al 1998; Lanterbecq, Rouse \& Eeckhaut 2010
+
+\hypertarget{dysbiosis}{%
+\section*{Dysbiosis}\label{dysbiosis}}
+\addcontentsline{toc}{section}{Dysbiosis}
+
+In corals, this can happen with either microbiota or endosymbionts: Biology Coral Bleaching more info \href{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Putnam-exam/Coral-Bleaching.md}{here} - only covers endosymbiont dysbiosis.
+
+Common to see higher variability in composition than those of healthy organisms (Dittami et al).
+
+\textbf{``Anna Karenina Principle''}
+
+This is the idea that a deficiency in any one of a number of factors dooms an endeavor to failure. Consequently, a successful endeavor is one for which every possible deficiency has been avoided. The Anna Karenina principle was popularized by Jared Diamond in his 1997 book Guns, Germs and Steel. Diamond uses this principle to illustrate why so few wild animals have been successfully domesticated throughout history, as a deficiency in any one of a great number of factors can render a species undomesticable. (Wikipedia - obviously do not cite this on exam; just for background reference)
+
+The principles describes when several factors can cause a system to fail, but only a narrow range of parameters characterizes a working system; based on the first sentence of Leo Tolstoy's ``Anna Karenina'' (1878): ``Happy families
+are all alike; every unhappy family is unhappy in its own way'' (Zaneveld, McMinds \& Vega Thurber, 2017).
+
+Zanedveld, McMinds, Vega Thurber 2017: description of principle\\
+Marzinelli et al 2015: exceptions to this principle
+
+\textbf{``Rasputin effect''}
+
+Where symbionts that were once benign endosymbionts become detrimental or parasitic to the host because of environmental perturbations, reduction in immune system response to food deprivation, co-infections (Overstreet and Lotz 2016 for description).
+
+This is exactly what happens in corals as described above. Baker et al 2018 describes this well too.
+
+\textbf{Methodologies}
+
+``Omics'' techniques: metagenomics, single-cell genomics, metatranscriptomics, metaproteomics\\
+- can determine functions carried out by different components of the holobionts
+
+Metaproteomics and stable isotope fingerprinting - metabolism of single lineages within holobiont (see Kleiner et al 2018 for example; Dittami et al)
+
+Meta-metabolomics - chemical interactions between partners
+
+In-vivo and in-situ imaging techniques with metabolomicomics - small-scale spatial and qualitive information (origin, distribution, concentration of molecule or nutrient); contribution of each partner (Dittami et al)\\
+- Geier et al 2020 for more
+
+Stable isotope labelling and chemical imaging (mass spec imaging: secondary ion mass spec or matrix-assisted laser desoprtion ionization; synchrotron X-ray fluorescence) - metabolic exchange between different compartments of holobiont\\
+- Musat et al 2016; Raina et al 2017 for examples
+
+Three-dimensional electron microscopy - what extent different components of a holobiont are physically integrated (Colin et al 2017; Decelle et al 2019 for examples):\\
+- Could this be used in determining physical presence of partners? Depends on what components means above?
+
+Single-cell omics - growth requirements of organisms (Gutleben et al 2018)
+
+\textbf{Conservation}
+
+Dittami et al has a good overview of how this information can be integrated into conservation plans.
+
+\hypertarget{the-coral-holobiont}{%
+\chapter{The Coral Holobiont}\label{the-coral-holobiont}}
+
+These notes serve as bookmarks for further exploration and meant to serve as a document to concentrate the diagrams I've found to be most helpful in understanding this relationship.
+
+The coral holobiont is mutualistic and symbiotic relationship between a coral host, endosymbiont dinoflagellate, and both intra- and extra-cellular microbiome communities. All three partners play a role in the overall health, phenotype, and tolerance of the organism (Dittami et al 2021).\\
+- Symbiodiniaceae provides coral with glucose, glycerol, and amino acids.\\
+- Coral provides a protected environment and limiting compounds like nitrogen species
+
+\textbf{Symbiodiniaceae and coral host relationship}
+
+\href{https://www.sciencedirect.com/science/article/pii/S0022519317303636}{Cunning et al 2017} describes the bioenergetic model of the coral and endosymbiont:
+
+\begin{figure}
+\centering
+\includegraphics{https://ars.els-cdn.com/content/image/1-s2.0-S0022519317303636-gr1.jpg}
+\caption{model}
+\end{figure}
+
+\textbf{The Coral host and Microbiome}
+
+Top vs.~Bottom control: \href{https://www.frontiersin.org/articles/10.3389/fcimb.2014.00176/full}{Thompson et al 2015}
+
+\begin{figure}
+\centering
+\includegraphics{https://www.frontiersin.org/files/Articles/104157/fcimb-04-00176-HTML/image_m/fcimb-04-00176-g004.jpg}
+\caption{topbottom}
+\end{figure}
+
+\textbf{All three partners relationship}
+
+Nutrients and carbon exchange (La Barre 2013):
+
+\begin{figure}
+\centering
+\includegraphics{https://www.researchgate.net/profile/Stephane-La-Barre/publication/248399724/figure/fig3/AS:298362743083011@1448146629795/Relationships-between-the-components-of-the-coral-holobiont-system-developed-from-20.png}
+\caption{d}
+\end{figure}
+
+\href{https://www.semanticscholar.org/paper/Insights-into-the-Coral-Microbiome-\%3A-Underpinning-Chevrette-Horn/07dbb088a16b844ed1bd4faa96eaabe0001c1c29}{Chevrette et al 2016}:
+
+\includegraphics{https://d3i71xaburhd42.cloudfront.net/07dbb088a16b844ed1bd4faa96eaabe0001c1c29/8-Figure3-1.png}
+
+\href{https://www.frontiersin.org/articles/10.3389/fmicb.2017.00341/full}{Peixoto et al 2017}:
+
+\includegraphics{https://www.frontiersin.org/files/Articles/236713/fmicb-08-00341-HTML/image_m/fmicb-08-00341-g001.jpg}
+
+\textbf{Environmental Perturbations}
+
+A healthy coral holobiont through a bleached coral holobiont (Morrow, Muller, Lesser 2018):
+
+\begin{figure}
+\centering
+\includegraphics{https://media.springernature.com/original/springer-static/image/chp\%3A10.1007\%2F978-3-319-75393-5_7/MediaObjects/72107_2_En_7_Fig2_HTML.png}
+\caption{dia}
+\end{figure}
+
+\textbf{Location of the microbiome}
+
+\href{https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-019-0762-y}{Ricci et al 2019} describes the coral skeleton microbiome:
+
+\begin{figure}
+\centering
+\includegraphics{https://media.springernature.com/lw685/springer-static/image/art\%3A10.1186\%2Fs40168-019-0762-y/MediaObjects/40168_2019_762_Fig1_HTML.png}
+\caption{mi}
+\end{figure}
+
+\textbf{Tranmission Modes}
+
+Described in \href{https://www.nature.com/articles/s41579-019-0223-4?utm_source=nrmicro_etoc\&utm_medium=email\&utm_campaign=toc_41579_17_9\&utm_content=20190813\&WT.ec_id=NRMICRO-201909\&sap-outbound-id=3B59B2969DFEB43AB9D8B2DE04645B368BF58BDE\&utm_source=hybris-campaign\&utm_medium=email\&utm_campaign=000_SKN6563_0000013853_41579-NRMICRO-v17-n9-EAlert\&utm_content=EN_internal_30917_20190813\&mkt-key=005056B0331B1EE783A1DC70B71A8905}{van Oppen and Blackall 2019}:
+
+\begin{figure}
+\centering
+\includegraphics{https://media.springernature.com/lw685/springer-static/image/art\%3A10.1038\%2Fs41579-019-0223-4/MediaObjects/41579_2019_223_Fig2_HTML.png}
+\caption{vh}
+\end{figure}
+
+\hypertarget{cross-feeding-mechanisms}{%
+\chapter{Cross-Feeding Mechanisms}\label{cross-feeding-mechanisms}}
+
+Content taken from Dr.~Roxanne Beinart's class OCG594. Papers and figures cited from research/review papers we focused on this semester.
+
+\textbf{Broad definition of cross-feeding:}
+Microbes release various molecules that can be consumed by neighboring microbes, influence cross-feeding between cells, or influence host cell. Can be secreted passively or actively (figure 1 below; \href{https://mmbr.asm.org/content/mmbr/85/1/e00135-20.full.pdf}{Fritts et al 2021}).
+
+\begin{figure}
+\centering
+\includegraphics{https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Roxanne-exam/crossfeeding1.png?raw=true}
+\caption{cf1}
+\end{figure}
+
+Fritts et al 2021 defines cross-feeding as:\\
+1. Material must be transferred from producer to a recipient (molecules, electrons, protons).\\
+2. That material must be assimilated by recipient or participate in energy transformation in the recipient and/or producer. This is not detoxification or degradation of molecules not used for E or assimilation.\\
+3. Fitness of the producer and/or recipient must be altered as result of assimilation or E derived from material\\
+4. Involve different spp or genotypically/phenotypically distinct populations.
+
+Cross-feeding mechanisms (\href{https://pubs.rsc.org/en/content/articlehtml/2018/np/c8np00009c}{D'Souza et al., 2018}):
+
+\begin{figure}
+\centering
+\includegraphics{https://pubs.rsc.org/image/article/2018/NP/c8np00009c/c8np00009c-f4.gif}
+\caption{mech}
+\end{figure}
+
+Passive transport can include:\\
+- small molecules like hydrogen, formate, potassium\\
+- volatile compounds like methanol\\
+- vitamins\\
+- acetate\\
+- amino acids\\
+- intermediates of TCA cycle
+
+Active transport can include:\\
+- amino acids\\
+- siderophore\\
+- exoenzymes\\
+- polymers\\
+- vitamins
+
+\textbf{Extracellular molecules that promote cross-feeding (Fritts et al 2021)}
+
+\textbf{Metabolites}
+
+\begin{itemize}
+\tightlist
+\item
+  common examples: sugars, organic acids, amino acids, vitamins, gasses, reduced or oxidized inorganic elements and molecules\\
+\item
+  this can be unidirectional, bidirectional, or multidirectional\\
+\item
+  Can be metabolic waste: provides no further benefit to producer after excretion
+\item
+  Can be communally valuable: benefits can be reaped by whichever producer or recipient cell acquires metabolite
+\end{itemize}
+
+Syntrophy: energetically unfavorable metabolism is pulled forward by coupling to the metabolism of a recipient partner. Consumption of metabolic waste is essential for producer viability (Fritts et al 2021).
+
+Obligate cross-feeding that was initially imposed by env. conditions can become fixed as genes for independent lifestyles decay. Evolution of symbiosis
+
+Communally valuable metabolites: common compunds like ammonia/ammonium, amino acids, nucleobases, vitamins. There does not appear to be a limitation to what valuable metabolites are cross fed (Fritts et al 2021).
+
+Reasons for release of costly metabolites (this is still largely unknown; Fritts et al 2021):\\
+1. Secretion of these metabolites could be accidental, from leaky membranes or systems.\\
+2. Cell lysis causes nutrient transfer\\
+3. Selection for excretion of compounds if this stimulates enough reciprocation from recipient to outweigh cost of giving. This can be the basis of mutualism. One effective mechanism to achieve this is spatial orientation.
+
+\textbf{Exoenzymes}
+
+Extracellular enzymes (exoenzymes) degrade large polymers intro transportable monomers; have diverse substrates:\\
+- glycosidases, proteases, nucleases, lipases, lignin-cleaving laccases, peroxidases\\
+- release rapidly consumable nutrients into extracellular milieu, therefore supports cross-feeding b/c the nutrients can be taken up by neighboring cells.
+
+``Cheater'' subpopulations are those that lose the ability to secrete exoenzymes but benefit from nearby exoenzyme-secreting cells. Organisms that still secrete exoenzymes can be overrun by exploitive neighbors so they 1.) can have the exoenzymes attached to the surface so that nutrient uptake requires physical contact or 2.) have exoenzymes release soluble oligomers instead of monomers so it limits who can consume this b/c it requires the function to degrade oligomers.
+
+\textbf{Siderophores}
+
+Small molecules that chelate iron or other metals like copper, manganese, or zinc, and facilitate uptake through cell surface receptors. Trace metals are essential cofactors for numerous enzymes.
+
+\textbf{Toxins}
+
+Facilitate nutrient acquisition by damaging or lysing cells and releasing the intracellular contents.
+
+\textbf{Quorum-Sensing Signals}
+
+Microbial cell-cell communication system that coordinates gene expression based on population density through production and subsequent recognition of diffusible signal molecules.
+
+\textbf{Extracellular Matrix Components of Biofilms}
+
+Microbes attach to surfaces and to each other to form multicellular biofilms. This is mediated by secretion of an extracellular matrix that can be composed of polysacchrides, nucleic acids, and/or protein.
+
+Other:\\
+- Extracellular vesciles\\
+- Contact-dependent cross-feeding; nano-tubes and/or nano-wires
+
+\textbf{Promotion of cross-feeding co-evolution}
+
+Leaky, valuable public goods (drives Black Queen Hypothesis: adaptive gene loss)
+
+Maintaining partner fidelity:\\
+- limited dispersal, proximity\\
+- physical attachment through endo- or epi-symbiosis
+
+Partner choice (finding and selecting partner):\\
+- direct = selecting preferred partner (chemotaxis, chemical recognition)\\
+- indirect = gate-keeping (chemical or physical gauntlet keeps out non-preferred partners)
+
+Dynamics to keep in mind:\\
+1. Cross-feeding rates determine the relative benefit or detriment of a cross-fed metabolite (a metabolite can shift from being a nutrient to a toxin)\\
+2. Cross-feeding is not always coupled with growth\\
+3. Production rates can exceed consumption rates (and vice versa) which can lead to an unbalanced
+
+See Black Queen Hypothesis
+
+\hypertarget{practice-writing-questions}{%
+\chapter{Practice writing questions}\label{practice-writing-questions}}
+
+These are questions that I think may come up in the exam (or something close). Questions were not given to me beforehand.
+
+Four main points to study (from HP):\\
+1. signal transduction pathways; feedback loops, specific examples\\
+2. alternative interpretations for why methylation might not be the only player\\
+3. epigenetics/methylation details and history of the field\\
+4. interaction between genetics for evolutionary outcomes
+
+Practice questions
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Describe how a signal (like temperature) is translated to a physiological response, maintenance of homeostasis, and epigenetic changes.}
+\end{enumerate}
+
+\emph{Sensing and relaying the environmental signal (like temperature): signal transduction pathways}
+
+Signal transduction pathways are made of a series of responses that starts with a signaling molecule that triggers a downstream activation of several response proteins that produce secondary messengers that then signal a change in cell proteins (and therefore gene expression and phenotype).
+
+A change in temperature is sensed by temperature-sensing ion channel systems. This includes:\\
+1. transient receptor potential (TRP) cation channel subunits that are encoded by TRP genes. thermoTRPs are tuned to respond to either not harmful temperature fluctuations just beyond optimal range or potentially damaging temperature changes, and there are different types of thermoTRPs that vary in function: some detect mild heating, some extreme heating, and some the most extreme temperatures.\\
+2. cGMP-gated ion channels that respond to differences in {[}cGMP{]} (which varies with temperature).
+
+Both channels are either opened or closed based on signal molecule, this is both a channel and a receptor. Activated thermoTRP channels result in depolarization of cellular membrane that then activates voltage-dependent ion channels and flushing the intracellular space/cytoplasm with calcium. The change in ionic calcium acts as a second messenger signal.
+
+Second messengers are small enough to move through gap junctions in between cells, therefore signaling is shared among cell communities and extracellular signaling is amplified. Examples include ionic calcium and cyclic-AMP (cAMP). Messengers then activated cell proteins that alter gene expression and therefore phenotype.
+
+Below is an example of a pathway in arthropods that is proposed to be the same in corals:\\
+1. Temperature sensed by ion channel system.\\
+2. This changes activity of a G-protein, which regulates activity of membrane-associated enzymes like phospholipase.\\
+3. Those enzymes drive production of soluble messengers like IP3 that cross the membrane of the ER to bind to IP3 gated calcium channels.\\
+4. The above channels open and allow calcium in the ER to flood into the cytoplasm and propogate effects of temperature.
+
+\emph{Physiological response at a cellular level and maintenance of homeostasis.}
+
+Part of the response to a change in temperature could be up-regulating an organism's cellular stress response, which includes the antioxidant system. In two lines of defense, the organism can reduce free radicals like superoxide to hydrogen peroxide via either Mn-SOD or Cu-Zn-SOD (superoxide dismutases) and reduce hydrogen peroxide to water via catalase, glutathione peroxidase (GPx), and peroxiredoxin (Prx). The organism can regulate this response on several levels: altering protein concentrations and expression, gene expression of a particular response, or regulating that gene expression further via epigenetic modifications.
+
+\emph{Potential epigenetic changes due to the above physiological response.}
+
+DNA methylation in particular is triggered by higher gene expression, thus if an organism is using a particular gene set more often it would advantageous to add methyl groups to those gene bodies to more tightly regulate its expression. We know that DNA methylation patterning is dynamic in response to environmental stress or new conditions/environment (Putnam et al 2016, Dimond and Roberts 2019, Dixon et al 2018, Liew et al 2018).
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  \textbf{Describe the interactions between genetics and epigenetics, and the consequences for evolutionary outcomes. Explain the `inherited gene regulation (IGR)' approach.}
+\end{enumerate}
+
+The inherited gene regulation approach summarizes `non-genetic' inheritance (NGI) and `non-genetic' factors that alter genome activity and regulate gene expression, defined by three principles:\\
+1. `non-genetic' factors are functionally interdependent with, rather than separate from, DNA sequence\\
+2. Mechanisms vary widely phylogenetically and operationally\\
+3. epigenetic elements are probabilistic, interactive regulatory factors and not deterministic `epialleles' with defined genomic locations and effects.
+
+Any NGI portion may be negative or positive. Methylation marks don't always mean a positive influence; especially if transmitted to offspring via germline.
+
+\emph{Epigenetic modifications are inherently genetic}\\
+Allelic variants and mutations can influence the genes that encode for the various enzymes involved in epigenetic pathways. And whether or not a methylation mark can depend on 1.) presence of CpG dinucleotides and the amount of CpG nucleotides in a genome can influence how much it is able to methylate (base composition), 2.) histone-modifying enzymes are recruited by transcription factors that can recognize DNA sequence motifs (location of target site matters). So this inherently also depends on the sequence available to methylate.
+
+\emph{Widely diverse}
+
+Difference in vertebrates and invertebrates: location and function of methylation, \# of DMNT genes used (3 in mammalian vs.~5-12 in teleost fish), and erasure during germ cell development (paternal methylation conserved in zebrafish vs.~erased in mammalians).
+
+\emph{Epigenetic mechanisms are facultative}
+
+IGR mechanisms operate at larger genomic region scale - not nucleotide resolution (methylation marks altogether on a gene or promoter is important but an individual methylation mark on an exact nucleotide is usually irrelevant). `Chromatin landscapes' are not generated by one mechanism alone: interplay of methylation, de-methylation on DNA and histones together. IGR patterning can be set over several generations; the effects of a grandparental organism can influence progeny several generations later.
+
+Not the only player:\\
+- miRNAs, histone modifications, interplay of both.\\
+- gene duplication\\
+- horizontal gene transfer\\
+- allelic polymorphism\\
+- local adaptation\\
+- RNA editing: alternative splicing or changing base composition\\
+- protein function/flexibility\\
+- Plasticity: stress induced unmasking of cryptic genetic variation\\
+- Symbiosis with other organisms
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  \textbf{Describe the pathways involved in DNA methylation at a cellular level.}
+\end{enumerate}
+
+DNA methylation refers to the addition of a methyl (CH3) group to a cytosine nucleotide to form 5-methyl-cytosine (5mc). Methylated cytosines usually occur in CpG dinucleotides and is carried out by several DNA methyltransferase enzymes (DNMTs). DNMT1 is responsible for maintenance of existing methylation marks, and DNMT3a/b function results in new (de novo) methylation. DMNTs (and histone methyl transferases - HMTs) receive a donor methyl group from the metabolite SAM. This pathway is energy intensive and requires folate and ATP for DMNT3s to add the methyl group to a cytosine. Removing a methylation can occur in either active or passive de-methylation. In active de-methylation, ten eleven translocation (TET) enzyme will use oxygen and alpha-ketoglutarate (aKG) metabolite to remove the methyl group and transform the cytosine to its original form. Passive de-methlation occurs when a methyl group is lost in several rounds of DNA replication and where DNMT1 does not maintain that mark. Because both DMNT and TET enzymes are metabolite-dependent, an organism needs to have enough energy from food and metabolic function to allocate to epigenetic processes.
+
+In vertebrates, this functions like a transcription on and off switch, with DNA methylation located heavily on promoter regions and total methylation levels around 70-80\%. In invertebrates, methylation patterns are spread out evenly across gene bodies with methylation levels \textasciitilde16-18\%, although variable across taxa in corals (Trigg et al 2021). Here methylation serves more as a gene expression regulatory mechanism and affects the choice of transcription initiation site rather than an on and off switch.mDNA methylation is a result of active transcription: higher expression levels will signal to the organism that more regulation is needed for that set of genes. Genes used more often and for daily function (``housekeeping genes'') have historically higher methylation levels compared to those genes that aren't used as often or are environmentally inducible. This results in a bimodal distribution of CpG Observed/Expected values. Over time methylation causes hypermutation of cytosines to thymines, so when observing the number of CpG dinucleotides in a genome there will be a smaller CpG Observed/Expected value when historical methylation levels are high.
+
+Once a methylation mark is set, enzymes like MBD proteins and zinc-finger proteins can read the methylation and carry out that influenced function.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  \textbf{Describe the history of the epigenetic field and starting theories on environmental epigenetics.}
+\end{enumerate}
+
+Conrad Waddington (1930s - 1970s) synthesized field of genetics, embryology, and evolution; part of that was ``epigenetic landscape'' portrayed as inclined surfaces with cascade of ridges and valleys representing the ``either/or'' fate choices made by a developing cell. The idea that an embryo develops into several types of cells (somatic cells) from the same genetic material. Metaphor for the connection between genotype and phenotype. Captures the ability to be flexible and plastic when a cell develop or responds to a stimulus.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\item
+  \textbf{Classify three major issues of analysis and experiments moving forward in the field of epigenetics.}
+\item
+  Elucidating cause and effect relationships between epigenetic marks and environmental signals.\\
+\item
+  How does this change in differing life stages and with cue predictability\\
+\item
+  Interplay of epigenetic modifications (most studies can't measure all of them in the same context bc \$\$\$)\\
+\item
+  Demonstrating capacity for transgenerational inheritance (TGI)\\
+\item
+  How do selection and epigenetic marks interact? How adaptive is epigenetics?
+\end{enumerate}
+
+  \bibliography{book.bib,packages.bib}
+
+\end{document}
