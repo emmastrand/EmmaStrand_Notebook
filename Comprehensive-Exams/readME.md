@@ -57,6 +57,27 @@ Open book; 12 hour time limit.
 [Coral-Holobiont](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Roxanne-exam/Coral-Holobiont.md)  
 [Cross Feeding](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Comprehensive-Exams/Roxanne-exam/Cross-Feeding.md)  
 
+## Overview for oral comprehensive exams by committee member
+
+Scott:  
+- List of researchers that I didn't know on my written exam  
+- Go through citations and summarize each one with 1 sentence
+
+Hollie:  
+- Go through citations and summarize each one with 1 sentence  
+- Explaining in more detail how DNA methylation levels follow patterns of and/or are triggered by higher gene expression levels  
+- The taxonomy and biology of your study organisms (holobiont level)  
+- Further details on the nutritional crosstalk between host and symbiont.
+
+Roxanne:  
+- Go through citations and summarize each one with 1 sentence  
+- consequences of symbiont transmission mode on the evolution of the partners  
+- ecological and evolutionary trade-offs of symbiont transmission mode  
+- cooperation/communication and interactions with multicellular organisms topics from class 
+
+Marta:  
+- No notes but she asked Kevin about antioxidant systems
+
 ## Post-Completion of Comprehensive Exam Reflection and Suggestions: What I Wish I Knew
 
 My advice to a future me if I were to go back in time and do this all over again ..
