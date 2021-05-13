@@ -84,10 +84,13 @@ Acclimation may not be beneficial b/c (Woods and Harrison 2002):
 3. may cost more to adapt than not to  
 4. migration by adjacent populations may swamp out genes for for adaptive acclimation.
 
-Number 4 isn't necessarily a reason for why acclimation itself isn't beneficial but a reason why beneficial acclimation may not matter in the long run even if itself beneficial. 
+Number 4 isn't necessarily a reason for why acclimation itself isn't beneficial but a reason why beneficial acclimation may not matter in the long run even if itself beneficial.
 
 Number 4 could be a problem in coral restoration activities and out-planting. If you out-plant fragments that haven't experienced that environmental cue or they may lack plasticity ability and if you mix those genes in the general pool, you may hinder the adaptation of those already there.
 
 Would be cool to do an opinion piece on coral restoration..
 
 But climate change could be acting at too quick of a pace for the above matter so something may be better than nothing.
+
+To-Do:  
+- review proposal for Marta's q's
