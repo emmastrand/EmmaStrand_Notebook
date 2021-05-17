@@ -259,7 +259,7 @@ These fragments look closer to October and September fragments - maybe they were
 
 ![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/Kbay-July-2019/M-19.png?raw=true)
 
-![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/Kbay-July-2019/M-20.png?raw=true)
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/Kbay-July-2019/M-20-2.png?raw=true)
 
 ![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/Kbay-July-2019/M-201.png?raw=true)
 
