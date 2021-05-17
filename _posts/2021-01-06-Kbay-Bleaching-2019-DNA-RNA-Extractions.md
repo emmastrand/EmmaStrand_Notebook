@@ -253,7 +253,7 @@ These fragments look closer to October and September fragments - maybe they were
 
 ### RNA Quality
 
-![11-2](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/Kbay-July-2019/M-11-3.png?raw=true)
+![11-2](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/Kbay-July-2019/M-11-2.png?raw=true)
 
 ![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/Kbay-July-2019/M-12.png?raw=true)
 
