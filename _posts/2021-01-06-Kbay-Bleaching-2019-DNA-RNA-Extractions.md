@@ -260,7 +260,7 @@ RNA HS St1: 44.48 St2: 717.72
 
 ![gel](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210517-gel16s-DNA.jpg?raw=true)  
 
-![tape]()
+Full tapestation report found [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2021-05-17%20-%2011.43.37.pdf)
 
 ### RNA Quality
 
