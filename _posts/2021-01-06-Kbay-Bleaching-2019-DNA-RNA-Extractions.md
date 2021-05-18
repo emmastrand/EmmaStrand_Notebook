@@ -247,9 +247,20 @@ RNA HS St1: 48.65 St2: 827.45
 
 Full tapestation report found [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2021-05-03%20-%2015.26.58.pdf) and [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2021-05-03%20-%2015.52.41.pdf).
 
-### July 2019 Extraction Notes
+### 20210517 Extractions
 
-These fragments look closer to October and September fragments - maybe they were partially degraded? There is a bright band on the gel that is usually found with fragments that melted. However, the RNA is higher quality than the DNA on most fragments. There are some high molecular weight fragments, but not many. Can we actually use these for methylation analysis and WGBS?
+Qubit Standards:  
+DNA BR St1: 171.33 St2: 17,943.96    
+RNA HS St1: 44.48 St2: 717.72
+
+| ColonyID 	| Collection-Date 	| Bleach-    	| Extraction-ID 	| Extraction-Date 	| DNA reading 1 (ng/uL) 	| DNA reading 2 (ng/uL) 	| DNA reading Avg (ng/uL) 	| RNA reading 1 (ng/uL) 	| RNA reading 2 (ng/uL) 	| RNA reading Avg (ng/uL) 	| RIN 	| Gel Pass? 	| Final Extraction for this coral? 	| Notes                                     	|
+|----------	|-----------------	|------------	|---------------	|-----------------	|-----------------------	|-----------------------	|-------------------------	|-----------------------	|-----------------------	|-------------------------	|-----	|-----------	|----------------------------------	|-------------------------------------------	|
+| M-11     	| 2019-07-20      	| Bleach     	| 58            	| 20210517        	| 55.4                  	| 55.4                  	| 55.4                    	| 60.8                  	| 60.8                  	| 60.8                    	| 5.4 	| Enough    	| No                               	| This isn't much better than the first two 	|
+| M-20     	| 2019-07-20      	| Non-Bleach 	| 59            	| 20210517        	| 18.4                  	| 18.3                  	| 18.35                   	| 20                    	| 19.9                  	| 19.95                   	| 5.1 	| Enough    	| Yes                              	|                                           	|
+
+![gel](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210517-gel16s-DNA.jpg?raw=true)  
+
+![tape]()
 
 ### RNA Quality
 

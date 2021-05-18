@@ -191,7 +191,7 @@ A white box outline denotes a sample that did not work - either DNA was not adde
 
 ![plate9](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210504-plate9gel.jpg?raw=true)
 
-![redo]()
+![redo](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/20210517-gel16s-DNA.jpg?raw=true)
 
 Re-do:  
 - Plate 8 Column 7,8,9 well 3F = 1218. Redone on 20210517 and put on plate 10 once done
