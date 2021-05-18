@@ -33,6 +33,9 @@ For Holobiont Integration, we are processing 5 timepoints: 30 hour, 2 weeks, 4 w
 
 As of 2021-04-06: 12/60 are done.
 
+2021-03-31 Qubit: DNA BR Standard 1 = 173.28; Standard 2 = 19,833.04  
+2021-04-06 Qubit: DNA BR Standard 1 = 179.54; Standard 2 = 19,252.29
+
 | Plug_ID 	| Pico # 	| PMS_Date 	| DNA 1 	| DNA 2 	| Qubit (ng/uL) 	| Tapestation pass? 	| Final Pico Prep? 	| Notes                               	|
 |---------	|--------	|----------	|-------	|-------	|---------------	|-------------------	|------------------	|-------------------------------------	|
 | 1296    	| 1      	| 20210331 	| 23.2  	| 23    	| 23.1          	| Yes               	| Yes              	|                                     	|
