@@ -31,10 +31,11 @@ For Holobiont Integration, we are processing 5 timepoints: 30 hour, 2 weeks, 4 w
 
 ### Post Pico Methylation Protocol Quantification
 
-As of 2021-04-06: 13/60 are done. 47 left. 
+As of 2021-05-24: 13/60 are done. 47 left.
 
 2021-03-31 Qubit: DNA BR Standard 1 = 173.28; Standard 2 = 19,833.04  
-2021-04-06 Qubit: DNA BR Standard 1 = 179.54; Standard 2 = 19,252.29
+2021-04-06 Qubit: DNA BR Standard 1 = 179.54; Standard 2 = 19,252.29  
+2021-05-24 Qubit: DNA BR Standard 1 = 194.96; Standard 2 = 21,282.28  
 
 | Plug_ID 	| Pico # 	| PMS_Date 	| DNA 1 	| DNA 2 	| Qubit (ng/uL) 	| Tapestation pass? 	| Final Pico Prep? 	| Notes                               	|
 |---------	|--------	|----------	|-------	|-------	|---------------	|-------------------	|------------------	|-------------------------------------	|
@@ -57,7 +58,11 @@ As of 2021-04-06: 13/60 are done. 47 left.
 | 2012    	| 17     	| 20210406 	| 23.8  	| 23.8  	| 23.8          	| Yes               	| Yes              	|                                     	|
 | 1051    	| 18     	| 20210406 	| 18.3  	| 18.3  	| 18.3          	| Yes               	| Yes              	|                                     	| |
 
-Use the index #s: 4, 7, 8, 10, and 15 for the next ones.
+Use the index #s: 4 at the end.
+
+Pico #19-26 done on 2021-05-24: KAPA hifi mix was used and funky contamination.. see [tapestation]().
+
+7, 8, 10, 15 need to be re-amped.
 
 
 Example of acceptable tapestation result:  
