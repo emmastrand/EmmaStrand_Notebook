@@ -28,3 +28,5 @@ cellometer_sym_counts <- cellometer_sym_counts %>%
 3 species used: *Montipora capitata*, *Pocillopora acuta*, and *Porites asteroides*. Symbiont density converted to cells per mL and then standardized by homogenate volume and surface area.
 
 ![cell](https://github.com/hputnam/Acclim_Dynamics/blob/master/Output/Cellometer-testing.png?raw=true)
+
+The cellometer seems to be undercounting the Mcap samples - I think this is because the Mcap samples have a lot of clumps and need to be homogenized and then vortexed prior to counting.
