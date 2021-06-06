@@ -19,7 +19,7 @@ Based on Putnam Lab protocols written by: [E. Chille](https://echille.github.io/
 2. Reconstitute the lyophilized (freeze-dried) DNase I as indicated on the vial prior to use. Mix by inversion. Store frozen aliquots.  
 3. Reconstitute the lyophilized (freeze-dried) 20 mg Proteinase K with 1040 uL Proteinase K Storage Buffer or lyophilized (freeze-dried) 5 mg Proteinase K with 260 uL Proteinase K Storage Buffer. Vortex to dissolve. Store at -20 &deg;C.
 
-### Adult Fragment Tissue Sample Preparation
+## Adult Fragment Tissue Sample Preparation
 
 Bead tubes: 2 mL 0.5 mm glass beads and tubes from [Fisher Scientific](https://www.fishersci.com/shop/products/bead-tube-2ml-0-5mm-glass-50pk/15340152)
 
@@ -51,13 +51,18 @@ Depending on desired DNA RNA quantity, you can increase the amount of uL added o
 4. Using sterilized clippers, clip off 3-4 small pieces and place all the pieces into the 1.5 mL microcentrifuge tube. RNA/DNA shield needs to cover the fragments.  
 5. Proceed to homogenization steps.
 
-#### Homogenization
+### Homogenization
+
+These steps remove the coral tissue from the skeleton, leaving the skeleton pieces in the bead tube and the supernatant containing degraded tissue (and DNA/RNA).
 
 1. Vortex the 2 mL 0.5 mm glass bead tube for 1 minute for *Pocillopora spp.* and 2 minutes for *Montipora spp.*. The amount of time for vortexing will depend on the coral skeletal structure and how easily the tissue separates from the skeleton. Too much vortexing can cause DNA/RNA degradation, but too little vortexing can result in minimal DNA/RNA yield.  
 2. After vortexing, check to see if most of the tissue has come off of the skeleton and that the DNA/RNA shield has darkened in color.  
 3. Remove supernatant and place in a new 1.5 mL microcentrifuge tube*.  
+
+### Proteinase K Addition  
+
 4. Place 300 uL of that aliquoted supernatant into a new 1.5 mL microcentrifuge tube for extractions.    
-5. Save the bead tube with the skeleton fragment and leftover aliquoted  supernatant tube* in -80 &deg;C freezer as a potential back-up in case the extraction doesn't work. Label 1.5 mL microcentrifuge tube as desired.  
+5. Save the bead tube with the skeleton fragment and leftover aliquoted supernatant tube in -80 &deg;C freezer as a potential back-up in case the extraction doesn't work. Label 1.5 mL microcentrifuge tube as desired.  
 6. Add 30 µl of PK digestion buffer to each sample tube (1:10 ratio of PK Digestion Buffer:Sample).  
 7. Add 15 µl Proteinase K to each sample tube (1:2 ratio of Proteinase K:PK Digestion Buffer).  
 8. Vortex for 5-10 seconds and spin down.    
@@ -65,7 +70,7 @@ Depending on desired DNA RNA quantity, you can increase the amount of uL added o
 
 We have tried an alternative homogenization method to separate the host and symbiont tissue in the extraction process: [Soft and Hard Homogenization](https://emmastrand.github.io/EmmaStrand_Notebook/Soft-and-Hard-Homogenization-Protocol/). This didn't work as desired for us, but has room for improvement.
 
-### Larvae Sample Preparation
+## Larvae Sample Preparation
 From [E. Chille's Putnam Lab Protocol](https://echille.github.io/E.-Chille-Open-Lab-Notebook/Protocol-for-DNA-RNA-Extractions-of-Montipora-Coral-Larvae-Using-Zymo-Duet-Extraction-Kit/):
 1. Take sample tube with larvae 1 at a time out of the -80 &deg;C to minimize amount of thawing  
 2. Add 300 µl DNA/RNA shield directly to the sample tube  
@@ -73,10 +78,12 @@ From [E. Chille's Putnam Lab Protocol](https://echille.github.io/E.-Chille-Open-
 4. Add 30 µl of PK digestion buffer to each sample tube  
 5. Add 15 µl Proteinase K to each sample tube  
 6. Vortex and spin down sample tubes  
-7. Place in Thermoixer for ~3 hours at 55 &deg;C, shaking at 1100 rpm. Check periodically to monitor digestion progress.  
+7. Place in Thermomixer for ~3 hours at 55 &deg;C, shaking at 1100 rpm. Check periodically to monitor digestion progress.  
 8. After digestion proceed with DNA and RNA Extraction.  
 
-### DNA Extraction
+Excessive heating can cause DNA degradation so when starting a batch of samples, I would recommend a trial/error process to select the most ideal length of time for your samples.
+
+## DNA Extraction
 1. Set up yellow DNA spin columns and collection tubes, label appropriately
 2. Warm elution liquids to 70 degrees &deg;C (10mM Tris HCl pH. 8.0 and RNase free water)
 3. Add equal volume (345 µl) DNA/RNA lysis buffer to each sample tube
