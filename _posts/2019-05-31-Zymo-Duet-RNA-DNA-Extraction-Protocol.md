@@ -83,6 +83,7 @@ From [E. Chille's Putnam Lab Protocol](https://echille.github.io/E.-Chille-Open-
 
 Excessive heating can cause DNA degradation so when starting a batch of samples, I would recommend a trial/error process to select the most ideal length of time for your samples.
 
+
 ## DNA Extraction
 1. Set up yellow DNA spin columns and collection tubes, label appropriately
 2. Warm elution liquids to 70 degrees &deg;C (10mM Tris HCl pH. 8.0 and RNase free water)
@@ -107,7 +108,7 @@ Excessive heating can cause DNA degradation so when starting a batch of samples,
 21. Repeat steps 18-20 for a final elution volume of 100 µl
 22. Label tubes, store at 4 &deg;C if quantifying the same day or the next, if waiting longer store in -20 &deg;C
 
-### RNA Extraction
+## RNA Extraction
 *Can do concurrently with DNA Extraction after DNA Extraction Step 7*
 1. Add equal volume (700 µl) 100% EtOH to the 1.5mL tubes labeled for RNA containing the original yellow column flow through
 2. Vortex and spin down to mix
@@ -143,18 +144,19 @@ Excessive heating can cause DNA degradation so when starting a batch of samples,
 29. Label 1.5mL tubes on ice afterwards, and aliquot 5µl into PCR strip tubes to save for Qubit and Tape Station to avoid freeze-thaw of your stock sample
 30. Store all tubes in the -80 &deg;C
 
-### Extraction Content Analysis
-*These steps analyze the quantity and quality of the DNA/RNA extracted and may be done on a separate day from the extraction*
+## Extraction Content Analysis
 
-#### RNA/DNA Quantity  
+These steps analyze the quantity and quality of the DNA/RNA extracted and may be done on a separate day from the extraction.
+
+### RNA/DNA Quantity  
 Follow Broad Range dsDNA and RNA Qubit [protocol](https://meschedl.github.io/MESPutnam_Open_Lab_Notebook/Qubit-Protocol/) to analyze sample ++quantity++. Read all samples twice.
 
-#### DNA Quality  
+### DNA Quality  
 If DNA quantity is sufficient (typically >10 ng/µL) follow the PPP Agarose Gel [Protocol](https://meschedl.github.io/MESPutnam_Open_Lab_Notebook/Gel-Protocol/) to determine DNA quality. "Good" DNA should form a distinct band a the very top of the gel. See example below:
 
 ![annotated-biomin-gel-batches-4-5.png](https://raw.githubusercontent.com/echille/E.-Chille-Open-Lab-Notebook/master/images/annotated-biomin-gel-batches-4-5.png)
 
-#### RNA Quality  
+### RNA Quality  
 If RNA quantity is sufficient follow the Tape Station [Protocol](https://meschedl.github.io/MESPutnam_Open_Lab_Notebook/RNA-TapeStation-Protocol/) to determine RNA quality and obtain a RNA Integrity Number (RIN). "Good" RNA should have a RIN above 8.0 and form two distinct peaks at the 18S and 28S locations. See example below:
 
 ![TS-biomin-Ext-Batch-5-26.png](https://raw.githubusercontent.com/echille/E.-Chille-Open-Lab-Notebook/master/images/TS-biomin-Ext-Batch-5-26.png)
