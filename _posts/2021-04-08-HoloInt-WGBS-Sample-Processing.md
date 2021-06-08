@@ -86,3 +86,33 @@ Pico #9-18 tapestation [here](https://github.com/emmastrand/EmmaStrand_Notebook/
 7 and 8 reamped tapestation [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2021-05-26%20-%2011.24.21.pdf).  
 
 ### D5000 Tapestation results
+
+![1](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/HoloInt%20WGBS%20D5000/1-P-1296.png?raw=true)  
+
+![2](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/HoloInt%20WGBS%20D5000/2-P-2197.png?raw=true)  
+
+![3](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/HoloInt%20WGBS%20D5000/3-P-1225.png?raw=true)  
+
+![5](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/HoloInt%20WGBS%20D5000/5-P-2413.png?raw=true)  
+
+![6](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/HoloInt%20WGBS%20D5000/6-P-1445.png?raw=true)  
+
+![7](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/HoloInt%20WGBS%20D5000/7-P-1707.png?raw=true)  
+
+![8](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/HoloInt%20WGBS%20D5000/8-P-2212.png?raw=true)
+
+![9](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/HoloInt%20WGBS%20D5000/9-P-2550.png?raw=true)  
+
+![11](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/HoloInt%20WGBS%20D5000/11-P-2877.png?raw=true)  
+
+![12](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/HoloInt%20WGBS%20D5000/12-P-1732.png?raw=true)  
+
+![13](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/HoloInt%20WGBS%20D5000/13-P-1329.png?raw=true)  
+
+![14](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/HoloInt%20WGBS%20D5000/14-P-1563.png?raw=true)  
+
+![16](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/HoloInt%20WGBS%20D5000/16-P-1728.png?raw=true)  
+
+![17](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/HoloInt%20WGBS%20D5000/17-P-2012.png?raw=true)
+
+![18](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/HoloInt%20WGBS%20D5000/18-P-1051.png?raw=true)
