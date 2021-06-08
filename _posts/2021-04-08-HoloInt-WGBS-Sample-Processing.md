@@ -31,7 +31,7 @@ For Holobiont Integration, we are processing 5 timepoints: 30 hour, 2 weeks, 4 w
 
 ### Post Pico Methylation Protocol Quantification
 
-As of 2021-05-24: 13/60 are done. 47 left.
+As of 2021-06-08: 15/60 are done. 45 left.
 
 2021-03-31 Qubit: DNA BR Standard 1 = 173.28; Standard 2 = 19,833.04  
 2021-04-06 Qubit: DNA BR Standard 1 = 179.54; Standard 2 = 19,252.29  
@@ -45,15 +45,15 @@ As of 2021-05-24: 13/60 are done. 47 left.
 | 1728    	| 4      	| 20210331 	| 9.38  	| 9.34  	| 9.36          	| Yes               	| No               	| Wrong 1728 original extraction tube 	|
 | 2413    	| 5      	| 20210331 	| 21.2  	| 21.2  	| 21.2          	| Yes               	| Yes              	|                                     	|
 | 1445    	| 6      	| 20210331 	| 17    	| 16.9  	| 16.95         	| Yes               	| Yes              	|                                     	|
-| 1707    	| 7      	| 20210331 	| 2.78  	| 2.78  	| 2.78          	| No                	| No               	| to be reamped; i5/i7 = 7            	|
-| 2212    	| 8      	| 20210331 	| 5.96  	| 5.92  	| 5.94          	| No                	| No               	| to be reamped; i5/i7 = 8            	|
+| 1707    	| 7      	| 20210331 	| 2.78  	| 2.78  	| 2.78          	| Yes               	| Yes              	| successfully reamped                	|
+| 2212    	| 8      	| 20210331 	| 5.96  	| 5.92  	| 5.94          	| Yes               	| Yes              	| successfully reamped                	|
 | 2550    	| 9      	| 20210406 	| 7.98  	| 7.96  	| 7.97          	| Yes               	| Yes              	|                                     	|
-| 2861    	| 10     	| 20210406 	| **    	| **    	| #VALUE!       	| NA                	| No               	| to be reamped; i5/i7 = 10           	|
+| 2861    	| 10     	| 20210406 	| **    	| **    	| #VALUE!       	| NA                	| No               	| failed reamp; redo                  	|
 | 2877    	| 11     	| 20210406 	| 22.2  	| 22.2  	| 22.2          	| Yes               	| Yes              	|                                     	|
 | 1732    	| 12     	| 20210406 	| 18.6  	| 18.5  	| 18.55         	| Yes               	| Yes              	|                                     	|
 | 1329    	| 13     	| 20210406 	| 22.8  	| 22.6  	| 22.7          	| Yes               	| Yes              	|                                     	|
 | 1563    	| 14     	| 20210406 	| 24    	| 24    	| 24            	| Yes               	| Yes              	|                                     	|
-| 1103    	| 15     	| 20210406 	| **    	| **    	| #VALUE!       	| NA                	| No               	| to be reamped; i5/i7 = 15           	|
+| 1103    	| 15     	| 20210406 	| **    	| **    	| #VALUE!       	| NA                	| No               	| failed reamp; redo                  	|
 | 1728    	| 16     	| 20210406 	| 19.4  	| 19.3  	| 19.35         	| Yes               	| Yes              	|                                     	|
 | 2012    	| 17     	| 20210406 	| 23.8  	| 23.8  	| 23.8          	| Yes               	| Yes              	|                                     	|
 | 1051    	| 18     	| 20210406 	| 18.3  	| 18.3  	| 18.3          	| Yes               	| Yes              	|                                     	|
@@ -70,9 +70,7 @@ Use the index #s: 4 at the end.
 
 Pico #19-26 done on 2021-05-24: KAPA hifi mix was used and funky contamination.. see [tapestation](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2021-05-24%20-%2016.49.02.pdf).
 
-7, 8, 10, 15 need to be re-amped.    
 19-26 need to be re-done.
-
 
 Example of acceptable tapestation result:  
 
@@ -84,4 +82,7 @@ Example of one I would re-do:
 
 Pico #1-3 tapestation [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2021-04-01%20-%2015.23.20.pdf).  
 Pico #4-8 tapestation [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2021-04-01%20-%2015.49.25.pdf).  
-Pico #9-18 tapestation [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2021-04-06%20-%2015.16.45.pdf)  
+Pico #9-18 tapestation [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2021-04-06%20-%2015.16.45.pdf).    
+7 and 8 reamped tapestation [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2021-05-26%20-%2011.24.21.pdf).  
+
+### D5000 Tapestation results
