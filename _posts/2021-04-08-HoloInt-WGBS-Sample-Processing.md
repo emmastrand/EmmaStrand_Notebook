@@ -31,7 +31,7 @@ For Holobiont Integration, we are processing 5 timepoints: 30 hour, 2 weeks, 4 w
 
 ### Post Pico Methylation Protocol Quantification
 
-As of 2021-06-08: 15/60 are done. 45 left.
+As of 2021-06-08: 16/60 are done. 44 left.
 
 2021-03-31 Qubit: DNA BR Standard 1 = 173.28; Standard 2 = 19,833.04  
 2021-04-06 Qubit: DNA BR Standard 1 = 179.54; Standard 2 = 19,252.29  
