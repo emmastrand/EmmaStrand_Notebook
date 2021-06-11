@@ -31,63 +31,79 @@ For Holobiont Integration, we are processing 5 timepoints: 30 hour, 2 weeks, 4 w
 
 ### Post Pico Methylation Protocol Quantification
 
-As of 2021-06-08: 16/60 are done. 44 left.
+As of 2021-06-10: 17/60 are done. 43 left.
 
 2021-03-31 Qubit: DNA BR Standard 1 = 173.28; Standard 2 = 19,833.04  
 2021-04-06 Qubit: DNA BR Standard 1 = 179.54; Standard 2 = 19,252.29  
 2021-05-24 Qubit: DNA BR Standard 1 = 194.96; Standard 2 = 21,282.28  
 2021-06-09 Qubit: DNA BR Standard 1 = 192.07; Standard 2 = 20,942.30  
+2021-06-10 Qubit: DNA BR Standard 1 = 179.67; Standard 2 = 19,385.82  
 
-| Plug_ID 	| Pico # 	| PMS_Date 	| DNA 1 	| DNA 2 	| Qubit (ng/uL) 	| Tapestation pass? 	| Final Pico Prep? 	| Notes                                                    	|
-|---------	|--------	|----------	|-------	|-------	|---------------	|-------------------	|------------------	|----------------------------------------------------------	|
-| 1296    	| 1      	| 20210331 	| 23.2  	| 23    	| 23.1          	| Yes               	| Yes              	|                                                          	|
-| 2197    	| 2      	| 20210331 	| 20.4  	| 20.4  	| 20.4          	| Yes               	| Yes              	|                                                          	|
-| 1225    	| 3      	| 20210331 	| 13.3  	| 13.2  	| 13.25         	| Yes               	| Yes              	|                                                          	|
-| 1728    	| 4      	| 20210331 	| 9.38  	| 9.34  	| 9.36          	| Yes               	| No               	| Wrong 1728 original extraction tube                      	|
-| 2413    	| 5      	| 20210331 	| 21.2  	| 21.2  	| 21.2          	| Yes               	| Yes              	|                                                          	|
-| 1445    	| 6      	| 20210331 	| 17    	| 16.9  	| 16.95         	| Yes               	| Yes              	|                                                          	|
-| 1707    	| 7      	| 20210331 	| 12.7  	| 12.6  	| 12.65         	| Yes               	| Yes              	| successfully reamped                                     	|
-| 2212    	| 8      	| 20210331 	| 25    	| 24.8  	| 24.9          	| Yes               	| Yes              	| successfully reamped                                     	|
-| 2550    	| 9      	| 20210406 	| 7.98  	| 7.96  	| 7.97          	| Yes               	| Yes              	|                                                          	|
-| 2861    	| 10     	| 20210406 	| **    	| **    	| #VALUE!       	| NA                	| No               	| failed reamp; redo                                       	|
-| 2877    	| 11     	| 20210406 	| 22.2  	| 22.2  	| 22.2          	| Yes               	| Yes              	|                                                          	|
-| 1732    	| 12     	| 20210406 	| 18.6  	| 18.5  	| 18.55         	| Yes               	| Yes              	|                                                          	|
-| 1329    	| 13     	| 20210406 	| 22.8  	| 22.6  	| 22.7          	| Yes               	| Yes              	|                                                          	|
-| 1563    	| 14     	| 20210406 	| 24    	| 24    	| 24            	| Yes               	| Yes              	|                                                          	|
-| 1103    	| 15     	| 20210406 	| **    	| **    	| #VALUE!       	| NA                	| No               	| failed reamp; redo                                       	|
-| 1728    	| 16     	| 20210406 	| 19.4  	| 19.3  	| 19.35         	| Yes               	| Yes              	|                                                          	|
-| 2012    	| 17     	| 20210406 	| 23.8  	| 23.8  	| 23.8          	| Yes               	| Yes              	|                                                          	|
-| 1051    	| 18     	| 20210406 	| 18.3  	| 18.3  	| 18.3          	| Yes               	| Yes              	|                                                          	|
-| 1559    	| 19     	| 20210524 	| 65.6  	| 65.4  	| 65.5          	| No                	| No               	| funky contamination? & KAPA                              	|
-| 2513    	| 20     	| 20210524 	| **    	| **    	| #VALUE!       	| No                	| No               	| funky contamination? & KAPA                              	|
-| 1820    	| 21     	| 20210524 	| 53.2  	| 53    	| 53.1          	| No                	| No               	| funky contamination? & KAPA                              	|
-| 1238    	| 22     	| 20210524 	| 36.6  	| 36.4  	| 36.5          	| No                	| No               	| funky contamination? & KAPA                              	|
-| 2064    	| 23     	| 20210524 	| 31.6  	| 31.6  	| 31.6          	| No                	| No               	| funky contamination? & KAPA                              	|
-| 1168    	| 24     	| 20210524 	| 41.8  	| 41.8  	| 41.8          	| No                	| No               	| funky contamination? & KAPA                              	|
-| 1459    	| 25     	| 20210524 	| 70.8  	| 70.6  	| 70.7          	| Yes               	| No               	| funky contamination? & KAPA                              	|
-| 1765    	| 26     	| 20210524 	| 48.8  	| 48.6  	| 48.7          	| No                	| No               	| funky contamination? & KAPA                              	|
-| 1559    	| 27     	| 20210609 	| 2.42  	| 2.38  	| 2.4           	| No                	| No               	| to be reamped                                            	|
-| 2513    	| 28     	| 20210609 	| 5.18  	| 5.14  	| 5.16          	| No                	| No               	| to be reamped                                            	|
-| 1820    	| 29     	| 20210609 	| 3.56  	| 3.56  	| 3.56          	| No                	| No               	| to be reamped                                            	|
-| 1238    	| 30     	| 20210609 	| 3.14  	| 3.14  	| 3.14          	| No                	| No               	| to be reamped                                            	|
-| 2064    	| 31     	| 20210609 	| 16.6  	| 16.6  	| 16.6          	| No                	| No               	| to be reamped; 10 cycles instead?                        	|
-| 1168    	| 32     	| 20210609 	| 5.16  	| 5.12  	| 5.14          	| No                	| No               	| to be reamped                                            	|
-| 1459    	| 33     	| 20210609 	| 3.52  	| 3.5   	| 3.51          	| No                	| No               	| to be reamped                                            	|
-| 1765    	| 34     	| 20210609 	| 2.8   	| 2.78  	| 2.79          	| No                	| No               	| to be reamped                                            	|
-| 2861    	| 35     	| 20210609 	| 3.02  	| 3     	| 3.01          	| No                	| No               	| to be reamped                                            	|
-| 1103    	| 36     	| 20210609 	| 2.7   	| 2.68  	| 2.69          	| No                	| No               	| to be reamped                                            	|
-| 2072    	| 37     	| 20210609 	| 2.84  	| 2.8   	| 2.82          	| No                	| No               	| to be reamped                                            	|
-| 2304    	| 38     	| 20210609 	| 2.18  	| 2.18  	| 2.18          	| No                	| No               	| to be reamped                                            	|
-| 1184    	| 39     	| 20210609 	| 2.54  	| 2.52  	| 2.53          	| No                	| No               	| to be reamped                                            	|
-| 2185    	| 40     	| 20210609 	| **    	| **    	| #VALUE!       	| No                	| No               	| redo                                                     	|
-| 2564    	| 41     	| 20210609 	| 10.3  	| 10.2  	| 10.25         	| No                	| No               	| to be reamped; look at Kevin's post - 10 cycles instead? 	|
-| 1757    	| 42     	| 20210609 	| 2.22  	| 2.22  	| 2.22          	| No                	| No               	| to be reamped                                            	|
+| Plug_ID 	| Pico # 	| PMS_Date 	| DNA 1 	| DNA 2 	| Qubit (ng/uL) 	| Tapestation pass? 	| Final Pico Prep? 	| Notes                               	|
+|---------	|--------	|----------	|-------	|-------	|---------------	|-------------------	|------------------	|-------------------------------------	|
+| 1296    	| 1      	| 20210331 	| 23.2  	| 23    	| 23.1          	| Yes               	| Yes              	|                                     	|
+| 2197    	| 2      	| 20210331 	| 20.4  	| 20.4  	| 20.4          	| Yes               	| Yes              	|                                     	|
+| 1225    	| 3      	| 20210331 	| 13.3  	| 13.2  	| 13.25         	| Yes               	| Yes              	|                                     	|
+| 1728    	| 4      	| 20210331 	| 9.38  	| 9.34  	| 9.36          	| Yes               	| No               	| Wrong 1728 original extraction tube 	|
+| 2413    	| 5      	| 20210331 	| 21.2  	| 21.2  	| 21.2          	| Yes               	| Yes              	|                                     	|
+| 1445    	| 6      	| 20210331 	| 17    	| 16.9  	| 16.95         	| Yes               	| Yes              	|                                     	|
+| 1707    	| 7      	| 20210331 	| 12.7  	| 12.6  	| 12.65         	| Yes               	| Yes              	| successfully reamped                	|
+| 2212    	| 8      	| 20210331 	| 25    	| 24.8  	| 24.9          	| Yes               	| Yes              	| successfully reamped                	|
+| 2550    	| 9      	| 20210406 	| 7.98  	| 7.96  	| 7.97          	| Yes               	| Yes              	|                                     	|
+| 2861    	| 10     	| 20210406 	| **    	| **    	| #VALUE!       	| NA                	| No               	| failed reamp; redo                  	|
+| 2877    	| 11     	| 20210406 	| 22.2  	| 22.2  	| 22.2          	| Yes               	| Yes              	|                                     	|
+| 1732    	| 12     	| 20210406 	| 18.6  	| 18.5  	| 18.55         	| Yes               	| Yes              	|                                     	|
+| 1329    	| 13     	| 20210406 	| 22.8  	| 22.6  	| 22.7          	| Yes               	| Yes              	|                                     	|
+| 1563    	| 14     	| 20210406 	| 24    	| 24    	| 24            	| Yes               	| Yes              	|                                     	|
+| 1103    	| 15     	| 20210406 	| **    	| **    	| #VALUE!       	| NA                	| No               	| failed reamp; redo                  	|
+| 1728    	| 16     	| 20210406 	| 19.4  	| 19.3  	| 19.35         	| Yes               	| Yes              	|                                     	|
+| 2012    	| 17     	| 20210406 	| 23.8  	| 23.8  	| 23.8          	| Yes               	| Yes              	|                                     	|
+| 1051    	| 18     	| 20210406 	| 18.3  	| 18.3  	| 18.3          	| Yes               	| Yes              	|                                     	|
+| 1559    	| 19     	| 20210524 	| 65.6  	| 65.4  	| 65.5          	| No                	| No               	| funky contamination? & KAPA         	|
+| 2513    	| 20     	| 20210524 	| **    	| **    	| #VALUE!       	| No                	| No               	| funky contamination? & KAPA         	|
+| 1820    	| 21     	| 20210524 	| 53.2  	| 53    	| 53.1          	| No                	| No               	| funky contamination? & KAPA         	|
+| 1238    	| 22     	| 20210524 	| 36.6  	| 36.4  	| 36.5          	| No                	| No               	| funky contamination? & KAPA         	|
+| 2064    	| 23     	| 20210524 	| 31.6  	| 31.6  	| 31.6          	| No                	| No               	| funky contamination? & KAPA         	|
+| 1168    	| 24     	| 20210524 	| 41.8  	| 41.8  	| 41.8          	| No                	| No               	| funky contamination? & KAPA         	|
+| 1459    	| 25     	| 20210524 	| 70.8  	| 70.6  	| 70.7          	| Yes               	| No               	| funky contamination? & KAPA         	|
+| 1765    	| 26     	| 20210524 	| 48.8  	| 48.6  	| 48.7          	| No                	| No               	| funky contamination? & KAPA         	|
+| 1559    	| 27     	| 20210609 	| 2.42  	| 2.38  	| 2.4           	| No                	| No               	|                                     	|
+| 2513    	| 28     	| 20210609 	| 5.18  	| 5.14  	| 5.16          	| No                	| No               	| reamped; see below                  	|
+| 1820    	| 29     	| 20210609 	| 3.56  	| 3.56  	| 3.56          	| No                	| No               	|                                     	|
+| 1238    	| 30     	| 20210609 	| 3.14  	| 3.14  	| 3.14          	| No                	| No               	|                                     	|
+| 2064    	| 31     	| 20210609 	| 16.6  	| 16.6  	| 16.6          	| No                	| No               	|                                     	|
+| 1168    	| 32     	| 20210609 	| 5.16  	| 5.12  	| 5.14          	| No                	| No               	|                                     	|
+| 1459    	| 33     	| 20210609 	| 3.52  	| 3.5   	| 3.51          	| No                	| No               	|                                     	|
+| 1765    	| 34     	| 20210609 	| 2.8   	| 2.78  	| 2.79          	| No                	| No               	|                                     	|
+| 2861    	| 35     	| 20210609 	| 3.02  	| 3     	| 3.01          	| No                	| No               	|                                     	|
+| 1103    	| 36     	| 20210609 	| 2.7   	| 2.68  	| 2.69          	| No                	| No               	|                                     	|
+| 2072    	| 37     	| 20210609 	| 2.84  	| 2.8   	| 2.82          	| No                	| No               	|                                     	|
+| 2304    	| 38     	| 20210609 	| 2.18  	| 2.18  	| 2.18          	| No                	| No               	|                                     	|
+| 1184    	| 39     	| 20210609 	| 2.54  	| 2.52  	| 2.53          	| No                	| No               	|                                     	|
+| 2185    	| 40     	| 20210609 	| **    	| **    	| #VALUE!       	| No                	| No               	| redo                                	|
+| 2564    	| 41     	| 20210609 	| 10.3  	| 10.2  	| 10.25         	| No                	| No               	|                                     	|
+| 1757    	| 42     	| 20210609 	| 2.22  	| 2.22  	| 2.22          	| No                	| No               	|                                     	|
+| 1559    	| 27     	| 20210610 	| 3.56  	| 3.5   	| 3.53          	| No                	|                  	| reamp value                         	|
+| 2513    	| 28     	| 20210610 	| 9.22  	| 9.18  	| 9.2           	| Yes               	| Yes              	| reamp value                         	|
+| 1820    	| 29     	| 20210610 	| 5.68  	| 5.66  	| 5.67          	| Maybe?            	|                  	| reamp value                         	|
+| 1238    	| 30     	| 20210610 	| 3.36  	| 3.32  	| 3.34          	| No                	| No               	| reamp value                         	|
+| 2064    	| 31     	| 20210610 	| 4.34  	| 4.32  	| 4.33          	| No                	| No               	| reamp value                         	|
+| 1168    	| 32     	| 20210610 	| 5.96  	| 5.8   	| 5.88          	| Maybe?            	|                  	| reamp value                         	|
+| 1459    	| 33     	| 20210610 	| 2.76  	| 2.72  	| 2.74          	| No                	| No               	| reamp value                         	|
+| 1765    	| 34     	| 20210610 	| 2.54  	| 2.52  	| 2.53          	| No                	| No               	| reamp value                         	|
+| 2861    	| 35     	| 20210610 	| 3.48  	| 3.42  	| 3.45          	| No                	| No               	| reamp value                         	|
+| 1103    	| 36     	| 20210610 	| 3.14  	| 3.1   	| 3.12          	| No                	| No               	| reamp value                         	|
+| 2072    	| 37     	| 20210610 	| 3.64  	| 3.6   	| 3.62          	| No                	| No               	| reamp value                         	|
+| 2304    	| 38     	| 20210610 	| 2.58  	| 2.54  	| 2.56          	| No                	| No               	| reamp value                         	|
+| 1184    	| 39     	| 20210610 	| 2.32  	| 2.3   	| 2.31          	| No                	| No               	| reamp value                         	|
+| 2564    	| 41     	| 20210610 	| 3.52  	| 3.46  	| 3.49          	| No                	| No               	| reamp value                         	|
+| 1757    	| 42     	| 20210610 	| **    	| **    	| #VALUE!       	| No                	| No               	| reamp value                         	|
 
 Use the index #s: 4 at the end.
 
 Pico #19-26 done on 2021-05-24: KAPA hifi mix was used and funky contamination.. see [tapestation](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2021-05-24%20-%2016.49.02.pdf). These were re-done in Pico #27-34.
 
-Pico #27-42 were all low amplification. Re-amps need to be done on all except for Pico#40.
+Pico #27-42 were all low amplification. Re-amps were done on all except for Pico#40. Re-amps failed except for Pico#28.
 
 Soft DNA E2 tubes missing for: 2409 (Ext ID 323, 324), 1047 (Ext ID 325, 326), 1059 (Ext ID 413, 414), and 2087 (Ext ID 415, 416).  
 - Soft DNA E1 2409 = 531 ng/uL  
@@ -115,7 +131,8 @@ Pico #4-8 tapestation [here](https://github.com/emmastrand/EmmaStrand_Notebook/b
 Pico #9-18 tapestation [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2021-04-06%20-%2015.16.45.pdf).    
 7 and 8 reamped tapestation [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2021-05-26%20-%2011.24.21.pdf).  
 Pico #19-26 tapestation [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2021-05-24%20-%2016.49.02.pdf).  
-Pico #27-42 TapeStation [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2021-06-09%20-%2016.57.33.pdf).
+Pico #27-42 TapeStation [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2021-06-09%20-%2016.57.33.pdf).  
+Re-amps for Pico #27-42 tapestation [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2021-06-10%20-%2011.46.47.pdf).
 
 ### Final D5000 Tapestation for all samples (60)
 
