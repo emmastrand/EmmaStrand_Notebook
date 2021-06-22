@@ -30,3 +30,24 @@ cellometer_sym_counts <- cellometer_sym_counts %>%
 ![cell](https://github.com/hputnam/Acclim_Dynamics/blob/master/Output/Cellometer-testing.png?raw=true)
 
 The cellometer seems to be undercounting the Mcap samples - I think this is because the Mcap samples have a lot of clumps and need to be homogenized and then vortexed prior to counting.
+
+### Next steps  
+
+**Notes:**
+
+I tried the 5 mm homogenizer for 5 seconds and 20 seconds but it wasn't enough, even with vortexing after. The tube is so small that the homogenizer can't go very fast so I'm not sure it is breaking up the clumps like I need it to.
+
+Homogenize little aliquots for 1 minute, vortex for 30 seconds. Then count on haemocytometer and cellometer.
+
+OR thaw the large homogenates and homogenize for 45 seconds on higher speed. Vortex for 30 seconds. Then count on haemocytometer and cellometer.
+
+**To-Do:**
+
+Tuesday:  
+1. Find the Mcap that have already been counted.  
+2. Homogenize little aliquots for 1 minute, vortex for 30 seconds. Then count on haemocytometer.  
+3. Re-run the cell counts script to see if that changed any numbers.  
+
+Wednesday:  
+1. Bring all equipment, Mcap samples, Pacuta samples, and Astrangia samples. Bring vortex.  
+2. Count the ones from Tuesday on the cellometer again.
