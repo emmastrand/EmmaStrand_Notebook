@@ -46,7 +46,9 @@ OR thaw the large homogenates and homogenize for 45 seconds on higher speed. Vor
 Tuesday:  
 1. Find the Mcap that have already been counted.  
 2. Homogenize little aliquots for 1 minute, vortex for 30 seconds. Then count on haemocytometer.  
-3. Re-run the cell counts script to see if that changed any numbers.  
+3. Compare to prior counts to see if this changed any values.  
+4. If not, thaw large 10 homogenate tubes and homogenize those on full speed for 45 seconds - 1 minute.    
+5. Count on haemocytometer.
 
 Wednesday:  
 1. Bring all equipment, Mcap samples, Pacuta samples, and Astrangia samples. Bring vortex.  
