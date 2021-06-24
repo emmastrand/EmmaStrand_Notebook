@@ -33,18 +33,18 @@ $ ssh -l username@bluewaves.uri.edu
 $ pw: (your own password)
 
 # Andromeda
-$
+$ ssh -l emma_strand.hac.uri.edu
 ```
 
-## Initial Upload and Checksum
+## Initial Upload
 
 Hollie uploaded all files into the 16s HoloInt folder. Each sample will have a R1 and R2 fastq.gz file.
 
 HPW### = Sample ID Number    
 S### =    
-L001 =    
+L001 = Lane number  
 R1/R2 = Forward (R1) and reverse (R2) b/c they are paired end reads  
-001 =    
+001 = Read number  
 .fastq = fastq file format   
 .gz = gunzipped file format  
 
@@ -59,34 +59,9 @@ HPW060_S44_L001_R1_001.fastq.gz   HPW147_S174_L001_R2_001.fastq.gz  HPW236_S233_
 HPW060_S44_L001_R2_001.fastq.gz   HPW148_S186_L001_R1_001.fastq.gz  HPW236_S233_L001_R2_001.fastq.gz
 ```
 
-### Checksum
+**There was no checksum file from URI GSC but I created one once Hollie transfered them to my folder on andromeda to reference back to if needed.**
 
-*Insert description of a checksum and why we do this*.
-
-There are 502 .fastq.gz files in this folder and one checksum file from the sequencing center (GSC).
-
-**Check contents of that GSC file below.**
-
-```
-$ nano filenames_md5.txt
-
-## first five lines
-
-HPW060_L001_ds.63c5692775594b4e811abb0cecf838cf
-HPW061_L001_ds.f5e292bfbf0549e082be0f361b25b6f7
-HPW062_L001_ds.76f08d3b48e64ac6af6241c80641d4bb
-HPW063_L001_ds.ea979401bc754993aa1f113ea40d50de
-HPW064_L001_ds.40e48ebf01e44689badc0ca895ee6b67
-```
-
-HPW### = sample ID number  
-L0001 =  
-ds =  
-letter code =
-
-Each sample above only has 1 checksum letter code for each sample.
-
-**Create a new checksum file (md5sum)**  
+#### Create a new checksum file (md5sum)
 
 ```
 # Create file (takes ~6-7 min to complete)
@@ -109,35 +84,25 @@ $ md5sum -c 16s-checksum2.md5
 Output: all files = OK
 ```
 
-The above new md5 file that I made has 2 lines for each sample compared to the 1 line in the md5 file from GSC.
+## OTU vs. ASV and program choices 
 
-**Compare the two checksum files**  
-```
-$ cksum filenames_md5.txt 16s-checksum2.md5
+Nicola did:  
+1.) Retain only PE reads that match amplicon primer.  
+2.) Remove reads containing Illumina sequencing adapters.  
+3.) Cut out first 4 'de-generate' basepairs.  
+4.) Cut out reads that don't start with the 16s primer  
+5.) Removes primer  
+6.) DADA2 pipeline  
 
-Output:
-679781788 12048 filenames_md5.txt
-1907163389 33418 16s-checksum2.md5
+Seems like there a couple programs to use choose from..
 
-$ cksum filenames_md5.txt 16s-checksum2.md5.txt
+DADA2: [here](https://benjjneb.github.io/dada2/tutorial.html).  
+Qiime2: [here](https://docs.qiime2.org/2021.4/about/).  
 
-Output:  
-79781788 12048 filenames_md5.txt
-1907163389 33418 16s-checksum2.md5.txt
-```
+Apparently DADA2 is a newer version for bacteria (good to use if that's what you're working on) and Qiime2 is established/tried & true methods. Qiime2 might be safer option?
 
-**Problem: above output values are way off.. these files are in different formats. Txt vs md5 and # of lines per sample.**
+DADA2 produces an amplicon sequence variant (ASV) table which is a higher resolution analogue of the traditional OTU table and records the number of times each exact amplicon sequence variant was observed in each sample.
 
-This is a different format than the .txt file above. Each sample has 2 checksum values. I'm making another checksum file but this time in txt format.
+Qiime2 produces OTUs ("tried and true")
 
-```
-$ md5sum *.fastq.gz > 16s-checksum2.md5.txt
-$ nano 16s-checksum2.md5.txt
-
-Output (first four lines):  
-210b589620ef946cd5c51023b0f90d8d  HPW060_S44_L001_R1_001.fastq.gz
-227032c7b7f7fa8c407cb0509a1fcd6a  HPW060_S44_L001_R2_001.fastq.gz
-2f8d8892b7be06cf047a1085dd8bbbf1  HPW061_S56_L001_R1_001.fastq.gz
-b603f7ff519130555527bec4c8f8e2c6  HPW061_S56_L001_R2_001.fastq.gz
-```
-This didn't change the format..
+OTU vs. ASV information [here](https://www.zymoresearch.com/blogs/blog/microbiome-informatics-otu-vs-asv).
