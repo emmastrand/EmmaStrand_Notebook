@@ -84,7 +84,7 @@ $ md5sum -c 16s-checksum2.md5
 Output: all files = OK
 ```
 
-## OTU vs. ASV and program choices 
+## OTU vs. ASV and program choices
 
 Nicola did:  
 1.) Retain only PE reads that match amplicon primer.  
@@ -106,3 +106,46 @@ DADA2 produces an amplicon sequence variant (ASV) table which is a higher resolu
 Qiime2 produces OTUs ("tried and true")
 
 OTU vs. ASV information [here](https://www.zymoresearch.com/blogs/blog/microbiome-informatics-otu-vs-asv).
+
+## CONDA Environment
+
+Download [miniconda](https://docs.conda.io/en/latest/miniconda.html).
+
+#### Create a conda environment and download all programs that you will need
+
+```
+$ conda create -n HoloInt_16s
+$ conda activate HoloInt_16s
+
+$ conda install fastqc
+$ conda install multiqc
+$ conda install cutadapt
+$ conda install qiime2
+```
+
+## FASTQC: Quality control of raw read files.
+
+Fastqc resources:  
+- https://github.com/s-andrews/FastQC  
+- https://raw.githubusercontent.com/s-andrews/FastQC/master/README.txt  
+- How to interpret fastqc results [link](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
+
+#### Create a new directory for fastqc results
+
+```
+$ mkdir fastqc_results
+$ cd fastqc_results
+```
+
+#### Write script to run fastqc
+
+#### Run fastqc
+
+#### Multiqc report
+
+
+## CUTADAPT
+
+## QIIME2
+
+Program webpage [here](https://docs.qiime2.org/2021.4/getting-started/), beginners guide [here](https://docs.qiime2.org/2021.4/tutorials/overview/).
