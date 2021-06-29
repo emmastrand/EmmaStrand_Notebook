@@ -216,7 +216,7 @@ $ nano module-load.sh
 #SBATCH --error="script_error" #if your job fails, the error report will be put in this file
 #SBATCH --output="output_script" #once your job is completed, any final job report comments will be put in this file
 
-source /usr/share/Modules/init/sh # this is used so that them function can be found in zsh and bash 
+source /usr/share/Modules/init/sh # this is used so that them function can be found in zsh and bash
 
 module load Miniconda3/4.9.2
 module load FastQC/0.11.9-Java-11
@@ -264,6 +264,8 @@ Write script command: This will be on the putnamlab node and updates sent to my 
 #SBATCH --error="script_error" #if your job fails, the error report will be put in this file
 #SBATCH --output="output_script" #once your job is completed, any final job report comments will be put in this file
 
+source /usr/share/Modules/init/sh # this is used so that them function can be found in zsh and bash
+
 for file in /data/putnamlab/estrand/HoloInt_16s/raw-data/*fastq.gz
 do
 fastqc $file --outdir /data/putnamlab/estrand/HoloInt_16s/fastqc_results         
@@ -297,7 +299,7 @@ for> done
 # Run time = ~45 min
 ```
 
-Double check all files were processed. Output should be 251.
+Double check all files were processed. Output should be 251 x 2 (F and R reads) x 2 (html and zip file)? Come back to this.
 
 ```
 $ cd fastqc_results
@@ -313,26 +315,32 @@ The first time I ran the .sh scripts for fastqc and module loading I got an erro
 
 ## Multiqc report: visualization of fastqc
 
-Create the report
+Create the report from all of the fastqc files.
 
 ```
-$ multiqc /data/estrand/HoloInt_16s/fastqc_results/qc
+$ multiqc /data/estrand/HoloInt_16s/fastqc_results/
 ```
 
-Copy the report to your home desktop so that you are able to open this report.
+Copy the report to your home desktop so that you are able to open this report. Run this outside of Andromeda and use the bluewaves login.
 
 ```
-$ scp -r emma_strand@ssh3.hac.uri.edu:/data/putnamlab/estrand/HoloInt_16s/fastqc_results/qc/*.html /Users/emmastrand/MyProjects/Acclim_Dynamics/
+$ scp emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/HoloInt_16s/fastqc_results/multiqc_report.html /Users/emmastrand/MyProjects/Acclim_Dynamics/
 ```
 
 #### Results
 
-Link to the qc report in our github repo: [Acclim Dynamics 16s multiqc]()
-
-
+Link to the qc report in our github repo: [Acclim Dynamics 16s multiqc](https://github.com/hputnam/Acclim_Dynamics/blob/master/multiqc_report.html).
 
 
 ## CUTADAPT
+
+Primer sequences:  
+- 515 Forward: TCGTCGGCAGCGTCAGATGTGTATAAGAGACAGGTGCCAGCMGCCGCGGTAA
+- 806 Reverse (RB): GTCTCGTGGGCTCGGAGATGTGTATAAGAGACAGGGACTACNVGGGTWTCTAAT
+
+Do I need to trim the primers or the primer and adapter? Both, I assume.
+
+## FASTQC Post-trimming 
 
 ## QIIME2
 
