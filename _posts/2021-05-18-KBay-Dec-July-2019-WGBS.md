@@ -16,6 +16,8 @@ Zymo Pico Methyl Seq for WGBS protocol found [here](https://meschedl.github.io/M
 
 See Maggie's notebook post for processing details:  
 - Post 1: 12 samples [here](https://github.com/meschedl/MESPutnam_Open_Lab_Notebook/blob/master/_posts/2021-05-10-Kbay-WGBS-1.md).  
-- Post 2:
+- Post 2: 12 samples [here](https://github.com/meschedl/MESPutnam_Open_Lab_Notebook/blob/master/_posts/2021-05-14-Kbay-WGBS-2.md).  
+- Post 3: 12 samples [here](https://github.com/meschedl/MESPutnam_Open_Lab_Notebook/blob/master/_posts/2021-05-21-Kbay-WGBS-3rd.md).  
+- Post 4: 1 sample [here](https://github.com/meschedl/MESPutnam_Open_Lab_Notebook/blob/master/_posts/2021-06-03-Kbay-WGBS-4.md)
 
 D5000 Tapestation results folder [here](https://github.com/emmastrand/EmmaStrand_Notebook/tree/master/images/KBay%20WGBS%20D5000).

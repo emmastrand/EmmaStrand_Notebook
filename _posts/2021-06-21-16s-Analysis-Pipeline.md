@@ -311,7 +311,7 @@ output:
 
 #### Troubleshooting
 
-The first time I ran the .sh scripts for fastqc and module loading I got an error message that the function 'fastqc' and 'module' wasn't recognized.
+The first time I ran the .sh scripts for fastqc and module loading I got an error message that the function 'fastqc' and 'module' wasn't recognized. Once I added this line `source /usr/share/Modules/init/sh` to the slurm script, then the scripts worked.
 
 ## Multiqc report: visualization of fastqc
 
@@ -334,13 +334,65 @@ Link to the qc report in our github repo: [Acclim Dynamics 16s multiqc](https://
 
 ## CUTADAPT
 
-Primer sequences:  
+User guide for cutadapt [here](https://cutadapt.readthedocs.io/en/stable/guide.html). Basic function:
+
+`cutadapt -g F_PRIMER -G R_PRIMER --untrimmed-output file --untrimmed-paired-output file -o R1 file -p R2 file input1 input2 `.
+
+Flags in the command:  
+- `-g`: corresponds to the adapter type. We used regular 5' adapters which calls for `-g`.  
+- `-G` corresponds to R2 read.  
+- `-q (or --quality-cutoff)`: Illumina reads are high quality at the beginning and degrade towards the 3' end. cutadapt uses 10 as their example.  
+- `--untrimmed-output`: Write all reads without adapters to FILE (in FASTA/FASTQ format) instead of writing them to the regular output file.    
+- `--untrimmed-paired-output`: Used together with --untrimmed-output. The second read in a pair is written to this file when the processed pair was not trimmed.  
+- `-p`: for paired end; R2 file  
+-
+
+Primer sequences with the URI GSC adapter overhang:  
 - 515 Forward: TCGTCGGCAGCGTCAGATGTGTATAAGAGACAGGTGCCAGCMGCCGCGGTAA
 - 806 Reverse (RB): GTCTCGTGGGCTCGGAGATGTGTATAAGAGACAGGGACTACNVGGGTWTCTAAT
 
-Do I need to trim the primers or the primer and adapter? Both, I assume.
+#### Make a directory for processed data
 
-## FASTQC Post-trimming 
+```
+$ mkdir processed_data
+```
+
+#### Make a script to run cut adapt program
+
+I took out the mail notification for the beginning of the slurm script to reduce the number of emails. Include the source message for the script to recognize bash and zsh functions.
+
+```
+#!/bin/bash
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab
+#SBATCH -D /data/putnamlab/estrand/HoloInt_16s/raw-data                   
+#SBATCH --error="script_error" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # this is used so that them function can be found in zsh and bash
+
+# Trims the forward and reverse primers from the forward and reverse read file respectively in paired-end sequences
+
+for file in /data/putnamlab/estrand/HoloInt_16s/raw-data/*fastq.gz
+do
+cutadapt -g F -G R
+done
+
+# Trims the reverse complement of the reverse primer and reverse complement of the forward primer from the forward and reverse read file respectively in paired-end sequences
+
+for file in /data/putnamlab/estrand/HoloInt_16s/raw-data/*fastq.gz
+do
+
+done
+
+```
+
+## FASTQC Post-trimming
 
 ## QIIME2
 
