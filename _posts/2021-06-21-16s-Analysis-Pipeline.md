@@ -264,8 +264,6 @@ Write script command: This will be on the putnamlab node and updates sent to my 
 #SBATCH --error="script_error" #if your job fails, the error report will be put in this file
 #SBATCH --output="output_script" #once your job is completed, any final job report comments will be put in this file
 
-source /usr/share/Modules/init/sh # this is used so that them function can be found in zsh and bash
-
 for file in /data/putnamlab/estrand/HoloInt_16s/raw-data/*fastq.gz
 do
 fastqc $file --outdir /data/putnamlab/estrand/HoloInt_16s/fastqc_results         
