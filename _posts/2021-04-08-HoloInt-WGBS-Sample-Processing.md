@@ -132,7 +132,9 @@ Pico #9-18 tapestation [here](https://github.com/emmastrand/EmmaStrand_Notebook/
 7 and 8 reamped tapestation [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2021-05-26%20-%2011.24.21.pdf).  
 Pico #19-26 tapestation [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2021-05-24%20-%2016.49.02.pdf).  
 Pico #27-42 TapeStation [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2021-06-09%20-%2016.57.33.pdf).  
-Re-amps for Pico #27-42 tapestation [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2021-06-10%20-%2011.46.47.pdf).
+Re-amps for Pico #27-42 tapestation [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2021-06-10%20-%2011.46.47.pdf).  
+Pico #43-50 tapestation [here]()  
+Pico #51-58 tapestation [here]()
 
 ### Final D5000 Tapestation for all samples (60)
 
