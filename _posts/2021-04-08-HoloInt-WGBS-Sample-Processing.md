@@ -27,11 +27,13 @@ For Holobiont Integration, we are processing 5 timepoints: 30 hour, 2 weeks, 4 w
 - I started with n=3 and n=4 during trial runs but worked my way up to n=8 and n=10 at a time for this protocol. My maximum will probably be 16 samples at a time.  
 - These samples will be sequenced with K. Wong and my 2nd chapter Hawaii Bleaching Pairs project. This will span across 4 lanes, each project taking up its own lane and HoloInt using 2 lanes.  
 - HoloInt indices: #1-60  
-- I give every sample a Pico # which is the number of the pico methylation prep I have done. There are going to be some samples that need to be re-done and for ease of labeling tubes, I will refer to each sample by their Pico # instead of the Plug ID. This will make it easier to set aside the desired tubes for sequencing rather than going by Plug ID and date of PMS protocol.
+- I give every sample a Pico # which is the number of the pico methylation prep I have done. There are going to be some samples that need to be re-done and for ease of labeling tubes, I will refer to each sample by their Pico # instead of the Plug ID. This will make it easier to set aside the desired tubes for sequencing rather than going by Plug ID and date of PMS protocol.  
+- We never used index #60 because we sequenced one of the samples the methylation compare project.  
+- We added M1312 fragment because it is a genome sample that we also want a methylome for.
 
 ### Post Pico Methylation Protocol Quantification
 
-As of 2021-07-01: 38/60 are done. 22 left.
+As of 2021-07-19: 58/60 are done. 2 left.
 
 2021-03-31 Qubit: DNA BR Standard 1 = 173.28; Standard 2 = 19,833.04  
 2021-04-06 Qubit: DNA BR Standard 1 = 179.54; Standard 2 = 19,252.29  
@@ -40,82 +42,83 @@ As of 2021-07-01: 38/60 are done. 22 left.
 2021-06-10 Qubit: DNA BR Standard 1 = 179.67; Standard 2 = 19,385.82  
 2021-06-14 Qubit: DNA BR Standard 1 = 190.50; Standard 2 = 20,152.88  
 2021-07-01 Qubit: DNA BR Standard 1 = 193.88; Standard 2 = 20,559.34  
+2021-07-13 and 2021-07-14 Qubit: DNA BR Standard 1 = 158.98; Standard 2 = 16,819.25  
+2021-07-15 Qubit: DNA BR Standard 1 = 185.65; Standard 2 = 19,940.15
 
-| Plug_ID 	| Pico # 	| Index # 	| PMS_Date 	| DNA 1 	| DNA 2 	| Qubit (ng/uL) 	| Bp size 	| Re-amp Qubit value (ng/uL) 	| Reamp Bp size 	| Tapestation pass? 	| Final Pico Prep? 	| Notes                                     	|
-|---------	|--------	|---------	|----------	|-------	|-------	|---------------	|---------	|----------------------------	|---------------	|-------------------	|------------------	|-------------------------------------------	|
-| 1296    	| 1      	| 1       	| 20210331 	| 23.2  	| 23    	| 23.1          	| 378     	| NA                         	| NA            	| Yes               	| Yes              	|                                           	|
-| 2197    	| 2      	| 2       	| 20210331 	| 20.4  	| 20.4  	| 20.4          	| 362     	| NA                         	| NA            	| Yes               	| Yes              	|                                           	|
-| 1225    	| 3      	| 3       	| 20210331 	| 13.3  	| 13.2  	| 13.25         	| 338     	| NA                         	| NA            	| Yes               	| Yes              	|                                           	|
-| 1728    	| 4      	| 4       	| 20210331 	| 9.38  	| 9.34  	| 9.36          	| NA      	| NA                         	| NA            	| Yes               	| No               	| Wrong 1728 original extraction tube       	|
-| 2413    	| 5      	| 5       	| 20210331 	| 21.2  	| 21.2  	| 21.2          	| 387     	| NA                         	| NA            	| Yes               	| Yes              	|                                           	|
-| 1445    	| 6      	| 6       	| 20210331 	| 17    	| 16.9  	| 16.95         	| 391     	| NA                         	| NA            	| Yes               	| Yes              	|                                           	|
-| 1707    	| 7      	| 7       	| 20210331 	| 12.7  	| 12.6  	| 12.65         	| 349     	| NA                         	| NA            	| Yes               	| Yes              	| successfully reamped                      	|
-| 2212    	| 8      	| 8       	| 20210331 	| 25    	| 24.8  	| 24.9          	| 433     	| NA                         	| NA            	| Yes               	| Yes              	| successfully reamped                      	|
-| 2550    	| 9      	| 9       	| 20210406 	| 7.98  	| 7.96  	| 7.97          	| 569     	| NA                         	| NA            	| Yes               	| Yes              	|                                           	|
-| 2861    	| 10     	| 10      	| 20210406 	| **    	| **    	| #VALUE!       	| NA      	| NA                         	| NA            	| NA                	| No               	| failed reamp; redo                        	|
-| 2877    	| 11     	| 11      	| 20210406 	| 22.2  	| 22.2  	| 22.2          	| 297     	| NA                         	| NA            	| Yes               	| Yes              	|                                           	|
-| 1732    	| 12     	| 12      	| 20210406 	| 18.6  	| 18.5  	| 18.55         	| 286     	| NA                         	| NA            	| Yes               	| Yes              	|                                           	|
-| 1329    	| 13     	| 13      	| 20210406 	| 22.8  	| 22.6  	| 22.7          	| 359     	| NA                         	| NA            	| Yes               	| Yes              	|                                           	|
-| 1563    	| 14     	| 14      	| 20210406 	| 24    	| 24    	| 24            	| 315     	| NA                         	| NA            	| Yes               	| Yes              	|                                           	|
-| 1103    	| 15     	| 15      	| 20210406 	| **    	| **    	| #VALUE!       	| NA      	| NA                         	| NA            	| NA                	| No               	| failed reamp; redo                        	|
-| 1728    	| 16     	| 16      	| 20210406 	| 19.4  	| 19.3  	| 19.35         	| 387     	| NA                         	| NA            	| Yes               	| Yes              	|                                           	|
-| 2012    	| 17     	| 17      	| 20210406 	| 23.8  	| 23.8  	| 23.8          	| 353     	| NA                         	| NA            	| Yes               	| Yes              	|                                           	|
-| 1051    	| 18     	| 18      	| 20210406 	| 18.3  	| 18.3  	| 18.3          	| 431     	| NA                         	| NA            	| Yes               	| Yes              	|                                           	|
-| 1559    	| 19     	| 19      	| 20210524 	| 65.6  	| 65.4  	| 65.5          	| NA      	| NA                         	| NA            	| No                	| No               	| funky contamination? & KAPA               	|
-| 2513    	| 20     	| 20      	| 20210524 	| **    	| **    	| #VALUE!       	| NA      	| NA                         	| NA            	| No                	| No               	| funky contamination? & KAPA               	|
-| 1820    	| 21     	| 21      	| 20210524 	| 53.2  	| 53    	| 53.1          	| NA      	| NA                         	| NA            	| No                	| No               	| funky contamination? & KAPA               	|
-| 1238    	| 22     	| 22      	| 20210524 	| 36.6  	| 36.4  	| 36.5          	| NA      	| NA                         	| NA            	| No                	| No               	| funky contamination? & KAPA               	|
-| 2064    	| 23     	| 23      	| 20210524 	| 31.6  	| 31.6  	| 31.6          	| NA      	| NA                         	| NA            	| No                	| No               	| funky contamination? & KAPA               	|
-| 1168    	| 24     	| 24      	| 20210524 	| 41.8  	| 41.8  	| 41.8          	| NA      	| NA                         	| NA            	| No                	| No               	| funky contamination? & KAPA               	|
-| 1459    	| 25     	| 25      	| 20210524 	| 70.8  	| 70.6  	| 70.7          	| NA      	| NA                         	| NA            	| Yes               	| No               	| funky contamination? & KAPA               	|
-| 1765    	| 26     	| 26      	| 20210524 	| 48.8  	| 48.6  	| 48.7          	| NA      	| NA                         	| NA            	| No                	| No               	| funky contamination? & KAPA               	|
-| 1559    	| 27     	| 19      	| 20210609 	| 2.42  	| 2.38  	| 2.4           	| NA      	| 3.53                       	| 304           	| Maybe             	| No               	|                                           	|
-| 2513    	| 28     	| 20      	| 20210609 	| 5.18  	| 5.14  	| 5.16          	| NA      	| 9.2                        	| 262           	| Maybe             	| Maybe            	| reamp value higher                        	|
-| 1820    	| 29     	| 21      	| 20210609 	| 3.56  	| 3.56  	| 3.56          	| NA      	| 5.67                       	| 274           	| Maybe             	| No               	|                                           	|
-| 1238    	| 30     	| 22      	| 20210609 	| 3.14  	| 3.14  	| 3.14          	| NA      	| 3.34                       	| 310           	| Maybe             	| No               	|                                           	|
-| 2064    	| 31     	| 23      	| 20210609 	| 16.6  	| 16.6  	| 16.6          	| NA      	| 4.33                       	| 262           	| No                	| No               	| slightly double peak                      	|
-| 1168    	| 32     	| 24      	| 20210609 	| 5.16  	| 5.12  	| 5.14          	| NA      	| 5.88                       	| 274           	| Maybe             	| No               	|                                           	|
-| 1459    	| 33     	| 25      	| 20210609 	| 3.52  	| 3.5   	| 3.51          	| NA      	| 2.74                       	| 286           	| No                	| No               	|                                           	|
-| 1765    	| 34     	| 26      	| 20210609 	| 2.8   	| 2.78  	| 2.79          	| NA      	| 2.53                       	| 264           	| No                	| No               	|                                           	|
-| 2861    	| 35     	| 10      	| 20210609 	| 3.02  	| 3     	| 3.01          	| NA      	| 3.45                       	| 289           	| No                	| No               	|                                           	|
-| 1103    	| 36     	| 15      	| 20210609 	| 2.7   	| 2.68  	| 2.69          	| NA      	| 3.12                       	| 274           	| No                	| No               	|                                           	|
-| 2072    	| 37     	| 27      	| 20210609 	| 2.84  	| 2.8   	| 2.82          	| NA      	| 3.62                       	| 268           	| No                	| No               	|                                           	|
-| 2304    	| 38     	| 28      	| 20210609 	| 2.18  	| 2.18  	| 2.18          	| NA      	| 2.56                       	| 315           	| No                	| No               	|                                           	|
-| 1184    	| 39     	| 29      	| 20210609 	| 2.54  	| 2.52  	| 2.53          	| NA      	| 2.31                       	| 280           	| No                	| No               	|                                           	|
-| 2185    	| 40     	| 30      	| 20210609 	| **    	| **    	| #VALUE!       	| NA      	| NA                         	| NA            	| No                	| No               	| redo                                      	|
-| 2564    	| 41     	| 31      	| 20210609 	| 10.3  	| 10.2  	| 10.25         	| NA      	| 3.49                       	| 263           	| No                	| No               	|                                           	|
-| 1757    	| 42     	| 32      	| 20210609 	| 2.22  	| 2.22  	| 2.22          	| NA      	| **                         	| 285           	| No                	| No               	|                                           	|
-| 1416    	| 43     	| 33      	| 20210614 	| 8.6   	| 8.54  	| 8.57          	| 321     	| NA                         	| NA            	| Yes               	| Yes              	|                                           	|
-| 1415    	| 44     	| 34      	| 20210614 	| 5.1   	| 5.08  	| 5.09          	| 364     	| NA                         	| NA            	| Yes               	| Yes              	| might be too low, what is min?            	|
-| 1641    	| 45     	| 35      	| 20210614 	| 7.18  	| 7.12  	| 7.15          	| 343     	| NA                         	| NA            	| Yes               	| Yes              	|                                           	|
-| 1536    	| 46     	| 36      	| 20210614 	| 14.7  	| 14.6  	| 14.65         	| 327     	| NA                         	| NA            	| Yes               	| Yes              	|                                           	|
-| 1090    	| 47     	| 37      	| 20210614 	| 15.7  	| 15.7  	| 15.7          	| 329     	| NA                         	| NA            	| Yes               	| Yes              	|                                           	|
-| 1303    	| 48     	| 38      	| 20210614 	| 6.86  	| 6.8   	| 6.83          	| 311     	| NA                         	| NA            	| Yes               	| Yes              	|                                           	|
-| 1755    	| 49     	| 39      	| 20210614 	| 4.38  	| 4.34  	| 4.36          	| 327     	| NA                         	| NA            	| Yes               	| Maybe            	| re-amp? this didn't work for me last time 	|
-| 1596    	| 50     	| 40      	| 20210614 	| 19.1  	| 19.1  	| 19.1          	| 341     	| NA                         	| NA            	| Yes               	| Yes              	|                                           	|
-| 1281    	| 51     	| 41      	| 20210701 	| 7.12  	| 7.1   	| 7.11          	| 334     	| NA                         	| NA            	| Yes               	| Yes              	|                                           	|
-| 1571    	| 52     	| 42      	| 20210701 	| 13.1  	| 13    	| 13.05         	| 316     	| NA                         	| NA            	| Yes               	| Yes              	|                                           	|
-| 2300    	| 53     	| 43      	| 20210701 	| 11.5  	| 11.5  	| 11.5          	| 311     	| NA                         	| NA            	| Yes               	| Yes              	|                                           	|
-| 1427    	| 54     	| 44      	| 20210701 	| 8.72  	| 8.68  	| 8.7           	| 280     	| NA                         	| NA            	| Yes               	| Maybe            	| bp size too low?                          	|
-| 1205    	| 55     	| 45      	| 20210701 	| 11.3  	| 11.2  	| 11.25         	| 312     	| NA                         	| NA            	| Yes               	| Yes              	|                                           	|
-| 2879    	| 56     	| 46      	| 20210701 	| 10.7  	| 10.6  	| 10.65         	| 305     	| NA                         	| NA            	| Yes               	| Yes              	|                                           	|
-| 1709    	| 57     	| 47      	| 20210701 	| 13.7  	| 13.7  	| 13.7          	| 331     	| NA                         	| NA            	| Yes               	| Yes              	|                                           	|
-| 1777    	| 58     	| 48      	| 20210701 	| 8.64  	| 8.6   	| 8.62          	| 309     	| NA                         	| NA            	| Yes               	| Yes              	|                                           	|
+| PLUG_ID 	| Species 	| Treatment 	| Extraction Date 	| Notes                              	| Soft DNA ng_ul 	| Final Pico # 	| Post-Pico Quant (ng/uL) 	| Indices # 	| Bp size 	| Date of Final Pico  	| Notes                                     	|
+|---------	|---------	|-----------	|-----------------	|------------------------------------	|----------------	|--------------	|-------------------------	|-----------	|---------	|---------------------	|-------------------------------------------	|
+| 1296    	| Pacuta  	| ATHC      	| 20190729        	| 147, 148 -  2nd DNA elution values 	| 29.6           	| 1            	| 23.1                    	| 1         	| 378     	| 20210331            	|                                           	|
+| 2197    	| Pacuta  	| ATHC      	| 20190729        	| 151, 152                           	| 40.3           	| 2            	| 20.4                    	| 2         	| 362     	| 20210331            	|                                           	|
+| 1225    	| Pacuta  	| HTAC      	| 20190730        	| 159, 160                           	| 43.3           	| 3            	| 13.25                   	| 3         	| 338     	| 20210331            	|                                           	|
+| 2413    	| Pacuta  	| ATAC      	| 20190809        	| 333, 334                           	| 59.1           	| 5            	| 21.2                    	| 5         	| 387     	| 20210331            	|                                           	|
+| 1445    	| Pacuta  	| ATAC      	| 20190826        	| 375, 376                           	| 41.4           	| 6            	| 16.95                   	| 6         	| 391     	| 20210331            	|                                           	|
+| 1707    	| Pacuta  	| HTAC      	| 20190905        	| 445, 446                           	| 96.6           	| 7            	| 12.65                   	| 7         	| 349     	| 20210331            	|                                           	|
+| 2212    	| Pacuta  	| ATHC      	| 20190903        	| 449, 450                           	| 34.2           	| 8            	| 24.9                    	| 8         	| 433     	| 20210331            	|                                           	|
+| 2550    	| Pacuta  	| ATHC      	| 20190724        	| 117, 118                           	| 38.6           	| 9            	| 7.97                    	| 9         	| 569     	| 20210406            	|                                           	|
+| 2877    	| Pacuta  	| ATHC      	| 20190731        	| 213, 214                           	| 129.5          	| 11           	| 22.2                    	| 11        	| 297     	| 20210406            	|                                           	|
+| 1732    	| Pacuta  	| HTHC      	| 20190724        	| 111, 112                           	| 46.2           	| 12           	| 18.55                   	| 12        	| 286     	| 20210406            	|                                           	|
+| 1329    	| Pacuta  	| HTAC      	| 20191204        	| 641, 642                           	| 41.7           	| 13           	| 22.7                    	| 13        	| 359     	| 20210406            	|                                           	|
+| 1563    	| Pacuta  	| ATAC      	| 20190905        	| 447, 448                           	| 42.3           	| 14           	| 24                      	| 14        	| 315     	| 20210406            	|                                           	|
+| 1728    	| Pacuta  	| HTAC      	| 20190806        	| 293, 294                           	| 108            	| 16           	| 19.35                   	| 16        	| 387     	| 20210406            	|                                           	|
+| 2012    	| Pacuta  	| ATAC      	| 20190730        	| 203, 204                           	| 18.9           	| 17           	| 23.8                    	| 17        	| 353     	| 20210406            	|                                           	|
+| 1051    	| Pacuta  	| ATAC      	| 20190731        	| 209, 210                           	| 86.2           	| 18           	| 18.3                    	| 18        	| 431     	| 20210406            	|                                           	|
+| 2513    	| Pacuta  	| HTAC      	| 20190722        	| 65, 66                             	| 22.9           	| 28           	| 9.2                     	| 20        	| 262     	| 20210410            	|                                           	|
+| 1820    	| Pacuta  	| HTHC      	| 20190815        	| 353, 354                           	| 35.4           	| 29           	| 5.67                    	| 21        	| 274     	| 20210410            	|                                           	|
+| 1168    	| Pacuta  	| HTHC      	| 20190730        	| 171, 172                           	| 15.95          	| 32           	| 5.88                    	| 24        	| 274     	| 20210410            	|                                           	|
+| 1559    	| Pacuta  	| ATAC      	| 20190725        	| 129, 130                           	| 50             	| 27           	| 18.05                   	| 19        	| 294     	| 20210609            	|                                           	|
+| 2304    	| Pacuta  	| HTHC      	| 20190722        	| 81, 82                             	| 25.1           	| 38           	| 9.28                    	| 28        	| 298     	| 20210609            	|                                           	|
+| 1238    	| Pacuta  	| HTHC      	| 20190725        	| 125, 126                           	| 43.1           	| 30           	| 10.2                    	| 22        	| 293     	| 20210614            	|                                           	|
+| 1416    	| Pacuta  	| HTHC      	| 20191009        	| 497, 498                           	| 16.75          	| 43           	| 8.57                    	| 33        	| 321     	| 20210614            	|                                           	|
+| 1415    	| Pacuta  	| HTHC      	| 20190815        	| 359, 360                           	| 53.6           	| 44           	| 19.85                   	| 34        	| 308     	| 20210614            	|                                           	|
+| 1641    	| Pacuta  	| ATAC      	| 20190720        	| 39, 40                             	| 34.5           	| 45           	| 7.15                    	| 35        	| 343     	| 20210614            	|                                           	|
+| 1536    	| Pacuta  	| HTAC      	| 20190725        	| 121, 122                           	| 79.5           	| 46           	| 14.65                   	| 36        	| 327     	| 20210614            	|                                           	|
+| 1090    	| Pacuta  	| HTHC      	| 20190807        	| 313, 314                           	| 31.5           	| 47           	| 15.7                    	| 37        	| 329     	| 20210614            	|                                           	|
+| 1303    	| Pacuta  	| HTAC      	| 20190726        	| 143, 144                           	| 33.6           	| 48           	| 6.83                    	| 38        	| 311     	| 20210614            	|                                           	|
+| 1755    	| Pacuta  	| ATAC      	| 20190801        	| 251, 252                           	| 19.25          	| 49           	| 24.1                    	| 39        	| 314     	| 20210614            	|                                           	|
+| 1596    	| Pacuta  	| HTAC      	| 20191009        	| 503, 504                           	| 27.8           	| 50           	| 19.1                    	| 40        	| 341     	| 20210614            	|                                           	|
+| 1281    	| Pacuta  	| ATHC      	| 20190924        	| 457, 458                           	| 34.1           	| 51           	| 7.11                    	| 41        	| 334     	| 20210630            	|                                           	|
+| 1571    	| Pacuta  	| HTAC      	| 20191121        	| 581, 582                           	| 61.5           	| 52           	| 13.05                   	| 42        	| 316     	| 20210630            	|                                           	|
+| 2300    	| Pacuta  	| HTHC      	| 20190731        	| 181, 182                           	| 62.1           	| 53           	| 11.5                    	| 43        	| 311     	| 20210630            	|                                           	|
+| 1427    	| Pacuta  	| HTHC      	| 20190807        	| 311, 312                           	| 42.9           	| 54           	| 8.7                     	| 44        	| 280     	| 20210630            	|                                           	|
+| 1205    	| Pacuta  	| ATHC      	| 20190720        	| 45, 46                             	| 34.6           	| 55           	| 11.25                   	| 45        	| 312     	| 20210630            	|                                           	|
+| 2879    	| Pacuta  	| ATHC      	| 20190930        	| 483, 484                           	| 34.1           	| 56           	| 10.65                   	| 46        	| 305     	| 20210630            	|                                           	|
+| 1709    	| Pacuta  	| HTHC      	| 20191121        	| 591, 592                           	| 28.8           	| 57           	| 13.7                    	| 47        	| 331     	| 20210630            	|                                           	|
+| 1777    	| Pacuta  	| ATAC      	| 20190930        	| 481, 482                           	| 55.9           	| 58           	| 8.62                    	| 48        	| 309     	| 20210630            	|                                           	|
+| 2861    	| Pacuta  	| ATHC      	| 20190730        	| 161, 162                           	| 34.4           	| 66           	| 15.15                   	| 10        	| 369     	| 20210713            	|                                           	|
+| 1103    	| Pacuta  	| ATAC      	| 20190718        	| 25, 26                             	| 56.6           	| 65           	| 18.25                   	| 15        	| 312     	| 20210713            	|                                           	|
+| 2306    	| Pacuta  	| ATAC      	| 20190926        	| 465, 466                           	| 73.1           	| 59           	| 20.6                    	| 49        	| 308     	| 20210713            	|                                           	|
+| 1582    	| Pacuta  	| HTAC      	| 20190926        	| 473, 474                           	| 34.7           	| 60           	| 28.2                    	| 50        	| 298     	| 20210713            	|                                           	|
+| 1647    	| Pacuta  	| HTAC      	| 20190926        	| 469, 470                           	| 98.1           	| 61           	| 20                      	| 51        	| 285     	| 20210713            	|                                           	|
+| 1159    	| Pacuta  	| ATAC      	| 20190720        	| 37, 38                             	| 53.1           	| 62           	| 11.5                    	| 52        	| 308     	| 20210713            	|                                           	|
+| 1487    	| Pacuta  	| HTAC      	| 20190807        	| 317, 318                           	| 37.2           	| 63           	| 19.5                    	| 53        	| 312     	| 20210713            	|                                           	|
+| 2668    	| Pacuta  	| ATHC      	| 20191001        	| 489, 490                           	| 28.3           	| 64           	| 20.9                    	| 54        	| 291     	| 20210713            	|                                           	|
+| 1459    	| Pacuta  	| ATHC      	| 20190722        	| 53, 54                             	| 57.2           	| 68           	| 18.6                    	| 25        	| 286     	| 20210714            	|                                           	|
+| 1765    	| Pacuta  	| HTAC      	| 20190725        	| 119, 120                           	| 76             	| 69           	| 26                      	| 26        	| 306     	| 20210714            	|                                           	|
+| 2072    	| Pacuta  	| HTAC      	| 20190814        	| 343, 344                           	| 41.3           	| 70           	| 12.6                    	| 27        	| 307     	| 20210714            	|                                           	|
+| 2185    	| Pacuta  	| HTHC      	| 20191009        	| 499, 500                           	| 26.8           	| 72           	| 5.25                    	| 30        	| 268     	| 20210714            	|                                           	|
+| 2564    	| Pacuta  	| ATHC      	| 20190726        	| 139, 140                           	| 34.1           	| 80           	| 16.45                   	| 31        	| 300     	| 20210715            	|                                           	|
+| 1757    	| Pacuta  	| ATAC      	| 20190731        	| 197, 198                           	| 48             	| 81           	| 21.1                    	| 32        	| 285     	| 20210715            	|                                           	|
+| 1047    	| Pacuta  	| ATAC      	| 20190808        	| 325, 326                           	| 57.5           	| 75           	| 5.36                    	| 55        	| 336     	| 20210715            	|                                           	|
+| 1059    	| Pacuta  	| ATAC      	| 20190826        	| 413, 414                           	| 27             	| 76           	| 20                      	| 56        	| 332     	| 20210715            	|                                           	|
+| 2409    	| Pacuta  	| ATHC      	| 20190808        	| 323, 324                           	| 73.5           	| 77           	| 16.1                    	| 57        	| 334     	| 20210715            	|                                           	|
+| 2087    	| Pacuta  	| HTHC      	| 20190826        	| 415, 416                           	| 50.5           	| 78           	| 4.72                    	| 58        	| 396     	| 20210715            	|                                           	|
+| 1147    	| Pacuta  	| ATHC      	| 20191206        	| 659, 660                           	| 57.5           	| 79           	| 21.1                    	| 59        	| 285     	| 20210715            	|                                           	|
+| 2878    	| Pacuta  	| ATHC      	| 20190807        	| 319, 320                           	| 48.1           	| NA           	| NA                      	| NA        	| NA      	| NA                  	| Already sequenced in meth compare project 	|
+| 2064    	| Pacuta  	| HTAC      	| 20190730        	| 167, 168                           	| 28.9           	|              	| **                      	| 23        	| **      	|                     	| redo                                      	|
+| 1184    	| Pacuta  	| HTHC      	| 20190731        	| 183, 184                           	| 49             	|              	| **                      	| 29        	| **      	|                     	| redo                                      	|
 
-Use the index #s: 4 at the end.
+
+### WGBS processing notes
 
 Pico #19-26 done on 2021-05-24: KAPA hifi mix was used and funky contamination.. see [tapestation](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2021-05-24%20-%2016.49.02.pdf). These were re-done in Pico #27-34.
 
 Pico #27-42 were all low amplification. Re-amps were done on all except for Pico#40. Re-amps failed except for Pico#28.
 
-Soft DNA E2 tubes missing for: 2409 (Ext ID 323, 324), 1047 (Ext ID 325, 326), 1059 (Ext ID 413, 414), and 2087 (Ext ID 415, 416).  
+Soft DNA E2 tubes missing for: 2409 (Ext ID 323, 324), 1047 (Ext ID 325, 326), 1059 (Ext ID 413, 414), and 2087 (Ext ID 415, 416). So we used the E1 tubes for those samples (qubit below):    
 - Soft DNA E1 2409 = 531 ng/uL  
 - Soft DNA E1 1047 = 931 ng/uL  
 - Soft DNA E1 1059 = 208 ng/uL  
 - Soft DNA E1 2087 = 524 ng/uL  
-
-We could use the E1 tubes instead? Those qubit values seem way too high..   
-We have the Hard DNA E2 tubes for all four samples. Those have been used for 16s and ITS2.
 
 ### Tapestation examples
 
@@ -140,6 +143,8 @@ Pico #43-50 tapestation [here](https://github.com/emmastrand/EmmaStrand_Notebook
 Pico #51-58 tapestation [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2021-07-01%20-%2015.25.53.pdf)  
 Pico #59-73 tapestation [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2021-07-14%20-%2015.53.47.pdf)    
 Pico #74,27,30,38,44,49 tapestation [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2021-07-14%20-%2016.17.48.pdf)  
+Pico #75-81, 72 tapestation [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2021-07-15%20-%2015.54.31.pdf)  
+  
 
 ### Final D5000 Tapestation for all samples (59)
 
