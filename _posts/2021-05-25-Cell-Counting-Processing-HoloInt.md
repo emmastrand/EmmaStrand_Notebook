@@ -55,9 +55,22 @@ When I first tested the PD300 slide, the cellometer was still undercounting but 
 
 ## Determining the number of counts to do per sample
 
+Coefficient of variation = standard deviation / mean. For this variable we want CV to be under 10%. So we need to figure out how many measurements we need to do per sample to keep the CV under 10%. For the haemocytometer this is 6 counts per sample. 
+
+## Comparison to the literature
+
+My range of cell count values is: 22,500 - 1,206,222 cells per cm2. Below are values from *P. acuta* in the literature.
+
+| Species  	| Location               	| Reported cell count range                	| Converted to the same units             	| Citation                 	|
+|----------	|------------------------	|---------------------------------	|----------------------------------	|--------------------------	|
+| P. acuta 	| Kusu Island, Singapore 	| 0.1 - 3 million cell per cm2    	| 100,000 - 3,000,000 per cm2      	| Poquita-Du et al 2020    	|
+| P. acuta 	| Kusu Island, Singapore 	| 10 - 100 x 10^6 per cm2         	| 10,000,000 - 100,000,000 per cm2 	| Pang et al 2021          	|
+| P. acuta 	| Hawaii                 	| 6.1 - 7.89 x 10^5 per cm2       	| 789,000 per cm2                  	| Mason et al 2020         	|
+| P. acuta 	| Mo'orea                	| 1.1 - 1.73 x 10^6 per cm2       	| 1,100,000 - 1,730,000 per cm2    	| Becker and Silbiger 2020 	|
+| P. acuta 	| Hawaii                 	| 2.5 x 10^5 - 1.0 x 10^6 per cm2 	| 250,000 - 1,000,000 per cm2      	| Fox et al 2020           	|
 
 
-### Processing Notes
+## Processing Notes
 
 **20210526:**    
 I tried the 5 mm homogenizer for 5 seconds and 20 seconds but it wasn't enough, even with vortexing after. The tube is so small that the homogenizer can't go very fast so I'm not sure it is breaking up the clumps like I need it to.

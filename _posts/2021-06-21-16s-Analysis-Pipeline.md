@@ -17,11 +17,24 @@ Sequenced at URI's GSC. Information found [here](https://web.uri.edu/gsc/).
 
 Platemap, sample IDs, and manifest sheet found [here](https://docs.google.com/spreadsheets/d/1ePRCiBFAKLnapxBVCbzIo4Qzjxv-7t0zPcrdJDk2Oo8/edit?ts=6064f16c#gid=0). Order name = Putnam_NGS_20210520_16sITS2_Wong_Strand. My samples start HPW060 - HPW322.  
 
+## General workflow
+
+1. Log into Andromeda using VPN if not on campus.    
+2. cd to the 16s folder in the putnamlab folder `cd ../../data/putnamlab/estrand/HoloInt_16s`  
+3. Start conda environment `conda activate HoloInt_16s`
+4. Load all modules `sbatch module-load.sh`  
+5. Fastqc on all seqs `sbatch fastqc.sh`  
+6. View multiqc report (generated in #5) in internet browser.    
+7. Run
+
 ## Related resources
 
 Fastq vs fasta format  
 16s
 Shell and linux/unix coding
+
+Resources on creating 'jobs'/scripts:  
+- [Putnam Lab Management: submitting jobs](https://github.com/Putnam-Lab/Lab_Management/blob/master/Bioinformatics_%26_Coding/Bluewaves/Submitting_Job.md)
 
 ## Bluewaves and Andromeda for URI
 
@@ -33,7 +46,7 @@ $ ssh -l username@bluewaves.uri.edu
 $ pw: (your own password)
 
 # Andromeda
-$ ssh -l emma_strand.hac.uri.edu
+$ ssh -l emma_strand ssh3.hac.uri.edu
 ```
 
 ## Initial Upload
@@ -59,71 +72,15 @@ HPW060_S44_L001_R1_001.fastq.gz   HPW147_S174_L001_R2_001.fastq.gz  HPW236_S233_
 HPW060_S44_L001_R2_001.fastq.gz   HPW148_S186_L001_R1_001.fastq.gz  HPW236_S233_L001_R2_001.fastq.gz
 ```
 
-**There was no checksum file from URI GSC but I created one once Hollie transfered them to my folder on andromeda to reference back to if needed.**
-
-#### Create a new checksum file (md5sum)
-
-```
-# Create file (takes ~6-7 min to complete)
-$ md5sum *.fastq.gz > 16s-checksum2.md5  
-
-# Read the created file above
-$ nano 16s-checksum2.md5
-
-Output (first six lines):
-210b589620ef946cd5c51023b0f90d8d  HPW060_S44_L001_R1_001.fastq.gz
-227032c7b7f7fa8c407cb0509a1fcd6a  HPW060_S44_L001_R2_001.fastq.gz
-2f8d8892b7be06cf047a1085dd8bbbf1  HPW061_S56_L001_R1_001.fastq.gz
-b603f7ff519130555527bec4c8f8e2c6  HPW061_S56_L001_R2_001.fastq.gz
-32c549eb8422ac2ba7affe3dedfb4d3b  HPW062_S68_L001_R1_001.fastq.gz
-4caef9d9f684e8345060fdc5896159c8  HPW062_S68_L001_R2_001.fastq.gz
-
-# Check that the individual files went into the new md5 file OK
-$ md5sum -c 16s-checksum2.md5
-
-Output: all files = OK
-```
-
-## OTU vs. ASV and program choices
-
-Nicola did:  
-1.) Retain only PE reads that match amplicon primer.  
-2.) Remove reads containing Illumina sequencing adapters.  
-3.) Cut out first 4 'de-generate' basepairs.  
-4.) Cut out reads that don't start with the 16s primer  
-5.) Removes primer  
-6.) DADA2 pipeline  
-
-Seems like there a couple programs to use choose from..
-
-DADA2: [here](https://benjjneb.github.io/dada2/tutorial.html).  
-Qiime2: [here](https://docs.qiime2.org/2021.4/about/).  
-
-Apparently DADA2 is a newer version for bacteria (good to use if that's what you're working on) and Qiime2 is established/tried & true methods. Qiime2 might be safer option?
-
-DADA2 produces an amplicon sequence variant (ASV) table which is a higher resolution analogue of the traditional OTU table and records the number of times each exact amplicon sequence variant was observed in each sample.
-
-Qiime2 produces OTUs ("tried and true")
-
-OTU vs. ASV information [here](https://www.zymoresearch.com/blogs/blog/microbiome-informatics-otu-vs-asv).
-
 ## CONDA Environment
 
 Download [miniconda](https://docs.conda.io/en/latest/miniconda.html).
 
 Resources on using conda environments:  
 
-
-
-#### Create a conda environment and download all programs that you will need
-
-Ask Kevin Bryan to download any programs you need and specify if you will be working on Andromeda or bluewaves.  
+### Create a conda environment
 
 ```
-# Must load any modules available to use with the module load command
-$ module load Miniconda3/4.6.14 # Bluewaves
-$ module load Miniconda3/4.9.2 # Andromeda
-
 # Creating an environment to work in
 $ conda create -n HoloInt_16s
   Proceed ([y]/n)?
@@ -131,49 +88,6 @@ $ y
 
 # Activate the created environment
 $ conda activate HoloInt_16s
-```
-
-Download all programs. These will be different on bluewaves and andromeda.
-
-```
-# The `module avail` command lists all previously downloaded modules that you can use on bluewaves/andromeda
-
-# Bluewaves load
-$ module load FastQC/0.11.8-Java-1.8
-$ module load MultiQC/1.7-foss-2018b-Python-3.6.6
-
-# Andromeda load
-$ module load FastQC/0.11.9-Java-11
-$ module load MultiQC/1.9-intel-2020a-Python-3.8.2
-$ module load cutadapt/2.10-GCCcore-9.3.0-Python-3.8.2
-$ module load QIIME2/2021.4
-
-# List the currently loaded programs
-$ module list
-
-Currently Loaded Modulefiles:
-  1) Miniconda3/4.6.14                              22) Python/3.8.2-GCCcore-9.3.0
-  2) Java/1.8.0_291(1.8)                            23) pybind11/2.4.3-GCCcore-9.3.0-Python-3.8.2
-  3) FastQC/0.11.8-Java-1.8                         24) SciPy-bundle/2020.03-intel-2020a-Python-3.8.2
-  4) GCCcore/9.3.0                                  25) libpng/.1.6.37-GCCcore-9.3.0
-  5) zlib/.1.2.11-GCCcore-9.3.0                     26) freetype/.2.10.1-GCCcore-9.3.0
-  6) binutils/.2.34-GCCcore-9.3.0                   27) expat/2.2.9-GCCcore-9.3.0
-  7) iccifort/2020.1.217                            28) util-linux/2.35-GCCcore-9.3.0
-  8) numactl/2.0.13-GCCcore-9.3.0                   29) fontconfig/2.13.92-GCCcore-9.3.0
-  9) UCX/1.8.0-GCCcore-9.3.0                        30) xorg-macros/1.19.2-GCCcore-9.3.0
- 10) impi/2019.7.217-iccifort-2020.1.217            31) libpciaccess/0.16-GCCcore-9.3.0
- 11) iimpi/2020a                                    32) X11/20200222-GCCcore-9.3.0
- 12) imkl/2020.1.217-iimpi-2020a                    33) Tk/.8.6.10-GCCcore-9.3.0
- 13) intel/2020a                                    34) Tkinter/3.8.2-GCCcore-9.3.0
- 14) bzip2/.1.0.8-GCCcore-9.3.0                     35) matplotlib/3.2.1-intel-2020a-Python-3.8.2
- 15) ncurses/.6.2-GCCcore-9.3.0                     36) libyaml/0.2.2-GCCcore-9.3.0
- 16) libreadline/.8.0-GCCcore-9.3.0                 37) PyYAML/5.3-GCCcore-9.3.0
- 17) Tcl/.8.6.10-GCCcore-9.3.0                      38) networkx/2.4-intel-2020a-Python-3.8.2
- 18) SQLite/.3.31.1-GCCcore-9.3.0                   39) MultiQC/1.9-intel-2020a-Python-3.8.2
- 19) XZ/.5.2.5-GCCcore-9.3.0                        40) cutadapt/2.10-GCCcore-9.3.0-Python-3.8.2
- 20) GMP/.6.2.0-GCCcore-9.3.0                       41) QIIME2/2021.4
- 21) libffi/3.3-GCCcore-9.3.0
-
 ```
 
 When finished working, deactivate your conda environment.
@@ -188,43 +102,24 @@ Every time you start working on the project again, you'll need to reactivate the
 (HoloInt_16s) [emma_strand@]/data/putnamlab/estrand/HoloInt_16s% $
 ```
 
-#### Creating a script to load the above programs
+### Download all programs that you will need
 
-Make a directory for that script
+Ask Kevin Bryan to download any programs you need and specify if you will be working on Andromeda or bluewaves. Andromeda and bluewaves have different versions of programs.
+
+The command `module avail` lists all previously downloaded modules that you can use on whichever server you are logged into.
+
+The command `module list` will list the programs currently loaded and ready to use. You must first ask Kevin Bryan to download that program onto the server, then when ready to use you must load that module into your conda environment to actually use it.
+
+Make note of the ones you will use and add to each module to that function's script.
+
+The ones we used:
+
 ```
-$ mkdir scripts
-$ cd scripts
-```
-
-I kept getting kicked out of Andromeda because of wifi errors and didn't want to load in each module individually repeatedly.
-
-Resources on creating 'jobs':  
-- [Putnam Lab Management: submitting jobs](https://github.com/Putnam-Lab/Lab_Management/blob/master/Bioinformatics_%26_Coding/Bluewaves/Submitting_Job.md)
-
-```
-$ nano module-load.sh
-
-#!/bin/bash
-#SBATCH -t 24:00:00
-#SBATCH --nodes=1 --ntasks-per-node=1
-#SBATCH --export=NONE
-#SBATCH --mem=100GB
-#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
-#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
-#SBATCH --account=putnamlab
-#SBATCH -D /data/putnamlab/estrand/HoloInt_16s/                    
-#SBATCH --error="script_error" #if your job fails, the error report will be put in this file
-#SBATCH --output="output_script" #once your job is completed, any final job report comments will be put in this file
-
-source /usr/share/Modules/init/sh # this is used so that them function can be found in zsh and bash
-
 module load Miniconda3/4.9.2
 module load FastQC/0.11.9-Java-11
 module load MultiQC/1.9-intel-2020a-Python-3.8.2
 module load cutadapt/2.10-GCCcore-9.3.0-Python-3.8.2
 module load QIIME2/2021.4
-
-$ sbatch module-load.sh
 ```
 
 ## FASTQC: Quality control of raw read files.
@@ -233,6 +128,8 @@ Fastqc resources:
 - https://github.com/s-andrews/FastQC  
 - https://raw.githubusercontent.com/s-andrews/FastQC/master/README.txt  
 - How to interpret fastqc results [link](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
+
+Create the report from all of the fastqc files using MultiQC.
 
 #### Create a new directory for fastqc results
 
@@ -264,10 +161,19 @@ Write script command: This will be on the putnamlab node and updates sent to my 
 #SBATCH --error="script_error" #if your job fails, the error report will be put in this file
 #SBATCH --output="output_script" #once your job is completed, any final job report comments will be put in this file
 
+source /usr/share/Modules/init/sh # load the module function
+
+module load FastQC/0.11.9-Java-11
+module load MultiQC/1.9-intel-2020a-Python-3.8.2
+
 for file in /data/putnamlab/estrand/HoloInt_16s/raw-data/*fastq.gz
 do
 fastqc $file --outdir /data/putnamlab/estrand/HoloInt_16s/fastqc_results         
 done
+
+multiqc fastqc_results  
+
+mv multiqc_report.html 16S_raw_qc_multiqc_report_ES.html #renames file
 ```
 
 #### Run fastqc
@@ -275,11 +181,24 @@ done
 Run script outlined. When the script either fails or finishes, the email included in the slurm sh code will sent a notification.
 
 ```
+$ cd [to the HoloInt_16s folder]
 $ sbatch /data/putnamlab/estrand/HoloInt_16s/scripts/fastqc.sh
 
 # Check the wait list for running scripts
 $ squeue
 ```
+
+Double check all files were processed. Output should be 251 x 2 (F and R reads) x 2 (html and zip file) = 1004.
+
+```
+$ cd fastqc_results
+$ ls -1 | wc -l
+
+output:
+1004
+```
+
+#### Troubleshooting during module load and fastqc steps
 
 How to check where an error occured in your script.
 
@@ -287,50 +206,200 @@ How to check where an error occured in your script.
 $ nano script_error
 ```
 
-In the command line. I ran this while my script was not working:
-```
-$ for file in /data/putnamlab/estrand/HoloInt_16s/raw-data/*fastq.gz
-for> do
-for> fastqc $file --outdir /data/putnamlab/estrand/HoloInt_16s/fastqc_results
-for> done
-
-# Run time = ~45 min
-```
-
-Double check all files were processed. Output should be 251 x 2 (F and R reads) x 2 (html and zip file)? Come back to this.
-
-```
-$ cd fastqc_results
-$ ls -1 | wc -l
-
-output:
-1000
-```
-
-#### Troubleshooting
-
 The first time I ran the .sh scripts for fastqc and module loading I got an error message that the function 'fastqc' and 'module' wasn't recognized. Once I added this line `source /usr/share/Modules/init/sh` to the slurm script, then the scripts worked.
 
+I tried to add `#!/usr/bin/zsh` to the beginning of my script for my slurm jobs to run. Instead of `#!/bin/bash`. But this didn't work. I canged it back to bash.
+
+I need to have the module load within each script not loading them all before and include the source module line above in every script.
+
 ## Multiqc report: visualization of fastqc
-
-Create the report from all of the fastqc files.
-
-```
-$ multiqc /data/estrand/HoloInt_16s/fastqc_results/
-```
 
 Copy the report to your home desktop so that you are able to open this report. Run this outside of Andromeda and use the bluewaves login.
 
 ```
-$ scp emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/HoloInt_16s/fastqc_results/multiqc_report.html /Users/emmastrand/MyProjects/Acclim_Dynamics/
+$ scp emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/HoloInt_16s/16S_raw_qc_multiqc_report_ES.html /Users/emmastrand/MyProjects/Acclim_Dynamics/16S_seq/ES-run
 ```
 
-#### Results
+#### Raw QC Results
 
-Link to the qc report in our github repo: [Acclim Dynamics 16s multiqc](https://github.com/hputnam/Acclim_Dynamics/blob/master/multiqc_report.html).
+Link to the qc report in our github repo: [Acclim Dynamics 16s multiqc](https://github.com/hputnam/Acclim_Dynamics/blob/master/16S_seq/ES-run/16S_raw_qc_multiqc_report_ES.html).
+
+How to interpret MultiQC Reports [video](https://www.youtube.com/watch?v=qPbIlO_KWN0).
+
+General notes:  
+- Sequence Counts: HPW270 has very little reads  
+- Good mean quality scores start around 40-50 bp and drop around 175 bp (important for quality trimming later)    
+- Per sequence GC content has three main peaks instead of a normal distribution  
+- Adapter content 210 - 290. These need to be cut out
+
+Per sequence GC content:  
+- High GC can give you G-runs in primers or products. 3 or more Gs in a run may result in intermolecular quadruplexes forming in the PCR mix before or during amplification ([link](https://www.researchgate.net/post/How_does_a_difference_in_GC_content_in_primers_affect_PCR))  
+- Seems to be an artifact of PCR
+
+# QIIME2
+
+Program webpage [here](https://docs.qiime2.org/2021.4/getting-started/), beginners guide [here](https://docs.qiime2.org/2021.4/tutorials/overview/).  
+**Read the above links thoroughly before continuing on.**
+
+I wrote one script to complete the following steps in QIIME2:  
+1. Import metadata files  
+2. Import sample data  
+3. Quality control with DADA2  
+
+## 1. Import metadata files
+
+#### Create metadata directory
+
+```
+$ cd [to the general HoloInt_16s folder]
+$ mkdir metadata
+```
+#### Creating a list of all raw files
+
+In a separate terminal window, not logged into Andromeda, secure copy these files.
+
+```
+# In andromeda
+$ find raw-data -type f -print | sed 's_/_,_g' > ~/filelist.csv
+$ mv ~/filelist.csv /data/putnamlab/estrand/HoloInt_16s
+
+# Outside of andromeda
+$ scp emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/HoloInt_16s/filelist.csv /Users/emmastrand/MyProjects/Acclim_Dynamics/16S_seq/
+```
+
+### Start with three metadata files
+
+#### I. Sample manifest file
+
+QIIME2 instructions on a sample manifest file [here](https://docs.qiime2.org/2021.4/tutorials/importing/#importing-seqs) under 'Fastq manifest formats'.
+
+Created in the `16s.Rmd` script. Secure copy back this file into Andromeda.
+```
+$ scp /Users/emmastrand/MyProjects/Acclim_Dynamics/16S_seq/ES-run/HoloInt_sample-manifest-ES.csv emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/HoloInt_16s/metadata
+```
+
+## 2. Sample data input
+
+General sample Input information from QIIME2: [here](https://docs.qiime2.org/2021.4/tutorials/importing/#id34). We chose the below for our samples:  
+- Sequence Data with Sequence Quality Information: because we have fastq files, not fasta files.
+- FASTQ data in the Casava 1.8 paired-end demultiplexed format: because our samples are already demultiplexed and we have 1 file per F and R.  
+- Script format came from [here](https://docs.qiime2.org/2021.4/tutorials/importing/#casava-1-8-paired-end-demultiplexed-fastq).  
+- PairedEndFastqManifestPhred33 option requires a forward and reverse read. This assumes that the PHRED (more info on that [here](http://scikit-bio.org/docs/latest/generated/skbio.io.format.fastq.html#quality-score-variants)) offset for positional quality scores is 33.
+
+```
+qiime tools import \
+  --type 'SampleData[PairedEndSequencesWithQuality]' \
+  --input-path $MANIFEST \
+  --input-format PairedEndFastqManifestPhred33 \
+  --output-path HoloInt_16S-paired-end-sequences.qza
+```
+
+### Denoising with DADA2
+
+Description from QIIME2 documentation:  
+- We *denoise* our sequences to remove and/or correct noisy reads.  
 
 
+### Clustering
+
+Description from QIIME2 documentation:  
+- We *dereplicate* our sequences to reduce repetition and file size/memory requirements in downstream steps (don’t worry! we keep count of each replicate).  
+- We *cluster* sequences to collapse similar sequences (e.g., those that are ≥ 97% similar to each other) into single replicate sequences. This process, also known as OTU picking, was once a common procedure, used to simultaneously dereplicate but also perform a sort of quick-and-dirty denoising procedure (to capture stochastic sequencing and PCR errors, which should be rare and similar to more abundant centroid sequences). Use denoising methods instead if you can. Times have changed. Welcome to the future.
+
+## Script used to run QIIME2
+
+Create script
+
+```
+$ cd [into scripts folder]  
+$ nano qiime2.sh
+```
+
+This script imports and quality controls data using DADA2
+
+```
+#!/bin/bash
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=300GB
+#SBATCH --account=putnamlab
+#SBATCH -D /data/putnamlab/hputnam/HoloInt_16S
+
+source /usr/share/Modules/init/sh # load the module function
+module load QIIME2/2021.4
+
+echo "QIIME2 bash script for 16S samples started running at: "; date
+
+#### METADATA FILES ####
+# File path
+cd /data/putnamlab/hputnam/HoloInt_16S
+
+# Metadata path
+
+
+
+# Sample manifest path
+
+
+#########################
+
+
+```
+
+
+# UNUSED SCRIPT (NOTES)
+
+## OTU vs. ASV and program choices
+
+Nicola did:  
+1.) Retain only PE reads that match amplicon primer.  
+2.) Remove reads containing Illumina sequencing adapters.  
+3.) Cut out first 4 'de-generate' basepairs.  
+4.) Cut out reads that don't start with the 16s primer  
+5.) Removes primer  
+6.) DADA2 pipeline  
+
+Seems like there a couple programs to use choose from..
+
+DADA2: [here](https://benjjneb.github.io/dada2/tutorial.html).  
+Qiime2: [here](https://docs.qiime2.org/2021.4/about/).  
+
+Apparently DADA2 is a newer version for bacteria (good to use if that's what you're working on) and Qiime2 is established/tried & true methods. Qiime2 might be safer option?
+
+DADA2 produces an amplicon sequence variant (ASV) table which is a higher resolution analogue of the traditional OTU table and records the number of times each exact amplicon sequence variant was observed in each sample.
+
+Qiime2 produces OTUs ("tried and true")
+
+OTU vs. ASV information [here](https://www.zymoresearch.com/blogs/blog/microbiome-informatics-otu-vs-asv).
+
+**There was no checksum file from URI GSC but I created one once Hollie transfered them to my folder on andromeda to reference back to if needed.**
+
+#### Create a new checksum file (md5sum)
+
+```
+# Create file (takes ~6-7 min to complete)
+$ md5sum *.fastq.gz > 16s-checksum2.md5  
+
+# Read the created file above
+$ nano 16s-checksum2.md5
+
+Output (first six lines):
+210b589620ef946cd5c51023b0f90d8d  HPW060_S44_L001_R1_001.fastq.gz
+227032c7b7f7fa8c407cb0509a1fcd6a  HPW060_S44_L001_R2_001.fastq.gz
+2f8d8892b7be06cf047a1085dd8bbbf1  HPW061_S56_L001_R1_001.fastq.gz
+b603f7ff519130555527bec4c8f8e2c6  HPW061_S56_L001_R2_001.fastq.gz
+32c549eb8422ac2ba7affe3dedfb4d3b  HPW062_S68_L001_R1_001.fastq.gz
+4caef9d9f684e8345060fdc5896159c8  HPW062_S68_L001_R2_001.fastq.gz
+
+# Check that the individual files went into the new md5 file OK
+$ md5sum -c 16s-checksum2.md5
+
+Output: all files = OK
+```
 ## CUTADAPT
+
+**We trimmed based on primer length within the Qiime2 program.**
 
 User guide for cutadapt [here](https://cutadapt.readthedocs.io/en/stable/guide.html). Basic function:
 
@@ -390,8 +459,40 @@ done
 
 ```
 
-## FASTQC Post-trimming
+### Creating a script to load the downloaded programs
 
-## QIIME2
+Make a directory for that script
+```
+$ mkdir scripts
+$ cd scripts
+```
+Create the file and input the commands you need.
 
-Program webpage [here](https://docs.qiime2.org/2021.4/getting-started/), beginners guide [here](https://docs.qiime2.org/2021.4/tutorials/overview/).
+```
+$ nano module-load.sh #creates the file
+
+#!/bin/bash
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab
+#SBATCH -D /data/putnamlab/estrand/HoloInt_16s/                    
+#SBATCH --error="script_error" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # this is used so that them function can be found in zsh and bash
+
+module load Miniconda3/4.9.2
+module load FastQC/0.11.9-Java-11
+module load MultiQC/1.9-intel-2020a-Python-3.8.2
+module load cutadapt/2.10-GCCcore-9.3.0-Python-3.8.2
+module load QIIME2/2021.4
+```
+
+Run the script:
+```
+$ sbatch module-load.sh
+```
