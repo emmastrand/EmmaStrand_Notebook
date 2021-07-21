@@ -25,7 +25,9 @@ Platemap, sample IDs, and manifest sheet found [here](https://docs.google.com/sp
 4. Load all modules `sbatch module-load.sh`  
 5. Fastqc on all seqs `sbatch fastqc.sh`  
 6. View multiqc report (generated in #5) in internet browser.    
-7. Run
+7. Create metadata files.   
+8. Decide on parameters for all sections of QIIME2.  
+9. Run qiime2.
 
 ## Related resources
 
@@ -273,7 +275,7 @@ $ scp emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/HoloInt_16s/filelist
 
 QIIME2 instructions on a sample manifest file [here](https://docs.qiime2.org/2021.4/tutorials/importing/#importing-seqs) under 'Fastq manifest formats'.
 
-Created in the `16s.Rmd` script. Secure copy back this file into Andromeda.
+Created in the `16s.Rmd` script. Secure copy this file outside of andromeda.
 ```
 $ scp /Users/emmastrand/MyProjects/Acclim_Dynamics/16S_seq/ES-run/HoloInt_sample-manifest-ES.csv emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/HoloInt_16s/metadata
 ```
@@ -282,9 +284,21 @@ Example of a sample manifest:
 
 ![sample-manifest](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16S-workflow/sample-manifest.png?raw=true)
 
-#### II.
+#### II. Sample metadata file
 
+The metadata will have all the experimental data you need to make comparisons. The first row will be the headers and the 2nd row will be the type of data each column is.
 
+Metadata formatting requirements [here](https://docs.qiime2.org/2021.4/tutorials/metadata/).
+
+Example of metadata:
+
+![meta](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16S-workflow/sample-metadata.png?raw=true)
+
+Secure copy this file outside of andromeda.
+
+```
+$ scp /Users/emmastrand/MyProjects/Acclim_Dynamics/16S_seq/HoloInt_Metadata.txt emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/HoloInt_16s/metadata
+```
 
 ## 2. Sample data input
 
@@ -299,13 +313,35 @@ qiime tools import \
   --type 'SampleData[PairedEndSequencesWithQuality]' \
   --input-path $MANIFEST \
   --input-format PairedEndFastqManifestPhred33 \
-  --output-path HoloInt_16S-paired-end-sequences.qza
+  --output-path processed_data/HoloInt_16S-paired-end-sequences.qza
 ```
 
-### Denoising with DADA2
+## 3. Denoising with DADA2
 
 Description from QIIME2 documentation:  
 - We *denoise* our sequences to remove and/or correct noisy reads.  
+- To put it simply, these methods filter out noisy sequences, correct errors in marginal sequences (in the case of DADA2), remove chimeric sequences, remove singletons, join denoised paired-end reads (in the case of DADA2), and then dereplicate those sequences.  
+
+Full DADA2 options from qiime2 on this page: [here](https://docs.qiime2.org/2021.4/plugins/available/dada2/denoise-paired/)
+
+We adjust our parameters based on read length and 16S primer length:  
+- `--i-demultiplexed-seqs` followed by the sequences artifact to be denoised  
+- `--p-trunc-len-f INTEGER`: position to be truncated due to decreased quality. This truncates the 3' end of sequences which are the bases that were sequenced in the last cycles.  
+- `--p-trunc-len-r INTEGER`: same as above but on the reverse  
+-  
+
+```
+# QC using dada2
+# Adjust the params based on read length and 16S primer length
+qiime dada2 denoise-paired --verbose --i-demultiplexed-seqs HoloInt_16S-paired-end-sequences.qza \
+  --p-trunc-len-r 150 --p-trunc-len-f 260 \
+  --p-trim-left-r 20 --p-trim-left-f 20 \
+  --o-table table.qza \
+  --o-representative-sequences rep-seqs.qza \
+  --o-denoising-stats denoising-stats.qza \
+  --p-n-threads 20
+```
+
 
 
 ### Clustering
@@ -316,11 +352,11 @@ Description from QIIME2 documentation:
 
 ## Script used to run QIIME2
 
-Create script
+Create script.
 
 ```
 $ cd [into scripts folder]  
-$ nano qiime2.sh
+$ nano qiime2_script.sh
 ```
 
 This script imports and quality controls data using DADA2
@@ -350,6 +386,18 @@ METADATA="metadata/HoloInt_Metadata.txt"
 MANIFEST="metadata/HoloInt_sample-manifest-ES.csv"
 
 #########################
+
+#### IMPORT DATA FILES  
+
+qiime tools import \
+  --type 'SampleData[PairedEndSequencesWithQuality]' \
+  --input-path $MANIFEST \
+  --input-format PairedEndFastqManifestPhred33 \
+  --output-path processed_data/HoloInt_16S-paired-end-sequences1.qza
+
+#### DENOISING WITH DADA2
+
+
 
 
 ```
