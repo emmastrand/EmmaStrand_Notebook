@@ -29,20 +29,35 @@ cellometer_sym_counts <- cellometer_sym_counts %>%
 
 ![cell](https://github.com/hputnam/Acclim_Dynamics/blob/master/Output/Cellometer-testing.png?raw=true)
 
+Dates:  
+- 20210526: SD100 slides and pre-homogenization step added  
+- 20210630: SD100 slides and post-homogenization step added  
+- 20210719: SD300 and post-homogenization step added
+
 ## Montipora capitata
 
-We originally tried the SD100 slides, but the tissue homogenate was too clumpy and was getting stuck at the entry of the slide.
+We originally tried the SD100 slides, but the tissue homogenate was too clumpy and was getting stuck at the entry of the SD100 slide.
 
-![clump]()
+![clump](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/cellometer/mcap-clump.jpg?raw=true)
 
 I then thawed the original 50 mL falcon tube of tissue homogenate and homogenized again for 30 seconds (see [Putnam Lab Airbrushing protocol](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2019-10-22-Airbrushing-Protocol.md) for details on the homogenization). I did this for 11 samples and then counted those on the haemocytometer. 5/11 samples were still clumpy after 30 seconds so I think the homogenization step should be 45 seconds.
+
+This still caused the clumping effect at the beginning of the slide and the cellometer was still undercounting the samples.
+
+Nexcelom sent us 5 PD300 slides to test out. These are deeper at 300 microns compared to SD100 slides are 89 microns. The SD100 slides take 20 uL volume input and PD300 slides take 60 uL volume input.
+
+When I first tested the PD300 slide, the cellometer was still undercounting but I could see more symbionts in the image than the output value. In the settings for F1, I changed the maximum cell diameter size from 15 um to 100 um. This worked! The cellometer was counting all cells and this value was much closer to the haemocytometer count.
+
 
 ## Pocillopora acuta
 
 *P. acuta* samples were not clumpy at all and fit well in the SD100 slides. I would suggest moving forward with the original aliquots of *P. acuta* and the SD100 slides.
 
+## Determining the number of counts to do per sample
 
-#### Processing Notes
+
+
+### Processing Notes
 
 **20210526:**    
 I tried the 5 mm homogenizer for 5 seconds and 20 seconds but it wasn't enough, even with vortexing after. The tube is so small that the homogenizer can't go very fast so I'm not sure it is breaking up the clumps like I need it to.
