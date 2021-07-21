@@ -242,7 +242,7 @@ Program webpage [here](https://docs.qiime2.org/2021.4/getting-started/), beginne
 **Read the above links thoroughly before continuing on.**
 
 I wrote one script to complete the following steps in QIIME2:  
-1. Import metadata files  
+1. Import metadata files (2)  
 2. Import sample data  
 3. Quality control with DADA2  
 
@@ -267,7 +267,7 @@ $ mv ~/filelist.csv /data/putnamlab/estrand/HoloInt_16s
 $ scp emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/HoloInt_16s/filelist.csv /Users/emmastrand/MyProjects/Acclim_Dynamics/16S_seq/
 ```
 
-### Start with three metadata files
+### Start with two metadata files
 
 #### I. Sample manifest file
 
@@ -277,6 +277,14 @@ Created in the `16s.Rmd` script. Secure copy back this file into Andromeda.
 ```
 $ scp /Users/emmastrand/MyProjects/Acclim_Dynamics/16S_seq/ES-run/HoloInt_sample-manifest-ES.csv emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/HoloInt_16s/metadata
 ```
+
+Example of a sample manifest:
+
+![sample-manifest](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16S-workflow/sample-manifest.png?raw=true)
+
+#### II.
+
+
 
 ## 2. Sample data input
 
@@ -336,11 +344,10 @@ echo "QIIME2 bash script for 16S samples started running at: "; date
 cd /data/putnamlab/hputnam/HoloInt_16S
 
 # Metadata path
-
-
+METADATA="metadata/HoloInt_Metadata.txt"
 
 # Sample manifest path
-
+MANIFEST="metadata/HoloInt_sample-manifest-ES.csv"
 
 #########################
 
