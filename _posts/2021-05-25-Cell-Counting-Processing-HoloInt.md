@@ -29,12 +29,51 @@ cellometer_sym_counts <- cellometer_sym_counts %>%
 
 ![cell](https://github.com/hputnam/Acclim_Dynamics/blob/master/Output/Cellometer-testing.png?raw=true)
 
-Dates:  
-- 20210526: SD100 slides and pre-homogenization step added  
-- 20210630: SD100 slides and post-homogenization step added  
-- 20210719: SD300 and post-homogenization step added
+R2 values are from the post-homogenizing samples.
 
-## Montipora capitata
+## Recommended workflow
+
+*P.acuta*: Homogenize for 30 seconds and use the SD100 slide.  
+*M. capitata*: Homogenize for 1 minute and use the SD100 slide.
+
+2 measurements per sample (1 slide per sample).
+
+## Determining the number of counts to do per sample
+
+Coefficient of variation = standard deviation / mean. For this variable we want CV to be under 10%. So we need to figure out how many measurements we need to do per sample to keep the CV under 10%. For the haemocytometer this is 6 counts per sample.
+
+Below are the CV values for the post-homogenization samples (Mcap and Pacuta that were thawed and additionally homogenized). Based on this data, I think we only need 2 counts per sample.
+
+| Species 	| Plug ID 	| CV with 2  	| CV with 3 	| Slide 	|
+|---------	|---------	|------------	|-----------	|-------	|
+| Mcap    	| 1353    	| 5.58%      	| 6.35%     	| PD300 	|
+| Mcap    	| 1226    	| 0.86%      	| 0.83%     	| PD300 	|
+| Mcap    	| 1822    	| 2.23%      	| 5.30%     	| PD100 	|
+| Pacuta  	| 1256    	| 6.96%      	| 5.64%     	| PD100 	|
+| Pacuta  	| 1432    	| 5.01%      	| 4.88%     	| PD100 	|
+| Pacuta  	| 1045    	| 0.77%      	| 4.93%     	| PD100 	|
+| Pacuta  	| 1098    	| 4.29%      	| 8.28%     	| PD100 	|
+
+## Comparison to the literature
+
+My range of cell count values is: 22,500 - 1,206,222 cells per cm2. Below are values from *P. acuta* in the literature
+
+My range of cell count values: 500,000 - 2,500,000 cells per cm2. Below are values from *M. capitata* in the literature.
+
+| Species     	| Location               	| Reported cell count range       	| Converted to the same units      	| Citation                  	|
+|-------------	|------------------------	|---------------------------------	|----------------------------------	|---------------------------	|
+| P. acuta    	| Kusu Island, Singapore 	| 0.1 - 3 million cell per cm2    	| 100,000 - 3,000,000 per cm2      	| Poquita-Du et al 2020     	|
+| P. acuta    	| Kusu Island, Singapore 	| 10 - 100 x 10^6 per cm2         	| 10,000,000 - 100,000,000 per cm2 	| Pang et al 2021           	|
+| P. acuta    	| Hawaii                 	| 6.1 - 7.89 x 10^5 per cm2       	| 789,000 per cm2                  	| Mason et al 2020          	|
+| P. acuta    	| Mo'orea                	| 1.1 - 1.73 x 10^6 per cm2       	| 1,100,000 - 1,730,000 per cm2    	| Becker and Silbiger 2020  	|
+| P. acuta    	| Hawaii                 	| 2.5 x 10^5 - 1.0 x 10^6 per cm2 	| 250,000 - 1,000,000 per cm2      	| Fox et al 2020            	|
+| M. capitata 	| Hawaii                 	| 3 - 15 x 10^3 per cm2           	| 3,000 - 15,000 per cm2           	| Santos et al 2009         	|
+| M. capitata 	| Hawaii                 	| 1 - 4 x 10^8 per gdw            	|                                  	| Padilla-Gamino et al 2013 	|
+| M. capitata 	| Hawaii                 	| 500,000 - 2,500,000 per cm2     	| 500,000 - 2,500,000 per cm2      	| Ricci et al 2019          	|
+
+## Troubleshooting
+
+### Montipora capitata troubleshooting
 
 We originally tried the SD100 slides, but the tissue homogenate was too clumpy and was getting stuck at the entry of the SD100 slide.
 
@@ -48,29 +87,14 @@ Nexcelom sent us 5 PD300 slides to test out. These are deeper at 300 microns com
 
 When I first tested the PD300 slide, the cellometer was still undercounting but I could see more symbionts in the image than the output value. In the settings for F1, I changed the maximum cell diameter size from 15 um to 100 um. This worked! The cellometer was counting all cells and this value was much closer to the haemocytometer count.
 
-
-## Pocillopora acuta
-
-*P. acuta* samples were not clumpy at all and fit well in the SD100 slides. I would suggest moving forward with the original aliquots of *P. acuta* and the SD100 slides.
-
-## Determining the number of counts to do per sample
-
-Coefficient of variation = standard deviation / mean. For this variable we want CV to be under 10%. So we need to figure out how many measurements we need to do per sample to keep the CV under 10%. For the haemocytometer this is 6 counts per sample. 
-
-## Comparison to the literature
-
-My range of cell count values is: 22,500 - 1,206,222 cells per cm2. Below are values from *P. acuta* in the literature.
-
-| Species  	| Location               	| Reported cell count range                	| Converted to the same units             	| Citation                 	|
-|----------	|------------------------	|---------------------------------	|----------------------------------	|--------------------------	|
-| P. acuta 	| Kusu Island, Singapore 	| 0.1 - 3 million cell per cm2    	| 100,000 - 3,000,000 per cm2      	| Poquita-Du et al 2020    	|
-| P. acuta 	| Kusu Island, Singapore 	| 10 - 100 x 10^6 per cm2         	| 10,000,000 - 100,000,000 per cm2 	| Pang et al 2021          	|
-| P. acuta 	| Hawaii                 	| 6.1 - 7.89 x 10^5 per cm2       	| 789,000 per cm2                  	| Mason et al 2020         	|
-| P. acuta 	| Mo'orea                	| 1.1 - 1.73 x 10^6 per cm2       	| 1,100,000 - 1,730,000 per cm2    	| Becker and Silbiger 2020 	|
-| P. acuta 	| Hawaii                 	| 2.5 x 10^5 - 1.0 x 10^6 per cm2 	| 250,000 - 1,000,000 per cm2      	| Fox et al 2020           	|
+I then tried homogenizing the same M. capitata samples for an additional 30 seconds and this worked on the SD100 slide! As long as samples are thoroughly homogenized, then they fit in the SD100 slide and are extremely accurate to the haemocytometer values.
 
 
-## Processing Notes
+### Pocillopora acuta troubleshooting
+
+*P. acuta* samples were not clumpy at all and fit well in the SD100 slides. I would suggest moving forward with the original aliquots of *P. acuta* and the SD100 slides and homogenizing these for 30 seconds to reduce the variation seen between slides.
+
+### Troubleshooting Notes
 
 **20210526:**    
 I tried the 5 mm homogenizer for 5 seconds and 20 seconds but it wasn't enough, even with vortexing after. The tube is so small that the homogenizer can't go very fast so I'm not sure it is breaking up the clumps like I need it to.
