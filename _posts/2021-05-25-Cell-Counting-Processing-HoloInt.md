@@ -54,6 +54,8 @@ Below are the CV values for the post-homogenization samples (Mcap and Pacuta tha
 | Pacuta  	| 1045    	| 0.77%      	| 4.93%     	| PD100 	|
 | Pacuta  	| 1098    	| 4.29%      	| 8.28%     	| PD100 	|
 
+![c1c2](https://github.com/hputnam/Acclim_Dynamics/blob/master/Physiology_variables/cell-counts/Cellometer-c1c2.png?raw=true)
+
 ## Comparison to the literature
 
 My range of cell count values is: 22,500 - 1,206,222 cells per cm2. Below are values from *P. acuta* in the literature
