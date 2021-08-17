@@ -327,12 +327,32 @@ Full DADA2 options from qiime2 on this page: [here](https://docs.qiime2.org/2021
 We adjust our parameters based on read length and 16S primer length:  
 - `--i-demultiplexed-seqs` followed by the sequences artifact to be denoised  
 - `--p-trunc-len-f INTEGER`: position to be truncated due to decreased quality. This truncates the 3' end of sequences which are the bases that were sequenced in the last cycles.  
-- `--p-trunc-len-r INTEGER`: same as above but on the reverse  
--  
+- `--p-trunc-len-r INTEGER`: same as above but on the reverse    
+- `p-trim-left-r INTEGER`: Position at which forward read sequences should be trimmed due to low quality. This trims the 5' end of the input sequences, which will be the bases that were sequenced in the first cycles.    
+- `p-trim-left-f INTEGER`: Position at which reverse read sequences should be trimmed due to low quality. This trims the 5' end of the input sequences, which will be the bases that were sequenced in the first cycles.    
+- `o-table`: The resulting feature table.    
+- `o-representative-sequences`: The resulting feature sequences. Each feature in the feature table will be represented by exactly one sequence, and these sequences will be the joined paired-end sequences.    
+- `o-denoising-stats`: SampleData[DADA2Stats]  
+- `p-n-threads`: The number of threads to use for multithreaded processing. If 0 is provided, all available cores will be used.  
+
+`--p-trunc-len` choice: 150 reverse and 260 forward. This was based on the
+
+`--p-trim-left` choice: 20 reverse and 20 forward. This was based on the
+
+`o-table` choice: our classifier choice was ___ because .
+
+`p-n-threads` choice: 20 because
+
+**Questions/come back to**:  
+- Adapter content seems to start at ~210 bp. 40-210 bp seems to be where the good data is.. Come back to chat to HP about this  
+- Is the difference between trunc and trim the 5' and 3' ends? How can you view this in the multiqc report?  
+- Primer length: 515F = 52 bp long; 806RB = 54 bp long  
+
 
 ```
 # QC using dada2
 # Adjust the params based on read length and 16S primer length
+
 qiime dada2 denoise-paired --verbose --i-demultiplexed-seqs HoloInt_16S-paired-end-sequences.qza \
   --p-trunc-len-r 150 --p-trunc-len-f 260 \
   --p-trim-left-r 20 --p-trim-left-f 20 \
@@ -342,13 +362,25 @@ qiime dada2 denoise-paired --verbose --i-demultiplexed-seqs HoloInt_16S-paired-e
   --p-n-threads 20
 ```
 
-
-
 ### Clustering
 
 Description from QIIME2 documentation:  
 - We *dereplicate* our sequences to reduce repetition and file size/memory requirements in downstream steps (don’t worry! we keep count of each replicate).  
 - We *cluster* sequences to collapse similar sequences (e.g., those that are ≥ 97% similar to each other) into single replicate sequences. This process, also known as OTU picking, was once a common procedure, used to simultaneously dereplicate but also perform a sort of quick-and-dirty denoising procedure (to capture stochastic sequencing and PCR errors, which should be rare and similar to more abundant centroid sequences). Use denoising methods instead if you can. Times have changed. Welcome to the future.
+
+```
+# Summarize feature table and sequences
+qiime metadata tabulate \
+  --m-input-file denoising-stats.qza \
+  --o-visualization denoising-stats.qzv
+qiime feature-table summarize \
+  --i-table table.qza \
+  --o-visualization table.qzv \
+  --m-sample-metadata-file $METADATA
+qiime feature-table tabulate-seqs \
+  --i-data rep-seqs.qza \
+  --o-visualization rep-seqs.qzv
+```
 
 ## Script used to run QIIME2
 
@@ -397,8 +429,7 @@ qiime tools import \
 
 #### DENOISING WITH DADA2
 
-
-
+#### CLUSTERING
 
 ```
 
