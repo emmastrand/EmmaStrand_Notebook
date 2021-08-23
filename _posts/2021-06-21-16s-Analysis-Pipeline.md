@@ -326,18 +326,29 @@ Full DADA2 options from qiime2 on this page: [here](https://docs.qiime2.org/2021
 
 We adjust our parameters based on read length and 16S primer length:  
 - `--i-demultiplexed-seqs` followed by the sequences artifact to be denoised  
-- `--p-trunc-len-f INTEGER`: position to be truncated due to decreased quality. This truncates the 3' end of sequences which are the bases that were sequenced in the last cycles.  
-- `--p-trunc-len-r INTEGER`: same as above but on the reverse    
-- `p-trim-left-r INTEGER`: Position at which forward read sequences should be trimmed due to low quality. This trims the 5' end of the input sequences, which will be the bases that were sequenced in the first cycles.    
-- `p-trim-left-f INTEGER`: Position at which reverse read sequences should be trimmed due to low quality. This trims the 5' end of the input sequences, which will be the bases that were sequenced in the first cycles.    
+- `--p-trunc-len-f INTEGER`: position to be truncated due to decreased quality. This truncates the 3' end of sequences which are the bases that were sequenced in the last cycles. On the forward read.    
+- `--p-trunc-len-r INTEGER`: same as above but on the reverse read.      
+- `p-trim-left-f INTEGER`: Position at which forward read sequences should be trimmed due to low quality. This trims the 5' end of the input sequences, which will be the bases that were sequenced in the first cycles.    
+- `p-trim-left-r INTEGER`: Position at which reverse read sequences should be trimmed due to low quality. This trims the 5' end of the input sequences, which will be the bases that were sequenced in the first cycles.    
 - `o-table`: The resulting feature table.    
 - `o-representative-sequences`: The resulting feature sequences. Each feature in the feature table will be represented by exactly one sequence, and these sequences will be the joined paired-end sequences.    
 - `o-denoising-stats`: SampleData[DADA2Stats]  
 - `p-n-threads`: The number of threads to use for multithreaded processing. If 0 is provided, all available cores will be used.  
 
-`--p-trunc-len` choice: 150 reverse and 260 forward. This was based on the
+`--p-trunc-len` choice: 150 reverse and 260 forward. This was based on the  
+- Resources: [forum post](https://forum.qiime2.org/t/dada2-truncation-lengths-and-features-number/1940/6), [exercises in picking trunc and left values](https://web.stanford.edu/class/bios221/Pune/Labs/Lab_dada2/Lab_dada2_workflow.html),
 
-`--p-trim-left` choice: 20 reverse and 20 forward. This was based on the
+**pre-filtering sequence quality scores**
+![seqqual]()
+
+**post-filtering sequence quality scores**
+
+`--p-trim-left` choice: 52 reverse and 54 forward. This was based on the primer lengths: 515F = 52 bp long; 806RB = 54 bp long. This include adapter overhang. See [sequencing protocol](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2021-02-01-16s-Sequencing-HoloInt.md) to see primer choice.  
+
+**pre-filtering adapter content**  
+![adapter]()
+
+**post-filtering adapter content**
 
 `o-table` choice: our classifier choice was ___ because .
 
@@ -345,8 +356,6 @@ We adjust our parameters based on read length and 16S primer length:
 
 **Questions/come back to**:  
 - Adapter content seems to start at ~210 bp. 40-210 bp seems to be where the good data is.. Come back to chat to HP about this  
-- Is the difference between trunc and trim the 5' and 3' ends? How can you view this in the multiqc report?  
-- Primer length: 515F = 52 bp long; 806RB = 54 bp long  
 
 
 ```
@@ -355,7 +364,7 @@ We adjust our parameters based on read length and 16S primer length:
 
 qiime dada2 denoise-paired --verbose --i-demultiplexed-seqs HoloInt_16S-paired-end-sequences.qza \
   --p-trunc-len-r 150 --p-trunc-len-f 260 \
-  --p-trim-left-r 20 --p-trim-left-f 20 \
+  --p-trim-left-r 52 --p-trim-left-f 54 \
   --o-table table.qza \
   --o-representative-sequences rep-seqs.qza \
   --o-denoising-stats denoising-stats.qza \
