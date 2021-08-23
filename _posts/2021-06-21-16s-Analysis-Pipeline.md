@@ -335,20 +335,20 @@ We adjust our parameters based on read length and 16S primer length:
 - `o-denoising-stats`: SampleData[DADA2Stats]  
 - `p-n-threads`: The number of threads to use for multithreaded processing. If 0 is provided, all available cores will be used.  
 
-`--p-trunc-len` choice: 150 reverse and 260 forward. This was based on the  
+`--p-trunc-len` choice: 150 reverse and 260 forward. This was based on the quality scores of the reads.    
 - Resources: [forum post](https://forum.qiime2.org/t/dada2-truncation-lengths-and-features-number/1940/6), [exercises in picking trunc and left values](https://web.stanford.edu/class/bios221/Pune/Labs/Lab_dada2/Lab_dada2_workflow.html),
 
-**pre-filtering sequence quality scores**
-![seqqual]()
+*pre-filtering sequence quality scores*
+![seqqual](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16S-workflow/pre-filter-seq-quality.png?raw=true)
 
-**post-filtering sequence quality scores**
+*post-filtering sequence quality scores*
 
 `--p-trim-left` choice: 52 reverse and 54 forward. This was based on the primer lengths: 515F = 52 bp long; 806RB = 54 bp long. This include adapter overhang. See [sequencing protocol](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2021-02-01-16s-Sequencing-HoloInt.md) to see primer choice.  
 
-**pre-filtering adapter content**  
-![adapter]()
+*pre-filtering adapter content*  
+![adapter](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16S-workflow/pre-filter-adapter-content.png?raw=true)
 
-**post-filtering adapter content**
+*post-filtering adapter content*
 
 `o-table` choice: our classifier choice was ___ because .
 
@@ -356,6 +356,10 @@ We adjust our parameters based on read length and 16S primer length:
 
 **Questions/come back to**:  
 - Adapter content seems to start at ~210 bp. 40-210 bp seems to be where the good data is.. Come back to chat to HP about this  
+- how can you see forward and reverse strands in multiqc?
+
+![ncontent](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16S-workflow/pre-filter-perbase-Ncontent.png?raw=true)
+Will these N's be filtered out with the adapter and primer cut outs?
 
 
 ```
