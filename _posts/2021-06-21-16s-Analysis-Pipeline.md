@@ -324,7 +324,7 @@ Description from QIIME2 documentation:
 
 Full DADA2 options from qiime2 on this page: [here](https://docs.qiime2.org/2021.4/plugins/available/dada2/denoise-paired/)
 
-We adjust our parameters based on read length and 16S primer length:  
+Parameter Definitions:   
 - `--i-demultiplexed-seqs` followed by the sequences artifact to be denoised  
 - `--p-trunc-len-f INTEGER`: position to be truncated due to decreased quality. This truncates the 3' end of sequences which are the bases that were sequenced in the last cycles. On the forward read.    
 - `--p-trunc-len-r INTEGER`: same as above but on the reverse read.      
@@ -334,6 +334,8 @@ We adjust our parameters based on read length and 16S primer length:
 - `o-representative-sequences`: The resulting feature sequences. Each feature in the feature table will be represented by exactly one sequence, and these sequences will be the joined paired-end sequences.    
 - `o-denoising-stats`: SampleData[DADA2Stats]  
 - `p-n-threads`: The number of threads to use for multithreaded processing. If 0 is provided, all available cores will be used.  
+
+Parameter choices for our data:  
 
 `--p-trunc-len` choice: 150 reverse and 260 forward. This was based on the quality scores of the reads.    
 - Resources: [forum post](https://forum.qiime2.org/t/dada2-truncation-lengths-and-features-number/1940/6), [exercises in picking trunc and left values](https://web.stanford.edu/class/bios221/Pune/Labs/Lab_dada2/Lab_dada2_workflow.html),
