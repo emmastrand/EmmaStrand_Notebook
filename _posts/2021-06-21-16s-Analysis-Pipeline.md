@@ -247,6 +247,8 @@ I wrote one script to complete the following steps in QIIME2:
 1. Import metadata files (2)  
 2. Import sample data  
 3. Quality control with DADA2  
+4. Clustering methods  
+5. Taxonomy classification based on imported database  
 
 ## 1. Import metadata files
 
@@ -333,7 +335,7 @@ Parameter Definitions:
 - `o-table`: The resulting feature table.    
 - `o-representative-sequences`: The resulting feature sequences. Each feature in the feature table will be represented by exactly one sequence, and these sequences will be the joined paired-end sequences.    
 - `o-denoising-stats`: SampleData[DADA2Stats]  
-- `p-n-threads`: The number of threads to use for multithreaded processing. If 0 is provided, all available cores will be used.  
+- `p-n-threads`: The number of threads to use for multithreaded processing. If 0 is provided, all available cores will be used. [Helpful page on what multithreaded processing is](https://www.hulft.com/software/dataspider_tableau/help/en/servista/multi_stream_processing.html).
 
 Parameter choices for our data:  
 
@@ -352,17 +354,18 @@ Parameter choices for our data:
 
 *post-filtering adapter content*
 
-`o-table` choice: our classifier choice was ___ because .
 
-`p-n-threads` choice: 20 because
+`p-n-threads` choice: 20 because this will give us multi-thread processing capability to speed up the qiime2 pipeline but won't take all available threads on the putnam lab node.
 
 **Questions/come back to**:  
 - Adapter content seems to start at ~210 bp. 40-210 bp seems to be where the good data is.. Come back to chat to HP about this  
-- how can you see forward and reverse strands in multiqc?
+- how can you see forward and reverse strands in multiqc to decided F vs R trunc-len values?  
+- p-n-threads choice of 20?  
 
 ![ncontent](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16S-workflow/pre-filter-perbase-Ncontent.png?raw=true)
 Will these N's be filtered out with the adapter and primer cut outs?
 
+#### Resulting section of the script for denoising with DADA2
 
 ```
 # QC using dada2
@@ -377,11 +380,20 @@ qiime dada2 denoise-paired --verbose --i-demultiplexed-seqs HoloInt_16S-paired-e
   --p-n-threads 20
 ```
 
-### Clustering
+## 4. Clustering
 
 Description from QIIME2 documentation:  
 - We *dereplicate* our sequences to reduce repetition and file size/memory requirements in downstream steps (don’t worry! we keep count of each replicate).  
 - We *cluster* sequences to collapse similar sequences (e.g., those that are ≥ 97% similar to each other) into single replicate sequences. This process, also known as OTU picking, was once a common procedure, used to simultaneously dereplicate but also perform a sort of quick-and-dirty denoising procedure (to capture stochastic sequencing and PCR errors, which should be rare and similar to more abundant centroid sequences). Use denoising methods instead if you can. Times have changed. Welcome to the future.
+
+![clustering](https://docs.qiime2.org/2021.4/_images/clustering.png)
+
+[Feature table description](https://docs.qiime2.org/2021.4/tutorials/overview/#derep-denoise) from QIIME2 documentation:  
+- The final products of all denoising and clustering methods/workflows are a FeatureTable[Frequency] (feature table) artifact and a FeatureData[Sequence] (representative sequences) artifact.  
+- The central record of all observations per sample.  
+- This output is required for all following steps.  
+
+#### Resulting section of the script for clustering
 
 ```
 # Summarize feature table and sequences
@@ -396,6 +408,21 @@ qiime feature-table tabulate-seqs \
   --i-data rep-seqs.qza \
   --o-visualization rep-seqs.qzv
 ```
+
+## 5. Taxonomy classification based on imported database
+
+Description from QIIME2 documentation:  
+- We can do this by comparing our query sequences (i.e., our features, be they ASVs or OTUs) to a reference database of sequences with known taxonomic composition.  
+- Simply finding the closest alignment is not really good enough — because other sequences that are equally close matches or nearly as close may have different taxonomic annotations.  
+- So we use taxonomy classifiers to determine the closest taxonomic affiliation with some degree of confidence or consensus (which may not be a species name if one cannot be predicted with certainty!), based on alignment, k-mer frequencies, etc. More info on this [here](https://doi.org/10.1186/s40168-018-0470-z).
+
+Workflow from QIIME2 documentation:  
+
+![taxworkflow](https://docs.qiime2.org/2021.4/_images/taxonomy.png)
+
+Reference database = `FeatureData[Taxonomy]` and `FeatureData[Sequence]`.  
+Pre-trained classifier choice information [here](https://docs.qiime2.org/2021.4/tutorials/overview/#derep-denoise).
+
 
 ## Script used to run QIIME2
 
@@ -444,7 +471,28 @@ qiime tools import \
 
 #### DENOISING WITH DADA2
 
+qiime dada2 denoise-paired --verbose --i-demultiplexed-seqs HoloInt_16S-paired-end-sequences.qza \
+  --p-trunc-len-r 150 --p-trunc-len-f 260 \
+  --p-trim-left-r 52 --p-trim-left-f 54 \
+  --o-table table.qza \
+  --o-representative-sequences rep-seqs.qza \
+  --o-denoising-stats denoising-stats.qza \
+  --p-n-threads 20
+
 #### CLUSTERING
+# Summarize feature table and sequences
+qiime metadata tabulate \
+  --m-input-file denoising-stats.qza \
+  --o-visualization denoising-stats.qzv
+qiime feature-table summarize \
+  --i-table table.qza \
+  --o-visualization table.qzv \
+  --m-sample-metadata-file $METADATA
+qiime feature-table tabulate-seqs \
+  --i-data rep-seqs.qza \
+  --o-visualization rep-seqs.qzv
+
+
 
 ```
 
