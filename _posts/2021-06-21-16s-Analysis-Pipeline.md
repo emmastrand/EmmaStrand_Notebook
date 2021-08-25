@@ -326,7 +326,10 @@ Description from QIIME2 documentation:
 
 Full DADA2 options from qiime2 on this page: [here](https://docs.qiime2.org/2021.4/plugins/available/dada2/denoise-paired/)
 
-Parameter Definitions:   
+To assess quality of the reads, either view in the multiqc report generated from above or [QIIME2 view](https://view.qiime2.org/) webpage. QIIME2 view allows you to look at forward and reverse reads separately.  
+- I made a short version of the qiime2 script that just included the qiime2 import section and metadata so that I could past the `processed_data/HoloInt_16S-paired-end-sequences1.qza` file into QIIME2 view webpage.
+
+**Parameter Definitions:**     
 - `--i-demultiplexed-seqs` followed by the sequences artifact to be denoised  
 - `--p-trunc-len-f INTEGER`: position to be truncated due to decreased quality. This truncates the 3' end of sequences which are the bases that were sequenced in the last cycles. On the forward read.    
 - `--p-trunc-len-r INTEGER`: same as above but on the reverse read.      
@@ -337,10 +340,11 @@ Parameter Definitions:
 - `o-denoising-stats`: SampleData[DADA2Stats]  
 - `p-n-threads`: The number of threads to use for multithreaded processing. If 0 is provided, all available cores will be used. [Helpful page on what multithreaded processing is](https://www.hulft.com/software/dataspider_tableau/help/en/servista/multi_stream_processing.html).
 
-Parameter choices for our data:  
+**Parameter choices for our data:**     
 
 `--p-trunc-len` choice: 150 reverse and 260 forward. This was based on the quality scores of the reads.    
-- Resources: [forum post](https://forum.qiime2.org/t/dada2-truncation-lengths-and-features-number/1940/6), [exercises in picking trunc and left values](https://web.stanford.edu/class/bios221/Pune/Labs/Lab_dada2/Lab_dada2_workflow.html),
+- Resources: [forum post](https://forum.qiime2.org/t/dada2-truncation-lengths-and-features-number/1940/6), [exercises in picking trunc and left values](https://web.stanford.edu/class/bios221/Pune/Labs/Lab_dada2/Lab_dada2_workflow.html), [video on denoising/clustering in QIIME2](https://www.youtube.com/watch?v=PmtqSa4Z1TQ).  
+- [Video example of denoising](https://www.youtube.com/watch?v=uAvIzF9RaNM&list=PLbVDKwGpb3XmkQmoBy1wh3QfWlWdn_pTT&index=12) from QIIME2 youtube.
 
 *pre-filtering sequence quality scores*
 ![seqqual](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16S-workflow/pre-filter-seq-quality.png?raw=true)
@@ -358,8 +362,7 @@ Parameter choices for our data:
 `p-n-threads` choice: 20 because this will give us multi-thread processing capability to speed up the qiime2 pipeline but won't take all available threads on the putnam lab node.
 
 **Questions/come back to**:  
-- Adapter content seems to start at ~210 bp. 40-210 bp seems to be where the good data is.. Come back to chat to HP about this  
-- how can you see forward and reverse strands in multiqc to decided F vs R trunc-len values?  
+- Adapter content seems to start at ~210 bp. 40-210 bp seems to be where the good data is.. Come back to chat to HP about this     
 - p-n-threads choice of 20?  
 
 ![ncontent](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16S-workflow/pre-filter-perbase-Ncontent.png?raw=true)
@@ -423,6 +426,106 @@ Workflow from QIIME2 documentation:
 Reference database = `FeatureData[Taxonomy]` and `FeatureData[Sequence]`.  
 Pre-trained classifier choice information [here](https://docs.qiime2.org/2021.4/tutorials/overview/#derep-denoise).
 
+We chose the `Silva 138 99% OTUs from 515F/806R region of sequences (MD5: e05afad0fe87542704be96ff483824d4)` as the classifier because we used 515F and 806RB primers for our sequences and QIIME2 recommends the `classify-sklearn` classifier trainer.
+
+#### Resulting script section for taxonomy classification
+
+```
+qiime feature-classifier classify-sklearn \
+  --i-classifier metadata/silva-138-99-515-806-nb-classifier.qza \
+  --i-reads rep-seqs.qza \
+  --o-classification taxonomy.qza
+qiime metadata tabulate \
+  --m-input-file taxonomy.qza \
+  --o-visualization taxonomy.qzv
+qiime taxa barplot \
+  --i-table table.qza \
+  --i-taxonomy taxonomy.qza \
+  --m-metadata-file $METADATA \
+  --o-visualization taxa-bar-plots.qzv
+qiime metadata tabulate \
+  --m-input-file rep-seqs.qza \
+  --m-input-file taxonomy.qza \
+  --o-visualization tabulated-feature-metadata.qzv
+```
+
+## 6. Constructing phylogenetic trees
+
+This aligns the sequences to assess the phylogenetic relationship between each of our features. Figure from QIIME2 documentation:
+
+![phylo](https://docs.qiime2.org/2021.4/_images/alignment-phylogeny.png)
+
+Part 1: alignment and masking (filtering out) positions that are highly variable and will add noise to the tree.  
+
+Part 2: phylogenetic tree construction.
+
+
+#### Resulting script section for taxonomy classification
+
+```
+# align and mask sequences
+qiime alignment mafft \
+  --i-sequences rep-seqs.qza \
+  --o-alignment aligned-rep-seqs.qza
+qiime alignment mask \
+  --i-alignment aligned-rep-seqs.qza \
+  --o-masked-alignment masked-aligned-rep-seqs.qza
+
+# calculate tree
+qiime phylogeny fasttree \
+  --i-alignment masked-aligned-rep-seqs.qza \
+  --o-tree unrooted-tree.qza
+qiime phylogeny midpoint-root \
+  --i-tree unrooted-tree.qza \
+  --o-rooted-tree rooted-tree.qza
+```
+
+## 7. Calculates diversity analyses
+
+The various diversity analyses you can do with QIIME2:  
+
+![qiime2](https://docs.qiime2.org/2021.4/_images/diversity.png)
+
+
+#### Resulting script section for taxonomy classification
+```
+# calculate overall diversity
+qiime diversity core-metrics-phylogenetic \
+  --i-phylogeny rooted-tree.qza \
+  --i-table table.qza \
+  --p-sampling-depth 95 \
+  --m-metadata-file $METADATA \
+  --output-dir core-metrics-results
+
+qiime diversity alpha-group-significance \
+  --i-alpha-diversity core-metrics-results/faith_pd_vector.qza \
+  --m-metadata-file $METADATA \
+  --o-visualization core-metrics-results/faith-pd-group-significance.qzv
+qiime diversity alpha-group-significance \
+  --i-alpha-diversity core-metrics-results/evenness_vector.qza \
+  --m-metadata-file $METADATA \
+  --o-visualization core-metrics-results/evenness-group-significance.qzv
+
+qiime diversity beta-group-significance \
+  --i-distance-matrix core-metrics-results/unweighted_unifrac_distance_matrix.qza \
+  --m-metadata-file $METADATA \
+  --m-metadata-column CoralType \
+  --o-visualization core-metrics-results/unweighted-unifrac-station-significance.qzv \
+  --p-pairwise
+qiime diversity beta-group-significance \
+  --i-distance-matrix core-metrics-results/unweighted_unifrac_distance_matrix.qza \
+  --m-metadata-file $METADATA  \
+  --m-metadata-column TissueType \
+  --o-visualization core-metrics-results/unweighted-unifrac-group-significance.qzv \
+  --p-pairwise
+```
+
+## 8. Switch to R to visualize the feature tables
+
+See QIIME2 documentation for suggestions on how to visualize data.
+
+![feattables](https://docs.qiime2.org/2021.4/_images/fun-with-features.png)
+
 
 ## Script used to run QIIME2
 
@@ -433,7 +536,7 @@ $ cd [into scripts folder]
 $ nano qiime2_script.sh
 ```
 
-This script imports and quality controls data using DADA2
+Copy and paste sections from above into one script to run altogether.
 
 ```
 #!/bin/bash
@@ -441,8 +544,12 @@ This script imports and quality controls data using DADA2
 #SBATCH --nodes=1 --ntasks-per-node=1
 #SBATCH --export=NONE
 #SBATCH --mem=300GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
 #SBATCH --account=putnamlab
-#SBATCH -D /data/putnamlab/hputnam/HoloInt_16S
+#SBATCH -D /data/putnamlab/estrand/HoloInt_16s
+#SBATCH --error="script_error" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script" #once your job is completed, any final job report comments will be put in this file
 
 source /usr/share/Modules/init/sh # load the module function
 module load QIIME2/2021.4
@@ -451,7 +558,7 @@ echo "QIIME2 bash script for 16S samples started running at: "; date
 
 #### METADATA FILES ####
 # File path
-cd /data/putnamlab/hputnam/HoloInt_16S
+cd /data/putnamlab/estrand/HoloInt_16s
 
 # Metadata path
 METADATA="metadata/HoloInt_Metadata.txt"
@@ -467,7 +574,7 @@ qiime tools import \
   --type 'SampleData[PairedEndSequencesWithQuality]' \
   --input-path $MANIFEST \
   --input-format PairedEndFastqManifestPhred33 \
-  --output-path processed_data/HoloInt_16S-paired-end-sequences1.qza
+  --output-path /processed_data/HoloInt_16S-paired-end-sequences1.qza
 
 #### DENOISING WITH DADA2
 
@@ -480,6 +587,7 @@ qiime dada2 denoise-paired --verbose --i-demultiplexed-seqs HoloInt_16S-paired-e
   --p-n-threads 20
 
 #### CLUSTERING
+
 # Summarize feature table and sequences
 qiime metadata tabulate \
   --m-input-file denoising-stats.qza \
