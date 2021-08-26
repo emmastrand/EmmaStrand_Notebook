@@ -22,12 +22,12 @@ Platemap, sample IDs, and manifest sheet found [here](https://docs.google.com/sp
 1. Log into Andromeda using VPN if not on campus.    
 2. cd to the 16s folder in the putnamlab folder `cd ../../data/putnamlab/estrand/HoloInt_16s`  
 3. Start conda environment `conda activate HoloInt_16s`
-4. Load all modules `sbatch module-load.sh`  
 5. Fastqc on all seqs `sbatch fastqc.sh`  
 6. View multiqc report (generated in #5) in internet browser.    
 7. Create metadata files.   
 8. Decide on parameters for all sections of QIIME2.  
-9. Run qiime2.
+9. Run qiime2.  
+10. Switch to R
 
 ## Related resources
 
@@ -173,9 +173,15 @@ do
 fastqc $file --outdir /data/putnamlab/estrand/HoloInt_16s/fastqc_results         
 done
 
-multiqc fastqc_results  
+multiqc --interactive fastqc_results  
 
 mv multiqc_report.html 16S_raw_qc_multiqc_report_ES.html #renames file
+```
+
+To check the status of any job you are running
+
+```
+squeue --start
 ```
 
 #### Run fastqc
@@ -219,7 +225,7 @@ I need to have the module load within each script not loading them all before an
 Copy the report to your home desktop so that you are able to open this report. Run this outside of Andromeda and use the bluewaves login.
 
 ```
-$ scp emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/HoloInt_16s/16S_raw_qc_multiqc_report_ES.html /Users/emmastrand/MyProjects/Acclim_Dynamics/16S_seq/ES-run
+$ scp emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/HoloInt_16s/multiqc_report_3.html /Users/emmastrand/MyProjects/Acclim_Dynamics/16S_seq/ES-run
 ```
 
 #### Raw QC Results
@@ -315,7 +321,7 @@ qiime tools import \
   --type 'SampleData[PairedEndSequencesWithQuality]' \
   --input-path $MANIFEST \
   --input-format PairedEndFastqManifestPhred33 \
-  --output-path processed_data/HoloInt_16S-paired-end-sequences.qza
+  --output-path processed_data/HoloInt_16S-paired-end-sequences1.qza
 ```
 
 ## 3. Denoising with DADA2
@@ -326,10 +332,7 @@ Description from QIIME2 documentation:
 
 Full DADA2 options from qiime2 on this page: [here](https://docs.qiime2.org/2021.4/plugins/available/dada2/denoise-paired/)
 
-To assess quality of the reads, either view in the multiqc report generated from above or [QIIME2 view](https://view.qiime2.org/) webpage. QIIME2 view allows you to look at forward and reverse reads separately.  
-- I made a short version of the qiime2 script that just included the qiime2 import section and metadata so that I could past the `processed_data/HoloInt_16S-paired-end-sequences1.qza` file into QIIME2 view webpage.
-
-**Parameter Definitions:**     
+### Parameter Definitions:    
 - `--i-demultiplexed-seqs` followed by the sequences artifact to be denoised  
 - `--p-trunc-len-f INTEGER`: position to be truncated due to decreased quality. This truncates the 3' end of sequences which are the bases that were sequenced in the last cycles. On the forward read.    
 - `--p-trunc-len-r INTEGER`: same as above but on the reverse read.      
@@ -340,7 +343,7 @@ To assess quality of the reads, either view in the multiqc report generated from
 - `o-denoising-stats`: SampleData[DADA2Stats]  
 - `p-n-threads`: The number of threads to use for multithreaded processing. If 0 is provided, all available cores will be used. [Helpful page on what multithreaded processing is](https://www.hulft.com/software/dataspider_tableau/help/en/servista/multi_stream_processing.html).
 
-**Parameter choices for our data:**     
+### Parameter choices for our data:     
 
 `--p-trunc-len` choice: 150 reverse and 260 forward. This was based on the quality scores of the reads.    
 - Resources: [forum post](https://forum.qiime2.org/t/dada2-truncation-lengths-and-features-number/1940/6), [exercises in picking trunc and left values](https://web.stanford.edu/class/bios221/Pune/Labs/Lab_dada2/Lab_dada2_workflow.html), [video on denoising/clustering in QIIME2](https://www.youtube.com/watch?v=PmtqSa4Z1TQ).  
@@ -349,26 +352,17 @@ To assess quality of the reads, either view in the multiqc report generated from
 *pre-filtering sequence quality scores*
 ![seqqual](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16S-workflow/pre-filter-seq-quality.png?raw=true)
 
-*post-filtering sequence quality scores*
-
 `--p-trim-left` choice: 52 reverse and 54 forward. This was based on the primer lengths: 515F = 52 bp long; 806RB = 54 bp long. This include adapter overhang. See [sequencing protocol](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2021-02-01-16s-Sequencing-HoloInt.md) to see primer choice.  
 
 *pre-filtering adapter content*  
 ![adapter](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16S-workflow/pre-filter-adapter-content.png?raw=true)
 
-*post-filtering adapter content*
-
-
-`p-n-threads` choice: 20 because this will give us multi-thread processing capability to speed up the qiime2 pipeline but won't take all available threads on the putnam lab node.
-
-**Questions/come back to**:  
-- Adapter content seems to start at ~210 bp. 40-210 bp seems to be where the good data is.. Come back to chat to HP about this     
-- p-n-threads choice of 20?  
+`p-n-threads` choice: 20 because this will give us multi-thread processing capability to speed up the qiime2 pipeline but won't take all available threads on the putnam lab node.    
 
 ![ncontent](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16S-workflow/pre-filter-perbase-Ncontent.png?raw=true)
 Will these N's be filtered out with the adapter and primer cut outs?
 
-#### Resulting section of the script for denoising with DADA2
+### Resulting section of the script for denoising with DADA2
 
 ```
 # QC using dada2
@@ -460,7 +454,7 @@ Part 1: alignment and masking (filtering out) positions that are highly variable
 Part 2: phylogenetic tree construction.
 
 
-#### Resulting script section for taxonomy classification
+#### Resulting script section for phylogenetic trees
 
 ```
 # align and mask sequences
@@ -486,8 +480,7 @@ The various diversity analyses you can do with QIIME2:
 
 ![qiime2](https://docs.qiime2.org/2021.4/_images/diversity.png)
 
-
-#### Resulting script section for taxonomy classification
+#### Resulting script section for diversity analysis
 ```
 # calculate overall diversity
 qiime diversity core-metrics-phylogenetic \
@@ -518,13 +511,49 @@ qiime diversity beta-group-significance \
   --m-metadata-column TissueType \
   --o-visualization core-metrics-results/unweighted-unifrac-group-significance.qzv \
   --p-pairwise
+
+# This script calculates the rarefaction curve for the data
+  qiime diversity alpha-rarefaction \
+    --i-table table.qza \
+    --i-phylogeny rooted-tree.qza \
+    --p-max-depth 800 \
+    --m-metadata-file $METADATA \
+    --o-visualization alpha-rarefaction.qzv
 ```
 
-## 8. Switch to R to visualize the feature tables
+## 8. Calculating abundance measures: Analysis of compostion (ANCOM)
+
+Determines differential abundance of taxa/OTUs based on designated metadata variable (categorical) from mapping file  
+- Assumes that less than 25% of the taxa determined in the samples are differentially abundant.   
+- If you suspect that more than 25% of your taxa are differentially abundant then you should not use this test because it will likely give you false results and increase the chance of type I and type II error.
+
+#### Resulting script section for ANCOM
+
+Come back to adding this in unless metadata has 1 column with trt and timepoint? This might just be easier in R.
+
+```
+qiime composition add-pseudocount \
+    --i-table table.qza \
+    --o-composition-table comp-table.qza
+
+qiime composition ancom \
+    --i-table comp-table.qza \
+    --m-metadata-file $METADATA \
+    --m-metadata-column
+    --o-visualization
+```
+
+
+## 9. Switch to R to visualize the feature tables
 
 See QIIME2 documentation for suggestions on how to visualize data.
 
 ![feattables](https://docs.qiime2.org/2021.4/_images/fun-with-features.png)
+
+In QIIME2 View webpage, you can insert the output .qza or .qzv files from QIIME2 program and then download a CSV based on what subset of the .qza/v file you want.
+
+To get a .csv file with abundance counts of each taxa group by sample ID, upload the `taxa-bar-plots.qzv` file to qiime2 view. Select the level of classification you want and then select the 'csv' button to the top left of the screen.
+
 
 
 ## Script used to run QIIME2
@@ -543,10 +572,11 @@ Copy and paste sections from above into one script to run altogether.
 #SBATCH -t 24:00:00
 #SBATCH --nodes=1 --ntasks-per-node=1
 #SBATCH --export=NONE
-#SBATCH --mem=300GB
+#SBATCH --mem=100GB
 #SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
 #SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
 #SBATCH --account=putnamlab
+#SBTACH -q putnamlab
 #SBATCH -D /data/putnamlab/estrand/HoloInt_16s
 #SBATCH --error="script_error" #if your job fails, the error report will be put in this file
 #SBATCH --output="output_script" #once your job is completed, any final job report comments will be put in this file
@@ -574,7 +604,7 @@ qiime tools import \
   --type 'SampleData[PairedEndSequencesWithQuality]' \
   --input-path $MANIFEST \
   --input-format PairedEndFastqManifestPhred33 \
-  --output-path /processed_data/HoloInt_16S-paired-end-sequences1.qza
+  --output-path processed_data/HoloInt_16S-paired-end-sequences1.qza
 
 #### DENOISING WITH DADA2
 
@@ -585,6 +615,7 @@ qiime dada2 denoise-paired --verbose --i-demultiplexed-seqs HoloInt_16S-paired-e
   --o-representative-sequences rep-seqs.qza \
   --o-denoising-stats denoising-stats.qza \
   --p-n-threads 20
+
 
 #### CLUSTERING
 
@@ -601,7 +632,82 @@ qiime feature-table tabulate-seqs \
   --o-visualization rep-seqs.qzv
 
 
+#### TAXONOMY CLASSIFICATION
 
+qiime feature-classifier classify-sklearn \
+  --i-classifier metadata/silva-138-99-515-806-nb-classifier.qza \
+  --i-reads rep-seqs.qza \
+  --o-classification taxonomy.qza
+qiime metadata tabulate \
+  --m-input-file taxonomy.qza \
+  --o-visualization taxonomy.qzv
+qiime taxa barplot \
+  --i-table table.qza \
+  --i-taxonomy taxonomy.qza \
+  --m-metadata-file $METADATA \
+  --o-visualization taxa-bar-plots.qzv
+qiime metadata tabulate \
+  --m-input-file rep-seqs.qza \
+  --m-input-file taxonomy.qza \
+  --o-visualization tabulated-feature-metadata.qzv
+
+#### CREATES PHYLOGENETIC TREES
+
+# align and mask sequences
+qiime alignment mafft \
+  --i-sequences rep-seqs.qza \
+  --o-alignment aligned-rep-seqs.qza
+qiime alignment mask \
+  --i-alignment aligned-rep-seqs.qza \
+  --o-masked-alignment masked-aligned-rep-seqs.qza
+
+# calculate tree
+qiime phylogeny fasttree \
+  --i-alignment masked-aligned-rep-seqs.qza \
+  --o-tree unrooted-tree.qza
+qiime phylogeny midpoint-root \
+  --i-tree unrooted-tree.qza \
+  --o-rooted-tree rooted-tree.qza
+
+
+#### CALCULATES OVERALL DIVERSITY
+
+qiime diversity core-metrics-phylogenetic \
+  --i-phylogeny rooted-tree.qza \
+  --i-table table.qza \
+  --p-sampling-depth 95 \
+  --m-metadata-file $METADATA \
+  --output-dir core-metrics-results
+
+qiime diversity alpha-group-significance \
+  --i-alpha-diversity core-metrics-results/faith_pd_vector.qza \
+  --m-metadata-file $METADATA \
+  --o-visualization core-metrics-results/faith-pd-group-significance.qzv
+qiime diversity alpha-group-significance \
+  --i-alpha-diversity core-metrics-results/evenness_vector.qza \
+  --m-metadata-file $METADATA \
+  --o-visualization core-metrics-results/evenness-group-significance.qzv
+
+qiime diversity beta-group-significance \
+  --i-distance-matrix core-metrics-results/unweighted_unifrac_distance_matrix.qza \
+  --m-metadata-file $METADATA \
+  --m-metadata-column CoralType \
+  --o-visualization core-metrics-results/unweighted-unifrac-station-significance.qzv \
+  --p-pairwise
+qiime diversity beta-group-significance \
+  --i-distance-matrix core-metrics-results/unweighted_unifrac_distance_matrix.qza \
+  --m-metadata-file $METADATA  \
+  --m-metadata-column TissueType \
+  --o-visualization core-metrics-results/unweighted-unifrac-group-significance.qzv \
+  --p-pairwise
+
+# This script calculates the rarefaction curve for the data
+  qiime diversity alpha-rarefaction \
+    --i-table table.qza \
+    --i-phylogeny rooted-tree.qza \
+    --p-max-depth 800 \
+    --m-metadata-file $METADATA \
+    --o-visualization alpha-rarefaction.qzv
 ```
 
 
@@ -753,3 +859,18 @@ Run the script:
 ```
 $ sbatch module-load.sh
 ```
+
+### Viewing raw data using qiime2 instead of multiqc
+
+To assess quality of the reads, either view in the multiqc report generated from above or [QIIME2 view](https://view.qiime2.org/) webpage. QIIME2 view allows you to look at forward and reverse reads separately.  
+- I made a short version of the qiime2 script that just included the qiime2 import section and metadata so that I could past the `processed_data/HoloInt_16S-paired-end-sequences1.qza` file into QIIME2 view webpage.  
+- Then used this code outside of andromeda to secure copy paste the file to my github repo: `scp emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/HoloInt_16s/processed_data/HoloInt_16S-paired-end-sequences1.qza /Users/emmastrand/MyProjects/Acclim_Dynamics/16S_seq/ES-run`. This is a big file and took five minutes to download.  
+- This .qza file was too big to view on qiimeview.org so I tried `qiime tools peek HoloInt_16S-paired-end-sequences1.qza` once I was in the `processed_data` folder. This produced the below, but this isn't what I was looking for.
+
+```
+UUID:        787d9582-6575-4d03-9c36-cfb5cedf99b7
+Type:        SampleData[PairedEndSequencesWithQuality]
+Data format: SingleLanePerSamplePairedEndFastqDirFmt
+```
+
+I fixed this by adding `-ip` to the multiqc report function. The default is a flat report that you aren't able to filter or interact with when opening the html version of the multiqc report.
