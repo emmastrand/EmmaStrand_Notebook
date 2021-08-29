@@ -225,7 +225,7 @@ I need to have the module load within each script not loading them all before an
 Copy the report to your home desktop so that you are able to open this report. Run this outside of Andromeda and use the bluewaves login.
 
 ```
-$ scp emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/HoloInt_16s/multiqc_report_3.html /Users/emmastrand/MyProjects/Acclim_Dynamics/16S_seq/ES-run
+$ scp emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/HoloInt_16s/multiqc_report_interactive.html /Users/emmastrand/MyProjects/Acclim_Dynamics/16S_seq/ES-run
 ```
 
 #### Raw QC Results
@@ -345,12 +345,14 @@ Full DADA2 options from qiime2 on this page: [here](https://docs.qiime2.org/2021
 
 ### Parameter choices for our data:     
 
-`--p-trunc-len` choice: 150 reverse and 260 forward. This was based on the quality scores of the reads.    
+`--p-trunc-len` choice: 215 reverse and 240 forward. This was based on the quality scores of the reads.    
 - Resources: [forum post](https://forum.qiime2.org/t/dada2-truncation-lengths-and-features-number/1940/6), [exercises in picking trunc and left values](https://web.stanford.edu/class/bios221/Pune/Labs/Lab_dada2/Lab_dada2_workflow.html), [video on denoising/clustering in QIIME2](https://www.youtube.com/watch?v=PmtqSa4Z1TQ).  
 - [Video example of denoising](https://www.youtube.com/watch?v=uAvIzF9RaNM&list=PLbVDKwGpb3XmkQmoBy1wh3QfWlWdn_pTT&index=12) from QIIME2 youtube.
 
 *pre-filtering sequence quality scores*
-![seqqual](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16S-workflow/pre-filter-seq-quality.png?raw=true)
+Blue sequences = forward
+Pink sequences = reverse
+![seqqual](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16S-workflow/pre-filter-seq-quality-split.png?raw=true)
 
 `--p-trim-left` choice: 52 reverse and 54 forward. This was based on the primer lengths: 515F = 52 bp long; 806RB = 54 bp long. This include adapter overhang. See [sequencing protocol](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2021-02-01-16s-Sequencing-HoloInt.md) to see primer choice.  
 
@@ -368,8 +370,8 @@ Will these N's be filtered out with the adapter and primer cut outs?
 # QC using dada2
 # Adjust the params based on read length and 16S primer length
 
-qiime dada2 denoise-paired --verbose --i-demultiplexed-seqs HoloInt_16S-paired-end-sequences.qza \
-  --p-trunc-len-r 150 --p-trunc-len-f 260 \
+qiime dada2 denoise-paired --verbose --i-demultiplexed-seqs processed_data/HoloInt_16S-paired-end-sequences.qza \
+  --p-trunc-len-r 215 --p-trunc-len-f 240 \
   --p-trim-left-r 52 --p-trim-left-f 54 \
   --o-table table.qza \
   --o-representative-sequences rep-seqs.qza \
@@ -421,6 +423,12 @@ Reference database = `FeatureData[Taxonomy]` and `FeatureData[Sequence]`.
 Pre-trained classifier choice information [here](https://docs.qiime2.org/2021.4/tutorials/overview/#derep-denoise).
 
 We chose the `Silva 138 99% OTUs from 515F/806R region of sequences (MD5: e05afad0fe87542704be96ff483824d4)` as the classifier because we used 515F and 806RB primers for our sequences and QIIME2 recommends the `classify-sklearn` classifier trainer.
+
+##### Download classifier from QIIME2 documentation
+
+```
+wget https://data.qiime2.org/2021.4/common/silva-138-99-515-806-nb-classifier.qza
+```
 
 #### Resulting script section for taxonomy classification
 
@@ -565,7 +573,7 @@ $ cd [into scripts folder]
 $ nano qiime2_script.sh
 ```
 
-Copy and paste sections from above into one script to run altogether.
+Copy and paste sections from above into one script to run altogether. Started at 11:53 and ended at
 
 ```
 #!/bin/bash
@@ -604,18 +612,17 @@ qiime tools import \
   --type 'SampleData[PairedEndSequencesWithQuality]' \
   --input-path $MANIFEST \
   --input-format PairedEndFastqManifestPhred33 \
-  --output-path processed_data/HoloInt_16S-paired-end-sequences1.qza
+  --output-path HoloInt_16S-paired-end-sequences.qza
 
 #### DENOISING WITH DADA2
 
 qiime dada2 denoise-paired --verbose --i-demultiplexed-seqs HoloInt_16S-paired-end-sequences.qza \
-  --p-trunc-len-r 150 --p-trunc-len-f 260 \
+  --p-trunc-len-r 215 --p-trunc-len-f 240 \
   --p-trim-left-r 52 --p-trim-left-f 54 \
   --o-table table.qza \
   --o-representative-sequences rep-seqs.qza \
   --o-denoising-stats denoising-stats.qza \
   --p-n-threads 20
-
 
 #### CLUSTERING
 
@@ -630,7 +637,6 @@ qiime feature-table summarize \
 qiime feature-table tabulate-seqs \
   --i-data rep-seqs.qza \
   --o-visualization rep-seqs.qzv
-
 
 #### TAXONOMY CLASSIFICATION
 
@@ -668,7 +674,6 @@ qiime phylogeny fasttree \
 qiime phylogeny midpoint-root \
   --i-tree unrooted-tree.qza \
   --o-rooted-tree rooted-tree.qza
-
 
 #### CALCULATES OVERALL DIVERSITY
 
@@ -708,6 +713,14 @@ qiime diversity beta-group-significance \
     --p-max-depth 800 \
     --m-metadata-file $METADATA \
     --o-visualization alpha-rarefaction.qzv
+```
+
+#### copy and paste the `core-metrics-results` folder
+
+```
+$ scp -r emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/HoloInt_16s/core-metrics-results /Users/emmastrand/MyProjects/Acclim_Dynamics/16S_seq/ES-run
+
+$ scp -r emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/HoloInt_16s/taxa-bar-plots.qzv /Users/emmastrand/MyProjects/Acclim_Dynamics/16S_seq/ES-run
 ```
 
 
