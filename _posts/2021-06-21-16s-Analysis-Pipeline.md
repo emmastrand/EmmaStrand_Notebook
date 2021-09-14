@@ -391,10 +391,12 @@ Script Name: **qiime2_GREEN_short_primer.sh**:
 
 ![deno](https://github.com/hputnam/Acclim_Dynamics/blob/master/Output/denoising-statistics-DADA2.png?raw=true)
 
+I chose the **'yellow-long'** choices because this resulted in just as high quality at the green parameter choices and is longer than the green parameter choices. Our primers have the adapter in front of the primer so I don't think using 20 and 19 values will cut out both the adapter and primer.
+
 ## 4. Clustering
 
 Description from QIIME2 documentation:  
-- We *dereplicate* our sequences to reduce repetition and file size/memory requirements in downstream steps (don’t worry! we keep count of each replicate).  
+- We *dereplicate* our sequences to reduce repetition and file size/memory requirements in downstream steps (don’t worry! we keep count of each replicate).   
 - We *cluster* sequences to collapse similar sequences (e.g., those that are ≥ 97% similar to each other) into single replicate sequences. This process, also known as OTU picking, was once a common procedure, used to simultaneously dereplicate but also perform a sort of quick-and-dirty denoising procedure (to capture stochastic sequencing and PCR errors, which should be rare and similar to more abundant centroid sequences). Use denoising methods instead if you can. Times have changed. Welcome to the future.
 
 ![clustering](https://docs.qiime2.org/2021.4/_images/clustering.png)
@@ -421,11 +423,29 @@ Pre-trained classifier choice information [here](https://docs.qiime2.org/2021.4/
 
 We chose the `Silva 138 99% OTUs from 515F/806R region of sequences (MD5: e05afad0fe87542704be96ff483824d4)` as the classifier because we used 515F and 806RB primers for our sequences and QIIME2 recommends the `classify-sklearn` classifier trainer.
 
+#### Filtering by taxon and identifying those sequences in d__Bacteria
+
+We chose to filter out the unassigned, eukaryotic, and chloroplast sequences from our dataset. I then downloaded the tsv file from the taxonomy.qzv to get: feature-id and taxon ID. As well as the rep-seqs.qzv file to get the feature-id and actual sequence.
+
+```
+scp -r emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/HoloInt_16s/yellow-long-primer/taxonomy.qzv /Users/emmastrand/MyProjects/Acclim_Dynamics/16S_seq/ES-run/yellow-long-taxonomy.qzv
+
+scp -r emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/HoloInt_16s/yellow-long-primer/rep-seqs.qzv /Users/emmastrand/MyProjects/Acclim_Dynamics/16S_seq/ES-run/yellow-long-rep-seqs.qzv
+```
+
+1. In QIIME2 view, upload the yellow-long-taxonomy.qzv file, and order the taxon column alphabetically to all of the d__Bacteria next to each other.  
+2. Open a new window for another qiime2 view page, and upload the yellow-long-rep-seqs.qzv file.  
+3. Cross reference the feature ID to get the sequence. The sequence will have a hyperlink to the NCBI blast search for that ID.  
+4. Click the hyperlink and the 'View Report' button to search.  
+
+
 ##### Download classifier from QIIME2 documentation
 
 ```
 wget https://data.qiime2.org/2021.4/common/silva-138-99-515-806-nb-classifier.qza
 ```
+
+We also want to filter out unassigned and groups that include chloroplast and eukaryotic sequences.
 
 ## 6. Constructing phylogenetic trees
 
@@ -510,7 +530,7 @@ echo "QIIME2 bash script for 16S samples started running at: "; date
 
 #### METADATA FILES ####
 # File path -- change this to correspond to what script you are running
-cd /data/putnamlab/estrand/HoloInt_16s/red-long-primer
+cd /data/putnamlab/estrand/HoloInt_16s/yellow-long-primer
 
 # Metadata path
 METADATA="../metadata/HoloInt_Metadata.txt"
@@ -558,18 +578,26 @@ qiime feature-classifier classify-sklearn \
   --i-classifier ../metadata/silva-138-99-515-806-nb-classifier.qza \
   --i-reads rep-seqs.qza \
   --o-classification taxonomy.qza
+
+qiime taxa filter-table \
+     --i-table table.qza \
+     --i-taxonomy taxonomy.qza \
+     --p-mode contains \
+     --p-exclude "Unassigned","Chloroplast","Eukaryota" \
+     --o-filtered-table table-filtered.qza
+
 qiime metadata tabulate \
-  --m-input-file taxonomy.qza \
-  --o-visualization taxonomy.qzv
+    --m-input-file taxonomy.qza \
+    --o-visualization taxonomy.qzv
 qiime taxa barplot \
-  --i-table table.qza \
-  --i-taxonomy taxonomy.qza \
-  --m-metadata-file $METADATA \
-  --o-visualization taxa-bar-plots.qzv
+    --i-table table-filtered.qza \
+    --i-taxonomy taxonomy.qza \
+    --m-metadata-file $METADATA \
+    --o-visualization taxa-bar-plots-filtered.qzv
 qiime metadata tabulate \
-  --m-input-file rep-seqs.qza \
-  --m-input-file taxonomy.qza \
-  --o-visualization tabulated-feature-metadata.qzv
+    --m-input-file rep-seqs.qza \
+    --m-input-file taxonomy.qza \
+    --o-visualization tabulated-feature-metadata.qzv
 
 #### CREATES PHYLOGENETIC TREES
 
@@ -593,7 +621,7 @@ qiime phylogeny midpoint-root \
 
 qiime diversity core-metrics-phylogenetic \
   --i-phylogeny rooted-tree.qza \
-  --i-table table.qza \
+  --i-table table-filtered.qza \
   --p-sampling-depth 95 \
   --m-metadata-file $METADATA \
   --output-dir core-metrics-results
@@ -622,7 +650,7 @@ qiime diversity beta-group-significance \
 
 # This script calculates the rarefaction curve for the data
   qiime diversity alpha-rarefaction \
-    --i-table table.qza \
+    --i-table table-filtered.qza \
     --i-phylogeny rooted-tree.qza \
     --p-max-depth 800 \
     --m-metadata-file $METADATA \
@@ -634,7 +662,7 @@ qiime diversity beta-group-significance \
 ```
 $ scp -r emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/HoloInt_16s/core-metrics-results /Users/emmastrand/MyProjects/Acclim_Dynamics/16S_seq/ES-run
 
-$ scp -r emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/HoloInt_16s/taxa-bar-plots.qzv /Users/emmastrand/MyProjects/Acclim_Dynamics/16S_seq/ES-run
+$ scp -r emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/HoloInt_16s/yellow-long-primer-filtered/taxa-bar-plots.qzv /Users/emmastrand/MyProjects/Acclim_Dynamics/16S_seq/ES-run/yellow-long-primer-filtered-taxa-bar-plots.qzv
 ```
 
 
@@ -801,3 +829,81 @@ Data format: SingleLanePerSamplePairedEndFastqDirFmt
 ```
 
 I fixed this by adding `-ip` to the multiqc report function. The default is a flat report that you aren't able to filter or interact with when opening the html version of the multiqc report.
+
+### Filtering by taxonomic identity troubleshooting
+
+Tried the below commands but `table-filtered.qza` is not outputting and therefore the `taxa-bar-plots-filtered` is also not outputting. Only output is `tabulated-feature-metadata-filtered.qzv` and `taxonomy-filtered.qzv`.
+
+```
+qiime taxa filter-table \
+   --i-table table.qza \
+   --i-taxonomy taxonomy.qza \
+   --p-mode contain \
+   --p-exclude "Unassigned", "Chloroplast", "Eukaryota" \
+   --o-filtered-table ../filtered/table-filtered.qza
+
+qiime metadata tabulate \
+  --m-input-file taxonomy.qza \
+  --o-visualization ../filtered/taxonomy-filtered.qzv
+qiime taxa barplot \
+  --i-table ../filtered/table-filtered.qza \
+  --i-taxonomy taxonomy.qza \
+  --m-metadata-file $METADATA \
+  --o-visualization ../filtered/taxa-bar-plots-filtered.qzv
+qiime metadata tabulate \
+  --m-input-file rep-seqs.qza \
+  --m-input-file taxonomy.qza \
+  --o-visualization ../filtered/tabulated-feature-metadata-filtered.qzv
+```
+
+The code chunk above and the format `--p-exclude "Unassigned","Chloroplast","Eukaryota" \` returned the error that the command is actually `--p-mode contains` not `--p-mode contain`.
+
+The documentation for this command:
+
+```
+--p-exclude TEXT       One or more search terms that indicate which taxa
+                       should be excluded from the resulting table. If
+                       providing more than one term, terms should be
+                       delimited by the query-delimiter character. By
+                       default, no taxa will be excluded.         [optional]
+--p-query-delimiter TEXT
+                       The string used to delimit multiple search terms
+                       provided to include or exclude. This parameter should
+                       only need to be modified if the default delimiter (a
+                       comma) is used in the provided taxonomic annotations.
+                                                              [default: ',']
+```
+
+I then tried this iteration: `--p-exclude Unassigned, Chloroplast, Eukaryota \` but got this error ` (1/1) Got unexpected extra arguments (Chloroplast, Eukaryota)`.
+
+I realized the two files that were outputting don't need to be labeled as filtered because they are not using the table-filtered file and just need to be `--o-visualization ../filtered/taxonomy.qzv` and `--o-visualization ../filtered/tabulated-feature-metadata.qzv`.
+
+**Final script that worked:**
+
+```
+qiime taxa filter-table \
+   --i-table table.qza \
+   --i-taxonomy taxonomy.qza \
+   --p-mode contains \
+   --p-exclude "Unassigned","Chloroplast","Eukaryota" \
+   --o-filtered-table ../filtered/table-filtered.qza
+
+qiime metadata tabulate \
+  --m-input-file taxonomy.qza \
+  --o-visualization ../filtered/taxonomy.qzv
+qiime taxa barplot \
+  --i-table ../filtered/table-filtered.qza \
+  --i-taxonomy taxonomy.qza \
+  --m-metadata-file $METADATA \
+  --o-visualization ../filtered/taxa-bar-plots-filtered.qzv
+qiime metadata tabulate \
+  --m-input-file rep-seqs.qza \
+  --m-input-file taxonomy.qza \
+  --o-visualization ../filtered/tabulated-feature-metadata.qzv
+```
+
+copy and paste the `taxa-bar-plots-filtered.qzv` file onto desktop.
+
+```
+scp -r emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/HoloInt_16s/filtered/taxa-bar-plots-filtered.qzv /Users/emmastrand/MyProjects/Acclim_Dynamics/16S_seq/ES-run/taxa-bar-plots-yellow-long-filtered.qzv
+```                                            
