@@ -10,8 +10,8 @@ projects: Kbay Bleaching 2019
 # DNA RNA Duet Extractions for Kbay Bleaching 2019 Project  
 
 Github project [link](https://github.com/hputnam/HI_Bleaching_Timeseries/tree/main/data).  
-Raw molecular lab work data spreadsheet [link]().   
-Coral metadata spreadsheet [link]().  
+Raw molecular lab work data spreadsheet [link](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/data/Molecular-labwork.xlsx).   
+Coral metadata spreadsheet [link](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/data/CollectionSummary.csv).  
 Google drive for extraction photos [link](https://drive.google.com/drive/folders/1bJ0rGskS6QVi0U7OaxSxySYreg7Vo5Wv?usp=sharing).
 
 ### Protocol  

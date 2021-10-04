@@ -433,10 +433,67 @@ scp -r emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/HoloInt_16s/yellow-
 scp -r emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/HoloInt_16s/yellow-long-primer/rep-seqs.qzv /Users/emmastrand/MyProjects/Acclim_Dynamics/16S_seq/ES-run/yellow-long-rep-seqs.qzv
 ```
 
+```
+scp -r emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/HoloInt_16s/yellow-short-primer/taxonomy.qzv /Users/emmastrand/MyProjects/Acclim_Dynamics/16S_seq/ES-run/yellow-short-taxonomy.qzv
+
+scp -r emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/HoloInt_16s/yellow-short-primer/rep-seqs.qzv /Users/emmastrand/MyProjects/Acclim_Dynamics/16S_seq/ES-run/yellow-short-rep-seqs.qzv
+```
+
 1. In QIIME2 view, upload the yellow-long-taxonomy.qzv file, and order the taxon column alphabetically to all of the d__Bacteria next to each other.  
 2. Open a new window for another qiime2 view page, and upload the yellow-long-rep-seqs.qzv file.  
 3. Cross reference the feature ID to get the sequence. The sequence will have a hyperlink to the NCBI blast search for that ID.  
 4. Click the hyperlink and the 'View Report' button to search.  
+
+I made the following script with Erin Chille's to subset rep sequences to the feature IDs associated with the generic 'd__Bacteria' and then BLAST those results.
+
+```
+#!/bin/bash
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab
+#SBATCH -D /data/putnamlab/estrand/HoloInt_16s/
+#SBATCH --error="script_error" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function
+module load all/BLAST+/2.10.1-gompi-2020a
+
+# File path -- change this to correspond to what script you are running
+cd /data/putnamlab/estrand/HoloInt_16s
+
+# Indexing the fasta file
+
+makeblastdb -in yellow-short.fasta  -input_type fasta -dbtype nucl -parse_seqids -out yellow-short-dbact-indexed
+
+# Using blastbcmd to createfrom the fasta file
+
+while read -r FeatureID Taxon Confidence; do
+        echo "$FeatureID"; blastdbcmd -entry "$FeatureID" -db yellow-short-dbact-indexed  -outfmt "%f" >> blast-dbact-sequences.fasta;
+done < yellow-short-metadata-dBact.tsv
+
+# Blast the dbact sequences
+# Script below written by Erin Chille
+
+# Runs blastp against the remote nr database
+blastn -query blast-dbact-sequences.fasta -db nr -remote -evalue 1e-05 -max_hsps 1 -culling_limit 1 -out ALIGNMENT_REPORT_DBACT.out
+
+# You can customize your blast algorithm search here. For mine I only wanted the top hit for each sequence so culling limit and max hsp are set to 2
+
+RID=($(grep RID ALIGNMENT_REPORT_DBACT.out | head -1 | sed -e 's/RID: //g'))
+
+# Extract the RID number. This is your remote identification number and Blast stores all of your output here. Here, I'm extacting it so I can use it to customize my results with the bla$
+
+# Customize your results using your RID number as input
+
+blast_formatter -rid "$RID" \
+        -outfmt "10 qseqid sacc sscinames stitle pident length mismatch gapopen qstart qend sstart send evalue bitscore" \
+        -out dbact.sequences.report.csv
+```
+
 
 
 ##### Download classifier from QIIME2 documentation
@@ -905,5 +962,18 @@ qiime metadata tabulate \
 copy and paste the `taxa-bar-plots-filtered.qzv` file onto desktop.
 
 ```
-scp -r emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/HoloInt_16s/filtered/taxa-bar-plots-filtered.qzv /Users/emmastrand/MyProjects/Acclim_Dynamics/16S_seq/ES-run/taxa-bar-plots-yellow-long-filtered.qzv
+scp -r emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/HoloInt_16s/filtered/taxa-bar-plots-filtered.qzv /Users/emmastrand/MyProjects/Acclim_Dynamics/16S_seq/ES-run/taxa-bar-plots-yellow-short-filtered.qzv
+
+scp -r /Users/emmastrand/MyProjects/Acclim_Dynamics/16S_seq/ES-run/yellow-short-primer/yellow-short.fasta emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/HoloInt_16s/
+
+scp -r emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/HoloInt_16s/blast-dbact-output.fasta /Users/emmastrand/MyProjects/Acclim_Dynamics/16S_seq/ES-run/blast-dbact-output.fasta
+
+scp -r emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/HoloInt_16s/yellow-short-metadata-dBact.tsv /Users/emmastrand/MyProjects/Acclim_Dynamics/16S_seq/ES-run/yellow-short-metadata-dBact.tsv
+
+scp -r /Users/emmastrand/MyProjects/Acclim_Dynamics/16S_seq/ES-run/yellow-short-metadata-dBact.tsv emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/HoloInt_16s/yellow-short-metadata-dBact.tsv
+
+scp -r emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/HoloInt_16s/ALIGNMENT_REPORT_DBACT.out /Users/emmastrand/MyProjects/Acclim_Dynamics/16S_seq/ES-run/ALIGNMENT_REPORT_DBACT.out
+
+scp -r emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/HoloInt_16s/dbact.sequences.report.csv /Users/emmastrand/MyProjects/Acclim_Dynamics/16S_seq/ES-run/dbact.sequences.report.csv
+
 ```                                            
