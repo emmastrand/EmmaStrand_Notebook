@@ -270,7 +270,7 @@ In a separate terminal window, not logged into Andromeda, secure copy these file
 
 ```
 # In andromeda
-$ find raw-data -type f -print | sed 's_/_,_g' > ~/filelist.csv
+$ find raw_files -type f -print | sed 's_/_,_g' > ~/filelist.csv
 $ mv ~/filelist.csv /data/putnamlab/estrand/HoloInt_16s
 
 # Outside of andromeda
