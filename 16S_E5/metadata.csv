@@ -1,0 +1,14 @@
+SampleID,timepoint,collection_date,collection_site,colony_id,replicate,Collection.Notes,Current_Location,Extraction Date,Tech,Extraction.Notes,DNA_ng_µl,DNAµl,RNA_ng_µl,RNA_µl,RIN,Link to notebook post,DNA_Shedd
+#q2:types,categorical,categorical,categorical,categorical,numeric,categorical,categorical,categorical,categorical,categorical,numeric,numeric,numeric,numeric,numeric,categorical,categorical
+5,TP1,20200103,site2,POR-260,1,NA,URI,20210826,KXT,w/BME,3.99,,27,,,8/26/21,Yes
+57,TP1,20200103,site2,ACR-247,1,NA,URI,20210831,KXT,NA,16.9,,23.7,,,https://github.com/Kterpis/Putnam_Lab_Notebook/blob/7949015e16b55a33ec3e2fbe82371ab9e1ae5cc3/_posts/2021-08-31-20210831-E5-RNA-DNA-extractions.md,Yes
+63,TP1,20200103,site2,POC-259,1,NA,URI,20210831,KXT,NA,7.83,,23.7,,,https://github.com/Kterpis/Putnam_Lab_Notebook/blob/7949015e16b55a33ec3e2fbe82371ab9e1ae5cc3/_posts/2021-08-31-20210831-E5-RNA-DNA-extractions.md,Yes
+347,TP2,20200304,site3,ACR-350,1,NA,URI,20210831,KXT,"A lot of biomass, not a lot of shield",15,,nd,,,https://kterpis.github.io/Putnam_Lab_Notebook/20210831-E5-RNA-DNA-extractions/,Yes
+349,TP2,20200304,site3,POC-372,1,NA,URI,20210831,KXT,"A lot of biomass, not a lot of shield",12.15,,33.6,,,https://kterpis.github.io/Putnam_Lab_Notebook/20210831-E5-RNA-DNA-extractions/,Yes
+353,TP2,20200304,site3,POR-353,1,NA,URI,20210831,KXT,"A lot of biomass, not a lot of shield",3.95,,nd,,,https://kterpis.github.io/Putnam_Lab_Notebook/20210831-E5-RNA-DNA-extractions/,Yes
+499,TP3,20200910,site2,ACR-241,1,NA,URI,20210831,KXT,NA,18.35,,14.6,,,https://kterpis.github.io/Putnam_Lab_Notebook/20210831-E5-RNA-DNA-extractions/,Yes
+501,TP3,20200910,site2,POC-207,1,NA,URI,20210831,KXT,NA,12.85,,21.3,,,https://kterpis.github.io/Putnam_Lab_Notebook/20210831-E5-RNA-DNA-extractions/,Yes
+509,TP3,20200910,site2,POR-221,1,NA,URI,20210831,KXT,NA,2.8,,10.1,,,https://kterpis.github.io/Putnam_Lab_Notebook/20210831-E5-RNA-DNA-extractions/,Yes
+709,TP4,20201101,site1,POC-42,1,NA,URI,20210831,KXT,NA,17.5,,38.9,,,https://kterpis.github.io/Putnam_Lab_Notebook/20210831-E5-RNA-DNA-extractions/,Yes
+713,TP4,20201101,site1,POR-69,1,NA,URI,20210831,KXT,NA,2.87,,22.7,,,https://kterpis.github.io/Putnam_Lab_Notebook/20210831-E5-RNA-DNA-extractions/,Yes
+715,TP4,20201101,site1,ACR-178,1,NA,URI,20210831,KXT,NA,17.55,,11.7,,,https://kterpis.github.io/Putnam_Lab_Notebook/20210831-E5-RNA-DNA-extractions/,Yes
