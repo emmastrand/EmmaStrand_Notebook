@@ -62,5 +62,6 @@ denoise.plot <- ggplot(data = denoise, aes(x = statistic, y = value)) +
   theme(plot.title = element_text(hjust = 0.5)) +
   xlab("statistic"); denoise.plot
 
+ggsave(file="denoising-statistics.png", denoise.plot, width = 11, height = 6, units = c("in"))
 
 
