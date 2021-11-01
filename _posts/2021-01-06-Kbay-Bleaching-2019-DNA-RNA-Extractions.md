@@ -322,3 +322,23 @@ We sequenced the RNA with TagSeq but this failed so we want to ship the RNA to G
 | M-209    	| 2019-07-20      	| 68               	| 20211029           	| 46.4                  	| 46.4                  	| 46.4                    	| 31.8                  	| 31.8                  	| 31.8                    	| 5.6 	|           	|                                  	|                                                                                                          	|
 | M-3      	| 2019-07-20      	| 67               	| 20211029           	| 62.8                  	| 62.6                  	| 62.7                    	| 27                    	| 27                    	| 27                      	| 8.9 	| Yes       	| Yes                              	|                                                                                                          	|
 | M-20     	| 2019-07-20      	| NA               	| NA                 	| NA                    	| NA                    	| NA                      	| NA                    	| NA                    	| NA                      	| NA  	| NA        	| NA                               	| Couldn’t find this fragment - we may not have any left. Just send the RNA   we have from the first round 	|
+
+Tapestation links: [Ext 60-64](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2021-10-28%20-%2015.52.40.pdf), [Ext 65-68](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2021-10-29%20-%2013.46.22.pdf)
+
+![Extraction ID 60](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%20Re-extractions/Ext%20ID%2060.png?raw=true)
+
+![Extraction ID 61](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%20Re-extractions/Ext%20ID%2061.png?raw=true)
+
+![Extraction ID 62](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%20Re-extractions/Ext%20ID%2062.png?raw=true)
+
+![Extraction ID 63](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%20Re-extractions/Ext%20ID%2063.png?raw=true)
+
+![Extraction ID 64](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%20Re-extractions/Ext%20ID%2064.png?raw=true)
+
+![Extraction ID 65](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%20Re-extractions/Ext%20ID%2065.png?raw=true)
+
+![Extraction ID 66](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%20Re-extractions/Ext%20ID%2066.png?raw=true)
+
+![Extraction ID 67](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%20Re-extractions/Ext%20ID%2067.png?raw=true)
+
+![Extraction ID 68](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%20Re-extractions/Ext%20ID%2068.png?raw=true)
