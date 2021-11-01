@@ -20,7 +20,8 @@ $ mkdir BleachingPairs_WGBS
 
 #### Make script to run methylseq
 
-Nextflow version 21.03.0 requires an -input command.
+Nextflow version 21.03.0 requires an -input command.  
+The --name output needs to be different every time you run this script.  
 
 ```
 nano BleachingPairs_methylseq.sh
@@ -31,7 +32,7 @@ nano BleachingPairs_methylseq.sh
 #SBATCH --job-name="methylseq"
 #SBATCH -t 120:00:00
 #SBATCH --nodes=1 --ntasks-per-node=10
-#SBATCH --mem=500GB
+#SBATCH --mem=100GB
 #SBATCH --account=putnamlab
 #SBATCH --export=NONE
 #SBATCH -D /data/putnamlab/estrand/BleachingPairs_WGBS
@@ -40,7 +41,7 @@ nano BleachingPairs_methylseq.sh
 
 # load modules needed
 source /usr/share/Modules/init/sh # load the module function
-module load Nextflow
+module load Nextflow/21.03.0
 
 # run nextflow methylseq
 
@@ -58,5 +59,5 @@ nextflow run nf-core/methylseq -profile singularity \
 --relax_mismatches \
 --unmapped \
 --outdir /data/putnamlab/estrand/BleachingPairs_WGBS \
--name WGBS_methylseq_BleachingPairs
+-name WGBS_methylseq_BleachingPairs3
 ```
