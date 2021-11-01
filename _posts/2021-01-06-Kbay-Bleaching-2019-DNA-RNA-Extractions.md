@@ -323,6 +323,8 @@ We sequenced the RNA with TagSeq but this failed so we want to ship the RNA to G
 | M-3      	| 2019-07-20      	| 67               	| 20211029           	| 62.8                  	| 62.6                  	| 62.7                    	| 27                    	| 27                    	| 27                      	| 8.9 	| Enough    	| Yes                              	| DNA is much more degraded than the December fragments                                                    	|
 | M-20     	| 2019-07-20      	| NA               	| NA                 	| NA                    	| NA                    	| NA                      	| NA                    	| NA                    	| NA                      	| NA  	| NA        	| NA                               	| Couldn’t find this fragment - we may not have any left. Just send the RNA   we have from the first round 	|
 
+![gelreext](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%20Re-extractions/kbay-reext-gel.jpg?raw=true)
+
 Tapestation links: [Ext 60-64](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2021-10-28%20-%2015.52.40.pdf), [Ext 65-68](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/TapeStation/2021-10-29%20-%2013.46.22.pdf)
 
 ![Extraction ID 60](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%20Re-extractions/Ext%20ID%2060.png?raw=true)
