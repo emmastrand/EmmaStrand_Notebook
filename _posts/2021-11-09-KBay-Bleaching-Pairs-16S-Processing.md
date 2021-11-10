@@ -40,4 +40,15 @@ Negative control: Ultrapure water
 
 Initially we were worried about the difference in band size between KW and AH/ES samples (KW appears to be closer to 400 bp and AH/ES bands seem to be closer to 300 bp long). This could be because AH and ES samples are picking up more of the 18S and mitochondria regions than the 16S regions. However, the positive control was a sample that we have sequenced previously and in the gel image above it looks like the *M. capitata* ES samples.
 
-### Positive control M2410 sequencing details 
+### Positive control M2410 sequencing details
+
+M2410 = HPW060 (Sequencing ID with URI GSC)
+
+Denoising stats: M2410 was the 57th lowest # of reads after filtering out non-chimeric out of 262 samples.
+
+| Plug ID                	| Sequencing ID 	| Input    	| Filtered 	| % of input passed filtered 	| Denoised 	| Merged   	| % of input merged 	| Non-chimeric 	| % of input non-chimeric 	|
+|------------------------	|---------------	|----------	|----------	|----------------------------	|----------	|----------	|-------------------	|--------------	|-------------------------	|
+| M2410                  	| HPW060        	| 31027    	| 22804    	| 73.5                       	| 22472    	| 20306    	| 65.45             	| 19673        	| 63.41                   	|
+| Average of all samples 	|               	| 40776.97 	| 29593.68 	| 72.49211                   	| 29411.86 	| 27954.59 	| 67.92323          	| 27939.43     	| 67.88873                	|
+
+Next steps could be to try a short run with more of the samples from Holobiont Integration - because I only did one of my pervious ones, I don't know if the faint band is truly reflective of the below avaerage denoising statistics above.  
