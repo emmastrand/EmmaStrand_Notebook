@@ -51,4 +51,67 @@ Denoising stats: M2410 was the 57th lowest # of reads after filtering out non-ch
 | M2410                  	| HPW060        	| 31027    	| 22804    	| 73.5                       	| 22472    	| 20306    	| 65.45             	| 19673        	| 63.41                   	|
 | Average of all samples 	|               	| 40776.97 	| 29593.68 	| 72.49211                   	| 29411.86 	| 27954.59 	| 67.92323          	| 27939.43     	| 67.88873                	|
 
-Next steps could be to try a short run with more of the samples from Holobiont Integration - because I only did one of my pervious ones, I don't know if the faint band is truly reflective of the below avaerage denoising statistics above.  
+Next steps could be to try a short run with more of the samples from Holobiont Integration - because I only did one of my pervious ones, I don't know if the faint band is truly reflective of the below average denoising statistics above. We decided to move forward with the protocol as is.
+
+Bacteria / Total:  
+- M2410: 64.11% of reads are bacteria (12,612 out of 19,673 reads)  
+- Average sample: 56.12% reads are bacteria  
+
+Chloroplast / Total:  
+- M2410: 340 reads are chloroplast (1.73%)  
+- Average sample: 2.62% reads are chloroplast   
+
+
+## Plate 2, 3
+
+Plate 2 (20211111)
+
+|   	| 1     	| 2     	| 3     	| 4  	| 5  	| 6  	| 7  	| 8  	| 9  	| 10 	| 11 	| 12 	|
+|---	|-------	|-------	|-------	|----	|----	|----	|----	|----	|----	|----	|----	|----	|
+| A 	| KW-10 	| KW-10 	| KW-10 	| 23 	| 23 	| 23 	| 35 	| 35 	| 35 	| 46 	| 46 	| 46 	|
+| B 	| 11    	| 11    	| 11    	| 24 	| 24 	| 24 	| 36 	| 36 	| 36 	| 49 	| 49 	| 49 	|
+| C 	| 12    	| 12    	| 12    	| 29 	| 29 	| 29 	| 37 	| 37 	| 37 	| 51 	| 51 	| 51 	|
+| D 	| 13    	| 13    	| 13    	| 30 	| 30 	| 30 	| 39 	| 39 	| 39 	| 53 	| 53 	| 53 	|
+| E 	| 14    	| 14    	| 14    	| 31 	| 31 	| 31 	| 40 	| 40 	| 40 	| 54 	| 54 	| 54 	|
+| F 	| 15    	| 15    	| 15    	| 32 	| 32 	| 32 	| 41 	| 41 	| 41 	| 55 	| 55 	| 55 	|
+| G 	| 21    	| 21    	| 21    	| 33 	| 33 	| 33 	| 43 	| 43 	| 43 	| 56 	| 56 	| 56 	|
+| H 	| 22    	| 22    	| 22    	| 34 	| 34 	| 34 	| 44 	| 44 	| 44 	| 57 	| 57 	| 57 	|
+
+
+Plate 3 (20211111)
+
+|   	| 1  	| 2  	| 3  	| 4    	| 5    	| 6    	| 7  	| 8  	| 9  	| 10 	| 11 	| 12 	|
+|---	|----	|----	|----	|------	|------	|------	|----	|----	|----	|----	|----	|----	|
+| A 	| 58 	| 58 	| 58 	| 74   	| 74   	| 74   	| 5  	| 5  	| 5  	| 13 	| 13 	| 13 	|
+| B 	| 62 	| 62 	| 62 	| 80   	| 80   	| 80   	| 6  	| 6  	| 6  	| 14 	| 14 	| 14 	|
+| C 	| 63 	| 63 	| 63 	| 87   	| 87   	| 87   	| 7  	| 7  	| 7  	| 16 	| 16 	| 16 	|
+| D 	| 65 	| 65 	| 65 	| 88   	| 88   	| 88   	| 8  	| 8  	| 8  	| 15 	| 15 	| 15 	|
+| E 	| 67 	| 67 	| 67 	| 89   	| 89   	| 89   	| 9  	| 9  	| 9  	| 17 	| 17 	| 17 	|
+| F 	| 68 	| 68 	| 68 	| AH-2 	| AH-2 	| AH-2 	| 10 	| 10 	| 10 	| 18 	| 18 	| 18 	|
+| G 	| 71 	| 71 	| 71 	| 3    	| 3    	| 3    	| 11 	| 11 	| 11 	| 19 	| 19 	| 19 	|
+| H 	| 73 	| 73 	| 73 	| 4    	| 4    	| 4    	| 12 	| 12 	| 12 	| 20 	| 20 	| 20 	|
+
+Strip tubes for positive and negative control
+
+| POS(+) 1 	| POS(+) 1 	| POS(+) 1 	| POS(+) 2 	| POS(+) 2 	| POS(+) 2 	| POS(+) 3 	| POS(+) 3 	|
+|----------	|----------	|----------	|----------	|----------	|----------	|----------	|----------	|
+| POS(+) 3 	| NEG(-)   	| NEG(-)   	| NEG(-)   	|          	|          	|          	|          	|
+
+Master mix calculations:
+
+|                	| (ul) 	| # of rxns 	| (ul) to add 	|
+|----------------	|------	|-----------	|-------------	|
+| Phusion MM     	| 12.5 	| 215       	| 2687.5      	|
+| 806RB primer   	| 0.5  	| 215       	| 107.5       	|
+| 515F primer    	| 0.5  	| 215       	| 107.5       	|
+| Ultra pure H2O 	| 10.5 	| 215       	| 2257.5      	|
+
+Positive control details:
+
+| POS(+) 1 	| M1095  	| Dilution plate 2 well D1 	|
+|----------	|--------	|--------------------------	|
+| POS(+) 2 	| M1694  	| Dilution plate 2 well E1 	|
+| POS(+) 3 	| M2986  	| Dilution plate 2 well F1 	|
+
+
+Plates were left at 4C instead of -20C over the weekend. Based on the gel, I will have to decide whether or not to redo these plates.
