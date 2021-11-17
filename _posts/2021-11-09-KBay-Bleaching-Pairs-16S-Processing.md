@@ -114,4 +114,8 @@ Positive control details:
 | POS(+) 3 	| M2986  	| Dilution plate 2 well F1 	|
 
 
-Plates were left at 4C instead of -20C over the weekend. Based on the gel, I will have to decide whether or not to redo these plates.
+Plates were left at 4C instead of -20C over the weekend. The gel looks OK, I won't redo these for now.
+
+![plate2gel](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%2016S/plate%202%20gel.jpg?raw=true)  
+
+![plate3gel](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%2016S/plate%203%20gel.jpg?raw=true)
