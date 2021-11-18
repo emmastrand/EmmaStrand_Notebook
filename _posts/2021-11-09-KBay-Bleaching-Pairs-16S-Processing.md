@@ -167,4 +167,10 @@ Plates left at 4C overnight and gel'd the next day.
 
 Re-did the gel for some samples from plate 2. These look OK. Ready to submit all of the above samples.
 
-![redo gel]()
+![redo gel](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%2016S/redos%20from%20plate%202.jpg?raw=true)
+
+## Submit to Janet
+
+Platemaps dropped off to Janet [spreadsheet link](https://docs.google.com/spreadsheets/d/1lLvCp-RoRiBSGZ4NBPwi6cmZuozmfS20OJ7hBIueldU/edit#gid=1407808998).
+
+We choose the code WSH (Wong Strand Huffmyer)001 - 096 for the first plate, 101-196 for the second plate, and 201-296 for the third plate. 
