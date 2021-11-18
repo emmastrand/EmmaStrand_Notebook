@@ -161,6 +161,10 @@ Master mix calculations:
 
 Plates left at 4C overnight and gel'd the next day.
 
-![plate4]()
+![plate4](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%2016S/plate%204%20and%205.jpg?raw=true)
 
-![plate5]()
+![plate5](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%2016S/plate%205%20and%20KW%20its2.jpg?raw=true)
+
+Re-did the gel for some samples from plate 2. These look OK. Ready to submit all of the above samples.
+
+![redo gel]()
