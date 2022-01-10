@@ -203,7 +203,7 @@ $ scp emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/BleachingPairs_16S/B
 
 ![](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/data/16S/multiqc_report/sectioned-seq-quality.png?raw=true)
 
-This statistic is what QIIME2 parameters will be based off of. Blue lines are reverse reads and red lines are forward reads. 
+This statistic is what QIIME2 parameters will be based off of. Blue lines are reverse reads and red lines are forward reads.
 
 **Per Sequence Quality Scores**
 
@@ -257,6 +257,8 @@ $ mkdir metadata
 
 ### 1. Sample manifest file
 
+**QIIME2 2021.4 requires a sample manifest file (csv) like the one made in this [analysis pipeline](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2021-06-21-16s-Analysis-Pipeline.md) and the option PairedEndFastqManifestPhred33. QIIME2 2021.8 version requires a sample manifest file (txt) like the one made in the following steps and the option PairedEndFastqManifestPhred33V2. The new version of QIIME2 requires a column for the absolute path for the forward sequence file and another column for the absolute path for the reverse sequence file.**
+
 Create a list of the raw_data file names:
 
 ```
@@ -267,7 +269,7 @@ $ find raw_data -type f -print | sed 's_/_,_g' > metadata/filelist.csv
 In a separate terminal window, outside of andromeda, copy this file to your computer to then work with in the above R script:
 
 ```
-scp emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/BleachingPairs_16S/metadata/filelist.csv /Users/emmastrand/MyProjects/HI_Bleaching_Timeseries/data/16S/metadata/
+$ scp emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/BleachingPairs_16S/metadata/filelist.csv /Users/emmastrand/MyProjects/HI_Bleaching_Timeseries/data/16S/metadata/
 ```
 
 **Run the 1. Sample manifest file section in 16S_metadata.R file and then return to the following steps.**
@@ -275,7 +277,7 @@ scp emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/BleachingPairs_16S/met
 Secure copy paste the sample manifest file in a terminal window outside of andromeda.
 
 ```
-$ scp /Users/emmastrand/MyProjects/HI_Bleaching_Timeseries/data/16S/metadata/sample_manifest.csv emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/BleachingPairs_16S/metadata
+$ scp /Users/emmastrand/MyProjects/HI_Bleaching_Timeseries/data/16S/metadata/sample_manifest.txt emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/BleachingPairs_16S/metadata
 ```
 
 ### 2. Sample metadata file
@@ -294,7 +296,7 @@ More detailed information on each step can be found in this [notebook post](http
 
 ### 1. Sample input
 
-Create script for importing data into QIIME2. I prefer to do this separately first to make sure all the data files import correctly prior to running the rest of QIIME2.
+Create script for importing data into QIIME2. Make sure the conda environment created above is activated.
 
 ```
 $ cd ../../data/putnamlab/estrand/BleachingPairs_16S/scripts
@@ -314,18 +316,249 @@ $ nano import.sh
 #SBATCH --output="output_script" #once your job is completed, any final job report comments will be put in this file
 
 source /usr/share/Modules/init/sh # load the module function
+module load QIIME2/2021.8
 
+#### METADATA FILES ####
+# File path -- change this to correspond to what script you are running
+cd /data/putnamlab/estrand/BleachingPairs_16S/
+
+# Metadata path
+METADATA="metadata/metadata.txt"
+
+# Sample manifest path
+MANIFEST="metadata/sample_manifest.txt"
+
+#########################
+
+qiime tools import \
+  --type 'SampleData[PairedEndSequencesWithQuality]' \
+  --input-path $MANIFEST \
+  --input-format PairedEndFastqManifestPhred33V2 \
+  --output-path KBay16S-paired-end-sequences.qza
+```
+
+### 2. QIIME2 denoising
+
+Create a script for denosing and clustering. Prerequisites to running this script: run import.sh, activate conda environment, decide on denosing parameters, and load all metadata files to andromeda folders.
+
+Based on sequence quality scores and the below image:
+
+![](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/data/16S/multiqc_report/sectioned-seq-quality.png?raw=true)
+
+Parameters chosen:  
+- `--p-trunc-len-f`: 19 (forward is 19 bp long)    
+- `--p-trunc-len-r`: 20 (reverse is 20 bp long)    
+- `p-trim-left-f`: try 260, 270, and 280
+- `p-trim-left-r`: try 230, 240
+
+Make a processed data folder for the output of denoising: `$ mkdir processed_data`.
+
+#### forward 260, reverse 230 (most conservative)
+
+Make an output folder for this script: `$ mkdir denoise_260230`.  
+
+```
+$ cd ../../data/putnamlab/estrand/BleachingPairs_16S/scripts
+$ nano denoise_260230.sh
+
+## copy and paste the below into that script
+
+#!/bin/bash
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab                  
+#SBATCH --error="script_error" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function
+module load QIIME2/2021.8
+
+#### METADATA FILES ####
+# File path -- change this to correspond to what script you are running
+cd /data/putnamlab/estrand/BleachingPairs_16S/processed_data/denoise_260230
+
+# Metadata path
+METADATA="../../metadata/metadata.txt"
+
+# Sample manifest path
+MANIFEST="../../metadata/sample_manifest.txt"
+
+#########################
+
+qiime dada2 denoise-paired --verbose --i-demultiplexed-seqs ../../KBay16S-paired-end-sequences.qza \
+  --p-trunc-len-r 230 --p-trunc-len-f 260 \
+  --p-trim-left-r 20 --p-trim-left-f 19 \
+  --o-table table_260230.qza \
+  --o-representative-sequences rep-seqs_260230.qza \
+  --o-denoising-stats denoising-stats_260230.qza \
+  --p-n-threads 20
+
+#### CLUSTERING
+
+# Summarize feature table and sequences
+qiime metadata tabulate \
+  --m-input-file denoising-stats_260230.qza \
+  --o-visualization denoising-stats_260230.qzv
+qiime feature-table summarize \
+  --i-table table_260230.qza \
+  --o-visualization table_260230.qzv \
+  --m-sample-metadata-file $METADATA
+qiime feature-table tabulate-seqs \
+  --i-data rep-seqs_260230.qza \
+  --o-visualization rep-seqs_260230.qzv
 
 ```
 
-### 2.
+#### forward 270, reverse 240 (middle)
+
+Make an output folder for this script: `$ mkdir denoise_270240`.  
+
+```
+$ cd ../../data/putnamlab/estrand/BleachingPairs_16S/scripts
+$ nano denoise_270240.sh
+
+## copy and paste the below into that script
+
+#!/bin/bash
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab                  
+#SBATCH --error="script_error_270240" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_270240" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function
+module load QIIME2/2021.8
+
+#### METADATA FILES ####
+# File path -- change this to correspond to what script you are running
+cd /data/putnamlab/estrand/BleachingPairs_16S/processed_data/denoise_270240
+
+# Metadata path
+METADATA="../../metadata/metadata.txt"
+
+# Sample manifest path
+MANIFEST="../../metadata/sample_manifest.txt"
+
+#########################
+
+qiime dada2 denoise-paired --verbose --i-demultiplexed-seqs ../../KBay16S-paired-end-sequences.qza \
+  --p-trunc-len-r 240 --p-trunc-len-f 270 \
+  --p-trim-left-r 20 --p-trim-left-f 19 \
+  --o-table table_270240.qza \
+  --o-representative-sequences rep-seqs_270240.qza \
+  --o-denoising-stats denoising-stats_270240.qza \
+  --p-n-threads 20
+
+#### CLUSTERING
+
+# Summarize feature table and sequences
+qiime metadata tabulate \
+  --m-input-file denoising-stats_270240.qza \
+  --o-visualization denoising-stats_270240.qzv
+qiime feature-table summarize \
+  --i-table table_270240.qza \
+  --o-visualization table_270240.qzv \
+  --m-sample-metadata-file $METADATA
+qiime feature-table tabulate-seqs \
+  --i-data rep-seqs_270240.qza \
+  --o-visualization rep-seqs_270240.qzv
+
+```
+
+#### forward 280, reverse 240 (least conservative)
+
+Make an output folder for this script: `$ mkdir denoise_280240`.  
+
+```
+$ cd ../../data/putnamlab/estrand/BleachingPairs_16S/scripts
+$ nano denoise_280240.sh
+
+## copy and paste the below into that script
+
+#!/bin/bash
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab                  
+#SBATCH --error="script_error_280240" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_280240" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function
+module load QIIME2/2021.8
+
+#### METADATA FILES ####
+# File path -- change this to correspond to what script you are running
+cd /data/putnamlab/estrand/BleachingPairs_16S/processed_data/denoise_280240
+
+# Metadata path
+METADATA="../../metadata/metadata.txt"
+
+# Sample manifest path
+MANIFEST="../../metadata/sample_manifest.txt"
+
+#########################
+
+qiime dada2 denoise-paired --verbose --i-demultiplexed-seqs ../../KBay16S-paired-end-sequences.qza \
+  --p-trunc-len-r 240 --p-trunc-len-f 280 \
+  --p-trim-left-r 20 --p-trim-left-f 19 \
+  --o-table table_280240.qza \
+  --o-representative-sequences rep-seqs_280240.qza \
+  --o-denoising-stats denoising-stats_280240.qza \
+  --p-n-threads 20
+
+#### CLUSTERING
+
+# Summarize feature table and sequences
+qiime metadata tabulate \
+  --m-input-file denoising-stats_280240.qza \
+  --o-visualization denoising-stats_280240.qzv
+qiime feature-table summarize \
+  --i-table table_280240.qza \
+  --o-visualization table_280240.qzv \
+  --m-sample-metadata-file $METADATA
+qiime feature-table tabulate-seqs \
+  --i-data rep-seqs_280240.qza \
+  --o-visualization rep-seqs_280240.qzv
+
+```
+
+#### Denoising statistics
+
+In a separate terminal outside of andromeda, copy paste all three outputs (denoising-stats_######.qzv) to own computer to work with in R.
+
+```
+$ scp emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/BleachingPairs_16S/processed_data/denoise_260230/denoising-stats_260230.qzv /Users/emmastrand/MyProjects/HI_Bleaching_Timeseries/data/16S/processed_data/
+
+$ scp emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/BleachingPairs_16S/processed_data/denoise_270240/denoising-stats_270240.qzv /Users/emmastrand/MyProjects/HI_Bleaching_Timeseries/data/16S/processed_data/
+
+$ scp emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/BleachingPairs_16S/processed_data/denoise_280240/denoising-stats_280240.qzv /Users/emmastrand/MyProjects/HI_Bleaching_Timeseries/data/16S/processed_data/
+```
+
+Open [qiime2 view](https://view.qiime2.org/) and drop in the first file you want to view. Click 'Download metadata TSV file' and save that file to '~/MyProjects/HI_Bleaching_Timeseries/data/16S/processed_data' folder.
+
+**Run the denoising stats portion of the '16S_metadata.R' script and then return to the following steps below.**
+
+
+
 
 
 ## <a name="Troubleshooting"></a> **Troubleshooting**
 
-1. In FASTQC - Quality Control section, the fastqc.sh script: I originally had the -D path as the raw data path but that is a protected folder that is not edit-able. I changed this to the BleachingPairs_16S folder within my own personal folder so that the 'output_script' and 'script_error' can be created.  
-2. The fastqc.sh script was not running because of this error: `zsh: no matches found: ../../data/putnamlab/shared/ES_BP_16S/*fastq.gz`. To fix this I copied the raw data files to a new folder in my own user and took out the following lines: `# SBATCH -D data/putnamlab/estrand/BleachingPairs_16S` and all `../../` in front of the data path files.  
-3. I had several issues with the path formats within the fastqc.sh file - for the future follow exactly as the script above. cd to the folder you're working in and then include the relative path in this script.
+1. In FASTQC - Quality Control section, the fastqc.sh script: I originally had the -D path as the raw data path but that is a protected folder that is not edit-able. I changed this to the BleachingPairs_16S folder within my own personal folder so that the 'output_script' and 'script_error' can be created.    
+2. The fastqc.sh script was not running because of this error: `zsh: no matches found: ../../data/putnamlab/shared/ES_BP_16S/*fastq.gz`. To fix this I copied the raw data files to a new folder in my own user and took out the following lines: `# SBATCH -D data/putnamlab/estrand/BleachingPairs_16S` and all `../../` in front of the data path files.    
+3. I had several issues with the path formats within the fastqc.sh file - for the future follow exactly as the script above. cd to the folder you're working in and then include the relative path in this script.    
+4. I had issues with my script when I included "../../" before any path. Removing those fixed my issues.
 
 ## <a name="Scripts"></a> **Scripts**  
 
@@ -360,7 +593,11 @@ sample_manifest$`sample-id` <- substr(sample_manifest$`absolute-filepath`, 53, 5
 
 sample_manifest <- sample_manifest[, c(3, 1, 2)] # reordering the columns
 
-sample_manifest %>% write_csv(file = "~/MyProjects/HI_Bleaching_Timeseries/data/16S/metadata/sample_manifest.csv")
+sample_manifest <- sample_manifest %>% spread(direction, `absolute-filepath`) %>%
+  dplyr::rename(`forward-absolute-filepath` = forward) %>%
+  dplyr::rename(`reverse-absolute-filepath` = reverse)
+
+write.table(sample_manifest, "~/MyProjects/HI_Bleaching_Timeseries/data/16S/metadata/sample_manifest.txt", sep = "\t", row.names = FALSE, quote = FALSE)
 
 ## return to terminal to secure copy paste the sample manifest file to bluewaves/andromeda folders
 
