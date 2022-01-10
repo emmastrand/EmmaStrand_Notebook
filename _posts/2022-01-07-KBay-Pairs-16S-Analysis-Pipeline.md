@@ -203,7 +203,7 @@ $ scp emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/BleachingPairs_16S/B
 
 ![](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/data/16S/multiqc_report/sectioned-seq-quality.png?raw=true)
 
-This statistic is what QIIME2 parameters will be based off of.
+This statistic is what QIIME2 parameters will be based off of. Blue lines are reverse reads and red lines are forward reads. 
 
 **Per Sequence Quality Scores**
 
