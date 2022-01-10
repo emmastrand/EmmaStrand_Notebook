@@ -201,7 +201,7 @@ $ scp emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/BleachingPairs_16S/B
 
 **Sequence quality**
 
-![](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/data/16S/multiqc_report/seq-quality.png?raw=true)
+![](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/data/16S/multiqc_report/sectioned-seq-quality.png?raw=true)
 
 This statistic is what QIIME2 parameters will be based off of.
 
@@ -288,8 +288,38 @@ Secure copy paste the metadata file in a terminal window outside of andromeda.
 $ scp /Users/emmastrand/MyProjects/HI_Bleaching_Timeseries/data/16S/metadata/metadata.txt emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/BleachingPairs_16S/metadata
 ```
 
-
 ## <a name="QIIME2"></a> **QIIME2**
+
+More detailed information on each step can be found in this [notebook post](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2021-06-21-16s-Analysis-Pipeline.md) (16S pipeline notes from Holobiont Integration Hawaii project).
+
+### 1. Sample input
+
+Create script for importing data into QIIME2. I prefer to do this separately first to make sure all the data files import correctly prior to running the rest of QIIME2.
+
+```
+$ cd ../../data/putnamlab/estrand/BleachingPairs_16S/scripts
+$ nano import.sh
+
+## copy and paste below script
+
+#!/bin/bash
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab                  
+#SBATCH --error="script_error" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function
+
+
+```
+
+### 2.
+
 
 ## <a name="Troubleshooting"></a> **Troubleshooting**
 
