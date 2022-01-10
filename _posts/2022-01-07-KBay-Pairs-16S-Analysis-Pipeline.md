@@ -31,7 +31,8 @@ Contents:
 - [**MultiQC Report**](#MultiQC)
 - [**Create metadata files**](#Metadata)
 - [**QIIME2**](#QIIME2)  
-- [**Troubleshooting**](#Troubleshooting)
+- [**Troubleshooting**](#Troubleshooting)  
+- [**Scripts**](#Scripts)
 
 ## <a name="Setting_up"></a> **Setting Up Andromeda**
 
@@ -245,7 +246,7 @@ This plot is more helpful in the interactive version of the multiqc report.
 ## <a name="Metadata"></a> **Create metadata files**
 
 Metadata files created in both terminal and in an R script.  
-- R script file path in Github 'HI_Bleaching_Timeseries' repository: [here](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/scripts/16S_metadata.R).
+- R script file path in Github 'HI_Bleaching_Timeseries' repository: [here on github](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/scripts/16S_metadata.R) and [here at the bottom of this post](#Scripts).  
 
 Make a new directory for the metadata files:  
 
@@ -253,6 +254,8 @@ Make a new directory for the metadata files:
 $ cd ../../data/putnamlab/estrand/BleachingPairs_16S  
 $ mkdir metadata
 ```
+
+### 1. Sample manifest file
 
 Create a list of the raw_data file names:
 
@@ -275,6 +278,16 @@ Secure copy paste the sample manifest file in a terminal window outside of andro
 $ scp /Users/emmastrand/MyProjects/HI_Bleaching_Timeseries/data/16S/metadata/sample_manifest.csv emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/BleachingPairs_16S/metadata
 ```
 
+### 2. Sample metadata file
+
+**Run the 2. Sample metadata file section in 16S_metadata.R file and then return to the following steps.**
+
+Secure copy paste the metadata file in a terminal window outside of andromeda.
+
+```
+$ scp /Users/emmastrand/MyProjects/HI_Bleaching_Timeseries/data/16S/metadata/metadata.txt emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/BleachingPairs_16S/metadata
+```
+
 
 ## <a name="QIIME2"></a> **QIIME2**
 
@@ -282,4 +295,75 @@ $ scp /Users/emmastrand/MyProjects/HI_Bleaching_Timeseries/data/16S/metadata/sam
 
 1. In FASTQC - Quality Control section, the fastqc.sh script: I originally had the -D path as the raw data path but that is a protected folder that is not edit-able. I changed this to the BleachingPairs_16S folder within my own personal folder so that the 'output_script' and 'script_error' can be created.  
 2. The fastqc.sh script was not running because of this error: `zsh: no matches found: ../../data/putnamlab/shared/ES_BP_16S/*fastq.gz`. To fix this I copied the raw data files to a new folder in my own user and took out the following lines: `# SBATCH -D data/putnamlab/estrand/BleachingPairs_16S` and all `../../` in front of the data path files.  
-3. I had several issues with the path formats within the fastqc.sh file - for the future follow exactly as the script above. cd to the folder you're working in and then include the relative path in this script.   
+3. I had several issues with the path formats within the fastqc.sh file - for the future follow exactly as the script above. cd to the folder you're working in and then include the relative path in this script.
+
+## <a name="Scripts"></a> **Scripts**  
+
+**Making metadata files in R**
+
+```
+## Creating metadata files for 16S pipeline
+## Emma Strand created 1/7/2022
+
+library(plyr)
+library(dplyr)
+library(stringr)
+library(tidyr)
+library(readr)
+library(ggplot2)
+
+## 1. Sample manifest file
+## filelist.csv created during pipeline in andromeda and scp to desktop to work with in R
+
+file_names <- read.csv("~/MyProjects/HI_Bleaching_Timeseries/data/16S/metadata/filelist.csv", header = FALSE) %>%
+  select(V2) %>% ## reading in filelist as dataframe and only the second column
+  dplyr::rename(`absolute-filepath` = V2) # renaming to match the verbiage of qiime2
+
+sample_manifest <- file_names # creating a new df based on the original file_names df
+sample_manifest$path <- "/data/putnamlab/estrand/BleachingPairs_16S/raw_data/" #adding the absolute file path
+
+sample_manifest <- sample_manifest %>% unite(`absolute-filepath`, path, `absolute-filepath`, sep = "") %>% # merging the two columns to complete the file path
+  mutate(direction = case_when(grepl("R1", `absolute-filepath`) ~ "forward",
+                               grepl("R2", `absolute-filepath`) ~ "reverse")) # creating a new column to state whether forward or reverse based on the R value in the sequence title name
+
+sample_manifest$`sample-id` <- substr(sample_manifest$`absolute-filepath`, 53, 58) # creating a new column based on the sample id value
+
+sample_manifest <- sample_manifest[, c(3, 1, 2)] # reordering the columns
+
+sample_manifest %>% write_csv(file = "~/MyProjects/HI_Bleaching_Timeseries/data/16S/metadata/sample_manifest.csv")
+
+## return to terminal to secure copy paste the sample manifest file to bluewaves/andromeda folders
+
+## 2. Sample metadata file
+## sequencing ID and colonyID info downloaded from this google sheet: https://docs.google.com/spreadsheets/d/1lLvCp-RoRiBSGZ4NBPwi6cmZuozmfS20OJ7hBIueldU/edit#gid=0
+collection.summary <- read.csv("~/MyProjects/HI_Bleaching_Timeseries/data/CollectionSummary.csv", header = TRUE) %>%
+  select(-Biopsy., -Fragment.) %>% # removing 2 columns that are not needed for this metadata sheet
+  dplyr::rename(Timepoint = Date)
+collection.summary$Timepoint <- as.Date(collection.summary$Timepoint, format="%m/%d/%y")
+
+sequencing.id <- read.csv("~/MyProjects/HI_Bleaching_Timeseries/data/16S/metadata//16S_sequencingID.csv", header = TRUE) %>%
+  subset(Project == "ES_BP" & Type == "16S") %>% # selecting for just this 16S project's data and excluding Ariana and Kevin's
+  dplyr::rename(ColonyID = Coral.ID) %>%
+  select(Sample.ID, ColonyID, Timepoint) %>%
+  mutate(Timepoint = case_when(
+    Timepoint == "2019-07-20" ~ "2019-07-19",
+    Timepoint == "2019-12-04" ~ "2019-12-04"))
+
+sequencing.id$ColonyID <- sub(".","", sequencing.id$ColonyID)
+sequencing.id$ColonyID <- sub(".","", sequencing.id$ColonyID) # do this twice to get rid of both the M and "-" symbol
+
+collection.summary <- collection.summary %>% unite(Group, ColonyID, Timepoint, sep = " ")
+sequencing.id <- sequencing.id %>% unite(Group, ColonyID, Timepoint, sep = " ")
+
+metadata <- full_join(collection.summary, sequencing.id, by = "Group") %>% na.omit() %>%
+  separate(Group, c("ColonyID", "Year", "Month", "Day")) %>%
+  unite(Timepoint, Year, Month, sep = "-") %>% unite(Timepoint, Timepoint, Day, sep = "-")
+
+metadata <- metadata %>% rename(`#SampleID` = Sample.ID)
+
+metadata <- metadata[, c(7,1,2,3,4,5,6)] # reordering the columns
+metadata[1,1] <- "#q2:types"
+metadata[1,2:7] <- "categorical" #adding types of variables for QIIME2 pipeline
+
+write.table(metadata, "~/MyProjects/HI_Bleaching_Timeseries/data/16S/metadata/metadata.txt", sep = "\t", row.names = FALSE, quote = FALSE)
+```
