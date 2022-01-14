@@ -549,8 +549,135 @@ Open [qiime2 view](https://view.qiime2.org/) and drop in the first file you want
 
 **Run the denoising stats portion of the '16S_metadata.R' script and then return to the following steps below.**
 
+Number of reads that passed each denoising step:
+
+![](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/data/16S/processed_data/denoising-reads.png?raw=true)
+
+Percentage of reads that passed each denoising stage:
+
+![](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/data/16S/processed_data/denoising-percent.png?raw=true)
+
+Based on the above, I will choose to move forward with the most conservative (highest quality; forward 260; reverse 230) set of parameters because they also produced the highest number of reads and percentage of reads passing denoising steps.
+
+### 3. QIIME2 taxonomic identification
+
+Download the database file to the metadata folder on andromeda. We chose the Silva 138 99% OTUs from 515F/806R region of sequences (MD5: e05afad0fe87542704be96ff483824d4) as the classifier because we used 515F and 806RB primers for our sequences and QIIME2 recommends the classify-sklearn classifier trainer.
+
+```
+$ cd /data/putnamlab/estrand/BleachingPairs_16S/metadata
+$ wget https://data.qiime2.org/2021.4/common/silva-138-99-515-806-nb-classifier.qza
+```
+
+Create two folders for the taxonomic output.
+
+```
+$ mkdir filtered_taxonomy
+$ mkdir unfiltered_taxonomy
+```
+
+Create script to run the taxonomic identification with the above database. One section filters the taxonomic identification table to remove chloroplast, eukaryota, and unassigned sequences. The other sections remains unfiltered so we can compare pre- and post- filtering.
+
+```
+$ cd ../../data/putnamlab/estrand/BleachingPairs_16S/scripts
+$ nano taxonomy.sh
+
+## copy and paste below script
+
+#!/bin/bash
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab                  
+#SBATCH --error="script_error_taxonomy" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_taxonomy" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function
+module load QIIME2/2021.8
+
+#### METADATA FILES ####
+# File path -- change this to correspond to what script you are running
+cd /data/putnamlab/estrand/BleachingPairs_16S/processed_data
+
+# Metadata path
+METADATA="../metadata/metadata.txt"
+
+# Sample manifest path
+MANIFEST="../metadata/sample_manifest.txt"
+
+#########################
+
+#### TAXONOMY CLASSIFICATION
+
+qiime feature-classifier classify-sklearn \
+  --i-classifier ../metadata/silva-138-99-515-806-nb-classifier.qza \
+  --i-reads denoise_260230/rep-seqs_260230.qza \
+  --o-classification taxonomy_260230.qza
+
+## UNFILTERED
+
+qiime metadata tabulate \
+    --m-input-file taxonomy_260230.qza \
+    --o-visualization taxonomy_260230.qzv
+qiime taxa barplot \
+    --i-table denoise_260230/table_260230.qza \
+    --i-taxonomy taxonomy_260230.qza \
+    --m-metadata-file $METADATA \
+    --o-visualization unfiltered_taxonomy/taxa-bar-plots-unfiltered.qzv
+qiime metadata tabulate \
+    --m-input-file denoise_260230/rep-seqs_260230.qza \
+    --m-input-file taxonomy_260230.qza \
+    --o-visualization unfiltered_taxonomy/tabulated-feature-metadata.qzv
+
+## FILTERED
+qiime taxa filter-table \
+     --i-table denoise_260230/table_260230.qza \
+     --i-taxonomy taxonomy_260230.qza \
+     --p-mode contains \
+     --p-exclude "Unassigned","Chloroplast","Eukaryota" \
+     --o-filtered-table filtered_taxonomy/table-filtered_260230.qza
+
+qiime metadata tabulate \
+    --m-input-file taxonomy_260230.qza \
+    --o-visualization taxonomy_260230.qzv
+qiime taxa barplot \
+    --i-table filtered_taxonomy/table-filtered_260230.qza \
+    --i-taxonomy taxonomy_260230.qza \
+    --m-metadata-file $METADATA \
+    --o-visualization filtered_taxonomy/taxa-bar-plots-filtered.qzv
+qiime metadata tabulate \
+    --m-input-file denoise_260230/rep-seqs_260230.qza \
+    --m-input-file taxonomy_260230.qza \
+    --o-visualization filtered_taxonomy/tabulated-feature-metadata.qzv
+```
+
+Secure copy paste these output files to github repo and computer to view in QIIME2 view.
+
+```
+# unfiltered
+$ scp emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/BleachingPairs_16S/processed_data/unfiltered_taxonomy/taxa-bar-plots-unfiltered.qzv /Users/emmastrand/MyProjects/HI_Bleaching_Timeseries/data/16S/processed_data/
+
+# filtered
+$ scp emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/BleachingPairs_16S/processed_data/filtered_taxonomy/taxa-bar-plots-filtered.qzv /Users/emmastrand/MyProjects/HI_Bleaching_Timeseries/data/16S/processed_data/
+```
+
+Example of what the taxa bar plot file looks like in qiime2 view on level 4 classification:
+
+**Unfiltered**
 
 
+
+**Filtered**
+
+![](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/data/16S/processed_data/level4-filtered-taxabarplot.png?raw=true).
+
+We see the same issue of unidentified bacteria in *M. capitata*.
+
+
+### 4. QIIME2 phylogentic tree construction
+### 5. QIIME2 diversity calculation
 
 
 ## <a name="Troubleshooting"></a> **Troubleshooting**
@@ -558,7 +685,8 @@ Open [qiime2 view](https://view.qiime2.org/) and drop in the first file you want
 1. In FASTQC - Quality Control section, the fastqc.sh script: I originally had the -D path as the raw data path but that is a protected folder that is not edit-able. I changed this to the BleachingPairs_16S folder within my own personal folder so that the 'output_script' and 'script_error' can be created.    
 2. The fastqc.sh script was not running because of this error: `zsh: no matches found: ../../data/putnamlab/shared/ES_BP_16S/*fastq.gz`. To fix this I copied the raw data files to a new folder in my own user and took out the following lines: `# SBATCH -D data/putnamlab/estrand/BleachingPairs_16S` and all `../../` in front of the data path files.    
 3. I had several issues with the path formats within the fastqc.sh file - for the future follow exactly as the script above. cd to the folder you're working in and then include the relative path in this script.    
-4. I had issues with my script when I included "../../" before any path. Removing those fixed my issues.
+4. Double check all paths and the correct "../../" is added where needed and taken out where not.  
+
 
 ## <a name="Scripts"></a> **Scripts**  
 
@@ -633,4 +761,51 @@ metadata[1,1] <- "#q2:types"
 metadata[1,2:7] <- "categorical" #adding types of variables for QIIME2 pipeline
 
 write.table(metadata, "~/MyProjects/HI_Bleaching_Timeseries/data/16S/metadata/metadata.txt", sep = "\t", row.names = FALSE, quote = FALSE)
+```
+
+**Denoising statistics**
+
+```
+# Denoising statistics
+## comparing 3 options for denoising parameters
+
+denoise_260230 <- read.table("~/MyProjects/HI_Bleaching_Timeseries/data/16S/processed_data/denoising-stats_260230.tsv", sep="\t", header = TRUE)
+denoise_270240 <- read.table("~/MyProjects/HI_Bleaching_Timeseries/data/16S/processed_data/denoising-stats_270240.tsv", sep="\t", header = TRUE)
+denoise_280240 <- read.table("~/MyProjects/HI_Bleaching_Timeseries/data/16S/processed_data/denoising-stats_280240.tsv", sep="\t", header = TRUE)
+
+denoise_260230$parameter <- "260forward_230reverse"
+denoise_270240$parameter <- "270forward_240reverse"
+denoise_280240$parameter <- "280forward_240reverse"
+
+denoising.stats <- union(denoise_260230, denoise_270240) %>% union(denoise_280240)
+
+denoise.reads <- denoising.stats[, c(1,2,3,5,6,8,10)] # reordering columns to make it easier to plot
+denoise.percent <- denoising.stats[, c(1,4,7,9,10)] # reordering columns to make it easier to plot
+
+denoise.reads <- denoise.reads %>% gather(statistic, value, 2:6) # aggregates the three variables we are interested in to make it easier to plot
+denoise.percent <- denoise.percent %>% gather(statistic, value, 2:4) # aggregates the three variables we are interested in to make it easier to plot
+
+denoise.reads$statistic <- factor(denoise.reads$statistic, levels=c("input","filtered","denoised","merged","non.chimeric"))
+denoise.percent$statistic <- factor(denoise.percent$statistic, levels=c("percentage.of.input.passed.filter", "percentage.of.input.merged",
+                                                                        "percentage.of.input.non.chimeric"))
+
+percent <- ggplot(data = denoise.percent, aes(x = parameter, y = value, group = parameter, color = parameter)) +
+  theme_classic() + geom_boxplot() +
+  facet_grid(~statistic, scales = "free") +
+  theme(legend.position = "none") +
+  ylab("# reads") +
+  theme(axis.text.x = element_text(angle = 60, vjust = 1.2, hjust = 1.3)); denoise.plot #Set the text angle
+
+reads <- ggplot(data = denoise.reads, aes(x = parameter, y = value, group = parameter, color = parameter)) +
+  theme_classic() + geom_boxplot() +
+  facet_grid(~statistic, scales = "free") +
+  theme(legend.position = "none") +
+  ylab("# reads") +
+  theme(axis.text.x = element_text(angle = 60, vjust = 1.2, hjust = 1.3)); denoise.plot #Set the text angle
+
+percent
+reads
+
+ggsave(file="~/MyProjects/HI_Bleaching_Timeseries/data/16S/processed_data/denoising-percent.png", percent, width = 11, height = 6, units = c("in"))
+ggsave(file="~/MyProjects/HI_Bleaching_Timeseries/data/16S/processed_data/denoising-reads.png", reads, width = 11, height = 6, units = c("in"))
 ```
