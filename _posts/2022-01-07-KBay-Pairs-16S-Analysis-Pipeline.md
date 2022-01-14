@@ -26,13 +26,13 @@ Raw data path (edit-able): ../../data/putnamlab/estrand/BleachingPairs_16S/raw_d
 Output data path: ../../data/putnamlab/estrand/BleachingPairs_16S
 
 Contents:
-- [**Setting Up Andromeda**](#Setting_up)
-- [**FASTQC - Quality Control**](#FastQC)
-- [**MultiQC Report**](#MultiQC)
-- [**Create metadata files**](#Metadata)
-- [**QIIME2**](#QIIME2)  
-- [**Troubleshooting**](#Troubleshooting)  
-- [**Scripts**](#Scripts)
+- [**Setting Up Andromeda**](#Setting_up)  
+- [**FASTQC - Quality Control**](#FastQC)  
+- [**MultiQC Report**](#MultiQC)  
+- [**Create metadata files**](#Metadata)  
+- [**QIIME2**](#QIIME2)    
+- [**Troubleshooting**](#Troubleshooting)    
+- [**Scripts**](#Scripts)  
 
 ## <a name="Setting_up"></a> **Setting Up Andromeda**
 
@@ -667,7 +667,7 @@ Example of what the taxa bar plot file looks like in qiime2 view on level 4 clas
 
 **Unfiltered**
 
-
+![](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/data/16S/processed_data/level4-unfiltered-taxabarplot.png?raw=true)
 
 **Filtered**
 
