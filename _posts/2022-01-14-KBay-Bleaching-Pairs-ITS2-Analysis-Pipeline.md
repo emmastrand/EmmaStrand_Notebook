@@ -35,7 +35,8 @@ Contents:
 - [**Loading experimental data**](#Load_data)   
 - [**Running analysis**](#Running_analysis)      
 - [**Troubleshooting**](#Troubleshooting)    
-- [**Scripts**](#Scripts)   
+- [**Scripts**](#Scripts)  
+- [**Data Exploration**](#Data_Exp)   
 
 
 ## <a name="Setting_up"></a> **Setting Up Andromeda and Conda Environment**
@@ -320,6 +321,7 @@ $ scp /Users/emmastrand/MyProjects/HI_Bleaching_Timeseries/data/ITS2/metadata/Sy
 `$ nano symportal_load.sh`
 
 Copy and paste the below text into the symportal_load.sh file.
+8+ hours.  
 
 ```
 #!/bin/bash
@@ -353,12 +355,14 @@ main.py --load /data/putnamlab/estrand/BleachingPairs_ITS2/raw_data \
 --data_sheet /data/putnamlab/estrand/BleachingPairs_ITS2/metadata/SymPortal_metadata.csv
 ```
 
+Make a directory for all of the mothur output files `$ mkdir mothur_output` and move all files into that folder within the scripts folder `$ mv mothur* mothur_output/`
+
 ## <a name="Running_analysis"></a> **Running analysis**
 
 `$ cd /data/putnamlab/estrand/BleachingPairs_ITS2/scripts`  
 `$ nano run_analysis.sh`
 
-Copy and paste the below text into the run_analysis.sh script.
+Copy and paste the below text into the run_analysis.sh script. ~10 minutes.
 
 ```
 #!/bin/bash
@@ -387,20 +391,20 @@ export PYTHONPATH=/data/putnamlab/estrand/SymPortal/:/data/putnamlab/estrand/Sym
 export PATH=/data/putnamlab/estrand/SymPortal/:/data/putnamlab/estrand/SymPortal/bin:$PATH
 
 # Checking dataset number
-./main.py --display_data_sets
+/data/putnamlab/estrand/SymPortal/main.py --display_data_sets
 
 # Running analysis
-./main.py --analyse 8 --name BleachingPairs_analysis --num_proc $SLURM_CPUS_ON_NODE
+/data/putnamlab/estrand/SymPortal/main.py --analyse 5 --name BleachingPairs_analysis --num_proc $SLURM_CPUS_ON_NODE
 
 # Checking data analysis instances
-./main.py --display_analyses
+/data/putnamlab/estrand/SymPortal/main.py --display_analyses
 ```
 
 Secure copy paste the output to desktop.
 
 ```
 ## in terminal window outside of andromeda
-$ scp emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/Symportal/outputs/analyses/
+$ scp -r emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/SymPortal/outputs/analyses/5/20220119T075742/ ~/MyProjects/HI_Bleaching_Timeseries/data/ITS2/processed_data/  
 ```
 
 ## <a name="Troubleshooting"></a> **Troubleshooting**
@@ -462,8 +466,11 @@ When running the symportal_setup script, I got the following warnings. The outpu
 Warning: [blastn] Examining 5 or more matches is recommended
 ```
 
-When trying to upload the metadata (symportal_load.sh) I got the following errors: `Data sheet: {} is in an unrecognised format. Please ensure that it is either in .xlsx or .csv format.`.  
+When trying to upload the metadata (symportal_load.sh) I got the following errors: `Data sheet: {} is in an unrecognised format. Please ensure that it is either in .xlsx or .csv format.`. I had the run path to the metadata file and once I fixed that the script ran.
 
+The first time I ran the 'run_analysis.sh' script, there was no output type profiles output.. Data loading seemed to be complete because the pre- and post- med folders had seq abundance files.  
+- I originally had the analyse # as 8 but in my slurm output file this number was 2 datasets. I changed this to 2 and ran the script again. I changed this number a couple of times (to 3 and 4) but that didn't work.  
+- I tried the value 5. I realized I was looking at the wrong dataset #. I found this value at the very top of the output file, not the list of the analyses output at the bottom of the file. This worked!
 
 ## <a name="Scripts"></a> **Scripts**
 
@@ -522,3 +529,9 @@ metadata <- metadata %>% spread(direction, seq.file)
 metadata %>% write_csv(file = "~/MyProjects/HI_Bleaching_Timeseries/data/ITS2/metadata/metadata.csv")
 
 ```
+
+## <a name="Data_Exp"></a> **Data Exploration**
+
+Raw figure output by SymPortal.
+
+![](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/data/ITS2/processed_data/20220119T075742/its2_type_profiles/20220119T075742_type_abundance_stacked_bar_plot.png?raw=true)
