@@ -195,53 +195,53 @@ $ scp emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/BleachingPairs_16S/B
 
 **Sequence counts**
 
-![](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/data/16S/multiqc_report/seq-counts.png?raw=true)
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%2016S/seq-counts.png?raw=true)
 
 "Only sequences which first appear in the first 100,000 sequences in each file are analysed. This should be enough to get a good impression for the duplication levels in the whole file. Each sequence is tracked to the end of the file to give a representative count of the overall duplication level."
 
 **Sequence quality**
 
-![](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/data/16S/multiqc_report/sectioned-seq-quality.png?raw=true)
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%2016S/sectioned-seq-quality.png?raw=true)
 
 This statistic is what QIIME2 parameters will be based off of. Blue lines are reverse reads and red lines are forward reads.
 
 **Per Sequence Quality Scores**
 
-![](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/data/16S/multiqc_report/perseq-quality-scores.png?raw=true)
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%2016S/perseq-quality-scores.png?raw=true)
 
 **Per Base Sequence Content**
 
-![](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/data/16S/multiqc_report/perbase-seq-content.png?raw=true)
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%2016S/perbase-seq-content.png?raw=true)
 
 This plot is more helpful in the interactive version of the multiqc report.
 
 **Per Sequence GC Content**
 
-![](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/data/16S/multiqc_report/perseq-GC-content.png?raw=true)
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%2016S/perseq-GC-content.png?raw=true)
 
 **Per Base N Content**
 
-![](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/data/16S/multiqc_report/perbase-N-content.png?raw=true)
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%2016S/perbase-N-content.png?raw=true)
 
 **Sequence Length Distribution**
 
-![](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/data/16S/multiqc_report/seq-length-dist.png?raw=true)
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%2016S/seq-length-dist.png?raw=true)
 
 **Sequence Duplication Levels**  
 
-![](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/data/16S/multiqc_report/seq-dup-levels.png?raw=true)
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%2016S/seq-dup-levels.png?raw=true)
 
 **Overrepresented sequences**
 
-![](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/data/16S/multiqc_report/overrepresented-seqs.png?raw=true)
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%2016S/overrepresented-seqs.png?raw=true)
 
 **Adapter Content**
 
-![](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/data/16S/multiqc_report/adapter-content.png?raw=true)
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%2016S/adapter-content.png?raw=true)
 
 **Status Checks**
 
-![](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/data/16S/multiqc_report/status-checks.png?raw=true)
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%2016S/status-checks.png?raw=true)
 
 ## <a name="Metadata"></a> **Create metadata files**
 
@@ -343,7 +343,7 @@ Create a script for denosing and clustering. Prerequisites to running this scrip
 
 Based on sequence quality scores and the below image:
 
-![](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/data/16S/multiqc_report/sectioned-seq-quality.png?raw=true)
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%2016S/sectioned-seq-quality.png?raw=true)
 
 Parameters chosen:  
 - `--p-trunc-len-f`: 19 (forward is 19 bp long)    
@@ -551,11 +551,11 @@ Open [qiime2 view](https://view.qiime2.org/) and drop in the first file you want
 
 Number of reads that passed each denoising step:
 
-![](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/data/16S/processed_data/denoising-reads.png?raw=true)
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%2016S/denoising-reads.png?raw=true)
 
 Percentage of reads that passed each denoising stage:
 
-![](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/data/16S/processed_data/denoising-percent.png?raw=true)
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%2016S/denoising-percent.png?raw=true)
 
 Based on the above, I will choose to move forward with the most conservative (highest quality; forward 260; reverse 230) set of parameters because they also produced the highest number of reads and percentage of reads passing denoising steps.
 
@@ -667,17 +667,22 @@ Example of what the taxa bar plot file looks like in qiime2 view on level 4 clas
 
 **Unfiltered**
 
-![](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/data/16S/processed_data/level4-unfiltered-taxabarplot.png?raw=true)
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%2016S/level4-unfiltered-taxabarplot.png?raw=true)
 
 **Filtered**
 
-![](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/data/16S/processed_data/level4-filtered-taxabarplot.png?raw=true).
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%2016S/level4-filtered-taxabarplot.png?raw=true)
 
 We see the same issue of unidentified bacteria in *M. capitata*.
 
 
 ### 4. QIIME2 phylogentic tree construction
+
+To be done later.
+
 ### 5. QIIME2 diversity calculation
+
+To be done later. 
 
 
 ## <a name="Troubleshooting"></a> **Troubleshooting**
