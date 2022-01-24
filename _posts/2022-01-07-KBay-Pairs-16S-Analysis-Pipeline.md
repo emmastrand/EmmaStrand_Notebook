@@ -682,7 +682,7 @@ To be done later.
 
 ### 5. QIIME2 diversity calculation
 
-To be done later. 
+To be done later.
 
 
 ## <a name="Troubleshooting"></a> **Troubleshooting**
@@ -741,7 +741,7 @@ collection.summary <- read.csv("~/MyProjects/HI_Bleaching_Timeseries/data/Collec
   dplyr::rename(Timepoint = Date)
 collection.summary$Timepoint <- as.Date(collection.summary$Timepoint, format="%m/%d/%y")
 
-sequencing.id <- read.csv("~/MyProjects/HI_Bleaching_Timeseries/data/16S/metadata//16S_sequencingID.csv", header = TRUE) %>%
+sequencing.id <- read.csv("~/MyProjects/HI_Bleaching_Timeseries/data/16S/metadata/16S_sequencingID.csv", header = TRUE) %>%
   subset(Project == "ES_BP" & Type == "16S") %>% # selecting for just this 16S project's data and excluding Ariana and Kevin's
   dplyr::rename(ColonyID = Coral.ID) %>%
   select(Sample.ID, ColonyID, Timepoint) %>%
@@ -762,15 +762,15 @@ metadata <- full_join(collection.summary, sequencing.id, by = "Group") %>% na.om
 metadata <- metadata %>% rename(`#SampleID` = Sample.ID)
 
 metadata <- metadata[, c(7,1,2,3,4,5,6)] # reordering the columns
-metadata[1,1] <- "#q2:types"
-metadata[1,2:7] <- "categorical" #adding types of variables for QIIME2 pipeline
+
+categories <- c("#q2:types", "categorical", "categorical", "categorical", "categorical",
+                "categorical", "categorical") # QIIME2 needs each column to be specified
+
+metadata <- rbind(metadata, categories)
+metadata <- metadata[c(41,1:40),]
 
 write.table(metadata, "~/MyProjects/HI_Bleaching_Timeseries/data/16S/metadata/metadata.txt", sep = "\t", row.names = FALSE, quote = FALSE)
-```
 
-**Denoising statistics**
-
-```
 # Denoising statistics
 ## comparing 3 options for denoising parameters
 

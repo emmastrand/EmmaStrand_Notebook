@@ -18,6 +18,10 @@ Processed data folder path: /data/putnamlab/estrand/BleachingPairs_WGBS
 $ mkdir BleachingPairs_WGBS
 ```
 
+#### Download genome file from Rutgers
+
+http://cyanophora.rutgers.edu/montipora/
+
 #### Make script to run methylseq
 
 Nextflow version 21.03.0 requires an -input command.  
