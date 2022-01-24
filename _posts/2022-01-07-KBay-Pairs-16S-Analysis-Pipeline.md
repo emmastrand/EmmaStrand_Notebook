@@ -7,7 +7,9 @@ tags: DNA, 16S, KBay, analysis-pipeline
 projects: KBay Pairs
 ---
 
-# KBay Bleached Pairs 16S Sequencing Analysis Pipeline
+# KBay Bleached Pairs 16S Sequencing Analysis Pipeline with QIIME2
+
+**This pipeline uses QIIME2**. See this [notebook post]() for the pipeline for using Mothur.
 
 For more detailed pipeline and 16S information see:  
 - 16S Laboratory Protocol [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2021-02-01-16s-Sequencing-HoloInt.md).  
