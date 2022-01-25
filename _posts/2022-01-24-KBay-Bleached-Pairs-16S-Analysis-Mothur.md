@@ -110,11 +110,45 @@ mothur "#make.contigs(inputdir=., outputdir=., file=kbay.files, oligos=oligos.ol
 mothur "#summary.seqs(fasta=kbay.trim.contigs.fasta)"
 ```
 
-Run this bash scripts `sbatch scripts/contigs.sh`. Stay in Mothur directory when running script and this will take ~30 minutes for 40 samples (80 files). 
+Run this bash scripts `sbatch scripts/contigs.sh`. Stay in Mothur directory when running script and this will take ~30 minutes for 40 samples (80 files).
+
+Output from make.files: `kbay.files`  
+Output from make.contigs:  
+```
+kbay.contigs.groups               
+kbay.contigs.report                                      
+kbay.scrap.contigs.fasta          
+kbay.trim.contigs.fasta
+kbay.trim.contigs.summary
+```
+
+See [A. Huffmyer notebook post](https://github.com/AHuffmyer/ASH_Putnam_Lab_Notebook/blob/master/_posts/2022-01-12-16S-Analysis-in-Mothr-Part-1.md) for description of what each file is.
+
+Summary of the sequences from the `output_script_contigs` file. These values are total sequences are much lower than they should be. **This is a problem!!**
+
+```
+                Start   End     NBases  Ambigs  Polymer   NumSeqs
+Minimum:        1	      44	    44	    0	      3	        1
+2.5%-tile:	    1	      292     292     0	      4	        1830
+25%-tile:	1	292     292     0	4	18300
+Median:         1	292     292     0	4	36600
+75%-tile:	1	301     301     0	5	54900
+97.5%-tile:     1	414     414     5	6	71370
+Maximum:        1	562     562     56	26	73199
+Mean:   1	300     300     0	4
+# of Seqs:	73199
+
+It took 3 secs to summarize 73199 sequences.
+```
+
+
+
 
 ## <a name="Troubleshooting"></a> **Troubleshooting**
 
 I got this error while running the contigs.sh file. I copied all raw files into the mothur folder I created and this fixed that issue.
+
+
 
 ```
 mothur > make.file(inputdir=data/putnamlab/estrand/BleachingPairs_16S/raw_data, type=gz, prefix=kbay)
