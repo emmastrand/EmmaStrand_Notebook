@@ -414,7 +414,141 @@ It took 6 secs to summarize 14956 sequences.
 
 #### Align our sequences to the new reference database we've created
 
+Make a script to align sequences to the reference file we just created.
 
+```
+$ cd ../../data/putnamlab/estrand/BleachingPairs_16S/Mothur/scripts
+$ nano align.sh
+$ cd ..
+
+## copy and paste the below text into the script file
+
+#!/bin/bash
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab                  
+#SBATCH --error="script_error_align" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_align" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function
+
+module load Mothur/1.46.1-foss-2020b
+
+mothur
+
+mothur "#align.seqs(fasta=kbay.trim.contigs.good.unique.fasta, reference=silva.v4.fasta)"
+
+mothur "#summary.seqs(fasta=kbay.trim.contigs.good.unique.align)"
+```
+
+Make sure you are in the Mothur directory and run the above script `$ sbatch scripts/align.sh`.
+
+Output File Names:
+```
+kbay.trim.contigs.good.unique.align
+kbay.trim.contigs.good.unique.align.report
+kbay.trim.contigs.good.unique.flip.accnos
+```
+
+View the summary from the `output_script_align` file. There are 30,487 unique sequences and all aligned to the reference. We want most sequences to be 292 bp long.
+
+```
+mothur > summary.seqs(fasta=kbay.trim.contigs.good.unique.align)
+
+Using 24 processors.
+
+                Start   End     NBases  Ambigs  Polymer NumSeqs
+Minimum:        1       1233    1       0       1       1
+2.5%-tile:      1	13424   291     0	4	763
+25%-tile:	1	13424   292     0	4	7622
+Median:         1       13424   292     0	4	15244
+75%-tile:       1	13424   292     0	4	22866
+97.5%-tile:     1       13425   293     0	6	29725
+Maximum:        13425   13425   299     0	11	30487
+Mean:   89      13344   288     0	4
+# of Seqs:	30487
+
+It took 12 secs to summarize 30487 sequences.
+
+Output File Names:
+kbay.trim.contigs.good.unique.summary
+```
+
+#### QC sequences that were aligned to the reference file we created.
+
+The sequences are aligned at the correct positions to the reference but now we need to remove those that are outside the reference window. This removes all sequences that start after the `start` and those that end before the `end`. This also takes out any sequences that have repeats greater than 8 (i.e. 8 A's in a row) because we are confident those are not real.
+
+Make a script to do the above commands.
+
+```
+$ cd ../../data/putnamlab/estrand/BleachingPairs_16S/Mothur/scripts
+$ nano screen2.sh
+$ cd ..
+
+## copy and paste the below text into the script file
+
+#!/bin/bash
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab                  
+#SBATCH --error="script_error_screen2" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_screen2" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function
+
+module load Mothur/1.46.1-foss-2020b
+
+mothur
+
+mothur "#screen.seqs(fasta=kbay.trim.contigs.good.unique.align, count=kbay.trim.contigs.good.count_table, start=1968, end=11550, maxhomop=8)"
+
+mothur "#summary.seqs(fasta=kbay.trim.contigs.good.unique.good.align, count=kbay.trim.contigs.good.good.count_table)"
+
+mothur "#count.groups(count=kbay.trim.contigs.good.good.count_table)"
+```
+
+Output files are:
+
+```
+kbay.trim.contigs.good.unique.good.align
+kbay.trim.contigs.good.unique.bad.accnos
+kbay.trim.contigs.good.good.count_table
+```
+
+View output from the output file `output_script_screen2`:
+
+```
+mothur > summary.seqs(fasta=kbay.trim.contigs.good.unique.good.align, count=kbay.trim.contigs.good.good.count_table)
+
+Using 24 processors.
+
+                Start   End     NBases  Ambigs  Polymer NumSeqs
+Minimum:        1	13422   288     0	3	1
+2.5%-tile:	1	13424   292     0	4	1368
+25%-tile:	1	13424   292     0	4	13678
+Median:         1	13424   292     0	4	27356
+75%-tile:	1	13424   292     0	4	41033
+97.5%-tile:     1	13425   293     0	6	53343
+Maximum:        3	13425   299     0	8	54710
+Mean:   1	13424   292     0	4
+# of unique seqs:	30066
+total # of seqs:        54710
+
+It took 11 secs to summarize 54710 sequences.
+
+Output File Names:
+kbay.trim.contigs.good.unique.good.summary
+```
+
+We have now removed sequences outside of the window of interest in our alignment to the Silva reference 16S V4 region.
 
 
 ## <a name="Troubleshooting"></a> **Troubleshooting**
