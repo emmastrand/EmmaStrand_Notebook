@@ -32,7 +32,10 @@ Output data path: ../../data/putnamlab/estrand/BleachingPairs_16S
 Contents:
 - [**Setting Up Andromeda**](#Setting_up)  
 - [**Make contigs**](#Contigs)  
-- [**Troubleshooting**](#Troubleshooting)
+- [**QC with screen.seqs**](#QC_screen)  
+- [**Determining and counting unique sequences**](#Unigue)
+- [**Aligning to a reference database**](#Reference)       
+- [**Troubleshooting**](#Troubleshooting)  
 
 ## <a name="Setting_up"></a> **Setting Up Andromeda**
 
@@ -124,12 +127,12 @@ kbay.trim.contigs.summary
 
 See [A. Huffmyer notebook post](https://github.com/AHuffmyer/ASH_Putnam_Lab_Notebook/blob/master/_posts/2022-01-12-16S-Analysis-in-Mothr-Part-1.md) for description of what each file is.
 
-Summary of the sequences from the `output_script_contigs` file. These values are total sequences are much lower than they should be. **This is a problem!!**
+Summary of the sequences from the `output_script_contigs` file. These values are total sequences are much lower than they should be. **This is a problem!!** Compare # of sequences to Kevin and Ariana's output.
 
 ```
-                Start   End     NBases  Ambigs  Polymer   NumSeqs
-Minimum:        1	      44	    44	    0	      3	        1
-2.5%-tile:	    1	      292     292     0	      4	        1830
+Start   End     NBases  Ambigs  Polymer NumSeqs
+Minimum:        1	44	44	0	3	1
+2.5%-tile:	1	292     292     0	4	1830
 25%-tile:	1	292     292     0	4	18300
 Median:         1	292     292     0	4	36600
 75%-tile:	1	301     301     0	5	54900
@@ -140,6 +143,276 @@ Mean:   1	300     300     0	4
 
 It took 3 secs to summarize 73199 sequences.
 ```
+
+This table shows quantile values about the distribution of sequences for a few things:
+
+- Start position: All at 1 now, will start at different point after some QC.  
+- End position: We see that there are some sequences that are very short and we may need to remove those later.  
+- Number of bases: length (we see most are in expected range here, but one is super long! This might tell us there is no overlap so they are butted up against each other. We will remove things like this.  
+- Ambigs: Number of ambiguous calls in sequences. Here there are a few that have ambiguous base calls. We will remove any sequence with an ambiguous call or any longer than we would expect for V4 region.  
+- Polymer: Length of polymer repeats.  
+- NumSeqs: Number of sequences.  
+
+#### Check that the primers are gone.
+
+`$ head kbay.trim.contigs.fasta`
+
+We are looking to see that these primers `F GTGCCAGCMGCCGCGGTAA R GGACTACNVGGGTWTCTAAT` have been taken out.
+
+Output:
+
+```
+>M00763_26_000000000-K4TML_1_1101_12354_2514	ee=2.05713	fbdiffs=0(match), rbdiffs=0(match) fpdiffs=0(match), rpdiffs=0(match)
+GGACAGGGGTCAGCCGCCGCGGTGATACGGAGGATGCAAGCGTTATTCGGAATTATTGGGCGTAAAGCGTCTGTAGGTGGTTTTTTAAGTCTACTGTTAAATATTAAGGCTTAACCTTAAAAAAGCGGTATGAAACTAAAAAACTTGAGTTTAGTAGAGGTAGAGGGAATTCTCGGTGTAGTGGTGAAATGCGTAGAGATCGAGAAGAACACCGGTAGCGAAAGCGCTCTACTGGGCTAAAACTGACACTGAGAGACGAAAGCTAGGGGAGCAAATAGGATTAGATACCCGTGTAGTCC
+>M00763_26_000000000-K4TML_1_1101_13549_1963	ee=2.59576	fbdiffs=0(match), rbdiffs=0(match) fpdiffs=0(match), rpdiffs=0(match)
+AAGAGACATGTGCCCGCAGCCGCGGTAATACGGAGGGTGCAAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGTAGGCGGCCTTTTAAGTTGGATGTGAAAGCCCCGGGCTTAACCTGGGAACGGCATCCAAAACTGGGAGGCTCGAGTGCGGAAGAGGAGTGTGGAATTTCCTGTGTAGCGGTGAAATGCGTAGATATAGGAAAGAACACCAGTGGCGAAGGCGACACTCTGGTCTGACACTGACGCTGAGGTACGAAAGCGTGGGGAGCAAACAGGAATAGATACCCCCGTAGTCACTGGCTCTT
+>M00763_26_000000000-K4TML_1_1101_17445_1653	ee=2.85104	fbdiffs=0(match), rbdiffs=0(match) fpdiffs=0(match), rpdiffs=0(match)
+GGTACAGTGGCCGGTAGCCGCTGTAATACGGAGGGTGCAAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGTAGGCGGCTGCCTAAGTTGGATGTGAAAGCCCCGGGCTCAACCTGGGAACTGCATCCAAAACTGGGCAGCTAGAGTGCGGAAGAGGAGTGTGGAATTTCCTGTGTAGCGGTGAAATGCGTAGATATAGGAAGGAACACCAGTGGCGAAGGCGACACTCTGGTCTGACACTGACGCTGAGGTACGAAAGCGTGGGGAGCAAACAGGATTAGATACCCTCGTAGACC
+>M00763_26_000000000-K4TML_1_1101_13550_2109	ee=9.22223	fbdiffs=0(match), rbdiffs=0(match) fpdiffs=0(match), rpdiffs=0(match)
+AATAGACAGGTGGCCGTGGTGTCGGGAATACGGAGGGTGNAAGCGTTNATCGGAATTACTGGGCGTAAAGCGTGCGTAGGCGGCTGCCTAAGTTGGATGTGAAAGCCCCGGGCTCAACCTGGGAACTGCATCCAAAACTGGGCAGNTAGAGTGCGGAAGAGGGGTGGGGAATTTCCTGTGTAGCGGTGAAATGCGTAGATATNGGAAGGAACACCAGTGGCGANGGCGACACTCTGGTCTGACACTGACGCTGAGGTACGAAAGCGTGGGGAGCAAACAGGACAAGATACCACAGTAGCCCCCGTCTGTT
+>M00763_26_000000000-K4TML_1_1101_13530_2111	ee=1.65454	fbdiffs=0(match), rbdiffs=0(match) fpdiffs=0(match), rpdiffs=0(match)
+GTGCCAGCTGCCGCGGTAATACGGAGGGTGCAAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGTAGGCGGCTGCCTAAGTTGGATGTGAAAGCCCCGGGCTCAACCTGGGAACTGCATCCAAAACTGGGCAGCTAGAGTGCGGAAGAGGAGTGTGGAATTTCCTGTGTAGCGGTGAAATGCGTAGATATAGGAAGGAACACCAGTGGCGAAGGCGACACTCTGGTCTGACACTGACGCTGAGGTACGAAAGCGTGGGGAGCAAACAGGATTAGATACCCCAGTAGTCC
+```
+
+Success.
+
+## <a name="QC_screen"></a> **QC with screen.seqs**
+
+Removing all poor quality sequences with an ambiguous call ("N") and >300 nt as well as set a minimum size at 260 nt. Parameters should be adjusted based on specific experiments and variable region.
+
+Make script for the screen.seqs function.
+
+```
+$ cd ../../data/putnamlab/estrand/BleachingPairs_16S/Mothur/scripts
+$ nano screen.sh
+$ cd ..
+
+## copy and paste the below text into the script file
+
+#!/bin/bash
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab                  
+#SBATCH --error="script_error_screen" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_screen" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function
+
+module load Mothur/1.46.1-foss-2020b
+
+mothur
+
+mothur "#screen.seqs(inputdir=., outputdir=., fasta=kbay.trim.contigs.fasta, group=kbay.contigs.groups, maxambig=0, maxlength=350, minlength=250)"
+
+mothur "#summary.seqs(fasta=kbay.trim.contigs.good.fasta)"
+
+```
+
+Make sure you are in the Mothur directory, not scripts directory. Run script `$ sbatch scripts/screen.sh`
+
+Output below. This script kept 55,133/73,199 sequences.  
+
+```
+$ nano output_script_screen
+
+## output:
+
+mothur > summary.seqs(fasta=kbay.trim.contigs.good.fasta)
+
+Using 24 processors.
+
+                Start   End     NBases  Ambigs  Polymer NumSeqs
+Minimum:        1	253     253     0	3	1
+2.5%-tile:	1	292     292     0	4	1379
+25%-tile:	1	292     292     0	4	13784
+Median:         1	292     292     0	4	27567
+75%-tile:	1	301     301     0	4	41350
+97.5%-tile:     1	310     310     0	6	53755
+Maximum:        1	340     340     0	20	55133
+Mean:   1	295     295     0	4
+# of Seqs:	55133
+
+It took 2 secs to summarize 55133 sequences.
+```
+
+## <a name="Unique"></a> **Determining and counting unique sequences**
+
+This portion determines the unique sequences and then counts how many times each unique sequence shows up in each sample. See [A. Huffmyer notebook post](https://github.com/AHuffmyer/ASH_Putnam_Lab_Notebook/blob/master/_posts/2022-01-12-16S-Analysis-in-Mothr-Part-1.md) for a description on each function in this script.
+
+Make a script to run these functions.
+
+```
+$ cd ../../data/putnamlab/estrand/BleachingPairs_16S/Mothur/scripts
+$ nano unique.sh
+$ cd ..
+
+## copy and paste the below text into the script file
+
+#!/bin/bash
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab                  
+#SBATCH --error="script_error_unique" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_unique" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function
+
+module load Mothur/1.46.1-foss-2020b
+
+mothur
+
+mothur "#unique.seqs(fasta=kbay.trim.contigs.good.fasta)"
+
+mothur "#count.seqs(name=kbay.trim.contigs.good.names, group=kbay.contigs.good.groups)"
+
+mothur "#summary.seqs(fasta=kbay.trim.contigs.good.unique.fasta, count=kbay.trim.contigs.good.count_table)"
+
+mothur "#count.groups(count= kbay.trim.contigs.good.unique.fasta)"
+
+```
+
+Make sure you are in the Mothur directory and run the above script `sbatch scripts/unique.sh`.
+
+Output below. Unique reads: 30,487 (55%).
+
+```
+mothur > summary.seqs(fasta=kbay.trim.contigs.good.unique.fasta, count=kbay.trim.contigs.good.count_table)
+
+Using 24 processors.
+
+                Start   End     NBases  Ambigs  Polymer NumSeqs
+Minimum:        1       253     253     0	3	1
+2.5%-tile:	1	292     292     0	4	1379
+25%-tile:       1 	292     292     0	4	13784
+Median:         1	292     292     0	4	27567
+75%-tile:       1       301     301     0	4	41350
+97.5%-tile:     1	310     310     0	6	53755
+Maximum:        1       340     340     0	20	55133
+Mean:   1       295     295     0	4
+# of unique seqs:	30487
+total # of seqs:        55133
+
+It took 2 secs to summarize 55133 sequences.
+```
+
+Error received. This sequence returned a count number of zero.
+
+```
+mothur > count.groups(count= kbay.trim.contigs.good.unique.fasta)
+[ERROR]: Your count table contains a sequence named GGACAGGGGTCAGCCGCCGCGGTGATACGGAGGATGCAAGCGTTATTCGGAATTATTGGGCGTAAAGCGTCTGTAGGTGGTTTTTCACCGGTAGCGAAAGCGCTCTACTGGGCTAAAACTGACACTGAGAGACGAAAGCTAGGGGAGCAAATAGGATTAGATACCCGTGTAGTCC with a total=0. Please correct.
+```
+
+Come back to this? I'm not sure yet how to remove this..
+
+## <a name="Reference"></a> **Aligning to a reference database**
+
+#### Prepare and download reference sequences from [Mothur wiki](https://mothur.org/wiki/silva_reference_files/)
+
+The silva reference is used and recommended by the Mothur team. It is a manually curated data base with high diversity and high alignment quality.
+
+```
+$ cd ../../data/putnamlab/estrand/BleachingPairs_16S/Mothur
+
+$ wget https://mothur.s3.us-east-2.amazonaws.com/wiki/silva.bacteria.zip
+
+--2022-01-25 13:48:33--  https://mothur.s3.us-east-2.amazonaws.com/wiki/silva.bacteria.zip
+Resolving mothur.s3.us-east-2.amazonaws.com (mothur.s3.us-east-2.amazonaws.com)... 52.219.104.128
+Connecting to mothur.s3.us-east-2.amazonaws.com (mothur.s3.us-east-2.amazonaws.com)|52.219.104.128|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 25531698 (24M) [application/zip]
+Saving to: ‘silva.bacteria.zip’
+
+100%[================================================================================================>] 25,531,698  35.9MB/s   in 0.7s   
+
+2022-01-25 13:48:34 (35.9 MB/s) - ‘silva.bacteria.zip’ saved [25531698/25531698]
+
+
+
+$ wget https://mothur.s3.us-east-2.amazonaws.com/wiki/trainset9_032012.pds.zip
+
+--2022-01-25 13:48:56--  https://mothur.s3.us-east-2.amazonaws.com/wiki/trainset9_032012.pds.zip
+Resolving mothur.s3.us-east-2.amazonaws.com (mothur.s3.us-east-2.amazonaws.com)... 52.219.143.26
+Connecting to mothur.s3.us-east-2.amazonaws.com (mothur.s3.us-east-2.amazonaws.com)|52.219.143.26|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 2682257 (2.6M) [application/zip]
+Saving to: ‘trainset9_032012.pds.zip’
+
+100%[================================================================================================>] 2,682,257   --.-K/s   in 0.1s    
+
+2022-01-25 13:48:57 (17.3 MB/s) - ‘trainset9_032012.pds.zip’ saved [2682257/2682257]
+
+
+$ unzip silva.bacteria.zip
+$ unzip trainset9_032012.pds.zip
+```
+
+Make a scrip to take the Silva database reference alignment and select the V4 region, and then rename this to something more helpful to us.
+
+```
+$ cd ../../data/putnamlab/estrand/BleachingPairs_16S/Mothur/scripts
+$ nano silva_ref.sh
+$ cd ..
+
+## copy and paste the below text into the script file
+
+#!/bin/bash
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab                  
+#SBATCH --error="script_error_silva_ref" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_silva_ref" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function
+
+module load Mothur/1.46.1-foss-2020b
+
+mothur
+
+mothur "#pcr.seqs(fasta=silva.bacteria/silva.bacteria.fasta, start=11894, end=25319, keepdots=F)"
+
+mothur "#summary.seqs(fasta=silva.bacteria/silva.bacteria.pcr.fasta)"
+
+mothur "#rename.file(input=silva.bacteria/silva.bacteria.pcr.fasta, new=silva.v4.fasta)"
+```
+
+Make sure you are in the Mothur directory and run the above script `$ sbatch scripts/silva_ref.sh`.
+
+Output reference file we will use moving forward: `silva.v4.fasta`.
+
+View output from the script that includes sequence summary `$ nano output_script_silva_ref`. These statistics should be the same as [A. Huffmyer post](https://github.com/AHuffmyer/ASH_Putnam_Lab_Notebook/blob/master/_posts/2022-01-12-16S-Analysis-in-Mothr-Part-1.md#Align).
+
+```
+mothur > summary.seqs(fasta=silva.bacteria/silva.bacteria.pcr.fasta)
+
+Using 24 processors.
+
+                Start   End     NBases  Ambigs  Polymer NumSeqs
+Minimum:        1	13424   270     0	3	1
+2.5%-tile:	1	13425   292     0	4	374
+25%-tile:	1	13425   293     0	4	3740
+Median:         1       13425   293     0	4	7479
+75%-tile:       1	13425   293     0	5	11218
+97.5%-tile:     1       13425   294     1	6	14583
+Maximum:        3	13425   351     5	9	14956
+Mean:   1       13424   292     0	4
+# of Seqs:	14956
+
+It took 6 secs to summarize 14956 sequences.
+```
+
+#### Align our sequences to the new reference database we've created
 
 
 
