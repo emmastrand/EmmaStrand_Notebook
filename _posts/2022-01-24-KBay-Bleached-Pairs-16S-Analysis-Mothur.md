@@ -34,7 +34,12 @@ Contents:
 - [**Make contigs**](#Contigs)  
 - [**QC with screen.seqs**](#QC_screen)  
 - [**Determining and counting unique sequences**](#Unigue)
-- [**Aligning to a reference database**](#Reference)       
+- [**Aligning to a reference database**](#Reference)   
+- [**Pre-clustering**](#Pre-clustering)   
+- [**Identifying Chimeras**](#Chimeras)    
+- [**Classifying sequences**](#Classify_seq)  
+- [**OTU Clustering**](#OTU)   
+- [**Subsampling for sequencing depth**](#Subsample)                 
 - [**Troubleshooting**](#Troubleshooting)  
 
 ## <a name="Setting_up"></a> **Setting Up Andromeda**
@@ -548,14 +553,468 @@ Output File Names:
 kbay.trim.contigs.good.unique.good.summary
 ```
 
-We have now removed sequences outside of the window of interest in our alignment to the Silva reference 16S V4 region.
+We have now identified the sequences outside of the window of interest in our alignment to the Silva reference 16S V4 region. The next step will be filtering those out.
+
+#### Filter out those sequences identified in screen2.sh
+
+Make a script that uses filer.seqs function to take out those sequences that did not meet our criteria.
+
+```
+$ cd ../../data/putnamlab/estrand/BleachingPairs_16S/Mothur/scripts
+$ nano filter.sh
+$ cd .. ### need to be in mothur directory when running script
+
+## copy and paste the below text into the nano file
+
+#!/bin/bash
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab                  
+#SBATCH --error="script_error_filter" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_filter" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function
+
+module load Mothur/1.46.1-foss-2020b
+
+mothur
+
+mothur "#filter.seqs(fasta=kbay.trim.contigs.good.unique.good.align, vertical=T, trump=.)"
+
+mothur "#summary.seqs(fasta=kbay.trim.contigs.good.unique.good.filter.fasta, count=kbay.trim.contigs.good.good.count_table)"
+
+mothur "#count.groups(count= kbay.trim.contigs.good.good.count_table)"
+```
+
+Make sure you are in the Mothur directory and run the above script `$ sbatch scripts/filter.sh`.
+
+Output from the `output_script_filter` file:
+
+```
+It took 11 secs to filter 30066 sequences.
+
+Length of filtered alignment: 424
+Number of columns removed: 13001
+Length of the original alignment: 13425
+Number of sequences used to construct filter: 30066
+
+mothur > summary.seqs(fasta=kbay.trim.contigs.good.unique.good.filter.fasta, count=kbay.trim.contigs.good.good.count_table)
+
+Using 24 processors.
+
+                Start   End     NBases  Ambigs  Polymer NumSeqs
+Minimum:        1	424     286     0	3	1
+2.5%-tile:      1	424     290     0	4	1368
+25%-tile:	1	424     290     0	4	13678
+Median:         1       424     290     0	4	27356
+75%-tile:       1	424     290     0	4	41033
+97.5%-tile:     1       424     291     0	6	53343
+Maximum:        1	424     297     0	8	54710
+Mean:   1       424     290     0	4
+# of unique seqs:	30066
+total # of seqs:        54710
+
+It took 3 secs to summarize 54710 sequences.
+
+Output File Names:
+kbay.trim.contigs.good.unique.good.filter.summary
+
+mothur > count.groups(count= kbay.trim.contigs.good.good.count_table)
+WSH217 contains 111.
+WSH218 contains 116.
+WSH219 contains 182.
+WSH220 contains 110.
+WSH221 contains 154.
+WSH222 contains 111.
+WSH223 contains 88.
+WSH224 contains 68.
+WSH223 contains 88.
+WSH224 contains 68.
+WSH225 contains 68.
+WSH226 contains 201.
+WSH227 contains 4169.
+WSH228 contains 1533.
+WSH229 contains 273.
+WSH230 contains 4183.
+WSH231 contains 785.
+WSH232 contains 62.
+WSH233 contains 149.
+WSH234 contains 15576.
+WSH235 contains 266.
+WSH236 contains 146.
+WSH237 contains 722.
+WSH238 contains 2021.
+WSH239 contains 206.
+WSH240 contains 168.
+WSH241 contains 261.
+WSH242 contains 200.
+WSH243 contains 225.
+WSH244 contains 357.
+WSH245 contains 794.
+WSH246 contains 305.
+WSH247 contains 2388.
+WSH248 contains 163.
+WSH249 contains 586.
+WSH250 contains 357.
+WSH251 contains 426.
+WSH252 contains 150.
+WSH253 contains 8186.
+WSH254 contains 7413.
+WSH255 contains 196.
+WSH256 contains 1235.
+
+Size of smallest group: 62.
+```
+
+A. Huffmyer got alignment window that spans ~500 bp in length but mine is 424 bp.. With sequences that are closer to 290 nt instead of 254 nt. **Come back to this**.
+
+## <a name="Pre-clustering"></a> **Pre clustering**
+
+In this step we want to remove noise due to sequencing error. Sequences are not reduced but grouped into ASVs to reduce error rate. DADA2 is an alternate for this but that program takes out rare sequences and singletons and this one does not. See [A. Huffmyer post - preclustering step](https://github.com/AHuffmyer/ASH_Putnam_Lab_Notebook/blob/master/_posts/2022-01-12-16S-Analysis-in-Mothr-Part-1.md#-7-polish-the-data-with-pre-clustering) for further explanation.
+
+
+Make a script to run the pre.cluster functions. `diffs=1` can be changed based on requirements.
+
+```
+$ cd ../../data/putnamlab/estrand/BleachingPairs_16S/Mothur/scripts
+$ nano precluster.sh
+$ cd .. ### need to be in mothur directory when running script
+
+## copy and paste the below text into the nano file
+
+#!/bin/bash
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab                  
+#SBATCH --error="script_error_precluster" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_precluster" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function
+
+module load Mothur/1.46.1-foss-2020b
+
+mothur
+
+mothur "#unique.seqs(fasta=kbay.trim.contigs.good.unique.good.filter.fasta, count=kbay.trim.contigs.good.good.count_table)"
+
+mothur "#pre.cluster(fasta=kbay.trim.contigs.good.unique.good.filter.unique.fasta, count=kbay.trim.contigs.good.unique.good.filter.count_table, diffs=1)"
+
+mothur "#summary.seqs(fasta=kbay.trim.contigs.good.unique.good.filter.unique.precluster.fasta, count=kbay.trim.contigs.good.unique.good.filter.unique.precluster.count_table)"
+
+mothur "#count.groups(count=current)"
+
+```
+
+Make sure you are in the Mothur directory and run the above script `$ sbatch scripts/preclustering.sh`.
+
+Ouput from the `output_script_precluster` file. We kept 19,008 unique sequences from the previous 30,066 sequences. But get an error from the count.groups function -- that the input file does not exist. **Come back to this.**
+
+```
+mothur > summary.seqs(fasta=kbay.trim.contigs.good.unique.good.filter.unique.precluster.fasta, count=kbay.trim.contigs.good.unique.good.filter.u$
+
+Using 24 processors.
+
+                Start   End     NBases  Ambigs  Polymer NumSeqs
+Minimum:        1       424     286     0	3	1
+2.5%-tile:	1	424     290     0	4	1368
+25%-tile:       1       424     290     0	4	13678
+Median:         1       424     290     0	4	27356
+75%-tile:	1	424     290     0	4	41033
+97.5%-tile:     1       424     291     0	6	53343
+Maximum:        1	424     297     0	8	54710
+Mean:   1	424     290     0	4
+# of unique seqs:	19008
+total # of seqs:        54710
+
+It took 2 secs to summarize 54710 sequences.
+
+Output File Names:
+kbay.trim.contigs.good.unique.good.filter.unique.precluster.summary
+```
+## <a name="Chimeras"></a> **Identifying Chimeras**
+
+Chimeras = seqs that did not extend during PCR and served as templates for other PCR products and results in sequences that are half from one PCR product and half from another. Make a script to use the `chimera.vsearch` function and then remove those sequences.
+
+Vsearch is already available on our server. See [A. Huffmyer post #8 chimera step for instructions on vsearch install](https://github.com/AHuffmyer/ASH_Putnam_Lab_Notebook/blob/master/_posts/2022-01-12-16S-Analysis-in-Mothr-Part-1.md#-8-identify-chimeras).
+
+```
+$ cd ../../data/putnamlab/estrand/BleachingPairs_16S/Mothur/scripts
+$ nano chimera.sh
+$ cd .. ### need to be in mothur directory when running script
+
+## copy and paste the below text into the nano file
+
+#!/bin/bash
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab                  
+#SBATCH --error="script_error_chimera" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_chimera" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function
+
+module load Mothur/1.46.1-foss-2020b
+
+module load VSEARCH/2.18.0-GCC-10.2.0
+
+mothur
+
+mothur "#chimera.vsearch(fasta=kbay.trim.contigs.good.unique.good.filter.unique.precluster.fasta, count=kbay.trim.contigs.good.unique.good.filter.unique.precluster.count_table, dereplicate=T)"
+
+mothur "#remove.seqs(fasta=kbay.trim.contigs.good.unique.good.filter.unique.precluster.fasta, accnos=kbay.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.accnos)"
+
+mothur "#summary.seqs(fasta=kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta, count=kbay.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table)"
+
+mothur "#count.groups(count=kbay.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table)"
+
+```
+
+Make sure you are in the Mothur directory and run the above script `$ sbatch scripts/chimera.sh`.
+
+Output from `output_script_chimera` file. We kept 18,821 sequences post removing chimeras out of 19,008 sequences (0.009% chimeras).
+
+```
+mothur > summary.seqs(fasta=kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta, count=kbay.trim.contigs.good.unique.good.fil$
+
+Using 24 processors.
+
+                Start   End     NBases  Ambigs  Polymer NumSeqs
+Minimum:        1	424     286     0	3	1
+2.5%-tile:      1       424     290     0       4       1363
+25%-tile:	1	424     290     0	4	13621
+Median:         1       424     290     0       4       27241
+75%-tile:	1	424     290     0	4	40861
+97.5%-tile:     1       424     291     0	6	53119
+Maximum:        1	424     295     0	8	54480
+Mean:   1       424     290     0       4
+# of unique seqs:	18821
+total # of seqs:        54480
+
+It took 1 secs to summarize 54480 sequences.
+
+Output File Names:
+kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.summary
+```
+
+Count groups for each sample output:
+
+```
+mothur > count.groups(count=kbay.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table)
+WSH217 contains 111.
+WSH218 contains 116.
+WSH219 contains 182.
+WSH220 contains 108.
+WSH221 contains 154.
+WSH222 contains 111.
+WSH223 contains 88.
+WSH224 contains 68.
+WSH225 contains 68.
+WSH226 contains 200.
+WSH227 contains 4167.
+WSH228 contains 1533.
+WSH229 contains 271.
+WSH230 contains 4179.
+WSH231 contains 785.
+WSH232 contains 62.
+WSH233 contains 149.
+WSH234 contains 15415.
+WSH235 contains 265.
+WSH236 contains 145.
+WSH237 contains 722.
+WSH238 contains 2002.
+WSH239 contains 206.
+WSH240 contains 168.
+WSH241 contains 261.
+WSH242 contains 200.
+WSH243 contains 224.
+WSH244 contains 355.
+WSH245 contains 794.
+WSH246 contains 305.
+WSH247 contains 2386.
+WSH246 contains 305.
+WSH247 contains 2386.
+WSH248 contains 163.
+WSH249 contains 586.
+WSH250 contains 357.
+WSH251 contains 425.
+WSH252 contains 150.
+WSH253 contains 8170.
+WSH254 contains 7406.
+WSH255 contains 196.
+WSH256 contains 1227.
+```
+
+The lowest is 62.
+
+## <a name="Classify_seq"></a> **Classifying Sequences**
+
+The cleaning steps are now complete and we can classify our sequences. We have already downloaded the silva database in previous step from the Mothur wiki page. Download the mothur-formatted version of training set - this is version 9.
+
+```
+$ cd ../../data/putnamlab/estrand/BleachingPairs_16S/Mothur
+$ wget https://mothur.s3.us-east-2.amazonaws.com/wiki/trainset9_032012.pds.zip
+```
+
+Make a script to classify and remove lineages.
+
+```
+$ cd ../../data/putnamlab/estrand/BleachingPairs_16S/Mothur/scripts
+$ nano classify.sh
+$ cd .. ### need to be in mothur directory when running script
+
+## copy and paste the below text into the nano file
+
+#!/bin/bash
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab                  
+#SBATCH --error="script_error_classify" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_classify" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function
+
+module load Mothur/1.46.1-foss-2020b
+
+mothur
+
+mothur "#classify.seqs(fasta=kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta, count=kbay.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table, reference=trainset9_032012.pds.fasta, taxonomy=trainset9_032012.pds.tax)"
+
+mothur "#remove.lineage(fasta=kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta, count=kbay.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table, taxonomy=kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.pds.wang.taxonomy, taxon=Chloroplast-Mitochondria-unknown-Archaea-Eukaryota)"
+```
+
+Make sure you are in the Mothur directory and run the above script `$ sbatch scripts/classify.sh`.
+
+Output files:  
+- The output file .taxonomy has name of sequence and the classification with % confidence in parentheses for each level. It will end at the level that is has confidence.  
+
+```
+$ head kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.pds.wang.taxonomy
+
+M00763_26_000000000-K4TML_1_1113_24267_7936	Bacteria(99);Bacteria_unclassified(99);Bacteria_unclassified(99);Bacteria_unclassified(99);Bacteria_unclassified(99);Bacteria_unclassified(99);
+M00763_26_000000000-K4TML_1_2116_18812_8249	Bacteria(100);"Proteobacteria"(100);Gammaproteobacteria(100);Oceanospirillales(100);Hahellaceae(100);Endozoicomonas(100);
+M00763_26_000000000-K4TML_1_2116_9711_8317	Bacteria(100);"Proteobacteria"(100);Gammaproteobacteria(100);Oceanospirillales(100);Hahellaceae(100);Endozoicomonas(100);
+M00763_26_000000000-K4TML_1_2105_9657_19148	Bacteria(100);"Proteobacteria"(100);Gammaproteobacteria(100);Oceanospirillales(100);Hahellaceae(100);Endozoicomonas(100);
+M00763_26_000000000-K4TML_1_2105_27916_19174	Bacteria(100);"Proteobacteria"(100);Gammaproteobacteria(100);Oceanospirillales(100);Hahellaceae(100);Endozoicomonas(100);
+M00763_26_000000000-K4TML_1_2108_16288_18152	Bacteria(100);"Proteobacteria"(86);"Proteobacteria"_unclassified(86);"Proteobacteria"_unclassified(86);"Proteobacteria"_unclassified(86);"Proteobacteria"_unclassified(86);
+M00763_26_000000000-K4TML_1_2116_27748_8440	Bacteria(100);"Proteobacteria"(100);Gammaproteobacteria(100);Oceanospirillales(100);Hahellaceae(100);Endozoicomonas(100);
+M00763_26_000000000-K4TML_1_2116_27732_8447	Bacteria(100);"Proteobacteria"(100);Gammaproteobacteria(100);Oceanospirillales(100);Hahellaceae(100);Endozoicomonas(100);
+M00763_26_000000000-K4TML_1_2116_4664_8484	Bacteria(100);"Proteobacteria"(100);Gammaproteobacteria(100);Oceanospirillales(100);Hahellaceae(100);Endozoicomonas(100);
+M00763_26_000000000-K4TML_1_1119_22200_14846	Bacteria(100);"Bacteroidetes"(100);Flavobacteria(100);"Flavobacteriales"(100);Cryomorphaceae(100);Crocinitomix(100);
+```
+
+- The tax.summary file has the taxonimc level, the name of the taxonomic group, and the number of sequences in that group for each sample.
+
+```
+$ head kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.pds.wang.tax.summary
+
+taxlevel	rankID	taxon	daughterlevels	total	WSH217	WSH218	WSH219	WSH220	WSH221	WSH222	WSH223	WSH224	WSH225	WSH226	WSH227	WSH228	WSH229	WSH230	WSH231	WSH232	WSH233	WSH234	WSH235	WSH236	WSH237	WSH238	WSH239	WSH240	WSH241	WSH242	WSH243	WSH244	WSH245	WSH246	WSH247	WSH248	WSH249	WSH250	WSH251	WSH252	WSH253	WSH254	WSH255	WSH256
+0	0	Root	3	54480	111	116	182	108	154	111	88	68	68	200	4167	1533	271	4179	785	62	149	15415	265	145	722	2002	206	168	261	200	224	355	794	305	2386	163	586	357	425	150	8170	7406	196	1227
+1	0.1	Archaea	2	45	0	3	12	0	0	0	0	0	0	0	1	0	0	0	0	0	0	11	11	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0
+2	0.1.1	"Euryarchaeota"	3	40	0	3	12	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0
+3	0.1.1.1	"Euryarchaeota"_unclassified	1	27	0	3	0	0	0	0	0	0	0	0	1	0	0	0	0	0
+4	0.1.1.1.1	"Euryarchaeota"_unclassified	1	27	0	3	0	0	0	0	0	0	0	0	1	0	0	0	0
+5	0.1.1.1.1.1	"Euryarchaeota"_unclassified	1	27	0	3	0	0	0	0	0	0	0	0	1	0	0	0	0
+6	0.1.1.1.1.1.1	"Euryarchaeota"_unclassified	0	27	0	3	0	0	0	0	0	0	0	0	1	0	0	0	0
+3	0.1.1.2	Halobacteria	1	12	0	0	12	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+4	0.1.1.2.1	Halobacteriales	1	12	0	0	12	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+```
+
+
+From `output_script_classify` file:
+
+```
+Removed 824 sequences from your fasta file.
+Removed 1487 sequences from your count file.
+
+[WARNING]: Are you run the remove.seqs command after running a chimera command with dereplicate=t? If so, the count file has already been modified to remove all chimeras and adjust group counts. Including the count file here will cause downstream file mismatches.
+
+[WARNING]: M00763_26_000000000-K4TML_1_1117_23518_11903 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+```
+
+## <a name="OTU"></a> **OTU Clustering**
+
+Make a script to calculate pairwise distances between sequences prior to clustering. See [A. Huffmyer Step #10 OTU Clustering](https://github.com/AHuffmyer/ASH_Putnam_Lab_Notebook/blob/master/_posts/2022-01-12-16S-Analysis-in-Mothr-Part-1.md#-10-cluster-for-otus) for more explanation on each command.
+
+```
+$ cd ../../data/putnamlab/estrand/BleachingPairs_16S/Mothur/scripts
+$ nano cluster.sh
+$ cd .. ### need to be in mothur directory when running script
+
+## copy and paste the below text into the nano file
+
+#!/bin/bash
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab                  
+#SBATCH --error="script_error_cluster" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_cluster" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function
+
+module load Mothur/1.46.1-foss-2020b
+
+mothur
+
+mothur "#dist.seqs(fasta=kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.fasta)"
+
+mothur "#cluster(column=kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.dist, count=kbay.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table, cutoff=0.03)"
+
+mothur "#cluster.split(fasta=kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.fasta, count=kbay.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table, taxonomy=kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.pds.wang.pick.taxonomy, taxlevel=4, cutoff=0.03, splitmethod=classify)"
+
+mothur "#make.shared(list=kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.opti_mcc.list, count=kbay.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table)"
+
+mothur "#classify.otu(list=kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.opti_mcc.list, count=kbay.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table, taxonomy=kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.pds.wang.pick.taxonomy)"
+
+mothur "#rename.file(taxonomy=kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.opti_mcc.0.03.cons.taxonomy, shared=kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.opti_mcc.shared)"
+
+mothur "#count.groups(shared=kbay.opti_mcc.shared)"
+```
+
+Make sure you are in the Mothur directory and run the above script `$ sbatch scripts/cluster.sh`.
+
+From the `output_script_cluster`:
+
+```
+
+```
+
+## <a name="Subsample"></a> **Subsampling for sequencing depth**
+
+The next set of commands can be run outside of andromeda in the interactive mode.
+
+```
+$ interactive
+$ source /usr/share/Modules/init/sh
+$ module load Mothur/1.46.1-foss-2020b
+$ mothur
+
+
+```
 
 
 ## <a name="Troubleshooting"></a> **Troubleshooting**
 
 I got this error while running the contigs.sh file. I copied all raw files into the mothur folder I created and this fixed that issue.
-
-
 
 ```
 mothur > make.file(inputdir=data/putnamlab/estrand/BleachingPairs_16S/raw_data, type=gz, prefix=kbay)
@@ -563,3 +1022,16 @@ mothur > make.file(inputdir=data/putnamlab/estrand/BleachingPairs_16S/raw_data, 
 [ERROR]: cannot access data/putnamlab/estrand/BleachingPairs_16S/raw_data/
 [ERROR]: did not complete make.file.
 ```
+
+Post filter step (filter.sh), A. Huffmyer got alignment window that spans ~500 bp in length but mine is 424 bp.. With sequences that are closer to 290 nt instead of 254 nt. **Come back to this**.
+
+When I ran the precluster.sh script, I got the following error. The last step in the script could not find an input file. **Come back to this**.
+
+```
+mothur > count.groups(count=current)
+[WARNING]: no file was saved for count parameter.
+You have no current groupfile, countfile or sharedfile and one is required.
+[ERROR]: did not complete count.groups.
+```
+
+The total # of seqs does not stay the same between steps.. Double check this OK?
