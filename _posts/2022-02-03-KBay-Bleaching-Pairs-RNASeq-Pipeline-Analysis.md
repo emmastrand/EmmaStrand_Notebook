@@ -18,4 +18,4 @@ Molecular laboratory work spreadsheet: [excel doc](https://github.com/hputnam/HI
 
 Raw data path: ../../data/putnamlab/KITT/hputnam/20220203_BleachedPairs_RNASeq  
 
-Script to download raw data found [here](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/data/RNASeq/pairs_rnaseq_download.md).
+Script to download raw data found [here in github repo](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/data/RNASeq/pairs_rnaseq_download.md).
