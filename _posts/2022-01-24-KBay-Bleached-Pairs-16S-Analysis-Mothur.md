@@ -39,8 +39,12 @@ Contents:
 - [**Identifying Chimeras**](#Chimeras)    
 - [**Classifying sequences**](#Classify_seq)  
 - [**OTU Clustering**](#OTU)   
-- [**Subsampling for sequencing depth**](#Subsample)                 
+- [**Subsampling for sequencing depth**](#Subsample)   
+- [**Calculate Ecological Statistics**](#Ecostats)    
+- [**Population Level Analyses**](#Popstats)  
+- [**Exporting for R Analyses**](#RExport)                
 - [**Troubleshooting**](#Troubleshooting)  
+
 
 ## <a name="Setting_up"></a> **Setting Up Andromeda**
 
@@ -995,21 +999,153 @@ Make sure you are in the Mothur directory and run the above script `$ sbatch scr
 From the `output_script_cluster`:
 
 ```
+mothur > count.groups(shared=kbay.opti_mcc.shared)
+WSH217 contains 105.
+WSH218 contains 105.
+WSH219 contains 169.
+WSH220 contains 105.
+WSH219 contains 169.
+WSH220 contains 105.
+WSH221 contains 153.
+WSH222 contains 109.
+WSH223 contains 57.
+WSH224 contains 67.
+WSH225 contains 63.
+WSH226 contains 199.
+WSH227 contains 4166.
+WSH228 contains 677.
+WSH229 contains 244.
+WSH230 contains 4170.
+WSH231 contains 785.
+WSH232 contains 61.
+WSH233 contains 127.
+WSH234 contains 15338.
+WSH235 contains 244.
+WSH236 contains 140.
+WSH237 contains 696.
+WSH238 contains 1880.
+WSH239 contains 203.
+WSH240 contains 158.
+WSH241 contains 250.
+WSH242 contains 196.
+WSH243 contains 217.
+WSH244 contains 352.
+WSH245 contains 794.
+WSH246 contains 301.
+WSH247 contains 2385.
+WSH248 contains 161.
+WSH247 contains 2385.
+WSH248 contains 161.
+WSH249 contains 586.
+WSH250 contains 346.
+WSH251 contains 257.
+WSH252 contains 147.
+WSH253 contains 8156.
+WSH254 contains 7405.
+WSH255 contains 192.
+WSH256 contains 1227.
 
+Size of smallest group: 57.
 ```
 
 ## <a name="Subsample"></a> **Subsampling for sequencing depth**
 
-The next set of commands can be run outside of andromeda in the interactive mode.
+The next set of commands can be run outside of andromeda in the interactive mode. See [A. Huffmyer post step #11 subsample for sequence depth](https://github.com/AHuffmyer/ASH_Putnam_Lab_Notebook/blob/master/_posts/2022-01-12-16S-Analysis-in-Mothr-Part-1.md#-11-subsampling-for-sequencing-depth) for more explanation on these steps.
+
+Open mothur in interactive mode.
 
 ```
 $ interactive
 $ source /usr/share/Modules/init/sh
 $ module load Mothur/1.46.1-foss-2020b
 $ mothur
+```
 
+#### Subsample cut-offs
+
+Subsample with a minimum of 57 based on the lowest read depth per sample. This parameter will need to be adjusted for what you need in each dataset. If you don't include a size minimum then the default is the lowest of all of the samples (in our case 57).
 
 ```
+$ sub.sample(shared=kbay.opti_mcc.shared)
+
+## output from default
+
+0.03
+Sampling 57 from each group.
+
+Output File Names:
+kbay.opti_mcc.0.03.subsample.shared
+
+$ sub.sample(shared=kbay.opti_mcc.shared, size=300) code to include a minimum
+
+## output from size = 300:
+0.03
+WSH217 contains 105. Eliminating.
+WSH218 contains 105. Eliminating.
+WSH219 contains 169. Eliminating.
+WSH220 contains 105. Eliminating.
+WSH221 contains 153. Eliminating.
+WSH222 contains 109. Eliminating.
+WSH223 contains 57. Eliminating.
+WSH224 contains 67. Eliminating.
+WSH225 contains 63. Eliminating.
+WSH226 contains 199. Eliminating.
+WSH229 contains 244. Eliminating.
+WSH232 contains 61. Eliminating.
+WSH233 contains 127. Eliminating.
+WSH235 contains 244. Eliminating.
+WSH236 contains 140. Eliminating.
+WSH239 contains 203. Eliminating.
+WSH240 contains 158. Eliminating.
+WSH241 contains 250. Eliminating.
+WSH242 contains 196. Eliminating.
+WSH243 contains 217. Eliminating.
+WSH248 contains 161. Eliminating.
+WSH251 contains 257. Eliminating.
+WSH252 contains 147. Eliminating.
+WSH255 contains 192. Eliminating.
+Sampling 300 from each group.
+
+Output File Names:
+kbay.opti_mcc.0.03.subsample.shared
+```
+
+The above is a large chunk of our 40 samples if we use a cut-off like 300. Moving forward I used to the default of 57 but might want to come back to this step later.
+
+
+#### Rarefraction calculation
+
+We are going to generate a rarefaction. Calculating the observed number of OTUS using the Sobs metric (observed number of taxa) with a freq=100 to output the data for every 100 sequences samples - if you did every single sample that would be way too much data to output.
+
+```
+$ rarefaction.single(shared=mcap.opti_mcc.shared, calc=sobs, freq=100)
+$ summary.single(shared=mcap.opti_mcc.shared, calc=nseqs-sobs-shannon-invsimpson, subsample=300)
+```
+
+I'm going to wait on this command and run the output without subsampling and rarefying our data to see our general output and then come back to these steps.
+
+## <a name="Ecostats"></a> **Calculate Ecological Statistics**
+
+## <a name="Popstats"></a> **Population Level Analyses**
+
+## <a name="RExport"></a> **Export for R Analyses**
+
+Files needed to export from andromeda to desktop for R analysis:  
+- kbay.opti_mcc.braycurtis.0.03.lt.dist  
+- kbay.opti_mcc.braycurtis.0.03.lt.ave.dist  
+- kbay.taxonomy  
+- kbay.opti_mcc.0.03.subsample.shared  
+- kbay.opti_mcc.shared
+
+Run outside of andromeda.
+
+```
+$ scp emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/BleachingPairs_16S/Mothur/kbay.opti_mcc.shared /Users/emmastrand/MyProjects/HI_Bleaching_Timeseries/data/16S/mothur_output/
+
+$ scp emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/BleachingPairs_16S/Mothur/kbay.taxonomy /Users/emmastrand/MyProjects/HI_Bleaching_Timeseries/data/16S/mothur_output/
+```
+
+
 
 
 ## <a name="Troubleshooting"></a> **Troubleshooting**
