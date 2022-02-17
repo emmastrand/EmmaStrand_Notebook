@@ -358,7 +358,7 @@ From `output_script_screen2`:
 Make a script that uses filer.seqs function to take out those sequences that did not meet our criteria.
 
 ```
-$ cd ../../data/putnamlab/estrand/BleachingPairs_16S/Mothur/scripts
+$ cd ../../data/putnamlab/estrand/HoloInt_16s/Mothur/scripts
 $ nano filter.sh
 $ cd .. ### need to be in mothur directory when running script
 
@@ -381,9 +381,245 @@ module load Mothur/1.46.1-foss-2020b
 
 mothur
 
-mothur "#filter.seqs(fasta=kbay.trim.contigs.good.unique.good.align, vertical=T, trump=.)"
+mothur "#filter.seqs(fasta=HoloInt.trim.contigs.good.unique.good.align, vertical=T, trump=.)"
 
-mothur "#summary.seqs(fasta=kbay.trim.contigs.good.unique.good.filter.fasta, count=kbay.trim.contigs.good.good.count_table)"
+mothur "#summary.seqs(fasta=HoloInt.trim.contigs.good.unique.good.filter.fasta, count=HoloInt.trim.contigs.good.good.count_table)"
 
-mothur "#count.groups(count= kbay.trim.contigs.good.good.count_table)"
+mothur "#count.groups(count= HoloInt.trim.contigs.good.good.count_table)"
+```
+
+Output from the `output_script_filter` file:
+
+```
+```
+
+## <a name="Pre-clustering"></a> **Pre clustering**
+
+Make a script to run the pre.cluster functions. `diffs=1` can be changed based on requirements.
+
+```
+$ cd ../../data/putnamlab/estrand/HoloInt_16s/Mothur/scripts
+$ nano precluster.sh
+$ cd .. ### need to be in mothur directory when running script
+
+## copy and paste the below text into the nano file
+
+#!/bin/bash
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab                  
+#SBATCH --error="script_error_precluster" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_precluster" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function
+
+module load Mothur/1.46.1-foss-2020b
+
+mothur
+
+mothur "#unique.seqs(fasta=HoloInt.trim.contigs.good.unique.good.filter.fasta, count=HoloInt.trim.contigs.good.good.count_table)"
+
+mothur "#pre.cluster(fasta=HoloInt.trim.contigs.good.unique.good.filter.unique.fasta, count=HoloInt.trim.contigs.good.unique.good.filter.count_table, diffs=1)"
+
+mothur "#summary.seqs(fasta=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.fasta, count=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.count_table)"
+
+mothur "#count.groups(count=current)"
+```
+
+Ouput from the `output_script_precluster` file:
+
+```
+```
+
+## <a name="Chimeras"></a> **Identifying Chimeras**
+
+Make a script to use the `chimera.vsearch` function and then remove those sequences.
+
+```
+$ cd ../../data/putnamlab/estrand/HoloInt_16s/Mothur/scripts
+$ nano chimera.sh
+$ cd .. ### need to be in mothur directory when running script
+
+## copy and paste the below text into the nano file
+
+#!/bin/bash
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab                  
+#SBATCH --error="script_error_chimera" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_chimera" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function
+
+module load Mothur/1.46.1-foss-2020b
+
+module load VSEARCH/2.18.0-GCC-10.2.0
+
+mothur
+
+mothur "#chimera.vsearch(fasta=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.fasta, count=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.count_table, dereplicate=T)"
+
+mothur "#remove.seqs(fasta=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.fasta, accnos=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.accnos)"
+
+mothur "#summary.seqs(fasta=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta, count=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table)"
+
+mothur "#count.groups(count=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table)"
+```
+
+Output from `output_script_chimera` file:
+
+```
+```
+
+## <a name="Classify_seq"></a> **Classifying Sequences**
+
+The cleaning steps are now complete and we can classify our sequences. We have already downloaded the silva database in previous step from the Mothur wiki page. Download the mothur-formatted version of training set - this is version 9.
+
+```
+$ cd ../../data/putnamlab/estrand/HoloInt_16s/Mothur
+$ wget https://mothur.s3.us-east-2.amazonaws.com/wiki/trainset9_032012.pds.zip
+
+--2022-02-17 12:14:46--  https://mothur.s3.us-east-2.amazonaws.com/wiki/trainset9_032012.pds.zip
+Resolving mothur.s3.us-east-2.amazonaws.com (mothur.s3.us-east-2.amazonaws.com)... 52.219.142.66
+Connecting to mothur.s3.us-east-2.amazonaws.com (mothur.s3.us-east-2.amazonaws.com)|52.219.142.66|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 2682257 (2.6M) [application/zip]
+Saving to: ‘trainset9_032012.pds.zip.1’
+
+100%[======================================================================================================================>] 2,682,257   --.-K/s   in 0.1s    
+
+2022-02-17 12:14:47 (18.3 MB/s) - ‘trainset9_032012.pds.zip.1’ saved [2682257/2682257]
+```
+
+Make a script to classify and remove lineages.
+
+```
+$ cd ../../data/putnamlab/estrand/HoloInt_16s/Mothur/scripts
+$ nano classify.sh
+$ cd .. ### need to be in mothur directory when running script
+
+## copy and paste the below text into the nano file
+
+#!/bin/bash
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab                  
+#SBATCH --error="script_error_classify" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_classify" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function
+
+module load Mothur/1.46.1-foss-2020b
+
+mothur
+
+mothur "#classify.seqs(fasta=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta, count=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table, reference=trainset9_032012.pds.fasta, taxonomy=trainset9_032012.pds.tax)"
+
+mothur "#remove.lineage(fasta=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta, count=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table, taxonomy=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.pds.wang.taxonomy, taxon=Chloroplast-Mitochondria-unknown-Archaea-Eukaryota)"
+```
+
+Output files:  
+- The output file .taxonomy has name of sequence and the classification with % confidence in parentheses for each level. It will end at the level that is has confidence.  
+
+```
+$ head HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.pds.wang.taxonomy
+
+```
+
+- The tax.summary file has the taxonimc level, the name of the taxonomic group, and the number of sequences in that group for each sample.
+
+```
+$ head HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.pds.wang.tax.summary
+```
+
+From `output_script_classify` file:
+
+```
+```
+
+## <a name="OTU"></a> **OTU Clustering**
+
+Make a script to calculate pairwise distances between sequences prior to clustering. See [A. Huffmyer Step #10 OTU Clustering](https://github.com/AHuffmyer/ASH_Putnam_Lab_Notebook/blob/master/_posts/2022-01-12-16S-Analysis-in-Mothr-Part-1.md#-10-cluster-for-otus) for more explanation on each command.
+
+```
+$ cd ../../data/putnamlab/estrand/HoloInt_16s/Mothur/scripts
+$ nano cluster.sh
+$ cd .. ### need to be in mothur directory when running script
+
+## copy and paste the below text into the nano file
+
+#!/bin/bash
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab                  
+#SBATCH --error="script_error_cluster" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_cluster" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function
+
+module load Mothur/1.46.1-foss-2020b
+
+mothur
+
+mothur "#dist.seqs(fasta=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.fasta)"
+
+mothur "#cluster(column=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.dist, count=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table, cutoff=0.03)"
+
+mothur "#cluster.split(fasta=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.fasta, count=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table, taxonomy=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.pds.wang.pick.taxonomy, taxlevel=4, cutoff=0.03, splitmethod=classify)"
+
+mothur "#make.shared(list=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.opti_mcc.list, count=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table)"
+
+mothur "#classify.otu(list=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.opti_mcc.list, count=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table, taxonomy=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.pds.wang.pick.taxonomy)"
+
+mothur "#rename.file(taxonomy=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.opti_mcc.0.03.cons.taxonomy, shared=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.opti_mcc.shared)"
+
+mothur "#count.groups(shared=HoloInt.opti_mcc.shared)"
+```
+
+From the `output_script_cluster`:
+
+```
+```
+
+## <a name="Subsample"></a> **Subsampling for sequencing depth**
+
+#### Subsample cut-offs
+
+#### Rarefraction calculation
+
+## <a name="Ecostats"></a> **Calculate Ecological Statistics**
+
+## <a name="Popstats"></a> **Population Level Analyses**
+
+## <a name="RExport"></a> **Export for R Analyses**
+
+Files needed to export from andromeda to desktop for R analysis:  
+- HoloInt.opti_mcc.braycurtis.0.03.lt.dist  
+- HoloInt.opti_mcc.braycurtis.0.03.lt.ave.dist  
+- HoloInt.taxonomy  
+- HoloInt.opti_mcc.0.03.subsample.shared  
+- HoloInt.opti_mcc.shared
+
+Run outside of andromeda.
+
+```
+$ scp emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/HoloInt_16s/Mothur/HoloInt.opti_mcc.shared /Users/emmastrand/MyProjects/Acclim_Dynamics/16S_seq/mothur_output/
+
+$ scp emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/HoloInt_16s/Mothur/HoloInt.taxonomy /Users/emmastrand/MyProjects/Acclim_Dynamics/16S_seq/mothur_output/
 ```
