@@ -567,8 +567,24 @@ Download the database file to the metadata folder on andromeda. We chose the Sil
 
 ```
 $ cd /data/putnamlab/estrand/BleachingPairs_16S/metadata
+
+## Silva 138 99% OTUs from 515F/806R region of sequences
 $ wget https://data.qiime2.org/2021.4/common/silva-138-99-515-806-nb-classifier.qza
+## Silva 138 99% OTUs full-length sequences
+$ wget https://data.qiime2.org/2021.11/common/silva-138-99-nb-classifier.qza  
+
+## Silva 138 SSURef NR99 full-length taxonomy
+$ wget https://data.qiime2.org/2021.11/common/silva-138-99-tax.qza  
+## Silva 138 SSURef NR99 full-length sequences
+$ wget https://data.qiime2.org/2021.11/common/silva-138-99-seqs.qza
 ```
+
+**We ran scripts with different databases and classifiers**
+
+2 classifier options: classify-sklearn and q2-feature-classifier.
+
+*Left off right before creating separate script for q2 classifier. Keep looking into the difference between the sequence and taxonomy files vs the classifier file. Can also train classifier on own set of data.**
+
 
 Create two folders for the taxonomic output.
 
