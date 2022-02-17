@@ -183,6 +183,8 @@ Move forward with `fasta=XX` output file and `XX.sh`.
 
 ## <a name="QC_screen"></a> **QC with screen.seqs**
 
+### screen.sh script with trimoverlap=true output
+
 Make script for screen.seqs function.
 
 ```
@@ -217,7 +219,25 @@ mothur "#summary.seqs(fasta=HoloInt.trim.contigs.good.fasta)"
 From `output_script_screen`:
 
 ```
-#### Insert output here
+mothur > summary.seqs(fasta=HoloInt.trim.contigs.good.fasta)
+
+Using 24 processors.
+
+                Start   End     NBases  Ambigs  Polymer NumSeqs
+Minimum:        1	253     253     0	3	1
+2.5%-tile:	1	292     292     0	4	47173
+25%-tile:	1	300     300     0	4	471726
+Median:         1	301     301     0	11	943451
+75%-tile:	1	301     301     0	11	1415176
+97.5%-tile:     1	309     309     0	16	1839729
+Maximum:        1	350     350     0	105     1886901
+Mean:   1	299     299     0	8
+# of Seqs:	1886901
+
+It took 70 secs to summarize 1886901 sequences.
+
+Output File Names:
+HoloInt.trim.contigs.good.summary
 ```
 
 ## <a name="Unique"></a> **Determining and counting unique sequences**
