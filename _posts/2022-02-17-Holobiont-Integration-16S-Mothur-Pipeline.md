@@ -153,3 +153,237 @@ From `output_script_screen`:
 ```
 #### Insert output here
 ```
+
+## <a name="Unique"></a> **Determining and counting unique sequences**
+
+Make script to run unique.seqs function.
+
+```
+$ cd ../../data/putnamlab/estrand/HoloInt_16s/Mothur/scripts
+$ nano unique.sh
+$ cd ..
+
+## copy and paste the below text into the script file
+
+#!/bin/bash
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab                  
+#SBATCH --error="script_error_unique" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_unique" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function
+
+module load Mothur/1.46.1-foss-2020b
+
+mothur
+
+mothur "#unique.seqs(fasta=HoloInt.trim.contigs.good.fasta)"
+
+mothur "#count.seqs(name=HoloInt.trim.contigs.good.names, group=HoloInt.contigs.good.groups)"
+
+mothur "#summary.seqs(fasta=HoloInt.trim.contigs.good.unique.fasta, count=HoloInt.trim.contigs.good.count_table)"
+
+mothur "#count.groups(count= HoloInt.trim.contigs.good.unique.fasta)"
+```
+
+From `output_script_unique`:
+
+```
+#### Insert output here
+```
+
+## <a name="Reference"></a> **Aligning to a reference database**
+
+#### Prepare and download reference sequences from [Mothur wiki](https://mothur.org/wiki/silva_reference_files/)
+
+The silva reference is used and recommended by the Mothur team. It is a manually curated data base with high diversity and high alignment quality.
+
+```
+$ cd ../../data/putnamlab/estrand/BleachingPairs_16S/Mothur
+
+$ wget https://mothur.s3.us-east-2.amazonaws.com/wiki/silva.bacteria.zip
+
+--2022-02-17 11:55:46--  https://mothur.s3.us-east-2.amazonaws.com/wiki/silva.bacteria.zip
+Resolving mothur.s3.us-east-2.amazonaws.com (mothur.s3.us-east-2.amazonaws.com)... 52.219.93.42
+Connecting to mothur.s3.us-east-2.amazonaws.com (mothur.s3.us-east-2.amazonaws.com)|52.219.93.42|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 25531698 (24M) [application/zip]
+Saving to: ‘silva.bacteria.zip’
+
+100%[======================================================================================================================>] 25,531,698  41.6MB/s   in 0.6s   
+
+2022-02-17 11:55:48 (41.6 MB/s) - ‘silva.bacteria.zip’ saved [25531698/25531698]
+
+$ wget https://mothur.s3.us-east-2.amazonaws.com/wiki/trainset9_032012.pds.zip
+
+--2022-02-17 11:56:01--  https://mothur.s3.us-east-2.amazonaws.com/wiki/trainset9_032012.pds.zip
+Resolving mothur.s3.us-east-2.amazonaws.com (mothur.s3.us-east-2.amazonaws.com)... 52.219.88.88
+Connecting to mothur.s3.us-east-2.amazonaws.com (mothur.s3.us-east-2.amazonaws.com)|52.219.88.88|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 2682257 (2.6M) [application/zip]
+Saving to: ‘trainset9_032012.pds.zip’
+
+100%[======================================================================================================================>] 2,682,257   --.-K/s   in 0.1s    
+
+2022-02-17 11:56:02 (20.9 MB/s) - ‘trainset9_032012.pds.zip’ saved [2682257/2682257]
+
+$ unzip silva.bacteria.zip
+$ unzip trainset9_032012.pds.zip
+```
+
+Make a script to take the Silva database reference alignment and select the V4 region, and then rename this to something more helpful to us.
+
+```
+$ cd ../../data/putnamlab/estrand/HoloInt_16s/Mothur/scripts
+$ nano silva_ref.sh
+$ cd ..
+
+## copy and paste the below text into the script file
+
+#!/bin/bash
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab                  
+#SBATCH --error="script_error_silva_ref" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_silva_ref" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function
+
+module load Mothur/1.46.1-foss-2020b
+
+mothur
+
+mothur "#pcr.seqs(fasta=silva.bacteria/silva.bacteria.fasta, start=11894, end=25319, keepdots=F)"
+
+mothur "#summary.seqs(fasta=silva.bacteria/silva.bacteria.pcr.fasta)"
+
+mothur "#rename.file(input=silva.bacteria/silva.bacteria.pcr.fasta, new=silva.v4.fasta)"
+```
+
+Output reference file we will use moving forward: `silva.bacteria/silva.v4.fasta`.
+
+#### Align our sequences to the new reference database we've created
+
+Make a script to align sequences to the reference file we just created.
+
+```
+$ cd ../../data/putnamlab/estrand/HoloInt_16s/Mothur/scripts
+$ nano align.sh
+$ cd ..
+
+## copy and paste the below text into the script file
+
+#!/bin/bash
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab                  
+#SBATCH --error="script_error_align" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_align" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function
+
+module load Mothur/1.46.1-foss-2020b
+
+mothur
+
+mothur "#align.seqs(fasta=HoloInt.trim.contigs.good.unique.fasta, reference=silva.v4.fasta)"
+
+mothur "#summary.seqs(fasta=HoloInt.trim.contigs.good.unique.align)"
+```
+
+From `output_script_align`:
+
+```
+#### Insert output here
+```
+
+#### QC sequences that were aligned to the reference file we created.
+
+The sequences are aligned at the correct positions to the reference but now we need to remove those that are outside the reference window. This removes all sequences that start after the `start` and those that end before the `end`. This also takes out any sequences that have repeats greater than 8 (i.e. 8 A's in a row) because we are confident those are not real.
+
+Make a script to do the above commands.
+
+```
+$ cd ../../data/putnamlab/estrand/HoloInt_16s/Mothur/scripts
+$ nano screen2.sh
+$ cd ..
+
+## copy and paste the below text into the script file
+
+#!/bin/bash
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab                  
+#SBATCH --error="script_error_screen2" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_screen2" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function
+
+module load Mothur/1.46.1-foss-2020b
+
+mothur
+
+mothur "#screen.seqs(fasta=HoloInt.trim.contigs.good.unique.align, count=HoloInt.trim.contigs.good.count_table, start=1968, end=11550, maxhomop=8)"
+
+mothur "#summary.seqs(fasta=HoloInt.trim.contigs.good.unique.good.align, count=HoloInt.trim.contigs.good.good.count_table)"
+
+mothur "#count.groups(count=HoloInt.trim.contigs.good.good.count_table)"
+```
+
+From `output_script_screen2`:
+
+```
+#### Insert output here
+```
+
+#### Filter out those sequences identified in screen2.sh
+
+Make a script that uses filer.seqs function to take out those sequences that did not meet our criteria.
+
+```
+$ cd ../../data/putnamlab/estrand/BleachingPairs_16S/Mothur/scripts
+$ nano filter.sh
+$ cd .. ### need to be in mothur directory when running script
+
+## copy and paste the below text into the nano file
+
+#!/bin/bash
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab                  
+#SBATCH --error="script_error_filter" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_filter" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function
+
+module load Mothur/1.46.1-foss-2020b
+
+mothur
+
+mothur "#filter.seqs(fasta=kbay.trim.contigs.good.unique.good.align, vertical=T, trump=.)"
+
+mothur "#summary.seqs(fasta=kbay.trim.contigs.good.unique.good.filter.fasta, count=kbay.trim.contigs.good.good.count_table)"
+
+mothur "#count.groups(count= kbay.trim.contigs.good.good.count_table)"
+```

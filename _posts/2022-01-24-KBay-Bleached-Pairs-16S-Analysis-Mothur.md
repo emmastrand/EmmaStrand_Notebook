@@ -363,7 +363,7 @@ $ unzip silva.bacteria.zip
 $ unzip trainset9_032012.pds.zip
 ```
 
-Make a scrip to take the Silva database reference alignment and select the V4 region, and then rename this to something more helpful to us.
+Make a script to take the Silva database reference alignment and select the V4 region, and then rename this to something more helpful to us.
 
 ```
 $ cd ../../data/putnamlab/estrand/BleachingPairs_16S/Mothur/scripts
