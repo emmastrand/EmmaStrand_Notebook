@@ -66,6 +66,8 @@ $ cp /data/putnamlab/estrand/HoloInt_16s/raw-data/*.gz /data/putnamlab/estrand/H
 
 ## <a name="Contigs"></a> **Make Contigs**
 
+### contigs.sh script with default trimoverlap=false
+
 Script to make contigs.
 
 ```
@@ -100,8 +102,37 @@ mothur "#summary.seqs(fasta=HoloInt.trim.contigs.fasta)"
 From `output_script_contigs`:
 
 ```
-#### Insert output here
+mothur > summary.seqs(fasta=HoloInt.trim.contigs.fasta)
+
+Using 24 processors.
+
+                Start   End     NBases  Ambigs  Polymer NumSeqs
+Minimum:        1	22	22	0	2	1
+2.5%-tile:	1	215     215     0	4	125048
+25%-tile:	1	215     215     0	11	1250474
+Median:         1	301     301     0	11	2500948
+75%-tile:	1	301     301     0	11	3751421
+97.5%-tile:     1	388     388     6	16	4876847
+Maximum:        1	563     563     97	280     5001894
+Mean:   1	287     287     0	10
+# of Seqs:	5001894
+
+It took 187 secs to summarize 5001894 sequences.
+
+Output File Names:
+HoloInt.trim.contigs.summary
+
+
+mothur > quit()
+
+
+It took 187 seconds to run 2 commands from your script.
+
+Logfile : mothur.1645126847.logfile
 ```
+
+Warning generated: `[WARNING]: your oligos file does not contain any group names.  mothur will not create a groupfile.`.
+
 
 #### Check that the primers are gone.
 
@@ -112,8 +143,43 @@ We are looking to see that these primers `F GTGCCAGCMGCCGCGGTAA R GGACTACNVGGGTW
 Output:
 
 ```
-#### Insert output here
+>M00763_59_000000000-JR652_1_1101_20554_1826	ee=5.62825	fbdiffs=0(match), rbdiffs=0(match) fpdiffs=0(match), rpdiffs=0(match)
+TTCCAGCTCCAATAGCATATATTAAAGTTGTTGCGGTTAAAAAGCTCGTAGTTGGATTTCTGTTGAGGATGACCGGTCCGCCCTCTGGGTGTGCATCTGGCTCAGCCTTGACATCTTCCTGAAGAACGTATCTGCACTTGATTGTGTGGTGCGGTATTTGGGACATTTACCTTGAGGAAATTAGAGTGTTTCAAGCAAGCGCACGCTTTGAATACCGTAGCATGGANTAATAAGATAGGGCCTCAGTTCTATTTTGTTGGTTTCTAGAGCTGAGGTAATGGTTGATAGGGATAGTTGGGGGCATTCGTATTTAACTGGCAGAGGTGAAATTCGTGGATTTGTTAAAGACGGACTACTGCGAAAATATTTGCCAAGGATGTTTTCATTGATCAAGAACGAAAATTAGGGAATCGAAGACG
+>M00763_59_000000000-JR652_1_1101_22277_2798	ee=2.34858	fbdiffs=0(match), rbdiffs=0(match) fpdiffs=0(match), rpdiffs=0(match)
+AGAGACAGGGGCCAGCAGCCGGGGGAATACGGGGGGTCCAAGCGTTAATCAGAATTACTGGGCGTAAAGGGTCTGTAGGTGGTTTGGTAAGTCAGATGTGAAATCCCAGGGCTCAACCTTGGAATTGCATTTGATACTGTCAAACTAGAGTATAGTAGAGGAATAAGGAATTTCTGGTGTAGCGGTGAAATGCGTAGAGATCAGAAGGAACACCAATGGCGAAGGCAATATTCTAGACTAATACTGACATTGAAAGACGAAAGCGTGGGGATCAAACAGGATTAGATACCCCGGTAGTCCCTGTCACTT
+>M00763_59_000000000-JR652_1_1101_10688_1769	ee=16.2035	fbdiffs=0(match), rbdiffs=0(match) fpdiffs=0(match), rpdiffs=0(match)
+GTATGTGTAAATGGAAAGAGTAAGGGGAAGACCGAGAGGGAAACTATCAGCTGAGGCGGGAGGGGCAGAGGGGGAGAAAAGACAGGGGAGAGCAGCAGAGGTAAGACTTAAGGATTTATTTTTTAATAAAAAGCAAAAAGCGTGTTAAGGATTTTTTAAAAAAAAAAATAAATAGAATTTTTTTCGTAATTGTAATATGTTAAAATGAAAAAAAGAATTTTTTATATGAAGATAATTTATTTTTTTTTTCTTAAATACGAAGGTTTGGGGAGCAAATAGGATTAGATACCCTAGTTGTCCCTGTCTCTTCTCCTCCTCTCCCCTCCCACTCCACATCTCTGGTCCTCGTATGCCGTCTTCTGCTTGAACAAAAAAACTATTATAC
+>M00763_59_000000000-JR652_1_1101_15630_1932	ee=3.83715	fbdiffs=0(match), rbdiffs=0(match) fpdiffs=0(match), rpdiffs=0(match)
+ATGAAACAGTTTCCAGCATCCTCGGTAAAACGAGAAGGGTTAGCGTTATTCAGATTAATTTGGCGTAAAGGATGCGTAGGTTGAAAATTAATTAAATAATAAAATTTCAAAATTAACTTTGAATTATTTTTACTAAAAATATTTTCTTGAGTTTAATAGNGGATTGTAGAACTTTAAATGTAACAGTAAAATGTATTGATATTTAAAAGAATTTCTAAAGCGAAGGCAACAATCTAAATTAAGACTGACATTGAGGTATTAAAGCATGGGGAGCAAAGGGGATTAGATACCCGCGTAGGCCATGTCTCTT
+>M00763_59_000000000-JR652_1_1101_14973_1797	ee=11.1698	fbdiffs=0(match), rbdiffs=0(match) fpdiffs=0(match), rpdiffs=0(match)
+TAGGTGGGTGGGTGAAAGGAGAGGGGGGAAAACGAGTGGTACACGAGACACTGCGTCGGCAGCGTAAGAGGTGGAGAAGAGACAGGGGGAAGCAGCCGCGGTAAGANTTAAGGATTTATTTTTTAATAAAAAGCAAAAAGCGTGTTAAGGATTTTTTAAAAAAAAAAATAAATAGAATTTTTTTCGTAATTGTAATATGTTAAAATGAAAAAAAGAATTTTTTATATGAAGATAATTTATTTTTTTTTTCTTAAATACGAAGGTTTGGGGAGCAAATAGGATTAGATACCCCAGTTGTCC
 ```
+
+### contigs2.sh script with trimoverlap=true
+
+`contigs2.sh` script made with same settings as contigs.sh file, except the following changes:
+
+`mothur”#make.contigs(inputdir=.,outputdir=.,file=mcap.files,oligos=oligos.oligos,trimoverlap=T)”`  
+
+--output="output_script_contigs2"    
+--error="script_error_contigs2"
+
+Trimoverlap=TRUE is used when you have 2x300 bp reads. Reads that are longer than the expected 254 bp. Based on our multiqc report, we have a spike at 290 bp. This setting should more correctly align our contigs.
+
+This output from this version of creating contigs will be changed to `mothur "#summary.seqs(fasta=HoloInt.trim.contigs2.fasta)"`.
+
+From `output_script_contigs2`:
+
+```
+
+```
+
+### trimoverlap decision based on two outputs above
+
+
+
+Move forward with `fasta=XX` output file and `XX.sh`.
+
 
 ## <a name="QC_screen"></a> **QC with screen.seqs**
 
