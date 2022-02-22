@@ -159,14 +159,18 @@ TAGGTGGGTGGGTGAAAGGAGAGGGGGGAAAACGAGTGGTACACGAGACACTGCGTCGGCAGCGTAAGAGGTGGAGAAGA
 
 `contigs2.sh` script made with same settings as contigs.sh file, except the following changes:
 
-`mothur”#make.contigs(inputdir=.,outputdir=.,file=mcap.files,oligos=oligos.oligos,trimoverlap=T)”`  
+```
+mothur "#make.file(inputdir=., type=gz, prefix=HoloInt2)"
+
+mothur "#make.contigs(inputdir=., outputdir=., file=HoloInt2.files, oligos=oligos.oligos,trimoverlap=T)"
+
+mothur "#summary.seqs(fasta=HoloInt2.trim.contigs.fasta)"
 
 --output="output_script_contigs2"    
 --error="script_error_contigs2"
+```
 
 Trimoverlap=TRUE is used when you have 2x300 bp reads. Reads that are longer than the expected 254 bp. Based on our multiqc report, we have a spike at 290 bp. This setting should more correctly align our contigs.
-
-This output from this version of creating contigs will be changed to `mothur "#summary.seqs(fasta=HoloInt.trim.contigs2.fasta)"`.
 
 From `output_script_contigs2`:
 
@@ -183,13 +187,13 @@ Move forward with `fasta=XX` output file and `XX.sh`.
 
 ## <a name="QC_screen"></a> **QC with screen.seqs**
 
-### screen.sh script with trimoverlap=true output
+### screen.sh script with trimoverlap=false output (HoloInt prefix)
 
 Make script for screen.seqs function.
 
 ```
 $ cd ../../data/putnamlab/estrand/HoloInt_16s/Mothur/scripts
-$ nano screen.sh
+$ nano screen-HolotInt.sh
 $ cd ..
 
 ## copy and paste the below text into the script file
@@ -202,8 +206,8 @@ $ cd ..
 #SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
 #SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
 #SBATCH --account=putnamlab                  
-#SBATCH --error="script_error_screen" #if your job fails, the error report will be put in this file
-#SBATCH --output="output_script_screen" #once your job is completed, any final job report comments will be put in this file
+#SBATCH --error="script_error_screen-HolotInt" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_screen-HolotInt" #once your job is completed, any final job report comments will be put in this file
 
 source /usr/share/Modules/init/sh # load the module function
 
@@ -216,7 +220,9 @@ mothur "#screen.seqs(inputdir=., outputdir=., fasta=HoloInt.trim.contigs.fasta, 
 mothur "#summary.seqs(fasta=HoloInt.trim.contigs.good.fasta)"
 ```
 
-From `output_script_screen`:
+From `output_script_screen-HolotInt`:
+
+This is keeping 1,886,901 sequences out of 5,001,894 sequences.
 
 ```
 mothur > summary.seqs(fasta=HoloInt.trim.contigs.good.fasta)
@@ -240,7 +246,28 @@ Output File Names:
 HoloInt.trim.contigs.good.summary
 ```
 
+### screen.sh script with trimoverlap=true output (HoloInt2 prefix)
+
+The same as above but with:
+
+```
+#SBATCH --error="script_error_screen-HolotInt2" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_screen-HolotInt2" #once your job is completed, any final job report comments will be put in this file
+
+mothur "#screen.seqs(inputdir=., outputdir=., fasta=HoloInt2.trim.contigs.fasta, group=HoloInt2.contigs.groups, maxambig=0, maxlength=350, minlength=250)"
+
+mothur "#summary.seqs(fasta=HoloInt2.trim.contigs.good.fasta)"
+```
+
+From `output_script_screen-HolotInt2`:
+
+```
+```
+
+
 ## <a name="Unique"></a> **Determining and counting unique sequences**
+
+### unique.sh script with HoloInt prefix
 
 Make script to run unique.seqs function.
 
@@ -278,6 +305,50 @@ mothur "#count.groups(count= HoloInt.trim.contigs.good.unique.fasta)"
 ```
 
 From `output_script_unique`:
+
+```
+mothur > summary.seqs(fasta=HoloInt.trim.contigs.good.unique.fasta, count=HoloInt.trim.contigs.good.count_table)
+
+Using 24 processors.
+
+                Start   End     NBases  Ambigs  Polymer NumSeqs
+Minimum:        1	253     253     0	3	1
+2.5%-tile:	1	292     292     0	4	47173
+25%-tile:	1	300     300     0	4	471726
+Median:         1	301     301     0	11	943451
+75%-tile:	1	301     301     0	11	1415176
+97.5%-tile:     1	309     309     0	16	1839729
+Maximum:        1	350     350     0	105     1886901
+Mean:   1	299     299     0	8
+# of unique seqs:	1592091
+total # of seqs:        1886901
+
+It took 93 secs to summarize 1886901 sequences.
+
+Output File Names:
+HoloInt.trim.contigs.good.unique.summary
+
+[ERROR]: Your count table contains a sequence named AGAGACAGGGGCCAGCAGCCGGGGGAATACGGGGGGTCCAAGCGTTAATCAGAATTACTGGGCGTAAAGGGTCTGTAGGTGGTTTGGTAAGTCAGATGTGAAATCCCAGGGCTCAACCTTGGAATTGCATTTGATACTGTCAAACTAGAGTATAGTAGAGGAATAAGGATAAGGAATTTCTGGTGTAGCGGTGAAATGCGTAGAGATCAGAAGGAACACCAATGGCGAAGGCAATATTCTAGACTAATACTGACATTGAAAGACGAAAGCGTGGGGATCAAACAGGATTAGATACCCCGGTAGTCCCTGTCACTT with a total=0. Please correct.
+```
+
+### unique2.sh script with HoloInt2 prefix
+
+Same as above but with:
+
+```
+#SBATCH --error="script_error_unique2" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_unique2" #once your job is completed, any final job report comments will be put in this file
+
+mothur "#unique.seqs(fasta=HoloInt2.trim.contigs.good.fasta)"
+
+mothur "#count.seqs(name=HoloInt2.trim.contigs.good.names, group=HoloInt2.contigs.good.groups)"
+
+mothur "#summary.seqs(fasta=HoloInt2.trim.contigs.good.unique.fasta, count=HoloInt2.trim.contigs.good.count_table)"
+
+mothur "#count.groups(count= HoloInt2.trim.contigs.good.unique.fasta)"
+```
+
+From `output_script_unique2`:
 
 ```
 #### Insert output here
@@ -357,7 +428,9 @@ mothur "#rename.file(input=silva.bacteria/silva.bacteria.pcr.fasta, new=silva.v4
 
 Output reference file we will use moving forward: `silva.bacteria/silva.v4.fasta`.
 
-#### Align our sequences to the new reference database we've created
+### Align our sequences to the new reference database we've created
+
+### align.sh script with HoloInt prefix
 
 Make a script to align sequences to the reference file we just created.
 
@@ -393,10 +466,50 @@ mothur "#summary.seqs(fasta=HoloInt.trim.contigs.good.unique.align)"
 From `output_script_align`:
 
 ```
+mothur > summary.seqs(fasta=HoloInt.trim.contigs.good.unique.align)
+
+Using 24 processors.
+
+                Start   End     NBases  Ambigs  Polymer NumSeqs
+Minimum:        0	0	0	0	1	1
+2.5%-tile:	1	1248    5	0	2	39803
+25%-tile:	1	13424   8	0	2	398023
+Median:         10648   13425   22	0	3	796046
+75%-tile:	13398   13425   292     0	4	1194069
+97.5%-tile:     13404   13425   293     0	6	1552289
+Maximum:        13425   13425   302     0	21	1592091
+Mean:   6350    11064   98	0	3
+# of Seqs:	1592091
+
+It took 529 secs to summarize 1592091 sequences.
+
+[WARNING]: 1124043 of your sequences generated alignments that eliminated too many bases, a list is provided in HoloInt.trim.contigs.good.unique.flip.accnos.
+
+[NOTE]: 930937 of your sequences were reversed to produce a better alignment.
+```
+
+### align2.sh script with HoloInt2 prefix
+
+Same as above but with:
+
+```
+#SBATCH --error="script_error_align2" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_align2" #once your job is completed, any final job report comments will be put in this file
+
+mothur "#align.seqs(fasta=HoloInt2.trim.contigs.good.unique.fasta, reference=silva.v4.fasta)"
+
+mothur "#summary.seqs(fasta=HoloInt2.trim.contigs.good.unique.align)"
+```
+
+From `output_script_align2`:
+
+```
 #### Insert output here
 ```
 
-#### QC sequences that were aligned to the reference file we created.
+### QC sequences that were aligned to the reference file we created.
+
+#### screen2.sh script with HoloInt prefix
 
 The sequences are aligned at the correct positions to the reference but now we need to remove those that are outside the reference window. This removes all sequences that start after the `start` and those that end before the `end`. This also takes out any sequences that have repeats greater than 8 (i.e. 8 A's in a row) because we are confident those are not real.
 
@@ -404,7 +517,7 @@ Make a script to do the above commands.
 
 ```
 $ cd ../../data/putnamlab/estrand/HoloInt_16s/Mothur/scripts
-$ nano screen2.sh
+$ nano screen2-HolotInt.sh
 $ cd ..
 
 ## copy and paste the below text into the script file
@@ -417,8 +530,8 @@ $ cd ..
 #SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
 #SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
 #SBATCH --account=putnamlab                  
-#SBATCH --error="script_error_screen2" #if your job fails, the error report will be put in this file
-#SBATCH --output="output_script_screen2" #once your job is completed, any final job report comments will be put in this file
+#SBATCH --error="script_error_screen2-HoloInt" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_screen2-HoloInt" #once your job is completed, any final job report comments will be put in this file
 
 source /usr/share/Modules/init/sh # load the module function
 
@@ -433,7 +546,48 @@ mothur "#summary.seqs(fasta=HoloInt.trim.contigs.good.unique.good.align, count=H
 mothur "#count.groups(count=HoloInt.trim.contigs.good.good.count_table)"
 ```
 
-From `output_script_screen2`:
+From `output_script_screen2-HoloInt`:
+
+```
+mothur > summary.seqs(fasta=HoloInt.trim.contigs.good.unique.good.align, count=HoloInt.trim.contigs.good.good.count_table)
+
+Using 24 processors.
+
+                Start   End     NBases  Ambigs  Polymer NumSeqs
+Minimum:        1	11550   271     0	3	1
+2.5%-tile:	1	13424   292     0	4	19038
+25%-tile:	1	13424   292     0	4	190374
+Median:         1	13424   292     0	4	380748
+75%-tile:	1	13424   292     0	5	571122
+97.5%-tile:     1       13425   293     0	6	742458
+Maximum:        1965    13425   302     0	8	761495
+Mean:   1       13424   292     0	4
+# of unique seqs:       467358
+total # of seqs:        761495
+
+It took 165 secs to summarize 761495 sequences.
+
+Output File Names:
+HoloInt.trim.contigs.good.unique.good.summary
+```
+
+
+#### screen2-HolotInt2.sh script with HoloInt2 prefix
+
+same as above but with:
+
+```
+#SBATCH --error="script_error_screen2-HolotInt2" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_screen2-HolotInt2" #once your job is completed, any final job report comments will be put in this file
+
+mothur "#screen.seqs(fasta=HoloInt2.trim.contigs.good.unique.align, count=HoloInt2.trim.contigs.good.count_table, start=1968, end=11550, maxhomop=8)"
+
+mothur "#summary.seqs(fasta=HoloInt2.trim.contigs.good.unique.good.align, count=HoloInt2.trim.contigs.good.good.count_table)"
+
+mothur "#count.groups(count=HoloInt2.trim.contigs.good.good.count_table)"
+```
+
+From `output_script_screen2-HolotInt2`:
 
 ```
 #### Insert output here
@@ -441,7 +595,7 @@ From `output_script_screen2`:
 
 #### Filter out those sequences identified in screen2.sh
 
-Make a script that uses filer.seqs function to take out those sequences that did not meet our criteria.
+Make a script that uses filter.seqs function to take out those sequences that did not meet our criteria.
 
 ```
 $ cd ../../data/putnamlab/estrand/HoloInt_16s/Mothur/scripts
@@ -477,6 +631,35 @@ mothur "#count.groups(count= HoloInt.trim.contigs.good.good.count_table)"
 Output from the `output_script_filter` file:
 
 ```
+mothur > summary.seqs(fasta=HoloInt.trim.contigs.good.unique.good.filter.fasta, count=HoloInt.trim.contigs.good.good.count_table)
+
+Using 24 processors.
+
+                Start   End     NBases  Ambigs  Polymer NumSeqs
+Minimum:        1	522     234     0	3	1
+2.5%-tile:      1       523     255     0	4	19038
+25%-tile:	1	523     255     0	4	190374
+Median:         1 	523     255     0	4	380748
+75%-tile:	1	523     255     0	5	571122
+97.5%-tile:     1       523     256     0	6	742458
+Maximum:        4	523     271     0	8	761495
+Mean:   1       522     255     0	4
+# of unique seqs:       467358
+total # of seqs:        761495
+
+It took 40 secs to summarize 761495 sequences.
+
+Output File Names:
+HoloInt.trim.contigs.good.unique.good.filter.summary
+
+Length of filtered alignment: 523
+Number of columns removed: 12902
+Length of the original alignment: 13425
+Number of sequences used to construct filter: 467358
+
+Output File Names:
+HoloInt.filter
+HoloInt.trim.contigs.good.unique.good.filter.fasta
 ```
 
 ## <a name="Pre-clustering"></a> **Pre clustering**
@@ -518,7 +701,29 @@ mothur "#count.groups(count=current)"
 
 Ouput from the `output_script_precluster` file:
 
+Count=current doesn't exist - come back to changing input.
+
 ```
+mothur > summary.seqs(fasta=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.fasta, count=HoloInt.trim.contigs.good.unique.good.filter.unique.precl$
+
+Using 24 processors.
+
+                Start   End     NBases  Ambigs  Polymer NumSeqs
+Minimum:        1	522     234     0	3	1
+2.5%-tile:      1       523     255     0	4	19038
+25%-tile:	1	523     255     0	4	190374
+Median:         1       523     255     0	4	380748
+75%-tile:       1       523     255     0	5	571122
+97.5%-tile:     1	523     256     0	6	742458
+Maximum:        4       523     271     0	8	761495
+Mean:   1       522     255     0       4
+# of unique seqs:	27053
+total # of seqs:        761495
+
+It took 3 secs to summarize 761495 sequences.
+
+Output File Names:
+HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.summary
 ```
 
 ## <a name="Chimeras"></a> **Identifying Chimeras**
@@ -563,6 +768,35 @@ mothur "#count.groups(count=HoloInt.trim.contigs.good.unique.good.filter.unique.
 Output from `output_script_chimera` file:
 
 ```
+Using vsearch version v2.18.0.
+
+Removed 2644 sequences from your fasta file.
+
+mothur > summary.seqs(fasta=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta, count=HoloInt.trim.contigs.good.unique.good.filter.unique.$
+
+Using 24 processors.
+
+                Start   End     NBases  Ambigs  Polymer NumSeqs
+Minimum:        1	522     234     0	3	1
+2.5%-tile:      1       523     255     0	4	18938
+25%-tile:	1	523     255     0	4	189371
+Median:         1       523     255     0	4	378742
+75%-tile:       1       523     255     0	5	568112
+97.5%-tile:     1	523     256     0	6	738545
+Maximum:        4       523     271     0	8	757482
+Mean:   1       522     255     0       4
+# of unique seqs:	24409
+total # of seqs:        757482
+
+It took 3 secs to summarize 757482 sequences.
+
+Output File Names:
+HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.summary
+
+
+Size of smallest group: 25.
+
+Total seqs: 757482.
 ```
 
 ## <a name="Classify_seq"></a> **Classifying Sequences**
