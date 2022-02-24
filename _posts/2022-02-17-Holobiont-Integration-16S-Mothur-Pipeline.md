@@ -199,6 +199,8 @@ mothur "#screen.seqs(inputdir=., outputdir=., fasta=HoloInt2.trim.contigs.fasta,
 mothur "#summary.seqs(fasta=HoloInt2.trim.contigs.good.fasta)"
 ```
 
+**maxambig=0**
+
 From `output_script_screen`:
 
 
@@ -224,6 +226,34 @@ Mean:   1	252     252     0	4
 
 It took 26 secs to summarize 768147 sequences.
 ```
+
+**maxambig=1**
+
+From `output_script_screen-N`:
+
+```
+mothur > summary.seqs(fasta=HoloInt2.trim.contigs.good.fasta)
+
+Using 24 processors.
+
+                Start   End     NBases  Ambigs  Polymer NumSeqs
+Minimum:        1 	200     200     0	3	1
+2.5%-tile:      1       253     253     0       4       21843
+25%-tile:       1       253     253     0       4       218422
+Median:         1       253     253     0       4       436843
+75%-tile:	1	253     253     0	5	655264
+97.5%-tile:     1	254     254     1	6	851843
+Maximum:        1       280     280     1       14	873685
+Mean:   1	252     252     0	4
+# of Seqs:	873685
+
+It took 29 secs to summarize 873685 sequences.
+
+Output File Names:
+HoloInt2.trim.contigs.good.summary
+```
+
+From `output_script_screen-N5`:
 
 
 ## <a name="Unique"></a> **Determining and counting unique sequences**

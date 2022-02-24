@@ -108,8 +108,8 @@ $ cd .. ### need to be in mothur directory when running script
 #SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
 #SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
 #SBATCH --account=putnamlab                  
-#SBATCH --error="script_error_contigs" #if your job fails, the error report will be put in this file
-#SBATCH --output="output_script_contigs" #once your job is completed, any final job report comments will be put in this file
+#SBATCH --error="script_error_contigs-T" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_contigs-T" #once your job is completed, any final job report comments will be put in this file
 
 source /usr/share/Modules/init/sh # load the module function
 
@@ -117,7 +117,7 @@ module load Mothur/1.46.1-foss-2020b
 
 mothur "#make.file(inputdir=., type=gz, prefix=kbay)"
 
-mothur "#make.contigs(inputdir=., outputdir=., file=kbay.files, oligos=oligos.oligos)"
+mothur "#make.contigs(inputdir=., outputdir=., file=kbay.files, oligos=oligos.oligos, trimoverlap=T)"
 
 mothur "#summary.seqs(fasta=kbay.trim.contigs.fasta)"
 ```
@@ -136,7 +136,7 @@ kbay.trim.contigs.summary
 
 See [A. Huffmyer notebook post](https://github.com/AHuffmyer/ASH_Putnam_Lab_Notebook/blob/master/_posts/2022-01-12-16S-Analysis-in-Mothr-Part-1.md) for description of what each file is.
 
-Summary of the sequences from the `output_script_contigs` file. These values are total sequences are much lower than they should be. **This is a problem!!** Compare # of sequences to Kevin and Ariana's output.
+Summary of the sequences from the `output_script_contigs-T` file. These values are total sequences are much lower than they should be. **This is a problem!!** Compare # of sequences to Kevin and Ariana's output.
 
 ```
 Start   End     NBases  Ambigs  Polymer NumSeqs
@@ -152,6 +152,8 @@ Mean:   1	300     300     0	4
 
 It took 3 secs to summarize 73199 sequences.
 ```
+
+`output_script_contigs`: file that has trimoverlap=FALSE function output.
 
 This table shows quantile values about the distribution of sequences for a few things:
 
