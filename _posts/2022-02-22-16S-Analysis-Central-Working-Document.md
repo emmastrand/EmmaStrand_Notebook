@@ -77,10 +77,30 @@ Reference database: Silva has high diversity and high alignment quality and is m
 
 **General issues to work through:**  
 - Unclassified general bacteria showing up just for *M. capitata*  
-- Low number of reads that are unique and aligning, therefore low subsample groups  
+- Low number of reads that are unique and aligning, therefore low subsample groups for KBay project   
 - Pipeline decision: Mothur or QIIME2?  
 - OTU vs. ASV decision - make note in each notebook post above RE what pipeline is using OTU vs ASV  
 - Look into what the biases are for the primer that we used for our data (V4 vs. V3/4)
+
+### Currently stuck on - as Friday morning Feb 25 2022
+
+Holobiont Integration Mothur: confirm 2x250 vs 2x300 bp sequencing. Move forward with min=200 and T or F depending on type of sequencing.  
+Holobiont Integration QIIME2: Not stuck, just continue on to subsample and run diversity metrics steps.
+
+KBay QIIME2: I'm losing most of my sequencing at the input step.. could this be the same error as Mothur above? See note below KBay Mothur.
+
+KBay overall: low # of reads to start with.
+
+KBay Mothur: Stuck on the following error:   
+View output from the output file `output_script_screen2`:  
+
+```
+[ERROR]: 'M00763_26_000000000-K4TML_1_1114_26145_20411' is not in your name or count file, please correct.
+[ERROR]: Your count file contains 30066 unique sequences, but your fasta file contains 103. File mismatch detected, quitting command.
+```
+
+- However, keeping very low # of reads here.
+
 
 #### Mothur Threshold Decisions
 

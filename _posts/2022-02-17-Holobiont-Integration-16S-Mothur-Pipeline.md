@@ -87,6 +87,89 @@ Script to make contigs. Originally I did this as `contigs.sh` with trimoverlap=F
 
 All files already generated with `HoloInt` prefixes are with trimoverlap=FALSE. Move forward with prefix `HoloInt2` which is trimoverlap=TRUE. All scripts following Contigs.sh should have `HoloInt2`.
 
+### trimoverlap=FALSE (default); HoloInt
+
+```
+$ cd ../../data/putnamlab/estrand/HoloInt_16s/Mothur/scripts
+$ nano contigs.sh
+$ cd .. ### need to be in mothur directory when running script
+
+## copy and paste the below text into the nano file
+
+#!/bin/bash
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab                  
+#SBATCH --error="script_error_contigs" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_contigs" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function
+
+module load Mothur/1.46.1-foss-2020b
+
+mothur "#make.file(inputdir=., type=gz, prefix=HoloInt)"
+
+mothur "#make.contigs(inputdir=., outputdir=., file=HoloInt.files, oligos=oligos.oligos)"
+
+mothur "#summary.seqs(fasta=HoloInt.trim.contigs.fasta)"
+```
+
+From `output_script_contigs`:
+
+```
+mothur > summary.seqs(fasta=HoloInt.trim.contigs.fasta)
+
+Using 24 processors.
+
+                Start   End     NBases  Ambigs  Polymer NumSeqs
+Minimum:        1       22      22      0       2       1
+2.5%-tile:      1       215     215     0       4       125048
+25%-tile:       1       215     215     0       11      1250474
+Median:         1       301     301     0       11      2500948
+75%-tile:       1       301     301     0       11      3751421
+97.5%-tile:     1       388     388     6       16      4876847
+Maximum:        1       563     563     97      280     5001894
+Mean:   1       287     287     0       10
+# of Seqs:      5001894
+
+It took 170 secs to summarize 5001894 sequences.
+
+Output File Names:
+HoloInt.trim.contigs.summary
+```
+
+Head from `HoloInt.contigs.report`:
+
+```
+Name    Length  Overlap_Length  Overlap_Start   Overlap_End     MisMatches      Num_Ns  Expected_Errors
+M00763_59_000000000-JR652_1_1101_20554_1826     419     143     139     282     23      1       5.62825
+M00763_59_000000000-JR652_1_1101_22277_2798     309     253     27      280     0       0       2.34858
+M00763_59_000000000-JR652_1_1101_13828_1806     300     176     104     280     11      0       11.2844
+M00763_59_000000000-JR652_1_1101_11156_1815     301     176     105     281     5       0       9.74297
+M00763_59_000000000-JR652_1_1101_20642_1770     386     176     104     280     37      1       20.2676
+M00763_59_000000000-JR652_1_1101_20625_1774     386     176     104     280     40      1       21.592
+M00763_59_000000000-JR652_1_1101_10688_1769     385     176     104     280     17      0       16.2035
+M00763_59_000000000-JR652_1_1101_21994_1881     301     176     105     281     2       0       8.53798
+M00763_59_000000000-JR652_1_1101_10081_1903     301     176     105     281     0       0       7.56337
+M00763_59_000000000-JR652_1_1101_11583_2021     215     176     19      195     0       0       0.559736
+M00763_59_000000000-JR652_1_1101_9558_2149      215     176     19      195     5       0       1.59155
+M00763_59_000000000-JR652_1_1101_11323_1867     301     253     28      281     34      9       11.0915
+M00763_59_000000000-JR652_1_1101_14973_1797     300     176     104     280     10      1       11.1698
+M00763_59_000000000-JR652_1_1101_12254_1851     215     176     19      195     4       0       1.39373
+M00763_59_000000000-JR652_1_1101_17477_1890     215     176     19      195     2       0       1.11177
+M00763_59_000000000-JR652_1_1101_15836_1922     215     176     19      195     0       0       0.580719
+M00763_59_000000000-JR652_1_1101_15630_1932     310     253     28      281     10      1       3.83715
+M00763_59_000000000-JR652_1_1101_17412_1988     310     253     28      281     1       0       3.64066
+M00763_59_000000000-JR652_1_1101_13803_1830     300     176     104     280     9       0       10.9099
+```
+
+
+### trimoverlap=TRUE; HoloInt2
+
 ```
 $ cd ../../data/putnamlab/estrand/HoloInt_16s/Mothur/scripts
 $ nano contigs2.sh
@@ -140,10 +223,38 @@ Output File Names:
 HoloInt2.trim.contigs.summary
 ```
 
+Head from `HoloInt2.contigs.report `:
+
+```
+Name    Length  Overlap_Length  Overlap_Start   Overlap_End     MisMatches      Num_Ns  Expected_Errors
+M00763_59_000000000-JR652_1_1101_20554_1826     143     143     139     282     23      1       1.93348
+M00763_59_000000000-JR652_1_1101_22277_2798     253     253     27      280     0       0       0.000113608
+M00763_59_000000000-JR652_1_1101_10688_1769     176     176     104     280     17      0       0.117051
+M00763_59_000000000-JR652_1_1101_15630_1932     253     253     28      281     10      1       0.682934
+M00763_59_000000000-JR652_1_1101_14973_1797     176     176     104     280     10      1       0.785857
+M00763_59_000000000-JR652_1_1101_12254_1851     176     176     19      195     4       0       0.00852637
+M00763_59_000000000-JR652_1_1101_17477_1890     176     176     19      195     2       0       0.00388221
+M00763_59_000000000-JR652_1_1101_15836_1922     176     176     19      195     0       0       1.2168e-05
+M00763_59_000000000-JR652_1_1101_19183_1966     176     176     105     281     2       0       0.00414464
+M00763_59_000000000-JR652_1_1101_17412_1988     253     253     28      281     1       0       0.00217848
+M00763_59_000000000-JR652_1_1101_17429_1998     253     253     24      277     56      17      12.5534
+M00763_59_000000000-JR652_1_1101_23710_2319     176     176     19      195     13      0       0.103801
+M00763_59_000000000-JR652_1_1101_12208_2643     176     176     105     281     2       0       0.0527102
+M00763_59_000000000-JR652_1_1101_19952_2677     176     176     19      195     0       0       8.78931e-06
+M00763_59_000000000-JR652_1_1101_14665_1981     176     176     104     280     25      2       1.48208
+M00763_59_000000000-JR652_1_1101_12899_1997     176     176     19      195     1       0       0.0013659
+M00763_59_000000000-JR652_1_1101_7489_2776      176     176     19      195     4       0       0.00923581
+M00763_59_000000000-JR652_1_1101_18962_2854     176     176     105     281     2       0       0.00427462
+```
+
 Warning generated: `[WARNING]: your oligos file does not contain any group names.  mothur will not create a groupfile.`. You can label groups if you have several primer sets in your dataset. We don't need this since we are only using V4 and one primer set.
 
+#### Choice for trimoverlap=TRUE vs. FALSE
 
-#### Check that the primers are gone.
+Moving forward with the prefix:
+
+
+### Check that the primers are gone.
 
 `$ head HoloInt2.trim.contigs.fasta`
 
@@ -167,6 +278,63 @@ GANTTAAGGATTTATTTTTTAATAAAAAGCAAAAAGCGTGTTAAGGATTTTTTAAAAAAAAAAATAAATAGAATTTTTTT
 Primers are gone. Success! Move forward with `HoloInt2` prefix in all following scripts.
 
 ## <a name="QC_screen"></a> **QC with screen.seqs**
+
+### trimoverlap=FALSE (default); HoloInt
+
+```
+$ cd ../../data/putnamlab/estrand/HoloInt_16s/Mothur/scripts
+$ nano screen200-HoloInt.sh
+$ cd ..
+
+## copy and paste the below text into the script file
+
+#!/bin/bash
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab                  
+#SBATCH --error="script_error_screen200-HoloInt" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_screen200-HoloInt" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function
+
+module load Mothur/1.46.1-foss-2020b
+
+mothur
+
+mothur "#screen.seqs(inputdir=., outputdir=., fasta=HoloInt.trim.contigs.fasta, group=HoloInt.contigs.groups, maxambig=0, maxlength=350, minlength=200)"
+
+mothur "#summary.seqs(fasta=HoloInt.trim.contigs.good.fasta)"
+```
+
+From `output_script_screen200-HoloInt`:
+
+```
+mothur > summary.seqs(fasta=HoloInt.trim.contigs.good.fasta)
+
+Using 24 processors.
+
+                Start   End     NBases  Ambigs  Polymer NumSeqs
+Minimum:        1       202     202     0       3       1
+2.5%-tile:      1       215     215     0       4       85936
+25%-tile:       1       215     215     0       11      859360
+Median:         1       292     292     0       11      1718719
+75%-tile:       1       301     301     0       11      2578078
+97.5%-tile:     1       301     301     0       14      3351502
+Maximum:        1       350     350     0       105     3437437
+Mean:   1       261     261     0       9
+# of Seqs:      3437437
+
+It took 116 secs to summarize 3437437 sequences.
+
+Output File Names:
+HoloInt.trim.contigs.good.summary
+```
+
+### trimoverlap=TRUE; HoloInt2
 
 Make script for screen.seqs function.
 
@@ -194,42 +362,22 @@ module load Mothur/1.46.1-foss-2020b
 
 mothur
 
-mothur "#screen.seqs(inputdir=., outputdir=., fasta=HoloInt2.trim.contigs.fasta, group=HoloInt.contigs.groups, maxambig=0, maxlength=350, minlength=200)"
+mothur "#screen.seqs(inputdir=., outputdir=., fasta=HoloInt2.trim.contigs.fasta, group=HoloInt2.contigs.groups, maxambig=0, maxlength=350, minlength=200)"
 
 mothur "#summary.seqs(fasta=HoloInt2.trim.contigs.good.fasta)"
 ```
 
-**maxambig=0**
+**length window 150-350 bp**
 
-From `output_script_screen`:
-
+`screen150-HoloInt2.sh`:
 
 ```
-Removed 4233708 sequences from your group file.
+mothur "#screen.seqs(inputdir=., outputdir=., fasta=HoloInt2.trim.contigs.fasta, group=HoloInt2.contigs.groups, maxambig=0, maxlength=350, minlength=150)"
 
-mothur > summary.seqs(fasta=HoloInt2.trim.contigs.good.fasta)
-
-Using 24 processors.
-
-                Start   End     NBases  Ambigs  Polymer NumSeqs
-Minimum:        1	201     201     0	3	1
-2.5%-tile:	1	253     253     0	4	19204
-25%-tile:	1	253     253     0	4	192037
-Median:         1	253     253     0	4	384074
-75%-tile:	1	253     253     0	5	576111
-97.5%-tile:     1	254     254     0	6	748944
-75%-tile:	1	253     253     0	5	576111
-97.5%-tile:     1	254     254     0	6	748944
-Maximum:        1       280     280     0       14	768147
-Mean:   1	252     252     0	4
-# of Seqs:	768147
-
-It took 26 secs to summarize 768147 sequences.
+mothur "#summary.seqs(fasta=HoloInt2.trim.contigs.good.fasta)"
 ```
 
-**maxambig=1**
-
-From `output_script_screen-N`:
+output from `output_script_screen150-HoloInt2`:
 
 ```
 mothur > summary.seqs(fasta=HoloInt2.trim.contigs.good.fasta)
@@ -237,23 +385,57 @@ mothur > summary.seqs(fasta=HoloInt2.trim.contigs.good.fasta)
 Using 24 processors.
 
                 Start   End     NBases  Ambigs  Polymer NumSeqs
-Minimum:        1 	200     200     0	3	1
-2.5%-tile:      1       253     253     0       4       21843
-25%-tile:       1       253     253     0       4       218422
-Median:         1       253     253     0       4       436843
-75%-tile:	1	253     253     0	5	655264
-97.5%-tile:     1	254     254     1	6	851843
-Maximum:        1       280     280     1       14	873685
-Mean:   1	252     252     0	4
-# of Seqs:	873685
+Minimum:        1       41      41      0       3       1
+2.5%-tile:      1       175     175     0       4       95726
+25%-tile:       1       176     176     0       10      957251
+Median:         1       176     176     0       11      1914502
+75%-tile:       1       177     177     0       11      2871752
+97.5%-tile:     1       253     253     0       11      3733277
+Maximum:        1       383     383     0       20      3829002
+Mean:   1       195     195     0       9
+# of Seqs:      3829002
 
-It took 29 secs to summarize 873685 sequences.
+It took 208 secs to summarize 3829002 sequences.
 
 Output File Names:
 HoloInt2.trim.contigs.good.summary
 ```
 
-From `output_script_screen-N5`:
+
+**length window 200-350 bp**
+
+`screen200-HoloInt2.sh`:
+
+```
+mothur "#screen.seqs(inputdir=., outputdir=., fasta=HoloInt2.trim.contigs.fasta, group=HoloInt.contigs.groups, maxambig=0, maxlength=350, minlength=200)"
+
+mothur "#summary.seqs(fasta=HoloInt2.trim.contigs.good.fasta)"
+```
+
+output from `output_script_screen200-HoloInt2`:
+
+```
+mothur > summary.seqs(fasta=HoloInt2.trim.contigs.good.fasta)
+
+Using 24 processors.
+
+                Start   End     NBases  Ambigs  Polymer NumSeqs
+Minimum:        1       41      41      0       3       1
+2.5%-tile:      1       175     175     0       4       95726
+25%-tile:       1       176     176     0       10      957251
+Median:         1       176     176     0       11      1914502
+75%-tile:       1       177     177     0       11      2871752
+97.5%-tile:     1       253     253     0       11      3733277
+Maximum:        1       383     383     0       20      3829002
+Mean:   1       195     195     0       9
+# of Seqs:      3829002
+
+It took 210 secs to summarize 3829002 sequences.
+
+Output File Names:
+HoloInt2.trim.contigs.good.summary
+```
+
 
 
 ## <a name="Unique"></a> **Determining and counting unique sequences**
@@ -971,4 +1153,88 @@ Run outside of andromeda.
 $ scp emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/HoloInt_16s/Mothur/HoloInt.opti_mcc.shared /Users/emmastrand/MyProjects/Acclim_Dynamics/16S_seq/mothur_output/
 
 $ scp emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/HoloInt_16s/Mothur/HoloInt.taxonomy /Users/emmastrand/MyProjects/Acclim_Dynamics/16S_seq/mothur_output/
+```
+
+## <a name="Troubleshooting"></a> **Troubleshooting**
+
+### Screen.sh step
+
+I looked at different max ambig calls to see if this changed the output.. it didn't really. This was done on HoloInt2 with the trimoverlap=TRUE for 2x300 bp sequencing.
+
+**maxambig=0**
+
+From `output_script_screen`:
+
+
+```
+Removed 4233708 sequences from your group file.
+
+mothur > summary.seqs(fasta=HoloInt2.trim.contigs.good.fasta)
+
+Using 24 processors.
+
+                Start   End     NBases  Ambigs  Polymer NumSeqs
+Minimum:        1	201     201     0	3	1
+2.5%-tile:	1	253     253     0	4	19204
+25%-tile:	1	253     253     0	4	192037
+Median:         1	253     253     0	4	384074
+75%-tile:	1	253     253     0	5	576111
+97.5%-tile:     1	254     254     0	6	748944
+75%-tile:	1	253     253     0	5	576111
+97.5%-tile:     1	254     254     0	6	748944
+Maximum:        1       280     280     0       14	768147
+Mean:   1	252     252     0	4
+# of Seqs:	768147
+
+It took 26 secs to summarize 768147 sequences.
+```
+
+**maxambig=1**
+
+From `output_script_screen-N`:
+
+```
+mothur > summary.seqs(fasta=HoloInt2.trim.contigs.good.fasta)
+
+Using 24 processors.
+
+                Start   End     NBases  Ambigs  Polymer NumSeqs
+Minimum:        1 	200     200     0	3	1
+2.5%-tile:      1       253     253     0       4       21843
+25%-tile:       1       253     253     0       4       218422
+Median:         1       253     253     0       4       436843
+75%-tile:	1	253     253     0	5	655264
+97.5%-tile:     1	254     254     1	6	851843
+Maximum:        1       280     280     1       14	873685
+Mean:   1	252     252     0	4
+# of Seqs:	873685
+
+It took 29 secs to summarize 873685 sequences.
+
+Output File Names:
+HoloInt2.trim.contigs.good.summary
+```
+
+From `output_script_screen-N5`:
+
+```
+mothur > summary.seqs(fasta=HoloInt2.trim.contigs.good.fasta)
+
+Using 24 processors.
+
+                Start   End     NBases  Ambigs  Polymer NumSeqs
+Minimum:        1       200     200     0       3       1
+2.5%-tile:      1       252     252     0       4       23935
+25%-tile:       1       253     253     0       4       239350
+Median:         1       253     253     0       4       478700
+75%-tile:       1       253     253     0       5       718050
+97.5%-tile:     1       254     254     4       6       933465
+Maximum:        1       280     280     5       16      957399
+Mean:   1       252     252     0       4
+# of Seqs:      957399
+
+It took 32 secs to summarize 957399 sequences.
+
+Output File Names:
+HoloInt2.trim.contigs.good.summary
 ```

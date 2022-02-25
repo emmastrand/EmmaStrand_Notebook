@@ -71,7 +71,7 @@ $ nano oligos.oligos
 
 ## copy and paste the following text into that file
 
-primer GTGCCAGCMGCCGCGGTAA GGACTACNVGGGTWTCTAAT
+primer GTGCCAGCMGCCGCGGTAA GGACTACNVGGGTWTCTAAT V4
 ```
 
 Copy all raw files into the mothur folder.  
@@ -136,21 +136,29 @@ kbay.trim.contigs.summary
 
 See [A. Huffmyer notebook post](https://github.com/AHuffmyer/ASH_Putnam_Lab_Notebook/blob/master/_posts/2022-01-12-16S-Analysis-in-Mothr-Part-1.md) for description of what each file is.
 
-Summary of the sequences from the `output_script_contigs-T` file. These values are total sequences are much lower than they should be. **This is a problem!!** Compare # of sequences to Kevin and Ariana's output.
+Summary of the sequences from the `output_script_contigs-T` file.
 
 ```
-Start   End     NBases  Ambigs  Polymer NumSeqs
-Minimum:        1	44	44	0	3	1
-2.5%-tile:	1	292     292     0	4	1830
-25%-tile:	1	292     292     0	4	18300
-Median:         1	292     292     0	4	36600
-75%-tile:	1	301     301     0	5	54900
-97.5%-tile:     1	414     414     5	6	71370
-Maximum:        1	562     562     56	26	73199
-Mean:   1	300     300     0	4
-# of Seqs:	73199
+mothur > summary.seqs(fasta=kbay.trim.contigs.fasta)
 
-It took 3 secs to summarize 73199 sequences.
+Using 24 processors.
+
+                Start   End     NBases  Ambigs  Polymer NumSeqs
+Minimum:        1       2       2       0       1       1
+2.5%-tile:      1       149     149     0       4       1830
+25%-tile:       1       253     253     0       4       18300
+Median:         1       253     253     0       4       36599
+75%-tile:       1       253     253     0       4       54898
+97.5%-tile:     1       254     254     5       6       71368
+Maximum:        1       276     276     56      14      73197
+Mean:   1       247     247     0       4
+# of Seqs:      73197
+
+It took 2 secs to summarize 73197 sequences.
+
+Output File Names:
+kbay.trim.contigs.summary
+
 ```
 
 `output_script_contigs`: file that has trimoverlap=FALSE function output.
@@ -164,6 +172,30 @@ This table shows quantile values about the distribution of sequences for a few t
 - Polymer: Length of polymer repeats.  
 - NumSeqs: Number of sequences.  
 
+Output from `kbay.contigs.report`:
+
+```
+Name    Length  Overlap_Length  Overlap_Start   Overlap_End     MisMatches      Num_Ns  Expected_Errors
+M00763_26_000000000-K4TML_1_1101_13549_1963     253     253     28      281     6       0       0.0205466
+M00763_26_000000000-K4TML_1_1101_17445_1653     253     253     26      279     9       0       0.0194543
+M00763_26_000000000-K4TML_1_1101_14756_1615     253     253     26      279     6       1       0.731008
+M00763_26_000000000-K4TML_1_1101_9392_2856      253     253     28      281     7       0       0.010834
+M00763_26_000000000-K4TML_1_1101_12424_2244     253     253     27      280     13      1       0.775851
+M00763_26_000000000-K4TML_1_1101_15098_2664     253     253     28      281     3       0       0.00377433
+M00763_26_000000000-K4TML_1_1101_11121_1732     253     253     28      281     6       0       0.0564584
+M00763_26_000000000-K4TML_1_1101_13583_1840     253     253     28      281     4       0       0.0825996
+M00763_26_000000000-K4TML_1_1101_7950_1971      253     253     28      281     12      0       0.0317835
+M00763_26_000000000-K4TML_1_1101_7979_2260      253     253     28      281     6       0       0.00865169
+M00763_26_000000000-K4TML_1_1101_12354_2514     254     254     25      279     2       0       0.00285862
+M00763_26_000000000-K4TML_1_1101_17984_3239     144     144     138     282     2       0       0.00233138
+M00763_26_000000000-K4TML_1_1101_19862_3824     253     253     28      281     5       1       0.675777
+M00763_26_000000000-K4TML_1_1101_13550_2109     253     253     28      281     33      5       4.00335
+M00763_26_000000000-K4TML_1_1101_13530_2111     253     253     19      272     2       0       0.00412243
+M00763_26_000000000-K4TML_1_1101_21355_2804     253     253     19      272     2       0       0.00263463
+M00763_26_000000000-K4TML_1_1101_15856_2102     144     144     138     282     10      0       0.143901
+M00763_26_000000000-K4TML_1_1101_10399_1895     253     253     28      281     4       0       0.00478446
+```
+
 #### Check that the primers are gone.
 
 `$ head kbay.trim.contigs.fasta`
@@ -173,16 +205,16 @@ We are looking to see that these primers `F GTGCCAGCMGCCGCGGTAA R GGACTACNVGGGTW
 Output:
 
 ```
->M00763_26_000000000-K4TML_1_1101_12354_2514	ee=2.05713	fbdiffs=0(match), rbdiffs=0(match) fpdiffs=0(match), rpdiffs=0(match)
-GGACAGGGGTCAGCCGCCGCGGTGATACGGAGGATGCAAGCGTTATTCGGAATTATTGGGCGTAAAGCGTCTGTAGGTGGTTTTTTAAGTCTACTGTTAAATATTAAGGCTTAACCTTAAAAAAGCGGTATGAAACTAAAAAACTTGAGTTTAGTAGAGGTAGAGGGAATTCTCGGTGTAGTGGTGAAATGCGTAGAGATCGAGAAGAACACCGGTAGCGAAAGCGCTCTACTGGGCTAAAACTGACACTGAGAGACGAAAGCTAGGGGAGCAAATAGGATTAGATACCCGTGTAGTCC
->M00763_26_000000000-K4TML_1_1101_13549_1963	ee=2.59576	fbdiffs=0(match), rbdiffs=0(match) fpdiffs=0(match), rpdiffs=0(match)
-AAGAGACATGTGCCCGCAGCCGCGGTAATACGGAGGGTGCAAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGTAGGCGGCCTTTTAAGTTGGATGTGAAAGCCCCGGGCTTAACCTGGGAACGGCATCCAAAACTGGGAGGCTCGAGTGCGGAAGAGGAGTGTGGAATTTCCTGTGTAGCGGTGAAATGCGTAGATATAGGAAAGAACACCAGTGGCGAAGGCGACACTCTGGTCTGACACTGACGCTGAGGTACGAAAGCGTGGGGAGCAAACAGGAATAGATACCCCCGTAGTCACTGGCTCTT
->M00763_26_000000000-K4TML_1_1101_17445_1653	ee=2.85104	fbdiffs=0(match), rbdiffs=0(match) fpdiffs=0(match), rpdiffs=0(match)
-GGTACAGTGGCCGGTAGCCGCTGTAATACGGAGGGTGCAAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGTAGGCGGCTGCCTAAGTTGGATGTGAAAGCCCCGGGCTCAACCTGGGAACTGCATCCAAAACTGGGCAGCTAGAGTGCGGAAGAGGAGTGTGGAATTTCCTGTGTAGCGGTGAAATGCGTAGATATAGGAAGGAACACCAGTGGCGAAGGCGACACTCTGGTCTGACACTGACGCTGAGGTACGAAAGCGTGGGGAGCAAACAGGATTAGATACCCTCGTAGACC
->M00763_26_000000000-K4TML_1_1101_13550_2109	ee=9.22223	fbdiffs=0(match), rbdiffs=0(match) fpdiffs=0(match), rpdiffs=0(match)
-AATAGACAGGTGGCCGTGGTGTCGGGAATACGGAGGGTGNAAGCGTTNATCGGAATTACTGGGCGTAAAGCGTGCGTAGGCGGCTGCCTAAGTTGGATGTGAAAGCCCCGGGCTCAACCTGGGAACTGCATCCAAAACTGGGCAGNTAGAGTGCGGAAGAGGGGTGGGGAATTTCCTGTGTAGCGGTGAAATGCGTAGATATNGGAAGGAACACCAGTGGCGANGGCGACACTCTGGTCTGACACTGACGCTGAGGTACGAAAGCGTGGGGAGCAAACAGGACAAGATACCACAGTAGCCCCCGTCTGTT
->M00763_26_000000000-K4TML_1_1101_13530_2111	ee=1.65454	fbdiffs=0(match), rbdiffs=0(match) fpdiffs=0(match), rpdiffs=0(match)
-GTGCCAGCTGCCGCGGTAATACGGAGGGTGCAAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGTAGGCGGCTGCCTAAGTTGGATGTGAAAGCCCCGGGCTCAACCTGGGAACTGCATCCAAAACTGGGCAGCTAGAGTGCGGAAGAGGAGTGTGGAATTTCCTGTGTAGCGGTGAAATGCGTAGATATAGGAAGGAACACCAGTGGCGAAGGCGACACTCTGGTCTGACACTGACGCTGAGGTACGAAAGCGTGGGGAGCAAACAGGATTAGATACCCCAGTAGTCC
+>M00763_26_000000000-K4TML_1_1101_13549_1963	ee=0.0205466	fbdiffs=0(match), rbdiffs=0(match) fpdiffs=0(match), rpdiffs=0(match)
+TACGGAGGGTGCAAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGTAGGCGGCCTTTTAAGTTGGATGTGAAAGCCCCGGGCTTAACCTGGGAACGGCATCCAAAACTGGGAGGCTCGAGTGCGGAAGAGGAGTGTGGAATTTCCTGTGTAGCGGTGAAATGCGTAGATATAGGAAAGAACACCAGTGGCGAAGGCGACACTCTGGTCTGACACTGACGCTGAGGTACGAAAGCGTGGGGAGCAAACAGG
+>M00763_26_000000000-K4TML_1_1101_17445_1653	ee=0.0194543	fbdiffs=0(match), rbdiffs=0(match) fpdiffs=0(match), rpdiffs=0(match)
+TACGGAGGGTGCAAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGTAGGCGGCTGCCTAAGTTGGATGTGAAAGCCCCGGGCTCAACCTGGGAACTGCATCCAAAACTGGGCAGCTAGAGTGCGGAAGAGGAGTGTGGAATTTCCTGTGTAGCGGTGAAATGCGTAGATATAGGAAGGAACACCAGTGGCGAAGGCGACACTCTGGTCTGACACTGACGCTGAGGTACGAAAGCGTGGGGAGCAAACAGG
+>M00763_26_000000000-K4TML_1_1101_14756_1615	ee=0.731008	fbdiffs=0(match), rbdiffs=0(match) fpdiffs=0(match), rpdiffs=0(match)
+TACAGAGGGTGCAAACGTTGCTCGGAATGACTGGGCGTAAAGCGCGCGNAGGCGGTGAGTTAAGTCGACTGTGAAAGCCCATGGCTCAACCATGGAAGCGCAGTCGAAACTGGCTCGCTTGAGTCCCGGAGAGGGTGGTGGAATTCCTAGTGTAGAGGTGAAATTCGTAGAGATTAGGAGGAACACCGGTGGCGAAGGCGACCATCTGGACGGGTACTGACGCTGAGGCGCGAAAGCGTGGGGAGCAAACAGG
+>M00763_26_000000000-K4TML_1_1101_9392_2856	ee=0.010834	fbdiffs=0(match), rbdiffs=0(match) fpdiffs=0(match), rpdiffs=0(match)
+TACGGAGGGTGCGAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGTAGGCGGCCTTTTAAGTTGGATGTGAAAGCCCCGGGCTCAACCTGGGAACGGCATCCAAAACTGAGAGGCTCGAGTGCGGAAGAGGAGTGTGGAATTTCCTGTGTAGCGGTGAAATGCGTAGATATAGGAAAGAACACCAGTGGCGAAGGCGACACTCTGGTCTGACACTGACGCTGAGGTACGAAAGCGTGGGGAGCAAACAGG
+>M00763_26_000000000-K4TML_1_1101_12424_2244	ee=0.775851	fbdiffs=0(match), rbdiffs=0(match) fpdiffs=0(match), rpdiffs=0(match)
+TACGGAGGGTGCAAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGTAGGCGGCTGCCTAAGTTGGATGTGAAAGCCCCGGGCTCAACCTGGGAACTGCATCCAAAACTGGGCAGCTAGAGNGCGGAAGAGGAGTGTGGAATTTCCTGTGTAGCGGTGAAATGCGTAGATATAGGAAGGAACACCAGTGGCGAAGGCGACACTCTGGTCTGACACTGACGCTGAGGTACGAAAGCGTGGGGAGCAAACAGG
 ```
 
 Success.
@@ -217,7 +249,7 @@ module load Mothur/1.46.1-foss-2020b
 
 mothur
 
-mothur "#screen.seqs(inputdir=., outputdir=., fasta=kbay.trim.contigs.fasta, group=kbay.contigs.groups, maxambig=0, maxlength=350, minlength=250)"
+mothur "#screen.seqs(inputdir=., outputdir=., fasta=kbay.trim.contigs.fasta, group=kbay.contigs.groups, maxambig=0, maxlength=350, minlength=200)"
 
 mothur "#summary.seqs(fasta=kbay.trim.contigs.good.fasta)"
 
@@ -225,7 +257,7 @@ mothur "#summary.seqs(fasta=kbay.trim.contigs.good.fasta)"
 
 Make sure you are in the Mothur directory, not scripts directory. Run script `$ sbatch scripts/screen.sh`
 
-Output below. This script kept 55,133/73,199 sequences.  
+Output below. This script kept 55,141/73,197 sequences.  
 
 ```
 $ nano output_script_screen
@@ -237,17 +269,21 @@ mothur > summary.seqs(fasta=kbay.trim.contigs.good.fasta)
 Using 24 processors.
 
                 Start   End     NBases  Ambigs  Polymer NumSeqs
-Minimum:        1	253     253     0	3	1
-2.5%-tile:	1	292     292     0	4	1379
-25%-tile:	1	292     292     0	4	13784
-Median:         1	292     292     0	4	27567
-75%-tile:	1	301     301     0	4	41350
-97.5%-tile:     1	310     310     0	6	53755
-Maximum:        1	340     340     0	20	55133
-Mean:   1	295     295     0	4
-# of Seqs:	55133
+Minimum:        1       207     207     0       3       1
+2.5%-tile:      1       252     252     0       4       1379
+25%-tile:       1       253     253     0       4       13786
+Median:         1       253     253     0       4       27571
+75%-tile:       1       253     253     0       4       41356
+97.5%-tile:     1       254     254     0       6       53763
+Maximum:        1       264     264     0       11      55141
+Mean:   1       252     252     0       4
+# of Seqs:      55141
 
-It took 2 secs to summarize 55133 sequences.
+It took 2 secs to summarize 55141 sequences.
+
+Output File Names:
+kbay.trim.contigs.good.summary
+
 ```
 
 ## <a name="Unique"></a> **Determining and counting unique sequences**
@@ -286,13 +322,13 @@ mothur "#count.seqs(name=kbay.trim.contigs.good.names, group=kbay.contigs.good.g
 
 mothur "#summary.seqs(fasta=kbay.trim.contigs.good.unique.fasta, count=kbay.trim.contigs.good.count_table)"
 
-mothur "#count.groups(count= kbay.trim.contigs.good.unique.fasta)"
+mothur "#count.groups(count=kbay.trim.contigs.good.unique.fasta)"
 
 ```
 
 Make sure you are in the Mothur directory and run the above script `sbatch scripts/unique.sh`.
 
-Output below. Unique reads: 30,487 (55%).
+Output below from `output_script_unique`. **Unique reads: 2,962 (4.05%): This is a problem.**
 
 ```
 mothur > summary.seqs(fasta=kbay.trim.contigs.good.unique.fasta, count=kbay.trim.contigs.good.count_table)
@@ -300,28 +336,43 @@ mothur > summary.seqs(fasta=kbay.trim.contigs.good.unique.fasta, count=kbay.trim
 Using 24 processors.
 
                 Start   End     NBases  Ambigs  Polymer NumSeqs
-Minimum:        1       253     253     0	3	1
-2.5%-tile:	1	292     292     0	4	1379
-25%-tile:       1 	292     292     0	4	13784
-Median:         1	292     292     0	4	27567
-75%-tile:       1       301     301     0	4	41350
-97.5%-tile:     1	310     310     0	6	53755
-Maximum:        1       340     340     0	20	55133
-Mean:   1       295     295     0	4
-# of unique seqs:	30487
-total # of seqs:        55133
+Minimum:        1       207     207     0       3       1
+2.5%-tile:      1       252     252     0       4       1379
+25%-tile:       1       253     253     0       4       13786
+Median:         1       253     253     0       4       27571
+75%-tile:       1       253     253     0       4       41356
+97.5%-tile:     1       254     254     0       6       53763
+Maximum:        1       264     264     0       11      55141
+Mean:   1       252     252     0       4
+# of unique seqs:       2962
+total # of seqs:        55141
 
-It took 2 secs to summarize 55133 sequences.
+It took 1 secs to summarize 55141 sequences.
+
+Output File Names:
+kbay.trim.contigs.good.unique.summary
+
 ```
 
-Error received. This sequence returned a count number of zero.
+This command `mothur "#count.groups(count=kbay.trim.contigs.good.unique.fasta)"` is producing:
+
+11 error messages received. This sequence returned a count number of zero. The command is stopped after 11 times but we can still move along to aligning our sequences. we don't need this command necessarily.
 
 ```
 mothur > count.groups(count= kbay.trim.contigs.good.unique.fasta)
-[ERROR]: Your count table contains a sequence named GGACAGGGGTCAGCCGCCGCGGTGATACGGAGGATGCAAGCGTTATTCGGAATTATTGGGCGTAAAGCGTCTGTAGGTGGTTTTTCACCGGTAGCGAAAGCGCTCTACTGGGCTAAAACTGACACTGAGAGACGAAAGCTAGGGGAGCAAATAGGATTAGATACCCGTGTAGTCC with a total=0. Please correct.
+**** Exceeded maximum allowed command errors, quitting ****
+[ERROR]: Your count table contains a sequence named TACGGAGGGTGCAAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGTAGGCGGCCTTTTAAGTTGGATGTGAAAGCCCCGGGCTTAACCTGGGAACGGCATCCAAAACTGGGAGGCTCGAGTGCGGAAGAGGAGTGTGGAATTTCCTGTGTAGCGGTGAAATGCGTAGATATAGGAAAGAACACCAGTGGCGAAGGCGACACTCTGGTCTGACACTGACGCTGAGGTACGAAAGCGTGGGGAGCAAACAGG with a total=0. Please correct.
+fbdiffs=0(match), contains 0.
+fpdiffs=0(match), contains 0.
+rbdiffs=0(match) contains 0.
+rpdiffs=0(match) contains 0.
+
+Size of smallest group: 0.
+
+Total seqs: 0.
 ```
 
-Come back to this? I'm not sure yet how to remove this..
+
 
 ## <a name="Reference"></a> **Aligning to a reference database**
 
@@ -468,22 +519,25 @@ kbay.trim.contigs.good.unique.flip.accnos
 View the summary from the `output_script_align` file. There are 30,487 unique sequences and all aligned to the reference. We want most sequences to be 292 bp long.
 
 ```
+[WARNING]: 41 of your sequences generated alignments that eliminated too many bases, a list is provided in kbay.trim.contigs.good.unique.flip.accnos.
+[NOTE]: 2 of your sequences were reversed to produce a better alignment.
+
 mothur > summary.seqs(fasta=kbay.trim.contigs.good.unique.align)
 
 Using 24 processors.
 
                 Start   End     NBases  Ambigs  Polymer NumSeqs
-Minimum:        1       1233    1       0       1       1
-2.5%-tile:      1	13424   291     0	4	763
-25%-tile:	1	13424   292     0	4	7622
-Median:         1       13424   292     0	4	15244
-75%-tile:       1	13424   292     0	4	22866
-97.5%-tile:     1       13425   293     0	6	29725
-Maximum:        13425   13425   299     0	11	30487
-Mean:   89      13344   288     0	4
-# of Seqs:	30487
+Minimum:        1       1236    3       0       2       1
+2.5%-tile:      1968    11550   252     0       3       75
+25%-tile:       1968    11550   253     0       4       741
+Median:         1968    11550   253     0       4       1482
+75%-tile:       1968    11550   253     0       5       2222
+97.5%-tile:     1968    11550   254     0       6       2888
+Maximum:        13422   13425   260     0       11      2962
+Mean:   1971    11435   249     0       4
+# of Seqs:      2962
 
-It took 12 secs to summarize 30487 sequences.
+It took 1 secs to summarize 2962 sequences.
 
 Output File Names:
 kbay.trim.contigs.good.unique.summary
@@ -537,26 +591,8 @@ kbay.trim.contigs.good.good.count_table
 View output from the output file `output_script_screen2`:
 
 ```
-mothur > summary.seqs(fasta=kbay.trim.contigs.good.unique.good.align, count=kbay.trim.contigs.good.good.count_table)
-
-Using 24 processors.
-
-                Start   End     NBases  Ambigs  Polymer NumSeqs
-Minimum:        1	13422   288     0	3	1
-2.5%-tile:	1	13424   292     0	4	1368
-25%-tile:	1	13424   292     0	4	13678
-Median:         1	13424   292     0	4	27356
-75%-tile:	1	13424   292     0	4	41033
-97.5%-tile:     1	13425   293     0	6	53343
-Maximum:        3	13425   299     0	8	54710
-Mean:   1	13424   292     0	4
-# of unique seqs:	30066
-total # of seqs:        54710
-
-It took 11 secs to summarize 54710 sequences.
-
-Output File Names:
-kbay.trim.contigs.good.unique.good.summary
+[ERROR]: 'M00763_26_000000000-K4TML_1_1114_26145_20411' is not in your name or count file, please correct.
+[ERROR]: Your count file contains 30066 unique sequences, but your fasta file contains 103. File mismatch detected, quitting command.
 ```
 
 We have now identified the sequences outside of the window of interest in our alignment to the Silva reference 16S V4 region. The next step will be filtering those out.
