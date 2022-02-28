@@ -83,11 +83,7 @@ Change these values based on the project and sequencing run details.
 
 ## <a name="Contigs"></a> **Make Contigs**
 
-Script to make contigs. Originally I did this as `contigs.sh` with trimoverlap=FALSE which is the default. I did this again as `contigs2.sh` for the correct command trimoverlap=TRUE for 2x300 bp sequencing.
-
-All files already generated with `HoloInt` prefixes are with trimoverlap=FALSE. Move forward with prefix `HoloInt2` which is trimoverlap=TRUE. All scripts following Contigs.sh should have `HoloInt2`.
-
-### trimoverlap=FALSE (default); HoloInt
+Make a script to assemble contigs.
 
 ```
 $ cd ../../data/putnamlab/estrand/HoloInt_16s/Mothur/scripts
@@ -113,7 +109,7 @@ module load Mothur/1.46.1-foss-2020b
 
 mothur "#make.file(inputdir=., type=gz, prefix=HoloInt)"
 
-mothur "#make.contigs(inputdir=., outputdir=., file=HoloInt.files, oligos=oligos.oligos)"
+mothur "#make.contigs(inputdir=., outputdir=., file=HoloInt.files, oligos=oligos.oligos, trimoverlap=T)"
 
 mothur "#summary.seqs(fasta=HoloInt.trim.contigs.fasta)"
 ```
@@ -121,161 +117,27 @@ mothur "#summary.seqs(fasta=HoloInt.trim.contigs.fasta)"
 From `output_script_contigs`:
 
 ```
-mothur > summary.seqs(fasta=HoloInt.trim.contigs.fasta)
-
-Using 24 processors.
-
-                Start   End     NBases  Ambigs  Polymer NumSeqs
-Minimum:        1       22      22      0       2       1
-2.5%-tile:      1       215     215     0       4       125048
-25%-tile:       1       215     215     0       11      1250474
-Median:         1       301     301     0       11      2500948
-75%-tile:       1       301     301     0       11      3751421
-97.5%-tile:     1       388     388     6       16      4876847
-Maximum:        1       563     563     97      280     5001894
-Mean:   1       287     287     0       10
-# of Seqs:      5001894
-
-It took 170 secs to summarize 5001894 sequences.
-
-Output File Names:
-HoloInt.trim.contigs.summary
-```
-
-Head from `HoloInt.contigs.report`:
 
 ```
-Name    Length  Overlap_Length  Overlap_Start   Overlap_End     MisMatches      Num_Ns  Expected_Errors
-M00763_59_000000000-JR652_1_1101_20554_1826     419     143     139     282     23      1       5.62825
-M00763_59_000000000-JR652_1_1101_22277_2798     309     253     27      280     0       0       2.34858
-M00763_59_000000000-JR652_1_1101_13828_1806     300     176     104     280     11      0       11.2844
-M00763_59_000000000-JR652_1_1101_11156_1815     301     176     105     281     5       0       9.74297
-M00763_59_000000000-JR652_1_1101_20642_1770     386     176     104     280     37      1       20.2676
-M00763_59_000000000-JR652_1_1101_20625_1774     386     176     104     280     40      1       21.592
-M00763_59_000000000-JR652_1_1101_10688_1769     385     176     104     280     17      0       16.2035
-M00763_59_000000000-JR652_1_1101_21994_1881     301     176     105     281     2       0       8.53798
-M00763_59_000000000-JR652_1_1101_10081_1903     301     176     105     281     0       0       7.56337
-M00763_59_000000000-JR652_1_1101_11583_2021     215     176     19      195     0       0       0.559736
-M00763_59_000000000-JR652_1_1101_9558_2149      215     176     19      195     5       0       1.59155
-M00763_59_000000000-JR652_1_1101_11323_1867     301     253     28      281     34      9       11.0915
-M00763_59_000000000-JR652_1_1101_14973_1797     300     176     104     280     10      1       11.1698
-M00763_59_000000000-JR652_1_1101_12254_1851     215     176     19      195     4       0       1.39373
-M00763_59_000000000-JR652_1_1101_17477_1890     215     176     19      195     2       0       1.11177
-M00763_59_000000000-JR652_1_1101_15836_1922     215     176     19      195     0       0       0.580719
-M00763_59_000000000-JR652_1_1101_15630_1932     310     253     28      281     10      1       3.83715
-M00763_59_000000000-JR652_1_1101_17412_1988     310     253     28      281     1       0       3.64066
-M00763_59_000000000-JR652_1_1101_13803_1830     300     176     104     280     9       0       10.9099
-```
 
-
-### trimoverlap=TRUE; HoloInt2
+Output from `HoloInt.contigs.report`:
 
 ```
-$ cd ../../data/putnamlab/estrand/HoloInt_16s/Mothur/scripts
-$ nano contigs2.sh
-$ cd .. ### need to be in mothur directory when running script
-
-## copy and paste the below text into the nano file
-
-#!/bin/bash
-#SBATCH -t 24:00:00
-#SBATCH --nodes=1 --ntasks-per-node=1
-#SBATCH --export=NONE
-#SBATCH --mem=100GB
-#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
-#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
-#SBATCH --account=putnamlab                  
-#SBATCH --error="script_error_contigs2" #if your job fails, the error report will be put in this file
-#SBATCH --output="output_script_contigs2" #once your job is completed, any final job report comments will be put in this file
-
-source /usr/share/Modules/init/sh # load the module function
-
-module load Mothur/1.46.1-foss-2020b
-
-mothur "#make.file(inputdir=., type=gz, prefix=HoloInt2)"
-
-mothur "#make.contigs(inputdir=., outputdir=., file=HoloInt2.files, oligos=oligos.oligos,trimoverlap=T)"
-
-mothur "#summary.seqs(fasta=HoloInt2.trim.contigs.fasta)"
-```
-
-From `output_script_contigs2`:
 
 ```
-mothur > summary.seqs(fasta=HoloInt2.trim.contigs.fasta)
-
-Using 24 processors.
-
-                Start   End     NBases  Ambigs  Polymer NumSeqs
-Minimum:        1	1	1	0	1	1
-2.5%-tile:	1	175     175     0	4	125047
-25%-tile:       1       176     176     0       11      1250464
-Median:         1	176     176     0	11	2500928
-75%-tile:       1       176     176     0	11	3751392
-97.5%-tile:     1	253     253     6	11	4876809
-Maximum:        1	280     280     97	46	5001855
-Mean:   1	191     191     0	9
-# of Seqs:      5001855
-
-It took 163 secs to summarize 5001855 sequences.
-
-Output File Names:
-HoloInt2.trim.contigs.summary
-```
-
-Head from `HoloInt2.contigs.report `:
-
-```
-Name    Length  Overlap_Length  Overlap_Start   Overlap_End     MisMatches      Num_Ns  Expected_Errors
-M00763_59_000000000-JR652_1_1101_20554_1826     143     143     139     282     23      1       1.93348
-M00763_59_000000000-JR652_1_1101_22277_2798     253     253     27      280     0       0       0.000113608
-M00763_59_000000000-JR652_1_1101_10688_1769     176     176     104     280     17      0       0.117051
-M00763_59_000000000-JR652_1_1101_15630_1932     253     253     28      281     10      1       0.682934
-M00763_59_000000000-JR652_1_1101_14973_1797     176     176     104     280     10      1       0.785857
-M00763_59_000000000-JR652_1_1101_12254_1851     176     176     19      195     4       0       0.00852637
-M00763_59_000000000-JR652_1_1101_17477_1890     176     176     19      195     2       0       0.00388221
-M00763_59_000000000-JR652_1_1101_15836_1922     176     176     19      195     0       0       1.2168e-05
-M00763_59_000000000-JR652_1_1101_19183_1966     176     176     105     281     2       0       0.00414464
-M00763_59_000000000-JR652_1_1101_17412_1988     253     253     28      281     1       0       0.00217848
-M00763_59_000000000-JR652_1_1101_17429_1998     253     253     24      277     56      17      12.5534
-M00763_59_000000000-JR652_1_1101_23710_2319     176     176     19      195     13      0       0.103801
-M00763_59_000000000-JR652_1_1101_12208_2643     176     176     105     281     2       0       0.0527102
-M00763_59_000000000-JR652_1_1101_19952_2677     176     176     19      195     0       0       8.78931e-06
-M00763_59_000000000-JR652_1_1101_14665_1981     176     176     104     280     25      2       1.48208
-M00763_59_000000000-JR652_1_1101_12899_1997     176     176     19      195     1       0       0.0013659
-M00763_59_000000000-JR652_1_1101_7489_2776      176     176     19      195     4       0       0.00923581
-M00763_59_000000000-JR652_1_1101_18962_2854     176     176     105     281     2       0       0.00427462
-```
-
-Warning generated: `[WARNING]: your oligos file does not contain any group names.  mothur will not create a groupfile.`. You can label groups if you have several primer sets in your dataset. We don't need this since we are only using V4 and one primer set.
-
-#### Choice for trimoverlap=TRUE vs. FALSE
-
-Moving forward with the prefix:
-
 
 ### Check that the primers are gone.
 
-`$ head HoloInt2.trim.contigs.fasta`
+`$ head HoloInt.trim.contigs.fasta`
 
 We are looking to see that these primers `F GTGCCAGCMGCCGCGGTAA R GGACTACNVGGGTWTCTAAT` have been taken out.
 
 Output:
 
 ```
->M00763_59_000000000-JR652_1_1101_20554_1826	ee=1.93348	fbdiffs=0(match), rbdiffs=0(match) fpdiffs=0(match), rpdiffs=0(match)
-GATTGTGTGGTGCGGTATTTGGGACATTTACCTTGAGGAAATTAGAGTGTTTCAAGCAAGCGCACGCTTTGAATACCGTAGCATGGANTAATAAGATAGGGCCTCAGTTCTATTTTGTTGGTTTCTAGAGCTGAGGTAATGGT
->M00763_59_000000000-JR652_1_1101_22277_2798	ee=0.000113608	fbdiffs=0(match), rbdiffs=0(match) fpdiffs=0(match), rpdiffs=0(match)
-TACGGGGGGTCCAAGCGTTAATCAGAATTACTGGGCGTAAAGGGTCTGTAGGTGGTTTGGTAAGTCAGATGTGAAATCCCAGGGCTCAACCTTGGAATTGCATTTGATACTGTCAAACTAGAGTATAGTAGAGGAATAAGGAATTTCTGGTGTAGCGGTGAAATGCGTAGAGATCAGAAGGAACACCAATGGCGAAGGCAATATTCTAGACTAATACTGACATTGAAAGACGAAAGCGTGGGGATCAAACAGG
->M00763_59_000000000-JR652_1_1101_10688_1769	ee=0.117051	fbdiffs=0(match), rbdiffs=0(match) fpdiffs=0(match), rpdiffs=0(match)
-GACTTAAGGATTTATTTTTTAATAAAAAGCAAAAAGCGTGTTAAGGATTTTTTAAAAAAAAAAATAAATAGAATTTTTTTCGTAATTGTAATATGTTAAAATGAAAAAAAGAATTTTTTATATGAAGATAATTTATTTTTTTTTTCTTAAATACGAAGGTTTGGGGAGCAAATAGG
->M00763_59_000000000-JR652_1_1101_15630_1932	ee=0.682934	fbdiffs=0(match), rbdiffs=0(match) fpdiffs=0(match), rpdiffs=0(match)
-AACGAGAAGGGTTAGCGTTATTCAGATTAATTTGGCGTAAAGGATGCGTAGGTTGAAAATTAATTAAATAATAAAATTTCAAAATTAACTTTGAATTATTTTTACTAAAAATATTTTCTTGAGTTTAATAGNGGATTGTAGAACTTTAAATGTAACAGTAAAATGTATTGATATTTAAAAGAATTTCTAAAGCGAAGGCAACAATCTAAATTAAGACTGACATTGAGGTATTAAAGCATGGGGAGCAAAGGGG
->M00763_59_000000000-JR652_1_1101_14973_1797	ee=0.785857	fbdiffs=0(match), rbdiffs=0(match) fpdiffs=0(match), rpdiffs=0(match)
-GANTTAAGGATTTATTTTTTAATAAAAAGCAAAAAGCGTGTTAAGGATTTTTTAAAAAAAAAAATAAATAGAATTTTTTTCGTAATTGTAATATGTTAAAATGAAAAAAAGAATTTTTTATATGAAGATAATTTATTTTTTTTTTCTTAAATACGAAGGTTTGGGGAGCAAATAGG
+
 ```
 
-Primers are gone. Success! Move forward with `HoloInt2` prefix in all following scripts.
 
 ## <a name="QC_screen"></a> **QC with screen.seqs**
 
@@ -1156,6 +1018,203 @@ $ scp emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/HoloInt_16s/Mothur/H
 ```
 
 ## <a name="Troubleshooting"></a> **Troubleshooting**
+
+### Contigs.sh
+
+Script to make contigs. Originally I did this as `contigs.sh` with trimoverlap=FALSE which is the default. I did this again as `contigs2.sh` for the correct command trimoverlap=TRUE for 2x300 bp sequencing.
+
+All files already generated with `HoloInt` prefixes are with trimoverlap=FALSE. Move forward with prefix `HoloInt2` which is trimoverlap=TRUE. All scripts following Contigs.sh should have `HoloInt2`.
+
+### trimoverlap=FALSE (default); HoloInt
+
+```
+$ cd ../../data/putnamlab/estrand/HoloInt_16s/Mothur/scripts
+$ nano contigs.sh
+$ cd .. ### need to be in mothur directory when running script
+
+## copy and paste the below text into the nano file
+
+#!/bin/bash
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab                  
+#SBATCH --error="script_error_contigs" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_contigs" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function
+
+module load Mothur/1.46.1-foss-2020b
+
+mothur "#make.file(inputdir=., type=gz, prefix=HoloInt)"
+
+mothur "#make.contigs(inputdir=., outputdir=., file=HoloInt.files, oligos=oligos.oligos)"
+
+mothur "#summary.seqs(fasta=HoloInt.trim.contigs.fasta)"
+```
+
+From `output_script_contigs`:
+
+```
+mothur > summary.seqs(fasta=HoloInt.trim.contigs.fasta)
+
+Using 24 processors.
+
+                Start   End     NBases  Ambigs  Polymer NumSeqs
+Minimum:        1       22      22      0       2       1
+2.5%-tile:      1       215     215     0       4       125048
+25%-tile:       1       215     215     0       11      1250474
+Median:         1       301     301     0       11      2500948
+75%-tile:       1       301     301     0       11      3751421
+97.5%-tile:     1       388     388     6       16      4876847
+Maximum:        1       563     563     97      280     5001894
+Mean:   1       287     287     0       10
+# of Seqs:      5001894
+
+It took 170 secs to summarize 5001894 sequences.
+
+Output File Names:
+HoloInt.trim.contigs.summary
+```
+
+Head from `HoloInt.contigs.report`:
+
+```
+Name    Length  Overlap_Length  Overlap_Start   Overlap_End     MisMatches      Num_Ns  Expected_Errors
+M00763_59_000000000-JR652_1_1101_20554_1826     419     143     139     282     23      1       5.62825
+M00763_59_000000000-JR652_1_1101_22277_2798     309     253     27      280     0       0       2.34858
+M00763_59_000000000-JR652_1_1101_13828_1806     300     176     104     280     11      0       11.2844
+M00763_59_000000000-JR652_1_1101_11156_1815     301     176     105     281     5       0       9.74297
+M00763_59_000000000-JR652_1_1101_20642_1770     386     176     104     280     37      1       20.2676
+M00763_59_000000000-JR652_1_1101_20625_1774     386     176     104     280     40      1       21.592
+M00763_59_000000000-JR652_1_1101_10688_1769     385     176     104     280     17      0       16.2035
+M00763_59_000000000-JR652_1_1101_21994_1881     301     176     105     281     2       0       8.53798
+M00763_59_000000000-JR652_1_1101_10081_1903     301     176     105     281     0       0       7.56337
+M00763_59_000000000-JR652_1_1101_11583_2021     215     176     19      195     0       0       0.559736
+M00763_59_000000000-JR652_1_1101_9558_2149      215     176     19      195     5       0       1.59155
+M00763_59_000000000-JR652_1_1101_11323_1867     301     253     28      281     34      9       11.0915
+M00763_59_000000000-JR652_1_1101_14973_1797     300     176     104     280     10      1       11.1698
+M00763_59_000000000-JR652_1_1101_12254_1851     215     176     19      195     4       0       1.39373
+M00763_59_000000000-JR652_1_1101_17477_1890     215     176     19      195     2       0       1.11177
+M00763_59_000000000-JR652_1_1101_15836_1922     215     176     19      195     0       0       0.580719
+M00763_59_000000000-JR652_1_1101_15630_1932     310     253     28      281     10      1       3.83715
+M00763_59_000000000-JR652_1_1101_17412_1988     310     253     28      281     1       0       3.64066
+M00763_59_000000000-JR652_1_1101_13803_1830     300     176     104     280     9       0       10.9099
+```
+
+
+### trimoverlap=TRUE; HoloInt2
+
+```
+$ cd ../../data/putnamlab/estrand/HoloInt_16s/Mothur/scripts
+$ nano contigs2.sh
+$ cd .. ### need to be in mothur directory when running script
+
+## copy and paste the below text into the nano file
+
+#!/bin/bash
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab                  
+#SBATCH --error="script_error_contigs2" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_contigs2" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function
+
+module load Mothur/1.46.1-foss-2020b
+
+mothur "#make.file(inputdir=., type=gz, prefix=HoloInt2)"
+
+mothur "#make.contigs(inputdir=., outputdir=., file=HoloInt2.files, oligos=oligos.oligos,trimoverlap=T)"
+
+mothur "#summary.seqs(fasta=HoloInt2.trim.contigs.fasta)"
+```
+
+From `output_script_contigs2`:
+
+```
+mothur > summary.seqs(fasta=HoloInt2.trim.contigs.fasta)
+
+Using 24 processors.
+
+                Start   End     NBases  Ambigs  Polymer NumSeqs
+Minimum:        1	1	1	0	1	1
+2.5%-tile:	1	175     175     0	4	125047
+25%-tile:       1       176     176     0       11      1250464
+Median:         1	176     176     0	11	2500928
+75%-tile:       1       176     176     0	11	3751392
+97.5%-tile:     1	253     253     6	11	4876809
+Maximum:        1	280     280     97	46	5001855
+Mean:   1	191     191     0	9
+# of Seqs:      5001855
+
+It took 163 secs to summarize 5001855 sequences.
+
+Output File Names:
+HoloInt2.trim.contigs.summary
+```
+
+Head from `HoloInt2.contigs.report `:
+
+```
+Name    Length  Overlap_Length  Overlap_Start   Overlap_End     MisMatches      Num_Ns  Expected_Errors
+M00763_59_000000000-JR652_1_1101_20554_1826     143     143     139     282     23      1       1.93348
+M00763_59_000000000-JR652_1_1101_22277_2798     253     253     27      280     0       0       0.000113608
+M00763_59_000000000-JR652_1_1101_10688_1769     176     176     104     280     17      0       0.117051
+M00763_59_000000000-JR652_1_1101_15630_1932     253     253     28      281     10      1       0.682934
+M00763_59_000000000-JR652_1_1101_14973_1797     176     176     104     280     10      1       0.785857
+M00763_59_000000000-JR652_1_1101_12254_1851     176     176     19      195     4       0       0.00852637
+M00763_59_000000000-JR652_1_1101_17477_1890     176     176     19      195     2       0       0.00388221
+M00763_59_000000000-JR652_1_1101_15836_1922     176     176     19      195     0       0       1.2168e-05
+M00763_59_000000000-JR652_1_1101_19183_1966     176     176     105     281     2       0       0.00414464
+M00763_59_000000000-JR652_1_1101_17412_1988     253     253     28      281     1       0       0.00217848
+M00763_59_000000000-JR652_1_1101_17429_1998     253     253     24      277     56      17      12.5534
+M00763_59_000000000-JR652_1_1101_23710_2319     176     176     19      195     13      0       0.103801
+M00763_59_000000000-JR652_1_1101_12208_2643     176     176     105     281     2       0       0.0527102
+M00763_59_000000000-JR652_1_1101_19952_2677     176     176     19      195     0       0       8.78931e-06
+M00763_59_000000000-JR652_1_1101_14665_1981     176     176     104     280     25      2       1.48208
+M00763_59_000000000-JR652_1_1101_12899_1997     176     176     19      195     1       0       0.0013659
+M00763_59_000000000-JR652_1_1101_7489_2776      176     176     19      195     4       0       0.00923581
+M00763_59_000000000-JR652_1_1101_18962_2854     176     176     105     281     2       0       0.00427462
+```
+
+Warning generated: `[WARNING]: your oligos file does not contain any group names.  mothur will not create a groupfile.`. You can label groups if you have several primer sets in your dataset. We don't need this since we are only using V4 and one primer set.
+
+#### Choice for trimoverlap=TRUE vs. FALSE
+
+Moving forward with the prefix:
+
+
+### Check that the primers are gone.
+
+`$ head HoloInt2.trim.contigs.fasta`
+
+We are looking to see that these primers `F GTGCCAGCMGCCGCGGTAA R GGACTACNVGGGTWTCTAAT` have been taken out.
+
+Output:
+
+```
+>M00763_59_000000000-JR652_1_1101_20554_1826	ee=1.93348	fbdiffs=0(match), rbdiffs=0(match) fpdiffs=0(match), rpdiffs=0(match)
+GATTGTGTGGTGCGGTATTTGGGACATTTACCTTGAGGAAATTAGAGTGTTTCAAGCAAGCGCACGCTTTGAATACCGTAGCATGGANTAATAAGATAGGGCCTCAGTTCTATTTTGTTGGTTTCTAGAGCTGAGGTAATGGT
+>M00763_59_000000000-JR652_1_1101_22277_2798	ee=0.000113608	fbdiffs=0(match), rbdiffs=0(match) fpdiffs=0(match), rpdiffs=0(match)
+TACGGGGGGTCCAAGCGTTAATCAGAATTACTGGGCGTAAAGGGTCTGTAGGTGGTTTGGTAAGTCAGATGTGAAATCCCAGGGCTCAACCTTGGAATTGCATTTGATACTGTCAAACTAGAGTATAGTAGAGGAATAAGGAATTTCTGGTGTAGCGGTGAAATGCGTAGAGATCAGAAGGAACACCAATGGCGAAGGCAATATTCTAGACTAATACTGACATTGAAAGACGAAAGCGTGGGGATCAAACAGG
+>M00763_59_000000000-JR652_1_1101_10688_1769	ee=0.117051	fbdiffs=0(match), rbdiffs=0(match) fpdiffs=0(match), rpdiffs=0(match)
+GACTTAAGGATTTATTTTTTAATAAAAAGCAAAAAGCGTGTTAAGGATTTTTTAAAAAAAAAAATAAATAGAATTTTTTTCGTAATTGTAATATGTTAAAATGAAAAAAAGAATTTTTTATATGAAGATAATTTATTTTTTTTTTCTTAAATACGAAGGTTTGGGGAGCAAATAGG
+>M00763_59_000000000-JR652_1_1101_15630_1932	ee=0.682934	fbdiffs=0(match), rbdiffs=0(match) fpdiffs=0(match), rpdiffs=0(match)
+AACGAGAAGGGTTAGCGTTATTCAGATTAATTTGGCGTAAAGGATGCGTAGGTTGAAAATTAATTAAATAATAAAATTTCAAAATTAACTTTGAATTATTTTTACTAAAAATATTTTCTTGAGTTTAATAGNGGATTGTAGAACTTTAAATGTAACAGTAAAATGTATTGATATTTAAAAGAATTTCTAAAGCGAAGGCAACAATCTAAATTAAGACTGACATTGAGGTATTAAAGCATGGGGAGCAAAGGGG
+>M00763_59_000000000-JR652_1_1101_14973_1797	ee=0.785857	fbdiffs=0(match), rbdiffs=0(match) fpdiffs=0(match), rpdiffs=0(match)
+GANTTAAGGATTTATTTTTTAATAAAAAGCAAAAAGCGTGTTAAGGATTTTTTAAAAAAAAAAATAAATAGAATTTTTTTCGTAATTGTAATATGTTAAAATGAAAAAAAGAATTTTTTATATGAAGATAATTTATTTTTTTTTTCTTAAATACGAAGGTTTGGGGAGCAAATAGG
+```
+
+Primers are gone. Success! Move forward with `HoloInt2` prefix in all following scripts.
+
 
 ### Screen.sh step
 
