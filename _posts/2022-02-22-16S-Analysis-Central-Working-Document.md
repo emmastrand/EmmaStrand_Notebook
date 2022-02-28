@@ -82,10 +82,10 @@ Reference database: Silva has high diversity and high alignment quality and is m
 - OTU vs. ASV decision - make note in each notebook post above RE what pipeline is using OTU vs ASV  
 - Look into what the biases are for the primer that we used for our data (V4 vs. V3/4)
 
-### Currently stuck on - as Friday morning Feb 25 2022
+### Currently stuck on - as monday early afternoon Feb 28 2022
 
-Holobiont Integration Mothur: confirm 2x250 vs 2x300 bp sequencing. Move forward with min=200 and T or F depending on type of sequencing.  
-Holobiont Integration QIIME2: Not stuck, just continue on to subsample and run diversity metrics steps.
+Holobiont Integration Mothur: running from contigs.sh, just takes awhile with 250 samples.   
+Holobiont Integration QIIME2: Not stuck, just continue on to subsample and run diversity metrics steps.  
 
 KBay QIIME2: I'm losing most of my sequencing at the input step.. could this be the same error as Mothur above? See note below KBay Mothur.  
 KBay Mothur: Low # of contigs from the very beginning... **sequencing issue?**
@@ -111,8 +111,14 @@ These settings and thresholds will be the same between Holobiont Integration and
 
 #### QIIME2 Threshold Decisions
 
+1. **qiime tools import**: A.) ``--type 'SampleData[PairedEndSequencesWithQuality]'`` and B.) ``--input-format PairedEndFastqManifestPhred33V2``. See [Importing Data](https://docs.qiime2.org/2022.2/tutorials/importing/) information to select the correct type for your sequencing.  
+2. **qiime dada2 denoise**: A.) `--p-trunc-len-f` and `--p-trunc-len-r`: These are cut-off values based on decreased quality seen in multiqc report. B.) `p-trim-left-f` and `p-trim-left-r` are cut-offs based on how long your primers are.  
+3. **qiime feature-classifier**: A.) the classifier B.) the database chosen. See [Data Resources from QIIME2](https://docs.qiime2.org/2021.11/data-resources/) for pre-trained classifiers and suggestions.  
+4. **qiime taxa filter-table**: `--p-exclude "Unassigned","Chloroplast","Eukaryota"`. Chose the taxa to filter out using `--p-mode contains`.  
+5. **qiime diversity core-metrics-phylogenetic**: `--p-sampling-depth 5570`. you need to choose your subsampling depth based on either the number of sequences you have in your lowest sample or the lowest cut-off you are willing to have (1,000 is really the minimum in our field. 1,500-3,000 is more ideal).  
+6. **qiime diversity alpha-rarefaction**: `--p-max-depth 5570`. See note above.
 
-
+These are the decisions we include in our pipeline. See QIIME2 documentation for further options and defaults in each step of the pipeline.
 
 ### Things to do differently next time
 
