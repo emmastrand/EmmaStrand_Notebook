@@ -742,10 +742,31 @@ Ouput from the `output_script_precluster` file:
 
 
 ```
+Output File Names:
+HoloInt.trim.contigs.good.unique.good.filter.count_table
+HoloInt.trim.contigs.good.unique.good.filter.unique.fasta
 
+mothur > summary.seqs(fasta=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.fasta, count=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.count_table)
+
+Using 24 processors.
+
+                Start   End     NBases  Ambigs  Polymer NumSeqs
+Minimum:        1       503     241     0       3       1
+2.5%-tile:      1       504     253     0       4       18976
+25%-tile:       1       504     253     0       4       189758
+Median:         1       504     253     0       4       379515
+75%-tile:       1       504     253     0       5       569272
+97.5%-tile:     1       504     254     0       6       740054
+Maximum:        1       504     263     0       12      759029
+Mean:   1       503     253     0       4
+# of unique seqs:       23045
+total # of seqs:        759029
+
+It took 3 secs to summarize 759029 sequences.
+
+Output File Names:
+HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.summary
 ```
-
-
 
 ## <a name="Chimeras"></a> **Identifying Chimeras**
 
@@ -789,9 +810,42 @@ mothur "#count.groups(count=HoloInt.trim.contigs.good.unique.good.filter.unique.
 Output from `output_script_chimera` file:
 
 ```
+It took 75 secs to check 42479 sequences.
 
 
+Output File Names:
+HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table
+HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.chimeras
+HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.accnos
 
+
+mothur > remove.seqs(fasta=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.fasta, accnos=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.accnos)
+Removed 2594 sequences from your fasta file.
+
+Output File Names:
+HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta
+
+
+mothur > summary.seqs(fasta=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta, count=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table)
+
+Using 24 processors.
+
+                Start   End     NBases  Ambigs  Polymer NumSeqs
+Minimum:        1       503     241     0       3       1
+2.5%-tile:      1       504     253     0       4       18876
+25%-tile:       1       504     253     0       4       188755
+Median:         1       504     253     0       4       377510
+75%-tile:       1       504     253     0       5       566265
+97.5%-tile:     1       504     254     0       6       736144
+Maximum:        1       504     263     0       12      755019
+Mean:   1       503     253     0       4
+# of unique seqs:       20451
+total # of seqs:        755019
+
+It took 1 secs to summarize 755019 sequences.
+
+Output File Names:
+HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.summary
 ```
 
 ## <a name="Classify_seq"></a> **Classifying Sequences**
@@ -851,7 +905,16 @@ Output files:
 ```
 $ head HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.pds.wang.taxonomy
 
-
+M00763_59_000000000-JR652_1_2114_19285_11159	Bacteria(100);Cyanobacteria_Chloroplast(100);Chloroplast(100);Chloroplast_order_incertae_sedis(100);Chloroplast(100);Bacillariophyta(100);
+M00763_59_000000000-JR652_1_1103_28645_12915	Bacteria(100);"Proteobacteria"(100);Gammaproteobacteria(100);Gammaproteobacteria_unclassified(100);Gammaproteobacteria_unclassified(100);Gammaproteobacteria_unclassified(100);
+M00763_59_000000000-JR652_1_1116_22792_20664	Bacteria(100);Cyanobacteria_Chloroplast(100);Chloroplast(100);Chloroplast_order_incertae_sedis(100);Chloroplast(100);Bacillariophyta(100);
+M00763_59_000000000-JR652_1_1111_7655_5553	Bacteria(100);"Proteobacteria"(100);Alphaproteobacteria(100);Sphingomonadales(100);Sphingomonadaceae(100);Sphingomonas(92);
+M00763_59_000000000-JR652_1_1111_22930_4234	Bacteria(100);Cyanobacteria_Chloroplast(100);Chloroplast(100);Chloroplast_order_incertae_sedis(100);Chloroplast(100);Bacillariophyta(100);
+M00763_59_000000000-JR652_1_2105_6821_16661	Bacteria(100);Bacteria_unclassified(100);Bacteria_unclassified(100);Bacteria_unclassified(100);Bacteria_unclassified(100);Bacteria_unclassified(100);
+M00763_59_000000000-JR652_1_2111_11362_14595	Bacteria(100);"Proteobacteria"(98);Alphaproteobacteria(81);Rickettsiales(81);Anaplasmataceae(81);Wolbachia(81);
+M00763_59_000000000-JR652_1_2101_28228_15032	Bacteria(100);Firmicutes(100);Bacilli(100);Bacillales(100);Staphylococcaceae(100);Staphylococcus(98);
+M00763_59_000000000-JR652_1_1110_18392_15228	Bacteria(100);"Proteobacteria"(100);Gammaproteobacteria(100);Alteromonadales(96);Colwelliaceae(96);Thalassomonas(96);
+M00763_59_000000000-JR652_1_1111_17676_4921	Bacteria(100);Bacteria_unclassified(100);Bacteria_unclassified(100);Bacteria_unclassified(100);Bacteria_unclassified(100);Bacteria_unclassified(100);
 ```
 
 - The tax.summary file has the taxonimc level, the name of the taxonomic group, and the number of sequences in that group for each sample.
@@ -859,13 +922,49 @@ $ head HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.pds.w
 ```
 $ head HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.pds.wang.tax.summary
 
-
+taxlevel	rankID	taxon	daughterlevels	total	HPW060	HPW061	HPW062	HPW063	HPW064	HPW065	HPW066	HPW067	HPW068	HPW069	HPW070	HPW071	HPW072	HPW073	HPW074	HPW075	HPW076	HPW077	HPW078	HPW079	HPW080	HPW081	HPW082	HPW083	HPW084	HPW085	HPW086	HPW087	HPW088	HPW089	HPW090	HPW091	HPW092	HPW093	HPW094	HPW095	HPW096	HPW101	HPW102	HPW103	HPW104	HPW105	HPW106	HPW107	HPW108	HPW109	HPW110	HPW111	HPW112	HPW113	HPW114	HPW115	HPW116	HPW117	HPW118	HPW119	HPW120	HPW121	HPW122	HPW123	HPW124	HPW125	HPW126	HPW127	HPW128	HPW129	HPW130	HPW131	HPW132	HPW133	HPW134	HPW135	HPW136	HPW137	HPW138	HPW139	HPW140	HPW141	HPW142	HPW143	HPW144	HPW145	HPW146	HPW147	HPW148	HPW149	HPW150	HPW151	HPW152	HPW153	HPW154	HPW155	HPW156	HPW157	HPW158	HPW159	HPW160	HPW161	HPW162	HPW163	HPW164	HPW165	HPW166	HPW167	HPW168	HPW169	HPW170	HPW171	HPW172	HPW173	HPW174	HPW175	HPW176	HPW177	HPW178	HPW179	HPW180	HPW181	HPW182	HPW183	HPW184	HPW185	HPW186	HPW187	HPW188	HPW189	HPW190	HPW191	HPW192	HPW193	HPW194	HPW195	HPW196	HPW201	HPW202	HPW203	HPW204	HPW205	HPW206	HPW207	HPW208	HPW209	HPW210	HPW211	HPW212	HPW213	HPW214	HPW215	HPW216	HPW217	HPW218	HPW219	HPW220	HPW221	HPW222	HPW223	HPW224	HPW225	HPW226	HPW227	HPW228	HPW229	HPW230	HPW231	HPW232	HPW233	HPW234	HPW235	HPW236	HPW237	HPW238	HPW239	HPW240	HPW241	HPW242	HPW243	HPW244	HPW245	HPW246	HPW247	HPW248	HPW249	HPW250	HPW251	HPW252	HPW253	HPW254	HPW255	HPW256	HPW257	HPW258	HPW259	HPW260	HPW261	HPW262	HPW263	HPW264	HPW265	HPW266	HPW267	HPW268	HPW269	HPW270	HPW271	HPW272	HPW273	HPW274	HPW275	HPW276	HPW277	HPW278	HPW279	HPW280	HPW281	HPW282	HPW283	HPW284	HPW285	HPW286	HPW287	HPW288	HPW289	HPW290	HPW291	HPW292	HPW293	HPW294	HPW295	HPW296	HPW301	HPW302	HPW303	HPW304	HPW305	HPW306	HPW307	HPW308	HPW309	HPW310	HPW311	HPW312	HPW313	HPW314	HPW315	HPW316	HPW317	HPW318	HPW319	HPW320	HPW321	HPW322
+0	0	Root	3	755019	706	14388	2976	7006	24430	8909	1434	15217	8922	6241	1246	1250	454	425	958	2978	33912	412	556	275	150	11735	4481	1431	610	110	1653	824	1333	2490	941	693	5422	202	316	133	366	1178	5466	505	425	1440	218	2364	904	687	5970	6295	4314	408	533	345	631	1001	840	1034	5224	371	437	1361	311	8189	676	426	374	3256	15165	2628	1693	571	1720	2749	2266	2127	384	371	16620	1606	1586	17744	569	592	2198	1641	6731	24169	4154	159	1645	997	6638	1440	5522	617	3091	482	2303	754	1474	4928	12745	20175	2551	527	8260	133	3590	456	5005	1738	4010	830	775	1332	474	2959	475	747	355	805	2971	1380	346	3406	696	12938	879	774	776	1466	92	1994	745	449	1366	1892	308	965	318	1812	6542	1859	214	688	8592	8348	773	1167	1076	3721	888	247	185	3100	253	3182	8086	795	853	279	758	976	12239	1204	957	3009	1100	1597	603	2566	2026	408	8672	1616	696	244	514	1511	2891	1080	765	1016	224	2095	575	446	4383	1278	1057	5933	747	820	1061	864	2962	396	1120	1079	592	1678	788	937	25	2851	1449	687	3113	15654	1034	9507	683	2038	1275	2393	1281	2752	3434	1064	2951	1362	1787	596	744	27296	272	781	9416	1474	956	1990	911	223	596	531	493	189	26291	1008	7648	1351	181	6356	1029	1318	1428	861	2079	428	6980	7552	753
+1	0.1	Archaea	2	159	0	0	0	0	13	0	0	0	0	0	0	0	2	0	0	0	4	0	0	0	0	20	0	3	0	0	0	0	0	0	0	0	0	5	0	1	0	1	0	0	0	0	4	0	0	3	0	11	0	1	1	3	0	0	0	0	0	0	0	0	0	0	0	0	6	0	4	0	0	9	0	0	0	0
+2	0.1.1	"Euryarchaeota"	4	94	0	0	0	0	0	0	0	0	0	0	0	0	2	0	0	0	0	0	0	0	20	0	3	0	0	0	0	0	0	0	0	0	0	0	1	0	1	0	0	0	0	0	0	0	3	0	11	0	1	1	3	0	0	0	0	0	0	0	0	0	0	0	0	0	0	4	0	0	0	0	0	0	0
+3	0.1.1.1	"Euryarchaeota"_unclassified	1	56	0	0	0	0	0	0	0	0	0	0	0	0	2	0	0	0	0	0	11	0	0	1	3	0	0	0	0	0	0	0	0	0	0	0	0	0	0	4	0	0	0	0	0	0	0
+4	0.1.1.1.1	"Euryarchaeota"_unclassified	1	56	0	0	0	0	0	0	0	0	0	0	0	0	2	0	0	0	0	11	0	0	1	3	0	0	0	0	0	0	0	0	0	0	0	0	0	0	4	0	0	0	0	0	0	0
+5	0.1.1.1.1.1	"Euryarchaeota"_unclassified	1	56	0	0	0	0	0	0	0	0	0	0	0	0	2	0	0	0	0	11	0	0	1	3	0	0	0	0	0	0	0	0	0	0	0	0	0	0	4	0	0	0	0	0	0	0
+6	0.1.1.1.1.1.1	"Euryarchaeota"_unclassified	0	56	0	0	0	0	0	0	0	0	0	0	0	0	2	0	0	0	0	11	0	0	1	3	0	0	0	0	0	0	0	0	0	0	0	0	0	0	4	0	0	0	0	0	0	0
+3	0.1.1.2	"Methanomicrobia"	1	19	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	19	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+4	0.1.1.2.1	Methanosarcinales	1	19	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	19	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
 ```
 
 From `output_script_classify` file:
 
 ```
+It took 4 secs to create the summary file for 20451 sequences.
 
+
+Output File Names:
+HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.pds.wang.taxonomy
+HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.pds.wang.tax.summary
+
+mothur > remove.lineage(fasta=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta, count=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table, taxonomy=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.pds.wang.taxonomy, taxon=Chloroplast-Mitochondria-unknown-Archaea-Eukaryota)
+
+/******************************************/
+Running command: remove.seqs(accnos=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.pds.wang.accnos, count=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table, fasta=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta)
+
+[WARNING]: Are you run the remove.seqs command after running a chimera command with dereplicate=t? If so, the count file has already been modified to remove all chimeras and adjust group counts. Including the count file here will cause downstream file mismatches.
+
+Removed 2814 sequences from your fasta file.
+Removed 126058 sequences from your count file.
+
+Output File Names:
+HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.fasta
+HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table
+
+/******************************************/
+
+Output File Names:
+HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.pds.wang.pick.taxonomy
+HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.pds.wang.accnos
+HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table
+HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.fasta
 ```
 
 ## <a name="OTU"></a> **OTU Clustering**
@@ -914,7 +1013,53 @@ mothur "#count.groups(shared=HoloInt.opti_mcc.shared)"
 From the `output_script_cluster`:
 
 ```
+It took 1739 secs to find distances for 17637 sequences. 155523066 distances below cutoff 1.
 
+
+Output File Names:
+HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.dist
+
+mothur > cluster(column=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.dist, count=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table, cutoff=0.03)
+
+Using 24 processors.
+
+Clustering HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.dist
+
+
+iter    time    label   num_otus        cutoff  tp      tn      fp      fn      sensitivity     specificity     ppv     npv     fdr     accuracy        mcc     f1score
+
+0.03
+0       0       0.03    17637   0.03    0       1.5462e+08      0       903306  0       1       0       0.994192        1       0.994192        0       0       
+1       1       0.03    6340    0.03    879845  1.54613e+08     6762    23461   0.974028        0.999956        0.992373        0.999848        0.992373        0.999806        0.98306 0.983115        
+2       1       0.03    6075    0.03    884080  1.54612e+08     8059    19226   0.978716        0.999948        0.990967        0.999876        0.990967        0.999825        0.984734        0.984803        
+3       0       0.03    6072    0.03    884320  1.54612e+08     8193    18986   0.978982        0.999947        0.99082 0.999877        0.99082 0.999825        0.984796        0.984865        
+
+
+It took 189 seconds to cluster
+
+Output File Names:
+HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.opti_mcc.list
+HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.opti_mcc.steps
+HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.opti_mcc.sensspec
+
+mothur > cluster.split(fasta=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.fasta, count=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table, taxonomy=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.pds.wang.pick.taxonomy, taxlevel=3, cutoff=0.03, splitmethod=classify)
+[WARNING]: splitmethod is not a valid parameter, ignoring.
+The valid parameters are: file, taxonomy, fasta, name, count, taxlevel, showabund, runsensspec, cluster, timing, processors, cutoff, delta, iters, initialize, precision, method, metric, dist, islist, classic, vsearch, seed, inputdir, and outputdir.
+
+Using 24 processors.
+Splitting the file...
+/******************************************/
+Selecting sequences for group Alphaproteobacteria (1 of 49)
+Number of unique sequences: 1938
+
+Selected 40936 sequences from your count file.
+
+Size of smallest group: 12.
+
+Total seqs: 628961.
+
+Output File Names:
+HoloInt.opti_mcc.count.summary
 ```
 
 ## <a name="Subsample"></a> **Subsampling for sequencing depth**

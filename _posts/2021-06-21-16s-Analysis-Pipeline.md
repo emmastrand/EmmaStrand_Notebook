@@ -556,6 +556,10 @@ Switch to R.md script. Plots of the denoised statistics from the qzv file from a
 
 ![](https://github.com/hputnam/Acclim_Dynamics/blob/master/16S_seq/QIIME2_20220228/denoise.percent.plot.png?raw=true)
 
+Average ~68% of reads kept per sample post denoise step.  
+Input # of seqs: 10,235,020  
+Non-chimeric # of seqs: 7,012,797  
+
 
 ## <a name="Taxonomy"></a> **Taxonomy classification based on imported database**
 
@@ -625,7 +629,7 @@ MANIFEST="metadata/HoloInt_sample-manifest-ES.csv"
 #### TAXONOMY CLASSIFICATION
 
 qiime feature-classifier classify-sklearn \
-  --i-classifier ../metadata/silva-138-99-515-806-nb-classifier.qza \
+  --i-classifier metadata/silva-138-99-515-806-nb-classifier.qza \
   --i-reads rep-seqs.qza \
   --o-classification taxonomy.qza
 
@@ -666,6 +670,15 @@ qiime phylogeny fasttree \
 qiime phylogeny midpoint-root \
   --i-tree unrooted-tree.qza \
   --o-rooted-tree rooted-tree.qza
+```
+
+From `output_script_taxonomy`:
+
+```
+Saved FeatureData[AlignedSequence] to: aligned-rep-seqs.qza
+Saved FeatureData[AlignedSequence] to: masked-aligned-rep-seqs.qza
+Saved Phylogeny[Unrooted] to: unrooted-tree.qza
+Saved Phylogeny[Rooted] to: rooted-tree.qza
 ```
 
 
