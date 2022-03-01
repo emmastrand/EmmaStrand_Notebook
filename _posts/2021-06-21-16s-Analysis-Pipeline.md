@@ -710,18 +710,48 @@ scp -r emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/HoloInt_16s/table.q
 
 ![](https://github.com/hputnam/Acclim_Dynamics/blob/master/16S_seq/QIIME2_20220228/frequency-stats-prefiltering.png?raw=true)
 
-7,012,797 reads that passed denoise.sh. A little under 30k reads per sample. 
+7,012,797 reads that passed denoise.sh. Average is little under 30k reads per sample.
 
 ![](https://github.com/hputnam/Acclim_Dynamics/blob/master/16S_seq/QIIME2_20220228/sample-freq-prefilter-histogram.png?raw=true)
 
 ### Results post-filtering for "Unassigned","Chloroplast","Eukaryota"
 
+Summarize filtered feature table. I ran this in interactive mode after running taxonomy.sh. Include this in the taxonomy script prior to running again.
+
+```
+$ interactive
+$ source /usr/share/Modules/init/sh
+$ module load QIIME2/2021.4
+
+$ qiime feature-table summarize \
+       --i-table table-filtered.qza \
+       --o-visualization table-filtered.qzv \
+       --m-sample-metadata-file metadata/HoloInt_Metadata.txt
+
+### outside of andromeda
+scp -r emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/HoloInt_16s/table-filtered.qzv /Users/emmastrand/MyProjects/Acclim_Dynamics/16S_seq/QIIME2_20220228/table-filtered.qzv
+```
+
+![](https://github.com/hputnam/Acclim_Dynamics/blob/master/16S_seq/QIIME2_20220228/frequency-stats-postfiltering.png?raw=true)
+
+3,267,918 reads that passed filtering step in taxonomy.sh. 13,019 average reads per sample leftover to analyze.
+
+![](https://github.com/hputnam/Acclim_Dynamics/blob/master/16S_seq/QIIME2_20220228/sample-freq-postfilter-histogram.png?raw=true)
+
+63 samples under 1,000 reads. All of these are P.acuta except for 1. They are scattered across timepoints and treatments. But removing a sample drops our sample size down to n=2 since we are starting at n=3. Think about testing temperature only instead? pCO2 as a random effect like tank?
+
+81 samples under 1,500 reads. 2/81 of these samples are M. capitata. Also scattered across time and treatment.
 
 ## <a name="Diversity"></a> **Subsampling and diversity indices**
 
 The various diversity analyses you can do with QIIME2:  
 
 ![qiime2](https://docs.qiime2.org/2021.4/_images/diversity.png)
+
+`--p-sampling-depth 110 \` only removes 2 samples for now.   
+`--p-max-depth 40000 \`. The range of samples is high so I'm starting with 40,000 to see where our rarefraction curve stabilizes.
+
+**To re-run this script, need to delete core-metrics-results folder or rename the original folder.**
 
 ### diversity.sh
 
@@ -760,7 +790,7 @@ MANIFEST="metadata/HoloInt_sample-manifest-ES.csv"
 qiime diversity core-metrics-phylogenetic \
   --i-phylogeny rooted-tree.qza \
   --i-table table-filtered.qza \
-  --p-sampling-depth 95 \
+  --p-sampling-depth 110 \
   --m-metadata-file $METADATA \
   --output-dir core-metrics-results
 
@@ -790,7 +820,7 @@ qiime diversity beta-group-significance \
   qiime diversity alpha-rarefaction \
     --i-table table-filtered.qza \
     --i-phylogeny rooted-tree.qza \
-    --p-max-depth 800 \
+    --p-max-depth 40000 \
     --m-metadata-file $METADATA \
     --o-visualization alpha-rarefaction.qzv
 ```
@@ -816,6 +846,104 @@ qiime composition ancom \
     --m-metadata-column
     --o-visualization
 ```
+
+From `script_error_diversity`:
+
+```
+No contents (no errors found).
+```
+
+From `output_script_diversity`:
+
+```
+Saved FeatureTable[Frequency] to: core-metrics-results/rarefied_table.qza
+Saved SampleData[AlphaDiversity] to: core-metrics-results/faith_pd_vector.qza
+Saved SampleData[AlphaDiversity] to: core-metrics-results/observed_features_vector.qza
+Saved SampleData[AlphaDiversity] to: core-metrics-results/shannon_vector.qza
+Saved SampleData[AlphaDiversity] to: core-metrics-results/evenness_vector.qza
+Saved DistanceMatrix to: core-metrics-results/unweighted_unifrac_distance_matrix.qza
+Saved DistanceMatrix to: core-metrics-results/weighted_unifrac_distance_matrix.qza
+Saved DistanceMatrix to: core-metrics-results/jaccard_distance_matrix.qza
+Saved DistanceMatrix to: core-metrics-results/bray_curtis_distance_matrix.qza
+Saved PCoAResults to: core-metrics-results/unweighted_unifrac_pcoa_results.qza
+Saved PCoAResults to: core-metrics-results/weighted_unifrac_pcoa_results.qza
+Saved PCoAResults to: core-metrics-results/jaccard_pcoa_results.qza
+Saved PCoAResults to: core-metrics-results/bray_curtis_pcoa_results.qza
+Saved Visualization to: core-metrics-results/unweighted_unifrac_emperor.qzv
+Saved Visualization to: core-metrics-results/weighted_unifrac_emperor.qzv
+Saved Visualization to: core-metrics-results/jaccard_emperor.qzv
+Saved Visualization to: core-metrics-results/bray_curtis_emperor.qzv
+Saved Visualization to: core-metrics-results/faith-pd-group-significance.qzv
+Saved Visualization to: core-metrics-results/evenness-group-significance.qzv
+Saved Visualization to: core-metrics-results/unweighted-unifrac-station-significance.qzv
+Saved Visualization to: core-metrics-results/unweighted-unifrac-group-significance.qzv
+Saved Visualization to: alpha-rarefaction.qzv
+```
+
+Copy core-metrics folder outside of andromeda.
+
+```
+### outside of andromeda
+scp -r emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/HoloInt_16s/alpha-rarefaction.qzv /Users/emmastrand/MyProjects/Acclim_Dynamics/16S_seq/QIIME2_20220228/alpha-rarefaction.qzv
+
+scp -r emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/HoloInt_16s/core-metrics-results /Users/emmastrand/MyProjects/Acclim_Dynamics/16S_seq/QIIME2_20220228/core-metrics-results
+```
+
+### Run rarefraction curve again with a different sampling depth cut-off
+
+```
+$ nano rarefraction.sh
+
+#!/bin/bash
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab
+#SBTACH -q putnamlab
+#SBATCH -D /data/putnamlab/estrand/HoloInt_16s
+#SBATCH --error="script_error_rarefraction" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_rarefraction" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function
+module load QIIME2/2021.4
+
+#### METADATA FILES ####
+# File path -- change this to correspond to what script you are running
+cd /data/putnamlab/estrand/HoloInt_16s/
+
+# Metadata path
+METADATA="metadata/HoloInt_Metadata.txt"
+
+# Sample manifest path
+MANIFEST="metadata/HoloInt_sample-manifest-ES.csv"
+
+#########################
+
+qiime diversity alpha-rarefaction \
+    --i-table table-filtered.qza \
+    --i-phylogeny rooted-tree.qza \
+    --p-max-depth 20000 \
+    --m-metadata-file $METADATA \
+    --o-visualization alpha-rarefaction-20000.qzv
+```
+
+```
+scp -r emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/HoloInt_16s/alpha-rarefaction-20000.qzv /Users/emmastrand/MyProjects/Acclim_Dynamics/16S_seq/QIIME2_20220228/alpha-rarefaction-20000.qzv
+```
+
+Sampling depth of 40,000 to capture all samples.
+
+![](https://github.com/hputnam/Acclim_Dynamics/blob/master/16S_seq/QIIME2_20220228/rarefraction-40000.png?raw=true)
+
+Sampling depth of 20,000 to be more digestible.
+
+![](https://github.com/hputnam/Acclim_Dynamics/blob/master/16S_seq/QIIME2_20220228/rarefraction-20000.png?raw=true)
+
+To capture all of the diversity, it looks like we need a sampling depth of closer to 4k.
+
 
 ## <a name="R"></a> **Switch to R to visualize the feature tables**
 
