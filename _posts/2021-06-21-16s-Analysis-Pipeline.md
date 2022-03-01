@@ -675,11 +675,46 @@ qiime phylogeny midpoint-root \
 From `output_script_taxonomy`:
 
 ```
+Saved FeatureData[Taxonomy] to: taxonomy.qza
+Saved FeatureTable[Frequency] to: table-filtered.qza
+Saved Visualization to: taxonomy.qzv
+Saved Visualization to: taxa-bar-plots-filtered.qzv
+Saved Visualization to: tabulated-feature-metadata.qzv
 Saved FeatureData[AlignedSequence] to: aligned-rep-seqs.qza
 Saved FeatureData[AlignedSequence] to: masked-aligned-rep-seqs.qza
 Saved Phylogeny[Unrooted] to: unrooted-tree.qza
 Saved Phylogeny[Rooted] to: rooted-tree.qza
 ```
+
+From `script_error_taxonomy`:
+
+```
+No contents (no errors found).
+```
+
+#### Copy output to desktop for qiime2 view
+
+Outside of andromeda.
+
+```
+scp -r emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/HoloInt_16s/taxa-bar-plots-filtered.qzv /Users/emmastrand/MyProjects/Acclim_Dynamics/16S_seq/QIIME2_20220228/taxa-bar-plots-filtered.qzv
+
+scp -r emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/HoloInt_16s/table-filtered.qza /Users/emmastrand/MyProjects/Acclim_Dynamics/16S_seq/QIIME2_20220228/table-filtered.qza
+
+scp -r emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/HoloInt_16s/tabulated-feature-metadata.qzv /Users/emmastrand/MyProjects/Acclim_Dynamics/16S_seq/QIIME2_20220228/tabulated-feature-metadata.qzv
+
+scp -r emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/HoloInt_16s/table.qzv /Users/emmastrand/MyProjects/Acclim_Dynamics/16S_seq/QIIME2_20220228/table.qzv
+```
+
+### Results pre-filtering for "Unassigned","Chloroplast","Eukaryota"
+
+![](https://github.com/hputnam/Acclim_Dynamics/blob/master/16S_seq/QIIME2_20220228/frequency-stats-prefiltering.png?raw=true)
+
+7,012,797 reads that passed denoise.sh. A little under 30k reads per sample. 
+
+![](https://github.com/hputnam/Acclim_Dynamics/blob/master/16S_seq/QIIME2_20220228/sample-freq-prefilter-histogram.png?raw=true)
+
+### Results post-filtering for "Unassigned","Chloroplast","Eukaryota"
 
 
 ## <a name="Diversity"></a> **Subsampling and diversity indices**
