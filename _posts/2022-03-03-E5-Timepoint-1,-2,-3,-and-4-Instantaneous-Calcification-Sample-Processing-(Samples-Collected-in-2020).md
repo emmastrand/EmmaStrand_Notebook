@@ -30,8 +30,6 @@ Goal: ~6-7 runs a week (8 samples each x 7 = 56 samples a week). We'll start wit
 
 Daily log for notes about each step: [google document link](https://docs.google.com/document/d/18YpBWMWWOQzft9wPQUlEfvq7ivTyKiauDOLJ_f2qbC4/edit). Path is 201906_Post_Award > URI_Titrations > "E5 January, March, September, and November 2020 Instantaneous Calcification Samples Notes".
 
-*Daily log/notes document.*
-
 Contents:  
 - [**September 2020, 51 samples to complete**](#Sept)  
 - [**January 2020, 146 samples to complete**](#Jan)  
