@@ -938,7 +938,7 @@ Sampling depth of 40,000 to capture all samples.
 
 ![](https://github.com/hputnam/Acclim_Dynamics/blob/master/16S_seq/QIIME2_20220228/rarefraction-40000.png?raw=true)
 
-Sampling depth of 20,000 to be more digestible.
+Sampling depth of 20,000 to view the above figure more easily. 
 
 ![](https://github.com/hputnam/Acclim_Dynamics/blob/master/16S_seq/QIIME2_20220228/rarefraction-20000.png?raw=true)
 

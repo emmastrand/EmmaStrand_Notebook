@@ -123,6 +123,6 @@ These are the decisions we include in our pipeline. See QIIME2 documentation for
 ### Things to do differently next time
 
 1. Sequence a negative control sample: this will help in determining how many reads per sample you need to overcome noise in sequencing. Can ask do we see the same taxa in our negative control as our samples? This can help determine if there are taxa that we might want to take out.       
-2. V4 primers may be too broad to capture what we want to with coral tissue work. Look into sequencing V3/V4 regions. We could use human microbiome project V3-4 primers - exclude Archea and Eukarya, are longer primers, and amplify less of the short fragment microsat/mitochondrial sequences.  
+2. V4 primers may be too broad to capture what we want to with coral tissue work. Look into sequencing V3/V4 regions. We could use human microbiome project V3-4 primers - exclude Archea and Eukarya, are longer primers, and amplify less of the short fragment microsat/mitochondrial sequences. Craig recommended the Human Microbiome Project V3V4 region primers (a recent paper from their lab is here https://www.nature.com/articles/s41522-021-00252-1).   
 3. Think about creating a mock community in lab (can also buy from Zymo) to act as a control too. This can give error rate and sequencing performance.  
 4. Think about running consistent sampling (taking the same sample and sequencing multiple times). This could be more important if there is a large project with multiple sequence runs.    
