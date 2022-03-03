@@ -18,7 +18,7 @@ Emma, Pierrick, and Kristen are working together to process the remaining E5 sam
 Schedule:
 
 
-|           	| **Monday ** 	| **Tuesday**                    	| **Wednesday**                               	| **Thursday**                   	| **Friday** 	|
+|           	| **Monday** 	| **Tuesday**                    	| **Wednesday**                               	| **Thursday**                   	| **Friday** 	|
 |-----------	|-------------	|--------------------------------	|---------------------------------------------	|--------------------------------	|------------	|
 | Personnel 	| Pierrick    	| Emma starts (~9 am); Kristen finishes (12:15-3:15p)  	| Kristen starts (~9a); Emma finishes (whenever Run2 is done)               	| Emma starts (~9 am); Kristen finishes (12:15-3:15p)  	| Pierrick   	|
 | Runs      	| 1           	| 2                              	| 1                                           	| 2                              	| 1          	|
