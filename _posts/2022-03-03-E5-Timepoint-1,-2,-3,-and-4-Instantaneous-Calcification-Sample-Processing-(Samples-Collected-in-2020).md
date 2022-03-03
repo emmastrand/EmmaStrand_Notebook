@@ -21,25 +21,40 @@ Schedule:
 |           	| **Monday** 	| **Tuesday**                    	| **Wednesday**                               	| **Thursday**                   	| **Friday** 	|
 |-----------	|-------------	|--------------------------------	|---------------------------------------------	|--------------------------------	|------------	|
 | Personnel 	| Pierrick    	| Emma starts (~9 am); Kristen finishes (12:15-3:15p)  	| Kristen starts (~9a); Emma finishes (whenever Run2 is done)               	| Emma starts (~10 am); Kristen finishes (12:15-4:15p)  	| Pierrick   	|
-| Runs      	| 1           	| 2                              	| 1                                           	| 2                              	| 1          	|
+| E5 sample Runs      	| 1           	| 2                              	| 1                                           	| 2                              	| 1          	|
 | Notes     	|             	|                                	| Tanks downstairs = Run1; E5 samples = Run2  	|                                	|            	|
 
 Kristen, Pierrick, and Emma will do the physical titrations accroding to the schedule above. Emma will do all steps in [Titration Data Entry Process](https://github.com/daniellembecker/DanielleBecker_Lab_Notebook/blob/master/_posts/2021-02-18-E5-January-March-September-November-Calcification-Samples.md#titration-data-entry-process) and analyze data after Kristen and Pierrick push to github.
 
 Goal: ~6-7 runs a week (8 samples each x 7 = 56 samples a week). We'll start with this and see how that schedule works for everyone's time and energy. Then adjust from there if needed.
 
+Daily log for notes about each step: [google document link](https://docs.google.com/document/d/18YpBWMWWOQzft9wPQUlEfvq7ivTyKiauDOLJ_f2qbC4/edit). Path is 201906_Post_Award > URI_Titrations > "E5 January, March, September, and November 2020 Instantaneous Calcification Samples Notes".
+
+*Daily log/notes document.*
+
 Contents:  
-- [**September 2020, 51 samples remaining**](#Sept)  
-- [**January 2020, 146 samples remaining**](#Jan)  
-- [**November 2020, 145 samples remaining**](#Nov)  
+- [**September 2020, 51 samples to complete**](#Sept)  
+- [**January 2020, 146 samples to complete**](#Jan)  
+- [**November 2020, 145 samples to complete**](#Nov)  
 
-## <a name="Sept"></a> **September 2020, 51 samples remaining**
+Remaining as of 2022-03-03:  
+- September 2020: 51/51 samples  
+- January 2020: 146/146 samples  
+- November 2020: 145/145 samples
 
-#### 20220303 Kristen and Emma
+### Folders for this project
+
+Path on desktop computer: Data > E5_Titrations > E5_2020_Calcification_Samples.
+
+Each day make a new folder with the date YEAR-MONTH-DAY (i.e. 20220303).
+
+## <a name="Sept"></a> **September 2020, 51 samples to complete**
+
+#### 20220303 Kristen and Emma (1 run = 8 samples)
 
 
 
 
-## <a name="Jan"></a> **January 2020, 146 samples remaining**
+## <a name="Jan"></a> **January 2020, 146 samples to complete**
 
-## <a name="Nov"></a> **November 2020, 145 samples remaining**
+## <a name="Nov"></a> **November 2020, 145 samples to complete**
