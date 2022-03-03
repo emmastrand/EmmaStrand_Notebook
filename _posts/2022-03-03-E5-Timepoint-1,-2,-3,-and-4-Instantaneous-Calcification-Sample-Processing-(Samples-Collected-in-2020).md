@@ -20,9 +20,11 @@ Schedule:
 
 |           	| **Monday** 	| **Tuesday**                    	| **Wednesday**                               	| **Thursday**                   	| **Friday** 	|
 |-----------	|-------------	|--------------------------------	|---------------------------------------------	|--------------------------------	|------------	|
-| Personnel 	| Pierrick    	| Emma starts (~9 am); Kristen finishes (12:15-3:15p)  	| Kristen starts (~9a); Emma finishes (whenever Run2 is done)               	| Emma starts (~9 am); Kristen finishes (12:15-3:15p)  	| Pierrick   	|
+| Personnel 	| Pierrick    	| Emma starts (~9 am); Kristen finishes (12:15-3:15p)  	| Kristen starts (~9a); Emma finishes (whenever Run2 is done)               	| Emma starts (~10 am); Kristen finishes (12:15-4:15p)  	| Pierrick   	|
 | Runs      	| 1           	| 2                              	| 1                                           	| 2                              	| 1          	|
 | Notes     	|             	|                                	| Tanks downstairs = Run1; E5 samples = Run2  	|                                	|            	|
+
+Kristen, Pierrick, and Emma will do the physical titrations accroding to the schedule above. Emma will do all steps in [Titration Data Entry Process](https://github.com/daniellembecker/DanielleBecker_Lab_Notebook/blob/master/_posts/2021-02-18-E5-January-March-September-November-Calcification-Samples.md#titration-data-entry-process) and analyze data after Kristen and Pierrick push to github.
 
 Contents:  
 - [**September 2020, 51 samples remaining**](#Sept)  
