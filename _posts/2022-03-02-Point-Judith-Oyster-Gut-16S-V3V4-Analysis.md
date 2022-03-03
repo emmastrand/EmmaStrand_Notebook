@@ -394,7 +394,7 @@ Output from R script to visualize the above denoising statistics. R script: `den
 ![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_gutv4v5/QIIME2/denoise.reads.plot.png?raw=true)
 
 
-#### Reverse 230 Forward 240  
+### Reverse 230 Forward 240  
 
 ![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_gutv4v5/QIIME2/table-230-summary.png?raw=true)
 
@@ -404,7 +404,7 @@ Sample frequency
 
 CSV of the above data: /Users/emmastrand/MyProjects/Cvir_Nut_Int/output/16S_gutv4v5/QIIME2/sample-frequency-detail-230.csv
 
-#### Reverse 210 Forward 240
+### Reverse 210 Forward 240
 
 ![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_gutv4v5/QIIME2/table-210-summary.png?raw=true)
 
