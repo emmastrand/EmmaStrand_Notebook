@@ -319,6 +319,58 @@ Both parameter trials will have:
 - `#SBATCH --error="script_error_denoise"` with script name  
 - `#SBATCH --output="output_script_denoise"` with script name  
 
+Output from `output_script_denoise_240-210`:
+
+```
+R version 4.0.3 (2020-10-10)
+DADA2: 1.18.0 / Rcpp: 1.0.6 / RcppParallel: 5.1.2
+1) Filtering .....................................
+2) Learning Error Rates
+212901840 total bases in 1120536 reads from 12 samples will be used for learning the error rates.
+177044688 total bases in 1120536 reads from 12 samples will be used for learning the error rates.
+3) Denoise samples .....................................
+.....................................
+4) Remove chimeras (method = consensus)
+6) Write output
+Running external command line application(s). This may print messages to stdout and/or stderr.
+The command(s) being run are below. These commands cannot be manually re-run as they will depend on temporary files that no longer exist.
+
+Command: run_dada_paired.R /tmp/tmpy4kagp9p/forward /tmp/tmpy4kagp9p/reverse /tmp/tmpy4kagp9p/output.tsv.biom /tmp/tmpy4kagp9p/track.tsv /tmp/tmpy4kagp9p/filt_f /tmp/tmpy4kagp9p/filt_r 240 210 50 52 2.0 2.0 2 12 independent consensus 1.0 20 1000000
+
+Saved FeatureTable[Frequency] to: table-210.qza
+Saved FeatureData[Sequence] to: rep-seqs-210.qza
+Saved SampleData[DADA2Stats] to: denoising-stats-210.qza
+Saved Visualization to: denoising-stats-210.qzv
+Saved Visualization to: table-210.qzv
+Saved Visualization to: rep-seqs-210.qzv
+```
+
+Output from `output_script_denoise_240-230`:
+
+```
+R version 4.0.3 (2020-10-10)
+DADA2: 1.18.0 / Rcpp: 1.0.6 / RcppParallel: 5.1.2
+1) Filtering .....................................
+2) Learning Error Rates
+191555530 total bases in 1008187 reads from 14 samples will be used for learning the error rates.
+179457286 total bases in 1008187 reads from 14 samples will be used for learning the error rates.
+3) Denoise samples .....................................
+.....................................
+4) Remove chimeras (method = consensus)
+6) Write output
+Running external command line application(s). This may print messages to stdout and/or stderr.
+The command(s) being run are below. These commands cannot be manually re-run as they will depend on temporary files that no longer exist.
+
+Command: run_dada_paired.R /tmp/tmpwmrc9ivc/forward /tmp/tmpwmrc9ivc/reverse /tmp/tmpwmrc9ivc/output.tsv.biom /tmp/tmpwmrc9ivc/track.tsv /tmp/tmpwmrc9ivc/filt_f /tmp/tmpwmrc9ivc/filt_r 240 230 50 52 2.0 2.0 2 12 independent consensus 1.0 20 1000000
+
+Saved FeatureTable[Frequency] to: table-230.qza
+Saved FeatureData[Sequence] to: rep-seqs-230.qza
+Saved SampleData[DADA2Stats] to: denoising-stats-230.qza
+Saved Visualization to: denoising-stats-230.qzv
+Saved Visualization to: table-230.qzv
+Saved Visualization to: rep-seqs-230.qzv
+```
+
 copy denoise output to desktop.  
 
 ```
@@ -327,11 +379,15 @@ scp emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/PointJudithData_16S/de
 scp emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/PointJudithData_16S/denoise_trials/denoising-stats-230.qzv /Users/emmastrand/MyProjects/Cvir_Nut_Int/output/16S_gutv4v5/QIIME2/
 ```
 
+Put the above files into QIIME2 view and download as tsv files.
+
 Output from R script to visualize the above denoising statistics. R script: `denoise-stats.R` is in our Cvir repo.
 
 **Results from the trials above:**
 
-*Insert figures here.*
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_gutv4v5/QIIME2/denoise.percent.plot.png?raw=true)
+
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_gutv4v5/QIIME2/denoise.reads.plot.png?raw=true)
 
 ### denoise.sh
 
