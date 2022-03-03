@@ -34,6 +34,7 @@ Contents:
 - [**September 2020, 51 samples to complete**](#Sept)  
 - [**January 2020, 146 samples to complete**](#Jan)  
 - [**November 2020, 145 samples to complete**](#Nov)  
+- [**Equipment locations**](#Equip)  
 
 Remaining as of 2022-03-03:  
 - September 2020: 51/51 samples  
@@ -56,3 +57,12 @@ Each day make a new folder with the date YEAR-MONTH-DAY (i.e. 20220303).
 ## <a name="Jan"></a> **January 2020, 146 samples to complete**
 
 ## <a name="Nov"></a> **November 2020, 145 samples to complete**
+
+## <a name="Equip"></a> **Equipment locations**
+
+Lab inventory link google sheet: [here](https://docs.google.com/spreadsheets/d/1_0Qe9gYnuqSAA0Lr24fjMHW3b2HDtKML87l29piD6uM/edit#gid=0).
+
+More 10 mL serological pipettes live on BS11.
+
+BS10: titrator supplies, buffers, pH    
+BS11: ziplock bags and plasftic containers, 10 mL serological pipette tips
