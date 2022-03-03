@@ -377,6 +377,10 @@ copy denoise output to desktop.
 scp emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/PointJudithData_16S/denoise_trials/denoising-stats-210.qzv /Users/emmastrand/MyProjects/Cvir_Nut_Int/output/16S_gutv4v5/QIIME2/
 
 scp emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/PointJudithData_16S/denoise_trials/denoising-stats-230.qzv /Users/emmastrand/MyProjects/Cvir_Nut_Int/output/16S_gutv4v5/QIIME2/
+
+scp emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/PointJudithData_16S/denoise_trials/table-230.qzv /Users/emmastrand/MyProjects/Cvir_Nut_Int/output/16S_gutv4v5/QIIME2/
+
+scp emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/PointJudithData_16S/denoise_trials/table-210.qzv /Users/emmastrand/MyProjects/Cvir_Nut_Int/output/16S_gutv4v5/QIIME2/
 ```
 
 Put the above files into QIIME2 view and download as tsv files.
@@ -388,6 +392,27 @@ Output from R script to visualize the above denoising statistics. R script: `den
 ![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_gutv4v5/QIIME2/denoise.percent.plot.png?raw=true)
 
 ![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_gutv4v5/QIIME2/denoise.reads.plot.png?raw=true)
+
+
+**Reverse 230 Forward 240**  
+
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_gutv4v5/QIIME2/table-230-summary.png?raw=true)
+
+Sample frequency
+
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_gutv4v5/QIIME2/F240-R230-denoise-histogram.png?raw=true)
+
+CSV of the above data: /Users/emmastrand/MyProjects/Cvir_Nut_Int/output/16S_gutv4v5/QIIME2/sample-frequency-detail-230.csv
+
+**Reverse 210 Forward 240**
+
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_gutv4v5/QIIME2/table-210-summary.png?raw=true)
+
+Sample frequency
+
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_gutv4v5/QIIME2/F240-R210-denoise-histogram.png?raw=true)
+
+CSV of the above data: /Users/emmastrand/MyProjects/Cvir_Nut_Int/output/16S_gutv4v5/QIIME2/sample-frequency-detail-210.csv
 
 ### denoise.sh
 
