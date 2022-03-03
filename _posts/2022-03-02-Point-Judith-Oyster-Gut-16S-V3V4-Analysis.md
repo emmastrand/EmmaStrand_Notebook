@@ -298,15 +298,26 @@ Description from QIIME2 documentation:
 Full DADA2 options from qiime2 on this page: [here](https://docs.qiime2.org/2021.4/plugins/available/dada2/denoise-paired/)
 
 `p-n-threads` choice: 20 because this will give us multi-thread processing capability to speed up the qiime2 pipeline but won't take all available threads on the putnam lab node.   
-`--p-trim-left-r 52 --p-trim-left-f 50 \`: 50 bp forward primer and 52 for reverse.
+
+I tried the following denoise parameters:
+- With 52/50 primer length; F: 240 R: 230 (`denoise-230.sh`)  
+- With 52/50 primer length; F: 240 R: 210 (`denoise-210.sh`)  
+- Without 52/50 primer length; no truncating (`denoise-no.sh`)  
+- Without 52/50 primer length; F: 240 
+
+#### denoise paramter trials
+
+Output from these trials in this directory: `PointJudithData_16S/denoise_trials`.
+
+#### no trimming step because we don't have primers?
+
+Originally I had `--p-trim-left-r 52 --p-trim-left-f 50 \`: 50 bp forward primer and 52 for reverse, but when I use the command `grep -c "TCGTCGGCAGCGTCAGATGTGTATAAGAGACAGCCAGCAGCYGCGGTAAN" RS10_S7_L001_R1_001.fastq` the result is 0. Same thing when I use the reverse primer sequence.
+
+### with primer sequence
 
 I want to try the following cut-offs based on the seq quality histogram:  
 - F: 240 R: 230  
 - F: 240 R: 210
-
-#### denoise paramter trials
-
-Output from these trials in this directory: `PointJudithData_16S/denoise_trials`
 
 `denoise-230.sh` will look indentical to `denoise.sh` except:  
 -  `--p-trunc-len-r 230 --p-trunc-len-f 240 \`  
@@ -394,7 +405,7 @@ Output from R script to visualize the above denoising statistics. R script: `den
 ![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_gutv4v5/QIIME2/denoise.reads.plot.png?raw=true)
 
 
-### Reverse 230 Forward 240  
+#### Reverse 230 Forward 240  
 
 ![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_gutv4v5/QIIME2/table-230-summary.png?raw=true)
 
@@ -404,7 +415,7 @@ Sample frequency
 
 CSV of the above data: /Users/emmastrand/MyProjects/Cvir_Nut_Int/output/16S_gutv4v5/QIIME2/sample-frequency-detail-230.csv
 
-### Reverse 210 Forward 240
+#### Reverse 210 Forward 240
 
 ![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_gutv4v5/QIIME2/table-210-summary.png?raw=true)
 
@@ -413,6 +424,14 @@ Sample frequency
 ![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_gutv4v5/QIIME2/F240-R210-denoise-histogram.png?raw=true)
 
 CSV of the above data: /Users/emmastrand/MyProjects/Cvir_Nut_Int/output/16S_gutv4v5/QIIME2/sample-frequency-detail-210.csv
+
+
+### without primer sequence
+
+
+
+
+
 
 ### denoise.sh
 

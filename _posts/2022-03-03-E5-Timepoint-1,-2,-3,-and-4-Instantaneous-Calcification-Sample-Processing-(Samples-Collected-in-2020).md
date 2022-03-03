@@ -17,10 +17,9 @@ Emma, Pierrick, and Kristen are working together to process the remaining E5 sam
 
 Schedule:
 
-
 |           	| **Monday** 	| **Tuesday**                    	| **Wednesday**                               	| **Thursday**                   	| **Friday** 	|
 |-----------	|-------------	|--------------------------------	|---------------------------------------------	|--------------------------------	|------------	|
-| Personnel 	| Pierrick    	| Emma starts (~9 am); Kristen finishes (12:15-3:15p)  	| Kristen starts (~9a); Emma finishes (whenever Run2 is done)               	| Emma starts (~10 am); Kristen finishes (12:15-4:15p)  	| Pierrick   	|
+| Personnel 	| Pierrick    	| Emma starts (~9 am); Kristen finishes (12:15-3:15p)  	| Kristen starts (~9a-1p); Emma finishes (whenever Run2 is done)               	| Emma starts (~10 am); Kristen finishes (12:15-4:15p)  	| Pierrick   	|
 | E5 sample Runs      	| 1           	| 2                              	| 1                                           	| 2                              	| 1          	|
 | Notes     	|             	|                                	| Tanks downstairs = Run1; E5 samples = Run2  	|                                	|            	|
 
@@ -37,7 +36,7 @@ Contents:
 - [**Equipment locations**](#Equip)  
 
 Remaining as of 2022-03-03:  
-- September 2020: 51/51 samples  
+- September 2020: 43/51 samples  
 - January 2020: 146/146 samples  
 - November 2020: 145/145 samples
 
@@ -49,8 +48,7 @@ Each day make a new folder with the date YEAR-MONTH-DAY (i.e. 20220303).
 
 ## <a name="Sept"></a> **September 2020, 51 samples to complete**
 
-#### 20220303 Kristen and Emma (1 run = 8 samples)
-
+20220303 Kristen and Emma (1 run = 8 samples)
 
 
 
@@ -66,3 +64,5 @@ More 10 mL serological pipettes live on BS11.
 
 BS10: titrator supplies, buffers, pH    
 BS11: ziplock bags and plasftic containers, 10 mL serological pipette tips
+
+Junk seawater can be taken from a blue tank downstairs in the aquarium room.
