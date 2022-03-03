@@ -40,11 +40,19 @@ Remaining as of 2022-03-03:
 - January 2020: 146/146 samples  
 - November 2020: 145/145 samples
 
+We'll do time points separately and do initials and blanks in the same titration run.
+
 ### Folders for this project
 
 Path on desktop computer: Data > E5_Titrations > E5_2020_Calcification_Samples.
 
 Each day make a new folder with the date YEAR-MONTH-DAY (i.e. 20220303).
+
+### Notation for sample ID
+
+Match this example sample ID format:  
+- ACR_225_20200914_RUN_7    
+- INITIAL_1_20200915_RUN_10
 
 ## <a name="Sept"></a> **September 2020, 51 samples to complete**
 
