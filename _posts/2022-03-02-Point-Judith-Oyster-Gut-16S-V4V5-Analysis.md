@@ -395,15 +395,15 @@ Output from R script to visualize the above denoising statistics. R script: `den
 
 ![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_gutv4v5/QIIME2/denoise.reads.plot.png?raw=true)
 
-|                                                  	| Metric            	|                    	|                 	| Frequency         	|              	|                  	|              	|                   	|                	|
-|--------------------------------------------------	|-------------------	|--------------------	|-----------------	|-------------------	|--------------	|------------------	|--------------	|-------------------	|----------------	|
-| Denoise parameter                                	| Number of samples 	| Number of features 	| Total frequency 	| Minimum frequency 	| 1st quartile 	| Median frequency 	| 3rd quartile 	| Maximum frequency 	| Mean frequency 	|
-| Reverse 250 Forward 250 no primer trimming       	| 37                	| 177                	| 32,074          	| 39                	| 271          	| 659              	| 915          	| 4,405             	| 886.86         	|
-| Reverse 210 Forward 250 no primer trimming       	| 37                	| 283                	| 46,111          	| 42                	| 500          	| 794              	| 1,608        	| 6,507             	| 1,246.24       	|
-| Reverse 210 Forward 240; primer trim 20 both F/R 	| 37                	| 291                	| 63,040          	| 59                	| 695          	| 1,292.00         	| 2,190.00     	| 8,574.00          	| 1,703.78       	|
-| Reverse 230 Forward 240 50/52 bp trim            	| 37                	| 272                	| 63,868          	| 59                	| 706          	| 1,325            	| 2,242        	| 8,385             	| 1,726.16       	|
-| Reverse 210 Forward 240 50/52 bp trim            	| 37                	| 320                	| 73,433          	| 60                	| 819          	| 1,358            	| 2,417        	| 9,380             	| 1,984          	|
-| Reverse 210 Forward 220; primer trim 20 both F/R 	| 37                	| 329                	| 89,490          	| 87                	| 928          	| 1,751            	| 2,674        	| 11,719            	| 2,418.65       	|
+|                                                      	| Metric            	|                    	|                 	| Frequency         	|              	|                  	|              	|                   	|                	|
+|------------------------------------------------------	|-------------------	|--------------------	|-----------------	|-------------------	|--------------	|------------------	|--------------	|-------------------	|----------------	|
+| Denoise parameter                                    	| Number of samples 	| Number of features 	| Total frequency 	| Minimum frequency 	| 1st quartile 	| Median frequency 	| 3rd quartile 	| Maximum frequency 	| Mean frequency 	|
+| Reverse 250 Forward 250 no primer trimming           	| 37                	| 177                	| 32,074          	| 39                	| 271          	| 659              	| 915          	| 4,405             	| 886.86         	|
+| Reverse 210 Forward 250 no primer trimming           	| 37                	| 283                	| 46,111          	| 42                	| 500          	| 794              	| 1,608        	| 6,507             	| 1,246.24       	|
+| Reverse 210 Forward 240; primer trim 20 both F/R     	| 37                	| 291                	| 63,040          	| 59                	| 695          	| 1,292.00         	| 2,190.00     	| 8,574.00          	| 1,703.78       	|
+| Reverse 230 Forward 240 50/52 bp trim                	| 37                	| 272                	| 63,868          	| 59                	| 706          	| 1,325            	| 2,242        	| 8,385             	| 1,726.16       	|
+| Reverse 210 Forward 240 50/52 bp trim                	| 37                	| 320                	| 73,433          	| 60                	| 819          	| 1,358            	| 2,417        	| 9,380             	| 1,984          	|
+| **Reverse 210 Forward 220; primer trim 20 both F/R** 	| **37**            	| **329**            	| **89,490**      	| **87**            	| **928**      	| **1,751**        	| **2,674**    	| **11,719**        	| **2,418.65**   	|
 
 #### Reverse 230 Forward 240  
 
