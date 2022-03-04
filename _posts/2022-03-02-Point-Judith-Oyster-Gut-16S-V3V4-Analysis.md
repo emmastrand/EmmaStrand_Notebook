@@ -303,7 +303,7 @@ I tried the following denoise parameters:
 - With 52/50 primer length; F: 240 R: 230 (`denoise-230.sh`)  
 - With 52/50 primer length; F: 240 R: 210 (`denoise-210.sh`)  
 - Without 52/50 primer length; no truncating (`denoise-no.sh`)  
-- Without 52/50 primer length; F: 240 
+- Without 52/50 primer length; F: 240 R: 210 (`denoise-no-210.sh`)
 
 #### denoise paramter trials
 
@@ -428,10 +428,135 @@ CSV of the above data: /Users/emmastrand/MyProjects/Cvir_Nut_Int/output/16S_gutv
 
 ### without primer sequence
 
+I want to try the following cut-offs based on the seq quality histogram:  
+- F: 250 R: 210  
+- F: 250 R: 250 (no trimming the sequences)
+
+Took out `--p-trim-left-r 52 --p-trim-left-f 50 \`
+
+`denoise-no210.sh` will look indentical to `denoise.sh` except:  
+-  `--p-trunc-len-r 210 --p-trunc-len-f 250 \`  
+
+`denoise-210.sh` will look indentical to `denoise.sh` except:  
+-  `--p-trunc-len-r 210 --p-trunc-len-f 240 \`
+
+Both parameter trials will have:  
+- `#SBATCH -D /data/putnamlab/estrand/PointJudithData_16S/denoise_trials`  
+- `#SBATCH --error="script_error_denoise"` with script name  
+- `#SBATCH --output="output_script_denoise"` with script name   
+- Change paths for: `../PJ-paired-end-sequences.qza`, `../metadata`
+
+Ouput from `output_script_denoise-no`:
+
+```
+R version 4.0.3 (2020-10-10)
+DADA2: 1.18.0 / Rcpp: 1.0.6 / RcppParallel: 5.1.2
+1) Filtering .....................................
+2) Learning Error Rates
+252829250 total bases in 1011317 reads from 19 samples will be used for learning the error rates.
+252829250 total bases in 1011317 reads from 19 samples will be used for learning the error rates.
+3) Denoise samples .....................................
+.....................................
+4) Remove chimeras (method = consensus)
+6) Write output
+Running external command line application(s). This may print messages to stdout and/or stderr.
+The command(s) being run are below. These commands cannot be manually re-run as they will depend on temporary files that no longer exist.
+
+Command: run_dada_paired.R /tmp/tmpow4h1_vr/forward /tmp/tmpow4h1_vr/reverse /tmp/tmpow4h1_vr/output.tsv.biom /tmp/tmpow4h1_vr/track.tsv /tmp/tmpow4h1_vr/filt_f /tmp/tmpow4h1_vr/filt_r 250 250 0 0 2.0 2.0 2 12 independent consensus 1.0 20 1000000
+
+Saved FeatureTable[Frequency] to: table-no.qza
+Saved FeatureData[Sequence] to: rep-seqs-no.qza
+Saved SampleData[DADA2Stats] to: denoising-stats-no.qza
+Saved Visualization to: denoising-stats-no.qzv
+Saved Visualization to: table-no.qzv
+Saved Visualization to: rep-seqs-no.qzv
+```
+
+Ouput from `output_script_denoise-no`:
+
+```
+R version 4.0.3 (2020-10-10)
+DADA2: 1.18.0 / Rcpp: 1.0.6 / RcppParallel: 5.1.2
+1) Filtering .....................................
+2) Learning Error Rates
+262825750 total bases in 1051303 reads from 14 samples will be used for learning the error rates.
+220773630 total bases in 1051303 reads from 14 samples will be used for learning the error rates.
+3) Denoise samples .....................................
+.....................................
+4) Remove chimeras (method = consensus)
+6) Write output
+Running external command line application(s). This may print messages to stdout and/or stderr.
+The command(s) being run are below. These commands cannot be manually re-run as they will depend on temporary files that no longer exist.
+
+Command: run_dada_paired.R /tmp/tmp65dv6jj2/forward /tmp/tmp65dv6jj2/reverse /tmp/tmp65dv6jj2/output.tsv.biom /tmp/tmp65dv6jj2/track.tsv /tmp/tmp65dv6jj2/filt_f /tmp/tmp65dv6jj2/filt_r 250 210 0 0 2.0 2.0 2 12 independent consensus 1.0 20 1000000
+
+Saved FeatureTable[Frequency] to: table-no210.qza
+Saved FeatureData[Sequence] to: rep-seqs-no210.qza
+Saved SampleData[DADA2Stats] to: denoising-stats-no210.qza
+Saved Visualization to: denoising-stats-no210.qzv
+Saved Visualization to: table-no210.qzv
+Saved Visualization to: rep-seqs-no210.qzv
+```
+
+copy denoise output to desktop.  
+
+```
+scp emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/PointJudithData_16S/denoise_trials/denoising-stats-no210.qzv /Users/emmastrand/MyProjects/Cvir_Nut_Int/output/16S_gutv4v5/QIIME2/
+
+scp emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/PointJudithData_16S/denoise_trials/denoising-stats-no.qzv /Users/emmastrand/MyProjects/Cvir_Nut_Int/output/16S_gutv4v5/QIIME2/
+
+scp emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/PointJudithData_16S/denoise_trials/table-no210.qzv /Users/emmastrand/MyProjects/Cvir_Nut_Int/output/16S_gutv4v5/QIIME2/
+
+scp emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/PointJudithData_16S/denoise_trials/table-no.qzv /Users/emmastrand/MyProjects/Cvir_Nut_Int/output/16S_gutv4v5/QIIME2/
+```
+
+**Results from the trials above:**
+
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_gutv4v5/QIIME2/denoise.reads.plot.noprimers.png?raw=true)
+
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_gutv4v5/QIIME2/denoise.percent.plot.noprimers.png?raw=true)
 
 
+#### Reverse 210 Forward 250 no primer trimming
+
+| Metric             	| Sample 	|
+|--------------------	|--------	|
+| Number of samples  	| 37     	|
+| Number of features 	| 283    	|
+| Total frequency    	| 46,111 	|
+
+| Frequency         	|                     	|
+|-------------------	|---------------------	|
+| Minimum frequency 	| 42.0                	|
+| 1st quartile      	| 500.0               	|
+| Median frequency  	| 794.0               	|
+| 3rd quartile      	| 1,608.0             	|
+| Maximum frequency 	| 6,507.0             	|
+| Mean frequency    	| 1,246.2432432432433 	|
+
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_gutv4v5/QIIME2/F250-R210-no-postdenoise-histogram.png?raw=true)
+
+#### Reverse 250 Forward 250 no primer trimming
+
+| Metric             	| Sample 	|
+|--------------------	|--------	|
+| Number of samples  	| 37     	|
+| Number of features 	| 177    	|
+| Total frequency    	| 32,074 	|
+
+|                   	| Frequency         	|
+|-------------------	|-------------------	|
+| Minimum frequency 	| 39.0              	|
+| 1st quartile      	| 271.0             	|
+| Median frequency  	| 659.0             	|
+| 3rd quartile      	| 915.0             	|
+| Maximum frequency 	| 4,405.0           	|
+| Mean frequency    	| 866.8648648648649 	|
+
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_gutv4v5/QIIME2/F250-R250-no-postdenoise-histogram.png?raw=true)
 
 
+**Truncating definitely helps increase quality. Reverse at 210 seems to do well and I can try a couple different forward read cut-offs.**
 
 ### denoise.sh
 
@@ -445,9 +570,9 @@ CSV of the above data: /Users/emmastrand/MyProjects/Cvir_Nut_Int/output/16S_gutv
 #SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
 #SBATCH --account=putnamlab
 #SBTACH -q putnamlab
-#SBATCH -D /data/putnamlab/estrand/PointJudithData_16S
-#SBATCH --error="script_error_denoise" #if your job fails, the error report will be put in this file
-#SBATCH --output="output_script_denoise" #once your job is completed, any final job report comments will be put in this file
+#SBATCH -D /data/putnamlab/estrand/PointJudithData_16S/denoise_trials
+#SBATCH --error="script_error_denoise-no" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_denoise-no" #once your job is completed, any final job report comments will be put in this file
 
 source /usr/share/Modules/init/sh # load the module function
 module load QIIME2/2021.4
@@ -458,34 +583,33 @@ module load QIIME2/2021.4
 PWD="/data/putnamlab/estrand/PointJudithData_16S/gut_v4v5"
 
 # Metadata path
-METADATA="metadata/PJ_GutSamples_Metadata.txt"
+METADATA="../metadata/PJ_GutSamples_Metadata.txt"
 
 # Sample manifest path
-MANIFEST="metadata/sample-manifest.csv"
+MANIFEST="../metadata/sample-manifest.csv"
 
 #########################
 
 #### DENOISING WITH DADA2
 
-qiime dada2 denoise-paired --verbose --i-demultiplexed-seqs PJ-paired-end-sequences.qza \
-  --p-trunc-len-r X --p-trunc-len-f X \
-  --p-trim-left-r 52 --p-trim-left-f 50 \
-  --o-table table.qza \
-  --o-representative-sequences rep-seqs.qza \
-  --o-denoising-stats denoising-stats.qza \
+qiime dada2 denoise-paired --verbose --i-demultiplexed-seqs ../PJ-paired-end-sequences.qza \
+  --p-trunc-len-r 250 --p-trunc-len-f 250 \
+  --o-table table-no210.qza \
+  --o-representative-sequences rep-seqs-no.qza \
+  --o-denoising-stats denoising-stats-no.qza \
   --p-n-threads 20
 
 #### CLUSTERING
 
 # Summarize feature table and sequences
 qiime metadata tabulate \
-  --m-input-file denoising-stats.qza \
-  --o-visualization denoising-stats.qzv
+  --m-input-file denoising-stats-no.qza \
+  --o-visualization denoising-stats-no.qzv
 qiime feature-table summarize \
-  --i-table table.qza \
-  --o-visualization table.qzv \
+  --i-table table-no.qza \
+  --o-visualization table-no.qzv \
   --m-sample-metadata-file $METADATA
 qiime feature-table tabulate-seqs \
-  --i-data rep-seqs.qza \
-  --o-visualization rep-seqs.qzv
+  --i-data rep-seqs-no.qza \
+  --o-visualization rep-seqs-no.qzv
 ```
