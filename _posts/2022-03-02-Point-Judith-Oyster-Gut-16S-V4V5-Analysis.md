@@ -369,15 +369,20 @@ With minimal trimming at the front end of reads:
 copy denoise output to desktop.  
 
 ```
-scp emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/PointJudithData_16S/denoise_trials/denoising-stats-no210.qzv /Users/emmastrand/MyProjects/Cvir_Nut_Int/output/16S_gutv4v5/QIIME2/
+scp emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/PointJudithData_16S/denoise_trials/table-240-210.qzv /Users/emmastrand/MyProjects/Cvir_Nut_Int/output/16S_gutv4v5/QIIME2/
 
+denoising-stats-220-210.qzv
+denoising-stats-240-210.qzv
+denoising-stats-no210.qzv
 denoising-stats-210.qzv
 denoising-stats-230.qzv
+denoising-stats-no.qzv
 table-230.qzv
 table-210.qzv
-denoising-stats-no.qzv
 table-no210.qzv
 table-no.qzv
+table-220-210.qzv
+table-240-210.qzv
 ```
 
 Put the above files into QIIME2 view and download as tsv files.
@@ -448,6 +453,44 @@ CSV of the above data: /Users/emmastrand/MyProjects/Cvir_Nut_Int/output/16S_gutv
 | Mean frequency    	| 866.8648648648649 	|
 
 ![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_gutv4v5/QIIME2/F250-R250-no-postdenoise-histogram.png?raw=true)
+
+#### Reverse 210 Forward 220; primer trim 20 both F/R
+
+| Metric             	| Sample 	|
+|--------------------	|--------	|
+| Number of samples  	| 37     	|
+| Number of features 	| 329    	|
+| Total frequency    	| 89,490 	|
+
+| Frequency         	|                     	|
+|-------------------	|---------------------	|
+| Minimum frequency 	| 87.0                	|
+| 1st quartile      	| 928.0               	|
+| Median frequency  	| 1,751.0             	|
+| 3rd quartile      	| 2,674.0             	|
+| Maximum frequency 	| 11,719.0            	|
+| Mean frequency    	| 2,418.6486486486488 	|
+
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_gutv4v5/QIIME2/F-220-R-210-20bp-trim-histogram.png?raw=true)
+
+#### Reverse 210 Forward 240; primer trim 20 both F/R
+
+| Metric             	| Sample 	|
+|--------------------	|--------	|
+| Number of samples  	| 37     	|
+| Number of features 	| 291    	|
+| Total frequency    	| 63,040 	|
+
+| Frequency         	|                     	|
+|-------------------	|---------------------	|
+| Minimum frequency 	| 59.0                	|
+| 1st quartile      	| 695.0               	|
+| Median frequency  	| 1,292.0             	|
+| 3rd quartile      	| 2,190.0             	|
+| Maximum frequency 	| 8,574.0             	|
+| Mean frequency    	| 1,703.7837837837837 	|
+
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_gutv4v5/QIIME2/F-240-R-210-20bp-trim-histogram.png?raw=true)
 
 
 ### denoise.sh
