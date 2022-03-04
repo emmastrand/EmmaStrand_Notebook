@@ -395,10 +395,17 @@ Output from R script to visualize the above denoising statistics. R script: `den
 
 ![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_gutv4v5/QIIME2/denoise.reads.plot.png?raw=true)
 
+|                                                  	| Metric            	|                    	|                 	| Frequency         	|              	|                  	|              	|                   	|                	|
+|--------------------------------------------------	|-------------------	|--------------------	|-----------------	|-------------------	|--------------	|------------------	|--------------	|-------------------	|----------------	|
+| Denoise parameter                                	| Number of samples 	| Number of features 	| Total frequency 	| Minimum frequency 	| 1st quartile 	| Median frequency 	| 3rd quartile 	| Maximum frequency 	| Mean frequency 	|
+| Reverse 250 Forward 250 no primer trimming       	| 37                	| 177                	| 32,074          	| 39                	| 271          	| 659              	| 915          	| 4,405             	| 886.86         	|
+| Reverse 210 Forward 250 no primer trimming       	| 37                	| 283                	| 46,111          	| 42                	| 500          	| 794              	| 1,608        	| 6,507             	| 1,246.24       	|
+| Reverse 210 Forward 240; primer trim 20 both F/R 	| 37                	| 291                	| 63,040          	| 59                	| 695          	| 1,292.00         	| 2,190.00     	| 8,574.00          	| 1,703.78       	|
+| Reverse 230 Forward 240 50/52 bp trim            	| 37                	| 272                	| 63,868          	| 59                	| 706          	| 1,325            	| 2,242        	| 8,385             	| 1,726.16       	|
+| Reverse 210 Forward 240 50/52 bp trim            	| 37                	| 320                	| 73,433          	| 60                	| 819          	| 1,358            	| 2,417        	| 9,380             	| 1,984          	|
+| Reverse 210 Forward 220; primer trim 20 both F/R 	| 37                	| 329                	| 89,490          	| 87                	| 928          	| 1,751            	| 2,674        	| 11,719            	| 2,418.65       	|
 
 #### Reverse 230 Forward 240  
-
-![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_gutv4v5/QIIME2/table-230-summary.png?raw=true)
 
 Sample frequency
 
@@ -408,8 +415,6 @@ CSV of the above data: /Users/emmastrand/MyProjects/Cvir_Nut_Int/output/16S_gutv
 
 #### Reverse 210 Forward 240
 
-![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_gutv4v5/QIIME2/table-210-summary.png?raw=true)
-
 Sample frequency
 
 ![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_gutv4v5/QIIME2/F240-R210-denoise-histogram.png?raw=true)
@@ -418,77 +423,17 @@ CSV of the above data: /Users/emmastrand/MyProjects/Cvir_Nut_Int/output/16S_gutv
 
 #### Reverse 210 Forward 250 no primer trimming
 
-| Metric             	| Sample 	|
-|--------------------	|--------	|
-| Number of samples  	| 37     	|
-| Number of features 	| 283    	|
-| Total frequency    	| 46,111 	|
-
-| Frequency         	|                     	|
-|-------------------	|---------------------	|
-| Minimum frequency 	| 42.0                	|
-| 1st quartile      	| 500.0               	|
-| Median frequency  	| 794.0               	|
-| 3rd quartile      	| 1,608.0             	|
-| Maximum frequency 	| 6,507.0             	|
-| Mean frequency    	| 1,246.2432432432433 	|
-
 ![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_gutv4v5/QIIME2/F250-R210-no-postdenoise-histogram.png?raw=true)
 
 #### Reverse 250 Forward 250 no primer trimming
-
-| Metric             	| Sample 	|
-|--------------------	|--------	|
-| Number of samples  	| 37     	|
-| Number of features 	| 177    	|
-| Total frequency    	| 32,074 	|
-
-|                   	| Frequency         	|
-|-------------------	|-------------------	|
-| Minimum frequency 	| 39.0              	|
-| 1st quartile      	| 271.0             	|
-| Median frequency  	| 659.0             	|
-| 3rd quartile      	| 915.0             	|
-| Maximum frequency 	| 4,405.0           	|
-| Mean frequency    	| 866.8648648648649 	|
 
 ![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_gutv4v5/QIIME2/F250-R250-no-postdenoise-histogram.png?raw=true)
 
 #### Reverse 210 Forward 220; primer trim 20 both F/R
 
-| Metric             	| Sample 	|
-|--------------------	|--------	|
-| Number of samples  	| 37     	|
-| Number of features 	| 329    	|
-| Total frequency    	| 89,490 	|
-
-| Frequency         	|                     	|
-|-------------------	|---------------------	|
-| Minimum frequency 	| 87.0                	|
-| 1st quartile      	| 928.0               	|
-| Median frequency  	| 1,751.0             	|
-| 3rd quartile      	| 2,674.0             	|
-| Maximum frequency 	| 11,719.0            	|
-| Mean frequency    	| 2,418.6486486486488 	|
-
 ![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_gutv4v5/QIIME2/F-220-R-210-20bp-trim-histogram.png?raw=true)
 
 #### Reverse 210 Forward 240; primer trim 20 both F/R
-
-| Metric             	| Sample 	|
-|--------------------	|--------	|
-| Number of samples  	| 37     	|
-| Number of features 	| 291    	|
-| Total frequency    	| 63,040 	|
-
-| Frequency         	|                     	|
-|-------------------	|---------------------	|
-| Minimum frequency 	| 59.0                	|
-| 1st quartile      	| 695.0               	|
-| Median frequency  	| 1,292.0             	|
-| 3rd quartile      	| 2,190.0             	|
-| Maximum frequency 	| 8,574.0             	|
-| Mean frequency    	| 1,703.7837837837837 	|
 
 ![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_gutv4v5/QIIME2/F-240-R-210-20bp-trim-histogram.png?raw=true)
 
