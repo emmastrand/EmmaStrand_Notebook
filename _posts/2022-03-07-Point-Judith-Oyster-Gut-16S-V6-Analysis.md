@@ -263,11 +263,7 @@ qiime tools import \
 Output from `output_script_import`:  
 
 ```
-```
-
-Output from `script_error_import`:
-
-```
+Imported metadata/sample-manifest_PJ_V6.csv as PairedEndFastqManifestPhred33 to PJ-paired-end-sequences.qza
 ```
 
 `PJ-paired-end-sequences.qza` is the output file that we will input in the next denoising step.
@@ -276,4 +272,87 @@ Output from `script_error_import`:
 
 *Confirm these parameters are correct: primer length.*
 
-I tried the following denoise parameters:
+I tried the following denoise parameters:  
+- With 7/7 bp trimming; 70/70 truncating (`denoise-7-70.sh`)  
+- With 10/10 bp trimming; 70/70 truncating (`denoise-10-70.sh`)     
+- With 7/7 bp trimming; 75/75 truncating (`denoise-7-75.sh`)  
+- With 10/10 bp trimming; 75/75 truncating (`denoise-10-75.sh`)
+
+#### denoise paramter trials
+
+Output from these trials in this directory: `PointJudithData_16S/QIIME2_v6/denoise_trials`.
+
+All parameter trials will have:  
+- `#SBATCH -D /data/putnamlab/estrand/PointJudithData_16S/QIIME2_v6/denoise_trials`  
+- `#SBATCH --error="script_error_denoise"` with script name  
+- `#SBATCH --output="output_script_denoise"` with script name   
+- Change paths for: `../PJ-paired-end-sequences.qza`, `../metadata`  
+- `#SBATCH --job-name="240-denoise"`
+
+copy denoise output to desktop.  
+
+```
+scp -r emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/PointJudithData_16S/QIIME2_v6/denoise_trials /Users/emmastrand/MyProjects/Cvir_Nut_Int/output/16S_allv6/QIIME2/
+```
+
+Put the above files into QIIME2 view and download as tsv files.
+
+Output from R script to visualize the above denoising statistics. R script: `denoise-stats.R` is in our Cvir repo.
+
+### denoise.sh
+
+```
+#!/bin/bash
+#SBATCH --job-name="10-75-denoise"
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab
+#SBTACH -q putnamlab
+#SBATCH -D /data/putnamlab/estrand/PointJudithData_16S/QIIME2_v6/denoise_trials
+#SBATCH --error="script_error_denoise-10-75" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_denoise-10-75" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function
+module load QIIME2/2021.4
+
+#### METADATA FILES ####
+# Path working directory to the raw files (referenced in the metadata)
+# metadata says: $PWD/00_RAW_gz/RS1_S1_L001_R1_001.fastq.gz so this needs to lead the command to this path
+PWD="/data/putnamlab/estrand/PointJudithData_16S/QIIME2_v6"
+
+# Metadata path
+METADATA="../metadata/PJ_V6Samples_Metadata.txt"
+
+# Sample manifest path
+MANIFEST="../metadata/sample-manifest_PJ_V6.csv"
+
+#########################
+
+#### DENOISING WITH DADA2
+
+qiime dada2 denoise-paired --verbose --i-demultiplexed-seqs ../PJ-paired-end-sequences.qza \
+  --p-trunc-len-r 75 --p-trunc-len-f 75 \
+  --p-trim-left-r 10 --p-trim-left-f 10 \
+  --o-table table-10-75.qza \
+  --o-representative-sequences rep-seqs-10-75.qza \
+  --o-denoising-stats denoising-stats-10-75.qza \
+  --p-n-threads 20
+
+#### CLUSTERING
+
+# Summarize feature table and sequences
+qiime metadata tabulate \
+  --m-input-file denoising-stats-10-75.qza \
+  --o-visualization denoising-stats-10-75.qzv
+qiime feature-table summarize \
+  --i-table table-10-75.qza \
+  --o-visualization table-10-75.qzv \
+  --m-sample-metadata-file $METADATA
+qiime feature-table tabulate-seqs \
+  --i-data rep-seqs-10-75.qza \
+  --o-visualization rep-seqs-10-75.qzv
+```
