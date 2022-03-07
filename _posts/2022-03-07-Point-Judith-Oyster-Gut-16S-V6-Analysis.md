@@ -25,6 +25,8 @@ Huber et al. 2007
 1046R: GTCTCGTGGGCTCGGAGATGTGTATAAGAGACAGCGACRRCCATGCANCACCT
 ```
 
+This is 2x75 bp sequencing.
+
 
 Beginners to 16S: see my [16S Central Working Document](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2022-02-22-16S-Analysis-Central-Working-Document.md) for other QIIME2 pipelines with more detailed descriptions on each command (Holobiont Integration QIIME2 pipeline will be most helpful for beginners).
 
@@ -131,33 +133,37 @@ scp emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/PointJudithData_16S/QI
 
 **Sequence Counts**
 
-![]()
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/multiqc%20images/seq%20counts.png?raw=true)
 
 **Sequence Quality Histogram**
 
-![]()
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/multiqc%20images/seq%20quality.png?raw=true)
 
 **Per Sequence Quality Score**
 
-![]()
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/multiqc%20images/per%20seq%20quality.png?raw=true)
 
 **Per Sequence GC Content**
 
-![]()
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/multiqc%20images/per%20seq%20GC%20content.png?raw=true)
 
 **Per Base N Content**
 
-![]()
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/multiqc%20images/per%20base%20N%20content.png?raw=true)
 
 **Sequence Length Distribution**
 
-![]()
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/multiqc%20images/seq%20length%20distribution.png?raw=true)
 
 **Sequence Duplication Levels**
 
-![]()
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/multiqc%20images/seq%20duplication%20levels.png?raw=true)
 
-**Adapter Content:**
+**Overrepresented Sequences**
+
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/multiqc%20images/overrepresented%20seqs.png?raw=true)
+
+**Adapter Content:No samples found with any adapter contamination > 0.1%**
 
 # QIIME2
 
@@ -255,7 +261,14 @@ qiime tools import \
 ```
 
 Output from `output_script_import`:  
+
+```
+```
+
 Output from `script_error_import`:
+
+```
+```
 
 `PJ-paired-end-sequences.qza` is the output file that we will input in the next denoising step.
 

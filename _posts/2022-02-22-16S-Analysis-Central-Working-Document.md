@@ -11,9 +11,9 @@ projects: Putnam Lab
 
 This will be my working document to connect all the datasets and different analysis pipelines together. I'm working with 2 datasets: Holobiont Integration and KBay Bleaching Pairs, and working through 2 different programs: QIIME2 and Mothur for the 16S analysis pipeline.
 
-### Question drives the experimental design, methods, analysis, and writing
+## Question drives the experimental design, methods, analysis, and writing
 
-**Holobiont Integration**
+### Holobiont Integration
 
 Github repo link: [here](https://github.com/hputnam/Acclim_Dynamics).
 
@@ -24,7 +24,7 @@ How does the microbial community shift in:
 - Are there ambient, seasonal changes in microbial community through the fall season?
 
 
-**KBay Bleaching Pairs**
+### KBay Bleaching Pairs
 
 Github repo link: [here](https://github.com/hputnam/HI_Bleaching_Timeseries).
 
@@ -34,7 +34,13 @@ Github repo link: [here](https://github.com/hputnam/HI_Bleaching_Timeseries).
 
 With just 16S data, questions RE how big of a shift and how confident we can be in that shift change might be hard to answer.. a.k.a. all we have is relative abundance. **We need to be careful interpreting this. With this type of data, we cannot confidently say genus Y decreased by X% over time because time point's data is only relative to itself.**
 
-### Resources on 16S amplicon sequencing
+### Point Judith Oyster Gut V6, V4V5 project links
+
+- [github repo - Cvir_Nut_Int](https://github.com/hputnam/Cvir_Nut_Int)  
+- [V4V5 QIIME2 pipeline](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2022-03-02-Point-Judith-Oyster-Gut-16S-V4V5-Analysis.md)   
+- [V6 QIIME2 pipeline](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2022-03-07-Point-Judith-Oyster-Gut-16S-V6-Analysis.md)
+
+## Resources on 16S amplicon sequencing
 
 These are likely private google slides and document. Contact emma_strand@uri.edu for more information on this if you do not have access.
 
@@ -44,7 +50,7 @@ These are likely private google slides and document. Contact emma_strand@uri.edu
 - [Emma Strand journal club presentation](https://docs.google.com/presentation/d/1-70Sv9-zIuDA7Zuw5qgZkNrrE05sEOwVpWh2TjDysgo/edit) on papers with 16S data and 16S background.  
 - Mothur home website: https://mothur.org/
 
-### Lab work / Pre-bioinformatic processing
+## Lab work / Pre-bioinformatic processing
 
 The laboratory work for both projects was done the same. Laboratory notebook post for [Holobiont Integration processing](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2021-02-01-16s-Sequencing-HoloInt.md#sample-processing), laboratory notebook post for [KBay Bleaching Pairs processing](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2021-11-09-KBay-Bleaching-Pairs-16S-Processing.md). KBay Bleaching Pairs samples were processed in conjunction with K. Wong and A. Huffmyer samples (all sequenced together and I did the lab work for both).
 
@@ -61,7 +67,7 @@ End product from sequencing: 2 files for each sequence that has already been dem
 - If you have a shorter fragment, then you have coverage of all with the ability to correct the error to be more confident; if you have a longer fragment you might have areas that you can’t correct for error
 
 
-### Bioinformatic processing
+## Bioinformatic processing
 
 Multiqc reports:  
 - [Holobiont Integration](https://github.com/hputnam/Acclim_Dynamics/blob/master/16S_seq/ES-run/16S_raw_qc_multiqc_report_ES.html)    
@@ -82,13 +88,15 @@ Reference database: Silva has high diversity and high alignment quality and is m
 - OTU vs. ASV decision - make note in each notebook post above RE what pipeline is using OTU vs ASV  
 - Look into what the biases are for the primer that we used for our data (V4 vs. V3/4)
 
-### Currently stuck on - as monday early afternoon Feb 28 2022
+### Current progress / issues - as monday early afternoon Mar 7 2022
 
-Holobiont Integration Mothur: running from contigs.sh, just takes awhile with 250 samples.   
-Holobiont Integration QIIME2: Not stuck, just continue on to subsample and run diversity metrics steps.  
+Holobiont Integration Mothur: running from contigs.sh - update these steps and run again   
+Holobiont Integration QIIME2: Finished. Waiting decision on reseq.
 
 KBay QIIME2: I'm losing most of my sequencing at the input step.. could this be the same error as Mothur above? See note below KBay Mothur.  
-KBay Mothur: Low # of contigs from the very beginning... **sequencing issue?**
+KBay Mothur: running from contigs.sh again - updated steps and run again. Low # of contigs from the very beginning... **sequencing issue?**
+
+PJ Oyster V6: running qiime2 pipeline - fastqc and import step.
 
 
 #### Mothur Threshold Decisions

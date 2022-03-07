@@ -107,7 +107,8 @@ $ cd .. ### need to be in mothur directory when running script
 #SBATCH --mem=100GB
 #SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
 #SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
-#SBATCH --account=putnamlab                  
+#SBATCH --account=putnamlab            
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_16S/Mothur
 #SBATCH --error="script_error_contigs" #if your job fails, the error report will be put in this file
 #SBATCH --output="output_script_contigs" #once your job is completed, any final job report comments will be put in this file
 
@@ -117,7 +118,7 @@ module load Mothur/1.46.1-foss-2020b
 
 mothur "#make.file(inputdir=., type=gz, prefix=kbay)"
 
-mothur "#make.contigs(inputdir=., outputdir=., file=kbay.files, oligos=oligos.oligos, trimoverlap=T)"
+mothur "#make.contigs(inputdir=., outputdir=., file=kbay.files, trimoverlap=T, oligos=oligos.oligos, pdiffs=2, checkorient=t)"
 
 mothur "#summary.seqs(fasta=kbay.trim.contigs.fasta)"
 ```
@@ -139,7 +140,7 @@ See [A. Huffmyer notebook post](https://github.com/AHuffmyer/ASH_Putnam_Lab_Note
 Summary of the sequences from the `output_script_contigs` file.
 
 ```
-It took 917 secs to process 920864 sequences.
+It took 889 secs to process 920864 sequences.
 
 Output File Names:
 /glfs/brick01/gv0/putnamlab/estrand/BleachingPairs_16S/Mothur/kbay.trim.contigs.fasta
@@ -152,23 +153,21 @@ mothur > summary.seqs(fasta=kbay.trim.contigs.fasta)
 Using 24 processors.
 
                 Start   End     NBases  Ambigs  Polymer NumSeqs
-Minimum:        1       2       2       0       1       1
-2.5%-tile:      1       149     149     0       4       1830
-25%-tile:       1       253     253     0       4       18300
-Median:         1       253     253     0       4       36599
-75%-tile:       1       253     253     0       4       54898
-97.5%-tile:     1       254     254     5       6       71368
-Maximum:        1       276     276     56      14      73197
-Mean:   1       247     247     0       4
-# of Seqs:      73197
+Minimum:        1       1       1       0       1       1
+2.5%-tile:      1       206     206     0       4       13770
+25%-tile:       1       207     207     0       7       137700
+Median:         1       207     207     0       7       275400
+75%-tile:       1       207     207     0       7       413099
+97.5%-tile:     1       253     253     3       7       537029
+Maximum:        1       278     278     83      15      550798
+Mean:   1       210     210     0       6
+# of Seqs:      550798
 
-It took 3 secs to summarize 73197 sequences.
+It took 18 secs to summarize 550798 sequences.
 
 Output File Names:
 kbay.trim.contigs.summary
 ```
-
-`output_script_contigs`: file that has trimoverlap=FALSE function output.
 
 This table shows quantile values about the distribution of sequences for a few things:
 
@@ -183,57 +182,63 @@ Output from `kbay.contigs.report`:
 
 ```
 Name    Length  Overlap_Length  Overlap_Start   Overlap_End     MisMatches      Num_Ns  Expected_Errors
-M00763_26_000000000-K4TML_1_1101_13549_1963     253     253     28      281     6       0       0.0205466
-M00763_26_000000000-K4TML_1_1101_12354_2514     254     254     25      279     2       0       0.00285862
-M00763_26_000000000-K4TML_1_1101_17445_1653     253     253     26      279     9       0       0.0194543
-M00763_26_000000000-K4TML_1_1101_13550_2109     253     253     28      281     33      5       4.00335
-M00763_26_000000000-K4TML_1_1101_13530_2111     253     253     19      272     2       0       0.00412243
-M00763_26_000000000-K4TML_1_1101_7950_1971      253     253     28      281     12      0       0.0317835
-M00763_26_000000000-K4TML_1_1101_7979_2260      253     253     28      281     6       0       0.00865169
-M00763_26_000000000-K4TML_1_1101_15856_2102     144     144     138     282     10      0       0.143901
-M00763_26_000000000-K4TML_1_1101_14756_1615     253     253     26      279     6       1       0.731008
-M00763_26_000000000-K4TML_1_1101_12424_2244     253     253     27      280     13      1       0.775851
-M00763_26_000000000-K4TML_1_1101_15098_2664     253     253     28      281     3       0       0.00377433
-M00763_26_000000000-K4TML_1_1101_18015_2330     253     253     19      272     2       0       0.00414333
-M00763_26_000000000-K4TML_1_1101_9422_2817      253     253     28      281     7       0       0.00869561
-M00763_26_000000000-K4TML_1_1101_9392_2856      253     253     28      281     7       0       0.010834
-M00763_26_000000000-K4TML_1_1101_11121_1732     253     253     28      281     6       0       0.0564584
-M00763_26_000000000-K4TML_1_1101_13583_1840     253     253     28      281     4       0       0.0825996
-M00763_26_000000000-K4TML_1_1101_11201_2979     253     253     28      281     3       0       0.00577315
-M00763_26_000000000-K4TML_1_1101_18812_3070     254     254     28      282     7       0       0.0933622
-M00763_26_000000000-K4TML_1_1101_19420_3155     253     253     28      281     5       0       0.105236
-M00763_26_000000000-K4TML_1_1101_20557_3311     253     253     26      279     4       0       0.00557719
-M00763_26_000000000-K4TML_1_1101_9878_7945      256     256     24      280     4       0       0.00742929
-M00763_26_000000000-K4TML_1_1101_21355_2804     253     253     19      272     2       0       0.00263463
-```
+M00763_26_000000000-K4TML_1_1101_19611_2209     34      34      19      53      0       0       3.52092e-07
+M00763_26_000000000-K4TML_1_1101_17506_2376     207     207     74      281     1       0       0.0631158
+M00763_26_000000000-K4TML_1_1101_20031_2402     207     207     20      227     0       0       1.89366e-05
+M00763_26_000000000-K4TML_1_1101_19337_2438     207     207     20      227     1       0       0.00126611
+M00763_26_000000000-K4TML_1_1101_19268_3410     207     207     74      281     0       0       3.48957e-06
+M00763_26_000000000-K4TML_1_1101_21820_3478     207     207     20      227     1       0       0.0251465
+M00763_26_000000000-K4TML_1_1101_21813_3498     207     207     74      281     9       0       0.341299
+M00763_26_000000000-K4TML_1_1101_7214_4084      207     207     74      281     0       0       1.77554e-05
+M00763_26_000000000-K4TML_1_1101_13185_4307     207     207     20      227     0       0       2.72989e-05
+M00763_26_000000000-K4TML_1_1101_6294_4481      207     207     74      281     0       0       3.40429e-05
+M00763_26_000000000-K4TML_1_1101_25301_4556     207     207     20      227     3       0       0.0159083
+M00763_26_000000000-K4TML_1_1101_5355_4591      207     207     74      281     0       0       1.07377e-05
+M00763_26_000000000-K4TML_1_1101_9016_4727      207     207     20      227     0       0       1.00201e-05
+M00763_26_000000000-K4TML_1_1101_13997_5201     207     207     20      227     0       0       3.36024e-05
+M00763_26_000000000-K4TML_1_1101_8613_5464      207     207     74      281     0       0       4.30783e-05
+M00763_26_000000000-K4TML_1_1101_21755_5516     207     207     74      281     0       0       3.40183e-05
+M00763_26_000000000-K4TML_1_1101_6519_5798      207     207     74      281     1       0       0.00136203
+M00763_26_000000000-K4TML_1_1101_20163_5935     207     207     20      227     0       0       2.23257e-05
+M00763_26_000000000-K4TML_1_1101_12656_1637     207     207     74      281     0       0       4.72312e-05
 
-The above length seems to be correct, the overlap start and end are correct, and the number of Ns (ambigious calls) seems low. These are all good signs but the # of output contigs (73k) is much lower than the number expected. We started with 920k sequences and would expect roughly half of that value as the number of output contigs.... This seems like something is wrong with sequencing.
+```
 
 The `kbay.trim.contigs.summary` file will also give you more of this information along with the number of polymers in each sequence. We use a cut off of 8 later on but this can be changed depending on the number of poylmers you have in your dataset.
 
+#### Check for primers
 
-#### Check that the primers are gone.
+Primers we are looking for: `F GTGCCAGCMGCCGCGGTAA R GGACTACNVGGGTWTCTAAT`.
 
-`$ head kbay.trim.contigs.fasta`
+Search for the primers in our contigs.
 
-We are looking to see that these primers `F GTGCCAGCMGCCGCGGTAA R GGACTACNVGGGTWTCTAAT` have been taken out.
+We have M, W, N, V in our primers (degenerate bases). Generate multiple possibilities for each primer to search for.
 
-Output:
+Here is the key for degenerate bases:
+R=A+G Y=C+T M=A+C K=G+T S=G+C W=A+T H=A+T+C B=G+T+C D=G+A+T V=G+A+C N=A+C+G+T (remove if on the end)
+
+Search for forward primers:
 
 ```
->M00763_26_000000000-K4TML_1_1101_13549_1963	ee=0.0205466	fbdiffs=0(match), rbdiffs=0(match) fpdiffs=0(match), rpdiffs=0(match)
-TACGGAGGGTGCAAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGTAGGCGGCCTTTTAAGTTGGATGTGAAAGCCCCGGGCTTAACCTGGGAACGGCATCCAAAACTGGGAGGCTCGAGTGCGGAAGAGGAGTGTGGAATTTCCTGTGTAGCGGTGAAATGCGTAGATATAGGAAAGAACACCAGTGGCGAAGGCGACACTCTGGTCTGACACTGACGCTGAGGTACGAAAGCGTGGGGAGCAAACAGG
->M00763_26_000000000-K4TML_1_1101_12354_2514	ee=0.00285862	fbdiffs=0(match), rbdiffs=0(match) fpdiffs=0(match), rpdiffs=0(match)
-TACGGAGGATGCAAGCGTTATTCGGAATTATTGGGCGTAAAGCGTCTGTAGGTGGTTTTTTAAGTCTACTGTTAAATATTAAGGCTTAACCTTAAAAAAGCGGTATGAAACTAAAAAACTTGAGTTTAGTAGAGGTAGAGGGAATTCTCGGTGTAGTGGTGAAATGCGTAGAGATCGAGAAGAACACCGGTAGCGAAAGCGCTCTACTGGGCTAAAACTGACACTGAGAGACGAAAGCTAGGGGAGCAAATAGG
->M00763_26_000000000-K4TML_1_1101_17445_1653	ee=0.0194543	fbdiffs=0(match), rbdiffs=0(match) fpdiffs=0(match), rpdiffs=0(match)
-TACGGAGGGTGCAAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGTAGGCGGCTGCCTAAGTTGGATGTGAAAGCCCCGGGCTCAACCTGGGAACTGCATCCAAAACTGGGCAGCTAGAGTGCGGAAGAGGAGTGTGGAATTTCCTGTGTAGCGGTGAAATGCGTAGATATAGGAAGGAACACCAGTGGCGAAGGCGACACTCTGGTCTGACACTGACGCTGAGGTACGAAAGCGTGGGGAGCAAACAGG
->M00763_26_000000000-K4TML_1_1101_13550_2109	ee=4.00335	fbdiffs=0(match), rbdiffs=0(match) fpdiffs=0(match), rpdiffs=0(match)
-TACGGAGGGTGNAAGCGTTNATCGGAATTACTGGGCGTAAAGCGTGCGTAGGCGGCTGCCTAAGTTGGATGTGAAAGCCCCGGGCTCAACCTGGGAACTGCATCCAAAACTGGGCAGNTAGAGTGCGGAAGAGGGGTGGGGAATTTCCTGTGTAGCGGTGAAATGCGTAGATATNGGAAGGAACACCAGTGGCGANGGCGACACTCTGGTCTGACACTGACGCTGAGGTACGAAAGCGTGGGGAGCAAACAGG
->M00763_26_000000000-K4TML_1_1101_13530_2111	ee=0.00412243	fbdiffs=0(match), rbdiffs=0(match) fpdiffs=0(match), rpdiffs=0(match)
-TACGGAGGGTGCAAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGTAGGCGGCTGCCTAAGTTGGATGTGAAAGCCCCGGGCTCAACCTGGGAACTGCATCCAAAACTGGGCAGCTAGAGTGCGGAAGAGGAGTGTGGAATTTCCTGTGTAGCGGTGAAATGCGTAGATATAGGAAGGAACACCAGTGGCGAAGGCGACACTCTGGTCTGACACTGACGCTGAGGTACGAAAGCGTGGGGAGCAAACAGG
+grep -c "GTGCCAGCAGCCGCGGTAA" kbay.trim.contigs.fasta # output = 1
+grep -c "GTGCCAGCCGCCGCGGTAA" kbay.trim.contigs.fasta # output = 1
 ```
 
-Success.
+These primers show up <1 time in our file.
+
+Search for a couple examples of the reverse primers:
+
+```
+grep -c "GGACTACAGGGGTATCTAAT" kbay.trim.contigs.fasta # output = 0
+grep -c "GGACTACCAGGGTTTCTAAT" kbay.trim.contigs.fasta # output = 0
+grep -c "GGACTACGCGGGTATCTAAT" kbay.trim.contigs.fasta # output = 0
+grep -c "GGACTACTGGGGTTTCTAAT" kbay.trim.contigs.fasta # output = 0
+```
+
+These primers show up 0 times in our files.
+
+Success! Our primers are removed.
+
 
 ## <a name="QC_screen"></a> **QC with screen.seqs**
 
@@ -250,12 +255,14 @@ $ cd ..
 
 #!/bin/bash
 #SBATCH -t 24:00:00
+#SBATCH --job-name="KB-screen"
 #SBATCH --nodes=1 --ntasks-per-node=1
 #SBATCH --export=NONE
 #SBATCH --mem=100GB
 #SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
 #SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
-#SBATCH --account=putnamlab                  
+#SBATCH --account=putnamlab        
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_16S/Mothur          
 #SBATCH --error="script_error_screen" #if your job fails, the error report will be put in this file
 #SBATCH --output="output_script_screen" #once your job is completed, any final job report comments will be put in this file
 
@@ -271,40 +278,61 @@ mothur "#summary.seqs(fasta=kbay.trim.contigs.good.fasta)"
 
 ```
 
-Make sure you are in the Mothur directory, not scripts directory. Run script `$ sbatch scripts/screen.sh`
+Run script `$ sbatch scripts/screen.sh`
 
-Output below. This script kept 55,141/73,197 sequences.  
+Output below. This script kept
 
 ```
 $ less output_script_screen
 # shift + G to scroll to the end
 
-It took 1 secs to screen 73197 sequences, removed 18056.
+It took 10 secs to screen 550798 sequences, removed 99301.
+
+/******************************************/
+Running command: remove.seqs(accnos=/glfs/brick01/gv0/putnamlab/estrand/BleachingPairs_16S/Mothur/kbay.trim.contigs.bad.accnos.temp, group=/glfs/brick01/gv0/putnamlab/estrand/BleachingPairs_16S/Mothur/kbay.contigs.groups)
+Removed 99301 sequences from your group file.
+
+Output File Names:
+/glfs/brick01/gv0/putnamlab/estrand/BleachingPairs_16S/Mothur/kbay.contigs.pick.groups
+
+/******************************************/
 
 Output File Names:
 /glfs/brick01/gv0/putnamlab/estrand/BleachingPairs_16S/Mothur/kbay.trim.contigs.good.fasta
 /glfs/brick01/gv0/putnamlab/estrand/BleachingPairs_16S/Mothur/kbay.trim.contigs.bad.accnos
 /glfs/brick01/gv0/putnamlab/estrand/BleachingPairs_16S/Mothur/kbay.contigs.good.groups
 
+
+It took 41 secs to screen 550798 sequences.
+
 mothur > summary.seqs(fasta=kbay.trim.contigs.good.fasta)
 
 Using 24 processors.
 
                 Start   End     NBases  Ambigs  Polymer NumSeqs
-Minimum:        1       207     207     0       3       1
-2.5%-tile:      1       252     252     0       4       1379
-25%-tile:       1       253     253     0       4       13786
-Median:         1       253     253     0       4       27571
-75%-tile:       1       253     253     0       4       41356
-97.5%-tile:     1       254     254     0       6       53763
-Maximum:        1       264     264     0       11      55141
-Mean:   1       252     252     0       4
-# of Seqs:      55141
+Minimum:        1       201     201     0       3       1
+2.5%-tile:      1       207     207     0       4       11288
+25%-tile:       1       207     207     0       7       112875
+Median:         1       207     207     0       7       225749
+75%-tile:       1       207     207     0       7       338623
+97.5%-tile:     1       253     253     0       7       440210
+Maximum:        1       278     278     0       11      451497
+Mean:   1       213     213     0       6
+# of Seqs:      451497
 
-It took 2 secs to summarize 55141 sequences.
+It took 15 secs to summarize 451497 sequences.
 
 Output File Names:
 kbay.trim.contigs.good.summary
+```
+
+"good" seqs satisfied criteria and "bad" seqs did not meet criteria.
+
+Count the number of "good" and "bad" sequences. This removed ~19% of sequences due to length and ambiguous bases.
+
+```
+grep -c "^>" kbay.trim.contigs.good.fasta #451497
+grep -c ".*" kbay.trim.contigs.bad.accnos #99301
 ```
 
 ## <a name="Unique"></a> **Determining and counting unique sequences**
@@ -322,12 +350,14 @@ $ cd ..
 
 #!/bin/bash
 #SBATCH -t 24:00:00
+#SBATCH --job-name="KB-unique"
 #SBATCH --nodes=1 --ntasks-per-node=1
 #SBATCH --export=NONE
 #SBATCH --mem=100GB
 #SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
 #SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
-#SBATCH --account=putnamlab                  
+#SBATCH --account=putnamlab        
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_16S/Mothur             
 #SBATCH --error="script_error_unique" #if your job fails, the error report will be put in this file
 #SBATCH --output="output_script_unique" #once your job is completed, any final job report comments will be put in this file
 
@@ -342,19 +372,24 @@ mothur "#unique.seqs(fasta=kbay.trim.contigs.good.fasta)"
 mothur "#count.seqs(name=kbay.trim.contigs.good.names, group=kbay.contigs.good.groups)"
 
 mothur "#summary.seqs(fasta=kbay.trim.contigs.good.unique.fasta, count=kbay.trim.contigs.good.count_table)"
-
-mothur "#count.groups(count=kbay.trim.contigs.good.unique.fasta)"
-
 ```
 
-Make sure you are in the Mothur directory and run the above script `sbatch scripts/unique.sh`.
+Run the above script `sbatch scripts/unique.sh`.
 
-Output below from `output_script_unique`. **Unique reads: 2,962 (4.05%): This is a problem.**
+Output below from `output_script_unique`.
 
 ```
 Output File Names:
 kbay.trim.contigs.good.names
 kbay.trim.contigs.good.unique.fasta
+
+mothur > count.seqs(name=kbay.trim.contigs.good.names, group=kbay.contigs.good.groups)
+
+It took 2 secs to create a table for 451497 sequences.
+
+Total number of sequences: 451497
+
+Output File Names:
 kbay.trim.contigs.good.count_table
 
 mothur > summary.seqs(fasta=kbay.trim.contigs.good.unique.fasta, count=kbay.trim.contigs.good.count_table)
@@ -362,41 +397,28 @@ mothur > summary.seqs(fasta=kbay.trim.contigs.good.unique.fasta, count=kbay.trim
 Using 24 processors.
 
                 Start   End     NBases  Ambigs  Polymer NumSeqs
-Minimum:        1       207     207     0       3       1
-2.5%-tile:      1       252     252     0       4       1379
-25%-tile:       1       253     253     0       4       13786
-Median:         1       253     253     0       4       27571
-75%-tile:       1       253     253     0       4       41356
-97.5%-tile:     1       254     254     0       6       53763
-Maximum:        1       264     264     0       11      55141
-Mean:   1       252     252     0       4
-# of unique seqs:       2962
-total # of seqs:        55141
+Minimum:        1       201     201     0       3       1
+2.5%-tile:      1       207     207     0       4       11288
+25%-tile:       1       207     207     0       7       112875
+Median:         1       207     207     0       7       225749
+75%-tile:       1       207     207     0       7       338623
+97.5%-tile:     1       253     253     0       7       440210
+Maximum:        1       278     278     0       11      451497
+Mean:   1       213     213     0       6
+# of unique seqs:       6041
+total # of seqs:        451497
 
-It took 1 secs to summarize 55141 sequences.
+It took 1 secs to summarize 451497 sequences.
 
 Output File Names:
 kbay.trim.contigs.good.unique.summary
 ```
 
-This command `mothur "#count.groups(count=kbay.trim.contigs.good.unique.fasta)"` is producing:
+In this run, there were 451,497 sequences and 6,041 were unique = ~1%.
 
-11 error messages received. This sequence returned a count number of zero. The command is stopped after 11 times but we can still move along to aligning our sequences. we don't need this command necessarily.
+Now we can align just the unique sequences, which will be much faster than aligning the full data set and is an indicator of how polished and clean the data are.
 
-```
-mothur > count.groups(count= kbay.trim.contigs.good.unique.fasta)
-**** Exceeded maximum allowed command errors, quitting ****
-[ERROR]: Your count table contains a sequence named TACGGAGGGTGCAAGCGTTAATCGGAATTACTGGGCGTAAAGCGTGCGTAGGCGGCCTTTTAAGTTGGATGTGAAAGCCCCGGGCTTAACCTGGGAACGGCATCCAAAACTGGGAGGCTCGAGTGCGGAAGAGGAGTGTGGAATTTCCTGTGTAGCGGTGAAATGCGTAGATATAGGAAAGAACACCAGTGGCGAAGGCGACACTCTGGTCTGACACTGACGCTGAGGTACGAAAGCGTGGGGAGCAAACAGG with a total=0. Please correct.
-fbdiffs=0(match), contains 0.
-fpdiffs=0(match), contains 0.
-rbdiffs=0(match) contains 0.
-rpdiffs=0(match) contains 0.
-
-Size of smallest group: 0.
-
-Total seqs: 0.
-```
-
+From this, we have our unique sequences identified and can proceed with further cleaning and polishing of the data. Next we will look at alignment, error rate, chimeras, classification and further analysis.
 
 ## <a name="Reference"></a> **Aligning to a reference database**
 
@@ -516,7 +538,8 @@ $ cd ..
 #SBATCH --mem=100GB
 #SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
 #SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
-#SBATCH --account=putnamlab                  
+#SBATCH --account=putnamlab         
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_16S/Mothur          
 #SBATCH --error="script_error_align" #if your job fails, the error report will be put in this file
 #SBATCH --output="output_script_align" #once your job is completed, any final job report comments will be put in this file
 
@@ -543,10 +566,10 @@ kbay.trim.contigs.good.unique.flip.accnos
 View the summary from the `output_script_align` file. There are 30,487 unique sequences and all aligned to the reference. We want most sequences to be 292 bp long.
 
 ```
-[WARNING]: 41 of your sequences generated alignments that eliminated too many bases, a list is provided in kbay.trim.contigs.good.unique.flip.accnos.
-[NOTE]: 2 of your sequences were reversed to produce a better alignment.
+[WARNING]: 2899 of your sequences generated alignments that eliminated too many bases, a list is provided in kbay.trim.contigs.good.unique.flip.accnos.
+[NOTE]: 418 of your sequences were reversed to produce a better alignment.
 
-It took 5 seconds to align 2962 sequences.
+It took 12 seconds to align 6041 sequences.
 
 Output File Names:
 kbay.trim.contigs.good.unique.align
@@ -558,17 +581,17 @@ mothur > summary.seqs(fasta=kbay.trim.contigs.good.unique.align)
 Using 24 processors.
 
                 Start   End     NBases  Ambigs  Polymer NumSeqs
-Minimum:        1       1236    3       0       2       1
-2.5%-tile:      1968    11550   252     0       3       75
-25%-tile:       1968    11550   253     0       4       741
-Median:         1968    11550   253     0       4       1482
-75%-tile:       1968    11550   253     0       5       2222
-97.5%-tile:     1968    11550   254     0       6       2888
-Maximum:        13422   13425   260     0       11      2962
-Mean:   1971    11435   249     0       4
-# of Seqs:      2962
+Minimum:        1       3       2       0       1       1
+2.5%-tile:      1       1250    4       0       2       152
+25%-tile:       1       1250    11      0       3       1511
+Median:         1968    11550   252     0       4       3021
+75%-tile:       1968    11550   253     0       4       4531
+97.5%-tile:     13391   13425   254     0       6       5890
+Maximum:        13424   13425   260     0       11      6041
+Mean:   1962    7460    136     0       3
+# of Seqs:      6041
 
-It took 2 secs to summarize 2962 sequences.
+It took 3 secs to summarize 6041 sequences.
 
 Output File Names:
 kbay.trim.contigs.good.unique.summary
@@ -595,6 +618,7 @@ $ cd ..
 #SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
 #SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
 #SBATCH --account=putnamlab                  
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_16S/Mothur     
 #SBATCH --error="script_error_screen2" #if your job fails, the error report will be put in this file
 #SBATCH --output="output_script_screen2" #once your job is completed, any final job report comments will be put in this file
 
@@ -622,11 +646,11 @@ kbay.trim.contigs.good.good.count_table
 View output from the output file `output_script_screen2`:
 
 ```
-It took 2 secs to screen 2962 sequences, removed 51.
+It took 3 secs to screen 6041 sequences, removed 2964.
 
 /******************************************/
 Running command: remove.seqs(accnos=kbay.trim.contigs.good.unique.bad.accnos.temp, count=kbay.trim.contigs.good.count_table)
-Removed 436 sequences from your count file.
+Removed 392907 sequences from your count file.
 
 Output File Names:
 kbay.trim.contigs.good.pick.count_table
@@ -638,76 +662,71 @@ kbay.trim.contigs.good.unique.good.align
 kbay.trim.contigs.good.unique.bad.accnos
 kbay.trim.contigs.good.good.count_table
 
-
-It took 2 secs to screen 2962 sequences.
-
-
 mothur > summary.seqs(fasta=kbay.trim.contigs.good.unique.good.align, count=kbay.trim.contigs.good.good.count_table)
 
 Using 24 processors.
 
                 Start   End     NBases  Ambigs  Polymer NumSeqs
 Minimum:        1965    11550   249     0       3       1
-2.5%-tile:      1968    11550   253     0       4       1368
-25%-tile:       1968    11550   253     0       4       13677
-Median:         1968    11550   253     0       4       27353
-75%-tile:       1968    11550   253     0       4       41029
-97.5%-tile:     1968    11550   254     0       6       53338
-Maximum:        1968    12065   260     0       8       54705
+2.5%-tile:      1968    11550   253     0       4       1465
+25%-tile:       1968    11550   253     0       4       14648
+Median:         1968    11550   253     0       4       29296
+75%-tile:       1968    11550   253     0       4       43943
+97.5%-tile:     1968    11550   254     0       6       57126
+Maximum:        1968    12065   260     0       8       58590
 Mean:   1967    11550   253     0       4
-# of unique seqs:       2911
-total # of seqs:        54705
+# of unique seqs:       3077
+total # of seqs:        58590
 
-It took 1 secs to summarize 54705 sequences.
+It took 2 secs to summarize 58590 sequences.
 
 Output File Names:
 kbay.trim.contigs.good.unique.good.summary
 
 mothur > count.groups(count=kbay.trim.contigs.good.good.count_table)
-WSH217 contains 111.
-WSH218 contains 116.
-WSH219 contains 182.
-WSH220 contains 110.
-WSH221 contains 154.
-WSH222 contains 111.
-WSH223 contains 88.
-WSH224 contains 68.
-WSH225 contains 68.
-WSH226 contains 201.
-WSH227 contains 4168.
-WSH228 contains 1532.
-WSH229 contains 273.
-WSH230 contains 4183.
-WSH231 contains 784.
-WSH232 contains 61.
-WSH233 contains 149.
-WSH234 contains 15575.
-WSH235 contains 266.
-WSH236 contains 146.
-WSH237 contains 722.
-WSH238 contains 2021.
-WSH239 contains 206.
-WSH240 contains 168.
-WSH241 contains 261.
-WSH242 contains 200.
-WSH243 contains 225.
-WSH244 contains 357.
-WSH245 contains 794.
-WSH246 contains 305.
-WSH247 contains 2388.
-WSH248 contains 163.
-WSH249 contains 586.
-WSH250 contains 357.
-WSH251 contains 426.
-WSH252 contains 150.
-WSH253 contains 8186.
-WSH254 contains 7413.
-WSH255 contains 196.
-WSH256 contains 1235.
+WSH217 contains 115.
+WSH218 contains 122.
+WSH219 contains 192.
+WSH220 contains 123.
+WSH221 contains 169.
+WSH222 contains 122.
+WSH223 contains 95.
+WSH224 contains 73.
+WSH225 contains 72.
+WSH226 contains 213.
+WSH227 contains 4469.
+WSH228 contains 1630.
+WSH229 contains 289.
+WSH230 contains 4476.
+WSH231 contains 839.
+WSH232 contains 65.
+WSH233 contains 157.
+WSH234 contains 16658.
+WSH235 contains 278.
+WSH236 contains 152.
+WSH237 contains 777.
+WSH238 contains 2166.
+WSH239 contains 222.
+WSH240 contains 179.
+WSH241 contains 284.
+WSH242 contains 218.
+WSH243 contains 242.
+WSH244 contains 383.
+WSH245 contains 864.
+WSH246 contains 330.
+WSH247 contains 2547.
+WSH248 contains 173.
+WSH249 contains 631.
+WSH250 contains 385.
+WSH251 contains 459.
+WSH252 contains 164.
+WSH253 contains 8789.
+WSH254 contains 7926.
+WSH255 contains 214.
+WSH256 contains 1328.
 
-Size of smallest group: 61.
-
-Total seqs: 54705.
+Size of smallest group: 65.
+Total seqs: 58590.
 
 Output File Names:
 kbay.trim.contigs.good.good.count.summary
@@ -734,6 +753,7 @@ $ cd .. ### need to be in mothur directory when running script
 #SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
 #SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
 #SBATCH --account=putnamlab                  
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_16S/Mothur     
 #SBATCH --error="script_error_filter" #if your job fails, the error report will be put in this file
 #SBATCH --output="output_script_filter" #once your job is completed, any final job report comments will be put in this file
 
@@ -746,8 +766,6 @@ mothur
 mothur "#filter.seqs(fasta=kbay.trim.contigs.good.unique.good.align, vertical=T, trump=.)"
 
 mothur "#summary.seqs(fasta=kbay.trim.contigs.good.unique.good.filter.fasta, count=kbay.trim.contigs.good.good.count_table)"
-
-mothur "#count.groups(count= kbay.trim.contigs.good.good.count_table)"
 ```
 
 Make sure you are in the Mothur directory and run the above script `$ sbatch scripts/filter.sh`.
@@ -755,10 +773,10 @@ Make sure you are in the Mothur directory and run the above script `$ sbatch scr
 Output from the `output_script_filter` file:
 
 ```
-Length of filtered alignment: 352
-Number of columns removed: 13073
+Length of filtered alignment: 355
+Number of columns removed: 13070
 Length of the original alignment: 13425
-Number of sequences used to construct filter: 2911
+Number of sequences used to construct filter: 3077
 
 Output File Names:
 kbay.filter
@@ -769,24 +787,22 @@ mothur > summary.seqs(fasta=kbay.trim.contigs.good.unique.good.filter.fasta, cou
 Using 24 processors.
 
                 Start   End     NBases  Ambigs  Polymer NumSeqs
-Minimum:        1       352     249     0       3       1
-2.5%-tile:      1       352     253     0       4       1368
-25%-tile:       1       352     253     0       4       13677
-Median:         1       352     253     0       4       27353
-75%-tile:       1       352     253     0       4       41029
-97.5%-tile:     1       352     254     0       6       53338
-Maximum:        1       352     258     0       8       54705
-Mean:   1       352     253     0       4
-# of unique seqs:       2911
-total # of seqs:        54705
+Minimum:        1       355     249     0       3       1
+2.5%-tile:      1       355     253     0       4       1465
+25%-tile:       1       355     253     0       4       14648
+Median:         1       355     253     0       4       29296
+75%-tile:       1       355     253     0       4       43943
+97.5%-tile:     1       355     254     0       6       57126
+Maximum:        1       355     258     0       8       58590
+Mean:   1       355     253     0       4
+# of unique seqs:       3077
+total # of seqs:        58590
 
-It took 2 secs to summarize 54705 sequences.
+It took 2 secs to summarize 58590 sequences.
 
 Output File Names:
 kbay.trim.contigs.good.unique.good.filter.summary
 ```
-
-See previous section for # of groups per sample.
 
 
 ## <a name="Pre-clustering"></a> **Pre clustering**
@@ -798,7 +814,7 @@ Make a script to run the pre.cluster functions. `diffs=1` can be changed based o
 
 ```
 $ cd ../../data/putnamlab/estrand/BleachingPairs_16S/Mothur/scripts
-$ nano precluster.sh
+$ nano preclustering.sh
 $ cd .. ### need to be in mothur directory when running script
 
 ## copy and paste the below text into the nano file
@@ -810,7 +826,8 @@ $ cd .. ### need to be in mothur directory when running script
 #SBATCH --mem=100GB
 #SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
 #SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
-#SBATCH --account=putnamlab                  
+#SBATCH --account=putnamlab            
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_16S/Mothur           
 #SBATCH --error="script_error_precluster" #if your job fails, the error report will be put in this file
 #SBATCH --output="output_script_precluster" #once your job is completed, any final job report comments will be put in this file
 
@@ -825,9 +842,6 @@ mothur "#unique.seqs(fasta=kbay.trim.contigs.good.unique.good.filter.fasta, coun
 mothur "#pre.cluster(fasta=kbay.trim.contigs.good.unique.good.filter.unique.fasta, count=kbay.trim.contigs.good.unique.good.filter.count_table, diffs=1)"
 
 mothur "#summary.seqs(fasta=kbay.trim.contigs.good.unique.good.filter.unique.precluster.fasta, count=kbay.trim.contigs.good.unique.good.filter.unique.precluster.count_table)"
-
-#mothur "#count.groups(count=current)"
-
 ```
 
 Make sure you are in the Mothur directory and run the above script `$ sbatch scripts/preclustering.sh`.
@@ -838,39 +852,30 @@ Ouput from the `output_script_precluster` file.
 mothur > unique.seqs(fasta=kbay.trim.contigs.good.unique.good.filter.fasta, count=kbay.trim.contigs.good.good.count_table)
 1000    1000
 2000    2000
-2911    2911
+3000    3000
+3077    3077
 
 Output File Names:
 kbay.trim.contigs.good.unique.good.filter.count_table
 kbay.trim.contigs.good.unique.good.filter.unique.fasta
-
-## for every sample (example = WSH256)
-kbay.trim.contigs.good.unique.good.filter.WSH256.count_table
-kbay.trim.contigs.good.unique.good.filter.unique.WSH256.fasta
-
-Output File Names:
-kbay.trim.contigs.good.unique.good.filter.unique.pick.fasta
-
-## for every sample
-kbay.trim.contigs.good.unique.good.filter.unique.precluster.WSH256.map
 
 mothur > summary.seqs(fasta=kbay.trim.contigs.good.unique.good.filter.unique.precluster.fasta, count=kbay.trim.contigs.good.unique.good.filter.unique.precluster.count_table)
 
 Using 24 processors.
 
                 Start   End     NBases  Ambigs  Polymer NumSeqs
-Minimum:        1       352     249     0       3       1
-2.5%-tile:      1       352     253     0       4       1368
-25%-tile:       1       352     253     0       4       13677
-Median:         1       352     253     0       4       27353
-75%-tile:       1       352     253     0       4       41029
-97.5%-tile:     1       352     254     0       6       53338
-Maximum:        1       352     258     0       8       54705
-Mean:   1       352     253     0       4
-# of unique seqs:       1317
-total # of seqs:        54705
+Minimum:        1       355     249     0       3       1
+2.5%-tile:      1       355     253     0       4       1465
+25%-tile:       1       355     253     0       4       14648
+Median:         1       355     253     0       4       29296
+75%-tile:       1       355     253     0       4       43943
+97.5%-tile:     1       355     254     0       6       57126
+Maximum:        1       355     258     0       8       58590
+Mean:   1       355     253     0       4
+# of unique seqs:       1380
+total # of seqs:        58590
 
-It took 2 secs to summarize 54705 sequences.
+It took 2 secs to summarize 58590 sequences.
 
 Output File Names:
 kbay.trim.contigs.good.unique.good.filter.unique.precluster.summary
@@ -896,7 +901,8 @@ $ cd .. ### need to be in mothur directory when running script
 #SBATCH --mem=100GB
 #SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
 #SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
-#SBATCH --account=putnamlab                  
+#SBATCH --account=putnamlab         
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_16S/Mothur           
 #SBATCH --error="script_error_chimera" #if your job fails, the error report will be put in this file
 #SBATCH --output="output_script_chimera" #once your job is completed, any final job report comments will be put in this file
 
@@ -934,85 +940,35 @@ kbay.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.chime
 kbay.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.accnos
 
 mothur > remove.seqs(fasta=kbay.trim.contigs.good.unique.good.filter.unique.precluster.fasta, accnos=kbay.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.accnos)
-Removed 79 sequences from your fasta file.
+Removed 88 sequences from your fasta file.
 
 Output File Names:
 kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta
 
 mothur > summary.seqs(fasta=kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta, count=kbay.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table)
 
+mothur > summary.seqs(fasta=kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta, count=kbay.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table)
+
 Using 24 processors.
 
                 Start   End     NBases  Ambigs  Polymer NumSeqs
-Minimum:        1       352     249     0       3       1
-2.5%-tile:      1       352     253     0       4       1364
-25%-tile:       1       352     253     0       4       13632
-Median:         1       352     253     0       4       27264
-75%-tile:       1       352     253     0       4       40895
-97.5%-tile:     1       352     254     0       6       53163
-Maximum:        1       352     258     0       8       54526
-Mean:   1       352     253     0       4
-# of unique seqs:       1238
-total # of seqs:        54526
+Minimum:        1       355     249     0       3       1
+2.5%-tile:      1       355     253     0       4       1460
+25%-tile:       1       355     253     0       4       14598
+Median:         1       355     253     0       4       29196
+75%-tile:       1       355     253     0       4       43794
+97.5%-tile:     1       355     254     0       6       56932
+Maximum:        1       355     258     0       8       58391
+Mean:   1       355     253     0       4
+# of unique seqs:       1292
+total # of seqs:        58391
 
-It took 2 secs to summarize 54526 sequences.
+It took 1 secs to summarize 58391 sequences.
 
 Output File Names:
 kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.summary
 ```
 
-Count groups for each sample output:
-
-```
-mothur > count.groups(count=kbay.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table)
-WSH217 contains 111.
-WSH218 contains 116.
-WSH219 contains 182.
-WSH220 contains 110.
-WSH221 contains 154.
-WSH222 contains 111.
-WSH223 contains 88.
-WSH224 contains 68.
-WSH225 contains 68.
-WSH226 contains 201.
-WSH227 contains 4168.
-WSH228 contains 1532.
-WSH229 contains 273.
-WSH230 contains 4182.
-WSH231 contains 784.
-WSH232 contains 61.
-WSH233 contains 149.
-WSH234 contains 15425.
-WSH235 contains 266.
-WSH236 contains 145.
-WSH237 contains 722.
-WSH238 contains 2006.
-WSH239 contains 206.
-WSH240 contains 168.
-WSH241 contains 260.
-WSH242 contains 200.
-WSH243 contains 225.
-WSH244 contains 357.
-WSH245 contains 794.
-WSH246 contains 305.
-WSH247 contains 2387.
-WSH248 contains 163.
-WSH249 contains 586.
-WSH250 contains 357.
-WSH251 contains 426.
-WSH252 contains 150.
-WSH253 contains 8177.
-WSH254 contains 7412.
-WSH255 contains 196.
-WSH256 contains 1235.
-
-Size of smallest group: 61.
-
-Total seqs: 54526.
-
-Output File Names:
-kbay.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count.summary
-```
 
 ## <a name="Classify_seq"></a> **Classifying Sequences**
 
@@ -1040,6 +996,7 @@ $ cd .. ### need to be in mothur directory when running script
 #SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
 #SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
 #SBATCH --account=putnamlab                  
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_16S/Mothur     
 #SBATCH --error="script_error_classify" #if your job fails, the error report will be put in this file
 #SBATCH --output="output_script_classify" #once your job is completed, any final job report comments will be put in this file
 
@@ -1052,6 +1009,8 @@ mothur
 mothur "#classify.seqs(fasta=kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta, count=kbay.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table, reference=trainset9_032012.pds.fasta, taxonomy=trainset9_032012.pds.tax)"
 
 mothur "#remove.lineage(fasta=kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta, count=kbay.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table, taxonomy=kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.pds.wang.taxonomy, taxon=Chloroplast-Mitochondria-unknown-Archaea-Eukaryota)"
+
+mothur "#summary.seqs(fasta=kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.fasta, count=kbay.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table)"
 ```
 
 Make sure you are in the Mothur directory and run the above script `$ sbatch scripts/classify.sh`.
@@ -1062,16 +1021,16 @@ Output files:
 ```
 $ head kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.pds.wang.taxonomy
 
-M00763_26_000000000-K4TML_1_1108_18135_13531	Bacteria(100);"Proteobacteria"(97);Alphaproteobacteria(96);Rhodospirillales(90);Rhodospirillaceae(88);Rhodospirillaceae_unclassified(88);
-M00763_26_000000000-K4TML_1_2117_11588_9569	Bacteria(100);"Proteobacteria"(100);Deltaproteobacteria(100);Bdellovibrionales(100);Bacteriovoracaceae(100);Bacteriovorax(100);
-M00763_26_000000000-K4TML_1_2114_20755_23833	Bacteria(100);Bacteria_unclassified(100);Bacteria_unclassified(100);Bacteria_unclassified(100);Bacteria_unclassified(100);Bacteria_unclassified(100);
-M00763_26_000000000-K4TML_1_1106_25656_5222	Bacteria(100);"Actinobacteria"(100);Actinobacteria(100);Actinomycetales(100);Corynebacteriaceae(100);Corynebacterium(100);
-M00763_26_000000000-K4TML_1_2104_6671_12674	Bacteria(100);Bacteria_unclassified(100);Bacteria_unclassified(100);Bacteria_unclassified(100);Bacteria_unclassified(100);Bacteria_unclassified(100);
-M00763_26_000000000-K4TML_1_2105_21478_19175	Bacteria(100);"Proteobacteria"(100);Gammaproteobacteria(100);Oceanospirillales(100);Hahellaceae(100);Endozoicomonas(100);
-M00763_26_000000000-K4TML_1_1108_12146_16874	Bacteria(100);"Proteobacteria"(100);Gammaproteobacteria(96);Gammaproteobacteria_unclassified(96);Gammaproteobacteria_unclassified(96);Gammaproteobacteria_unclassified(96);
-M00763_26_000000000-K4TML_1_1113_17992_17475	Bacteria(100);"Proteobacteria"(100);Gammaproteobacteria(100);Oceanospirillales(100);Hahellaceae(100);Endozoicomonas(100);
-M00763_26_000000000-K4TML_1_2114_22567_6015	Bacteria(100);Cyanobacteria_Chloroplast(100);Cyanobacteria(100);Cyanobacteria_order_incertae_sedis(100);Family_II(100);GpIIa(100);
-M00763_26_000000000-K4TML_1_2109_23105_12236	Bacteria(100);"Proteobacteria"(86);"Proteobacteria"_unclassified(86);"Proteobacteria"_unclassified(86);"Proteobacteria"_unclassified(86);"Proteobacteria"_unclassified(86);
+M00763_26_000000000-K4TML_1_1119_13050_13859	Bacteria(100);"Bacteroidetes"(100);Flavobacteria(100);"Flavobacteriales"(100);Flavobacteriaceae(100);Flavobacteriaceae_unclassified(100);
+M00763_26_000000000-K4TML_1_2116_16978_14079	Bacteria(100);"Proteobacteria"(100);Gammaproteobacteria(100);Alteromonadales(100);Alteromonadaceae(100);Aestuariibacter(90);
+M00763_26_000000000-K4TML_1_2101_18738_8601	Bacteria(100);"Proteobacteria"(100);Gammaproteobacteria(100);Oceanospirillales(100);Hahellaceae(100);Endozoicomonas(100);
+M00763_26_000000000-K4TML_1_1115_12384_22538	Bacteria(100);"Proteobacteria"(100);Gammaproteobacteria(100);Oceanospirillales(100);Hahellaceae(100);Endozoicomonas(100);
+M00763_26_000000000-K4TML_1_1107_14898_14570	Bacteria(100);"Proteobacteria"(100);Gammaproteobacteria(100);Oceanospirillales(100);Hahellaceae(100);Endozoicomonas(100);
+M00763_26_000000000-K4TML_1_1115_16787_5952	Bacteria(100);"Proteobacteria"(100);Gammaproteobacteria(100);Oceanospirillales(100);Hahellaceae(100);Endozoicomonas(100);
+M00763_26_000000000-K4TML_1_1109_22272_17525	Bacteria(100);Bacteria_unclassified(100);Bacteria_unclassified(100);Bacteria_unclassified(100);Bacteria_unclassified(100);Bacteria_unclassified(100);
+M00763_26_000000000-K4TML_1_2115_11476_16702	Bacteria(99);"Proteobacteria"(83);"Proteobacteria"_unclassified(83);"Proteobacteria"_unclassified(83);"Proteobacteria"_unclassified(83);"Proteobacteria"_unclassified(83);
+M00763_26_000000000-K4TML_1_1117_20093_24570	Bacteria(100);"Proteobacteria"(100);Gammaproteobacteria(100);Oceanospirillales(100);Hahellaceae(100);Endozoicomonas(100);
+M00763_26_000000000-K4TML_1_1112_18656_4547	Bacteria(100);"Proteobacteria"(100);Gammaproteobacteria(100);Oceanospirillales(100);Hahellaceae(100);Endozoicomonas(100);
 ```
 
 - The tax.summary file has the taxonimc level, the name of the taxonomic group, and the number of sequences in that group for each sample.
@@ -1080,8 +1039,8 @@ M00763_26_000000000-K4TML_1_2109_23105_12236	Bacteria(100);"Proteobacteria"(86);
 $ head kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.pds.wang.tax.summary
 
 taxlevel	rankID	taxon	daughterlevels	total	WSH217	WSH218	WSH219	WSH220	WSH221	WSH222	WSH223	WSH224	WSH225	WSH226	WSH227	WSH228	WSH229	WSH230	WSH231	WSH232	WSH233	WSH234	WSH235	WSH236	WSH237	WSH238	WSH239	WSH240	WSH241	WSH242	WSH243	WSH244	WSH245	WSH246	WSH247	WSH248	WSH249	WSH250	WSH251	WSH252	WSH253	WSH254	WSH255	WSH256
-0	0	Root	3	54526	111	116	182	110	154	111	88	68	68	201	4168	1532	273	4182	784	61	149	15425	266	145	722	2006	206	168	260	200	225	357	794	305	2387	163	586	357	426	150	8177	7412	196	1235
-1	0.1	Archaea	2	48	0	3	12	0	0	0	0	0	0	0	1	0	0	0	0	0	0	1411	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0
+0	0	Root	3	58391	115	122	192	123	169	122	95	73	72	213	4469	1629	289	4475	839	65	157	1649278	151	777	2150	222	179	283	218	242	383	864	330	2546	172	631	385	459	164	8778	7924	214	1328
+1	0.1	Archaea	2	48	0	3	12	0	0	0	0	0	0	0	1	0	0	0	0	0	0	14	11	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0
 2	0.1.1	"Euryarchaeota"	3	41	0	3	12	0	0	0	0	0	0	0	1	0	0	0	0	0	0	11	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0
 3	0.1.1.1	"Euryarchaeota"_unclassified	1	28	0	3	0	0	0	0	0	0	0	0	1	0	0	0	0	11	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
 4	0.1.1.1.1	"Euryarchaeota"_unclassified	1	28	0	3	0	0	0	0	0	0	0	0	1	0	0	0	11	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
@@ -1095,28 +1054,53 @@ taxlevel	rankID	taxon	daughterlevels	total	WSH217	WSH218	WSH219	WSH220	WSH221	WS
 From `output_script_classify` file:
 
 ```
-[WARNING]: M00763_26_000000000-K4TML_1_2110_10039_12459 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
-[WARNING]: M00763_26_000000000-K4TML_1_2107_25953_15962 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
 [WARNING]: M00763_26_000000000-K4TML_1_1108_7696_14236 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
-[WARNING]: M00763_26_000000000-K4TML_1_1118_8336_15262 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
-[WARNING]: M00763_26_000000000-K4TML_1_1118_8316_15263 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00763_26_000000000-K4TML_1_2107_25953_15962 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00763_26_000000000-K4TML_1_2104_25236_17477 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00763_26_000000000-K4TML_1_2110_10039_12459 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+53
 
 Output File Names:
 kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.pds.wang.taxonomy
 kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.pds.wang.tax.summary
 
+Running command: remove.seqs(accnos=kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.pds.wang.accnos, count=kbay.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table, fasta=kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta)
+
 [WARNING]: Are you run the remove.seqs command after running a chimera command with dereplicate=t? If so, the count file has already been modified to remove all chimeras and adjust group counts. Including the count file here will cause downstream file mismatches.
 
-Removed 79 sequences from your fasta file.
-Removed 1382 sequences from your count file.
+Removed 81 sequences from your fasta file.
+Removed 1479 sequences from your count file.
 
 Output File Names:
 kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.fasta
 kbay.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table
+
+Output File Names:
 kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.pds.wang.pick.taxonomy
 kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.pds.wang.accnos
 kbay.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table
 kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.fasta
+
+mothur > summary.seqs(fasta=kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.fasta, count=kbay.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table)
+
+Using 24 processors.
+
+                Start   End     NBases  Ambigs  Polymer NumSeqs
+Minimum:        1       355     249     0       3       1
+2.5%-tile:      1       355     253     0       4       1423
+25%-tile:       1       355     253     0       4       14229
+Median:         1       355     253     0       4       28457
+75%-tile:       1       355     253     0       4       42685
+97.5%-tile:     1       355     254     0       6       55490
+Maximum:        1       355     258     0       8       56912
+Mean:   1       355     253     0       4
+# of unique seqs:       1211
+total # of seqs:        56912
+
+It took 2 secs to summarize 56912 sequences.
+
+Output File Names:
+kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.summary
 ```
 
 ## <a name="OTU"></a> **OTU Clustering**
@@ -1138,6 +1122,7 @@ $ cd .. ### need to be in mothur directory when running script
 #SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
 #SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
 #SBATCH --account=putnamlab                  
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_16S/Mothur    
 #SBATCH --error="script_error_cluster" #if your job fails, the error report will be put in this file
 #SBATCH --output="output_script_cluster" #once your job is completed, any final job report comments will be put in this file
 
@@ -1150,8 +1135,6 @@ mothur
 mothur "#dist.seqs(fasta=kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.fasta)"
 
 mothur "#cluster(column=kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.dist, count=kbay.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table, cutoff=0.03)"
-
-mothur "#cluster.split(fasta=kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.fasta, count=kbay.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table, taxonomy=kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.pds.wang.pick.taxonomy, taxlevel=4, cutoff=0.03, splitmethod=classify)"
 
 mothur "#make.shared(list=kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.opti_mcc.list, count=kbay.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table)"
 
@@ -1167,50 +1150,7 @@ Make sure you are in the Mothur directory and run the above script `$ sbatch scr
 From the `output_script_cluster`:
 
 ```
-mothur > dist.seqs(fasta=kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.fasta)
-
-Using 24 processors.
-
-Sequence        Time    Num_Dists_Below_Cutoff
-0       0       0
-100     1       5050
-600     3       12969
-500     3       13622
-800     3       13464
-900     4       14280
-300     4       17420
-1100    5       18564
-200     5       20100
-700     5       21904
-400     6       24589
-1000    6       25675
-235     6       27730
-624     6       27669
-408     6       27825
-578     7       27675
-884     7       27792
-1002    7       27678
-974     7       27840
-1133    7       28025
-915     7       27900
-528     7       28028
-783     7       27558
-1083    7       27833
-945     7       27915
-333     7       27881
-1030    7       28462
-1057    7       28188
-708     7       27540
-1108    7       27400
-818     7       28035
-747     7       28392
-1158    7       28650
-852     7       28407
-668     7       28446
-472     7       28192
-
-It took 7 secs to find distances for 1159 sequences. 671061 distances below cutoff 1.
-
+It took 7 secs to find distances for 1211 sequences. 732655 distances below cutoff 1.
 Output File Names:
 kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.dist
 
@@ -1220,14 +1160,12 @@ Clustering kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick
 iter    time    label   num_otus        cutoff  tp      tn      fp      fn      sensitivity     specificity     ppv     npv     fdr     accuracy        mcc     f1score
 
 0.03
-0       0       0.03    1159    0.03    0       639005  0       32056   0       1       0       0.952231        1       0.952231        0       0       
-1       0       0.03    503     0.03    31814   638981  24      242     0.992451        0.999962        0.999246        0.999621        0.999246        0.999604        0.995635
-        0.995837        
-2       0       0.03    489     0.03    31861   638959  46      195     0.993917        0.999928        0.998558        0.999695        0.998558        0.999641        0.996047
-        0.996232        
-3       0       0.03    487     0.03    31868   638954  51      188     0.994135        0.99992 0.998402        0.999706        0.998402        0.999644        0.99608 0.996264
-
-
+0       0       0.03    1211    0.03    0       693282  0       39373   0       1       0       0.94626 1       0.94626 0       0       
+1       0       0.03    513     0.03    39114   693249  33      259     0.993422        0.999952        0.999157        0.999627        0.999157        0.999601        0.996075
+        0.996281        
+2       0       0.03    501     0.03    39139   693235  47      234     0.994057        0.999932        0.998801        0.999663        0.998801        0.999616        0.996224
+        0.996423        
+3       0       0.03    501     0.03    39141   693233  49      232     0.994108        0.999929        0.99875 0.999665        0.99875 0.999616        0.996224        0.996423
 
 It took 1 seconds to cluster
 
@@ -1236,144 +1174,55 @@ kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.opti_mcc.l
 kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.opti_mcc.steps
 kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.opti_mcc.sensspec
 
-[WARNING]: splitmethod is not a valid parameter, ignoring.
-The valid parameters are: file, taxonomy, fasta, name, count, taxlevel, showabund, runsensspec, cluster, timing, processors, cutoff, delta, iters, initialize, precision, method, metric, dist, islist, classic, vsearch, seed, inputdir, and outputdir.
-
-## EXAMPLE OF OUTPUT FOR 40 GROUPS
-Using 24 processors.
-Splitting the file...
-/******************************************/
-Selecting sequences for group Caulobacterales (1 of 40)
-Number of unique sequences: 7
-
-Selected 31 sequences from your count file.
-
-Calculating distances for group Caulobacterales (1 of 40):
-
-Sequence        Time    Num_Dists_Below_Cutoff
-0       0       0
-1       0       0
-2       0       0
-2       0       0
-2       0       0
-3       0       0
-3       0       0
-3       0       0
-3       0       0
-4       0       1
-4       0       0
-4       0       0
-4       0       0
-4       0       0
-5       0       2
-5       0       0
-5       0       0
-5       0       0
-5       0       0
-6       0       0
-1       0       0
-
-It took 0 secs to find distances for 7 sequences. 3 distances below cutoff 0.03.
-
+mothur > make.shared(list=kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.opti_mcc.list, count=kbay.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table)
+0.03
 
 Output File Names:
-kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.0.dist
+kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.opti_mcc.shared
 
-Finding singletons (ignore 'Removing group' messages):
-
-Running command: remove.seqs()
-
-Removing group: WSH218 because all sequences have been removed.
-
-Removing group: WSH221 because all sequences have been removed.
-
-Removing group: WSH223 because all sequences have been removed.
-
-Removing group: WSH224 because all sequences have been removed.
-
-Removing group: WSH225 because all sequences have been removed.
-
-Removing group: WSH226 because all sequences have been removed.
-
-Removing group: WSH227 because all sequences have been removed.
-
-Removing group: WSH228 because all sequences have been removed.
-
-Removing group: WSH230 because all sequences have been removed.
-
-Removing group: WSH231 because all sequences have been removed.
-
-Removing group: WSH232 because all sequences have been removed.
-
-Removing group: WSH233 because all sequences have been removed.
-
-Removing group: WSH236 because all sequences have been removed.
-
-Removing group: WSH242 because all sequences have been removed.
-
-Removing group: WSH246 because all sequences have been removed.
-
-Removing group: WSH248 because all sequences have been removed.
-
-Removing group: WSH249 because all sequences have been removed.
-
-Removing group: WSH253 because all sequences have been removed.
-
-Removing group: WSH254 because all sequences have been removed.
-
-Removing group: WSH256 because all sequences have been removed.
-Removed 53011 sequences from your count file.
-/******************************************/
-It took 9 seconds to split the distance file.
-kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.4.disttemp
-kbay.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.29.disttemp
-
-### SEE NOTE ABOUT SAMPLE BEING REMOVED ABOVE.
 mothur > count.groups(shared=kbay.opti_mcc.shared)
-WSH217 contains 109.
-WSH218 contains 105.
-WSH219 contains 170.
-WSH220 contains 107.
-WSH221 contains 153.
-WSH222 contains 111.
-WSH223 contains 57.
-WSH224 contains 68.
-WSH225 contains 63.
-WSH226 contains 201.
-WSH227 contains 4167.
-WSH228 contains 679.
-WSH229 contains 250.
-WSH230 contains 4173.
-WSH231 contains 784.
-WSH232 contains 61.
-WSH233 contains 138.
-WSH234 contains 15386.
-WSH235 contains 246.
-WSH236 contains 140.
-WSH237 contains 706.
-WSH238 contains 1887.
-WSH239 contains 206.
-WSH240 contains 164.
-WSH241 contains 249.
-WSH242 contains 199.
-WSH243 contains 218.
-WSH244 contains 357.
-WSH245 contains 794.
-WSH246 contains 303.
-WSH247 contains 2386.
-WSH248 contains 161.
-WSH249 contains 586.
-WSH250 contains 347.
-WSH251 contains 261.
-WSH252 contains 147.
-WSH253 contains 8168.
-WSH254 contains 7412.
-WSH255 contains 193.
-WSH256 contains 1232.
+WSH217 contains 113.
+WSH218 contains 111.
+WSH219 contains 180.
+WSH220 contains 120.
+WSH221 contains 168.
+WSH222 contains 122.
+WSH223 contains 62.
+WSH224 contains 73.
+WSH225 contains 67.
+WSH226 contains 213.
+WSH227 contains 4468.
+WSH228 contains 719.
+WSH229 contains 264.
+WSH230 contains 4466.
+WSH231 contains 839.
+WSH232 contains 65.
+WSH233 contains 146.
+WSH234 contains 16452.
+WSH235 contains 257.
+WSH236 contains 146.
+WSH237 contains 760.
+WSH238 contains 2020.
+WSH239 contains 222.
+WSH240 contains 175.
+WSH241 contains 272.
+WSH242 contains 217.
+WSH243 contains 235.
+WSH244 contains 383.
+WSH245 contains 864.
+WSH246 contains 328.
+WSH247 contains 2545.
+WSH248 contains 170.
+WSH249 contains 631.
+WSH250 contains 373.
+WSH251 contains 277.
+WSH252 contains 161.
+WSH253 contains 8769.
+WSH254 contains 7924.
+WSH255 contains 210.
+WSH256 contains 1325.
 
-Size of smallest group: 57.
-
-Total seqs: 53144.
+Size of smallest group: 62
 ```
 
 ## <a name="Subsample"></a> **Subsampling for sequencing depth**

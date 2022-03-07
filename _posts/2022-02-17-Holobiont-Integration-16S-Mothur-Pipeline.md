@@ -94,12 +94,14 @@ $ cd .. ### need to be in mothur directory when running script
 
 #!/bin/bash
 #SBATCH -t 24:00:00
+#SBATCH --job-name="HI-contigs"
 #SBATCH --nodes=1 --ntasks-per-node=1
 #SBATCH --export=NONE
 #SBATCH --mem=100GB
 #SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
 #SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
-#SBATCH --account=putnamlab                  
+#SBATCH --account=putnamlab           
+#SBATCH -D /data/putnamlab/estrand/HoloInt_16s/Mothur       
 #SBATCH --error="script_error_contigs" #if your job fails, the error report will be put in this file
 #SBATCH --output="output_script_contigs" #once your job is completed, any final job report comments will be put in this file
 
@@ -109,7 +111,7 @@ module load Mothur/1.46.1-foss-2020b
 
 mothur "#make.file(inputdir=., type=gz, prefix=HoloInt)"
 
-mothur "#make.contigs(inputdir=., outputdir=., file=HoloInt.files, oligos=oligos.oligos, trimoverlap=T)"
+mothur "#make.contigs(inputdir=., outputdir=., file=HoloInt.files, trimoverlap=T, oligos=oligos.oligos, pdiffs=2, checkorient=t)"
 
 mothur "#summary.seqs(fasta=HoloInt.trim.contigs.fasta)"
 ```
