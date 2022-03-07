@@ -23,7 +23,7 @@ Schedule:
 | E5 sample Runs      	| 1           	| 2                              	| 1                                           	| 2                              	| 1          	|
 | Notes     	|             	|                                	| Tanks downstairs = Run1; E5 samples = Run2  	|                                	|            	|
 
-Kristen, Pierrick, and Emma will do the physical titrations accroding to the schedule above. Emma will do all steps in [Titration Data Entry Process](https://github.com/daniellembecker/DanielleBecker_Lab_Notebook/blob/master/_posts/2021-02-18-E5-January-March-September-November-Calcification-Samples.md#titration-data-entry-process) and analyze data after Kristen and Pierrick push to github.
+Kristen, Pierrick, and Emma will do the physical titrations according to the schedule above. Emma will do all steps in [Titration Data Entry Process](https://github.com/daniellembecker/DanielleBecker_Lab_Notebook/blob/master/_posts/2021-02-18-E5-January-March-September-November-Calcification-Samples.md#titration-data-entry-process) and analyze data after Kristen and Pierrick push to github.
 
 Goal: ~6-7 runs a week (8 samples each x 7 = 56 samples a week). We'll start with this and see how that schedule works for everyone's time and energy. Then adjust from there if needed.
 
@@ -58,7 +58,7 @@ Match this example sample ID format:
 
 #### 20220303 Kristen and Emma (1 run = 8 samples)
 
-CRM error: -0.11796% 
+CRM error: -0.11796%
 
 | SampleID                 	| TA         	| Mass   	| Salinity 	|
 |--------------------------	|------------	|--------	|----------	|

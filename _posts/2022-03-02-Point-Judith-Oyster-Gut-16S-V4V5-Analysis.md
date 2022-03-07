@@ -24,6 +24,25 @@ Quince et al. 2011
 R mixed at 8:1:1
 ```
 
+```
+v4v5:
+518F: CCAGCAGCYGCGGTAAN
+926R: CCGTCAATTCNTTTRAGT
+	CCGTCAATTTCTTTGAGT
+	CCGTCTATTCCTTTGANT
+
+Nextera partial tails:
+Forward overhang: 5’ TCGTCGGCAGCGTCAGATGTGTATAAGAGACAG‐[locus‐ specific sequence]
+Reverse overhang: 5’ GTCTCGTGGGCTCGGAGATGTGTATAAGAGACAG‐[locus‐ specific sequence]
+
+v4v5 with Nextera partial tails:
+Forward overhang: 5’ TCGTCGGCAGCGTCAGATGTGTATAAGAGACAGCCAGCAGCYGCGGTAAN
+Reverse overhang: 5’ GTCTCGTGGGCTCGGAGATGTGTATAAGAGACAGCCGTCAATTCNTTTRAGT
+			  5’ GTCTCGTGGGCTCGGAGATGTGTATAAGAGACAGCCGTCAATTTCTTTGAGT
+  5’ GTCTCGTGGGCTCGGAGATGTGTATAAGAGACAGCCGTCTATTCCTTTGANT
+```
+
+
 Beginners to 16S: see my [16S Central Working Document](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2022-02-22-16S-Analysis-Central-Working-Document.md) for other QIIME2 pipelines with more detailed descriptions on each command (Holobiont Integration QIIME2 pipeline will be most helpful for beginners).
 
 Sequenced at URI's GSC. Information found [here](https://web.uri.edu/gsc/).
@@ -315,7 +334,8 @@ All parameter trials will have:
 - `#SBATCH -D /data/putnamlab/estrand/PointJudithData_16S/denoise_trials`  
 - `#SBATCH --error="script_error_denoise"` with script name  
 - `#SBATCH --output="output_script_denoise"` with script name   
-- Change paths for: `../PJ-paired-end-sequences.qza`, `../metadata`
+- Change paths for: `../PJ-paired-end-sequences.qza`, `../metadata`  
+- `#SBATCH --job-name="240-denoise"`
 
 #### no trimming step because we don't have primers?
 
@@ -442,6 +462,7 @@ CSV of the above data: /Users/emmastrand/MyProjects/Cvir_Nut_Int/output/16S_gutv
 
 ```
 #!/bin/bash
+#SBATCH --job-name="240-denoise"
 #SBATCH -t 24:00:00
 #SBATCH --nodes=1 --ntasks-per-node=1
 #SBATCH --export=NONE
@@ -494,3 +515,5 @@ qiime feature-table tabulate-seqs \
   --i-data rep-seqs-240-210.qza \
   --o-visualization rep-seqs-240-210.qzv
 ```
+
+#### Processing stopped here to switch to gut V6 samples for Northern region 
