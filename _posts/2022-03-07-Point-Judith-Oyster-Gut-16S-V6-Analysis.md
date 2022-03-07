@@ -299,6 +299,30 @@ Put the above files into QIIME2 view and download as tsv files.
 
 Output from R script to visualize the above denoising statistics. R script: `denoise-stats.R` is in our Cvir repo.
 
+**Results from the trials above:**
+
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/denoise.percent.plot.png?raw=true)
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/denoise.reads.plot.png?raw=true)
+
+|                                          	| Metric            	|                    	|                 	| Frequency         	|              	|                  	|              	|                   	|                	|
+|------------------------------------------	|-------------------	|--------------------	|-----------------	|-------------------	|--------------	|------------------	|--------------	|-------------------	|----------------	|
+| Denoise parameter                        	| Number of samples 	| Number of features 	| Total frequency 	| Minimum frequency 	| 1st quartile 	| Median frequency 	| 3rd quartile 	| Maximum frequency 	| Mean frequency 	|
+| With 7/7 bp trimming; 75/75 truncating   	| 112               	| 20,001             	| 2,543,573       	| 7,002.00          	| 18,988.00    	| 22,882.00        	| 26,349.75    	| 37,508.00         	| 22,710.47      	|
+| With 7/7 bp trimming; 70/70 truncating   	| 112               	| 20,436             	| 2,948,899       	| 8,332.00          	| 23,258.00    	| 26,196.50        	| 29,486.75    	| 45,743.00         	| 26,329.46      	|
+| With 10/10 bp trimming; 75/75 truncating 	| 112               	| 19,080             	| 3,368,939       	| 8,637.00          	| 25,019.50    	| 30,382.00        	| 35,261.75    	| 50,162.00         	| 30,079.81      	|
+| With 10/10 bp trimming; 70/70 truncating 	| 112               	| 20,375             	| 3,990,135       	| 10,343.00         	| 30,931.50    	| 34,976.00        	| 40,619.25    	| 57,437.00         	| 35,626.21      	|
+
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/denoise_trials/10-70-histogram.png?raw=true)
+
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/denoise_trials/10-75-histogram.png?raw=true)
+
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/denoise_trials/7-70-histogram.png?raw=true)
+
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/denoise_trials/7-75-histogram.png?raw=true)
+
+
+Based on the above, I'm going with the script: - With 10/10 bp trimming; 70/70 truncating (`denoise-10-70.sh`).
+
 ### denoise.sh
 
 ```

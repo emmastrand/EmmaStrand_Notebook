@@ -253,6 +253,46 @@ mothur "#summary.seqs(fasta=HoloInt.trim.contigs.good.fasta)"
 From `output_script_screen`:
 
 ```
+It took 167 secs to screen 8353543 sequences, removed 1859472.
+
+/******************************************/
+Running command: remove.seqs(accnos=/glfs/brick01/gv0/putnamlab/estrand/HoloInt_16s/Mothur/HoloInt.trim.contigs.bad.accnos.temp, group=/glfs/brick01/gv0/putnamlab/estrand/HoloInt_16s/Mothur/HoloInt.
+contigs.groups)
+Removed 1859472 sequences from your group file.
+
+Output File Names:
+/glfs/brick01/gv0/putnamlab/estrand/HoloInt_16s/Mothur/HoloInt.contigs.pick.groups
+
+/******************************************/
+
+Output File Names:
+/glfs/brick01/gv0/putnamlab/estrand/HoloInt_16s/Mothur/HoloInt.trim.contigs.good.fasta
+/glfs/brick01/gv0/putnamlab/estrand/HoloInt_16s/Mothur/HoloInt.trim.contigs.bad.accnos
+/glfs/brick01/gv0/putnamlab/estrand/HoloInt_16s/Mothur/HoloInt.contigs.good.groups
+
+
+It took 731 secs to screen 8353543 sequences.
+
+
+mothur > summary.seqs(fasta=HoloInt.trim.contigs.good.fasta)
+
+Using 24 processors.
+
+                Start   End     NBases  Ambigs  Polymer NumSeqs
+Minimum:        1       150     150     0       3       1
+2.5%-tile:      1       176     176     0       4       162352
+25%-tile:       1       176     176     0       7       1623518
+Median:         1       177     177     0       10      3247036
+75%-tile:       1       207     207     0       11      4870554
+97.5%-tile:     1       253     253     0       11      6331720
+Maximum:        1       281     281     0       20      6494071
+Mean:   1       196     196     0       8
+# of Seqs:      6494071
+
+It took 204 secs to summarize 6494071 sequences.
+
+Output File Names:
+HoloInt.trim.contigs.good.summary
 ```
 
 Output files from screen.sh step:
