@@ -30,6 +30,7 @@ Goal: ~6-7 runs a week (8 samples each x 7 = 56 samples a week). We'll start wit
 Daily log for notes about each step: [google document link](https://docs.google.com/document/d/18YpBWMWWOQzft9wPQUlEfvq7ivTyKiauDOLJ_f2qbC4/edit). Path is 201906_Post_Award > URI_Titrations > "E5 January, March, September, and November 2020 Instantaneous Calcification Samples Notes".
 
 Contents:  
+- [**Issues/Questions to Address**](#Issues)  
 - [**September 2020, 51 samples to complete**](#Sept)  
 - [**January 2020, 146 samples to complete**](#Jan)  
 - [**November 2020, 145 samples to complete**](#Nov)  
@@ -53,6 +54,13 @@ Each day make a new folder with the date YEAR-MONTH-DAY (i.e. 20220303).
 Match this example sample ID format:  
 - ACR_225_20200914_RUN_7    
 - INITIAL_1_20200915_RUN_10
+
+## <a name="Issues"></a> **Issues/Questions to Address**
+
+Timepoint 3 - September 2020; 2020-09-12 Run 3: Initial measurements from 2020-09-09 are in 3_initial_TA_samples.csv but no initial measurements for runs after that. If there are 2 data points for "Initial 1" - do we distinguish which one to use? This is probably a question for Danielle.
+
+We are currently copy and pasting into `Timepoint#_TA_Data` in urol timeseries repo. Can we pull values into R and cat the dfs together? I'm nervous for manual entry. Will touch base with Ariana about this in meeting 3/7. 
+
 
 ## <a name="Sept"></a> **September 2020, 51 samples to complete**
 
