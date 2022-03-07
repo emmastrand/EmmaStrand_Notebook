@@ -55,9 +55,6 @@ Contents:
 - [**QIIME2 Metadata**](#Metadata)  
 - [**QIIME2 Sample data import**](#Import)  
 - [**QIIME2 Denoising with DADA2**](#Denoise)  
-- [**QIIME2 Taxonomy classification**](#Taxonomy)   
-- [**QIIME2 Subsample and diversity indices**](#Diversity)    
-- [**Switch to R to visualize the feature tables**](#R)   
 
 
 ## <a name="Setting_up"></a> **Setting Up Andromeda**
@@ -516,4 +513,4 @@ qiime feature-table tabulate-seqs \
   --o-visualization rep-seqs-240-210.qzv
 ```
 
-#### Processing stopped here to switch to gut V6 samples for Northern region 
+#### Processing stopped here to switch to gut V6 samples for Northern region
