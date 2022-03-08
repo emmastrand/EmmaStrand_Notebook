@@ -35,13 +35,15 @@ Contents:
 - [**January 2020, 146 samples to complete**](#Jan)  
 - [**November 2020, 145 samples to complete**](#Nov)  
 - [**Equipment locations**](#Equip)  
+- [**Waste**](#Waste)  
 
-Remaining as of 2022-03-03:  
-- September 2020: 43/51 samples  
+Remaining as of 2022-03-08 (mid-day):  
+- September 2020: 35/51 samples  
 - January 2020: 146/146 samples  
 - November 2020: 145/145 samples
 
-We'll do time points separately and do initials and blanks in the same titration run.
+We'll do time points separately and do initials and blanks in the same titration run.  
+The #s for samples left to-do are generated from the # of bottles left in the bin for September 2020. This does not account for samples already run so that number will likely be less. 
 
 ### Folders for this project
 
