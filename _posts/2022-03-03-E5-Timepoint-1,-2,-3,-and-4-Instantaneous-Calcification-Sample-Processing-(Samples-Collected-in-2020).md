@@ -47,19 +47,23 @@ We'll do time points separately and do initials and blanks in the same titration
 
 Path on desktop computer: Data > E5_Titrations > E5_2020_Calcification_Samples.
 
-Each day make a new folder with the date YEAR-MONTH-DAY (i.e. 20220303).
+Each day make a new folder with the date YEAR-MONTH-DAY (i.e. 20220303).  
+
+Each CRM and sample run will have their own mass file instead of overriding the previous one.
 
 ### Notation for sample ID
 
-Match this example sample ID format:  
-- ACR_225_20200914_RUN_7    
-- INITIAL_1_20200915_RUN_10
+Match this example sample ID format:   
+- Colony-ID_DATE_RUN#   
+- ACR-225_20200914_7    
+- INITIAL-1_20200915_10  
+- BK-1_20200912_2
 
 ## <a name="Issues"></a> **Issues/Questions to Address**
 
-Timepoint 3 - September 2020; 2020-09-12 Run 3: Initial measurements from 2020-09-09 are in 3_initial_TA_samples.csv but no initial measurements for runs after that. If there are 2 data points for "Initial 1" - do we distinguish which one to use? This is probably a question for Danielle.
+Timepoint 3 - September 2020; 2020-09-12 Run 3: Initial measurements from 2020-09-09 are in 3_initial_TA_samples.csv but no initial measurements for runs after that. If there are 2 data points for "Initial 1" - do we distinguish which one to use? Ariana and I are currently chatting about the best way to go about this.
 
-We are currently copy and pasting into `Timepoint#_TA_Data` in urol timeseries repo. Can we pull values into R and cat the dfs together? I'm nervous for manual entry. Will touch base with Ariana about this in meeting 3/7. 
+We are currently copy and pasting into `Timepoint#_TA_Data` in urol timeseries repo. Can we pull values into R and cat the dfs together? I'm nervous for manual entry. Will touch base with Ariana about this in meeting 3/7.
 
 
 ## <a name="Sept"></a> **September 2020, 51 samples to complete**
@@ -80,6 +84,10 @@ CRM error: -0.11796%
 | POR_387_20200912_RUN_3   	| 2295.43894 	| 60.478 	| 40.35    	|
 | POR_373_20200912_RUN_3   	| 2286.19554 	| 60.173 	| 40.26    	|
 
+*These sample IDs will need to be changed on the laptop next to the titrator. Otherwise each push will override that file changed on my computer.*
+
+#### 20220308 Kristen and Emma (2 runs = 16 samples)
+
 
 
 ## <a name="Jan"></a> **January 2020, 146 samples to complete**
@@ -96,3 +104,12 @@ BS10: titrator supplies, buffers, pH
 BS11: ziplock bags and plasftic containers, 10 mL serological pipette tips
 
 Junk seawater can be taken from a blue tank downstairs in the aquarium room.
+
+The serological pipette holder lives in the third drawer down on the same bench as the waste (just the left side if you are looking at the bench).
+
+## <a name="Waste"></a> **Waste**
+
+*See titration protocol for full waste details.*
+
+Serological pipette tips are broken in half and placed in the solids bin. Kim wipes are also placed in this bin.  
+Samples post-run are placed in the liquids container.  

@@ -344,9 +344,27 @@ mothur "#summary.seqs(fasta=HoloInt.trim.contigs.good.unique.fasta, count=HoloIn
 From `output_script_unique`:
 
 ```
+mothur > summary.seqs(fasta=HoloInt.trim.contigs.good.unique.fasta, count=HoloInt.trim.contigs.good.count_table)
 
+Using 24 processors.
+
+                Start   End     NBases  Ambigs  Polymer NumSeqs
+Minimum:        1       150     150     0       3       1
+2.5%-tile:      1       176     176     0       4       162352
+25%-tile:       1       176     176     0       7       1623518
+Median:         1       177     177     0       10      3247036
+75%-tile:       1       207     207     0       11      4870554
+97.5%-tile:     1       253     253     0       11      6331720
+Maximum:        1       281     281     0       20      6494071
+Mean:   1       196     196     0       8
+# of unique seqs:       91239
+total # of seqs:        6494071
+
+It took 6 secs to summarize 6494071 sequences.
+
+Output File Names:
+HoloInt.trim.contigs.good.unique.summary
 ```
-
 
 Output files from unique.sh step:
 
@@ -469,7 +487,35 @@ mothur "#summary.seqs(fasta=HoloInt.trim.contigs.good.unique.align)"
 From `output_script_align`:
 
 ```
+[WARNING]: 36306 of your sequences generated alignments that eliminated too many bases, a list is provided in HoloInt.trim.contigs.good.unique.flip.accnos.
+[NOTE]: 6142 of your sequences were reversed to produce a better alignment.
 
+It took 173 seconds to align 91239 sequences.
+
+Output File Names:
+HoloInt.trim.contigs.good.unique.align
+HoloInt.trim.contigs.good.unique.align.report
+HoloInt.trim.contigs.good.unique.flip.accnos
+
+mothur > summary.seqs(fasta=HoloInt.trim.contigs.good.unique.align)
+
+Using 24 processors.
+
+                Start   End     NBases  Ambigs  Polymer NumSeqs
+Minimum:        0       0       0       0       1       1
+2.5%-tile:      1       1250    3       0       2       2281
+25%-tile:       1       1250    11      0       3       22810
+Median:         1968    11550   253     0       4       45620
+75%-tile:       1968    11550   253     0       4       68430
+97.5%-tile:     13406   13425   254     0       6       88959
+Maximum:        13425   13425   274     0       14      91239
+Mean:   2152    8339    156     0       3
+# of Seqs:      91239
+
+It took 31 secs to summarize 91239 sequences.
+
+Output File Names:
+HoloInt.trim.contigs.good.unique.summary
 ```
 
 
@@ -517,7 +563,52 @@ mothur "#count.groups(count=HoloInt.trim.contigs.good.good.count_table)"
 From `output_script_screen2`:
 
 ```
+It took 36 secs to screen 91239 sequences, removed 37971.
 
+/******************************************/
+Running command: remove.seqs(accnos=HoloInt.trim.contigs.good.unique.bad.accnos.temp, count=HoloInt.trim.contigs.good.count_table)
+Removed 5699697 sequences from your count file.
+
+Output File Names:
+HoloInt.trim.contigs.good.pick.count_table
+
+/******************************************/
+
+Output File Names:
+HoloInt.trim.contigs.good.unique.good.align
+HoloInt.trim.contigs.good.unique.bad.accnos
+HoloInt.trim.contigs.good.good.count_table
+
+
+It took 42 secs to screen 91239 sequences.
+
+mothur > summary.seqs(fasta=HoloInt.trim.contigs.good.unique.good.align, count=HoloInt.trim.contigs.good.good.count_table)
+
+Using 24 processors.
+
+                Start   End     NBases  Ambigs  Polymer NumSeqs
+Minimum:        1       11550   241     0       3       1
+2.5%-tile:      1968    11550   253     0       4       19860
+25%-tile:       1968    11550   253     0       4       198594
+Median:         1968    11550   253     0       4       397188
+75%-tile:       1968    11550   253     0       5       595781
+97.5%-tile:     1968    11550   254     0       6       774515
+Maximum:        1968    13425   272     0       12      794374
+Mean:   1967    11550   253     0       4
+# of unique seqs:       53268
+total # of seqs:        794374
+
+It took 19 secs to summarize 794374 sequences.
+
+Output File Names:
+HoloInt.trim.contigs.good.unique.good.summary
+
+Size of smallest group: 27.
+
+Total seqs: 794374.
+
+Output File Names:
+HoloInt.trim.contigs.good.good.count.summary
 ```
 
 
@@ -559,9 +650,37 @@ mothur "#summary.seqs(fasta=HoloInt.trim.contigs.good.unique.good.filter.fasta, 
 Output from the `output_script_filter` file:
 
 ```
+Length of filtered alignment: 505
+Number of columns removed: 12920
+Length of the original alignment: 13425
+Number of sequences used to construct filter: 53268
+
+Output File Names:
+HoloInt.filter
+HoloInt.trim.contigs.good.unique.good.filter.fasta
+
+mothur > summary.seqs(fasta=HoloInt.trim.contigs.good.unique.good.filter.fasta, count=HoloInt.trim.contigs.good.good.count_table)
+
+Using 24 processors.
+
+                Start   End     NBases  Ambigs  Polymer NumSeqs
+Minimum:        1       504     241     0       3       1
+2.5%-tile:      1       505     253     0       4       19860
+25%-tile:       1       505     253     0       4       198594
+Median:         1       505     253     0       4       397188
+75%-tile:       1       505     253     0       5       595781
+97.5%-tile:     1       505     254     0       6       774515
+Maximum:        1       505     263     0       12      794374
+Mean:   1       504     253     0       4
+# of unique seqs:       53268
+total # of seqs:        794374
+
+It took 4 secs to summarize 794374 sequences.
+
+Output File Names:
+HoloInt.trim.contigs.good.unique.good.filter.summary
 
 ```
-
 
 ## <a name="Pre-clustering"></a> **Pre clustering**
 
@@ -603,7 +722,30 @@ Ouput from the `output_script_precluster` file:
 
 
 ```
+Output File Names:
+HoloInt.trim.contigs.good.unique.good.filter.count_table
+HoloInt.trim.contigs.good.unique.good.filter.unique.fasta
 
+mothur > summary.seqs(fasta=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.fasta, count=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.count_table)
+
+Using 24 processors.
+
+                Start   End     NBases  Ambigs  Polymer NumSeqs
+Minimum:        1       504     241     0       3       1
+2.5%-tile:      1       505     253     0       4       19860
+25%-tile:       1       505     253     0       4       198594
+Median:         1       505     253     0       4       397188
+75%-tile:       1       505     253     0       5       595781
+97.5%-tile:     1       505     254     0       6       774515
+Maximum:        1       505     263     0       12      794374
+Mean:   1       504     253     0       4
+# of unique seqs:       23895
+total # of seqs:        794374
+
+It took 2 secs to summarize 794374 sequences.
+
+Output File Names:
+HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.summary
 ```
 
 ## <a name="Chimeras"></a> **Identifying Chimeras**
@@ -649,7 +791,31 @@ mothur "#count.groups(count=HoloInt.trim.contigs.good.unique.good.filter.unique.
 Output from `output_script_chimera` file:
 
 ```
+mothur > summary.seqs(fasta=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta, count=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch
+.pick.count_table)
 
+Using 24 processors.
+
+                Start   End     NBases  Ambigs  Polymer NumSeqs
+Minimum:        1       504     241     0       3       1
+2.5%-tile:      1       505     253     0       4       19756
+25%-tile:       1       505     253     0       4       197552
+Median:         1       505     253     0       4       395104
+75%-tile:       1       505     253     0       5       592656
+97.5%-tile:     1       505     254     0       6       770452
+Maximum:        1       505     263     0       12      790207
+Mean:   1       504     253     0       4
+# of unique seqs:       21197
+total # of seqs:        790207
+
+It took 3 secs to summarize 790207 sequences.
+
+Size of smallest group: 27.
+
+Total seqs: 790207.
+
+Output File Names:
+HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count.summary
 ```
 
 ## <a name="Classify_seq"></a> **Classifying Sequences**

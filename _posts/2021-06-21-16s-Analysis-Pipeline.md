@@ -653,6 +653,11 @@ qiime metadata tabulate \
     --m-input-file taxonomy.qza \
     --o-visualization tabulated-feature-metadata.qzv
 
+qiime feature-table summarize \
+    --i-table table-filtered.qza \
+    --o-visualization table-filtered.qzv \
+    --m-sample-metadata-file $METADATA
+
 #### CREATES PHYLOGENETIC TREES
 
 # align and mask sequences
@@ -938,7 +943,7 @@ Sampling depth of 40,000 to capture all samples.
 
 ![](https://github.com/hputnam/Acclim_Dynamics/blob/master/16S_seq/QIIME2_20220228/rarefraction-40000.png?raw=true)
 
-Sampling depth of 20,000 to view the above figure more easily. 
+Sampling depth of 20,000 to view the above figure more easily.
 
 ![](https://github.com/hputnam/Acclim_Dynamics/blob/master/16S_seq/QIIME2_20220228/rarefraction-20000.png?raw=true)
 

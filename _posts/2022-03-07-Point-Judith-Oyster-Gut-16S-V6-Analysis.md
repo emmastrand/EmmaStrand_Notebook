@@ -304,13 +304,13 @@ Output from R script to visualize the above denoising statistics. R script: `den
 ![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/denoise.percent.plot.png?raw=true)
 ![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/denoise.reads.plot.png?raw=true)
 
-|                                          	| Metric            	|                    	|                 	| Frequency         	|              	|                  	|              	|                   	|                	|
-|------------------------------------------	|-------------------	|--------------------	|-----------------	|-------------------	|--------------	|------------------	|--------------	|-------------------	|----------------	|
-| Denoise parameter                        	| Number of samples 	| Number of features 	| Total frequency 	| Minimum frequency 	| 1st quartile 	| Median frequency 	| 3rd quartile 	| Maximum frequency 	| Mean frequency 	|
-| With 7/7 bp trimming; 75/75 truncating   	| 112               	| 20,001             	| 2,543,573       	| 7,002.00          	| 18,988.00    	| 22,882.00        	| 26,349.75    	| 37,508.00         	| 22,710.47      	|
-| With 7/7 bp trimming; 70/70 truncating   	| 112               	| 20,436             	| 2,948,899       	| 8,332.00          	| 23,258.00    	| 26,196.50        	| 29,486.75    	| 45,743.00         	| 26,329.46      	|
-| With 10/10 bp trimming; 75/75 truncating 	| 112               	| 19,080             	| 3,368,939       	| 8,637.00          	| 25,019.50    	| 30,382.00        	| 35,261.75    	| 50,162.00         	| 30,079.81      	|
-| With 10/10 bp trimming; 70/70 truncating 	| 112               	| 20,375             	| 3,990,135       	| 10,343.00         	| 30,931.50    	| 34,976.00        	| 40,619.25    	| 57,437.00         	| 35,626.21      	|
+|                                              	| Metric                	|                        	|                     	| Frequency             	|                  	|                      	|                  	|                       	|                    	|
+|----------------------------------------------	|-----------------------	|------------------------	|---------------------	|-----------------------	|------------------	|----------------------	|------------------	|-----------------------	|--------------------	|
+| **Denoise parameter**                        	| **Number of samples** 	| **Number of features** 	| **Total frequency** 	| **Minimum frequency** 	| **1st quartile** 	| **Median frequency** 	| **3rd quartile** 	| **Maximum frequency** 	| **Mean frequency** 	|
+| With 7/7 bp trimming; 75/75 truncating       	| 112                   	| 20,001                 	| 2,543,573           	| 7,002.00              	| 18,988.00        	| 22,882.00            	| 26,349.75        	| 37,508.00             	| 22,710.47          	|
+| With 7/7 bp trimming; 70/70 truncating       	| 112                   	| 20,436                 	| 2,948,899           	| 8,332.00              	| 23,258.00        	| 26,196.50            	| 29,486.75        	| 45,743.00             	| 26,329.46          	|
+| With 10/10 bp trimming; 75/75 truncating     	| 112                   	| 19,080                 	| 3,368,939           	| 8,637.00              	| 25,019.50        	| 30,382.00            	| 35,261.75        	| 50,162.00             	| 30,079.81          	|
+| **With 10/10 bp trimming; 70/70 truncating** 	| **112**               	| **20,375**             	| **3,990,135**       	| **10,343.00**         	| **30,931.50**    	| **34,976.00**        	| **40,619.25**    	| **57,437.00**         	| **35,626.21**      	|
 
 ![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/denoise_trials/10-70-histogram.png?raw=true)
 
@@ -327,7 +327,7 @@ Based on the above, I'm going with the script: - With 10/10 bp trimming; 70/70 t
 
 ```
 #!/bin/bash
-#SBATCH --job-name="10-75-denoise"
+#SBATCH --job-name="denoise"
 #SBATCH -t 24:00:00
 #SBATCH --nodes=1 --ntasks-per-node=1
 #SBATCH --export=NONE
@@ -336,9 +336,9 @@ Based on the above, I'm going with the script: - With 10/10 bp trimming; 70/70 t
 #SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
 #SBATCH --account=putnamlab
 #SBTACH -q putnamlab
-#SBATCH -D /data/putnamlab/estrand/PointJudithData_16S/QIIME2_v6/denoise_trials
-#SBATCH --error="script_error_denoise-10-75" #if your job fails, the error report will be put in this file
-#SBATCH --output="output_script_denoise-10-75" #once your job is completed, any final job report comments will be put in this file
+#SBATCH -D /data/putnamlab/estrand/PointJudithData_16S/QIIME2_v6
+#SBATCH --error="script_error_denoise" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_denoise" #once your job is completed, any final job report comments will be put in this file
 
 source /usr/share/Modules/init/sh # load the module function
 module load QIIME2/2021.4
@@ -349,34 +349,151 @@ module load QIIME2/2021.4
 PWD="/data/putnamlab/estrand/PointJudithData_16S/QIIME2_v6"
 
 # Metadata path
-METADATA="../metadata/PJ_V6Samples_Metadata.txt"
+METADATA="metadata/PJ_V6Samples_Metadata.txt"
 
 # Sample manifest path
-MANIFEST="../metadata/sample-manifest_PJ_V6.csv"
+MANIFEST="metadata/sample-manifest_PJ_V6.csv"
 
 #########################
 
 #### DENOISING WITH DADA2
 
-qiime dada2 denoise-paired --verbose --i-demultiplexed-seqs ../PJ-paired-end-sequences.qza \
-  --p-trunc-len-r 75 --p-trunc-len-f 75 \
+qiime dada2 denoise-paired --verbose --i-demultiplexed-seqs PJ-paired-end-sequences.qza \
+  --p-trunc-len-r 70 --p-trunc-len-f 70 \
   --p-trim-left-r 10 --p-trim-left-f 10 \
-  --o-table table-10-75.qza \
-  --o-representative-sequences rep-seqs-10-75.qza \
-  --o-denoising-stats denoising-stats-10-75.qza \
+  --o-table table.qza \
+  --o-representative-sequences rep-seqs.qza \
+  --o-denoising-stats denoising-stats.qza \
   --p-n-threads 20
 
 #### CLUSTERING
 
 # Summarize feature table and sequences
 qiime metadata tabulate \
-  --m-input-file denoising-stats-10-75.qza \
-  --o-visualization denoising-stats-10-75.qzv
+  --m-input-file denoising-stats.qza \
+  --o-visualization denoising-stats.qzv
 qiime feature-table summarize \
-  --i-table table-10-75.qza \
-  --o-visualization table-10-75.qzv \
+  --i-table table.qza \
+  --o-visualization table.qzv \
   --m-sample-metadata-file $METADATA
 qiime feature-table tabulate-seqs \
-  --i-data rep-seqs-10-75.qza \
-  --o-visualization rep-seqs-10-75.qzv
+  --i-data rep-seqs.qza \
+  --o-visualization rep-seqs.qzv
+```
+
+## <a name="Taxonomy"></a> **Taxonomy classification based on imported database**
+
+Description from QIIME2 documentation:  
+- We can do this by comparing our query sequences (i.e., our features, be they ASVs or OTUs) to a reference database of sequences with known taxonomic composition.  
+- Simply finding the closest alignment is not really good enough — because other sequences that are equally close matches or nearly as close may have different taxonomic annotations.  
+- So we use taxonomy classifiers to determine the closest taxonomic affiliation with some degree of confidence or consensus (which may not be a species name if one cannot be predicted with certainty!), based on alignment, k-mer frequencies, etc. More info on this [here](https://doi.org/10.1186/s40168-018-0470-z).
+
+Workflow from QIIME2 documentation:  
+
+![taxworkflow](https://docs.qiime2.org/2021.4/_images/taxonomy.png)
+
+Reference database = `FeatureData[Taxonomy]` and `FeatureData[Sequence]`.  
+Pre-trained classifier choice information [here](https://docs.qiime2.org/2021.4/tutorials/overview/#derep-denoise).
+
+We chose the `Silva 138 99% OTUs from 515F/806R region of sequences (MD5: e05afad0fe87542704be96ff483824d4)` as the classifier because we used 515F and 806RB primers for our sequences and QIIME2 recommends the `classify-sklearn` classifier trainer.
+
+### Download classifier from QIIME2 documentation
+
+```
+wget https://data.qiime2.org/2021.4/common/silva-138-99-515-806-nb-classifier.qza
+```
+
+We also want to filter out unassigned and groups that include chloroplast and eukaryotic sequences.
+
+### Constructing phylogenetic trees
+
+This aligns the sequences to assess the phylogenetic relationship between each of our features. Figure from QIIME2 documentation:
+
+![phylo](https://docs.qiime2.org/2021.4/_images/alignment-phylogeny.png)
+
+Part 1: alignment and masking (filtering out) positions that are highly variable and will add noise to the tree.  
+
+Part 2: phylogenetic tree construction.
+
+### taxonomy.sh
+
+```
+#!/bin/bash
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab
+#SBTACH -q putnamlab
+#SBATCH -D /data/putnamlab/estrand/PointJudithData_16S/QIIME2_v6
+#SBATCH --error="script_error_taxonomy" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_taxonomy" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function
+module load QIIME2/2021.4
+
+#### METADATA FILES ####
+# Path working directory to the raw files (referenced in the metadata)
+# metadata says: $PWD/00_RAW_gz/RS1_S1_L001_R1_001.fastq.gz so this needs to lead the command to this path
+PWD="/data/putnamlab/estrand/PointJudithData_16S/QIIME2_v6"
+
+# Metadata path
+METADATA="metadata/PJ_V6Samples_Metadata.txt"
+
+# Sample manifest path
+MANIFEST="metadata/sample-manifest_PJ_V6.csv"
+
+#########################
+
+#### TAXONOMY CLASSIFICATION
+
+qiime feature-classifier classify-sklearn \
+  --i-classifier metadata/silva-138-99-515-806-nb-classifier.qza \
+  --i-reads rep-seqs.qza \
+  --o-classification taxonomy.qza
+
+qiime taxa filter-table \
+     --i-table table.qza \
+     --i-taxonomy taxonomy.qza \
+     --p-mode contains \
+     --p-exclude "Unassigned","Chloroplast","Eukaryota" \
+     --o-filtered-table table-filtered.qza
+
+qiime metadata tabulate \
+    --m-input-file taxonomy.qza \
+    --o-visualization taxonomy.qzv
+qiime taxa barplot \
+    --i-table table-filtered.qza \
+    --i-taxonomy taxonomy.qza \
+    --m-metadata-file $METADATA \
+    --o-visualization taxa-bar-plots-filtered.qzv
+qiime metadata tabulate \
+    --m-input-file rep-seqs.qza \
+    --m-input-file taxonomy.qza \
+    --o-visualization tabulated-feature-metadata.qzv
+
+qiime feature-table summarize \
+    --i-table table-filtered.qza \
+    --o-visualization table-filtered.qzv \
+    --m-sample-metadata-file $METADATA
+
+#### CREATES PHYLOGENETIC TREES
+
+# align and mask sequences
+qiime alignment mafft \
+  --i-sequences rep-seqs.qza \
+  --o-alignment aligned-rep-seqs.qza
+qiime alignment mask \
+  --i-alignment aligned-rep-seqs.qza \
+  --o-masked-alignment masked-aligned-rep-seqs.qza
+
+# calculate tree
+qiime phylogeny fasttree \
+  --i-alignment masked-aligned-rep-seqs.qza \
+  --o-tree unrooted-tree.qza
+qiime phylogeny midpoint-root \
+  --i-tree unrooted-tree.qza \
+  --o-rooted-tree rooted-tree.qza
 ```
