@@ -37,21 +37,27 @@ Contents:
 - [**Equipment locations**](#Equip)  
 - [**Waste**](#Waste)  
 
-Remaining as of 2022-03-08 (mid-day):  
-- September 2020: 35/51 samples  
+Remaining as of 2022-03-08:  
+- September 2020: 27/51 samples  
 - January 2020: 146/146 samples  
 - November 2020: 145/145 samples
 
 We'll do time points separately and do initials and blanks in the same titration run.  
-The #s for samples left to-do are generated from the # of bottles left in the bin for September 2020. This does not account for samples already run so that number will likely be less. 
+The #s for samples left to-do are generated from the # of bottles left in the bin for September 2020. This does not account for samples already run so that number will likely be less.
 
-### Folders for this project
+### Folders and file formats for this project
 
 Path on desktop computer: Data > E5_Titrations > E5_2020_Calcification_Samples.
 
 Each day make a new folder with the date YEAR-MONTH-DAY (i.e. 20220303).  
 
-Each CRM and sample run will have their own mass file instead of overriding the previous one.
+Each CRM and sample run will have their own mass file instead of overriding the previous one.  
+Before running the R script, rename these files:
+- rename the LabX output file to match this format: 20220308_Run1_PutnamTitrations_PutnamLab (If CRM run, replace Run1 with "CRM")    
+- Mass files should reflect this format: Mass_CRM_20220308 (If a sample run, replace CRM with "Run #")  
+
+After running the R script, rename these files:  
+- rename the TA Output file to match this format: TA_Output_20220308_Run1_PutnamTitrations_PutnamLab (If CRM run, replace Run1 with "CRM")  
 
 ### Notation for sample ID
 
@@ -60,6 +66,11 @@ Match this example sample ID format:
 - ACR-225_20200914_7    
 - INITIAL-1_20200915_10  
 - BK-1_20200912_2
+
+### CRM Information
+
+Batch 180 Salinity: 33.623  
+Batch 180 TA value: 2224.47
 
 ## <a name="Issues"></a> **Issues/Questions to Address**
 
@@ -90,7 +101,7 @@ CRM error: -0.11796%
 
 #### 20220308 Kristen and Emma (2 runs = 16 samples)
 
-
+#### 20220309 Kristen and Emma (2 runs = 16 samples)
 
 ## <a name="Jan"></a> **January 2020, 146 samples to complete**
 
