@@ -39,7 +39,7 @@ Contents:
 - [**Waste**](#Waste)   
 
 Remaining as of 2022-03-08:  
-- September 2020: 27/51 samples  
+- September 2020: Done  
 - January 2020: 146/146 samples  
 - November 2020: 145/145 samples
 
@@ -103,16 +103,14 @@ CRM error: -0.11796%
 | SampleID                 	| TA         	| Mass   	| Salinity 	|
 |--------------------------	|------------	|--------	|----------	|
 | JUNK 1                   	| 2535.93082 	| 59.733 	| 35       	|
-| INITIAL_1_20200912_RUN_3 	| 2337.25626 	| 60.379 	| 40.34    	|
-| INITIAL_2_20200912_RUN_3 	| 2348.79131 	| 60.446 	| 40.41    	|
-| ACR_343_20200912_RUN_3   	| 2333.80991 	| 60.081 	| 40.35    	|
-| POR_340_20200912_RUN_3   	| 2218.77808 	| 59.626 	| 40.16    	|
-| POR_362_20200912_RUN_3   	| 2265.81267 	| 60.031 	| 40.29    	|
-| POR_381_20200912_RUN_3   	| 2145.78802 	| 59.934 	| 40.3     	|
-| POR_387_20200912_RUN_3   	| 2295.43894 	| 60.478 	| 40.35    	|
-| POR_373_20200912_RUN_3   	| 2286.19554 	| 60.173 	| 40.26    	|
-
-*These sample IDs will need to be changed on the laptop next to the titrator. Otherwise each push will override that file changed on my computer.*
+| INITIAL1_20200912_3 	| 2337.25626 	| 60.379 	| 40.34    	|
+| INITIAL2_20200912_3 	| 2348.79131 	| 60.446 	| 40.41    	|
+| ACR-343_20200912_3   	| 2333.80991 	| 60.081 	| 40.35    	|
+| POR-340_20200912_3   	| 2218.77808 	| 59.626 	| 40.16    	|
+| POR-362_20200912_3   	| 2265.81267 	| 60.031 	| 40.29    	|
+| POR-381_20200912_3   	| 2145.78802 	| 59.934 	| 40.3     	|
+| POR-387_20200912_3   	| 2295.43894 	| 60.478 	| 40.35    	|
+| POR-373_20200912_3   	| 2286.19554 	| 60.173 	| 40.26    	|
 
 #### 20220308 Kristen and Emma (2 runs = 16 samples)
 
@@ -147,7 +145,7 @@ Run 2:
 | POR-384_20200909_2  	| 2277.95517 	| 60.238 	| 40.7     	|
 
 
-#### 20220309 Kristen and Emma (1 run = 8 samples)
+#### 20220309 Kristen and Emma (2 runs = 16 samples; 3 runs total for the day (1 blue tank run))
 
 
 
