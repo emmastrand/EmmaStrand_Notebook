@@ -81,13 +81,17 @@ We are currently copy and pasting into `Timepoint#_TA_Data` in urol timeseries r
 
 ## <a name="Week"></a> **Weekly Schedule**
 
+Emma will sign the Putnam lab up for the appropriate time slots at the beginning of the week on the [PPP team up calendar](https://teamup.com/c/h2sumb/ppp-and-thornber-labs).
+
 **Week of 3/7 - 3/11**
 
 |                	| Monday 3/7 	| Tuesday 3/8                                         	| Wednesday 3/9                                                  	| Thursday 3/10                                                                  	| Friday 3/11 	|
 |----------------	|------------	|-----------------------------------------------------	|----------------------------------------------------------------	|--------------------------------------------------------------------------------	|-------------	|
 | Personnel      	|            	| Emma starts (~9 am); Kristen finishes (12:15-3:15p) 	| Kristen starts (~9a-1p); Emma finishes (whenever Run2 is done) 	| Emma starts (~9 am-12p); Megan ends (12:15p - end)                             	| Amy         	|
-| E5 sample runs 	| 0          	| 2                                                   	| 1                                                              	| 1                                                                              	| 0           	|
+| E5 sample runs 	| 0          	| 2                                                   	| 2 (3 runs total)                                                              	| 1                                                                              	| 0           	|
 | Notes          	|            	|                                                     	| Tanks downstairs = Run1; E5 samples = Run2                     	| Emma does pH cal, CRM run, 1 E5 round; Megan (Puritz lab) runs 1-2 sample runs 	| Puritz Lab  	|
+
+**Week of 3/14 - 3/18**
 
 
 ## <a name="Sept"></a> **September 2020, 51 samples to complete**
@@ -112,7 +116,42 @@ CRM error: -0.11796%
 
 #### 20220308 Kristen and Emma (2 runs = 16 samples)
 
-#### 20220309 Kristen and Emma (2 runs = 8 samples for E5; 8 samples for blue tanks)
+CRM error: -0.16%
+
+Run 1:
+
+| SampleID            	| TA         	| Mass   	| Salinity 	|
+|---------------------	|------------	|--------	|----------	|
+| JUNK 1              	| 2538.00404 	| 59.725 	| 35       	|
+| POR-338_20200909_2  	| 2286.2164  	| 60.178 	| 40.61    	|
+| Initial1_20200909_2 	| 2331.52126 	| 60.177 	| 40.34    	|
+| POR-383_20200909_2  	| 2258.89333 	| 60.472 	| 40.18    	|
+| POR-354_20200912_3  	| 2267.02905 	| 59.979 	| 39.94    	|
+| POR-353_20200909_1  	| 2303.53562 	| 59.46  	| 39.94    	|
+| POR-341_20200909_2  	| 2221.63388 	| 59.672 	| 40.38    	|
+| BK-2_20200909_2     	| 2314.59019 	| 59.823 	| 39.87    	|
+| POC-391_20200912_3  	| 2319.23502 	| 60.119 	| 39.73    	|
+
+Run 2:
+
+| SampleID            	| TA         	| Mass   	| Salinity 	|
+|---------------------	|------------	|--------	|----------	|
+| JUNK 1              	| 2537.4245  	| 60.207 	| 35       	|
+| Initial2_20200909_2 	| 2349.06732 	| 59.741 	| 40.49    	|
+| POC-359_20200909_1  	| 2335.40506 	| 59.578 	| 40.52    	|
+| POC-369_20200909_2  	| 2286.28668 	| 60.163 	| 40.5     	|
+| POC-378_20200909_2  	| 2264.71636 	| 59.926 	| 40.63    	|
+| POC-395_20200909_2  	| 2315.40556 	| 59.611 	| 40.63    	|
+| POR-349_20200909_2  	| 2259.5831  	| 60.468 	| 40.66    	|
+| POR-355_20200909_2  	| 2269.82513 	| 59.525 	| 40.59    	|
+| POR-384_20200909_2  	| 2277.95517 	| 60.238 	| 40.7     	|
+
+
+#### 20220309 Kristen and Emma (1 run = 8 samples)
+
+
+
+
 
 ## <a name="Jan"></a> **January 2020, 146 samples to complete**
 
