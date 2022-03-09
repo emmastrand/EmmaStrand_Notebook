@@ -77,7 +77,9 @@ Batch 180 TA value: 2224.47
 
 Timepoint 3 - September 2020; 2020-09-12 Run 3: Initial measurements from 2020-09-09 are in 3_initial_TA_samples.csv but no initial measurements for runs after that. If there are 2 data points for "Initial 1" - do we distinguish which one to use? Ariana and I are currently chatting about the best way to go about this.
 
-We are currently copy and pasting into `Timepoint#_TA_Data` in urol timeseries repo. Can we pull values into R and cat the dfs together? I'm nervous for manual entry. Will touch base with Ariana about this in meeting 3/7.
+We are currently copy and pasting into `Timepoint#_TA_Data` in urol timeseries repo. On to-do list is create a test script to pull raw files and merge the dataframes to avoid any manual entry.
+
+All September bottles have been processed but there are several blank and initials that we do not have accounted for. Cross reference again with those bottles done at CSUN and in-field notes. Bring up to Ariana in meeting 3/14.
 
 ## <a name="Week"></a> **Weekly Schedule**
 
@@ -147,11 +149,18 @@ Run 2:
 
 #### 20220309 Kristen and Emma (2 runs = 16 samples; 3 runs total for the day (1 blue tank run))
 
+First E5 sample run was for September 2020 and the 2nd run was for January 2020 time point.
 
 
-
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/E5%20Calcification%20Processing/Titrations-September2020-processing.jpg?raw=true)
 
 ## <a name="Jan"></a> **January 2020, 146 samples to complete**
+
+#### 20220309 Kristen and Emma (2 runs = 16 samples; 3 runs total for the day (1 blue tank run))
+
+First E5 sample run was for September 2020 and the 2nd run was for January 2020 time point.
+
+
 
 ## <a name="Nov"></a> **November 2020, 145 samples to complete**
 
@@ -162,7 +171,7 @@ Lab inventory link google sheet: [here](https://docs.google.com/spreadsheets/d/1
 More 10 mL serological pipettes live on BS11.
 
 BS10: titrator supplies, buffers, pH    
-BS11: ziplock bags and plasftic containers, 10 mL serological pipette tips
+BS11: ziplock bags and plastic containers, 10 mL serological pipette tips
 
 Junk seawater can be taken from a blue tank downstairs in the aquarium room.
 
