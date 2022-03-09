@@ -38,9 +38,9 @@ Contents:
 - [**Equipment locations**](#Equip)   
 - [**Waste**](#Waste)   
 
-Remaining as of 2022-03-08:  
-- September 2020: Done  
-- January 2020: 146/146 samples  
+Remaining as of 2022-03-09:  
+- September 2020: Done (see note in issues RE initials and blanks)  
+- January 2020: 138/146 samples  
 - November 2020: 145/145 samples
 
 We'll do time points separately and do initials and blanks in the same titration run.  
@@ -80,6 +80,8 @@ Timepoint 3 - September 2020; 2020-09-12 Run 3: Initial measurements from 2020-0
 We are currently copy and pasting into `Timepoint#_TA_Data` in urol timeseries repo. On to-do list is create a test script to pull raw files and merge the dataframes to avoid any manual entry.
 
 All September bottles have been processed but there are several blank and initials that we do not have accounted for. Cross reference again with those bottles done at CSUN and in-field notes. Bring up to Ariana in meeting 3/14.
+
+*Change initial notation format on 0303, 0308, 0309.*
 
 ## <a name="Week"></a> **Weekly Schedule**
 
@@ -151,6 +153,19 @@ Run 2:
 
 First E5 sample run was for September 2020 and the 2nd run was for January 2020 time point.
 
+Run 1:
+
+| SampleID            	| TA         	| Mass   	| Salinity 	|
+|---------------------	|------------	|--------	|----------	|
+| JUNK 1              	| 2486.92729 	| 60.388 	| 35       	|
+| BK1_20200909_1      	| 2344.78601 	| 60.492 	| 40.7     	|
+| Initial2_20200909_1 	| 2346.26208 	| 60.095 	| 40.71    	|
+| POC-358_20200909_1  	| 2300.88123 	| 60.436 	| 40.74    	|
+| POC-372_20200909_1  	| 2299.23341 	| 60.256 	| 40.77    	|
+| POC-386_20200909_1  	| 2266.33998 	| 60.454 	| 40.84    	|
+| POR-357_20200909_1  	| 2293.5182  	| 59.981 	| 40.75    	|
+| POC-365_20200909_1  	| 2228.51312 	| 60.359 	| 40.84    	|
+| POC-367_20200909_1  	| 2246.40924 	| 60.109 	| 40.98    	|
 
 ![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/E5%20Calcification%20Processing/Titrations-September2020-processing.jpg?raw=true)
 
@@ -160,6 +175,19 @@ First E5 sample run was for September 2020 and the 2nd run was for January 2020 
 
 First E5 sample run was for September 2020 and the 2nd run was for January 2020 time point.
 
+Run 2:
+
+| SampleID            	| TA         	| Mass   	| Salinity 	|
+|---------------------	|------------	|--------	|----------	|
+| JUNK 1              	| 2483.8335  	| 60.305 	| 35       	|
+| INITIAL2_20200107_8 	| 2360.47591 	| 59.997 	| 40.96    	|
+| POR-381_20200107_8  	| 2306.57443 	| 59.691 	| 40.99    	|
+| ACR-364_20200107_8  	| 2341.16235 	| 60.528 	| 40.86    	|
+| POC-373_20200107_8  	| 2274.75422 	| 60.144 	| 40.72    	|
+| POC-394_20200107_8  	| 2349.66741 	| 60.258 	| 40.3     	|
+| ACR-363_20200107_8  	| 2326.21349 	| 59.786 	| 40.96    	|
+| POR-357_20200107_8  	| 2320.55603 	| 60.547 	| 40.81    	|
+| INITIAL1_20200107_8 	| 2354.24313 	| 59.783 	| 40.59    	|
 
 
 ## <a name="Nov"></a> **November 2020, 145 samples to complete**

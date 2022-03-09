@@ -7,20 +7,20 @@ tags: bioinformatics, 16s, coral, dna
 projects: HoloInt
 ---
 
-# Holobiont Integration 16S QIIME2 Analysis Pipeline
+# Holobiont Integration 16S V4 QIIME2 Analysis Pipeline
 
-Lab protocol for 16s: [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2021-02-01-16s-Sequencing-HoloInt.md).  
+Lab protocol for 16S: [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2021-02-01-16s-Sequencing-HoloInt.md).  
 
-251 samples with the 515F and 806RB primers (Apprill et al 2015) from *M. capitata* and *P. acuta* samples in the Holobiont Integration project.  
+251 samples with the V4 region 515F and 806RB primers (Apprill et al 2015) from *M. capitata* and *P. acuta* samples in the Holobiont Integration project.  
 
 Sequenced at URI's GSC. Information found [here](https://web.uri.edu/gsc/).
 
-Platemap, sample IDs, and manifest sheet found [here](https://docs.google.com/spreadsheets/d/1ePRCiBFAKLnapxBVCbzIo4Qzjxv-7t0zPcrdJDk2Oo8/edit?ts=6064f16c#gid=0). Order name = Putnam_NGS_20210520_16sITS2_Wong_Strand. My samples start HPW060 - HPW322.  
+Platemap, sample IDs, and manifest sheet found [here](https://docs.google.com/spreadsheets/d/1ePRCiBFAKLnapxBVCbzIo4Qzjxv-7t0zPcrdJDk2Oo8/edit?ts=6064f16c#gid=0). Order name = Putnam_NGS_20210520_16sITS2_Wong_Strand. My samples start HPW060 - HPW322. Sample processing information for V4 Holobiont Integration can be found in the lab protocol link above.   
 
 ## General workflow
 
 1. Log into Andromeda using VPN if not on campus.    
-2. cd to the 16s folder in the putnamlab folder `cd ../../data/putnamlab/estrand/HoloInt_16s`  
+2. cd to the 16S folder in the putnamlab folder `cd ../../data/putnamlab/estrand/HoloInt_16s`  
 3. Start conda environment `conda activate HoloInt_16s`
 5. Fastqc on all seqs `sbatch fastqc.sh`  
 6. View multiqc report (generated in #5) in internet browser.    
@@ -28,6 +28,8 @@ Platemap, sample IDs, and manifest sheet found [here](https://docs.google.com/sp
 8. Decide on parameters for all sections of QIIME2.  
 9. Run qiime2.  
 10. Switch to R
+
+*I left the "16s" in paths and notebook posts to not break any already established links. Use "16S" moving forward.*
 
 Contents:  
 - [**Setting Up Andromeda**](#Setting_up)  
@@ -42,10 +44,6 @@ Contents:
 ## <a name="Setting_up"></a> **Setting Up Andromeda**
 
 ### Related resources
-
-Fastq vs fasta format  
-16s
-Shell and linux/unix coding
 
 Resources on creating 'jobs'/scripts:  
 - [Putnam Lab Management: submitting jobs](https://github.com/Putnam-Lab/Lab_Management/blob/master/Bioinformatics_%26_Coding/Bluewaves/Submitting_Job.md)

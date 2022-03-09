@@ -381,6 +381,67 @@ qiime feature-table tabulate-seqs \
   --o-visualization rep-seqs.qzv
 ```
 
+#### Copy output to desktop for qiime2 view
+
+Outside of andromeda.
+
+```
+scp -r emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/PointJudithData_16S/QIIME2_v6/table.qzv /Users/emmastrand/MyProjects/Cvir_Nut_Int/output/16S_allv6/QIIME2
+
+rep-seqs.qzv
+denoising-stats.qzv
+table.qzv
+```
+
+Switch to R.md script. Plots of the denoised statistics from the qzv file from above.
+
+### Final Denoising Statistics
+
+**Sequence Length Statistics (from rep-seqs.qzv)**
+
+| Sequence Count 	| Min Length 	| Max Length 	| Mean Length 	| Range 	| Standard Deviation 	|
+|----------------	|------------	|------------	|-------------	|-------	|--------------------	|
+| 20375          	| 61         	| 108        	| 78.87       	| 47    	| 3.22               	|
+
+
+**Table Summary (from table.qzv)**
+
+| Metric             	| Sample    	|
+|--------------------	|-----------	|
+| Number of samples  	| 112       	|
+| Number of features 	| 20,375    	|
+| Total frequency    	| 3,990,135 	|
+
+**Frequency per sample (from table.qzv)**
+
+|          	|           Frequency          	|
+|-------------------	|---------------------	|
+| Minimum frequency 	| 10,343.0            	|
+| 1st quartile      	| 30,931.5            	|
+| Median frequency  	| 34,976.0            	|
+| 3rd quartile      	| 40,619.25           	|
+| Maximum frequency 	| 57,437.0            	|
+| Mean frequency    	| 35,626.205357142855 	|
+
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/final-denoise-histogram.png?raw=true)
+
+**Overall denoising statistics (from denoising-stats.tsv)**
+
+|                          	| Total     	| Average per sample 	|
+|--------------------------	|-----------	|--------------------	|
+| % of input passed filter 	| 99.34     	| 99.34              	|
+| % of input merged        	| 85.72     	| 85.48              	|
+| % of input non chimeric  	| 73.21     	| 73.12              	|
+| # reads input            	| 5,450,266 	| 48,663             	|
+| # reads filtered         	| 5,414,550 	| 48,344.20          	|
+| # reads denoised         	| 5,294,067 	| 47,268.46          	|
+| # reads merged           	| 4,672,087 	| 41,715.06          	|
+| # reads non-chimeric     	| 3,990,135 	| 35,626.21          	|
+
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/denoise.percent.plot.final.png?raw=true)
+
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/denoise.reads.plot.final.png?raw=true)
+
 ## <a name="Taxonomy"></a> **Taxonomy classification based on imported database**
 
 Description from QIIME2 documentation:  
@@ -496,4 +557,10 @@ qiime phylogeny fasttree \
 qiime phylogeny midpoint-root \
   --i-tree unrooted-tree.qza \
   --o-rooted-tree rooted-tree.qza
+```
+
+Output from `output_script_taxonomy`:
+
+```
+
 ```

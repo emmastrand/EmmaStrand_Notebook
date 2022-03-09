@@ -7,11 +7,18 @@ tags: 16s, DNA
 projects: Putnam Lab
 ---
 
-# 16s Sequencing for HoloInt Project
+# 16S Sequencing Protocol for the Putnam Lab
 
 Written by Emma Strand 20210315.
 
-## Next Gen 16s Sequencing Primer Design
+Contents:  
+- [**Next Gen 16s Sequencing Primer Design**](#Primer)  
+- [**WORKING Lab Protocol**](#Protocol)  
+- [**Holoboint Integration 16S V4 Sample Processing**](#Sample_processing)  
+
+Holobiont Integration 16S V3/V4 sample processing in this notebook post()
+
+## <a name="Primer"></a> **Next Gen 16s Sequencing Primer Design**
 
 [URI GSC](https://web.uri.edu/gsc/next-generation-sequencing/) requires specific adapter sequences that are outlined below:  
 
@@ -36,7 +43,14 @@ We took the primer sequences from Apprill et al 2015, and added the URI GSC spec
 | 515F forward 	| TCGTCGGCAGCGTCAGATGTGTATAAGAGACAG  	| GTGCCAGCMGCCGCGGTAA  	| TCGTCGGCAGCGTCAGATGTGTATAAGAGACAGGTGCCAGCMGCCGCGGTAA   	|
 | 806RB reverse 	| GTCTCGTGGGCTCGGAGATGTGTATAAGAGACAG 	| GGACTACNVGGGTWTCTAAT 	| GTCTCGTGGGCTCGGAGATGTGTATAAGAGACAGGGACTACNVGGGTWTCTAAT 	|
 
-## **WORKING** Lab Protocol
+**After sequencing this, we found that we amplified the host more than the bacterial community, specifically in M. capitata. We then tried the V3/V4 region. A project sequenced with V4 region in P. aestorides went well and we did not re-sequence those.**
+
+### for V3/V4 Region
+
+
+
+
+## <a name="Protocol"></a> **WORKING Lab Protocol**
 
 Prerequisites:  
 - Snap-frozen or well-preserved tissue samples  
@@ -66,7 +80,8 @@ In our lab, we will complete the first PCR step and then we pay URI GSC to compl
 
 ![workflow2](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16s-workflow2.png?raw=true)
 
-515F Forward and 806RB Reverse Amplicon size: ~390 bp.
+515F Forward and 806RB Reverse (V4) amplicon size: ~253 bp sequence + 50-60 bp for primer & adapter overhang.    
+V3/V4 amplicon size:
 
 **Steps:**
 
@@ -116,9 +131,9 @@ Master Mix calculations (per reaction):
 ![plate-setup](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/96wellplate-setup.png?raw=true)
 
 13. Spin down plate.  
-14. Run the following PCR program (this cycle program is specific to 16s):  
+14. Run the following PCR program (this cycle program is specific to 16S primer region):  
 
-PCR program:  
+PCR program used for V4 primers:  
 
 | Temperature 	| Time   	| Repeat 	|
 |-------------	|--------	|--------	|
@@ -127,6 +142,8 @@ PCR program:
 |  57 °C      	| 15s    	|        	|
 | 72 °C       	| 5 min  	|        	|
 | 72 °C       	| 10 min 	| 1      	|
+
+PCR program used for V3/V4 primers:
 
 15. Triplicate Gel: Run 5 μl of each product (3 per sample because the PCR was done in triplicate) on a 1% agarose gel for 45 minutes using the following [Putnam Lab Gel Electrophoresis protocol](https://emmastrand.github.io/EmmaStrand_Notebook/Gel-Electrophoresis-Protocol/) to check for ~390 bp product.  
 16. Pool products into PCR strip tubes (75 μl total) appropriately labeled with the sample ID. *Pooling occurs only after duplicate or triplicate samples (based on if you chose duplicates or triplicates above) have successfully amplified and confirmed on the gel.* These will be the PCR product stock. Store at -20&deg;C.  
@@ -151,8 +168,7 @@ Start at step 17 from above protocol.
 26. Place column into a 1.5 ml tube and centrifuge for 30 seconds at 16,000 rcf to elute DNA.  
 27. Run 5 μl of each sample on a 1% agarose gel for 60 minutes. The goal is to see a single band instead of two (one mitochondrial and one bacterial).  
 
-
-## Sample processing
+## <a name="Sample_processing"></a> **Holoboint Integration 16S V4 Sample Processing**
 
 Link to sample processing [google sheet](https://docs.google.com/spreadsheets/d/184gZr6-Bc48Q-48O8OhfnEsu5wRloLiekuJg3T_IzXw/edit#gid=0). This includes dilution calculations, dilution platemaps, master mix calculations, and PCR platemaps.
 

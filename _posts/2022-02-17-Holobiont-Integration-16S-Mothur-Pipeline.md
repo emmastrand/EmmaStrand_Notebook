@@ -7,7 +7,7 @@ tags: 16S, bioinformatics, Mothur, Holobiont Integration
 projects: Holobiont Integration
 ---
 
-# Holobiont Integration 16S Mothur Pipeline
+# Holobiont Integration 16S V4 Mothur Pipeline
 
 We tried QIIME2 for this project originally (notebook post [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2021-06-21-16s-Analysis-Pipeline.md)) but after using both the Mothur and QIIME2 pipeline for the KBay Bleaching Pairs project we found Mothur might be better suited for our data ([KBay QIIME2](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2022-01-07-KBay-Pairs-16S-Analysis-Pipeline.md); [KBay Mothur](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2022-01-24-KBay-Bleached-Pairs-16S-Analysis-Mothur.md)).
 
@@ -890,7 +890,46 @@ $ head HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.pds.w
 From `output_script_classify` file:
 
 ```
+[WARNING]: M00763_59_000000000-JR652_1_1104_13447_5072 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00763_59_000000000-JR652_1_1118_26370_4487 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00763_59_000000000-JR652_1_1105_12992_6638 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00763_59_000000000-JR652_1_2104_5847_16644 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00763_59_000000000-JR652_1_1118_15442_7329 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00763_59_000000000-JR652_1_2113_13939_20861 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00763_59_000000000-JR652_1_1111_8017_7390 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
+[WARNING]: M00763_59_000000000-JR652_1_2102_11368_19966 could not be classified. You can use the remove.lineage command with taxon=unknown; to remove such sequences.
 
+It took 167 secs to classify 21197 sequences.
+
+
+It took 3 secs to create the summary file for 21197 sequences.
+
+
+Output File Names:
+HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.pds.wang.taxonomy
+HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.pds.wang.tax.summary
+
+mothur > remove.lineage(fasta=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta, count=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table, taxonomy=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.pds.wang.taxonomy, taxon=Chloroplast-Mitochondria-unknown-Archaea-Eukaryota)
+
+/******************************************/
+Running command: remove.seqs(accnos=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.pds.wang.accnos, count=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.count_table, fasta=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.fasta)
+
+[WARNING]: Are you run the remove.seqs command after running a chimera command with dereplicate=t? If so, the count file has already been modified to remove all chimeras and adjust group counts. Including the count file here will cause downstream file mismatches.
+
+Removed 2967 sequences from your fasta file.
+Removed 131963 sequences from your count file.
+
+Output File Names:
+HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.fasta
+HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table
+
+/******************************************/
+
+Output File Names:
+HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.pds.wang.pick.taxonomy
+HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.pds.wang.accnos
+HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.denovo.vsearch.pick.pick.count_table
+HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.fasta
 ```
 
 ## <a name="OTU"></a> **OTU Clustering**
@@ -938,8 +977,28 @@ mothur "#count.groups(shared=HoloInt.opti_mcc.shared)"
 From the `output_script_cluster`:
 
 ```
+mothur > classify.otu(list=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.opti_mcc.list, count=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.de
+novo.vsearch.pick.pick.count_table, taxonomy=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.pds.wang.pick.taxonomy)
+0.03
 
+Output File Names:
+HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.opti_mcc.0.03.cons.taxonomy
+HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.opti_mcc.0.03.cons.tax.summary
+
+mothur > rename.file(taxonomy=HoloInt.trim.contigs.good.unique.good.filter.unique.precluster.pick.pick.opti_mcc.0.03.cons.taxonomy, shared=HoloInt.trim.contigs.good.unique.good.filter.un
+ique.precluster.pick.pick.opti_mcc.shared)
+
+Current files saved by mothur:
+shared=HoloInt.opti_mcc.shared
+taxonomy=HoloInt.taxonomy
+processors=24
+
+Size of smallest group: 14.
+
+Total seqs: 658244.
 ```
+
+# We are stopping here to return to lab work to sequence the V3/V4 region instead
 
 ## <a name="Subsample"></a> **Subsampling for sequencing depth**
 
