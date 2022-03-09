@@ -78,6 +78,17 @@ Timepoint 3 - September 2020; 2020-09-12 Run 3: Initial measurements from 2020-0
 
 We are currently copy and pasting into `Timepoint#_TA_Data` in urol timeseries repo. Can we pull values into R and cat the dfs together? I'm nervous for manual entry. Will touch base with Ariana about this in meeting 3/7.
 
+## <a name="Week"></a> **Weekly Schedule**
+
+**Week of 3/7 - 3/11**
+
+|                    	| **Monday 3/7** 	| **Tuesday 3/8**                                     	| **Wednesday 3/9**                                              	| **Thursday 3/10**                                                                       	| **Friday 3/11** 	|
+|--------------------	|----------------	|-----------------------------------------------------	|----------------------------------------------------------------	|-----------------------------------------------------------------------------------------	|-----------------	|
+| **Personnel**      	|                	| Emma starts (~9 am); Kristen finishes (12:15-3:15p) 	| Kristen starts (~9a-1p); Emma finishes (whenever Run2 is done) 	| Emma starts (~9 am); Kristen finishes (12:15-4:15p)                                     	| Amy             	|
+| **E5 sample runs** 	| 0              	| 2                                                   	| 1                                                              	| 1-2                                                                                     	| 0               	|
+| **Notes**          	|                	|                                                     	| Tanks downstairs = Run1; E5 samples = Run2                     	| Emma does pH cal, CRM run, 1 E5 round (9a-12p); Megan (Puritz lab) runs 1-2 sample runs 	| Puritz Lab      	|
+
+
 
 ## <a name="Sept"></a> **September 2020, 51 samples to complete**
 
@@ -101,7 +112,7 @@ CRM error: -0.11796%
 
 #### 20220308 Kristen and Emma (2 runs = 16 samples)
 
-#### 20220309 Kristen and Emma (2 runs = 16 samples)
+#### 20220309 Kristen and Emma (2 runs = 8 samples for E5; 8 samples for blue tanks)
 
 ## <a name="Jan"></a> **January 2020, 146 samples to complete**
 
