@@ -83,12 +83,11 @@ We are currently copy and pasting into `Timepoint#_TA_Data` in urol timeseries r
 
 **Week of 3/7 - 3/11**
 
-|                    	| **Monday 3/7** 	| **Tuesday 3/8**                                     	| **Wednesday 3/9**                                              	| **Thursday 3/10**                                                                       	| **Friday 3/11** 	|
-|--------------------	|----------------	|-----------------------------------------------------	|----------------------------------------------------------------	|-----------------------------------------------------------------------------------------	|-----------------	|
-| **Personnel**      	|                	| Emma starts (~9 am); Kristen finishes (12:15-3:15p) 	| Kristen starts (~9a-1p); Emma finishes (whenever Run2 is done) 	| Emma starts (~9 am); Kristen finishes (12:15-4:15p)                                     	| Amy             	|
-| **E5 sample runs** 	| 0              	| 2                                                   	| 1                                                              	| 1-2                                                                                     	| 0               	|
-| **Notes**          	|                	|                                                     	| Tanks downstairs = Run1; E5 samples = Run2                     	| Emma does pH cal, CRM run, 1 E5 round (9a-12p); Megan (Puritz lab) runs 1-2 sample runs 	| Puritz Lab      	|
-
+|                	| Monday 3/7 	| Tuesday 3/8                                         	| Wednesday 3/9                                                  	| Thursday 3/10                                                                  	| Friday 3/11 	|
+|----------------	|------------	|-----------------------------------------------------	|----------------------------------------------------------------	|--------------------------------------------------------------------------------	|-------------	|
+| Personnel      	|            	| Emma starts (~9 am); Kristen finishes (12:15-3:15p) 	| Kristen starts (~9a-1p); Emma finishes (whenever Run2 is done) 	| Emma starts (~9 am-12p); Megan ends (12:15p - end)                             	| Amy         	|
+| E5 sample runs 	| 0          	| 2                                                   	| 1                                                              	| 1                                                                              	| 0           	|
+| Notes          	|            	|                                                     	| Tanks downstairs = Run1; E5 samples = Run2                     	| Emma does pH cal, CRM run, 1 E5 round; Megan (Puritz lab) runs 1-2 sample runs 	| Puritz Lab  	|
 
 
 ## <a name="Sept"></a> **September 2020, 51 samples to complete**
