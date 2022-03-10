@@ -781,3 +781,5 @@ Get Kevin's script to run this final part.
 ### QIIME2 Bray Curtis Emporer visualization
 
 ![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/bray-curtis-emporer.png?raw=true)
+
+### Current issue is the dBact high % in the taxa bar plots. The next step is to train our own classifier. Check repseqs qzv in R for primer sequences
