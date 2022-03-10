@@ -66,7 +66,7 @@ After running the R script, rename these files:
 Match this example sample ID format:   
 - Colony-ID_DATE_RUN#   
 - ACR-225_20200914_7    
-- INITIAL-1_20200915_10  
+- Initial1_20200915_10  
 - BK-1_20200912_2
 
 ### CRM Information
