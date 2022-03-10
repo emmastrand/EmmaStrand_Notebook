@@ -647,7 +647,8 @@ The various diversity analyses you can do with QIIME2:
 
 **To re-run this script, need to delete core-metrics-results folder or rename the original folder.**
 
-Running beta diversity on SampleType and Treatment for now. We can also do this in R from the QIIME2 outputs. See Kevin's script for this.
+Running beta diversity on SampleType and Treatment for now. We can also do this in R from the QIIME2 outputs. See Kevin's script for this.  
+*this script overrides the previous beta diversity script -- output 2 different ones for sample type and treatment. or just keep one.*
 
 ### diversity.sh
 
@@ -731,6 +732,7 @@ No contents (no errors found).
 From `output_script_diversity`:
 
 ```
+Saved FeatureTable[Frequency] to: core-metrics-results/rarefied_table.qza
 Saved SampleData[AlphaDiversity] to: core-metrics-results/faith_pd_vector.qza
 Saved SampleData[AlphaDiversity] to: core-metrics-results/observed_features_vector.qza
 Saved SampleData[AlphaDiversity] to: core-metrics-results/shannon_vector.qza
@@ -749,6 +751,7 @@ Saved Visualization to: core-metrics-results/jaccard_emperor.qzv
 Saved Visualization to: core-metrics-results/bray_curtis_emperor.qzv
 Saved Visualization to: core-metrics-results/faith-pd-group-significance.qzv
 Saved Visualization to: core-metrics-results/evenness-group-significance.qzv
+Saved Visualization to: core-metrics-results/unweighted-unifrac-station-significance.qzv
 Saved Visualization to: core-metrics-results/unweighted-unifrac-group-significance.qzv
 Saved Visualization to: alpha-rarefaction.qzv
 ```
@@ -760,3 +763,21 @@ Copy core-metrics folder outside of andromeda.
 scp -r emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/PointJudithData_16S/QIIME2_v6/alpha-rarefaction.qzv  /Users/emmastrand/MyProjects/Cvir_Nut_Int/output/16S_allv6/QIIME2
 scp -r emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/PointJudithData_16S/QIIME2_v6/core-metrics-results  /Users/emmastrand/MyProjects/Cvir_Nut_Int/output/16S_allv6/QIIME2
 ```
+
+In QIIME2 view, input alpha-rarefraction.qzv:
+
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/rarefraction-curve-OF.png?raw=true)
+
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/rarefraction-curve-shannon.png?raw=true)
+
+## <a name="R"></a> **Switch to R to visualize the feature tables**
+
+Get Kevin's script to run this final part.
+
+### QIIME2 View taxa bar plots filtered.qzv
+
+![]()
+
+### QIIME2 Bray Curtis Emporer visualization
+
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/bray-curtis-emporer.png?raw=true)
