@@ -562,5 +562,201 @@ qiime phylogeny midpoint-root \
 Output from `output_script_taxonomy`:
 
 ```
+Saved FeatureData[Taxonomy] to: taxonomy.qza
+Saved FeatureTable[Frequency] to: table-filtered.qza
+Saved Visualization to: taxonomy.qzv
+Saved Visualization to: taxa-bar-plots-filtered.qzv
+Saved Visualization to: tabulated-feature-metadata.qzv
+Saved Visualization to: table-filtered.qzv
+Saved FeatureData[AlignedSequence] to: aligned-rep-seqs.qza
+Saved FeatureData[AlignedSequence] to: masked-aligned-rep-seqs.qza
+Saved Phylogeny[Unrooted] to: unrooted-tree.qza
+Saved Phylogeny[Rooted] to: rooted-tree.qza
+```
 
+Output from `script_error_taxonomy` is empty.
+
+#### Copy output to desktop for qiime2 view
+
+Outside of andromeda.
+
+```
+scp -r emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/PointJudithData_16S/QIIME2_v6/tabulated-feature-metadata.qzv  /Users/emmastrand/MyProjects/Cvir_Nut_Int/output/16S_allv6/QIIME2
+
+taxa-bar-plots-filtered.qzv
+table-filtered.qzv  
+tabulated-feature-metadata.qzv  
+```
+
+### Results pre and post-filtering for "Unassigned","Chloroplast","Eukaryota"
+
+*Are there any other groups we should be filtering because we are working with oysters?*
+
+**Table Summary (from table.qzv)**
+
+| Metric             	| Sample    	|
+|--------------------	|-----------	|
+| Number of samples  	| 112       	|
+| Number of features 	| 20,375    	|
+| Total frequency    	| 3,990,135 	|
+
+**Table Summary (from table-filtered.qzv)**
+
+| Metric             	| Sample    	|
+|--------------------	|-----------	|
+| Number of samples  	| 112       	|
+| Number of features 	| 7,918     	|
+| Total frequency    	| 1,832,976 	|
+
+**Frequency per sample (from table.qzv)**
+
+|          	|           Frequency          	|
+|-------------------	|---------------------	|
+| Minimum frequency 	| 10,343.0            	|
+| 1st quartile      	| 30,931.5            	|
+| Median frequency  	| 34,976.0            	|
+| 3rd quartile      	| 40,619.25           	|
+| Maximum frequency 	| 57,437.0            	|
+| Mean frequency    	| 35,626.205357142855 	|
+
+**Frequency per sample (from table-filtered.qzv)**
+
+| Frequency         	|                     	|
+|-------------------	|---------------------	|
+| Minimum frequency 	| 4,641.0             	|
+| 1st quartile      	| 13,104.5            	|
+| Median frequency  	| 15,701.0            	|
+| 3rd quartile      	| 19,781.0            	|
+| Maximum frequency 	| 29,737.0            	|
+| Mean frequency    	| 16,365.857142857143 	|
+
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/final-denoise-histogram.png?raw=true)
+
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/post-filtering-histogram.png?raw=true)
+
+Lowest sample = 4641
+
+## <a name="Diversity"></a> **Subsampling and diversity indices**
+
+The various diversity analyses you can do with QIIME2:  
+
+![qiime2](https://docs.qiime2.org/2021.4/_images/diversity.png)
+
+`--p-sampling-depth 4641 \` based on lowest # of reads for now. This passes our 1,500-3,000 minimum.     
+`--p-max-depth 20000 \`. The range of samples is high so I'm starting with 20,000 to see where our rarefraction curve stabilizes.
+
+**To re-run this script, need to delete core-metrics-results folder or rename the original folder.**
+
+Running beta diversity on SampleType and Treatment for now. We can also do this in R from the QIIME2 outputs. See Kevin's script for this.
+
+### diversity.sh
+
+```
+#!/bin/bash
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab
+#SBTACH -q putnamlab
+#SBATCH -D /data/putnamlab/estrand/PointJudithData_16S/QIIME2_v6
+#SBATCH --error="script_error_diversity" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_diversity" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function
+module load QIIME2/2021.4
+
+#### METADATA FILES ####
+# Path working directory to the raw files (referenced in the metadata)
+# metadata says: $PWD/00_RAW_gz/RS1_S1_L001_R1_001.fastq.gz so this needs to lead the command to this path
+PWD="/data/putnamlab/estrand/PointJudithData_16S/QIIME2_v6"
+
+# Metadata path
+METADATA="metadata/PJ_V6Samples_Metadata.txt"
+
+# Sample manifest path
+MANIFEST="metadata/sample-manifest_PJ_V6.csv"
+
+#########################
+
+#### CALCULATES OVERALL DIVERSITY
+## change sub sampling depth values
+
+qiime diversity core-metrics-phylogenetic \
+  --i-phylogeny rooted-tree.qza \
+  --i-table table-filtered.qza \
+  --p-sampling-depth 4641 \
+  --m-metadata-file $METADATA \
+  --output-dir core-metrics-results
+
+qiime diversity alpha-group-significance \
+  --i-alpha-diversity core-metrics-results/faith_pd_vector.qza \
+  --m-metadata-file $METADATA \
+  --o-visualization core-metrics-results/faith-pd-group-significance.qzv
+qiime diversity alpha-group-significance \
+  --i-alpha-diversity core-metrics-results/evenness_vector.qza \
+  --m-metadata-file $METADATA \
+  --o-visualization core-metrics-results/evenness-group-significance.qzv
+
+qiime diversity beta-group-significance \
+  --i-distance-matrix core-metrics-results/unweighted_unifrac_distance_matrix.qza \
+  --m-metadata-file $METADATA \
+  --m-metadata-column SampleType \
+  --o-visualization core-metrics-results/unweighted-unifrac-station-significance.qzv \
+  --p-pairwise
+qiime diversity beta-group-significance \
+  --i-distance-matrix core-metrics-results/unweighted_unifrac_distance_matrix.qza \
+  --m-metadata-file $METADATA  \
+  --m-metadata-column Treatment \
+  --o-visualization core-metrics-results/unweighted-unifrac-group-significance.qzv \
+  --p-pairwise
+
+# This script calculates the rarefaction curve for the data
+  qiime diversity alpha-rarefaction \
+    --i-table table-filtered.qza \
+    --i-phylogeny rooted-tree.qza \
+    --p-max-depth 20000 \
+    --m-metadata-file $METADATA \
+    --o-visualization alpha-rarefaction.qzv
+```
+
+From `script_error_diversity`:
+
+```
+No contents (no errors found).
+```
+
+From `output_script_diversity`:
+
+```
+Saved SampleData[AlphaDiversity] to: core-metrics-results/faith_pd_vector.qza
+Saved SampleData[AlphaDiversity] to: core-metrics-results/observed_features_vector.qza
+Saved SampleData[AlphaDiversity] to: core-metrics-results/shannon_vector.qza
+Saved SampleData[AlphaDiversity] to: core-metrics-results/evenness_vector.qza
+Saved DistanceMatrix to: core-metrics-results/unweighted_unifrac_distance_matrix.qza
+Saved DistanceMatrix to: core-metrics-results/weighted_unifrac_distance_matrix.qza
+Saved DistanceMatrix to: core-metrics-results/jaccard_distance_matrix.qza
+Saved DistanceMatrix to: core-metrics-results/bray_curtis_distance_matrix.qza
+Saved PCoAResults to: core-metrics-results/unweighted_unifrac_pcoa_results.qza
+Saved PCoAResults to: core-metrics-results/weighted_unifrac_pcoa_results.qza
+Saved PCoAResults to: core-metrics-results/jaccard_pcoa_results.qza
+Saved PCoAResults to: core-metrics-results/bray_curtis_pcoa_results.qza
+Saved Visualization to: core-metrics-results/unweighted_unifrac_emperor.qzv
+Saved Visualization to: core-metrics-results/weighted_unifrac_emperor.qzv
+Saved Visualization to: core-metrics-results/jaccard_emperor.qzv
+Saved Visualization to: core-metrics-results/bray_curtis_emperor.qzv
+Saved Visualization to: core-metrics-results/faith-pd-group-significance.qzv
+Saved Visualization to: core-metrics-results/evenness-group-significance.qzv
+Saved Visualization to: core-metrics-results/unweighted-unifrac-group-significance.qzv
+Saved Visualization to: alpha-rarefaction.qzv
+```
+
+Copy core-metrics folder outside of andromeda.
+
+```
+### outside of andromeda
+scp -r emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/PointJudithData_16S/QIIME2_v6/alpha-rarefaction.qzv  /Users/emmastrand/MyProjects/Cvir_Nut_Int/output/16S_allv6/QIIME2
+scp -r emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/PointJudithData_16S/QIIME2_v6/core-metrics-results  /Users/emmastrand/MyProjects/Cvir_Nut_Int/output/16S_allv6/QIIME2
 ```

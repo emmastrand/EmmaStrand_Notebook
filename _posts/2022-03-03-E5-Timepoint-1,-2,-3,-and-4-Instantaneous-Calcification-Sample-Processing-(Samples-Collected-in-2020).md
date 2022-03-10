@@ -25,7 +25,8 @@ General Schedule: *not final, check the weekly schedule section to see how we ar
 
 Kristen, Pierrick, and Emma will do the physical titrations according to the schedule above. Emma will do all steps in [Titration Data Entry Process](https://github.com/daniellembecker/DanielleBecker_Lab_Notebook/blob/master/_posts/2021-02-18-E5-January-March-September-November-Calcification-Samples.md#titration-data-entry-process) and analyze data after Kristen and Pierrick push to github.
 
-Goal: ~6-7 runs a week (8 samples each x 7 = 56 samples a week). We'll start with this and see how that schedule works for everyone's time and energy. Then adjust from there if needed.
+Goal: ~6-7 runs a week (8 samples each x 7 = 56 samples a week). We'll start with this and see how that schedule works for everyone's time and energy. Then adjust from there if needed.  
+- Based on week 1, we can probably do 3 runs tuesday - thursday depending on our sharing schedule. Mondays we can do 3-4 runs.
 
 Daily log for notes about each step: [google document link](https://docs.google.com/document/d/18YpBWMWWOQzft9wPQUlEfvq7ivTyKiauDOLJ_f2qbC4/edit). Path is 201906_Post_Award > URI_Titrations > "E5 January, March, September, and November 2020 Instantaneous Calcification Samples Notes".
 
@@ -38,9 +39,9 @@ Contents:
 - [**Equipment locations**](#Equip)   
 - [**Waste**](#Waste)   
 
-Remaining as of 2022-03-09:  
+Remaining as of 2022-03-10 (early morning):  
 - September 2020: Done (see note in issues RE initials and blanks)  
-- January 2020: 138/146 samples  
+- January 2020: 130/146 samples  
 - November 2020: 145/145 samples
 
 We'll do time points separately and do initials and blanks in the same titration run.  
@@ -70,8 +71,9 @@ Match this example sample ID format:
 
 ### CRM Information
 
-Batch 180 Salinity: 33.623  
-Batch 180 TA value: 2224.47
+March 3, 2022 - current:    
+- Batch 180 Salinity: 33.623  
+- Batch 180 TA value: 2224.47
 
 ## <a name="Issues"></a> **Issues/Questions to Address**
 
@@ -81,7 +83,9 @@ We are currently copy and pasting into `Timepoint#_TA_Data` in urol timeseries r
 
 All September bottles have been processed but there are several blank and initials that we do not have accounted for. Cross reference again with those bottles done at CSUN and in-field notes. Bring up to Ariana in meeting 3/14.
 
-*Change initial notation format on 0303, 0308, 0309.*
+50 mL falcon tubes for some samples for January 2020 and November 2020 time points instead of larger bottles. Hollie says it doesn't matter we can run these at whatever mass we can get - run this by Ariana and Danielle next week at meeting.
+
+*Changed initial notation format on 0303 in the E5 timeseries folder.*
 
 ## <a name="Week"></a> **Weekly Schedule**
 
@@ -92,7 +96,7 @@ Emma will sign the Putnam lab up for the appropriate time slots at the beginning
 |                	| Monday 3/7 	| Tuesday 3/8                                         	| Wednesday 3/9                                                  	| Thursday 3/10                                                                  	| Friday 3/11 	|
 |----------------	|------------	|-----------------------------------------------------	|----------------------------------------------------------------	|--------------------------------------------------------------------------------	|-------------	|
 | Personnel      	|            	| Emma starts (~9 am); Kristen finishes (12:15-3:15p) 	| Kristen starts (~9a-1p); Emma finishes (whenever Run2 is done) 	| Emma starts (~9 am-12p); Megan ends (12:15p - end)                             	| Amy         	|
-| E5 sample runs 	| 0          	| 2                                                   	| 2 (3 runs total)                                                              	| 1                                                                              	| 0           	|
+| E5 sample runs 	| 0          	| 2                                                   	| 2 (3 runs total)                                                              	| 2                                                                              	| 0           	|
 | Notes          	|            	|                                                     	| Tanks downstairs = Run1; E5 samples = Run2                     	| Emma does pH cal, CRM run, 1 E5 round; Megan (Puritz lab) runs 1-2 sample runs 	| Puritz Lab  	|
 
 **Week of 3/14 - 3/18**
@@ -188,6 +192,17 @@ Run 2:
 | ACR-363_20200107_8  	| 2326.21349 	| 59.786 	| 40.96    	|
 | POR-357_20200107_8  	| 2320.55603 	| 60.547 	| 40.81    	|
 | INITIAL1_20200107_8 	| 2354.24313 	| 59.783 	| 40.59    	|
+
+#### 20220310 Emma (2 runs = 16 samples)
+
+Run 1:
+
+
+
+Run 2:
+
+
+
 
 
 ## <a name="Nov"></a> **November 2020, 145 samples to complete**
