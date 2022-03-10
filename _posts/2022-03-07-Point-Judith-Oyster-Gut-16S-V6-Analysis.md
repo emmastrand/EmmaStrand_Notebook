@@ -776,7 +776,7 @@ Get Kevin's script to run this final part.
 
 ### QIIME2 View taxa bar plots filtered.qzv
 
-![]()
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/taxabarplot-filtered.png?raw=true)
 
 ### QIIME2 Bray Curtis Emporer visualization
 
