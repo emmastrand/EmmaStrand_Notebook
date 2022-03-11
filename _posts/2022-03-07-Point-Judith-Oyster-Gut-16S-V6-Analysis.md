@@ -44,6 +44,7 @@ Contents:
 - [**QIIME2 Taxonomy classification**](#Taxonomy)   
 - [**QIIME2 Subsample and diversity indices**](#Diversity)    
 - [**Switch to R to visualize the feature tables**](#R)   
+- [**Troubleshooting**](#Troubleshooting)   
 
 
 ## <a name="Setting_up"></a> **Setting Up Andromeda**
@@ -270,13 +271,13 @@ Imported metadata/sample-manifest_PJ_V6.csv as PairedEndFastqManifestPhred33 to 
 
 ## <a name="Denoise"></a> **Denoising with DADA2 and Clustering**
 
-*Confirm these parameters are correct: primer length.*
+*Primer length is 19 nt.*
 
 I tried the following denoise parameters:  
-- With 7/7 bp trimming; 70/70 truncating (`denoise-7-70.sh`)  
-- With 10/10 bp trimming; 70/70 truncating (`denoise-10-70.sh`)     
-- With 7/7 bp trimming; 75/75 truncating (`denoise-7-75.sh`)  
-- With 10/10 bp trimming; 75/75 truncating (`denoise-10-75.sh`)
+- With 19/19 bp trimming; 70/70 truncating (`denoise-19-70.sh`)  
+- With 19/19 bp trimming; 75/75 truncating (`denoise-19-75.sh`)   
+
+I previously tried 4 other parameters but figured out this was with the wrong primer length. See results for this in the troubleshooting section at the bottom of this post.   
 
 #### denoise paramter trials
 
@@ -287,7 +288,7 @@ All parameter trials will have:
 - `#SBATCH --error="script_error_denoise"` with script name  
 - `#SBATCH --output="output_script_denoise"` with script name   
 - Change paths for: `../PJ-paired-end-sequences.qza`, `../metadata`  
-- `#SBATCH --job-name="240-denoise"`
+- `#SBATCH --job-name="#-denoise"`
 
 copy denoise output to desktop.  
 
@@ -301,33 +302,13 @@ Output from R script to visualize the above denoising statistics. R script: `den
 
 **Results from the trials above:**
 
-![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/denoise.percent.plot.png?raw=true)
-![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/denoise.reads.plot.png?raw=true)
 
-|                                              	| Metric                	|                        	|                     	| Frequency             	|                  	|                      	|                  	|                       	|                    	|
-|----------------------------------------------	|-----------------------	|------------------------	|---------------------	|-----------------------	|------------------	|----------------------	|------------------	|-----------------------	|--------------------	|
-| **Denoise parameter**                        	| **Number of samples** 	| **Number of features** 	| **Total frequency** 	| **Minimum frequency** 	| **1st quartile** 	| **Median frequency** 	| **3rd quartile** 	| **Maximum frequency** 	| **Mean frequency** 	|
-| With 7/7 bp trimming; 75/75 truncating       	| 112                   	| 20,001                 	| 2,543,573           	| 7,002.00              	| 18,988.00        	| 22,882.00            	| 26,349.75        	| 37,508.00             	| 22,710.47          	|
-| With 7/7 bp trimming; 70/70 truncating       	| 112                   	| 20,436                 	| 2,948,899           	| 8,332.00              	| 23,258.00        	| 26,196.50            	| 29,486.75        	| 45,743.00             	| 26,329.46          	|
-| With 10/10 bp trimming; 75/75 truncating     	| 112                   	| 19,080                 	| 3,368,939           	| 8,637.00              	| 25,019.50        	| 30,382.00            	| 35,261.75        	| 50,162.00             	| 30,079.81          	|
-| **With 10/10 bp trimming; 70/70 truncating** 	| **112**               	| **20,375**             	| **3,990,135**       	| **10,343.00**         	| **30,931.50**    	| **34,976.00**        	| **40,619.25**    	| **57,437.00**         	| **35,626.21**      	|
-
-![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/denoise_trials/10-70-histogram.png?raw=true)
-
-![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/denoise_trials/10-75-histogram.png?raw=true)
-
-![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/denoise_trials/7-70-histogram.png?raw=true)
-
-![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/denoise_trials/7-75-histogram.png?raw=true)
-
-
-Based on the above, I'm going with the script: - With 10/10 bp trimming; 70/70 truncating (`denoise-10-70.sh`).
 
 ### denoise.sh
 
 ```
 #!/bin/bash
-#SBATCH --job-name="denoise"
+#SBATCH --job-name="19-75-denoise"
 #SBATCH -t 24:00:00
 #SBATCH --nodes=1 --ntasks-per-node=1
 #SBATCH --export=NONE
@@ -336,9 +317,9 @@ Based on the above, I'm going with the script: - With 10/10 bp trimming; 70/70 t
 #SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
 #SBATCH --account=putnamlab
 #SBTACH -q putnamlab
-#SBATCH -D /data/putnamlab/estrand/PointJudithData_16S/QIIME2_v6
-#SBATCH --error="script_error_denoise" #if your job fails, the error report will be put in this file
-#SBATCH --output="output_script_denoise" #once your job is completed, any final job report comments will be put in this file
+#SBATCH -D /data/putnamlab/estrand/PointJudithData_16S/QIIME2_v6/denoise_trials
+#SBATCH --error="script_error_denoise-19-75" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_denoise-19-75" #once your job is completed, any final job report comments will be put in this file
 
 source /usr/share/Modules/init/sh # load the module function
 module load QIIME2/2021.4
@@ -349,36 +330,36 @@ module load QIIME2/2021.4
 PWD="/data/putnamlab/estrand/PointJudithData_16S/QIIME2_v6"
 
 # Metadata path
-METADATA="metadata/PJ_V6Samples_Metadata.txt"
+METADATA="../metadata/PJ_V6Samples_Metadata.txt"
 
 # Sample manifest path
-MANIFEST="metadata/sample-manifest_PJ_V6.csv"
+MANIFEST="../metadata/sample-manifest_PJ_V6.csv"
 
 #########################
 
 #### DENOISING WITH DADA2
 
-qiime dada2 denoise-paired --verbose --i-demultiplexed-seqs PJ-paired-end-sequences.qza \
-  --p-trunc-len-r 70 --p-trunc-len-f 70 \
-  --p-trim-left-r 10 --p-trim-left-f 10 \
-  --o-table table.qza \
-  --o-representative-sequences rep-seqs.qza \
-  --o-denoising-stats denoising-stats.qza \
+qiime dada2 denoise-paired --verbose --i-demultiplexed-seqs ../PJ-paired-end-sequences.qza \
+  --p-trunc-len-r 75 --p-trunc-len-f 75 \
+  --p-trim-left-r 19 --p-trim-left-f 19 \
+  --o-table table-19-75.qza \
+  --o-representative-sequences rep-seqs-19-75.qza \
+  --o-denoising-stats denoising-stats-19-75.qza \
   --p-n-threads 20
 
 #### CLUSTERING
 
 # Summarize feature table and sequences
 qiime metadata tabulate \
-  --m-input-file denoising-stats.qza \
-  --o-visualization denoising-stats.qzv
+  --m-input-file denoising-stats-19-75.qza \
+  --o-visualization denoising-stats-19-75.qzv
 qiime feature-table summarize \
-  --i-table table.qza \
-  --o-visualization table.qzv \
+  --i-table table-19-75.qza \
+  --o-visualization table-19-75.qzv \
   --m-sample-metadata-file $METADATA
 qiime feature-table tabulate-seqs \
-  --i-data rep-seqs.qza \
-  --o-visualization rep-seqs.qzv
+  --i-data rep-seqs-19-75.qza \
+  --o-visualization rep-seqs-19-75.qzv
 ```
 
 #### Copy output to desktop for qiime2 view
@@ -783,3 +764,83 @@ Get Kevin's script to run this final part.
 ![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/bray-curtis-emporer.png?raw=true)
 
 ### Current issue is the dBact high % in the taxa bar plots. The next step is to train our own classifier. Check repseqs qzv in R for primer sequences
+
+## <a name="Troubleshooting"></a> **Troubleshooting**
+
+## Denoising with incorrect primer length - not used, old script
+
+I tried the following denoise parameters:  
+- With 7/7 bp trimming; 70/70 truncating (`denoise-7-70.sh`)  
+- With 10/10 bp trimming; 70/70 truncating (`denoise-10-70.sh`)     
+- With 7/7 bp trimming; 75/75 truncating (`denoise-7-75.sh`)  
+- With 10/10 bp trimming; 75/75 truncating (`denoise-10-75.sh`)
+
+#### denoise paramter trials
+
+Output from these trials in this directory: `PointJudithData_16S/QIIME2_v6/denoise_trials`.
+
+All parameter trials will have:  
+- `#SBATCH -D /data/putnamlab/estrand/PointJudithData_16S/QIIME2_v6/denoise_trials`  
+- `#SBATCH --error="script_error_denoise"` with script name  
+- `#SBATCH --output="output_script_denoise"` with script name   
+- Change paths for: `../PJ-paired-end-sequences.qza`, `../metadata`  
+- `#SBATCH --job-name="240-denoise"`
+
+copy denoise output to desktop.  
+
+```
+scp -r emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/PointJudithData_16S/QIIME2_v6/denoise_trials /Users/emmastrand/MyProjects/Cvir_Nut_Int/output/16S_allv6/QIIME2/
+```
+
+Put the above files into QIIME2 view and download as tsv files.
+
+Output from R script to visualize the above denoising statistics. R script: `denoise-stats.R` is in our Cvir repo.
+
+**Results from the trials above:**
+
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/denoise.percent.plot.png?raw=true)
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/denoise.reads.plot.png?raw=true)
+
+|                                              	| Metric                	|                        	|                     	| Frequency             	|                  	|                      	|                  	|                       	|                    	|
+|----------------------------------------------	|-----------------------	|------------------------	|---------------------	|-----------------------	|------------------	|----------------------	|------------------	|-----------------------	|--------------------	|
+| **Denoise parameter**                        	| **Number of samples** 	| **Number of features** 	| **Total frequency** 	| **Minimum frequency** 	| **1st quartile** 	| **Median frequency** 	| **3rd quartile** 	| **Maximum frequency** 	| **Mean frequency** 	|
+| With 7/7 bp trimming; 75/75 truncating       	| 112                   	| 20,001                 	| 2,543,573           	| 7,002.00              	| 18,988.00        	| 22,882.00            	| 26,349.75        	| 37,508.00             	| 22,710.47          	|
+| With 7/7 bp trimming; 70/70 truncating       	| 112                   	| 20,436                 	| 2,948,899           	| 8,332.00              	| 23,258.00        	| 26,196.50            	| 29,486.75        	| 45,743.00             	| 26,329.46          	|
+| With 10/10 bp trimming; 75/75 truncating     	| 112                   	| 19,080                 	| 3,368,939           	| 8,637.00              	| 25,019.50        	| 30,382.00            	| 35,261.75        	| 50,162.00             	| 30,079.81          	|
+| **With 10/10 bp trimming; 70/70 truncating** 	| **112**               	| **20,375**             	| **3,990,135**       	| **10,343.00**         	| **30,931.50**    	| **34,976.00**        	| **40,619.25**    	| **57,437.00**         	| **35,626.21**      	|
+
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/denoise_trials/10-70-histogram.png?raw=true)
+
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/denoise_trials/10-75-histogram.png?raw=true)
+
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/denoise_trials/7-70-histogram.png?raw=true)
+
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/denoise_trials/7-75-histogram.png?raw=true)
+
+
+Based on the above, I'm going with the script: - With 10/10 bp trimming; 70/70 truncating (`denoise-10-70.sh`).
+
+
+**Results from the trials above:**
+
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/denoise.percent.plot.png?raw=true)
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/denoise.reads.plot.png?raw=true)
+
+|                                              	| Metric                	|                        	|                     	| Frequency             	|                  	|                      	|                  	|                       	|                    	|
+|----------------------------------------------	|-----------------------	|------------------------	|---------------------	|-----------------------	|------------------	|----------------------	|------------------	|-----------------------	|--------------------	|
+| **Denoise parameter**                        	| **Number of samples** 	| **Number of features** 	| **Total frequency** 	| **Minimum frequency** 	| **1st quartile** 	| **Median frequency** 	| **3rd quartile** 	| **Maximum frequency** 	| **Mean frequency** 	|
+| With 7/7 bp trimming; 75/75 truncating       	| 112                   	| 20,001                 	| 2,543,573           	| 7,002.00              	| 18,988.00        	| 22,882.00            	| 26,349.75        	| 37,508.00             	| 22,710.47          	|
+| With 7/7 bp trimming; 70/70 truncating       	| 112                   	| 20,436                 	| 2,948,899           	| 8,332.00              	| 23,258.00        	| 26,196.50            	| 29,486.75        	| 45,743.00             	| 26,329.46          	|
+| With 10/10 bp trimming; 75/75 truncating     	| 112                   	| 19,080                 	| 3,368,939           	| 8,637.00              	| 25,019.50        	| 30,382.00            	| 35,261.75        	| 50,162.00             	| 30,079.81          	|
+| **With 10/10 bp trimming; 70/70 truncating** 	| **112**               	| **20,375**             	| **3,990,135**       	| **10,343.00**         	| **30,931.50**    	| **34,976.00**        	| **40,619.25**    	| **57,437.00**         	| **35,626.21**      	|
+
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/denoise_trials/10-70-histogram.png?raw=true)
+
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/denoise_trials/10-75-histogram.png?raw=true)
+
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/denoise_trials/7-70-histogram.png?raw=true)
+
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/denoise_trials/7-75-histogram.png?raw=true)
+
+
+Based on the above, I'm going with the script: - With 10/10 bp trimming; 70/70 truncating (`denoise-10-70.sh`).
