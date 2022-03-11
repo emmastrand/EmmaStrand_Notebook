@@ -321,7 +321,7 @@ Based on the above, I will move forward with 19 trimming and 70 truncating.
 
 ```
 #!/bin/bash
-#SBATCH --job-name="19-75-denoise"
+#SBATCH --job-name="denoise"
 #SBATCH -t 24:00:00
 #SBATCH --nodes=1 --ntasks-per-node=1
 #SBATCH --export=NONE
@@ -330,9 +330,9 @@ Based on the above, I will move forward with 19 trimming and 70 truncating.
 #SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
 #SBATCH --account=putnamlab
 #SBTACH -q putnamlab
-#SBATCH -D /data/putnamlab/estrand/PointJudithData_16S/QIIME2_v6/denoise_trials
-#SBATCH --error="script_error_denoise-19-75" #if your job fails, the error report will be put in this file
-#SBATCH --output="output_script_denoise-19-75" #once your job is completed, any final job report comments will be put in this file
+#SBATCH -D /data/putnamlab/estrand/PointJudithData_16S/QIIME2_v6
+#SBATCH --error="script_error_denoise" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_denoise" #once your job is completed, any final job report comments will be put in this file
 
 source /usr/share/Modules/init/sh # load the module function
 module load QIIME2/2021.4
@@ -343,36 +343,36 @@ module load QIIME2/2021.4
 PWD="/data/putnamlab/estrand/PointJudithData_16S/QIIME2_v6"
 
 # Metadata path
-METADATA="../metadata/PJ_V6Samples_Metadata.txt"
+METADATA="metadata/PJ_V6Samples_Metadata.txt"
 
 # Sample manifest path
-MANIFEST="../metadata/sample-manifest_PJ_V6.csv"
+MANIFEST="metadata/sample-manifest_PJ_V6.csv"
 
 #########################
 
 #### DENOISING WITH DADA2
 
-qiime dada2 denoise-paired --verbose --i-demultiplexed-seqs ../PJ-paired-end-sequences.qza \
-  --p-trunc-len-r 75 --p-trunc-len-f 75 \
+qiime dada2 denoise-paired --verbose --i-demultiplexed-seqs PJ-paired-end-sequences.qza \
+  --p-trunc-len-r 70 --p-trunc-len-f 70 \
   --p-trim-left-r 19 --p-trim-left-f 19 \
-  --o-table table-19-75.qza \
-  --o-representative-sequences rep-seqs-19-75.qza \
-  --o-denoising-stats denoising-stats-19-75.qza \
+  --o-table table.qza \
+  --o-representative-sequences rep-seqs.qza \
+  --o-denoising-stats denoising-stats.qza \
   --p-n-threads 20
 
 #### CLUSTERING
 
 # Summarize feature table and sequences
 qiime metadata tabulate \
-  --m-input-file denoising-stats-19-75.qza \
-  --o-visualization denoising-stats-19-75.qzv
+  --m-input-file denoising-stats.qza \
+  --o-visualization denoising-stats.qzv
 qiime feature-table summarize \
-  --i-table table-19-75.qza \
-  --o-visualization table-19-75.qzv \
+  --i-table table.qza \
+  --o-visualization table.qzv \
   --m-sample-metadata-file $METADATA
 qiime feature-table tabulate-seqs \
-  --i-data rep-seqs-19-75.qza \
-  --o-visualization rep-seqs-19-75.qzv
+  --i-data rep-seqs.qza \
+  --o-visualization rep-seqs.qzv
 ```
 
 #### Copy output to desktop for qiime2 view
@@ -405,23 +405,101 @@ We chose the `Silva 138 99% OTUs from 515F/806R region of sequences (MD5: e05afa
 
 ### Download classifier from QIIME2 documentation
 
+Pre-trained classifiers are provided in the [QIIME 2 data resources](https://docs.qiime2.org/2022.2/data-resources/).
+
 ```
 wget https://data.qiime2.org/2021.4/common/silva-138-99-515-806-nb-classifier.qza
 ```
 
 We also want to filter out unassigned and groups that include chloroplast and eukaryotic sequences.
 
-### Constructing phylogenetic trees
+### Training our own classifier with own data
 
-This aligns the sequences to assess the phylogenetic relationship between each of our features. Figure from QIIME2 documentation:
+https://docs.qiime2.org/2022.2/tutorials/feature-classifier/. Two elements are required for training the classifier: the reference sequences and the corresponding taxonomic classifications.
 
-![phylo](https://docs.qiime2.org/2021.4/_images/alignment-phylogeny.png)
+1. Download silva fasta and sequence files.
 
-Part 1: alignment and masking (filtering out) positions that are highly variable and will add noise to the tree.  
 
-Part 2: phylogenetic tree construction.
 
-### taxonomy.sh
+2. Import these files as QIIME2 artifacts.
+
+`train-import.sh`:
+
+```
+qiime tools import \
+  --type 'FeatureData[Sequence]' \
+  --input-path 85_otus.fasta \
+  --output-path 85_otus.qza
+
+qiime tools import \
+  --type 'FeatureData[Taxonomy]' \
+  --input-format HeaderlessTSVTaxonomyFormat \
+  --input-path 85_otu_taxonomy.txt \
+  --output-path ref-taxonomy.qza
+```
+
+Output artifacts:
+
+```
+85_otus.qza
+rep-seqs.qza
+ref-taxonomy.qza
+```
+
+3. Extract reference reads.
+
+`train-extract.sh`:
+
+```
+qiime feature-classifier extract-reads \
+  --i-sequences 85_otus.qza \
+  --p-f-primer GTGCCAGCMGCCGCGGTAA \
+  --p-r-primer GGACTACHVGGGTWTCTAAT \
+  --p-trunc-len 120 \
+  --p-min-length 100 \
+  --p-max-length 400 \
+  --o-reads ref-seqs.qza
+```
+
+Output artifact: `ref-seqs.qza`.
+
+4. Train the classifiers
+
+`train-classifier.sh`:
+
+```
+qiime feature-classifier fit-classifier-naive-bayes \
+  --i-reference-reads ref-seqs.qza \
+  --i-reference-taxonomy ref-taxonomy.qza \
+  --o-classifier classifier.qza
+```
+
+Output artifact: `classifier.qza`.
+
+5. Test classifier
+
+`train-test.sh`:
+
+```
+qiime feature-classifier classify-sklearn \
+  --i-classifier classifier.qza \
+  --i-reads rep-seqs.qza \
+  --o-classification taxonomy.qza
+
+qiime metadata tabulate \
+  --m-input-file taxonomy.qza \
+  --o-visualization taxonomy.qzv
+```
+
+Output artifact: `taxonomy.qza`. Output visualization: `taxonomy.qzv`.
+
+
+### Results from silva classifier vs. our own
+
+
+
+
+### taxonomy.sh with X classifier
 
 ```
 #!/bin/bash
