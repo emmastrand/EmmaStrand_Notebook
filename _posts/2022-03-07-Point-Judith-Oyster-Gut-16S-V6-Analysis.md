@@ -303,6 +303,19 @@ Output from R script to visualize the above denoising statistics. R script: `den
 **Results from the trials above:**
 
 
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/denoise.primer.percent.plot.png?raw=true)
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/denoise.primer.reads.plot.png?raw=true)
+
+|                                       	| Metric            	|                    	|                 	| Frequency         	|              	|                  	|              	|                   	|                	|
+|---------------------------------------	|-------------------	|--------------------	|-----------------	|-------------------	|--------------	|------------------	|--------------	|-------------------	|----------------	|
+| Denoise parameter                     	| Number of samples 	| Number of features 	| Total frequency 	| Minimum frequency 	| 1st quartile 	| Median frequency 	| 3rd quartile 	| Maximum frequency 	| Mean frequency 	|
+| With 19 bp trimming; 75/75 truncating 	| 112               	| 16,550             	| 4,152,959       	| 9,932             	| 31,420.50    	| 37,617.00        	| 43,586.75    	| 60,430.00         	| 37,079.99      	|
+| With 19 bp trimming; 70/70 truncating 	| 112               	| 17,436             	| 4,952,942       	| 12,070.00         	| 38,178.00    	| 43,904.00        	| 50,148.25    	| 74,203.00         	| 44,222.70      	|
+
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/denoise_trials/19-70-histogram.png?raw=true)
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/denoise_trials/19-75-histogram.png?raw=true)
+
+Based on the above, I will move forward with 19 trimming and 70 truncating.
 
 ### denoise.sh
 
@@ -373,55 +386,6 @@ rep-seqs.qzv
 denoising-stats.qzv
 table.qzv
 ```
-
-Switch to R.md script. Plots of the denoised statistics from the qzv file from above.
-
-### Final Denoising Statistics
-
-**Sequence Length Statistics (from rep-seqs.qzv)**
-
-| Sequence Count 	| Min Length 	| Max Length 	| Mean Length 	| Range 	| Standard Deviation 	|
-|----------------	|------------	|------------	|-------------	|-------	|--------------------	|
-| 20375          	| 61         	| 108        	| 78.87       	| 47    	| 3.22               	|
-
-
-**Table Summary (from table.qzv)**
-
-| Metric             	| Sample    	|
-|--------------------	|-----------	|
-| Number of samples  	| 112       	|
-| Number of features 	| 20,375    	|
-| Total frequency    	| 3,990,135 	|
-
-**Frequency per sample (from table.qzv)**
-
-|          	|           Frequency          	|
-|-------------------	|---------------------	|
-| Minimum frequency 	| 10,343.0            	|
-| 1st quartile      	| 30,931.5            	|
-| Median frequency  	| 34,976.0            	|
-| 3rd quartile      	| 40,619.25           	|
-| Maximum frequency 	| 57,437.0            	|
-| Mean frequency    	| 35,626.205357142855 	|
-
-![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/final-denoise-histogram.png?raw=true)
-
-**Overall denoising statistics (from denoising-stats.tsv)**
-
-|                          	| Total     	| Average per sample 	|
-|--------------------------	|-----------	|--------------------	|
-| % of input passed filter 	| 99.34     	| 99.34              	|
-| % of input merged        	| 85.72     	| 85.48              	|
-| % of input non chimeric  	| 73.21     	| 73.12              	|
-| # reads input            	| 5,450,266 	| 48,663             	|
-| # reads filtered         	| 5,414,550 	| 48,344.20          	|
-| # reads denoised         	| 5,294,067 	| 47,268.46          	|
-| # reads merged           	| 4,672,087 	| 41,715.06          	|
-| # reads non-chimeric     	| 3,990,135 	| 35,626.21          	|
-
-![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/denoise.percent.plot.final.png?raw=true)
-
-![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/denoise.reads.plot.final.png?raw=true)
 
 ## <a name="Taxonomy"></a> **Taxonomy classification based on imported database**
 
@@ -575,47 +539,24 @@ tabulated-feature-metadata.qzv
 
 **Table Summary (from table.qzv)**
 
-| Metric             	| Sample    	|
-|--------------------	|-----------	|
-| Number of samples  	| 112       	|
-| Number of features 	| 20,375    	|
-| Total frequency    	| 3,990,135 	|
 
 **Table Summary (from table-filtered.qzv)**
 
-| Metric             	| Sample    	|
-|--------------------	|-----------	|
-| Number of samples  	| 112       	|
-| Number of features 	| 7,918     	|
-| Total frequency    	| 1,832,976 	|
+
 
 **Frequency per sample (from table.qzv)**
 
-|          	|           Frequency          	|
-|-------------------	|---------------------	|
-| Minimum frequency 	| 10,343.0            	|
-| 1st quartile      	| 30,931.5            	|
-| Median frequency  	| 34,976.0            	|
-| 3rd quartile      	| 40,619.25           	|
-| Maximum frequency 	| 57,437.0            	|
-| Mean frequency    	| 35,626.205357142855 	|
+
 
 **Frequency per sample (from table-filtered.qzv)**
 
-| Frequency         	|                     	|
-|-------------------	|---------------------	|
-| Minimum frequency 	| 4,641.0             	|
-| 1st quartile      	| 13,104.5            	|
-| Median frequency  	| 15,701.0            	|
-| 3rd quartile      	| 19,781.0            	|
-| Maximum frequency 	| 29,737.0            	|
-| Mean frequency    	| 16,365.857142857143 	|
 
-![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/final-denoise-histogram.png?raw=true)
 
-![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/post-filtering-histogram.png?raw=true)
+![]()
 
-Lowest sample = 4641
+![]()
+
+
 
 ## <a name="Diversity"></a> **Subsampling and diversity indices**
 
