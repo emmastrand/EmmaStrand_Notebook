@@ -497,9 +497,90 @@ Output artifact: `taxonomy.qza`. Output visualization: `taxonomy.qzv`.
 ### Results from silva classifier vs. our own
 
 
+### taxonomy-trained.sh with own classifiers
 
+```
+#!/bin/bash
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab
+#SBTACH -q putnamlab
+#SBATCH -D /data/putnamlab/estrand/PointJudithData_16S/QIIME2_v6
+#SBATCH --error="script_error_taxonomy-trained" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_taxonomy-trained" #once your job is completed, any final job report comments will be put in this file
 
-### taxonomy.sh with X classifier
+source /usr/share/Modules/init/sh # load the module function
+module load QIIME2/2021.4
+
+#### METADATA FILES ####
+# Path working directory to the raw files (referenced in the metadata)
+# metadata says: $PWD/00_RAW_gz/RS1_S1_L001_R1_001.fastq.gz so this needs to lead the command to this path
+PWD="/data/putnamlab/estrand/PointJudithData_16S/QIIME2_v6"
+
+# Metadata path
+METADATA="metadata/PJ_V6Samples_Metadata.txt"
+
+# Sample manifest path
+MANIFEST="metadata/sample-manifest_PJ_V6.csv"
+
+#########################
+
+#### TAXONOMY CLASSIFICATION
+
+qiime feature-classifier classify-sklearn \
+  --i-classifier metadata/silva-138-99-515-806-nb-classifier.qza \
+  --i-reads rep-seqs.qza \
+  --o-classification taxonomy.qza
+
+qiime taxa filter-table \
+     --i-table table.qza \
+     --i-taxonomy taxonomy.qza \
+     --p-mode contains \
+     --p-exclude "Unassigned","Chloroplast","Eukaryota" \
+     --o-filtered-table table-filtered.qza
+
+qiime metadata tabulate \
+    --m-input-file taxonomy.qza \
+    --o-visualization taxonomy.qzv
+qiime taxa barplot \
+    --i-table table-filtered.qza \
+    --i-taxonomy taxonomy.qza \
+    --m-metadata-file $METADATA \
+    --o-visualization taxa-bar-plots-filtered.qzv
+qiime metadata tabulate \
+    --m-input-file rep-seqs.qza \
+    --m-input-file taxonomy.qza \
+    --o-visualization tabulated-feature-metadata.qzv
+
+qiime feature-table summarize \
+    --i-table table-filtered.qza \
+    --o-visualization table-filtered.qzv \
+    --m-sample-metadata-file $METADATA
+
+#### CREATES PHYLOGENETIC TREES
+
+# align and mask sequences
+qiime alignment mafft \
+  --i-sequences rep-seqs.qza \
+  --o-alignment aligned-rep-seqs.qza
+qiime alignment mask \
+  --i-alignment aligned-rep-seqs.qza \
+  --o-masked-alignment masked-aligned-rep-seqs.qza
+
+# calculate tree
+qiime phylogeny fasttree \
+  --i-alignment masked-aligned-rep-seqs.qza \
+  --o-tree unrooted-tree.qza
+qiime phylogeny midpoint-root \
+  --i-tree unrooted-tree.qza \
+  --o-rooted-tree rooted-tree.qza
+```
+
+### taxonomy.sh with silva classifier
 
 ```
 #!/bin/bash
@@ -585,19 +666,10 @@ qiime phylogeny midpoint-root \
 Output from `output_script_taxonomy`:
 
 ```
-Saved FeatureData[Taxonomy] to: taxonomy.qza
-Saved FeatureTable[Frequency] to: table-filtered.qza
-Saved Visualization to: taxonomy.qzv
-Saved Visualization to: taxa-bar-plots-filtered.qzv
-Saved Visualization to: tabulated-feature-metadata.qzv
-Saved Visualization to: table-filtered.qzv
-Saved FeatureData[AlignedSequence] to: aligned-rep-seqs.qza
-Saved FeatureData[AlignedSequence] to: masked-aligned-rep-seqs.qza
-Saved Phylogeny[Unrooted] to: unrooted-tree.qza
-Saved Phylogeny[Rooted] to: rooted-tree.qza
+
 ```
 
-Output from `script_error_taxonomy` is empty.
+Output from `script_error_taxonomy`
 
 #### Copy output to desktop for qiime2 view
 
