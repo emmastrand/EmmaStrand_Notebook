@@ -666,46 +666,92 @@ qiime phylogeny midpoint-root \
 Output from `output_script_taxonomy`:
 
 ```
-
+Saved FeatureData[Taxonomy] to: taxonomy.qza
+Saved FeatureTable[Frequency] to: table-filtered.qza
+Saved Visualization to: taxonomy.qzv
+Saved Visualization to: taxa-bar-plots-filtered.qzv
+Saved Visualization to: tabulated-feature-metadata.qzv
+Saved Visualization to: table-filtered.qzv
+Saved FeatureData[AlignedSequence] to: aligned-rep-seqs.qza
+Saved FeatureData[AlignedSequence] to: masked-aligned-rep-seqs.qza
+Saved Phylogeny[Unrooted] to: unrooted-tree.qza
+Saved Phylogeny[Rooted] to: rooted-tree.qza
 ```
 
-Output from `script_error_taxonomy`
+Output from `script_error_taxonomy` is empty so no errors.
 
 #### Copy output to desktop for qiime2 view
 
 Outside of andromeda.
 
 ```
-scp -r emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/PointJudithData_16S/QIIME2_v6/tabulated-feature-metadata.qzv  /Users/emmastrand/MyProjects/Cvir_Nut_Int/output/16S_allv6/QIIME2
+scp -r emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/PointJudithData_16S/QIIME2_v6/table-filtered.qzv  /Users/emmastrand/MyProjects/Cvir_Nut_Int/output/16S_allv6/QIIME2
 
 taxa-bar-plots-filtered.qzv
 table-filtered.qzv  
 tabulated-feature-metadata.qzv  
 ```
 
-### Results pre and post-filtering for "Unassigned","Chloroplast","Eukaryota"
+### Results pre and post-filtering for "Unassigned","Chloroplast","Eukaryota" - silva classifier
 
 *Are there any other groups we should be filtering because we are working with oysters?*
 
-**Table Summary (from table.qzv)**
+**Table Summary**
+
+| Metric             	| Sample  from table.qzv  	|
+|--------------------	|-----------	|
+| Number of samples  	| 112       	|
+| Number of features 	| 20,375    	|
+| Total frequency    	| 3,990,135 	|
+
+| Metric             	| Sample  from table-filtered.qzv	|
+|--------------------	|-----------	|
+| Number of samples  	| 112       	|
+| Number of features 	| 6,227     	|
+| Total frequency    	| 2,000,123 	|
+
+**Frequency per sample**
+
+| Frequency         	|     from table.qzv   	|
+|-------------------	|---------------------	|
+| Minimum frequency 	| 10,343.0            	|
+| 1st quartile      	| 30,931.5            	|
+| Median frequency  	| 34,976.0            	|
+| 3rd quartile      	| 40,619.25           	|
+| Maximum frequency 	| 57,437.0            	|
+| Mean frequency    	| 35,626.205357142855 	|
+
+| Frequency         	|    table-filtered.qzv |
+|-------------------	|---------------------	|
+| Minimum frequency 	| 2,651.0             	|
+| 1st quartile      	| 14,040.25           	|
+| Median frequency  	| 17,342.0            	|
+| 3rd quartile      	| 21,397.0            	|
+| Maximum frequency 	| 36,377.0            	|
+| Mean frequency    	| 17,858.241071428572 	|
+
+**Pre-filtering: table.qzv and sample freq csv**
+
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/pre-filtering-histogram.png?raw=true)
+
+**Post-filtering: table-filtered.qzv and sample freq csv**
+
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/post-filtering-histogram.png?raw=true)
+
+**Post-filtering lowest frequency of samples**
+
+| 107 	| RS187_S83  	| 9300 	|
+|-----	|------------	|------	|
+| 108 	| RS138_S65  	| 8610 	|
+| 109 	| RS160_S44  	| 6549 	|
+| 110 	| RS225_S127 	| 6379 	|
+| 111 	| RS132_S88  	| 5772 	|
+| 112 	| RS130_S64  	| 2651 	|
 
 
-**Table Summary (from table-filtered.qzv)**
+### Results pre and post-filtering for "Unassigned","Chloroplast","Eukaryota" - own classifier
 
-
-
-**Frequency per sample (from table.qzv)**
-
-
-
-**Frequency per sample (from table-filtered.qzv)**
-
-
-
-![]()
-
-![]()
-
+*Are there any other groups we should be filtering because we are working with oysters?*
 
 
 ## <a name="Diversity"></a> **Subsampling and diversity indices**
@@ -714,15 +760,15 @@ The various diversity analyses you can do with QIIME2:
 
 ![qiime2](https://docs.qiime2.org/2021.4/_images/diversity.png)
 
-`--p-sampling-depth 4641 \` based on lowest # of reads for now. This passes our 1,500-3,000 minimum.     
-`--p-max-depth 20000 \`. The range of samples is high so I'm starting with 20,000 to see where our rarefraction curve stabilizes.
+`--p-sampling-depth 2651 \` based on lowest # of reads for now. This passes our 1,500-3,000 minimum.     
+`--p-max-depth 10000 \`. The range of samples is high so I'm starting with 20,000 to see where our rarefraction curve stabilizes.
 
 **To re-run this script, need to delete core-metrics-results folder or rename the original folder.**
 
 Running beta diversity on SampleType and Treatment for now. We can also do this in R from the QIIME2 outputs. See Kevin's script for this.  
 *this script overrides the previous beta diversity script -- output 2 different ones for sample type and treatment. or just keep one.*
 
-### diversity.sh
+### diversity.sh with silva classifier
 
 ```
 #!/bin/bash
@@ -760,7 +806,7 @@ MANIFEST="metadata/sample-manifest_PJ_V6.csv"
 qiime diversity core-metrics-phylogenetic \
   --i-phylogeny rooted-tree.qza \
   --i-table table-filtered.qza \
-  --p-sampling-depth 4641 \
+  --p-sampling-depth 2651 \
   --m-metadata-file $METADATA \
   --output-dir core-metrics-results
 
@@ -790,7 +836,7 @@ qiime diversity beta-group-significance \
   qiime diversity alpha-rarefaction \
     --i-table table-filtered.qza \
     --i-phylogeny rooted-tree.qza \
-    --p-max-depth 20000 \
+    --p-max-depth 10000 \
     --m-metadata-file $METADATA \
     --o-visualization alpha-rarefaction.qzv
 ```
