@@ -79,7 +79,7 @@ March 3, 2022 - current:
 
 ## <a name="Issues"></a> **Issues/Questions to Address**
 
-**Open Issues**
+### Open Issues
 
 *Issue*: Timepoint 3 - September 2020; 2020-09-12 Run 3: Initial measurements from 2020-09-09 are in 3_initial_TA_samples.csv but no initial measurements for runs after that. If there are 2 data points for "Initial 1" - do we distinguish which one to use?  
 *Resolution*: Ariana and Emma are currently chatting about the best way to go about this.
@@ -99,7 +99,7 @@ March 3, 2022 - current:
 *Issue*: volumes missing from delta TA sheet.  
 *Resolution*: https://drive.google.com/drive/u/0/folders/1Z7Gxiqo8QbnP4AMpgxmgq0wDNJ-qWmBW. extract volumes here and put in delta TA.  
 
-**Closed Issues**
+### Closed Issues
 
 *Issue*: Sample notation was not consistent for the first couple of rounds.  
 *Resolution*: Changed initial notation format on 0303 in the E5 timeseries folder and changed to all correct format on the titrator computer.
