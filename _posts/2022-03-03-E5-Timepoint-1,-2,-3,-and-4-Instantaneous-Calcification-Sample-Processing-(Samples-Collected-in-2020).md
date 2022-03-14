@@ -88,13 +88,16 @@ March 3, 2022 - current:
 *Resolution*: Emma is ~halfway through creating this script for TP3: stopped at the initial measurements issue above.  
 
 *Issue*: All September bottles have been processed but there are several blank and initials that we do not have accounted for. Cross reference again with those bottles done at CSUN and in-field notes.  
-*Resolution*: Ariana and Emma are currently chatting about the best way to go about this.
+*Resolution*: Ariana and Emma are currently chatting about the best way to go about this. Some bottles spilled in transport - could be these?
 
 *Issue*: 50 mL falcon tubes for some samples for January 2020 and November 2020 time points instead of larger bottles.  
-*Resolution*: Hollie says it doesn't matter we can run these at whatever mass we can get - run this by Ariana and Danielle in meeting. Will add a column to keep track of which samples were in a 50 mL and we can see if there is a batch effect.  
+*Resolution*: Hollie says it doesn't matter we can run these at whatever mass we can get - run this by Ariana and Danielle in meeting. Will add a column to keep track of which samples were in a 50 mL and we can see if there is a batch effect. For these samples, we will need to calculate salinity prior to measuring mass and putting samples in rondolino.  
 
 *Issue*: 20200314 - ACR 246 and Initial 2 may be mixed up in the rondolino (mass and salinities are correct, just position in titrator). Almost positive I fixed it but double check TA values at the end to make sure these make sense.  
-*Resolution*:
+*Resolution*: Emma will need to do this after run data has been pushed to github.
+
+*Issue*: volumes missing from delta TA sheet.  
+*Resolution*: https://drive.google.com/drive/u/0/folders/1Z7Gxiqo8QbnP4AMpgxmgq0wDNJ-qWmBW. extract volumes here and put in delta TA.  
 
 **Closed Issues**
 
