@@ -79,20 +79,24 @@ March 3, 2022 - current:
 
 ## <a name="Issues"></a> **Issues/Questions to Address**
 
+**Open Issues**
+
 *Issue*: Timepoint 3 - September 2020; 2020-09-12 Run 3: Initial measurements from 2020-09-09 are in 3_initial_TA_samples.csv but no initial measurements for runs after that. If there are 2 data points for "Initial 1" - do we distinguish which one to use?  
 *Resolution*: Ariana and Emma are currently chatting about the best way to go about this.
 
 *Issue*: We are currently copy and pasting into `Timepoint#_TA_Data` in urol timeseries repo.  
-*Resolution*: Emma is ~halfway through creating this script.
+*Resolution*: Emma is ~halfway through creating this script for TP3: stopped at the initial measurements issue above.  
 
 *Issue*: All September bottles have been processed but there are several blank and initials that we do not have accounted for. Cross reference again with those bottles done at CSUN and in-field notes.  
 *Resolution*: Ariana and Emma are currently chatting about the best way to go about this.
 
 *Issue*: 50 mL falcon tubes for some samples for January 2020 and November 2020 time points instead of larger bottles.  
-*Resolution*: Hollie says it doesn't matter we can run these at whatever mass we can get - run this by Ariana and Danielle next week at meeting.  
+*Resolution*: Hollie says it doesn't matter we can run these at whatever mass we can get - run this by Ariana and Danielle in meeting. Will add a column to keep track of which samples were in a 50 mL and we can see if there is a batch effect.  
 
 *Issue*: 20200314 - ACR 246 and Initial 2 may be mixed up in the rondolino (mass and salinities are correct, just position in titrator). Almost positive I fixed it but double check TA values at the end to make sure these make sense.  
 *Resolution*:
+
+**Closed Issues**
 
 *Issue*: Sample notation was not consistent for the first couple of rounds.  
 *Resolution*: Changed initial notation format on 0303 in the E5 timeseries folder and changed to all correct format on the titrator computer.
