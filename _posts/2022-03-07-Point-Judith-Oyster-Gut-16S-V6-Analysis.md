@@ -27,7 +27,6 @@ Huber et al. 2007
 
 This is 2x75 bp sequencing.
 
-
 Beginners to 16S: see my [16S Central Working Document](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2022-02-22-16S-Analysis-Central-Working-Document.md) for other QIIME2 pipelines with more detailed descriptions on each command (Holobiont Integration QIIME2 pipeline will be most helpful for beginners).
 
 Sequenced at URI's GSC. Information found [here](https://web.uri.edu/gsc/).
@@ -401,106 +400,94 @@ Workflow from QIIME2 documentation:
 Reference database = `FeatureData[Taxonomy]` and `FeatureData[Sequence]`.  
 Pre-trained classifier choice information [here](https://docs.qiime2.org/2021.4/tutorials/overview/#derep-denoise).
 
-We chose the `Silva 138 99% OTUs from 515F/806R region of sequences (MD5: e05afad0fe87542704be96ff483824d4)` as the classifier because we used 515F and 806RB primers for our sequences and QIIME2 recommends the `classify-sklearn` classifier trainer.
-
-### Download classifier from QIIME2 documentation
+There are 3 ways we are testing classifiers:  
+1. `silva-138-99-nb-classifier`: From the Silva database 99% OTUs from full length sequences.    
+2. `silva-138-99-nb-weighted-classifier`: Trained with weights that take into account the fact that not all species are equally likely to be observed. This may give us higher classification precision.    
+3. Training our own classifier with the silva ref seqs, ref taxonomy, and our rep-seqs file from the denoise.sh step.
 
 Pre-trained classifiers are provided in the [QIIME 2 data resources](https://docs.qiime2.org/2022.2/data-resources/).
 
+### 1. Silva database 99% OTUs from full length sequences - unweighted
+
+Download the classifier.
+
 ```
-wget https://data.qiime2.org/2021.4/common/silva-138-99-515-806-nb-classifier.qza
+wget https://data.qiime2.org/2022.2/common/silva-138-99-nb-classifier.qza
 ```
 
-We also want to filter out unassigned and groups that include chloroplast and eukaryotic sequences.
+`taxonomy-unweighted.sh`:  
 
-### Training our own classifier with own data
+```
+qiime feature-classifier classify-sklearn \
+  --i-classifier ../metadata/silva-138-99-nb-classifier.qza \
+  --i-reads ../rep-seqs.qza \
+  --o-classification taxonomy-unweighted.qza
+```
+
+"-unweighted" prefix on all output files.
+
+
+### 2. Silva database 99% OTUs from full length sequences - weighted
+
+```
+wget https://data.qiime2.org/2022.2/common/silva-138-99-nb-weighted-classifier.qza
+```
+
+`taxonomy-weighted.sh`:  
+
+```
+qiime feature-classifier classify-sklearn \
+  --i-classifier ../metadata/silva-138-99-nb-weighted-classifier.qza \
+  --i-reads ../rep-seqs.qza \
+  --o-classification taxonomy-weighted.qza
+```
+
+"-weighted" prefix on all output files.
+
+### 3. Training our own classifier
 
 https://docs.qiime2.org/2022.2/tutorials/feature-classifier/. Two elements are required for training the classifier: the reference sequences and the corresponding taxonomic classifications.
 
-1. Download silva fasta and sequence files.
-
-
-
-2. Import these files as QIIME2 artifacts.
-
-`train-import.sh`:
+#### Obtaining and importing reference data sets.
 
 ```
-qiime tools import \
-  --type 'FeatureData[Sequence]' \
-  --input-path 85_otus.fasta \
-  --output-path 85_otus.qza
-
-qiime tools import \
-  --type 'FeatureData[Taxonomy]' \
-  --input-format HeaderlessTSVTaxonomyFormat \
-  --input-path 85_otu_taxonomy.txt \
-  --output-path ref-taxonomy.qza
+$ cd /data/putnamlab/estrand/PointJudithData_16S/QIIME2_v6/metadata
+$ wget https://data.qiime2.org/2022.2/common/silva-138-99-seqs.qza
+$ wget https://data.qiime2.org/2022.2/common/silva-138-99-tax.qza
 ```
 
-Output artifacts:
+Required data files:  
+- `rep-seqs.qza` from the denoise.sh script  
+- `silva-138-99-seqs.qza` = reference sequences    
+- `silva-138-99-tax.qza` = reference taxonomy  
+
+
+#### Extract reference reads.
+
+Primers:  
 
 ```
-85_otus.qza
-rep-seqs.qza
-ref-taxonomy.qza
+FORWARD
+CTAACCGANGAACCTYACC
+CNACGCGAAGAACCTTANC
+CAACGCGMARAACCTTACC
+ATACGCGARGAACCTTACC
+
+REVERSE
+CGACRRCCATGCANCACCT
 ```
 
-3. Extract reference reads.
+Input for the primers:  
+- R: CGACRRCCATGCANCACCT  
+- F: MNAMSCGMNRAACCTYANC
+
+Forward primer sequence includes all 4 primers (i.e. M in first position will code for either C or A)
 
 `train-extract.sh`:
 
 ```
-qiime feature-classifier extract-reads \
-  --i-sequences 85_otus.qza \
-  --p-f-primer GTGCCAGCMGCCGCGGTAA \
-  --p-r-primer GGACTACHVGGGTWTCTAAT \
-  --p-trunc-len 120 \
-  --p-min-length 100 \
-  --p-max-length 400 \
-  --o-reads ref-seqs.qza
-```
-
-Output artifact: `ref-seqs.qza`.
-
-4. Train the classifiers
-
-`train-classifier.sh`:
-
-```
-qiime feature-classifier fit-classifier-naive-bayes \
-  --i-reference-reads ref-seqs.qza \
-  --i-reference-taxonomy ref-taxonomy.qza \
-  --o-classifier classifier.qza
-```
-
-Output artifact: `classifier.qza`.
-
-5. Test classifier
-
-`train-test.sh`:
-
-```
-qiime feature-classifier classify-sklearn \
-  --i-classifier classifier.qza \
-  --i-reads rep-seqs.qza \
-  --o-classification taxonomy.qza
-
-qiime metadata tabulate \
-  --m-input-file taxonomy.qza \
-  --o-visualization taxonomy.qzv
-```
-
-Output artifact: `taxonomy.qza`. Output visualization: `taxonomy.qzv`.
-
-
-### Results from silva classifier vs. our own
-
-
-### taxonomy-trained.sh with own classifiers
-
-```
 #!/bin/bash
+#SBATCH --job-name="train"
 #SBATCH -t 24:00:00
 #SBATCH --nodes=1 --ntasks-per-node=1
 #SBATCH --export=NONE
@@ -510,249 +497,197 @@ Output artifact: `taxonomy.qza`. Output visualization: `taxonomy.qzv`.
 #SBATCH --account=putnamlab
 #SBTACH -q putnamlab
 #SBATCH -D /data/putnamlab/estrand/PointJudithData_16S/QIIME2_v6
+#SBATCH --error="script_error_train-classifier" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_train-classifier" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function
+module load QIIME2/2021.4
+
+qiime feature-classifier extract-reads \
+  --i-sequences metadata/silva-138-99-seqs.qza \
+  --p-f-primer MNAMSCGMNRAACCTYANC \
+  --p-r-primer CGACRRCCATGCANCACCT \
+  --p-trunc-len 100 \
+  --o-reads metadata/ref-seqs.qza
+```
+
+Output artifact: `ref-seqs.qza`.
+
+#### Train the classifier
+
+`train-classifier.sh`:
+
+```
+#!/bin/bash
+#SBATCH --job-name="train"
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab
+#SBTACH -q putnamlab
+#SBATCH -D /data/putnamlab/estrand/PointJudithData_16S/QIIME2_v6
+#SBATCH --error="script_error_train-classifier" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_train-classifier" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function
+module load QIIME2/2021.4
+
+qiime feature-classifier fit-classifier-naive-bayes \
+  --i-reference-reads metadata/ref-seqs.qza \
+  --i-reference-taxonomy metadata/silva-138-99-tax.qza \
+  --o-classifier metadata/classifier.qza
+```
+
+Output artifact: `classifier.qza`.
+
+#### Test classifier
+
+`train-test.sh`:
+
+```
+#!/bin/bash
+#SBATCH --job-name="train-test"
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab
+#SBTACH -q putnamlab
+#SBATCH -D /data/putnamlab/estrand/PointJudithData_16S/QIIME2_v6/classifier_trials
+#SBATCH --error="script_error_train-test" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_train-test" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function
+module load QIIME2/2021.4
+
+qiime feature-classifier classify-sklearn \
+  --i-classifier ../metadata/classifier.qza \
+  --i-reads ../rep-seqs.qza \
+  --o-classification taxonomy-trained.qza
+
+qiime metadata tabulate \
+  --m-input-file taxonomy-trained.qza \
+  --o-visualization taxonomy-trained.qzv
+```
+
+Output artifact: `taxonomy-trained.qza`. Output visualization: `taxonomy-trained.qzv`.
+
+`taxonomy-trained.sh`:  
+
+```
+qiime feature-classifier classify-sklearn \
+  --i-classifier ../metadata/classifier.qza \
+  --i-reads ../rep-seqs.qza \
+  --o-classification taxonomy-trained.qza
+```
+
+"-weighted" prefix on all output files.
+
+
+### taxonomy.sh
+
+```
+#!/bin/bash
+#SBATCH --job-name="trained"
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab
+#SBTACH -q putnamlab
+#SBATCH -D /data/putnamlab/estrand/PointJudithData_16S/QIIME2_v6/classifier_trials
 #SBATCH --error="script_error_taxonomy-trained" #if your job fails, the error report will be put in this file
 #SBATCH --output="output_script_taxonomy-trained" #once your job is completed, any final job report comments will be put in this file
 
 source /usr/share/Modules/init/sh # load the module function
 module load QIIME2/2021.4
 
-#### METADATA FILES ####
-# Path working directory to the raw files (referenced in the metadata)
-# metadata says: $PWD/00_RAW_gz/RS1_S1_L001_R1_001.fastq.gz so this needs to lead the command to this path
-PWD="/data/putnamlab/estrand/PointJudithData_16S/QIIME2_v6"
-
 # Metadata path
-METADATA="metadata/PJ_V6Samples_Metadata.txt"
-
-# Sample manifest path
-MANIFEST="metadata/sample-manifest_PJ_V6.csv"
-
-#########################
+METADATA="../metadata/PJ_V6Samples_Metadata.txt"
 
 #### TAXONOMY CLASSIFICATION
 
 qiime feature-classifier classify-sklearn \
-  --i-classifier metadata/silva-138-99-515-806-nb-classifier.qza \
-  --i-reads rep-seqs.qza \
-  --o-classification taxonomy.qza
+  --i-classifier ../metadata/classifier.qza \
+  --i-reads ../rep-seqs.qza \
+  --o-classification taxonomy-trained.qza
 
 qiime taxa filter-table \
-     --i-table table.qza \
-     --i-taxonomy taxonomy.qza \
+     --i-table ../table.qza \
+     --i-taxonomy taxonomy-trained.qza \
      --p-mode contains \
      --p-exclude "Unassigned","Chloroplast","Eukaryota" \
-     --o-filtered-table table-filtered.qza
+     --o-filtered-table table-trained-filtered.qza
 
 qiime metadata tabulate \
-    --m-input-file taxonomy.qza \
-    --o-visualization taxonomy.qzv
+    --m-input-file taxonomy-trained.qza \
+    --o-visualization taxonomy-trained.qzv
 qiime taxa barplot \
-    --i-table table-filtered.qza \
-    --i-taxonomy taxonomy.qza \
+    --i-table table-trained-filtered.qza \
+    --i-taxonomy taxonomy-trained.qza \
     --m-metadata-file $METADATA \
-    --o-visualization taxa-bar-plots-filtered.qzv
+    --o-visualization taxa-bar-plots-trained-filtered.qzv
 qiime metadata tabulate \
-    --m-input-file rep-seqs.qza \
-    --m-input-file taxonomy.qza \
-    --o-visualization tabulated-feature-metadata.qzv
+    --m-input-file ../rep-seqs.qza \
+    --m-input-file taxonomy-trained.qza \
+    --o-visualization tabulated-feature-metadata-trained.qzv
 
 qiime feature-table summarize \
-    --i-table table-filtered.qza \
-    --o-visualization table-filtered.qzv \
+    --i-table table-trained-filtered.qza \
+    --o-visualization table-trained-filtered.qzv \
     --m-sample-metadata-file $METADATA
-
-#### CREATES PHYLOGENETIC TREES
-
-# align and mask sequences
-qiime alignment mafft \
-  --i-sequences rep-seqs.qza \
-  --o-alignment aligned-rep-seqs.qza
-qiime alignment mask \
-  --i-alignment aligned-rep-seqs.qza \
-  --o-masked-alignment masked-aligned-rep-seqs.qza
-
-# calculate tree
-qiime phylogeny fasttree \
-  --i-alignment masked-aligned-rep-seqs.qza \
-  --o-tree unrooted-tree.qza
-qiime phylogeny midpoint-root \
-  --i-tree unrooted-tree.qza \
-  --o-rooted-tree rooted-tree.qza
 ```
 
-### taxonomy.sh with silva classifier
+### Output comparison from 3 classifiers
+
+Copy and paste from andromeda to desktop.
 
 ```
-#!/bin/bash
-#SBATCH -t 24:00:00
-#SBATCH --nodes=1 --ntasks-per-node=1
-#SBATCH --export=NONE
-#SBATCH --mem=100GB
-#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
-#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
-#SBATCH --account=putnamlab
-#SBTACH -q putnamlab
-#SBATCH -D /data/putnamlab/estrand/PointJudithData_16S/QIIME2_v6
-#SBATCH --error="script_error_taxonomy" #if your job fails, the error report will be put in this file
-#SBATCH --output="output_script_taxonomy" #once your job is completed, any final job report comments will be put in this file
-
-source /usr/share/Modules/init/sh # load the module function
-module load QIIME2/2021.4
-
-#### METADATA FILES ####
-# Path working directory to the raw files (referenced in the metadata)
-# metadata says: $PWD/00_RAW_gz/RS1_S1_L001_R1_001.fastq.gz so this needs to lead the command to this path
-PWD="/data/putnamlab/estrand/PointJudithData_16S/QIIME2_v6"
-
-# Metadata path
-METADATA="metadata/PJ_V6Samples_Metadata.txt"
-
-# Sample manifest path
-MANIFEST="metadata/sample-manifest_PJ_V6.csv"
-
-#########################
-
-#### TAXONOMY CLASSIFICATION
-
-qiime feature-classifier classify-sklearn \
-  --i-classifier metadata/silva-138-99-515-806-nb-classifier.qza \
-  --i-reads rep-seqs.qza \
-  --o-classification taxonomy.qza
-
-qiime taxa filter-table \
-     --i-table table.qza \
-     --i-taxonomy taxonomy.qza \
-     --p-mode contains \
-     --p-exclude "Unassigned","Chloroplast","Eukaryota" \
-     --o-filtered-table table-filtered.qza
-
-qiime metadata tabulate \
-    --m-input-file taxonomy.qza \
-    --o-visualization taxonomy.qzv
-qiime taxa barplot \
-    --i-table table-filtered.qza \
-    --i-taxonomy taxonomy.qza \
-    --m-metadata-file $METADATA \
-    --o-visualization taxa-bar-plots-filtered.qzv
-qiime metadata tabulate \
-    --m-input-file rep-seqs.qza \
-    --m-input-file taxonomy.qza \
-    --o-visualization tabulated-feature-metadata.qzv
-
-qiime feature-table summarize \
-    --i-table table-filtered.qza \
-    --o-visualization table-filtered.qzv \
-    --m-sample-metadata-file $METADATA
-
-#### CREATES PHYLOGENETIC TREES
-
-# align and mask sequences
-qiime alignment mafft \
-  --i-sequences rep-seqs.qza \
-  --o-alignment aligned-rep-seqs.qza
-qiime alignment mask \
-  --i-alignment aligned-rep-seqs.qza \
-  --o-masked-alignment masked-aligned-rep-seqs.qza
-
-# calculate tree
-qiime phylogeny fasttree \
-  --i-alignment masked-aligned-rep-seqs.qza \
-  --o-tree unrooted-tree.qza
-qiime phylogeny midpoint-root \
-  --i-tree unrooted-tree.qza \
-  --o-rooted-tree rooted-tree.qza
+scp -r emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/PointJudithData_16S/QIIME2_v6/classifier_trials  /Users/emmastrand/MyProjects/Cvir_Nut_Int/output/16S_allv6/QIIME2
 ```
 
-Output from `output_script_taxonomy`:
+Files to put into QIIME2 view:  
+- `taxa-bar-plots-unweighted-filtered.qzv` and `table-unweighted-filtered.qzv`  
+- `taxa-bar-plots-weighted-filtered.qzv` and `table-weighted-filtered.qzv`  
+- `taxa-bar-plots-trained-filtered.qzv` and `table-trained-filtered.qzv`
 
-```
-Saved FeatureData[Taxonomy] to: taxonomy.qza
-Saved FeatureTable[Frequency] to: table-filtered.qza
-Saved Visualization to: taxonomy.qzv
-Saved Visualization to: taxa-bar-plots-filtered.qzv
-Saved Visualization to: tabulated-feature-metadata.qzv
-Saved Visualization to: table-filtered.qzv
-Saved FeatureData[AlignedSequence] to: aligned-rep-seqs.qza
-Saved FeatureData[AlignedSequence] to: masked-aligned-rep-seqs.qza
-Saved Phylogeny[Unrooted] to: unrooted-tree.qza
-Saved Phylogeny[Rooted] to: rooted-tree.qza
-```
 
-Output from `script_error_taxonomy` is empty so no errors.
+### Classifier choice
 
-#### Copy output to desktop for qiime2 view
-
-Outside of andromeda.
-
-```
-scp -r emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/PointJudithData_16S/QIIME2_v6/table-filtered.qzv  /Users/emmastrand/MyProjects/Cvir_Nut_Int/output/16S_allv6/QIIME2
-
-taxa-bar-plots-filtered.qzv
-table-filtered.qzv  
-tabulated-feature-metadata.qzv  
-```
-
-### Results pre and post-filtering for "Unassigned","Chloroplast","Eukaryota" - silva classifier
-
+**Summary from table.qzv vs post-filtering classifier choices**  
 *Are there any other groups we should be filtering because we are working with oysters?*
 
-**Table Summary**
 
-| Metric             	| Sample  from table.qzv  	|
-|--------------------	|-----------	|
-| Number of samples  	| 112       	|
-| Number of features 	| 20,375    	|
-| Total frequency    	| 3,990,135 	|
+**Read frequnecy per sample**
 
-| Metric             	| Sample  from table-filtered.qzv	|
-|--------------------	|-----------	|
-| Number of samples  	| 112       	|
-| Number of features 	| 6,227     	|
-| Total frequency    	| 2,000,123 	|
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/read-seq-prefiltering-histogram.png?raw=true)
 
-**Frequency per sample**
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/read-freq-unweighted-histogram.png?raw=true)
 
-| Frequency         	|     from table.qzv   	|
-|-------------------	|---------------------	|
-| Minimum frequency 	| 10,343.0            	|
-| 1st quartile      	| 30,931.5            	|
-| Median frequency  	| 34,976.0            	|
-| 3rd quartile      	| 40,619.25           	|
-| Maximum frequency 	| 57,437.0            	|
-| Mean frequency    	| 35,626.205357142855 	|
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/read-freq-weighted-histogram.png?raw=true)
 
-| Frequency         	|    table-filtered.qzv |
-|-------------------	|---------------------	|
-| Minimum frequency 	| 2,651.0             	|
-| 1st quartile      	| 14,040.25           	|
-| Median frequency  	| 17,342.0            	|
-| 3rd quartile      	| 21,397.0            	|
-| Maximum frequency 	| 36,377.0            	|
-| Mean frequency    	| 17,858.241071428572 	|
+![]()
 
-**Pre-filtering: table.qzv and sample freq csv**
+**Taxa bar plots**
 
-![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/pre-filtering-histogram.png?raw=true)
+Unweighted Silva Database Classifier
 
-**Post-filtering: table-filtered.qzv and sample freq csv**
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/taxa-barplot-unweighted.png?raw=true)
 
-![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/post-filtering-histogram.png?raw=true)
+Weighted Silva Database Classifier
 
-**Post-filtering lowest frequency of samples**
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/taxa-barplot-weighted.png?raw=true)
 
-| 107 	| RS187_S83  	| 9300 	|
-|-----	|------------	|------	|
-| 108 	| RS138_S65  	| 8610 	|
-| 109 	| RS160_S44  	| 6549 	|
-| 110 	| RS225_S127 	| 6379 	|
-| 111 	| RS132_S88  	| 5772 	|
-| 112 	| RS130_S64  	| 2651 	|
+Our own classifier with silva tax and seq information
 
-
-### Results pre and post-filtering for "Unassigned","Chloroplast","Eukaryota" - own classifier
-
-*Are there any other groups we should be filtering because we are working with oysters?*
-
+![]()
 
 ## <a name="Diversity"></a> **Subsampling and diversity indices**
 
@@ -799,6 +734,24 @@ METADATA="metadata/PJ_V6Samples_Metadata.txt"
 MANIFEST="metadata/sample-manifest_PJ_V6.csv"
 
 #########################
+
+#### CREATES PHYLOGENETIC TREES
+
+# align and mask sequences
+qiime alignment mafft \
+  --i-sequences rep-seqs.qza \
+  --o-alignment aligned-rep-seqs.qza
+qiime alignment mask \
+  --i-alignment aligned-rep-seqs.qza \
+  --o-masked-alignment masked-aligned-rep-seqs.qza
+
+# calculate tree
+qiime phylogeny fasttree \
+  --i-alignment masked-aligned-rep-seqs.qza \
+  --o-tree unrooted-tree.qza
+qiime phylogeny midpoint-root \
+  --i-tree unrooted-tree.qza \
+  --o-rooted-tree rooted-tree.qza
 
 #### CALCULATES OVERALL DIVERSITY
 ## change sub sampling depth values

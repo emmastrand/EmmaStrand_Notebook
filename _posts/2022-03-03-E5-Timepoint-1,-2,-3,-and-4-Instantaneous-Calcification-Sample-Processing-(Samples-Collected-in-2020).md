@@ -87,22 +87,44 @@ March 3, 2022 - current:
 *Issue*: We are currently copy and pasting into `Timepoint#_TA_Data` in urol timeseries repo.  
 *Resolution*: Emma is ~halfway through creating this script for TP3: stopped at the initial measurements issue above.  
 
-*Issue*: All September bottles have been processed but there are several blank and initials that we do not have accounted for. Cross reference again with those bottles done at CSUN and in-field notes.  
-*Resolution*: Ariana and Emma are currently chatting about the best way to go about this. Some bottles spilled in transport - could be these?
-
 *Issue*: 50 mL falcon tubes for some samples for January 2020 and November 2020 time points instead of larger bottles.  
 *Resolution*: Hollie says it doesn't matter we can run these at whatever mass we can get - run this by Ariana and Danielle in meeting. Will add a column to keep track of which samples were in a 50 mL and we can see if there is a batch effect. For these samples, we will need to calculate salinity prior to measuring mass and putting samples in rondolino.  
 
 *Issue*: 20200314 - ACR 246 and Initial 2 may be mixed up in the rondolino (mass and salinities are correct, just position in titrator). Almost positive I fixed it but double check TA values at the end to make sure these make sense.  
 *Resolution*: Emma will need to do this after run data has been pushed to github.
 
-*Issue*: volumes missing from delta TA sheet.  
-*Resolution*: https://drive.google.com/drive/u/0/folders/1Z7Gxiqo8QbnP4AMpgxmgq0wDNJ-qWmBW. extract volumes here and put in delta TA.  
+*Issue*: Do we use chamber temperature, salinity, and pH? Check with Hollie and Nyssa.     
+*Resolution*: Ariana and Emma are currently chatting about the best way to go about this. Look at calc as a function of temp for a sanity check?
+
+*Issue*: TP1 - January surface area is 30 for every chamber.
+*Resolution*: pull in real surface area for this.
+
+*Issue*: Salinity readings in CA vs URI (36 range vs 40 range..). Test batch effect
 
 ### Closed Issues
 
+*Issue*: All September bottles have been processed but there are several blank and initials that we do not have accounted for. Cross reference again with those bottles done at CSUN and in-field notes.  
+*Resolution*: Ariana and Emma are currently chatting about the best way to go about this. Some bottles spilled in transport but we don't think these are them. Turns out my code wasn't pulling all the California bottles done. The only missing samples from September are and Initial1_20200909_1 and POR-240_20200913_5. There are 2 Initial1_20200912_3 bottles/TA values (one bottle at URI but two TA values - one done at URI and one done in CA).
+
 *Issue*: Sample notation was not consistent for the first couple of rounds.  
 *Resolution*: Changed initial notation format on 0303 in the E5 timeseries folder and changed to all correct format on the titrator computer.
+
+*Issue*: volumes missing from delta TA sheet.  
+*Resolution*: https://drive.google.com/drive/u/0/folders/1Z7Gxiqo8QbnP4AMpgxmgq0wDNJ-qWmBW. extract volumes here and put in delta TA.
+
+## <a name="Missing"></a> **Missing and Duplicate Data**
+
+**TP1 January 2020**
+
+**TP2 March 2020**
+
+**TP3 September 2020**
+
+- The only missing samples from September are and Initial1_20200909_1 and POR-240_20200913_5.  
+- There are 2 Initial1_20200912_3 bottles/TA values (one bottle at URI but two TA values - one done at URI and one done in CA).  
+- Initial environmental measurements (temp, pH, salinity) missing run 3 and on.  
+
+**TP4 November 2020**
 
 ## <a name="Week"></a> **Weekly Schedule**
 
@@ -258,17 +280,49 @@ Run 2:
 
 #### 20200314 Emma and Pierrick (3 runs = 24 samples)
 
+-0.13% CRM error
+
 Run 1:
 
-
+| SampleID            	| TA         	| Mass   	| Salinity 	|
+|---------------------	|------------	|--------	|----------	|
+| JUNK 1              	| 2275.1106  	| 59.205 	| 35       	|
+| Initial2_20200105_3 	| 2286.70311 	| 59.923 	| 41.15    	|
+| BK-3_20200105_3     	| 2355.50141 	| 60.611 	| 42.33    	|
+| POC-238_20200105_3  	| 2333.09919 	| 60.404 	| 40.61    	|
+| ACR-234_20200105_3  	| 2272.03283 	| 59.905 	| 40.82    	|
+| Initial1_20200104_2 	| 2334.63197 	| 59.795 	| 40.12    	|
+| ACR-229_20200105_3  	| 2257.26957 	| 59.706 	| 41.24    	|
+| POC-255_20200104_2  	| 2292.36053 	| 59.436 	| 38.42    	|
+| POC-201_20200104_2  	| 2333.90785 	| 59.729 	| 41.52    	|
 
 Run 2:
 
-
+| SampleID            	| TA         	| Mass   	| Salinity 	|
+|---------------------	|------------	|--------	|----------	|
+| JUNK 1              	| 2274.50372 	| 60.696 	| 35       	|
+| POC-205_20200105_4  	| 2338.22994 	| 59.888 	| 41.54    	|
+| ACR-246_20200105_4  	| 2265.14352 	| 60.031 	| 41.17    	|
+| POC-222_20200106_5  	| 2319.27203 	| 60.956 	| 41.33    	|
+| Initial2_20200105_4 	| 2314.01441 	| 59.993 	| 41.62    	|
+| Initial1_20200105_4 	| 2356.00739 	| 59.188 	| 41.53    	|
+| POC-200_20200105_3  	| 2332.13855 	| 60.718 	| 41.42    	|
+| POC-371_20200106_6  	| 2329.36386 	| 60.349 	| 41.2     	|
+| POR-209_20200105_3  	| 2259.74708 	| 60.426 	| 40.63    	|
 
 Run 3:
 
-
+| SampleID           	| TA         	| Mass   	| Salinity 	|
+|--------------------	|------------	|--------	|----------	|
+| JUNK 1             	| 2269.71589 	| 59.584 	| 35       	|
+| POC-378_20200107_7 	| 2300.71112 	| 60.28  	| 41.55    	|
+| POR-383_20200107_7 	| 2287.35238 	| 60.604 	| 41.3     	|
+| POC-358_20200107_7 	| 2320.07917 	| 60.561 	| 41.55    	|
+| ACR-393_20200106_6 	| 2333.50884 	| 60.059 	| 41.41    	|
+| ACR-379_20200107_7 	| 2330.53561 	| 59.726 	| 41.62    	|
+| POR-260_20200106_5 	| 2176.26568 	| 60.658 	| 41.55    	|
+| POC-395_20200106_6 	| 2308.54744 	| 59.312 	| 41.63    	|
+| BK-4_20200105_4    	| 2354.1675  	| 59.679 	| 41.82    	|
 
 ## <a name="Nov"></a> **November 2020, 145 samples to complete**
 
