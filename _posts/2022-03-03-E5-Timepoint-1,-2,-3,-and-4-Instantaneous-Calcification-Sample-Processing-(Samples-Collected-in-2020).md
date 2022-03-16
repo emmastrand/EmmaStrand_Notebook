@@ -146,15 +146,15 @@ Emma will sign the Putnam lab up for the appropriate time slots at the beginning
 
 |                	| Monday 3/14                            	| Tuesday 3/15 	| Wednesday 3/16 	| Tuesday 3/1  	| Friday 3/18      	|
 |----------------	|----------------------------------------	|--------------	|----------------	|--------------	|------------------	|
-| Personnel      	| Emma and Pierrick together all day     	| Puritz Lab   	| Emma all day   	| Emma all day 	| Pierrick all day 	|
-| E5 sample runs 	| 3                                      	| 0            	| 3              	| 3            	| 2                	|
+| Personnel      	| Emma and Pierrick together all day     	| Puritz Lab   	| Power out - no one   	| Emma all day 	| Pierrick all day 	|
+| E5 sample runs 	| 3                                      	| 0            	| 0              	| 3            	| 2                	|
 | Notes          	| Kristen out this week for Spring Break 	|              	|                	|              	|                  	|
 
 *Projected:*
 
 | # of runs 	| Samples done this week 	|
 |-----------	|------------------------	|
-| 11        	| 88                     	|
+| 8        	| 64                     	|
 
 
 ## <a name="Sept"></a> **September 2020, 51 samples to complete**

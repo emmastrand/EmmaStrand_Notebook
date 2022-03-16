@@ -143,9 +143,13 @@ scp emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/PointJudithData_16S/QI
 
 ![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/multiqc%20images/per%20seq%20quality.png?raw=true)
 
+![](https://i0.wp.com/gencoded.com/wp-content/uploads/2020/05/fastq_format_explained-3.png?ssl=1)
+
 **Per Sequence GC Content**
 
 ![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/multiqc%20images/per%20seq%20GC%20content.png?raw=true)
+
+GC content is usually calculated as a percentage value and sometimes called G+C ratio or GC-ratio. GC-content percentage is calculated as Count(G + C)/Count(A + T + G + C) * 100%. Visualizing GC content across the whole length of each sequence in a file. Distribution should be normal unless over-represented sequences (sharp peaks on a normal distribution) or contamination with another organism (broad peak).  
 
 **Per Base N Content**
 
@@ -162,6 +166,9 @@ scp emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/PointJudithData_16S/QI
 **Overrepresented Sequences**
 
 ![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/multiqc%20images/overrepresented%20seqs.png?raw=true)
+
+Can help identify contamination and if %GC above is off, could help identify the source.
+
 
 **Adapter Content:No samples found with any adapter contamination > 0.1%**
 
@@ -217,7 +224,11 @@ RS133_S5	BHC.3.2g	gut	BHC	Southern 	Control	gut_Southern_Control	Southern_Contro
 
 ## <a name="Import"></a> **Sample data import**
 
-*Confirm these parameters are correct: input-format.*
+QIIME2 importing data [tutorial](https://docs.qiime2.org/2022.2/tutorials/importing/).
+
+Input format: `PairedEndFastqManifestPhred33`:    
+- "In this variant of the fastq manifest format, there must be forward and reverse read fastq.gz / fastq files for each sample ID. This format assumes that the PHRED offset used for the positional quality scores in all of the fastq.gz / fastq files is 33."  
+- 33 is used in illumina1.8 or later software; 64 is used in  Illumina 1.3-1.7 software ([info link](http://scikit-bio.org/docs/latest/generated/skbio.io.format.fastq.html#quality-score-variants)).
 
 Create a script to import these data files into QIIME2.
 
@@ -269,6 +280,18 @@ Imported metadata/sample-manifest_PJ_V6.csv as PairedEndFastqManifestPhred33 to 
 `PJ-paired-end-sequences.qza` is the output file that we will input in the next denoising step.
 
 ## <a name="Denoise"></a> **Denoising with DADA2 and Clustering**
+
+Denoising youtube video from QIIME2's channel: https://www.youtube.com/watch?v=PmtqSa4Z1TQ.
+
+Denoisers attempt to model error profiles based on quality scores, expected error rates, and observed frequency of each of the unique sequences found. In this process DADA2 (program we use) will group sequences into ASV's (similar concept to 100% similarity OTU). OTU vs ASV is up for debate - either is OK but base that decision in data and the aim of your project/question.
+
+![denoise-asvs]()
+
+QIIME2 then names this as 'Features' (mostly becasue QIIME2 can be used for all sorts of -omics).
+
+![denoiseproduct]()
+
+![OTUvASV]()
 
 *Primer length is 19 nt.*
 
