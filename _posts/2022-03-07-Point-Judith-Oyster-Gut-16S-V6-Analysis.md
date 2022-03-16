@@ -285,13 +285,13 @@ Denoising youtube video from QIIME2's channel: https://www.youtube.com/watch?v=P
 
 Denoisers attempt to model error profiles based on quality scores, expected error rates, and observed frequency of each of the unique sequences found. In this process DADA2 (program we use) will group sequences into ASV's (similar concept to 100% similarity OTU). OTU vs ASV is up for debate - either is OK but base that decision in data and the aim of your project/question.
 
-![denoise-asvs]()
+![denoise-asvs](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/QIIME2/denoise%20and%20clustering.png?raw=true)
 
 QIIME2 then names this as 'Features' (mostly becasue QIIME2 can be used for all sorts of -omics).
 
-![denoiseproduct]()
+![denoiseproduct](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/QIIME2/output%20of%20denoise.png?raw=true)
 
-![OTUvASV]()
+![OTUvASV](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/QIIME2/otu%20vs%20asv.png?raw=true)
 
 *Primer length is 19 nt.*
 
