@@ -9,16 +9,16 @@ projects: Putnam Lab
 
 # 16S Sequencing Protocol for the Putnam Lab
 
-Written by Emma Strand 20210315.
+Written by Emma Strand 20210315 and continuously updated through March 2022.
 
 Contents:  
-- [**Next Gen 16s Sequencing Primer Design**](#Primer)  
+- [**Next Gen 16S Sequencing Primer Design**](#Primer)  
 - [**WORKING Lab Protocol**](#Protocol)  
 - [**Holoboint Integration 16S V4 Sample Processing**](#Sample_processing)  
 
 Holobiont Integration 16S V3/V4 sample processing in this notebook post()
 
-## <a name="Primer"></a> **Next Gen 16s Sequencing Primer Design**
+## <a name="Primer"></a> **Next Gen 16S Sequencing Primer Design**
 
 [URI GSC](https://web.uri.edu/gsc/next-generation-sequencing/) requires specific adapter sequences that are outlined below:  
 
@@ -45,10 +45,18 @@ We took the primer sequences from Apprill et al 2015, and added the URI GSC spec
 
 **After sequencing this, we found that we amplified the host more than the bacterial community, specifically in M. capitata. We then tried the V3/V4 region. A project sequenced with V4 region in P. aestorides went well and we did not re-sequence those.**
 
-### for V3/V4 Region
+515F Forward and 806RB Reverse (V4) amplicon size: ~253 bp sequence + 50-60 bp for primer & adapter overhang.    
 
+### 388F and 806RB for V3/V4 Region
 
+We took the reverse primer we used for V4 region and the 388F from XXXX.
 
+| Primer        	| GSC Adapter Overhang               	| Primer Sequence      	| Sequence to be ordered: Adapter   + Primer Sequence    	|
+|---------------	|------------------------------------	|----------------------	|--------------------------------------------------------	|
+| 388F forward  	| TCGTCGGCAGCGTCAGATGTGTATAAGAGACAG  	| ACTCCTACGGGAGGCAGCA  	| TCGTCGGCAGCGTCAGATGTGTATAAGAGACAGACTCCTACGGGAGGCAGCA   	|
+| 806RB reverse 	| GTCTCGTGGGCTCGGAGATGTGTATAAGAGACAG 	| GGACTACNVGGGTWTCTAAT 	| GTCTCGTGGGCTCGGAGATGTGTATAAGAGACAGGGACTACNVGGGTWTCTAAT 	|
+
+V3/V4 amplicon size: + 50-60 bp for primer & adapter overhang
 
 ## <a name="Protocol"></a> **WORKING Lab Protocol**
 
@@ -80,10 +88,8 @@ In our lab, we will complete the first PCR step and then we pay URI GSC to compl
 
 ![workflow2](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16s-workflow2.png?raw=true)
 
-515F Forward and 806RB Reverse (V4) amplicon size: ~253 bp sequence + 50-60 bp for primer & adapter overhang.    
-V3/V4 amplicon size:
 
-**Steps:**
+### Steps:
 
 1. Check concentrations with [Qubit](https://emmastrand.github.io/EmmaStrand_Notebook/Qubit-Protocol/).  
 2. Calculate volumes of DNA and water needed to dilute sample to 4 ng/μl concentration in 20 μl. 4 ng is the minimum input to be used for one reaction. In this protocol, samples will be run in triplicate with each reaction containing 4 ng for a sample total of 12 ng. Dilutions can be done in any volume, but we recommend 10 or 20 μl depending on your starting concentration.    
@@ -133,22 +139,32 @@ Master Mix calculations (per reaction):
 13. Spin down plate.  
 14. Run the following PCR program (this cycle program is specific to 16S primer region):  
 
-PCR program used for V4 primers:  
+The annealing temperature in this PCR program is specific to the melting point of your primers.
+
+**PCR program used for V4 primers:**  
 
 | Temperature 	| Time   	| Repeat 	|
 |-------------	|--------	|--------	|
 | 95 °C       	| 2 min  	| 1      	|
 | 95 °C       	| 20 s   	| x27-35 	|
-|  57 °C      	| 15s    	|        	|
+| 57 °C       	| 15s    	|        	|
 | 72 °C       	| 5 min  	|        	|
 | 72 °C       	| 10 min 	| 1      	|
 
-PCR program used for V3/V4 primers:
+**PCR program used for V3/V4 primers:**
 
-15. Triplicate Gel: Run 5 μl of each product (3 per sample because the PCR was done in triplicate) on a 1% agarose gel for 45 minutes using the following [Putnam Lab Gel Electrophoresis protocol](https://emmastrand.github.io/EmmaStrand_Notebook/Gel-Electrophoresis-Protocol/) to check for ~390 bp product.  
+| Temperature 	| Time   	| Repeat 	|
+|-------------	|--------	|--------	|
+| 95 °C       	| 2 min  	| 1      	|
+| 95 °C       	| 20 s   	| x27-35 	|
+| X °C        	| 15s    	|        	|
+| 72 °C       	| 5 min  	|        	|
+| 72 °C       	| 10 min 	| 1      	|
+
+
+15. *Gel options* 1.) Triplicate Gel: Run 5 μl of each product (3 per sample because the PCR was done in triplicate) on a 1% agarose gel for 45 minutes using the following [Putnam Lab Gel Electrophoresis protocol](https://emmastrand.github.io/EmmaStrand_Notebook/Gel-Electrophoresis-Protocol/) to check for correct size bp product (based on your primers and region amplified). 2.) Single Gel: Run 5 μl of each pooled sample on a 1% agarose gel for 60-75 minutes.  
 16. Pool products into PCR strip tubes (75 μl total) appropriately labeled with the sample ID. *Pooling occurs only after duplicate or triplicate samples (based on if you chose duplicates or triplicates above) have successfully amplified and confirmed on the gel.* These will be the PCR product stock. Store at -20&deg;C.  
-17. Single Gel: Run 5 μl of each pooled sample on a 1% agarose gel for 60-75 minutes. The goal is to separate the mitochondrial V4 region band and the 16s V4 region band really well to be able to physically cut out of the gel.  
-18. Aliquot 45 μl of each product from the PCR product stock (in Step 11) into new PCR strip tubes appropriately labeled with the sample ID. These tubes will be delivered to the sequencing center. Store at -20&deg;C until delivering to the sequencing center.   
+17. Aliquot 45 μl of each product from the PCR product stock (in Step 11) into new PCR strip tubes appropriately labeled with the sample ID. These tubes will be delivered to the sequencing center. Store at -20&deg;C until delivering to the sequencing center. The lowest μl of product to deliver to URI GSC is 25 μl.    
 
 Example of [google spreadsheet](https://docs.google.com/spreadsheets/d/184gZr6-Bc48Q-48O8OhfnEsu5wRloLiekuJg3T_IzXw/edit?usp=sharing) for data processing, including master mix and dilution calculations, and 96-well PCR platemaps.
 
