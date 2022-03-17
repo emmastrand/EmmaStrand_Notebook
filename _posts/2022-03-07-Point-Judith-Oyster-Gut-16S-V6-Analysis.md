@@ -423,12 +423,16 @@ Workflow from QIIME2 documentation:
 Reference database = `FeatureData[Taxonomy]` and `FeatureData[Sequence]`.  
 Pre-trained classifier choice information [here](https://docs.qiime2.org/2021.4/tutorials/overview/#derep-denoise).
 
+"Training a classifier": created via machine learning algorithm (called Naive Bayes) and showing a classifier examples where we know the answer (our reference database). In Mothur, this process uses the program vsearch and BLAST instead of a machine learning classifier. If we are not happy with our classifier we can use `classify-consesus-blast` or `classify-consesus-vsearch` within QIIME2.
+
 There are 3 ways we are testing classifiers:  
 1. `silva-138-99-nb-classifier`: From the Silva database 99% OTUs from full length sequences.    
-2. `silva-138-99-nb-weighted-classifier`: Trained with weights that take into account the fact that not all species are equally likely to be observed. This may give us higher classification precision.    
-3. Training our own classifier with the silva ref seqs, ref taxonomy, and our rep-seqs file from the denoise.sh step.
+2. `silva-138-99-nb-weighted-classifier`: Trained with weights that take into account the fact that not all species are equally likely to be observed. This may give us higher classification precision. This might not work as well for us because coral reefs and marine habitats are not the habitats used their analysis RE weighted classifiers.      
+3. Training our own classifier with the silva ref seqs, ref taxonomy, and our rep-seqs file from the denoise.sh step. This is specific to V6 region instead of using the whole silva database.
 
 Pre-trained classifiers are provided in the [QIIME 2 data resources](https://docs.qiime2.org/2022.2/data-resources/).
+
+![](https://camo.githubusercontent.com/7e3461678d531d051ab3193b7a9bd5b90b3144300a769a4e94ff21aff2bd6188/68747470733a2f2f646f63732e7169696d65322e6f72672f323032312e342f5f696d616765732f7461786f6e6f6d792e706e67)
 
 ### 1. Silva database 99% OTUs from full length sequences - unweighted
 
@@ -508,6 +512,8 @@ Forward primer sequence includes all 4 primers (i.e. M in first position will co
 
 `train-extract.sh`:
 
+Takes 19+ hours. 
+
 ```
 #!/bin/bash
 #SBATCH --job-name="train"
@@ -566,39 +572,7 @@ qiime feature-classifier fit-classifier-naive-bayes \
 
 Output artifact: `classifier.qza`.
 
-#### Test classifier
-
-`train-test.sh`:
-
-```
-#!/bin/bash
-#SBATCH --job-name="train-test"
-#SBATCH -t 24:00:00
-#SBATCH --nodes=1 --ntasks-per-node=1
-#SBATCH --export=NONE
-#SBATCH --mem=100GB
-#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
-#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
-#SBATCH --account=putnamlab
-#SBTACH -q putnamlab
-#SBATCH -D /data/putnamlab/estrand/PointJudithData_16S/QIIME2_v6/classifier_trials
-#SBATCH --error="script_error_train-test" #if your job fails, the error report will be put in this file
-#SBATCH --output="output_script_train-test" #once your job is completed, any final job report comments will be put in this file
-
-source /usr/share/Modules/init/sh # load the module function
-module load QIIME2/2021.4
-
-qiime feature-classifier classify-sklearn \
-  --i-classifier ../metadata/classifier.qza \
-  --i-reads ../rep-seqs.qza \
-  --o-classification taxonomy-trained.qza
-
-qiime metadata tabulate \
-  --m-input-file taxonomy-trained.qza \
-  --o-visualization taxonomy-trained.qzv
-```
-
-Output artifact: `taxonomy-trained.qza`. Output visualization: `taxonomy-trained.qzv`.
+#### script to run own classifier
 
 `taxonomy-trained.sh`:  
 
@@ -609,7 +583,7 @@ qiime feature-classifier classify-sklearn \
   --o-classification taxonomy-trained.qza
 ```
 
-"-weighted" prefix on all output files.
+"-trained" prefix on all output files.
 
 
 ### taxonomy.sh

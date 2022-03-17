@@ -39,9 +39,9 @@ Contents:
 - [**Equipment locations**](#Equip)   
 - [**Waste**](#Waste)   
 
-Remaining as of 2022-03-14 end of day:  
+Remaining as of 2022-03-17 end of day:  
 - September 2020: Done (see note in issues RE initials and blanks)  
-- January 2020: 98/146 samples. Projected to be done with January time point by March 23, 2022.   
+- January 2020: 66/146 samples. Projected to be done with January time point by March 23, 2022.   
 - November 2020: 145/145 samples
 
 We'll do time points separately and do initials and blanks in the same titration run.  
@@ -96,10 +96,14 @@ March 3, 2022 - current:
 *Issue*: Do we use chamber temperature, salinity, and pH? Check with Hollie and Nyssa.     
 *Resolution*: Ariana and Emma are currently chatting about the best way to go about this. Look at calc as a function of temp for a sanity check?
 
-*Issue*: TP1 - January surface area is 30 for every chamber.
+*Issue*: TP1 - January surface area is 30 for every chamber.  
 *Resolution*: pull in real surface area for this.
 
-*Issue*: Salinity readings in CA vs URI (36 range vs 40 range..). Test batch effect
+*Issue*: TA protocol is missing details, links, etc.  
+*Resolution*: Emma edit this as we process samples.
+
+*Issue*: Salinity readings at CSUN vs URI (36 range vs 40 psu range..). Test batch effect. Calibrated with 50 mS/cm solution and then the probe was reading at ~55 when measuring the same solution post-calibration. Calibrated to two point 12.9 mS/cm and 1413 uS/cm and the probe was reading 36-37 psu range. Closer to what was run at CSUN.  
+*Resolution*: We might need to re-measure psu of previous samples done at URI.
 
 ### Closed Issues
 
@@ -146,15 +150,15 @@ Emma will sign the Putnam lab up for the appropriate time slots at the beginning
 
 |                	| Monday 3/14                            	| Tuesday 3/15 	| Wednesday 3/16 	| Tuesday 3/1  	| Friday 3/18      	|
 |----------------	|----------------------------------------	|--------------	|----------------	|--------------	|------------------	|
-| Personnel      	| Emma and Pierrick together all day     	| Puritz Lab   	| Power out - no one   	| Emma all day 	| Pierrick all day 	|
-| E5 sample runs 	| 3                                      	| 0            	| 0              	| 3            	| 2                	|
-| Notes          	| Kristen out this week for Spring Break 	|              	|                	|              	|                  	|
+| Personnel      	| Emma and Pierrick together all day     	| Puritz Lab   	| Power out - no one   	| Emma and Kristen 	| Pierrick all day 	|
+| E5 sample runs 	| 3                                      	| 0            	| 0              	| 4            	| 2                	|
+| Notes          	| Kristen out M-W for spring break 	|              	|                	|              	|                  	|
 
 *Projected:*
 
 | # of runs 	| Samples done this week 	|
 |-----------	|------------------------	|
-| 8        	| 64                     	|
+| 9        	| 72                     	|
 
 
 ## <a name="Sept"></a> **September 2020, 51 samples to complete**
@@ -323,6 +327,19 @@ Run 3:
 | POR-260_20200106_5 	| 2176.26568 	| 60.658 	| 41.55    	|
 | POC-395_20200106_6 	| 2308.54744 	| 59.312 	| 41.63    	|
 | BK-4_20200105_4    	| 2354.1675  	| 59.679 	| 41.82    	|
+
+#### 20200317 Emma and Kristen (3-4 runs)
+
+-0.06% error for CRMs
+
+Run 1:
+
+Run 2:
+
+Run 3:
+
+Run 4:
+
 
 ## <a name="Nov"></a> **November 2020, 145 samples to complete**
 
