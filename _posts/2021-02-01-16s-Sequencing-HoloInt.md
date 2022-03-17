@@ -49,14 +49,14 @@ We took the primer sequences from Apprill et al 2015, and added the URI GSC spec
 
 ### 388F and 806RB for V3/V4 Region
 
-We took the reverse primer we used for V4 region and the 388F from XXXX.
+We took the reverse primer we used for V4 region and the 388F from [Meenatchi et al 2020](https://www.sciencedirect.com/science/article/pii/S0944501319313126#sec0010).
 
 | Primer        	| GSC Adapter Overhang               	| Primer Sequence      	| Sequence to be ordered: Adapter   + Primer Sequence    	|
 |---------------	|------------------------------------	|----------------------	|--------------------------------------------------------	|
 | 388F forward  	| TCGTCGGCAGCGTCAGATGTGTATAAGAGACAG  	| ACTCCTACGGGAGGCAGCA  	| TCGTCGGCAGCGTCAGATGTGTATAAGAGACAGACTCCTACGGGAGGCAGCA   	|
 | 806RB reverse 	| GTCTCGTGGGCTCGGAGATGTGTATAAGAGACAG 	| GGACTACNVGGGTWTCTAAT 	| GTCTCGTGGGCTCGGAGATGTGTATAAGAGACAGGGACTACNVGGGTWTCTAAT 	|
 
-V3/V4 amplicon size: + 50-60 bp for primer & adapter overhang
+V3/V4 amplicon size: 380–400 bp + 50-60 bp for primer & adapter overhang
 
 ## <a name="Protocol"></a> **WORKING Lab Protocol**
 
@@ -139,16 +139,21 @@ Master Mix calculations (per reaction):
 13. Spin down plate.  
 14. Run the following PCR program (this cycle program is specific to 16S primer region):  
 
-The annealing temperature in this PCR program is specific to the melting point of your primers.
+The annealing temperature in this PCR program is specific to the melting point of your primers. A general rule of thumb is to begin with an annealing temperature 3–5°C lower than the lowest Tm of the primers.    
+[515F order sheet from IDT](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Lab-protocols/16S_primers/515F_16S_IDT.pdf) - Tm = 73.4 C    
+[806RB order sheet from IDT](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Lab-protocols/16S_primers/806RB_16S_IDT.pdf) - Tm = 68.8 C  
+We ran several trials (see end of this post) based on Apprill et al 2015 to find the annealing temperature that worked the best, which was 57 C.  
+
+[388F order sheet from IDT](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Lab-protocols/16S_primers/388F_16S_IDT.pdf) - Tm = 71.6 C
 
 **PCR program used for V4 primers:**  
 
 | Temperature 	| Time   	| Repeat 	|
 |-------------	|--------	|--------	|
 | 95 °C       	| 2 min  	| 1      	|
-| 95 °C       	| 20 s   	| x27-35 	|
-| 57 °C       	| 15s    	|        	|
-| 72 °C       	| 5 min  	|        	|
+| *95 °C       	| 20 s   	| x27-35 	|
+| *57 °C       	| 15s    	|        	|
+| *72 °C       	| 5 min  	|        	|
 | 72 °C       	| 10 min 	| 1      	|
 
 **PCR program used for V3/V4 primers:**
@@ -156,17 +161,22 @@ The annealing temperature in this PCR program is specific to the melting point o
 | Temperature 	| Time   	| Repeat 	|
 |-------------	|--------	|--------	|
 | 95 °C       	| 2 min  	| 1      	|
-| 95 °C       	| 20 s   	| x27-35 	|
-| X °C        	| 15s    	|        	|
-| 72 °C       	| 5 min  	|        	|
-| 72 °C       	| 10 min 	| 1      	|
+| *95 °C       	| 20 s   	| x30   	|
+| *55 °C       	| 30 s   	|        	|
+| *72 °C       	| 20 s  	|        	|
+| 72 °C       	| 5 min  	| 1      	|
 
+The middle 3 steps are part of the 30 cycles: The programs goes from 95C for 20 seconds, to 55C for 30 seconds, to 72C for seconds, back to 95C and so on.
+
+What 388F paper does; what we do
+50-100 ng DNA in 50 uL; 12 ng DNA in 75 uL  
+200 uM primer in 50 uL; 10 uM in 75 uL  
 
 15. *Gel options* 1.) Triplicate Gel: Run 5 μl of each product (3 per sample because the PCR was done in triplicate) on a 1% agarose gel for 45 minutes using the following [Putnam Lab Gel Electrophoresis protocol](https://emmastrand.github.io/EmmaStrand_Notebook/Gel-Electrophoresis-Protocol/) to check for correct size bp product (based on your primers and region amplified). 2.) Single Gel: Run 5 μl of each pooled sample on a 1% agarose gel for 60-75 minutes.  
 16. Pool products into PCR strip tubes (75 μl total) appropriately labeled with the sample ID. *Pooling occurs only after duplicate or triplicate samples (based on if you chose duplicates or triplicates above) have successfully amplified and confirmed on the gel.* These will be the PCR product stock. Store at -20&deg;C.  
 17. Aliquot 45 μl of each product from the PCR product stock (in Step 11) into new PCR strip tubes appropriately labeled with the sample ID. These tubes will be delivered to the sequencing center. Store at -20&deg;C until delivering to the sequencing center. The lowest μl of product to deliver to URI GSC is 25 μl.    
 
-Example of [google spreadsheet](https://docs.google.com/spreadsheets/d/184gZr6-Bc48Q-48O8OhfnEsu5wRloLiekuJg3T_IzXw/edit?usp=sharing) for data processing, including master mix and dilution calculations, and 96-well PCR platemaps.
+Example of [google spreadsheet](https://docs.google.com/spreadsheets/d/184gZr6-Bc48Q-48O8OhfnEsu5wRloLiekuJg3T_IzXw/edit?usp=sharing) for data processing, including master mix and dilution calculations, and 96-well PCR plate maps.
 
 #### Gel band excision: optional depending on sequencing plan
 
