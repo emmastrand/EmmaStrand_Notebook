@@ -130,7 +130,7 @@ Master Mix calculations (per reaction):
 9. Add 3 μl of DNA sample (from the 3.33 ng/μl dilution mix) to each well. This will total 10 ng.  
 10. Add 3 μl ultra pure water to one well per plate as a negative control.  
 11. Add 3 μl of the positive mixture control to one well (total, not per plate) as a positive control.    
-12. Set up each reaction in duplicate or triplicate for the PCR by pipette mixing and moving 24 μl of DNA/master mix solution into each neighboring empty well or PCR strip tube.  
+12. Set up each reaction in duplicate or triplicate for the PCR by pipette mixing and moving 25 μl of DNA/master mix solution into each neighboring empty well or PCR strip tube.  
 
 >   See below image for an example of 96-well plate setup with 30 samples (four digit values) and 2 negative controls (Neg. Control). To run samples in triplicate, add DNA and master mix to columns 1, 4, 7, and 10. Then in Step 11 above and image below, move 33 uL of Sample 1254's reaction from B1 to B2 and 33 uL of reaction from B1 to B3. Use a multi-channel pipette to save time and energy.  
 
@@ -166,11 +166,7 @@ We ran several trials (see end of this post) based on Apprill et al 2015 to find
 | *72 °C       	| 20 s  	|        	|
 | 72 °C       	| 5 min  	| 1      	|
 
-The middle 3 steps are part of the 30 cycles: The programs goes from 95C for 20 seconds, to 55C for 30 seconds, to 72C for seconds, back to 95C and so on.
-
-What 388F paper does; what we do
-50-100 ng DNA in 50 uL; 12 ng DNA in 75 uL  
-200 uM primer in 50 uL; 10 uM in 75 uL  
+The middle 3 steps are part of the 30 cycles: The programs goes from 95C for 20 seconds, to 55C for 30 seconds, to 72C for seconds, back to 95C and so on.  
 
 15. *Gel options* 1.) Triplicate Gel: Run 5 μl of each product (3 per sample because the PCR was done in triplicate) on a 1% agarose gel for 45 minutes using the following [Putnam Lab Gel Electrophoresis protocol](https://emmastrand.github.io/EmmaStrand_Notebook/Gel-Electrophoresis-Protocol/) to check for correct size bp product (based on your primers and region amplified). 2.) Single Gel: Run 5 μl of each pooled sample on a 1% agarose gel for 60-75 minutes.  
 16. Pool products into PCR strip tubes (75 μl total) appropriately labeled with the sample ID. *Pooling occurs only after duplicate or triplicate samples (based on if you chose duplicates or triplicates above) have successfully amplified and confirmed on the gel.* These will be the PCR product stock. Store at -20&deg;C.  

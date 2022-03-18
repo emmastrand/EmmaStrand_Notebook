@@ -432,8 +432,6 @@ There are 3 ways we are testing classifiers:
 
 Pre-trained classifiers are provided in the [QIIME 2 data resources](https://docs.qiime2.org/2022.2/data-resources/).
 
-![](https://camo.githubusercontent.com/7e3461678d531d051ab3193b7a9bd5b90b3144300a769a4e94ff21aff2bd6188/68747470733a2f2f646f63732e7169696d65322e6f72672f323032312e342f5f696d616765732f7461786f6e6f6d792e706e67)
-
 ### 1. Silva database 99% OTUs from full length sequences - unweighted
 
 Download the classifier.

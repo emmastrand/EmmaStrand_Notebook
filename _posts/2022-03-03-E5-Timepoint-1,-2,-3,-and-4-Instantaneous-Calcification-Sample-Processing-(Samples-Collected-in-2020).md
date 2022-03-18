@@ -125,8 +125,9 @@ March 3, 2022 - current:
 **TP3 September 2020**
 
 - The only missing samples from September are and Initial1_20200909_1 and POR-240_20200913_5.  
-- There are 2 Initial1_20200912_3 bottles/TA values (one bottle at URI but two TA values - one done at URI and one done in CA).  
+- There are 2 Initial1_20200912_3 bottles/TA values (one bottle at URI but two TA values - one done at URI and one done in CA). Could one of these be for Run 4 on the same day?   
 - Initial environmental measurements (temp, pH, salinity) missing run 3 and on.  
+- Run 4 missing both both initial bottles.
 
 **TP4 November 2020**
 
