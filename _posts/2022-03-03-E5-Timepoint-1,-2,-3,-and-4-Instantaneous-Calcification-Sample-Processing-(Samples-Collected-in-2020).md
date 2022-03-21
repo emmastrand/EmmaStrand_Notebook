@@ -81,6 +81,8 @@ March 3, 2022 - current:
 
 Measure the salinity of the 50 mL falcon tubes prior to pouring the sample out into the titration cup. Thoroughly wipe the probe with a kim wipe in between samples and DI water so we don't introduce any new liquid into the sample. Pour the entire sample into the titration cup and place the used 50 mL falcon in the same bin we are putting the processed brown bottle samples (in the walk in 4C cold room).
 
+On the sample sheet, please mark down if the sample came from a 50 mL tube in the last column (mark yes or no).
+
 ## <a name="Issues"></a> **Issues/Questions to Address**
 
 ### Open Issues
