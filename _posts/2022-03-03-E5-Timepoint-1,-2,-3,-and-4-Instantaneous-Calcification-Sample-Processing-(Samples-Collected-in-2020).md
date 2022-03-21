@@ -39,9 +39,9 @@ Contents:
 - [**Equipment locations**](#Equip)   
 - [**Waste**](#Waste)   
 
-Remaining as of 2022-03-17 end of day:  
+Remaining as of 2022-03-18 end of day:  
 - September 2020: Done (see note in issues RE initials and blanks)  
-- January 2020: 66/146 samples. Projected to be done with January time point by March 23, 2022.   
+- January 2020: 42/146 samples. Projected to be done with January time point by March 23, 2022.   
 - November 2020: 145/145 samples
 
 We'll do time points separately and do initials and blanks in the same titration run.  
@@ -77,6 +77,10 @@ March 3, 2022 - current:
 - Batch 180 Salinity: 33.623  
 - Batch 180 TA value: 2224.47
 
+### Salinity for 50 mL falcon tubes
+
+Measure the salinity of the 50 mL falcon tubes prior to pouring the sample out into the titration cup. Thoroughly wipe the probe with a kim wipe in between samples and DI water so we don't introduce any new liquid into the sample. Pour the entire sample into the titration cup and place the used 50 mL falcon in the same bin we are putting the processed brown bottle samples (in the walk in 4C cold room).
+
 ## <a name="Issues"></a> **Issues/Questions to Address**
 
 ### Open Issues
@@ -105,6 +109,12 @@ March 3, 2022 - current:
 *Issue*: Salinity readings at CSUN vs URI (36 range vs 40 psu range..). Test batch effect. Calibrated with 50 mS/cm solution and then the probe was reading at ~55 when measuring the same solution post-calibration. Calibrated to two point 12.9 mS/cm and 1413 uS/cm and the probe was reading 36-37 psu range. Closer to what was run at CSUN.  
 *Resolution*: We might need to re-measure psu of previous samples done at URI.
 
+*Issue:* POC-248 titration "NOT OK" from LabX output.    
+*Resolution*:
+
+*Issue*: Address variation in initials and blanks.  
+*Resolution*: Cross comparison between initial 1 and 2, across days to see variation, and the same for the blanks. More of a reminder to do than an active issue (unless there is larger variation than expected).  
+
 ### Closed Issues
 
 *Issue*: All September bottles have been processed but there are several blank and initials that we do not have accounted for. Cross reference again with those bottles done at CSUN and in-field notes.  
@@ -121,6 +131,8 @@ March 3, 2022 - current:
 **TP1 January 2020**
 
 **TP2 March 2020**
+
+Danielle processed these and will have this information.
 
 **TP3 September 2020**
 
@@ -149,17 +161,30 @@ Emma will sign the Putnam lab up for the appropriate time slots at the beginning
 
 **Week of 3/14 - 3/18**
 
-|                	| Monday 3/14                            	| Tuesday 3/15 	| Wednesday 3/16 	| Tuesday 3/1  	| Friday 3/18      	|
-|----------------	|----------------------------------------	|--------------	|----------------	|--------------	|------------------	|
-| Personnel      	| Emma and Pierrick together all day     	| Puritz Lab   	| Power out - no one   	| Emma and Kristen 	| Pierrick all day 	|
-| E5 sample runs 	| 3                                      	| 0            	| 0              	| 4            	| 2                	|
-| Notes          	| Kristen out M-W for spring break 	|              	|                	|              	|                  	|
+|                	| Monday 3/14                        	| Tuesday 3/15 	| Wednesday 3/16     	| Tuesday 3/1      	| Friday 3/18            	|
+|----------------	|------------------------------------	|--------------	|--------------------	|------------------	|------------------------	|
+| Personnel      	| Emma and Pierrick together all day 	| Puritz Lab   	| No one - power out 	| Emma and Kristen 	| Pierrick, Emma, Hollie 	|
+| E5 sample runs 	| 3                                  	| 0            	| 0                  	| 4                	| 3                      	|
+| Notes          	| Kristen out M-W for spring break   	|              	|                    	|                  	|                        	|
+
+| # of runs 	| Samples done this week 	|
+|-----------	|------------------------	|
+| 10        	| 80                     	|
+
+
+**Week of 3/21 - 3/25**
+
+|                	| Monday 3/21       	| Tuesday 3/22                                        	| Wednesday 3/23                                                 	| Thursday 3/24       	| Friday 3/25      	|
+|----------------	|-------------------	|-----------------------------------------------------	|----------------------------------------------------------------	|---------------------	|------------------	|
+| Personnel      	| Pierrick and Emma 	| Emma starts (~8 am); Kristen finishes (12:15-3:15p) 	| Kristen starts (~9a-1p); Emma finishes (whenever Run2 is done) 	| Puritz lab all day  	| Pierrick all day 	|
+| E5 sample runs 	| 3                 	| 4                                                   	| 3                                                              	| 0                   	| 2                	|
+| Notes          	|                   	|                                                     	|                                                                	|                     	|                  	|
 
 *Projected:*
 
 | # of runs 	| Samples done this week 	|
 |-----------	|------------------------	|
-| 9        	| 72                     	|
+| 12        	| 96                     	|
 
 
 ## <a name="Sept"></a> **September 2020, 51 samples to complete**
@@ -388,6 +413,14 @@ Run 4:
 | ACR-345_20200107_7   	| 2329.65971 	| 60.455 	| 37.89    	|
 | POR-224_20200105_4   	| 2320.6102  	| 60.135 	| 37.93    	|
 | POR-362_20200106_6   	| 2274.03636 	| 60.256 	| 37.94    	|
+
+#### 20200318 Emma and Pierrick and Hollie (4 runs)
+
+
+
+#### 20200321 Emma and Pierrick (3 runs)
+
+
 
 ## <a name="Nov"></a> **November 2020, 145 samples to complete**
 

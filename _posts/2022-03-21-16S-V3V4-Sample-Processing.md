@@ -9,7 +9,7 @@ projects: Putnam Lab
 
 # Sample Processing for 16S V3V4 primers
 
-Protocol [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2021-02-01-16s-Sequencing-HoloInt.md).    
+16S PCR Protocol [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2021-02-01-16s-Sequencing-HoloInt.md).    
 Excel processing sheet [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Lab-work/V3V4_16S_March2020.xlsx). I'm using excel and github instead of google sheets so that my processing sheets are version controlled.
 
 Contents:  
@@ -29,7 +29,7 @@ We received a concentrate of primer and needed to resuspend the 388F primer. Res
 
 **Dilutions to make 10 uM primer** 	
 
-C1*V1 = C2*V2
+C1 x V1 = C2 x V2
 100 uM * X = 10 uM * 200 uL
 X = 2,000 / 100
 X = 20 uL
@@ -68,3 +68,5 @@ X = 20 uL
 | 3       	| 57C           	| 10 	|
 
 ![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16S_v3v4/16S_v3v4_trials.jpg?raw=true)
+
+### Pick the above that worked the best and send 25 uL product to Janet to sequence on an upcoming run
