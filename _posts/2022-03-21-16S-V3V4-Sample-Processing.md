@@ -67,6 +67,12 @@ X = 20 uL
 | 2       	| 56C           	| 10 	|
 | 3       	| 57C           	| 10 	|
 
+~1 hour and 30 minutes for PCR program
+
 ![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16S_v3v4/16S_v3v4_trials.jpg?raw=true)
+
+2% gel
+
+![]()
 
 ### Pick the above that worked the best and send 25 uL product to Janet to sequence on an upcoming run
