@@ -60,3 +60,11 @@ X = 20 uL
 | F primer                  	| 0.5  	| 94.5          	| 47.25   	|
 | R primer                  	| 0.5  	| 94.5          	| 47.25   	|
 | Water                     	| 10.5 	| 94.5          	| 992.25  	|
+
+| Trial # 	| Temperature  	| n= 	|
+|---------	|--------------	|----	|
+| 1       	| 55C       	| 10 	|
+| 2       	| 56C           	| 10 	|
+| 3       	| 57C           	| 10 	|
+
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16S_v3v4/16S_v3v4_trials.jpg?raw=true)
