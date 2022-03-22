@@ -531,7 +531,7 @@ Duplicates done. These are taken out of the data files in the E5 folder for now 
 - POR-77 taken out of Run 3, kept in Run 2  
 - POR-72 taken out of Run 3, kept in Run 1  
 
-#### 20200322 Emma and Kristen (3 runs)
+#### 20200322 Emma and Kristen (4 runs)
 
 CRM error: -0.05%
 
@@ -541,6 +541,7 @@ Run 2:
 
 Run 3:
 
+Run 4:
 
 
 ## <a name="Nov"></a> **November 2020, 145 samples to complete**
@@ -565,3 +566,20 @@ The serological pipette holder lives in the third drawer down on the same bench 
 
 Serological pipette tips are broken in half and placed in the solids bin. Kim wipes are also placed in this bin.  
 Samples post-run are placed in the liquids container.  
+
+When the bottles are ready to be picked up, fill out this [link](https://web.uri.edu/ehs/online-pickup/).
+
+From: Emma Strand  
+Email Address: emma_strand@uri.edu  
+Location of Waste: CBLS 190  
+PI: Hollie Putnam  
+Waste Container 1-List all contents in waste container: *Insert all contents on the bottle label*.  
+Quantity and size of container: 4L plastic jug  
+Hazard Class: toxic    
+*Repeat for as many bottles as we have.*  
+
+Supplies Needed (Use dropdown menu below description to indicate quantity needed):  
+
+4 liter plastic jug (for liquid wastes): 6
+
+Additional comments: The bottles are located in the first row of benches in CBLS 190. Bottles to be picked up are marked with tape and "To Be Picked Up" label. *Insert cabinet number and label on cabinet.*

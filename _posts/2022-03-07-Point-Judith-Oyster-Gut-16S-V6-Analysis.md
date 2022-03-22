@@ -696,7 +696,9 @@ Our own classifier with silva tax and seq information
 ![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/taxa-barplot-trained.png?raw=true)
 
 
-#### I'm moving forward with
+#### I'm moving forward with our own trained classifier because this is specific to our V6 region and decreased the amount of generic bacteria in our samples and increased read depth per sample
+
+From the sample frequency csv and subsetting to only the gut samples, our lowest read depth is 29,006 and highest is 59,385. For the next step, we'll subsample to 29,006.
 
 ## <a name="Diversity"></a> **Subsampling and diversity indices**
 
@@ -704,7 +706,7 @@ The various diversity analyses you can do with QIIME2:
 
 ![qiime2](https://docs.qiime2.org/2021.4/_images/diversity.png)
 
-`--p-sampling-depth 2651 \` based on lowest # of reads for now. This passes our 1,500-3,000 minimum. I got this value from the sample frequency csv file.       
+`--p-sampling-depth 29006 \` based on lowest # of reads for now (see above section). This passes our 1,500-3,000 minimum.   
 `--p-max-depth 10000 \`. The range of samples is high so I'm starting with 20,000 to see where our rarefraction curve stabilizes.
 
 **To re-run this script, need to delete core-metrics-results folder or rename the original folder.**
@@ -712,7 +714,7 @@ The various diversity analyses you can do with QIIME2:
 Running beta diversity on SampleType and Treatment for now. We can also do this in R from the QIIME2 outputs. See Kevin's script for this.  
 *this script overrides the previous beta diversity script -- output 2 different ones for sample type and treatment. or just keep one.*
 
-### diversity.sh with silva classifier
+### diversity.sh with our own trained classifier
 
 ```
 #!/bin/bash
@@ -731,18 +733,8 @@ Running beta diversity on SampleType and Treatment for now. We can also do this 
 source /usr/share/Modules/init/sh # load the module function
 module load QIIME2/2021.4
 
-#### METADATA FILES ####
-# Path working directory to the raw files (referenced in the metadata)
-# metadata says: $PWD/00_RAW_gz/RS1_S1_L001_R1_001.fastq.gz so this needs to lead the command to this path
-PWD="/data/putnamlab/estrand/PointJudithData_16S/QIIME2_v6"
-
 # Metadata path
 METADATA="metadata/PJ_V6Samples_Metadata.txt"
-
-# Sample manifest path
-MANIFEST="metadata/sample-manifest_PJ_V6.csv"
-
-#########################
 
 #### CREATES PHYLOGENETIC TREES
 
@@ -767,8 +759,8 @@ qiime phylogeny midpoint-root \
 
 qiime diversity core-metrics-phylogenetic \
   --i-phylogeny rooted-tree.qza \
-  --i-table table-filtered.qza \
-  --p-sampling-depth 2651 \
+  --i-table classifier_trials/table-trained-filtered.qza \
+  --p-sampling-depth 29006 \
   --m-metadata-file $METADATA \
   --output-dir core-metrics-results
 
@@ -796,7 +788,7 @@ qiime diversity beta-group-significance \
 
 # This script calculates the rarefaction curve for the data
   qiime diversity alpha-rarefaction \
-    --i-table table-filtered.qza \
+    --i-table classifier_trials/table-trained-filtered.qza \
     --i-phylogeny rooted-tree.qza \
     --p-max-depth 10000 \
     --m-metadata-file $METADATA \
