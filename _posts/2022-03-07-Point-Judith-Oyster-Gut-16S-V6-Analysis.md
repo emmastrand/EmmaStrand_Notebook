@@ -832,7 +832,7 @@ Copy core-metrics folder outside of andromeda.
 
 ```
 ### outside of andromeda
-scp -r emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/PointJudithData_16S/QIIME2_v6/alpha-rarefaction.qzv  /Users/emmastrand/MyProjects/Cvir_Nut_Int/output/16S_allv6/QIIME2
+scp -r emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/PointJudithData_16S/QIIME2_v6/alpha-rarefaction-30000.qzv  /Users/emmastrand/MyProjects/Cvir_Nut_Int/output/16S_allv6/QIIME2
 scp -r emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/PointJudithData_16S/QIIME2_v6/core-metrics-results  /Users/emmastrand/MyProjects/Cvir_Nut_Int/output/16S_allv6/QIIME2
 ```
 
@@ -876,7 +876,7 @@ In QIIME2 view, input alpha-rarefraction.qzv:
 
 ![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/rarefraction-30k.png?raw=true)
 
-
+Where the gut samples start to level off (~20k) is the read depth we need to be sure we are capturing all the diversity that we can in these samples. Our lowest for the gut is around 29k so we are very confident that our sequencing is enough to observe all the features (ASVs) we need to make a strong statement about this dataset. 
 
 ## <a name="Troubleshooting"></a> **Troubleshooting**
 
