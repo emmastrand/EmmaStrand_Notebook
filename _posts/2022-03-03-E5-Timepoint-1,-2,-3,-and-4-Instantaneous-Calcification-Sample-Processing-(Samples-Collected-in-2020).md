@@ -422,6 +422,11 @@ Run 4:
 
 #### 20200321 Emma and Pierrick (3 runs)
 
+POC-216 bottle label is actually POR-261.
+
+POC-68, POC-83, ACR-186, ACR-173, POR-77, POR-45, POR-72: duplicates done.
+
+#### 20200322 Emma and Kristen (3 runs)
 
 
 ## <a name="Nov"></a> **November 2020, 145 samples to complete**

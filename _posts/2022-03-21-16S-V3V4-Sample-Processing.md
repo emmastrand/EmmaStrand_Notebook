@@ -27,6 +27,8 @@ Contents:
 
 We received a concentrate of primer and needed to resuspend the 388F primer. Resuspending concenrate to 100 uM = started with 82.6 nM so IDT sheet said to add 826 uL to create 100 uM. Our stock will be 100 uM and then I diluted a portion to 10 uM for use in PCR protocol.
 
+V3/V4 amplicon size: 380–400 bp + 50-60 bp for primer & adapter overhang (410-460 bp)
+
 **Dilutions to make 10 uM primer** 	
 
 C1 x V1 = C2 x V2
@@ -71,7 +73,7 @@ X = 20 uL
 
 ![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16S_v3v4/16S_v3v4_trials.jpg?raw=true)
 
-2% gel
+2% gel: 100V, 400amp, 1 hour
 
 ![]()
 

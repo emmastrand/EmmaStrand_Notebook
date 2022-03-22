@@ -510,7 +510,7 @@ Forward primer sequence includes all 4 primers (i.e. M in first position will co
 
 `train-extract.sh`:
 
-Takes 19+ hours.
+This took 4 days and 19 hours.
 
 ```
 #!/bin/bash
