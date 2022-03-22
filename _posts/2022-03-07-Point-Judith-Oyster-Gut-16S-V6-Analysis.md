@@ -836,25 +836,47 @@ scp -r emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/PointJudithData_16S
 scp -r emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/PointJudithData_16S/QIIME2_v6/core-metrics-results  /Users/emmastrand/MyProjects/Cvir_Nut_Int/output/16S_allv6/QIIME2
 ```
 
+#### re-ran alpha rarefraction with higher cutoff
+
+`rarefraction.sh`:
+
+```
+#!/bin/bash
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab
+#SBTACH -q putnamlab
+#SBATCH -D /data/putnamlab/estrand/PointJudithData_16S/QIIME2_v6
+#SBATCH --error="script_error_rarefraction" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_rarefraction" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function
+module load QIIME2/2021.4
+
+# Metadata path
+METADATA="metadata/PJ_V6Samples_Metadata.txt"
+
+# This script calculates the rarefaction curve for the data
+  qiime diversity alpha-rarefaction \
+    --i-table classifier_trials/table-trained-filtered.qza \
+    --i-phylogeny rooted-tree.qza \
+    --p-max-depth 30000 \
+    --m-metadata-file $METADATA \
+    --o-visualization alpha-rarefaction-30000.qzv
+```
+
+
 In QIIME2 view, input alpha-rarefraction.qzv:
 
-![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/rarefraction-curve-OF.png?raw=true)
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/rarefraction-10k.png?raw=true)
 
-![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/rarefraction-curve-shannon.png?raw=true)
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/rarefraction-30k.png?raw=true)
 
-## <a name="R"></a> **Switch to R to visualize the feature tables**
 
-Get Kevin's script to run this final part.
-
-### QIIME2 View taxa bar plots filtered.qzv
-
-![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/taxabarplot-filtered.png?raw=true)
-
-### QIIME2 Bray Curtis Emporer visualization
-
-![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/bray-curtis-emporer.png?raw=true)
-
-### Current issue is the dBact high % in the taxa bar plots. The next step is to train our own classifier. Check repseqs qzv in R for primer sequences
 
 ## <a name="Troubleshooting"></a> **Troubleshooting**
 
