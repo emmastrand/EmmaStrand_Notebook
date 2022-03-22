@@ -544,6 +544,8 @@ Output artifact: `ref-seqs.qza`.
 
 `train-classifier.sh`:
 
+This took 30 minutes.
+
 ```
 #!/bin/bash
 #SBATCH --job-name="train"
@@ -659,6 +661,14 @@ Files to put into QIIME2 view:
 **Summary from table.qzv vs post-filtering classifier choices**  
 *Are there any other groups we should be filtering because we are working with oysters?*
 
+|                                                                 	| **Metric**            	|                        	|                     	| **Frequency**         	|                  	|                      	|                  	|                       	|                    	|
+|-----------------------------------------------------------------	|-----------------------	|------------------------	|---------------------	|-----------------------	|------------------	|----------------------	|------------------	|-----------------------	|--------------------	|
+| **Taxonomic output**                                            	| **Number of samples** 	| **Number of features** 	| **Total frequency** 	| **Minimum frequency** 	| **1st quartile** 	| **Median frequency** 	| **3rd quartile** 	| **Maximum frequency** 	| **Mean frequency** 	|
+| Pre-filtering (table.qzv) from 19 bp; 70/70 truncating          	| 112                   	| 17,436                 	| 4,952,942           	| 12,070.00             	| 38,178.00        	| 43,904.00            	| 50,148.25        	| 74,203.00             	| 44,222.70          	|
+| **Post filtering **                                             	|                       	|                        	|                     	|                       	|                  	|                      	|                  	|                       	|                    	|
+| Silva database 99% OTUs from full length sequences - unweighted 	| 112                   	| 12,679                 	| 3,839,983           	| 7,562.00              	| 29,221.00        	| 33,842.50            	| 40,364.75        	| 59,072.00             	| 34,285.56          	|
+| Silva database 99% OTUs from full length sequences - weighted   	| 112                   	| 16,602                 	| 4,539,618           	| 11,524.00             	| 35,458.00        	| 39,033.50            	| 45,922.25        	| 66,900.00             	| 40,532.30          	|
+| Our own trained classifier                                      	| 112                   	| 16,848                 	| 4,554,455           	| 11,567.00             	| 35,564.50        	| 39,107.50            	| 46,150.50        	| 67,487.00             	| 40,664.78          	|
 
 **Read frequnecy per sample**
 
@@ -668,7 +678,8 @@ Files to put into QIIME2 view:
 
 ![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/read-freq-weighted-histogram.png?raw=true)
 
-![]()
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/read-freq-trained-histogram.png?raw=true)
+
 
 **Taxa bar plots**
 
@@ -682,7 +693,10 @@ Weighted Silva Database Classifier
 
 Our own classifier with silva tax and seq information
 
-![]()
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/taxa-barplot-trained.png?raw=true)
+
+
+#### I'm moving forward with
 
 ## <a name="Diversity"></a> **Subsampling and diversity indices**
 
@@ -690,7 +704,7 @@ The various diversity analyses you can do with QIIME2:
 
 ![qiime2](https://docs.qiime2.org/2021.4/_images/diversity.png)
 
-`--p-sampling-depth 2651 \` based on lowest # of reads for now. This passes our 1,500-3,000 minimum.     
+`--p-sampling-depth 2651 \` based on lowest # of reads for now. This passes our 1,500-3,000 minimum. I got this value from the sample frequency csv file.       
 `--p-max-depth 10000 \`. The range of samples is high so I'm starting with 20,000 to see where our rarefraction curve stabilizes.
 
 **To re-run this script, need to delete core-metrics-results folder or rename the original folder.**

@@ -9,9 +9,9 @@ projects: E5
 
 # Processing the E5 January, March, September, and November 2020 Instantaneous Calcification Samples
 
-Original protocol post from D. Becker: [here](https://github.com/daniellembecker/DanielleBecker_Lab_Notebook/blob/master/_posts/2021-02-18-E5-January-March-September-November-Calcification-Samples.md).
+Original E5 processing post from D. Becker: [here](https://github.com/daniellembecker/DanielleBecker_Lab_Notebook/blob/master/_posts/2021-02-18-E5-January-March-September-November-Calcification-Samples.md).
 
-Putnam Lab Titration protcol [here](https://github.com/Putnam-Lab/Lab_Management/blob/master/Lab_Resources/Equipment_Protocols/Titrator_Protocols/Titrator_Protocol.md).
+Putnam Lab Titration protocol [here](https://github.com/Putnam-Lab/Lab_Management/blob/master/Lab_Resources/Equipment_Protocols/Titrator_Protocols/Titrator_Protocol.md).
 
 Emma, Pierrick, and Kristen are working together to process the remaining E5 samples on the titrator.
 
@@ -33,18 +33,19 @@ Daily log for notes about each step: [google document link](https://docs.google.
 Contents:  
 - [**Issues/Questions to Address**](#Issues)   
 - [**Weekly Schedule**](#Week)    
+- [**Missing and Duplicate Data**](#Missing)    
 - [**September 2020, 51 samples to complete**](#Sept)   
 - [**January 2020, 146 samples to complete**](#Jan)   
 - [**November 2020, 145 samples to complete**](#Nov)   
 - [**Equipment locations**](#Equip)   
 - [**Waste**](#Waste)   
 
-Remaining as of 2022-03-18 end of day:  
+Remaining as of 2022-03-22 end of day:  
 - September 2020: Done (see note in issues RE initials and blanks)  
-- January 2020: 42/146 samples. Projected to be done with January time point by March 23, 2022.   
+- January 2020: ~15-20/146 samples. Projected to be done with January time point by March 24, 2022.   
 - November 2020: 145/145 samples
 
-We'll do time points separately and do initials and blanks in the same titration run.  
+We'll do time points separately and do initials and blanks in the same titration run if possible.    
 The #s for samples left to-do are generated from the # of bottles left in the bin for September 2020. This does not account for samples already run so that number will likely be less.
 
 ### Folders and file formats for this project
@@ -90,20 +91,11 @@ On the sample sheet, please mark down if the sample came from a 50 mL tube in th
 *Issue*: Timepoint 3 - September 2020; 2020-09-12 Run 3: Initial measurements from 2020-09-09 are in 3_initial_TA_samples.csv but no initial measurements for runs after that. If there are 2 data points for "Initial 1" - do we distinguish which one to use?  
 *Resolution*: Ariana and Emma are currently chatting about the best way to go about this.
 
-*Issue*: We are currently copy and pasting into `Timepoint#_TA_Data` in urol timeseries repo.  
-*Resolution*: Emma is ~halfway through creating this script for TP3: stopped at the initial measurements issue above.  
-
-*Issue*: 50 mL falcon tubes for some samples for January 2020 and November 2020 time points instead of larger bottles.  
-*Resolution*: Hollie says it doesn't matter we can run these at whatever mass we can get - run this by Ariana and Danielle in meeting. Will add a column to keep track of which samples were in a 50 mL and we can see if there is a batch effect. For these samples, we will need to calculate salinity prior to measuring mass and putting samples in rondolino.  
-
-*Issue*: 20200314 - ACR 246 and Initial 2 may be mixed up in the rondolino (mass and salinities are correct, just position in titrator). Almost positive I fixed it but double check TA values at the end to make sure these make sense.  
+*Issue*: 20220314 titration run - ACR-246 and Initial 2 may be mixed up in the rondolino (mass and salinities are correct, just position in titrator). Almost positive I fixed it but double check TA values at the end to make sure these make sense.  
 *Resolution*: Emma will need to do this after run data has been pushed to github.
 
-*Issue*: Do we use chamber temperature, salinity, and pH? Check with Hollie and Nyssa.     
-*Resolution*: Ariana and Emma are currently chatting about the best way to go about this. Look at calc as a function of temp for a sanity check?
-
-*Issue*: TP1 - January surface area is 30 for every chamber.  
-*Resolution*: pull in real surface area for this.
+*Issue*: Do we use chamber temperature, salinity, and pH? Check with Hollie and Nyssa.       
+*Resolution*: In R script, we can look at TA as a function of these values to see if we need to correct for anything.  
 
 *Issue*: TA protocol is missing details, links, etc.  
 *Resolution*: Emma edit this as we process samples.
@@ -111,13 +103,18 @@ On the sample sheet, please mark down if the sample came from a 50 mL tube in th
 *Issue*: Salinity readings at CSUN vs URI (36 range vs 40 psu range..). Test batch effect. Calibrated with 50 mS/cm solution and then the probe was reading at ~55 when measuring the same solution post-calibration. Calibrated to two point 12.9 mS/cm and 1413 uS/cm and the probe was reading 36-37 psu range. Closer to what was run at CSUN.  
 *Resolution*: We might need to re-measure psu of previous samples done at URI.
 
-*Issue:* POC-248 titration "NOT OK" from LabX output.    
-*Resolution*:
+*Issue:* January TP 1: POC-248, POR-83 titration "NOT OK" from LabX output.    
+*Resolution*: Double check these TA values to see if outlier.
 
-*Issue*: Address variation in initials and blanks.  
-*Resolution*: Cross comparison between initial 1 and 2, across days to see variation, and the same for the blanks. More of a reminder to do than an active issue (unless there is larger variation than expected).  
+*Issue*: 50 mL empty falcon tube bottles once done are sitting in the completed bin.  
+*Resolution*: Figure out the waste protocol for these bottles since they had mercuric chloride in them. Wait until processing is done to get rid of them. More of a reminder than an active issue.
+
+*Issue*: In script, where does the umol.cm2.hr calc come from? (deltaTA/2)*(1.023)*((vol.L*1000)/surface.area.cm2)*(1/timediff)*(1/1000)
 
 ### Closed Issues
+
+*Issue*: We are currently copy and pasting into `Timepoint#_TA_Data` in urol timeseries repo.  
+*Resolution*: Emma created a new script for calc rates that pulls in raw files.  
 
 *Issue*: All September bottles have been processed but there are several blank and initials that we do not have accounted for. Cross reference again with those bottles done at CSUN and in-field notes.  
 *Resolution*: Ariana and Emma are currently chatting about the best way to go about this. Some bottles spilled in transport but we don't think these are them. Turns out my code wasn't pulling all the California bottles done. The only missing samples from September are and Initial1_20200909_1 and POR-240_20200913_5. There are 2 Initial1_20200912_3 bottles/TA values (one bottle at URI but two TA values - one done at URI and one done in CA).
@@ -128,9 +125,19 @@ On the sample sheet, please mark down if the sample came from a 50 mL tube in th
 *Issue*: volumes missing from delta TA sheet.  
 *Resolution*: https://drive.google.com/drive/u/0/folders/1Z7Gxiqo8QbnP4AMpgxmgq0wDNJ-qWmBW. extract volumes here and put in delta TA.
 
+*Issue*: Address variation in initials and blanks.  
+*Resolution*: Cross comparison between initial 1 and 2, across days to see variation, and the same for the blanks. More of a reminder to do than an active issue (unless there is larger variation than expected).
+
+*Issue*: TP1 - January surface area is 30 for every chamber.  
+*Resolution*: pull in real surface area for this.
+
+*Issue*: 50 mL falcon tubes for some samples for January 2020 and November 2020 time points instead of larger bottles.  
+*Resolution*: Hollie says it doesn't matter we can run these at whatever mass we can get - run this by Ariana and Danielle in meeting. Will add a column to keep track of which samples were in a 50 mL and we can see if there is a batch effect. For these samples, we will need to calculate salinity prior to measuring mass and putting samples in rondolino.  
+
 ## <a name="Missing"></a> **Missing and Duplicate Data**
 
 **TP1 January 2020**
+
 
 **TP2 March 2020**
 
@@ -145,9 +152,15 @@ Danielle processed these and will have this information.
 
 **TP4 November 2020**
 
+#### List for Danielle to bring back from Mo'orea Spring 2022
+
+- September 2020: Run 4 BK-4  
+- September 2020: Run 4 Initial 1 and 2  
+- September 2020: POR-240 Run 5 20200913  
+
 ## <a name="Week"></a> **Weekly Schedule**
 
-Emma will sign the Putnam lab up for the appropriate time slots at the beginning of the week on the [PPP team up calendar](https://teamup.com/c/h2sumb/ppp-and-thornber-labs).
+Emma will sign the Putnam lab up for the appropriate time slots at the beginning of the week on the [PPP team up calendar](https://teamup.com/c/h2sumb/ppp-and-thornber-labs). Titrations google sheet [schedule](https://docs.google.com/spreadsheets/d/1GTZB9j9tki10ST88y0ErgEItQN5vrMHNqjC2ykZzzsU/edit#gid=0).
 
 **Week of 3/7 - 3/11**
 
@@ -416,20 +429,122 @@ Run 4:
 | POR-224_20200105_4   	| 2320.6102  	| 60.135 	| 37.93    	|
 | POR-362_20200106_6   	| 2274.03636 	| 60.256 	| 37.94    	|
 
-#### 20200318 Emma and Pierrick and Hollie (4 runs)
+#### 20200318 Emma and Pierrick and Hollie (3 runs)
 
+Run 1:
+
+| SampleID           	| TA         	| Mass   	| Salinity 	|
+|--------------------	|------------	|--------	|----------	|
+| JUNK 1             	| 2111.58105 	| 60.763 	| 35       	|
+| POR-253_20200105_4 	| 2200.01988 	| 60.611 	| 37.16    	|
+| POR-251_20200106_5 	| 2245.50642 	| 60.02  	| 37.14    	|
+| POR-266_20200105_3 	| 2241.96263 	| 60.063 	| 37.21    	|
+| POC-207_20200105_4 	| 2330.15529 	| 59.83  	| 37.17    	|
+| POR-245_20200105_3 	| 2297.85524 	| 59.366 	| 37.18    	|
+| ACR-258_20200105_3 	| 2329.42448 	| 60.03  	| 37.33    	|
+| BK-5_20200106_5    	| 2323.33425 	| 60.164 	| 37.24    	|
+| POC-259_20200105_3 	| 2274.74885 	| 60.668 	| 37.14    	|
+
+Run 2:
+
+| SampleID             	| TA         	| Mass   	| Salinity 	|
+|----------------------	|------------	|--------	|----------	|
+| JUNK 1               	| 2083.14922 	| 59.95  	| 35       	|
+| Initial1_20200105_3  	| 2273.21421 	| 37.256 	| 35.6     	|
+| POR-261_20200106_5   	| 2338.40199 	| 59.738 	| 37.61    	|
+| BK-5_20200106_5      	| 2356.92038 	| 60.523 	| 37.46    	|
+| BK-2_20200104_2      	| 2359.63364 	| 60.817 	| 37.51    	|
+| ACR-389_20200106_6   	| 2332.09833 	| 59.824 	| 38.77    	|
+| POC-248_20200104_2   	| 2125.46803 	| 29.433 	| 35.4     	|
+| Initial2_20200106_5  	| 2195.53421 	| 27.034 	| 36.49    	|
+| Initial2_20200111_14 	| 2341.65789 	| 49.902 	| 37.15    	|
+
+POC-216 bottle label is actually POR-261.
+
+Run 3:
+
+| SampleID            	| TA         	| Mass   	| Salinity 	|
+|---------------------	|------------	|--------	|----------	|
+| POR-387_20200108_9  	| 2305.25321 	| 51.915 	| 37.46    	|
+| ACR-145_20200111_14 	| 2328.40214 	| 48.758 	| 37.49    	|
+| ACR-165_20200111_14 	| 2292.71005 	| 51.182 	| 37.55    	|
+| POC-55_20200111_14  	| 2324.54047 	| 48.309 	| 37.62    	|
+| POC-53_20200111_14  	| 2331.14166 	| 50.319 	| 37.6     	|
+| POR-73_20200111_14  	| 2347.30681 	| 49.319 	| 37.22    	|
+| POR-82_20200111_14  	| 2290.74187 	| 52.039 	| 37.24    	|
+| POC-57_20200111_14  	| 2397.20882 	| 43.858 	| 38.71    	|
+| POC-372_20200108_9  	| 2318.10586 	| 51.839 	| 37.24    	|
 
 
 #### 20200321 Emma and Pierrick (3 runs)
 
-POC-216 bottle label is actually POR-261.
+Run 1:
 
-POC-68, POC-83, ACR-186, ACR-173, POR-77, POR-45, POR-72: duplicates done.
+| SampleID             	| TA         	| Mass   	| Salinity 	|
+|----------------------	|------------	|--------	|----------	|
+| JUNK 1               	| 2118.57179 	| 45.928 	| 35       	|
+| POC-45_20200111_15   	| 2331.34309 	| 49.453 	| 37.63    	|
+| POR-74_20200111_14   	| 2226.30763 	| 49.906 	| 37.42    	|
+| BK-14_20200111_14    	| 2341.3981  	| 51.681 	| 36.79    	|
+| Initial1_20200111_14 	| 2337.796   	| 50.312 	| 37.71    	|
+| ACR-185_20200111_14  	| 2287.78789 	| 51.132 	| 36.84    	|
+| POC-50_20200111_15   	| 2325.35604 	| 50.158 	| 36.24    	|
+| POC-68_20200111_15   	| 2323.62506 	| 49.396 	| 36.2     	|
+| POR-83_20200111_15   	| 2242.81069 	| 50.659 	| 37.42    	|
+
+Run 2:
+
+| SampleID             	| TA         	| Mass   	| Salinity 	|
+|----------------------	|------------	|--------	|----------	|
+| JUNK 1               	| 2642.5321  	| 60.967 	| 35       	|
+| POR-77_20200111_15   	| 2320.2919  	| 51.663 	| 37.72    	|
+| ACR-175_20200111_15  	| 2326.74355 	| 48.851 	| 37.93    	|
+| ACR-186_20200111_15  	| 2321.95558 	| 50.424 	| 37.75    	|
+| BK-15_20200111_15    	| 2373.52763 	| 44.484 	| 37.71    	|
+| POC-50_20200111_15   	| 2326.6607  	| 49.114 	| 37.5     	|
+| ACR-173_20200111_15  	| 2340.83327 	| 45.174 	| 38.47    	|
+| POR-72_20200111_15   	| 2262.39016 	| 49.13  	| 38.06    	|
+| Initial1_20200111_15 	| 2343.90542 	| 50.253 	| 37.78    	|
+
+Run 3:
+
+| SampleID             	| TA         	| Mass   	| Salinity 	|
+|----------------------	|------------	|--------	|----------	|
+| JUNK 1               	| 2646.21995 	| 59.184 	| 35       	|
+| NA                   	| 2333.77641 	| 47.405 	| 37.66    	|
+| NA                   	| 2244.98889 	| 50.501 	| 37.95    	|
+| NA                   	| 2328.34115 	| 50.149 	| 38.06    	|
+| NA                   	| 2326.72068 	| 48.348 	| 38.74    	|
+| NA                   	| 2314.87429 	| 50.193 	| 37.99    	|
+| Initial2_20200111_15 	| 2347.33022 	| 51.522 	| 37.89    	|
+| NA                   	| 2325.83054 	| 49.661 	| 38.07    	|
+| NA                   	| 2263.24728 	| 48.634 	| 38.21    	|
+
+See below note for NAs.
+
+Duplicates done. These are taken out of the data files in the E5 folder for now but raw data lives in Titrator repo (not edited):  
+- ACR-186 taken out of Run 3, kept in Run 2    
+- POC-68 taken out of Run 3, kept in Run 1    
+- POC-45 taken out of Run 3, kept in Run 1  
+- ACR-173 taken out of Run 3, kept in Run 2  
+- POR-83 taken out of Run 3, kept in Run 1       
+- POR-77 taken out of Run 3, kept in Run 2  
+- POR-72 taken out of Run 3, kept in Run 1  
 
 #### 20200322 Emma and Kristen (3 runs)
 
+CRM error: -0.05%
+
+Run 1:
+
+Run 2:
+
+Run 3:
+
+
 
 ## <a name="Nov"></a> **November 2020, 145 samples to complete**
+
 
 ## <a name="Equip"></a> **Equipment locations**
 
