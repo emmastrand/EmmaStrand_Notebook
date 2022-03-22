@@ -75,6 +75,4 @@ X = 20 uL
 
 2% gel: 100V, 400amp, 1 hour
 
-![]()
-
-### Pick the above that worked the best and send 25 uL product to Janet to sequence on an upcoming run
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16S_v3v4/gel1.jpg?raw=true)
