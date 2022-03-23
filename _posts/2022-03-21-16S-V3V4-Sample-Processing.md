@@ -73,6 +73,12 @@ X = 20 uL
 
 ![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16S_v3v4/16S_v3v4_trials.jpg?raw=true)
 
-2% gel: 100V, 400amp, 1 hour
+### GeneRuler 1kb plus DNA LAdder on 2% gel: 100V, 400amp, 1 hour
 
 ![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16S_v3v4/gel1.jpg?raw=true)
+
+### GeneRuler 100 bp DNA Ladder on 2% gel: 75V, 400amp, 1 hour
+
+Ladder, 10 original not diluted, 3 bright band diluted to see if there are 2 bands or just one strong band
+
+![]()
