@@ -81,4 +81,4 @@ X = 20 uL
 
 Ladder, 10 original not diluted, 3 bright band diluted to see if there are 2 bands or just one strong band
 
-![]()
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16S_v3v4/20220323-gel2.jpg?raw=true)
