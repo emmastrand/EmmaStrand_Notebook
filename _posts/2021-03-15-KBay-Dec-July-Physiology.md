@@ -11,7 +11,7 @@ projects: KBay
 
 KBay Bleaching Pairs Timeseries Project. Dec and July 2019: after clipping and extractions, the rest of the fragments will be airbrushed and processed for physiology metrics at URI. *This is only for M. capitata.* *P. compressa* clippings to stay at URI for future molecular analyses and fragment will not be airbrushed at this time. All fragments were clipped and clipping sent to UH for microbial analyses.
 
-Molecular extractions [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2021-01-06-Kbay-Bleaching-2019-DNA-RNA-Extractions.md).
+Molecular processing: DNA RNA extractions notebook post [here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2021-01-06-Kbay-Bleaching-2019-DNA-RNA-Extractions.md).
 
 Physiology excel spreadsheet with physiology processing information [here](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/data/Physiology-URI-labwork.xlsx).
 
