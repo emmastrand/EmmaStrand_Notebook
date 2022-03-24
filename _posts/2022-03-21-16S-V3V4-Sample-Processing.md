@@ -82,3 +82,7 @@ X = 20 uL
 Ladder, 10 original not diluted, 3 bright band diluted to see if there are 2 bands or just one strong band
 
 ![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16S_v3v4/20220323-gel2.jpg?raw=true)
+
+https://www.thermofisher.com/us/en/home/brands/thermo-scientific/molecular-biology/molecular-biology-learning-center/molecular-biology-resource-library/spotlight-articles/8-DNA-ladder-tips.html
+
+Next steps: PCR at 57C (and maybe 58?) with same samples - original DNA then dilute to 4 ng/uL then PCR and gel again. No dye in ladder and 2% gel like last time. 

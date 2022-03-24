@@ -41,8 +41,8 @@ Contents:
 - [**Waste**](#Waste)   
 
 Remaining as of 2022-03-22 end of day:  
-- September 2020: Done (see note in issues RE initials and blanks)  
-- January 2020: ~15-20/146 samples. Projected to be done with January time point by March 24, 2022.   
+- September 2020: Completed (see note in issues RE initials and blanks)  
+- January 2020: Completed    
 - November 2020: 145/145 samples
 
 We'll do time points separately and do initials and blanks in the same titration run if possible.    
@@ -78,6 +78,12 @@ March 3, 2022 - current:
 - Batch 180 Salinity: 33.623  
 - Batch 180 TA value: 2224.47
 
+### Acid information
+
+March 3, 2022 - current: Batch A22
+
+Switched bottle: 20220324 (From Batch A22 to new Batch A22 bottle #54)
+
 ### Salinity for 50 mL falcon tubes
 
 Measure the salinity of the 50 mL falcon tubes prior to pouring the sample out into the titration cup. Thoroughly wipe the probe with a kim wipe in between samples and DI water so we don't introduce any new liquid into the sample. Pour the entire sample into the titration cup and place the used 50 mL falcon in the same bin we are putting the processed brown bottle samples (in the walk in 4C cold room).
@@ -91,17 +97,9 @@ On the sample sheet, please mark down if the sample came from a 50 mL tube in th
 *Issue*: Timepoint 3 - September 2020; 2020-09-12 Run 3: Initial measurements from 2020-09-09 are in 3_initial_TA_samples.csv but no initial measurements for runs after that. If there are 2 data points for "Initial 1" - do we distinguish which one to use?  
 *Resolution*: Ariana and Emma are currently chatting about the best way to go about this.
 
-*Issue*: 20220314 titration run - ACR-246 and Initial 2 may be mixed up in the rondolino (mass and salinities are correct, just position in titrator). Almost positive I fixed it but double check TA values at the end to make sure these make sense.  
-*Resolution*: Emma will need to do this after run data has been pushed to github.
-
-*Issue*: Do we use chamber temperature, salinity, and pH? Check with Hollie and Nyssa.       
-*Resolution*: In R script, we can look at TA as a function of these values to see if we need to correct for anything.  
-
-*Issue*: TA protocol is missing details, links, etc.  
-*Resolution*: Emma edit this as we process samples.
-
 *Issue*: Salinity readings at CSUN vs URI (36 range vs 40 psu range..). Test batch effect. Calibrated with 50 mS/cm solution and then the probe was reading at ~55 when measuring the same solution post-calibration. Calibrated to two point 12.9 mS/cm and 1413 uS/cm and the probe was reading 36-37 psu range. Closer to what was run at CSUN.  
-*Resolution*: We might need to re-measure psu of previous samples done at URI.
+*Resolution*: Ask Kristen to re-measure those salinities with a higher value.  
+Samples from January TP1 with high salinity but was 50 mL falcon tube: POR-70.
 
 *Issue:* January TP 1: POC-248, POR-83 titration "NOT OK" from LabX output.    
 *Resolution*: Double check these TA values to see if outlier.
@@ -109,12 +107,24 @@ On the sample sheet, please mark down if the sample came from a 50 mL tube in th
 *Issue*: 50 mL empty falcon tube bottles once done are sitting in the completed bin.  
 *Resolution*: Figure out the waste protocol for these bottles since they had mercuric chloride in them. Wait until processing is done to get rid of them. More of a reminder than an active issue.
 
-*Issue*: In script, where does the umol.cm2.hr calc come from? (deltaTA/2)*(1.023)*((vol.L*1000)/surface.area.cm2)*(1/timediff)*(1/1000)
+*Issue*: In script, where does the umol.cm2.hr calc come from? (deltaTA/2)*(1.023)*((vol.L*1000)/surface.area.cm2)*(1/timediff)*(1/1000). And where does the 36 coefficient for normalizing TA come from?  
+*Resolution*: Find the paper source and/or make a note of this in the script or in the paper.
+
+*Issue*: Timepoint 3 September. Blank 3 and Blank 4 are both from chamber 10 but have different volumes -- this shouldn't be the case.
+
+Emma to-do:  
+- photos of September sample sheet, January sample sheets post re-measuring salinity.  
+- Put acid info in this sheet like CRM.  
+- TA protocol updates  
+-
 
 ### Closed Issues
 
 *Issue*: We are currently copy and pasting into `Timepoint#_TA_Data` in urol timeseries repo.  
 *Resolution*: Emma created a new script for calc rates that pulls in raw files.  
+
+*Issue*: Do we use chamber temperature, salinity, and pH? Check with Hollie and Nyssa.       
+*Resolution*: In R script, we can look at TA as a function of these values to see if we need to correct for anything.  
 
 *Issue*: All September bottles have been processed but there are several blank and initials that we do not have accounted for. Cross reference again with those bottles done at CSUN and in-field notes.  
 *Resolution*: Ariana and Emma are currently chatting about the best way to go about this. Some bottles spilled in transport but we don't think these are them. Turns out my code wasn't pulling all the California bottles done. The only missing samples from September are and Initial1_20200909_1 and POR-240_20200913_5. There are 2 Initial1_20200912_3 bottles/TA values (one bottle at URI but two TA values - one done at URI and one done in CA).
@@ -134,10 +144,18 @@ On the sample sheet, please mark down if the sample came from a 50 mL tube in th
 *Issue*: 50 mL falcon tubes for some samples for January 2020 and November 2020 time points instead of larger bottles.  
 *Resolution*: Hollie says it doesn't matter we can run these at whatever mass we can get - run this by Ariana and Danielle in meeting. Will add a column to keep track of which samples were in a 50 mL and we can see if there is a batch effect. For these samples, we will need to calculate salinity prior to measuring mass and putting samples in rondolino.  
 
+*Issue*: 20220314 titration run - ACR-246 and Initial 2 may be mixed up in the rondolino (mass and salinities are correct, just position in titrator). Almost positive I fixed it but double check TA values at the end to make sure these make sense.    
+*Resolution*: Emma looked and samples were correct and fixed.
+
 ## <a name="Missing"></a> **Missing and Duplicate Data**
 
 **TP1 January 2020**
 
+- Environmental data: pH of chamber
+
+2 blanks for Run 5 - 2 bottles run. I kept the first blank from deltaTA and that titration bottle (kept from 20200318 Run 2 not Run 1)
+
+4 corals that we have surface area for but not titration
 
 **TP2 March 2020**
 
@@ -284,14 +302,14 @@ Run 2:
 | SampleID            	| TA         	| Mass   	| Salinity 	|
 |---------------------	|------------	|--------	|----------	|
 | JUNK 1              	| 2483.8335  	| 60.305 	| 35       	|
-| INITIAL2_20200107_8 	| 2360.47591 	| 59.997 	| 40.96    	|
+| Initial2_20200107_8 	| 2360.47591 	| 59.997 	| 40.96    	|
 | POR-381_20200107_8  	| 2306.57443 	| 59.691 	| 40.99    	|
 | ACR-364_20200107_8  	| 2341.16235 	| 60.528 	| 40.86    	|
 | POC-373_20200107_8  	| 2274.75422 	| 60.144 	| 40.72    	|
 | POC-394_20200107_8  	| 2349.66741 	| 60.258 	| 40.3     	|
 | ACR-363_20200107_8  	| 2326.21349 	| 59.786 	| 40.96    	|
 | POR-357_20200107_8  	| 2320.55603 	| 60.547 	| 40.81    	|
-| INITIAL1_20200107_8 	| 2354.24313 	| 59.783 	| 40.59    	|
+| Initial1_20200107_8 	| 2354.24313 	| 59.783 	| 40.59    	|
 
 #### 20220310 Emma (2 runs = 16 samples)
 
@@ -591,6 +609,50 @@ Run 4:
 | POC-42_20200109_11  	| 2319.72446 	| 48.979 	| 37.82    	|
 | POC-44_20200109_11  	| 2387.20571 	| 48.055 	| 38.71    	|
 
+#### 20200323 Emma and Kristen (3 E5 runs; 4 runs total with 1 blue tank run)
+
+0.13% CRM error
+
+Run 1:
+
+| SampleID             	| TA         	| Mass   	| Salinity 	|
+|----------------------	|------------	|--------	|----------	|
+| JUNK 1               	| 2994.82376 	| 60.459 	| 35       	|
+| Initial2_20200109_11 	| 2347.68385 	| 50.295 	| 37.23    	|
+| POC-40_20200109_11   	| 2336.42257 	| 48.12  	| 37.75    	|
+| POC-346_20200108_9   	| 2311.97058 	| 45.69  	| 37.33    	|
+| POC-366_20200108_9   	| 2305.23846 	| 51.215 	| 37.3     	|
+| ACR-390_20200108_9   	| 2313.38028 	| 52.575 	| 37.38    	|
+| POR-338_20200108_10  	| 2264.61331 	| 50.293 	| 37.65    	|
+| POR-349_20200108_10  	| 2313.13904 	| 50.982 	| 37.91    	|
+| POR-354_20200108_9   	| 2289.3542  	| 51.392 	| 37.96    	|
+
+Run 2:
+
+| SampleID             	| TA         	| Mass   	| Salinity 	|
+|----------------------	|------------	|--------	|----------	|
+| JUNK 1               	| 2973.47483 	| 59.946 	| 35       	|
+| Initial2_20200108_10 	| 2342.27335 	| 51.074 	| 37.41    	|
+| POR-365_20200108_10  	| 2317.11089 	| 50.306 	| 37.66    	|
+| POR-367_20200108_10  	| 2324.75939 	| 50.397 	| 37.55    	|
+| BK-10_20200108_10    	| 2345.53728 	| 50.996 	| 38.03    	|
+| ACR-351_20200108_10  	| 2306.23493 	| 48.197 	| 37.32    	|
+| ACR-374_20200108_10  	| 2308.43032 	| 50.484 	| 37.65    	|
+| POC-375_20200108_10  	| 2320.45236 	| 50.271 	| 37.57    	|
+| POC-386_20200108_10  	| 2343.08793 	| 49.01  	| 37.94    	|
+
+Run 3:
+
+| SampleID             	| TA         	| Mass   	| Salinity 	|
+|----------------------	|------------	|--------	|----------	|
+| JUNK 1               	| 3002.88929 	| 44.216 	| 35       	|
+| Initial1_20200110_12 	| 2343.18073 	| 53.353 	| 37.01    	|
+| Initial1_20200110_13 	| 2344.21063 	| 51.878 	| 37.27    	|
+| Initial1_20200108_10 	| 2347.6633  	| 49.497 	| 37.25    	|
+| Initial1_20200109_11 	| 2337.01936 	| 49.022 	| 37.28    	|
+| BK-9_20200108_9      	| 2343.82123 	| 50.195 	| 37.64    	|
+| POC-359_20200108_9   	| 2329.67509 	| 50.059 	| 37.62    	|
+| POR-341_20200107_8   	| 2334.40555 	| 56.833 	| 38.21    	|
 
 ## <a name="Nov"></a> **November 2020, 145 samples to complete**
 
@@ -615,6 +677,8 @@ The serological pipette holder lives in the third drawer down on the same bench 
 Serological pipette tips are broken in half and placed in the solids bin. Kim wipes are also placed in this bin.  
 Samples post-run are placed in the liquids container.  
 
+#### Waste pick up
+
 When the bottles are ready to be picked up, fill out this [link](https://web.uri.edu/ehs/online-pickup/).
 
 From: Emma Strand  
@@ -630,4 +694,10 @@ Supplies Needed (Use dropdown menu below description to indicate quantity needed
 
 4 liter plastic jug (for liquid wastes): 6
 
-Additional comments: The bottles are located in the first row of benches in CBLS 190. Bottles to be picked up are marked with tape and "To Be Picked Up" label. *Insert cabinet number and label on cabinet.*
+Additional comments: The bottles are located in the first row of benches in CBLS 190. Bottles to be picked up are marked with tape and "To Be Picked Up" label in cabinet labeled BD12.
+
+#### Acid Bottle replacement
+
+1. Purge the remaining acid out so that the lines and bottle are empty.  
+2. This acid is now waste. This can be neutralized with seawater or DI water and poured down the sink (*contact PI to make sure you are doing this step correctly*).    
+3. Connect the new acid bottle to the titrator lines and purge at least six times to fill the lines with the new acid.  
