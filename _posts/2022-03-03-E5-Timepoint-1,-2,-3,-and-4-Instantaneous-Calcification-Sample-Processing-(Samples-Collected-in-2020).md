@@ -113,10 +113,14 @@ Samples from January TP1 with high salinity but was 50 mL falcon tube: POR-70.
 *Issue*: Timepoint 3 September. Blank 3 and Blank 4 are both from chamber 10 but have different volumes -- this shouldn't be the case.
 
 Emma to-do:  
-- photos of September sample sheet, January sample sheets post re-measuring salinity.  
-- Put acid info in this sheet like CRM.  
-- TA protocol updates  
--
+- photos of September sample sheet, January sample sheets post re-measuring salinity    
+- March 25th titration run outputs from titration computer  
+- TA protocol updates    
+- 50 mL falcon tube information on January and November files - add this into code  
+- Enter salinity values and re-run all time points  
+- Run March timepoint to run through for any missing samples  
+- Ask Danielle and Lauren to look for missing bottles  
+- photos of january and september sheets 
 
 ### Closed Issues
 
