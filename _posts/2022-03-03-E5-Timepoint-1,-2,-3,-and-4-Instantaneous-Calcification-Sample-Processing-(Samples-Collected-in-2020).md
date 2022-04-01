@@ -120,7 +120,7 @@ Emma to-do:
 - Enter salinity values and re-run all time points  
 - Run March timepoint to run through for any missing samples  
 - Ask Danielle and Lauren to look for missing bottles  
-- photos of january and september sheets 
+- photos of january and september sheets
 
 ### Closed Issues
 
@@ -293,7 +293,7 @@ Run 1:
 | POC-365_20200909_1  	| 2228.51312 	| 60.359 	| 40.84    	|
 | POC-367_20200909_1  	| 2246.40924 	| 60.109 	| 40.98    	|
 
-![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/E5%20Calcification%20Processing/Titrations-September2020-processing.jpg?raw=true)
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/E5%20Calcification%20Processing/September-titrations.jpg?raw=true)
 
 ## <a name="Jan"></a> **January 2020, 146 samples to complete**
 
