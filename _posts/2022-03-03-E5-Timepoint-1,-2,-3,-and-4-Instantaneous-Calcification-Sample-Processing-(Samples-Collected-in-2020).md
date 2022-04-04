@@ -90,6 +90,10 @@ Measure the salinity of the 50 mL falcon tubes prior to pouring the sample out i
 
 On the sample sheet, please mark down if the sample came from a 50 mL tube in the last column (mark yes or no).
 
+### Room temperature samples
+
+Before starting the pH calibration, take samples out of the fridge so that they come down to room temperature by the time the run starts. We want to be measuring salinity and titration runs at room temperature.
+
 ## <a name="Issues"></a> **Issues/Questions to Address**
 
 ### Open Issues
@@ -98,7 +102,7 @@ On the sample sheet, please mark down if the sample came from a 50 mL tube in th
 *Resolution*: Ariana and Emma are currently chatting about the best way to go about this.
 
 *Issue*: Salinity readings at CSUN vs URI (36 range vs 40 psu range..). Test batch effect. Calibrated with 50 mS/cm solution and then the probe was reading at ~55 when measuring the same solution post-calibration. Calibrated to two point 12.9 mS/cm and 1413 uS/cm and the probe was reading 36-37 psu range. Closer to what was run at CSUN.  
-*Resolution*: Ask Kristen to re-measure those salinities with a higher value.  
+*Resolution*: We got our salinity values down to ~38 when re-measuring but even at room temperature these are still our average values. I think this has to do with our calibration solution or our probe..   
 Samples from January TP1 with high salinity but was 50 mL falcon tube: POR-70.
 
 *Issue:* January TP 1: POC-248, POR-83 titration "NOT OK" from LabX output.    
@@ -114,13 +118,12 @@ Samples from January TP1 with high salinity but was 50 mL falcon tube: POR-70.
 
 Emma to-do:  
 - photos of September sample sheet, January sample sheets post re-measuring salinity    
-- March 25th titration run outputs from titration computer  
 - TA protocol updates    
 - 50 mL falcon tube information on January and November files - add this into code  
 - Enter salinity values and re-run all time points  
 - Run March timepoint to run through for any missing samples  
-- Ask Danielle and Lauren to look for missing bottles  
-- photos of january and september sheets
+- Ask Danielle and Lauren to look for missing bottles   
+- Re-measure a subset of salinity values for bottles already done
 
 ### Closed Issues
 
@@ -217,11 +220,35 @@ Emma will sign the Putnam lab up for the appropriate time slots at the beginning
 | E5 sample runs 	| 3                 	| 4                                                   	| 3                                                              	| 0                   	| 2                	|
 | Notes          	|                   	|                                                     	|                                                                	|                     	|                  	|
 
+| # of runs 	| Samples done this week 	|
+|-----------	|------------------------	|
+| 12        	| 96                     	|
+
+**Week of 3/28 - 4/1**
+
+|                	| Monday 3/28 	| Tuesday 3/29          	| Wednesday 3/30   	| Thursday 3/31     	| Friday 4/1         	|
+|----------------	|-------------	|-----------------------	|------------------	|-------------------	|--------------------	|
+| Personnel      	|             	| Kristen (12:15-3:15p) 	| Kristen (~9a-1p) 	| Kristen afternoon 	| Puritz lab all day 	|
+| E5 sample runs 	| 0           	| 1                     	| 1                	| 1                 	| 0                  	|
+| Notes          	|             	|                       	|                  	|                   	|                    	|
+
+| # of runs 	| Samples done this week 	|
+|-----------	|------------------------	|
+| 3         	| 24                     	|
+
+**Week of 4/4 - 4/8**
+
+|                	| Monday 4/4 	| Tuesday 4/5      	| Wednesday 4/6 	| Thursday 4/7 	| Friday 4/8 	|
+|----------------	|------------	|------------------	|---------------	|--------------	|------------	|
+| Personnel      	| Emma       	| Emma and Kristen 	| Emma          	| Emma         	| Pierrick   	|
+| E5 sample runs 	| 3          	| 4                	| 3             	| 3            	| 2          	|
+| Notes          	|            	|                  	| Kristen out   	| Kristen out  	|            	|
+
 *Projected:*
 
 | # of runs 	| Samples done this week 	|
 |-----------	|------------------------	|
-| 12        	| 96                     	|
+| 15        	| 120                    	|
 
 
 ## <a name="Sept"></a> **September 2020, 51 samples to complete**
