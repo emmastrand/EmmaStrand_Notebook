@@ -33,7 +33,6 @@ Daily log for notes about each step: [google document link](https://docs.google.
 Contents:  
 - [**Issues/Questions to Address**](#Issues)   
 - [**Weekly Schedule**](#Week)    
-- [**Missing and Duplicate Data**](#Missing)    
 - [**September 2020, 51 samples to complete**](#Sept)   
 - [**January 2020, 146 samples to complete**](#Jan)   
 - [**November 2020, 145 samples to complete**](#Nov)   
@@ -82,7 +81,7 @@ March 3, 2022 - current:
 
 March 3, 2022 - current: Batch A22
 
-Switched bottle: 20220324 (From Batch A22 to new Batch A22 bottle #54)
+Switched bottle: 20220324 (From Batch A22 to new Batch A22 bottle no. 54)
 
 ### Salinity for 50 mL falcon tubes
 
@@ -98,15 +97,9 @@ Before starting the pH calibration, take samples out of the fridge so that they 
 
 ### Open Issues
 
-*Issue*: Timepoint 3 - September 2020; 2020-09-12 Run 3: Initial measurements from 2020-09-09 are in 3_initial_TA_samples.csv but no initial measurements for runs after that. If there are 2 data points for "Initial 1" - do we distinguish which one to use?  
-*Resolution*: Ariana and Emma are currently chatting about the best way to go about this.
-
 *Issue*: Salinity readings at CSUN vs URI (36 range vs 40 psu range..). Test batch effect. Calibrated with 50 mS/cm solution and then the probe was reading at ~55 when measuring the same solution post-calibration. Calibrated to two point 12.9 mS/cm and 1413 uS/cm and the probe was reading 36-37 psu range. Closer to what was run at CSUN.  
 *Resolution*: We got our salinity values down to ~38 when re-measuring but even at room temperature these are still our average values. I think this has to do with our calibration solution or our probe..   
 Samples from January TP1 with high salinity but was 50 mL falcon tube: POR-70.
-
-*Issue:* January TP 1: POC-248, POR-83 titration "NOT OK" from LabX output.    
-*Resolution*: Double check these TA values to see if outlier.
 
 *Issue*: 50 mL empty falcon tube bottles once done are sitting in the completed bin.  
 *Resolution*: Figure out the waste protocol for these bottles since they had mercuric chloride in them. Wait until processing is done to get rid of them. More of a reminder than an active issue.
@@ -114,16 +107,52 @@ Samples from January TP1 with high salinity but was 50 mL falcon tube: POR-70.
 *Issue*: In script, where does the umol.cm2.hr calc come from? (deltaTA/2)*(1.023)*((vol.L*1000)/surface.area.cm2)*(1/timediff)*(1/1000). And where does the 36 coefficient for normalizing TA come from?  
 *Resolution*: Find the paper source and/or make a note of this in the script or in the paper.
 
-*Issue*: Timepoint 3 September. Blank 3 and Blank 4 are both from chamber 10 but have different volumes -- this shouldn't be the case.
-
 Emma to-do:  
 - photos of September sample sheet, January sample sheets post re-measuring salinity    
 - TA protocol updates    
-- 50 mL falcon tube information on January and November files - add this into code  
-- Enter salinity values and re-run all time points  
-- Run March timepoint to run through for any missing samples  
+- Look at TA script and see if it uses salinity value in calculation   
+- Run Sept timepoints for missing data, any errors or outliers  
 - Ask Danielle and Lauren to look for missing bottles   
-- Re-measure a subset of salinity values for bottles already done
+
+Ariana: read in output for calc rates and check completeness script, decide on outliers  
+- No effect of titration run or mass for Jan, March, or September
+
+**ALL TP**:
+- effect of environment of chamber (Jan - none but no pH values, March - none, Sept- pH, )
+- blanks and initial variation - some blanks have very low volume value (that isn't realistic)  
+- fxn of titration run for Jan, Sept, March   
+- Differences in run #s
+
+**January 2020 TP1**:  
+- 216 vs 261 and 385 vs 387; double check which one is correct?   
+- Run 1-4 initials and blanks are wonky, same with Run 8 and 9       
+- POC-248, POR-83 titration "NOT OK" from LabX output.    
+- Environmental data: pH of chamber missing  
+- 2 blanks for Run 5 - 2 bottles run. I kept the first blank from deltaTA and that titration bottle (kept from 20200318 Run 2 not Run 1)  
+- BK-2 lost water during volume measurement - 575 mL isn't correct so I replaced 575 with 610 mL b/c chamber 1 was used again in later run for a blank so that is the empty volume for that chamber.
+
+**March 2020 TP2**:
+- Only 1 initial for Run 11  
+- No mismatches in data df  
+- Runs 10-13 were much higher
+
+**September 2020 TP3**:  
+- Blank 3 and Blank 4 are both from chamber 10 but have different volumes -- this shouldn't be the case  
+- The only missing samples: Initial1_20200909_1 and POR-240_20200913_5.  
+- There are 2 Initial1_20200912_3 bottles/TA values (one bottle at URI but two TA values - one done at URI and one done in CA). Could one of these be for Run 4 on the same day?   
+- Initial environmental measurements (temp, pH, salinity) missing run 3 and on.  
+- Run 4 missing both both initial bottles.  
+- Run 1-3 high blanks and initial values
+
+**November 2020 TP4**:
+
+
+
+#### List for Danielle to bring back from Mo'orea Spring 2022
+
+- September 2020: Run 4 BK-4  
+- September 2020: Run 4 Initial 1 and 2  
+- September 2020: POR-240 Run 5 20200913  
 
 ### Closed Issues
 
@@ -154,34 +183,6 @@ Emma to-do:
 *Issue*: 20220314 titration run - ACR-246 and Initial 2 may be mixed up in the rondolino (mass and salinities are correct, just position in titrator). Almost positive I fixed it but double check TA values at the end to make sure these make sense.    
 *Resolution*: Emma looked and samples were correct and fixed.
 
-## <a name="Missing"></a> **Missing and Duplicate Data**
-
-**TP1 January 2020**
-
-- Environmental data: pH of chamber
-
-2 blanks for Run 5 - 2 bottles run. I kept the first blank from deltaTA and that titration bottle (kept from 20200318 Run 2 not Run 1)
-
-4 corals that we have surface area for but not titration
-
-**TP2 March 2020**
-
-Danielle processed these and will have this information.
-
-**TP3 September 2020**
-
-- The only missing samples from September are and Initial1_20200909_1 and POR-240_20200913_5.  
-- There are 2 Initial1_20200912_3 bottles/TA values (one bottle at URI but two TA values - one done at URI and one done in CA). Could one of these be for Run 4 on the same day?   
-- Initial environmental measurements (temp, pH, salinity) missing run 3 and on.  
-- Run 4 missing both both initial bottles.
-
-**TP4 November 2020**
-
-#### List for Danielle to bring back from Mo'orea Spring 2022
-
-- September 2020: Run 4 BK-4  
-- September 2020: Run 4 Initial 1 and 2  
-- September 2020: POR-240 Run 5 20200913  
 
 ## <a name="Week"></a> **Weekly Schedule**
 

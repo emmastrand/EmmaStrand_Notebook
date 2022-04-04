@@ -65,6 +65,8 @@ Contents:
 | 221      	| Montipora capitata 	| 13   	| 15   	| Bleach     	| 12/4/19 	| 20220321      	| 10          	|                                  	|
 | 222      	| Montipora capitata 	| 13   	| 15   	| Non-bleach 	| 12/4/19 	| 20220321      	| 10.5        	|                                  	|
 
+Two of the skeletons don't really look like *M. capitata* skeletons.. I don't have any notes about these not looking right during extractions but circle back to this to double check these are actually Mcap..?
+
 ## <a name="Counts"></a> **Cell counts**
 
 ## <a name="Chl"></a> **Chlorophyll concentration**
