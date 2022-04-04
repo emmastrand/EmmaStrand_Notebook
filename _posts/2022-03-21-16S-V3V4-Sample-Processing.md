@@ -40,7 +40,7 @@ X = 20 uL
 
 ## <a name="Annealtemp"></a> **Annealing Temperature Test**
 
-### 20220321 Trial #1
+### 20220321 Trial 1
 
 2 Pacuta, 2 Mcap adults, 2 eggs, 2 settled recruits and 1 negative control and 1 positive control (Kevin's). We're using Kevin's as a positive control because in our V4 region sequencing, his samples had low host amplification compared to mine and Ariana's. In this test, if all the bands are the same size (Kevin, mine and Ariana's) then either all of them amplified the same targets (either all microbiome or all host - goal is the microbiome).
 
@@ -89,7 +89,7 @@ https://www.thermofisher.com/us/en/home/brands/thermo-scientific/molecular-biolo
 
 Next steps: PCR at 57C (and maybe 58?) with same samples - original DNA then dilute to 4 ng/uL then PCR and gel again. No dye in ladder and 2% gel like last time.
 
-### 20220404 Trial #2
+### 20220404 Trial 2
 
 Same samples as above but re-diluted from original DNA and did duplicates instead of triplicates to save materials. Ran at 57C and 58C to make sure we have the correct annealing temperature. Dilution: in 20 uL dilution volume -- 4 ng/uL*20uL reaction / Qubit value = 80/Qubit value.
 
