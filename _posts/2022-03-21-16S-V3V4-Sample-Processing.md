@@ -113,3 +113,9 @@ Same samples as above but re-diluted from original DNA and did duplicates instea
 | F primer                  	| 0.5  	| 42            	| 21  	|
 | R primer                  	| 0.5  	| 42            	| 21  	|
 | Water                     	| 10.5 	| 42            	| 441 	|
+
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16S_v3v4/20220404-16Sv3v4-trial2.jpg?raw=true)
+
+#### GeneRuler 100 bp DNA Ladder on 2% gel: 75V, 400amp, 1 hour
+
+![]()
