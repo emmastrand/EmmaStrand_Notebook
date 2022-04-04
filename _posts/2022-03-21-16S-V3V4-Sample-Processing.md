@@ -118,4 +118,4 @@ Same samples as above but re-diluted from original DNA and did duplicates instea
 
 #### GeneRuler 100 bp DNA Ladder on 2% gel: 75V, 400amp, 1 hour
 
-![]()
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16S_v3v4/gel-trial2.jpg?raw=true)
