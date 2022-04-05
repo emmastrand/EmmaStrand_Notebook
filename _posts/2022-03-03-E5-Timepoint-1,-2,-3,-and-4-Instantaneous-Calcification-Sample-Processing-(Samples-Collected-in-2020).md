@@ -108,28 +108,27 @@ Samples from January TP1 with high salinity but was 50 mL falcon tube: POR-70.
 *Resolution*: Find the paper source and/or make a note of this in the script or in the paper.
 
 Emma to-do:  
-- photos of September sample sheet, January sample sheets post re-measuring salinity    
+- January sample sheets post re-measuring salinity    
 - TA protocol updates    
-- Look at TA script and see if it uses salinity value in calculation   
-- Run Sept timepoints for missing data, any errors or outliers  
-- Ask Danielle and Lauren to look for missing bottles   
+- Ask Danielle and Lauren to look for missing bottles  
+- put all data in this .md as backup    
 
 Ariana: read in output for calc rates and check completeness script, decide on outliers  
 - No effect of titration run or mass for Jan, March, or September
 
 **ALL TP**:
-- effect of environment of chamber (Jan - none but no pH values, March - none, Sept- pH, )
+- effect of environment of chamber (Jan - none but no pH values, March - none, Sept- pH)
 - blanks and initial variation - some blanks have very low volume value (that isn't realistic)  
 - fxn of titration run for Jan, Sept, March   
 - Differences in run #s
 
-**January 2020 TP1**:  
-- 216 vs 261 and 385 vs 387; double check which one is correct?   
+**January 2020 TP1**:   
 - Run 1-4 initials and blanks are wonky, same with Run 8 and 9       
 - POC-248, POR-83 titration "NOT OK" from LabX output.    
 - Environmental data: pH of chamber missing  
 - 2 blanks for Run 5 - 2 bottles run. I kept the first blank from deltaTA and that titration bottle (kept from 20200318 Run 2 not Run 1)  
-- BK-2 lost water during volume measurement - 575 mL isn't correct so I replaced 575 with 610 mL b/c chamber 1 was used again in later run for a blank so that is the empty volume for that chamber.
+- BK-2 lost water during volume measurement - 575 mL isn't correct so I replaced 575 with 610 mL b/c chamber 1 was used again in later run for a blank so that is the empty volume for that chamber.  
+- ACR 224 is bonus coral that doesn't exist anywhere else
 
 **March 2020 TP2**:
 - Only 1 initial for Run 11  
@@ -153,6 +152,7 @@ Ariana: read in output for calc rates and check completeness script, decide on o
 - September 2020: Run 4 BK-4  
 - September 2020: Run 4 Initial 1 and 2  
 - September 2020: POR-240 Run 5 20200913  
+
 
 ### Closed Issues
 
@@ -241,15 +241,15 @@ Emma will sign the Putnam lab up for the appropriate time slots at the beginning
 
 |                	| Monday 4/4 	| Tuesday 4/5      	| Wednesday 4/6 	| Thursday 4/7 	| Friday 4/8 	|
 |----------------	|------------	|------------------	|---------------	|--------------	|------------	|
-| Personnel      	| Emma       	| Emma and Kristen 	| Emma          	| Emma         	| Pierrick   	|
-| E5 sample runs 	| 3          	| 4                	| 3             	| 3            	| 2          	|
+| Personnel      	| Emma       	| Emma and Kristen 	| Emma          	|      Puritz all day    	| Pierrick   	|
+| E5 sample runs 	| 3          	| 4                	| 3             	|    0         	| 2          	|
 | Notes          	|            	|                  	| Kristen out   	| Kristen out  	|            	|
 
 *Projected:*
 
 | # of runs 	| Samples done this week 	|
 |-----------	|------------------------	|
-| 15        	| 120                    	|
+| 12        	| 96                    	|
 
 
 ## <a name="Sept"></a> **September 2020, 51 samples to complete**
