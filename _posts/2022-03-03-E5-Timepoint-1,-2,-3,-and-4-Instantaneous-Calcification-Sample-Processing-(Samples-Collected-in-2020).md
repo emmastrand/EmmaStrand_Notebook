@@ -107,10 +107,8 @@ Samples from January TP1 with high salinity but was 50 mL falcon tube: POR-70.
 *Issue*: In script, where does the umol.cm2.hr calc come from? (deltaTA/2)*(1.023)*((vol.L*1000)/surface.area.cm2)*(1/timediff)*(1/1000). And where does the 36 coefficient for normalizing TA come from?  
 *Resolution*: Find the paper source and/or make a note of this in the script or in the paper.
 
-Emma to-do:  
-- January sample sheets post re-measuring salinity    
-- TA protocol updates    
-- Ask Danielle and Lauren to look for missing bottles  
+Emma to-do:    
+- TA protocol updates     
 - put all data in this .md as backup    
 
 Ariana: read in output for calc rates and check completeness script, decide on outliers  
@@ -685,6 +683,11 @@ Run 3:
 | BK-9_20200108_9      	| 2343.82123 	| 50.195 	| 37.64    	|
 | POC-359_20200108_9   	| 2329.67509 	| 50.059 	| 37.62    	|
 | POR-341_20200107_8   	| 2334.40555 	| 56.833 	| 38.21    	|
+
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/E5%20Calcification%20Processing/january1.jpg?raw=true)
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/E5%20Calcification%20Processing/january2.jpg?raw=true)
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/E5%20Calcification%20Processing/january3.jpg?raw=true)
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/E5%20Calcification%20Processing/january4.jpg?raw=true)
 
 ## <a name="Nov"></a> **November 2020, 145 samples to complete**
 
