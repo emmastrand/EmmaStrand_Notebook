@@ -154,8 +154,8 @@ in 20 uL dilution volume -- 8 ng/uL*20uL reaction / Qubit value = 160/Qubit valu
 | R primer                  	| 0.5  	| 37.8          	| 18.9  	|
 | Water                     	| 10.5 	| 37.8          	| 396.9 	|
 
-![]()
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16S_v3v4/trial3-20220406.jpg?raw=true)
 
 #### GeneRuler 100 bp DNA Ladder on 2% gel: 75V, 400amp, 1 hour
 
-![]()
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16S_v3v4/gel-trial3.jpg?raw=true)
