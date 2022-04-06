@@ -9,24 +9,13 @@ projects: E5
 
 # Processing the E5 January, March, September, and November 2020 Instantaneous Calcification Samples
 
-Original E5 processing post from D. Becker: [here](https://github.com/daniellembecker/DanielleBecker_Lab_Notebook/blob/master/_posts/2021-02-18-E5-January-March-September-November-Calcification-Samples.md).
+Original E5 processing post from D. Becker and March sample processing included [here](https://github.com/daniellembecker/DanielleBecker_Lab_Notebook/blob/master/_posts/2021-02-18-E5-January-March-September-November-Calcification-Samples.md).
 
 Putnam Lab Titration protocol [here](https://github.com/Putnam-Lab/Lab_Management/blob/master/Lab_Resources/Equipment_Protocols/Titrator_Protocols/Titrator_Protocol.md).
 
-Emma, Pierrick, and Kristen are working together to process the remaining E5 samples on the titrator.
-
-General Schedule: *not final, check the weekly schedule section to see how we are working with the Puritz Lab that week.*  
-
-|           	| **Monday** 	| **Tuesday**                    	| **Wednesday**                               	| **Thursday**                   	| **Friday** 	|
-|-----------	|-------------	|--------------------------------	|---------------------------------------------	|--------------------------------	|------------	|
-| Personnel 	| Pierrick    	| Emma starts (~9 am); Kristen finishes (12:15-3:15p)  	| Kristen starts (~9a-1p); Emma finishes (whenever Run2 is done)               	| Emma starts (~10 am); Kristen finishes (12:15-4:15p)  	| Pierrick   	|
-| E5 sample Runs      	| 1           	| 2                              	| 1                                           	| 2                              	| 1          	|
-| Notes     	|             	|                                	| Tanks downstairs = Run1; E5 samples = Run2  	|                                	|            	|
-
 Kristen, Pierrick, and Emma will do the physical titrations according to the schedule above. Emma will do all steps in [Titration Data Entry Process](https://github.com/daniellembecker/DanielleBecker_Lab_Notebook/blob/master/_posts/2021-02-18-E5-January-March-September-November-Calcification-Samples.md#titration-data-entry-process) and analyze data after Kristen and Pierrick push to github.
 
-Goal: ~6-7 runs a week (8 samples each x 7 = 56 samples a week). We'll start with this and see how that schedule works for everyone's time and energy. Then adjust from there if needed.  
-- Based on week 1, we can probably do 3 runs tuesday - thursday depending on our sharing schedule. Mondays we can do 3-4 runs (4 if starting at 8 am go through 5 pm).  
+The average # of runs per day was between 3-4 if the CRM and ph calibration were started first thing in the morning. Having multiple people to process was helpful to run a large # of runs per day (i.e. person 1 starts the run and person 2 switches the run over).
 
 Daily log for notes about each step: [google document link](https://docs.google.com/document/d/18YpBWMWWOQzft9wPQUlEfvq7ivTyKiauDOLJ_f2qbC4/edit). Path is 201906_Post_Award > URI_Titrations > "E5 January, March, September, and November 2020 Instantaneous Calcification Samples Notes".
 
@@ -38,14 +27,6 @@ Contents:
 - [**November 2020, 145 samples to complete**](#Nov)   
 - [**Equipment locations**](#Equip)   
 - [**Waste**](#Waste)   
-
-Remaining as of 2022-03-22 end of day:  
-- September 2020: Completed (see note in issues RE initials and blanks)  
-- January 2020: Completed    
-- November 2020: 145/145 samples
-
-We'll do time points separately and do initials and blanks in the same titration run if possible.    
-The #s for samples left to-do are generated from the # of bottles left in the bin for September 2020. This does not account for samples already run so that number will likely be less.
 
 ### Folders and file formats for this project
 
@@ -123,7 +104,7 @@ Ariana: read in output for calc rates and check completeness script, decide on o
 
 **January 2020 TP1**:   
 - Run 1-4 initials and blanks are wonky, same with Run 8 and 9       
-- POC-248, POR-83 titration "NOT OK" from LabX output.    
+- POC-248, POR-83 titration "NOT OK" from LabX output. Values seem to be OK though.      
 - Environmental data: pH of chamber missing  
 - 2 blanks for Run 5 - 2 bottles run. I kept the first blank from deltaTA and that titration bottle (kept from 20200318 Run 2 not Run 1)  
 - BK-2 lost water during volume measurement - 575 mL isn't correct so I replaced 575 with 610 mL b/c chamber 1 was used again in later run for a blank so that is the empty volume for that chamber.  
@@ -240,15 +221,15 @@ Emma will sign the Putnam lab up for the appropriate time slots at the beginning
 
 |                	| Monday 4/4 	| Tuesday 4/5      	| Wednesday 4/6 	| Thursday 4/7 	| Friday 4/8 	|
 |----------------	|------------	|------------------	|---------------	|--------------	|------------	|
-| Personnel      	| Emma       	| Emma and Kristen 	| Emma          	|      Puritz all day    	| Pierrick   	|
-| E5 sample runs 	| 3          	| 3                	| 3             	|    0         	| 2          	|
+| Personnel      	| Emma       	| Emma and Kristen 	| Emma          	|      Emma    	| Puritz all day   	|
+| E5 sample runs 	| 3          	| 3                	| 3             	|    3         	| 0          	|
 | Notes          	|            	|                  	| Kristen out   	| Kristen out  	|            	|
 
 *Projected:*
 
 | # of runs 	| Samples done this week 	|
 |-----------	|------------------------	|
-| 11        	| 88                    	|
+| 12        	| 96                    	|
 
 
 ## <a name="Sept"></a> **September 2020, 51 samples to complete**
@@ -813,6 +794,50 @@ Run 3:
 | POR-245_20201103_3  	| 2261.05437 	| 60.193 	| 39.18    	|
 | POR-354_20201104_6  	| 2296.80522 	| 59.555 	| 39.08    	|
 | BK-5_20201104_5     	| 2347.686   	| 60.532 	| 39.23    	|
+
+#### 20220405
+
+Run 1:
+
+| SampleID             	| TA         	| Mass   	| Salinity 	|
+|----------------------	|------------	|--------	|----------	|
+| JUNK 1               	| 2455.19823 	| 55.633 	| 35       	|
+| Initial2_20201106_9  	| 2319.0847  	| 52.456 	| 38.24    	|
+| Initial2_20201106_10 	| 2302.00178 	| 52.931 	| 38.14    	|
+| POR-73_20201106_10   	| 2264.46342 	| 52.683 	| 38.64    	|
+| POC-40_20201106_9    	| 2278.31715 	| 53.372 	| 38.11    	|
+| ACR-145_20201106_9   	| 2277.65617 	| 54.957 	| 38.2     	|
+| POR-70_20201106_9    	| 2575.80824 	| 46.026 	| 45.87    	|
+| POR-74_20201106_10   	| 2173.01456 	| 52.571 	| 38.24    	|
+| BK-10_20201106_10    	| 2312.12355 	| 53.495 	| 38.5     	|
+
+Run 2:
+
+| SampleID             	| TA         	| Mass   	| Salinity 	|
+|----------------------	|------------	|--------	|----------	|
+| JUNK 1               	| 2459.29679 	| 59.988 	| 35       	|
+| POC-47_20201106_10   	| 2375.5343  	| 51.096 	| 41.06    	|
+| POR-72_20201106_10   	| 2243.16768 	| 52.797 	| 39.62    	|
+| ACR-175_20201106_10  	| 2299.00502 	| 53.497 	| 39.09    	|
+| POC-44_20201106_10   	| 2312.11909 	| 53.392 	| 39.45    	|
+| POC-43_20201106_9    	| 2279.50746 	| 53.086 	| 39.33    	|
+| POR-69_20201106_9    	| 2214.73618 	| 55.09  	| 39.22    	|
+| POR-71_20201106_9    	| 2294.02013 	| 52.441 	| 40.5     	|
+| Initial1_20201106_10 	| 2313.52694 	| 52.299 	| 39.07    	|
+
+Run 3:
+
+| SampleID            	| TA         	| Mass   	| Salinity 	|
+|---------------------	|------------	|--------	|----------	|
+| JUNK 1              	| 2454.84057 	| 59.813 	| 35       	|
+| ACR-150_20201106_9  	| 2390.2876  	| 51.01  	| 40.86    	|
+| BK-8_20201105_8     	| 2312.99331 	| 53.103 	| 39.46    	|
+| ACR-176_20201106_10 	| 2273.41324 	| 53.903 	| 39.22    	|
+| Initial1_20201106_9 	| 2312.1421  	| 51.567 	| 39.18    	|
+| ACR-173_20201106_10 	| 2293.94975 	| 54.57  	| 39.2     	|
+| POC-45_20201106_10  	| 2281.9282  	| 53.781 	| 39.3     	|
+| ACR-139_20201106_9  	| 2406.96171 	| 51.684 	| 41.24    	|
+| BK-9_20201106_9     	| 2309.69362 	| 53.303 	| 39.21    	|
 
 
 ## <a name="Equip"></a> **Equipment locations**

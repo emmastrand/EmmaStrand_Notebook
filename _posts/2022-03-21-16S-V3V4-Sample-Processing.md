@@ -119,3 +119,43 @@ Same samples as above but re-diluted from original DNA and did duplicates instea
 #### GeneRuler 100 bp DNA Ladder on 2% gel: 75V, 400amp, 1 hour
 
 ![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16S_v3v4/gel-trial2.jpg?raw=true)
+
+### 20220406 Trial 3
+
+Trial1 = 12 ng DNA input total in that gel band (done in triplicates)  
+Trial2 = 8 ng DNA input total in that gel band (done in duplicates)  
+Trial3 - varying DNA input to see if we can get a band to appear in those that don't have one  
+
+Done in triplicates
+
+4 ng/uL already made from Trial 2 - use those  
+in 20 uL dilution volume -- 8 ng/uL*20uL reaction / Qubit value = 160/Qubit value							
+
+|    	| SampleID            	| Input concentration 	| Original DNA tube        	| Notes         	| DNA concentration (ng/uL) 	| DNA for dilution (uL) 	| Ultrapure H20 for dilution (uL) 	|
+|----	|---------------------	|---------------------	|--------------------------	|---------------	|---------------------------	|-----------------------	|---------------------------------	|
+| 1  	| P.acuta 2513 adult  	| 4 ng/uL             	| 20190722 Ext ID 65, 66   	| Bright band   	| 12.55                     	| 6.37                  	| 13.63                           	|
+| 2  	| P. ast KW-10        	| 4 ng/uL             	| Vial #10                 	| Bright band   	| 10.2                      	| 7.84                  	| 12.16                           	|
+| 3  	| M. cap Plug10       	| 4 ng/uL             	| Labeled plug 10          	| Faint/No band 	| 31.4                      	| 2.55                  	| 17.45                           	|
+| 4  	| P. acuta 2878 adult 	| 4 ng/uL             	| 20190807 Ext ID 319, 320 	| Faint/No band 	| 48.7                      	| 1.64                  	| 18.36                           	|
+| 5  	| M. cap M-217        	| 4 ng/uL             	| 20210225 Ext ID 16       	| No band       	| 36.5                      	| 2.19                  	| 17.81                           	|
+| 6  	| M. cap M-212        	| 4 ng/uL             	| 20210225 Ext ID 17       	| No band       	| 32.9                      	| 2.43                  	| 17.57                           	|
+| 7  	| P.acuta 2513 adult  	| 8 ng/uL             	| 20190722 Ext ID 65, 66   	| Bright band   	| 12.55                     	| 12.75                 	| 7.25                            	|
+| 8  	| P. ast KW-10        	| 8 ng/uL             	| Vial #10                 	| Bright band   	| 10.2                      	| 15.69                 	| 4.31                            	|
+| 9  	| M. cap Plug10       	| 8 ng/uL             	| Labeled plug 10          	| Faint/No band 	| 31.4                      	| 5.10                  	| 14.90                           	|
+| 10 	| P. acuta 2878 adult 	| 8 ng/uL             	| 20190807 Ext ID 319, 320 	| Faint/No band 	| 48.7                      	| 3.29                  	| 16.71                           	|
+| 11 	| M. cap M-217        	| 8 ng/uL             	| 20210225 Ext ID 16       	| No band       	| 36.5                      	| 4.38                  	| 15.62                           	|
+| 12 	| M. cap M-212        	| 8 ng/uL             	| 20210225 Ext ID 17       	| No band       	| 32.9                      	| 4.86                  	| 15.14                           	|
+
+| Master   Mix Calculations 	|      	|               	|       	|
+|---------------------------	|------	|---------------	|-------	|
+|                           	| uL   	| N (12*3*1.05) 	| uL    	|
+| Phusion MM                	| 12.5 	| 37.8          	| 472.5 	|
+| F primer                  	| 0.5  	| 37.8          	| 18.9  	|
+| R primer                  	| 0.5  	| 37.8          	| 18.9  	|
+| Water                     	| 10.5 	| 37.8          	| 396.9 	|
+
+![]()
+
+#### GeneRuler 100 bp DNA Ladder on 2% gel: 75V, 400amp, 1 hour
+
+![]()
