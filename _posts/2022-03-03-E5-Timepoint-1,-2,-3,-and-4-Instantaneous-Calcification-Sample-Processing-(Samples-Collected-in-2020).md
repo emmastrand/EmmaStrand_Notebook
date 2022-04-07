@@ -220,14 +220,14 @@ Emma will sign the Putnam lab up for the appropriate time slots at the beginning
 |                	| Monday 4/4 	| Tuesday 4/5      	| Wednesday 4/6 	| Thursday 4/7 	| Friday 4/8 	|
 |----------------	|------------	|------------------	|---------------	|--------------	|------------	|
 | Personnel      	| Emma       	| Emma and Kristen 	| Emma          	|      Emma    	| Puritz all day   	|
-| E5 sample runs 	| 3          	| 3                	| 3             	|    3         	| 0          	|
+| E5 sample runs 	| 3          	| 3                	| 4             	|    3         	| 0          	|
 | Notes          	|            	|                  	| Kristen out   	| Kristen out  	|            	|
 
 *Projected:*
 
 | # of runs 	| Samples done this week 	|
 |-----------	|------------------------	|
-| 12        	| 96                    	|
+| 13        	| 104                    	|
 
 
 ## <a name="Sept"></a> **September 2020, 51 samples to complete**
@@ -837,6 +837,18 @@ Run 3:
 | ACR-139_20201106_9  	| 2406.96171 	| 51.684 	| 41.24    	|
 | BK-9_20201106_9     	| 2309.69362 	| 53.303 	| 39.21    	|
 
+#### 20220406
+
+#### 20220407
+
+
+
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/E5%20Calcification%20Processing/november1.jpg?raw=true)  
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/E5%20Calcification%20Processing/november2.jpg?raw=true)
+
+## Salinity probe test info
+
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/E5%20Calcification%20Processing/salinityprobe-test.jpg?raw=true)
 
 ## <a name="Equip"></a> **Equipment locations**
 
