@@ -186,7 +186,8 @@ Samples to send:
 
 ![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16S_v3v4/gel-seqrun1.jpg?raw=true)
 
-- 2513, KW-10, and Plug10 all strong bands with higher DNA ng input. 2878 I only got a faint band once, and the rest of the time I got no band for this sample.    
+- 2513, KW-10, and Plug10 all strong bands with higher DNA ng input.  
+- 2878 I only got a faint band once, and the rest of the time I got no band for this sample.      
 - M-217 and M-212 I can't seem to get a band with these. Only one faint band from trial1 but even when I up the DNA input I still get no bands.      
 - Negative control as quality control  
 - D1 eggs I can get a faint band but can't up the DNA input since the qubit value is low - I just put in 3 uL of undiluted DNA extract.
