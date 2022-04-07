@@ -184,7 +184,7 @@ Porites spp. - [O'Brien et al 2018](https://www.frontiersin.org/articles/10.3389
 
 Samples to send:
 
-![]()
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16S_v3v4/gel-seqrun1.jpg?raw=true)
 
 | SampleID 	| Strip tube # to Janet 	| Original strip tube # 	| SampleID         	| Lifestage       	| Species            	| DNA input             	| Date PCR run 	| Trial # 	| Band information 	| Replicate # (uL total after gel) 	| uL leftover after  	|
 |----------	|-----------------------	|-----------------------	|------------------	|-----------------	|--------------------	|-----------------------	|--------------	|---------	|------------------	|----------------------------------	|--------------------	|
