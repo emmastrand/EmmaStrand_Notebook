@@ -14,18 +14,19 @@ Excel processing sheet [here](https://github.com/emmastrand/EmmaStrand_Notebook/
 
 Contents:  
 - [**Primers**](#primers)   
-- [**Annealing Temperature Test**](#Annealtemp)   
+- [**Annealing Temperature Test**](#Annealtemp)
+- [**Sequencing test run 1**](#Seq1)   
 
 ## <a name="Primers"></a> **Primers**
 
 | Primer        	| GSC Adapter Overhang               	| Primer Sequence      	| Sequence to be ordered: Adapter   + Primer Sequence    	|
 |---------------	|------------------------------------	|----------------------	|--------------------------------------------------------	|
-| 388F forward  	| TCGTCGGCAGCGTCAGATGTGTATAAGAGACAG  	| ACTCCTACGGGAGGCAGCA  	| TCGTCGGCAGCGTCAGATGTGTATAAGAGACAGACTCCTACGGGAGGCAGCA   	|
+| 338F forward  	| TCGTCGGCAGCGTCAGATGTGTATAAGAGACAG  	| ACTCCTACGGGAGGCAGCA  	| TCGTCGGCAGCGTCAGATGTGTATAAGAGACAGACTCCTACGGGAGGCAGCA   	|
 | 806RB reverse 	| GTCTCGTGGGCTCGGAGATGTGTATAAGAGACAG 	| GGACTACNVGGGTWTCTAAT 	| GTCTCGTGGGCTCGGAGATGTGTATAAGAGACAGGGACTACNVGGGTWTCTAAT 	|
 
-[388F order sheet from IDT](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Lab-protocols/16S_primers/388F_16S_IDT.pdf); [806RB order sheet from IDT](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Lab-protocols/16S_primers/806RB_16S_IDT.pdf).
+[338F order sheet from IDT](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Lab-protocols/16S_primers/338F_16S_IDT.pdf); [806RB order sheet from IDT](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Lab-protocols/16S_primers/806RB_16S_IDT.pdf).
 
-We received a concentrate of primer and needed to resuspend the 388F primer. Resuspending concenrate to 100 uM = started with 82.6 nM so IDT sheet said to add 826 uL to create 100 uM. Our stock will be 100 uM and then I diluted a portion to 10 uM for use in PCR protocol.
+We received a concentrate of primer and needed to resuspend the 338F primer. Resuspending concenrate to 100 uM = started with 82.6 nM so IDT sheet said to add 826 uL to create 100 uM. Our stock will be 100 uM and then I diluted a portion to 10 uM for use in PCR protocol.
 
 V3/V4 amplicon size: 380–400 bp + 50-60 bp for primer & adapter overhang (410-460 bp)
 
@@ -159,3 +160,41 @@ in 20 uL dilution volume -- 8 ng/uL*20uL reaction / Qubit value = 160/Qubit valu
 #### GeneRuler 100 bp DNA Ladder on 2% gel: 75V, 400amp, 1 hour
 
 ![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16S_v3v4/gel-trial3.jpg?raw=true)
+
+## Notes
+
+Based on other papers that use 338F and 806R, we have a lot of room to bump up the ng concentrations. Other papers are in the range of 50-100 ng input per sample.
+
+338F and 806R:   
+Pocillopora - [Qin et al 2022](https://www.mdpi.com/2076-2607/10/2/207)  
+Favites and Acropora - [Meenatchi et al 2020](https://reader.elsevier.com/reader/sd/pii/S0944501319313126?token=B416D94747CAD990D64F1B01261C8AE459983B43ABA076CC711CFF993BBEF149FCC8B017D6492BCE6657861E2DBC6DC4&originRegion=us-east-1&originCreation=20220406211052)  
+Pocillopora - [Yang et al 2020](https://academic.oup.com/femsec/article/97/1/fiaa215/5924451#221111253)
+
+341F and 802R:
+Phanerochaete and Galaxea - [Cai et al 2018](https://link.springer.com/article/10.1007/s00253-018-8909-5#Sec2)
+
+341F and 785R:  
+Porites spp. - [O'Brien et al 2018](https://www.frontiersin.org/articles/10.3389/fmicb.2018.02621/full#h3)
+
+341F and 806R: Nelson's lab at Hawaii for M. capitata
+
+**Adult M. capitata might not work with the 338F primer?**
+
+## <a name="Seq1"></a> **Sequencing test run 1**
+
+Samples to send:
+
+![]()
+
+| SampleID 	| Strip tube # to Janet 	| Original strip tube # 	| SampleID         	| Lifestage       	| Species            	| DNA input             	| Date PCR run 	| Trial # 	| Band information 	| Replicate # (uL total after gel) 	| uL leftover after  	|
+|----------	|-----------------------	|-----------------------	|------------------	|-----------------	|--------------------	|-----------------------	|--------------	|---------	|------------------	|----------------------------------	|--------------------	|
+| ELS001   	| 1                     	| 7                     	| 2513             	| Adult           	| Pocillopora acuta  	| 8 ng/uL (24 ng total) 	| 20220406     	| 3       	| strong           	| 3 (70 uL)                        	| 45 uL              	|
+| ELS002   	| 2                     	| 8                     	| KW-10            	| Adult           	| Porites asteroides 	| 8 ng/uL (24 ng total) 	| 20220406     	| 3       	| strong           	| 3 (70 uL)                        	| 45 uL              	|
+| ELS003   	| 3                     	| 9                     	| Plug10           	| Settled recruit 	| Montipora capitata 	| 8 ng/uL (24 ng total) 	| 20220406     	| 3       	| strong           	| 3 (70 uL)                        	| 45 uL              	|
+| ELS004   	| 4                     	| 10                    	| 2878             	| Adult           	| Pocillopora acuta  	| 4 ng/uL (12 ng total) 	| 20220321     	| 1       	| faint            	| 3 (70 uL)                        	| 45 uL              	|
+| ELS005   	| 5                     	| 11                    	| M-217            	| Adult           	| Montipora capitata 	| 8 ng/uL (24 ng total) 	| 20220406     	| 3       	| none             	| 3 (70 uL)                        	| 45 uL              	|
+| ELS006   	| 6                     	| 12                    	| M-212            	| Adult           	| Montipora capitata 	| 8 ng/uL (24 ng total) 	| 20220406     	| 3       	| none             	| 3 (70 uL)                        	| 45 uL              	|
+| ELS007   	| 7                     	| (-)                   	| Negative control 	| NA              	| NA                 	| NA                    	| 20220406     	| 3       	| none             	| 3 (70 uL)                        	| 45 uL              	|
+| ELS008   	| 8                     	| 5                     	| D1               	| Eggs            	| Montipora capitata 	| **too low**           	| 20220404     	| 2       	| faint            	| 2 (45 uL)                        	| 20 uL              	|
+
+Along with Kevin's if he needs to send any.

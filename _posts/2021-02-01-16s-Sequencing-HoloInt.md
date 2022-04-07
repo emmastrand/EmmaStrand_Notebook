@@ -47,13 +47,13 @@ We took the primer sequences from Apprill et al 2015, and added the URI GSC spec
 
 515F Forward and 806RB Reverse (V4) amplicon size: ~253 bp sequence + 50-60 bp for primer & adapter overhang.    
 
-### 388F and 806RB for V3/V4 Region
+### 338F and 806RB for V3/V4 Region
 
-We took the reverse primer we used for V4 region and the 388F from [Meenatchi et al 2020](https://www.sciencedirect.com/science/article/pii/S0944501319313126#sec0010).
+We took the reverse primer we used for V4 region and the 338F from [Meenatchi et al 2020](https://www.sciencedirect.com/science/article/pii/S0944501319313126#sec0010).
 
 | Primer        	| GSC Adapter Overhang               	| Primer Sequence      	| Sequence to be ordered: Adapter   + Primer Sequence    	|
 |---------------	|------------------------------------	|----------------------	|--------------------------------------------------------	|
-| 388F forward  	| TCGTCGGCAGCGTCAGATGTGTATAAGAGACAG  	| ACTCCTACGGGAGGCAGCA  	| TCGTCGGCAGCGTCAGATGTGTATAAGAGACAGACTCCTACGGGAGGCAGCA   	|
+| 338F forward  	| TCGTCGGCAGCGTCAGATGTGTATAAGAGACAG  	| ACTCCTACGGGAGGCAGCA  	| TCGTCGGCAGCGTCAGATGTGTATAAGAGACAGACTCCTACGGGAGGCAGCA   	|
 | 806RB reverse 	| GTCTCGTGGGCTCGGAGATGTGTATAAGAGACAG 	| GGACTACNVGGGTWTCTAAT 	| GTCTCGTGGGCTCGGAGATGTGTATAAGAGACAGGGACTACNVGGGTWTCTAAT 	|
 
 V3/V4 amplicon size: 380–400 bp + 50-60 bp for primer & adapter overhang
@@ -144,7 +144,7 @@ The annealing temperature in this PCR program is specific to the melting point o
 [806RB order sheet from IDT](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Lab-protocols/16S_primers/806RB_16S_IDT.pdf) - Tm = 68.8 C  
 We ran several trials (see end of this post) based on Apprill et al 2015 to find the annealing temperature that worked the best, which was 57 C.  
 
-[388F order sheet from IDT](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Lab-protocols/16S_primers/388F_16S_IDT.pdf) - Tm = 71.6 C
+[338F order sheet from IDT](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Lab-protocols/16S_primers/338F_16S_IDT.pdf) - Tm = 71.6 C
 
 **PCR program used for V4 primers:**  
 
