@@ -586,7 +586,7 @@ qiime feature-classifier classify-sklearn \
 "-trained" prefix on all output files.
 
 
-### taxonomy.sh
+### taxonomy-trained.sh
 
 ```
 #!/bin/bash
@@ -882,26 +882,42 @@ Where the gut samples start to level off (~20k) is the read depth we need to be 
 
 Moved desired qza output files to a new directory `downstream-analysis`:  
 - `taxonomy-trained.qza`  
-- `table-trained-filtered.qza`  
+- `table.qza`  
 - `rooted-tree.qza`
 
 Convert qza files to tsv
 
+`convert.sh`:
+
 ```
-$ cd downstream-analysis
+#!/bin/bash
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab
+#SBTACH -q putnamlab
+#SBATCH -D /data/putnamlab/estrand/PointJudithData_16S/QIIME2_v6/downstream-analysis
+#SBATCH --error="script_error_convert" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_convert" #once your job is completed, any final job report comments will be put in this file
 
-interactive
+source /usr/share/Modules/init/sh # load the module function
+module load QIIME2/2021.4
 
-module load QIIME2/2021.8
+cp ../classifier_trials/taxonomy-trained.qza .
+cp ../rooted-tree.qza .
+cp ../table.qza .
+
 for i in *.qza; do
 qiime tools export --input-path $i --output-path .
 done
-biom convert -i feature-table.biom -o feature-table.tsv --to-tsv
+biom convert -i feature-table.biom -o feature-table-unfiltered.tsv --to-tsv
 
-exit
 ```
 
-Output files: `feature-table.tsv`, `feature-table.biom`, `taxonomy.tsv`, and `tree.nwk`.
+Output files: `feature-table-unfiltered.tsv`, `feature-table.biom`, `taxonomy.tsv`, and `tree.nwk`.
 
 Copy these to github repo for analysis.
 
