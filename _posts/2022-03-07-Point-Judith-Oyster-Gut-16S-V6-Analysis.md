@@ -906,10 +906,10 @@ Output files: `feature-table.tsv`, `feature-table.biom`, `taxonomy.tsv`, and `tr
 Copy these to github repo for analysis.
 
 ```
-
+scp -r emma_strand@bluewaves.uri.edu:/data/putnamlab/estrand/PointJudithData_16S/QIIME2_v6/downstream-analysis  /Users/emmastrand/MyProjects/Cvir_Nut_Int/output/16S_allv6/QIIME2
 ```
 
-Kevin's script for analysis in R from QIIME2 output [here](https://github.com/kevinhwong1/Porites_Rim_Bleaching_2019/blob/master/scripts/16S/16S_QIIME2.Rmd).  
+**Link to our [github repo](https://github.com/hputnam/Cvir_Nut_Int). Pull this repo and you will find the files in `downstream-analyses`. We'll take these files and work through Kevin's script for analysis in R from QIIME2 output found [here](https://github.com/kevinhwong1/Porites_Rim_Bleaching_2019/blob/master/scripts/16S/16S_QIIME2.Rmd).**  
 
 Questions for Rebecca:  
 - cut-off at 80 in trunc parameter  
