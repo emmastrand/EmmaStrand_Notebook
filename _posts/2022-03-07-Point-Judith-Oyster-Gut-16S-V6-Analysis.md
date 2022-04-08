@@ -42,7 +42,7 @@ Contents:
 - [**QIIME2 Denoising with DADA2**](#Denoise)  
 - [**QIIME2 Taxonomy classification**](#Taxonomy)   
 - [**QIIME2 Subsample and diversity indices**](#Diversity)    
-- [**Switch to R to visualize the feature tables**](#R)   
+- [**Statistics in R**](#Statistics)   
 - [**Troubleshooting**](#Troubleshooting)   
 
 
@@ -876,11 +876,49 @@ In QIIME2 view, input alpha-rarefraction.qzv:
 
 ![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/16S_allv6/QIIME2/rarefraction-30k.png?raw=true)
 
-Where the gut samples start to level off (~20k) is the read depth we need to be sure we are capturing all the diversity that we can in these samples. Our lowest for the gut is around 29k so we are very confident that our sequencing is enough to observe all the features (ASVs) we need to make a strong statement about this dataset. 
+Where the gut samples start to level off (~20k) is the read depth we need to be sure we are capturing all the diversity that we can in these samples. Our lowest for the gut is around 29k so we are very confident that our sequencing is enough to observe all the features (ASVs) we need to make a strong statement about this dataset.
+
+## <a name="Statistics"></a> **Statistics in R**
+
+Moved desired qza output files to a new directory `downstream-analysis`:  
+- `taxonomy-trained.qza`  
+- `table-trained-filtered.qza`  
+- `rooted-tree.qza`
+
+Convert qza files to tsv
+
+```
+$ cd downstream-analysis
+
+interactive
+
+module load QIIME2/2021.8
+for i in *.qza; do
+qiime tools export --input-path $i --output-path .
+done
+biom convert -i feature-table.biom -o feature-table.tsv --to-tsv
+
+exit
+```
+
+Output files: `feature-table.tsv`, `feature-table.biom`, `taxonomy.tsv`, and `tree.nwk`.
+
+Copy these to github repo for analysis.
+
+```
+
+```
+
+Kevin's script for analysis in R from QIIME2 output [here](https://github.com/kevinhwong1/Porites_Rim_Bleaching_2019/blob/master/scripts/16S/16S_QIIME2.Rmd).  
+
+Questions for Rebecca:  
+- cut-off at 80 in trunc parameter  
+- subsampling depth
+
 
 ## <a name="Troubleshooting"></a> **Troubleshooting**
 
-## Denoising with incorrect primer length - not used, old script
+### Denoising with incorrect primer length - not used, old script
 
 I tried the following denoise parameters:  
 - With 7/7 bp trimming; 70/70 truncating (`denoise-7-70.sh`)  

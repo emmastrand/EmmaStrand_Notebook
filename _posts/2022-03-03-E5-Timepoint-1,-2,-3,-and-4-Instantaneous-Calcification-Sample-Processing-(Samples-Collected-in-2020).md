@@ -122,7 +122,7 @@ Ariana: read in output for calc rates and check completeness script, decide on o
 - Run 1-3 high blanks and initial values
 
 **November 2020 TP4**:
-- Fix errors in typos
+- Initial 2 from Run 2 taken out b/c way lower than expected
 
 
 #### List for Danielle to bring back from Mo'orea Spring 2022
