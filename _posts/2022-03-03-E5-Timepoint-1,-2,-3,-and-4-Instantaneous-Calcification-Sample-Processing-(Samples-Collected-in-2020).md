@@ -127,9 +127,9 @@ Ariana: read in output for calc rates and check completeness script, decide on o
 
 #### List for Danielle to bring back from Mo'orea Spring 2022
 
-- September 2020: Run 4 BK-4  
+- September 2020: Run 4 BK-4  : DANIELLE FOUND
 - September 2020: Run 4 Initial 1 and 2  
-- September 2020: POR-240 Run 5 20200913  
+- September 2020: POR-240 Run 5 20200913  : DANIELLE FOUND
 
 
 ### Closed Issues

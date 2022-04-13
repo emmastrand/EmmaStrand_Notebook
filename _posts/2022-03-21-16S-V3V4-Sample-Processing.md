@@ -14,7 +14,8 @@ Excel processing sheet [here](https://github.com/emmastrand/EmmaStrand_Notebook/
 
 Contents:  
 - [**Primers**](#primers)   
-- [**Annealing Temperature Test**](#Annealtemp)
+- [**Testing with 338F**](#338F)  
+- [**Testing with 341F**](#341F)    
 - [**Sequencing test run 1**](#Seq1)   
 
 ## <a name="Primers"></a> **Primers**
@@ -39,7 +40,7 @@ X = 20 uL
 
 200 uL of 10 uM primer = 	20 uL 200 uM 	+ 180 uL Ultra Pure water
 
-## <a name="Annealtemp"></a> **Annealing Temperature Test**
+## <a name="338F"></a> **Testing with 338F**
 
 ### 20220321 Trial 1
 
@@ -157,7 +158,7 @@ in 20 uL dilution volume -- 8 ng/uL*20uL reaction / Qubit value = 160/Qubit valu
 
 ![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16S_v3v4/trial3-20220406.jpg?raw=true)
 
-#### GeneRuler 100 bp DNA Ladder on 2% gel: 75V, 400amp, 1 hour
+#### GeneRuler 1kb plus DNA Ladder on 2% gel: 75V, 400amp, 1 hour
 
 ![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16S_v3v4/gel-trial3.jpg?raw=true)
 
@@ -179,6 +180,44 @@ Porites spp. - [O'Brien et al 2018](https://www.frontiersin.org/articles/10.3389
 341F and 806R: Nelson's lab at Hawaii for M. capitata
 
 **Adult M. capitata might not work with the 338F primer?**
+
+## <a name="341F"></a> **Testing with 341F**
+
+### 20220413 Trial 4
+
+8 ng/uL concentrations except for the two egg samples. 9 coral samples plus 1 negative control to test the new primer 341F.
+
+Resuspend 341F primer concentrate in 584 uL to get 100 uM primer stock.
+
+To get 10 uM primer: 20 uL of the 100 uM stock + 180 uL of Ultrapure water.
+
+| PCR   strip tube # 	| SampleID            	| Input concentration 	| DNA location                                   	| Result from 338F trials 	| Qubit concentration 	| DNA (uL) 	| H20 (uL) 	|
+|--------------------	|---------------------	|---------------------	|------------------------------------------------	|-------------------------	|---------------------	|----------	|----------	|
+| 1                  	| P.acuta 2513 adult  	| 8 ng/uL             	| 20220406 8 ng/uL dilution strip tube (tube 7)  	| Bright band             	|                     	|          	|          	|
+| 2                  	| P. acuta 2878 adult 	| 8 ng/uL             	| 20220406 8 ng/uL dilution strip tube (tube 10) 	| Faint/No band           	|                     	|          	|          	|
+| 3                  	| M. cap M-217        	| 8 ng/uL             	| 20220406 8 ng/uL dilution strip tube (tube 11) 	| No band                 	|                     	|          	|          	|
+| 4                  	| M. cap M-212        	| 8 ng/uL             	| 20220406 8 ng/uL dilution strip tube (tube 12) 	| No band                 	|                     	|          	|          	|
+| 5                  	| M. cap Plug10       	| 8 ng/uL             	| 20220406 8 ng/uL dilution strip tube (tube 9)  	| Faint/No band           	|                     	|          	|          	|
+| 6                  	| M. cap Plug4        	| 8 ng/uL             	| Labeled Plug4 in AH's freezer box              	| No band                 	| 51                  	| 3.14     	| 16.86    	|
+| 7                  	| D1 eggs             	| **too low**         	| KW 4ng/uL plate 1 well E7                      	| Faint/No band           	|                     	|          	|          	|
+| 8                  	| D2 eggs             	| **too low**         	| KW 4ng/uL plate 1 well F7                      	| Faint/No band           	|                     	|          	|          	|
+| 9                  	| P. ast KW-10        	| 8 ng/uL             	| 20220406 8 ng/uL dilution strip tube           	| Bright band             	|                     	|          	|          	|
+| 10                 	| Negative control    	| NA                  	| NA                                             	| NA                      	| NA                  	| NA       	| NA       	|
+
+| Master   Mix Calculations 	|      	|               	|        	|
+|---------------------------	|------	|---------------	|--------	|
+|                           	| uL   	| N (10*3*1.05) 	| uL     	|
+| Phusion MM                	| 12.5 	| 31.5          	| 393.75 	|
+| F primer                  	| 0.5  	| 31.5          	| 15.75  	|
+| R primer                  	| 0.5  	| 31.5          	| 15.75  	|
+| Water                     	| 10.5 	| 31.5          	| 330.75 	|
+
+![]()
+
+#### GeneRuler 1kb plus DNA Ladder on 2% gel: 75V, 400amp, 1 hour
+
+![]()
+
 
 ## <a name="Seq1"></a> **Sequencing test run 1**
 

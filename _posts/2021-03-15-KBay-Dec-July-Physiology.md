@@ -22,48 +22,48 @@ Contents:
 
 ## <a name="SampleID"></a> **Master List with airbrushing processing**
 
-| ColonyID 	| Species            	| Site 	| Pair 	| Bleach     	| Date    	| Airbrush Date 	| volume (mL) 	| Notes                            	|
-|----------	|--------------------	|------	|------	|------------	|---------	|---------------	|-------------	|----------------------------------	|
-| 3        	| Montipora capitata 	| 13   	| 1    	| Bleach     	| 7/16/19 	|               	|             	|                                  	|
-| 4        	| Montipora capitata 	| 13   	| 1    	| Non-bleach 	| 7/16/19 	|               	|             	|                                  	|
-| 11       	| Montipora capitata 	| 13   	| 2    	| Bleach     	| 7/16/19 	|               	|             	|                                  	|
-| 12       	| Montipora capitata 	| 13   	| 2    	| Non-bleach 	| 7/16/19 	|               	|             	|                                  	|
-| 19       	| Montipora capitata 	| 13   	| 3    	| Bleach     	| 7/16/19 	|               	|             	|                                  	|
-| 20       	| Montipora capitata 	| 13   	| 3    	| Non-bleach 	| 7/16/19 	|               	|             	|                                  	|
-| 201      	| Montipora capitata 	| 13   	| 9    	| Bleach     	| 7/16/19 	|               	|             	|                                  	|
-| 202      	| Montipora capitata 	| 13   	| 9    	| Non-bleach 	| 7/16/19 	|               	|             	|                                  	|
-| 203      	| Montipora capitata 	| 13   	| 10   	| Bleach     	| 7/16/19 	|               	|             	|                                  	|
-| 204      	| Montipora capitata 	| 13   	| 10   	| Non-bleach 	| 7/16/19 	|               	|             	|                                  	|
-| 209      	| Montipora capitata 	| 13   	| 11   	| Bleach     	| 7/16/19 	|               	|             	|                                  	|
-| 210      	| Montipora capitata 	| 13   	| 11   	| Non-bleach 	| 7/16/19 	|               	|             	|                                  	|
-| 211      	| Montipora capitata 	| 13   	| 12   	| Bleach     	| 7/16/19 	|               	|             	|                                  	|
-| 212      	| Montipora capitata 	| 13   	| 12   	| Non-bleach 	| 7/16/19 	|               	|             	|                                  	|
-| 217      	| Montipora capitata 	| 13   	| 13   	| Bleach     	| 7/16/19 	|               	|             	|                                  	|
-| 218      	| Montipora capitata 	| 13   	| 13   	| Non-bleach 	| 7/16/19 	|               	|             	|                                  	|
-| 219      	| Montipora capitata 	| 13   	| 14   	| Bleach     	| 7/16/19 	|               	|             	|                                  	|
-| 220      	| Montipora capitata 	| 13   	| 14   	| Non-bleach 	| 7/16/19 	|               	|             	|                                  	|
-| 221      	| Montipora capitata 	| 13   	| 15   	| Bleach     	| 7/16/19 	|               	|             	|                                  	|
-| 222      	| Montipora capitata 	| 13   	| 15   	| Non-bleach 	| 7/16/19 	|               	|             	|                                  	|
-| 3        	| Montipora capitata 	| 13   	| 1    	| Bleach     	| 12/4/19 	| 20220317      	| 9.5         	|                                  	|
-| 4        	| Montipora capitata 	| 13   	| 1    	| Non-bleach 	| 12/4/19 	| 20220321      	| 24          	| 2 tubes                          	|
-| 11       	| Montipora capitata 	| 13   	| 2    	| Bleach     	| 12/4/19 	| 20220321      	| 10          	| 3-4 mL spilled out               	|
-| 12       	| Montipora capitata 	| 13   	| 2    	| Non-bleach 	| 12/4/19 	|               	|             	|                                  	|
-| 19       	| Montipora capitata 	| 13   	| 3    	| Bleach     	| 12/4/19 	| 20220321      	| 26.5        	| 2 tubes                          	|
-| 20       	| Montipora capitata 	| 13   	| 3    	| Non-bleach 	| 12/4/19 	| 20220321      	| 28          	| 2 tubes                          	|
-| 201      	| Montipora capitata 	| 13   	| 9    	| Bleach     	| 12/4/19 	| 20220321      	| 13          	|                                  	|
-| 202      	| Montipora capitata 	| 13   	| 9    	| Non-bleach 	| 12/4/19 	| 20220321      	| 11          	|                                  	|
-| 203      	| Montipora capitata 	| 13   	| 10   	| Bleach     	| 12/4/19 	|               	|             	|                                  	|
-| 204      	| Montipora capitata 	| 13   	| 10   	| Non-bleach 	| 12/4/19 	| 20220321      	| 17.5        	| 2 tubes                          	|
-| 209      	| Montipora capitata 	| 13   	| 11   	| Bleach     	| 12/4/19 	| 20220321      	| 7           	| Bag leaked ~4-5 mL   spilled out 	|
-| 210      	| Montipora capitata 	| 13   	| 11   	| Non-bleach 	| 12/4/19 	| 20220321      	| 4.5         	|                                  	|
-| 211      	| Montipora capitata 	| 13   	| 12   	| Bleach     	| 12/4/19 	| 20220321      	| 12          	|                                  	|
-| 212      	| Montipora capitata 	| 13   	| 12   	| Non-bleach 	| 12/4/19 	| 20220321      	| 8           	|                                  	|
-| 217      	| Montipora capitata 	| 13   	| 13   	| Bleach     	| 12/4/19 	|               	|             	|                                  	|
-| 218      	| Montipora capitata 	| 13   	| 13   	| Non-bleach 	| 12/4/19 	|               	|             	|                                  	|
-| 219      	| Montipora capitata 	| 13   	| 14   	| Bleach     	| 12/4/19 	| 20220321      	| 15          	|                                  	|
-| 220      	| Montipora capitata 	| 13   	| 14   	| Non-bleach 	| 12/4/19 	| 20220321      	| 7           	|                                  	|
-| 221      	| Montipora capitata 	| 13   	| 15   	| Bleach     	| 12/4/19 	| 20220321      	| 10          	|                                  	|
-| 222      	| Montipora capitata 	| 13   	| 15   	| Non-bleach 	| 12/4/19 	| 20220321      	| 10.5        	|                                  	|
+| ColonyID 	| Species            	| Site 	| Pair 	| Bleach     	| Date    	| Airbrush Date 	| volume (mL) 	| Notes                                                                                             	|
+|----------	|--------------------	|------	|------	|------------	|---------	|---------------	|-------------	|---------------------------------------------------------------------------------------------------	|
+| 3        	| Montipora capitata 	| 13   	| 1    	| Bleach     	| 7/16/19 	|               	|             	|                                                                                                   	|
+| 4        	| Montipora capitata 	| 13   	| 1    	| Non-bleach 	| 7/16/19 	|               	|             	|                                                                                                   	|
+| 11       	| Montipora capitata 	| 13   	| 2    	| Bleach     	| 7/16/19 	|               	|             	| tiny                                                                                              	|
+| 12       	| Montipora capitata 	| 13   	| 2    	| Non-bleach 	| 7/16/19 	| 20220411      	| 8.5         	|                                                                                                   	|
+| 19       	| Montipora capitata 	| 13   	| 3    	| Bleach     	| 7/16/19 	| 20220411      	| 8           	|                                                                                                   	|
+| 20       	| Montipora capitata 	| 13   	| 3    	| Non-bleach 	| 7/16/19 	|               	|             	| tiny                                                                                              	|
+| 201      	| Montipora capitata 	| 13   	| 9    	| Bleach     	| 7/16/19 	| NA            	| NA          	| no more fragment                                                                                  	|
+| 202      	| Montipora capitata 	| 13   	| 9    	| Non-bleach 	| 7/16/19 	|               	|             	|                                                                                                   	|
+| 203      	| Montipora capitata 	| 13   	| 10   	| Bleach     	| 7/16/19 	| 20220411      	| 2           	| tiny; no extra   homogenate; double the SA for 2 fragments b/c half of skeleton crumbled in   bag 	|
+| 204      	| Montipora capitata 	| 13   	| 10   	| Non-bleach 	| 7/16/19 	|               	|             	|                                                                                                   	|
+| 209      	| Montipora capitata 	| 13   	| 11   	| Bleach     	| 7/16/19 	| 20220411      	| 3           	|                                                                                                   	|
+| 210      	| Montipora capitata 	| 13   	| 11   	| Non-bleach 	| 7/16/19 	| 20220411      	| 7.5         	|                                                                                                   	|
+| 211      	| Montipora capitata 	| 13   	| 12   	| Bleach     	| 7/16/19 	| 20220411      	| 4.5         	|                                                                                                   	|
+| 212      	| Montipora capitata 	| 13   	| 12   	| Non-bleach 	| 7/16/19 	|               	|             	|                                                                                                   	|
+| 217      	| Montipora capitata 	| 13   	| 13   	| Bleach     	| 7/16/19 	|               	|             	|                                                                                                   	|
+| 218      	| Montipora capitata 	| 13   	| 13   	| Non-bleach 	| 7/16/19 	| 20220411      	| 7           	|                                                                                                   	|
+| 219      	| Montipora capitata 	| 13   	| 14   	| Bleach     	| 7/16/19 	| 20220411      	| 7           	|                                                                                                   	|
+| 220      	| Montipora capitata 	| 13   	| 14   	| Non-bleach 	| 7/16/19 	| 20220411      	| 12.5        	| 11 + 1-2 mL leaked   out                                                                          	|
+| 221      	| Montipora capitata 	| 13   	| 15   	| Bleach     	| 7/16/19 	| 20220411      	| 11.5        	|                                                                                                   	|
+| 222      	| Montipora capitata 	| 13   	| 15   	| Non-bleach 	| 7/16/19 	|               	|             	|                                                                                                   	|
+| 3        	| Montipora capitata 	| 13   	| 1    	| Bleach     	| 12/4/19 	| 20220317      	| 9.5         	|                                                                                                   	|
+| 4        	| Montipora capitata 	| 13   	| 1    	| Non-bleach 	| 12/4/19 	| 20220321      	| 24          	| 2 tubes                                                                                           	|
+| 11       	| Montipora capitata 	| 13   	| 2    	| Bleach     	| 12/4/19 	| 20220321      	| 13.5        	| 10 + 3-4 mL spilled   out                                                                         	|
+| 12       	| Montipora capitata 	| 13   	| 2    	| Non-bleach 	| 12/4/19 	| 20220411      	| 9.5         	| fragment crumbled                                                                                 	|
+| 19       	| Montipora capitata 	| 13   	| 3    	| Bleach     	| 12/4/19 	| 20220321      	| 26.5        	| 2 tubes                                                                                           	|
+| 20       	| Montipora capitata 	| 13   	| 3    	| Non-bleach 	| 12/4/19 	| 20220321      	| 28          	| 2 tubes                                                                                           	|
+| 201      	| Montipora capitata 	| 13   	| 9    	| Bleach     	| 12/4/19 	| 20220321      	| 13          	|                                                                                                   	|
+| 202      	| Montipora capitata 	| 13   	| 9    	| Non-bleach 	| 12/4/19 	| 20220321      	| 11          	|                                                                                                   	|
+| 203      	| Montipora capitata 	| 13   	| 10   	| Bleach     	| 12/4/19 	| 20220411      	| 14          	|                                                                                                   	|
+| 204      	| Montipora capitata 	| 13   	| 10   	| Non-bleach 	| 12/4/19 	| 20220321      	| 17.5        	| 2 tubes                                                                                           	|
+| 209      	| Montipora capitata 	| 13   	| 11   	| Bleach     	| 12/4/19 	| 20220321      	| 11.5        	| 7 + Bag leaked ~4-5   mL spilled out                                                              	|
+| 210      	| Montipora capitata 	| 13   	| 11   	| Non-bleach 	| 12/4/19 	| 20220321      	| 4.5         	|                                                                                                   	|
+| 211      	| Montipora capitata 	| 13   	| 12   	| Bleach     	| 12/4/19 	| 20220321      	| 12          	|                                                                                                   	|
+| 212      	| Montipora capitata 	| 13   	| 12   	| Non-bleach 	| 12/4/19 	| 20220321      	| 8           	|                                                                                                   	|
+| 217      	| Montipora capitata 	| 13   	| 13   	| Bleach     	| 12/4/19 	|               	|             	|                                                                                                   	|
+| 218      	| Montipora capitata 	| 13   	| 13   	| Non-bleach 	| 12/4/19 	| 20220411      	| 16          	| 2 tubes                                                                                           	|
+| 219      	| Montipora capitata 	| 13   	| 14   	| Bleach     	| 12/4/19 	| 20220321      	| 15          	|                                                                                                   	|
+| 220      	| Montipora capitata 	| 13   	| 14   	| Non-bleach 	| 12/4/19 	| 20220321      	| 7           	|                                                                                                   	|
+| 221      	| Montipora capitata 	| 13   	| 15   	| Bleach     	| 12/4/19 	| 20220321      	| 10          	|                                                                                                   	|
+| 222      	| Montipora capitata 	| 13   	| 15   	| Non-bleach 	| 12/4/19 	| 20220321      	| 10.5        	|                                                                                                   	|
 
 Two of the skeletons don't really look like *M. capitata* skeletons.. I don't have any notes about these not looking right during extractions but circle back to this to double check these are actually Mcap..?
 
