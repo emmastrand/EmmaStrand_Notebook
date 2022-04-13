@@ -223,6 +223,8 @@ To get 10 uM primer: 20 uL of the 100 uM stock + 180 uL of Ultrapure water.
 
 Samples to send:
 
+### Stitched gel from 338F samples:
+
 ![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16S_v3v4/gel-seqrun1.jpg?raw=true)
 
 - 2513, KW-10, and Plug10 all strong bands with higher DNA ng input.  
