@@ -67,6 +67,8 @@ Contents:
 
 Two of the skeletons don't really look like *M. capitata* skeletons.. I don't have any notes about these not looking right during extractions but circle back to this to double check these are actually Mcap..?
 
+[airbrushing](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%20Physiology%20processing/airbrushing-sheet.jpg?raw=true)
+
 ## <a name="Counts"></a> **Cell counts**
 
 ## <a name="Chl"></a> **Chlorophyll concentration**
