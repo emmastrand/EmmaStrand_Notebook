@@ -216,7 +216,7 @@ To get 10 uM primer: 20 uL of the 100 uM stock + 180 uL of Ultrapure water.
 
 #### GeneRuler 1kb plus DNA Ladder on 2% gel: 75V, 400amp, 1 hour
 
-![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16S_v3v4/trial4-20220413.jpg?raw=true)
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16S_v3v4/trial4-20220413-341Fgel.jpg?raw=true)
 
 
 ## <a name="Seq1"></a> **Sequencing test run 1**
