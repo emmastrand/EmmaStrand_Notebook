@@ -223,6 +223,14 @@ To get 10 uM primer: 20 uL of the 100 uM stock + 180 uL of Ultrapure water.
 
 ### 20220418 Trial 5
 
+DNA BR Standard 1: 198.05  
+DNA BR Standard 2: 21,549.69  
+
+M-217: 14.8 14.3  
+M-212: 29.0; 28.6
+
+There is DNA for both M.cap adults that don't work with the V3 primer...
+
 Testing higher annealing temperature using 338F - Trial 5  
 
 4 ng/uL to be able to compare to 56, 57, and 58 C trials
@@ -250,18 +258,17 @@ Testing higher annealing temperature using 338F - Trial 5
 | R primer   	| 0.5  	| 37.8          	| 18.9  	|
 | Water      	| 10.5 	| 37.8          	| 396.9 	|
 
-![]()
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16S_v3v4/trial5.jpg?raw=true)
 
 #### GeneRuler 1kb plus DNA Ladder on 2% gel: 75V, 400amp, 1 hour
 
-![]()
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16S_v3v4/gel-trial5.jpg?raw=true)
 
-### Annealing Temperature comparison: 56, 57, 58, 60, 63 C
+### Annealing Temperature comparison
 
-all 4 ng/uL input with 338F and 806RB primers
+all 4 ng/uL input with 338F and 806RB primers. All temperature seem to work..
 
-![]()
-
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16S_v3v4/annealing-temp-range.png?raw=true)
 
 ## <a name="Seq1"></a> **Sequencing test run 1**
 
