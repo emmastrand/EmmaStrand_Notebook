@@ -16,6 +16,7 @@ Contents:
 - [**Primers**](#primers)   
 - [**Testing with 338F**](#338F)  
 - [**Testing with 341F**](#341F)    
+- [**Higher Annealing Temperature Test**](#annealing)    
 - [**Sequencing test run 1**](#Seq1)   
 
 ## <a name="Primers"></a> **Primers**
@@ -217,6 +218,49 @@ To get 10 uM primer: 20 uL of the 100 uM stock + 180 uL of Ultrapure water.
 #### GeneRuler 1kb plus DNA Ladder on 2% gel: 75V, 400amp, 1 hour
 
 ![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16S_v3v4/trial4-20220413-341Fgel.jpg?raw=true)
+
+## <a name="annealing"></a> **Higher Annealing Temperature Test**
+
+### 20220418 Trial 5
+
+Testing higher annealing temperature using 338F - Trial 5  
+
+4 ng/uL to be able to compare to 56, 57, and 58 C trials
+
+| PCR strip   tube # 	| SampleID                	| Input concentration 	| DNA location                 	| Annealing Temperature 	|
+|--------------------	|-------------------------	|---------------------	|------------------------------	|-----------------------	|
+| 1                  	| P. acuta 2513           	| 4 ng/uL             	| 20220404 strip tube 4 ng/uL  	| 60 C                  	|
+| 2                  	| P. ast KW-10            	| 4 ng/uL             	| 20220404 strip tube 4 ng/uL  	| 60 C                  	|
+| 3                  	| Plug 10 settled recruit 	| 4 ng/uL             	| 20220404 strip tube 4 ng/uL  	| 60 C                  	|
+| 4                  	| D1 eggs                 	| too follow           	| Original DNA tube - 3 uL     	| 60 C                  	|
+| 5                  	| M-217                   	| 4 ng/uL             	| 20220404 strip tube 4 ng/uL  	| 60 C                  	|
+| 6                  	| negative control        	| NA                  	| NA                           	| 60 C                  	|
+| 7                  	| P. acuta 2513           	| 4 ng/uL             	| 20220404 strip tube 4 ng/uL  	| 63 C                  	|
+| 8                  	| P. ast KW-10            	| 4 ng/uL             	| 20220404 strip tube 4 ng/uL  	| 63 C                  	|
+| 9                  	| Plug 10 settled recruit 	| 4 ng/uL             	| 20220404 strip tube 4 ng/uL  	| 63 C                  	|
+| 10                 	| D1 eggs                 	| too follow          	| Original DNA tube - 3 uL     	| 63 C                  	|
+| 11                 	| M-217                   	| 4 ng/uL             	| 20220404 strip tube 4 ng/uL  	| 63 C                  	|
+| 12                 	| negative control        	| NA                  	| NA                           	| 63 C                  	|
+
+
+|            	| uL   	| N (12*3*1.05) 	| uL    	|
+|------------	|------	|---------------	|-------	|
+| Phusion MM 	| 12.5 	| 37.8          	| 472.5 	|
+| F primer   	| 0.5  	| 37.8          	| 18.9  	|
+| R primer   	| 0.5  	| 37.8          	| 18.9  	|
+| Water      	| 10.5 	| 37.8          	| 396.9 	|
+
+![]()
+
+#### GeneRuler 1kb plus DNA Ladder on 2% gel: 75V, 400amp, 1 hour
+
+![]()
+
+### Annealing Temperature comparison: 56, 57, 58, 60, 63 C
+
+all 4 ng/uL input with 338F and 806RB primers
+
+![]()
 
 
 ## <a name="Seq1"></a> **Sequencing test run 1**
