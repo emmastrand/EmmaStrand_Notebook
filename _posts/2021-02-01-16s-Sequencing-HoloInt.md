@@ -151,7 +151,7 @@ We ran several trials (see end of this post) based on Apprill et al 2015 to find
 | Temperature 	| Time   	| Repeat 	|
 |-------------	|--------	|--------	|
 | 95 °C       	| 2 min  	| 1      	|
-| *95 °C       	| 20 s   	| x27-35 	|
+| *95 °C       	| 20 s   	| x35    	|
 | *57 °C       	| 15s    	|        	|
 | *72 °C       	| 5 min  	|        	|
 | 72 °C       	| 10 min 	| 1      	|
@@ -162,7 +162,7 @@ We ran several trials (see end of this post) based on Apprill et al 2015 to find
 |-------------	|--------	|--------	|
 | 95 °C       	| 2 min  	| 1      	|
 | *95 °C       	| 20 s   	| x30   	|
-| *55 °C       	| 30 s   	|        	|
+| *57 °C       	| 30 s   	|        	|
 | *72 °C       	| 20 s  	|        	|
 | 72 °C       	| 5 min  	| 1      	|
 

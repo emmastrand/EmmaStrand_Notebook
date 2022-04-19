@@ -14,6 +14,7 @@ Excel processing sheet [here](https://github.com/emmastrand/EmmaStrand_Notebook/
 
 Contents:  
 - [**Primers**](#primers)   
+- [**PCR settings**](#PCR)   
 - [**Testing with 338F**](#338F)  
 - [**Testing with 341F**](#341F)    
 - [**Higher Annealing Temperature Test**](#annealing)    
@@ -40,6 +41,28 @@ X = 2,000 / 100
 X = 20 uL
 
 200 uL of 10 uM primer = 	20 uL 200 uM 	+ 180 uL Ultra Pure water
+
+## <a name="PCR"></a> **PCR settings**
+
+**PCR program used for V4 primers: 515F and 806RB**  
+
+| Temperature 	| Time   	| Repeat 	|
+|-------------	|--------	|--------	|
+| 95 °C       	| 2 min  	| 1      	|
+| *95 °C       	| 20 s   	| 35 	    |
+| *57 °C       	| 15s    	|        	|
+| *72 °C       	| 5 min  	|        	|
+| 72 °C       	| 10 min 	| 1      	|
+
+**PCR program used for V3/V4 primers: 338F/341F and 806RB**
+
+| Temperature 	| Time   	| Repeat 	|
+|-------------	|--------	|--------	|
+| 95 °C       	| 2 min  	| 1      	|
+| *95 °C       	| 20 s   	| x30   	|
+| *57 °C       	| 30 s   	|        	|
+| *72 °C       	| 20 s  	|        	|
+| 72 °C       	| 5 min  	| 1      	|
 
 ## <a name="338F"></a> **Testing with 338F**
 

@@ -23,7 +23,8 @@ Contents:
 Sample location: Putnam Lab -80C AH Rack; "Physiology Host/Sym/Holo Separations".
 
 [Google drive folder for cell counts](https://drive.google.com/drive/folders/1rH30T0Brls_BURnpXY8Natf_0k1nR-lG)  
-[Google sheet for data input](https://docs.google.com/spreadsheets/d/1h5QpksBTnxKlnsBhagR3Nc8P3PujoTa56k_VMTvfwU4/edit#gid=0)  
+[Google sheet for data input](https://docs.google.com/spreadsheets/d/1h5QpksBTnxKlnsBhagR3Nc8P3PujoTa56k_VMTvfwU4/edit#gid=0)    
+[Protocol](https://ahuffmyer.github.io/ASH_Putnam_Lab_Notebook/Symbiont-Cell-Counts-Protocol/)
 
 We're trying the symbiont pellet first to resuspend in small volumes of 1X PBS.
 
@@ -32,7 +33,10 @@ We're trying the symbiont pellet first to resuspend in small volumes of 1X PBS.
 Sample location: Putnam Lab -80C AH Rack; "Physiology Host/Sym/Holo Separations".
 
 [Google drive folder for chlorophyll](https://drive.google.com/drive/folders/1BwWwTPhXvS-zXpMG0OxGNN4cnTx3TwYW)  
-[Google sheet for data input]()
+[Google sheet for data input]()  
+[Protocol](https://ahuffmyer.github.io/ASH_Putnam_Lab_Notebook/Chlorophyll-Content-Protocol/)
+
+
 
 
 ## <a name="larval"></a> **Larval Size Photographs**
@@ -41,6 +45,7 @@ Putnam Lab 4C Fridge, Plastic box in plastic bag; "Mcap 2021 Fixed Larvae"
 
 [Sample list for photographs](https://docs.google.com/spreadsheets/d/1jorAFWq0o-BKVvA2GuCjWuqDNZ8GWS4pwQjua1mSbjI/edit#gid=0)  
 [photos google drive](https://drive.google.com/drive/folders/1ygCd68_x85uJIw8fSU-rYvQt0P9vpfRb)   
-[google sheet for photos](https://docs.google.com/spreadsheets/d/1jorAFWq0o-BKVvA2GuCjWuqDNZ8GWS4pwQjua1mSbjI/edit#gid=0)
+[google sheet for photos](https://docs.google.com/spreadsheets/d/1jorAFWq0o-BKVvA2GuCjWuqDNZ8GWS4pwQjua1mSbjI/edit#gid=0)  
+[Protocol](https://ahuffmyer.github.io/ASH_Putnam_Lab_Notebook/Larval-Size-Photographs-Protocol/)
 
 Goal: Kristen to do this next week (4/19)
