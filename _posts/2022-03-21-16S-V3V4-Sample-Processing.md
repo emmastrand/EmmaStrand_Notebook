@@ -294,7 +294,7 @@ Testing a couple M. capitata samples with 515F again to figure out if it's a V3 
 | 806 RB primer 	| 0.5  	| 25.2         	| 12.6  	|
 | Water         	| 10.5 	| 25.2         	| 264.6 	|
 
-![]()
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16S_v3v4/trial6.jpg?raw=true)
 
 #### GeneRuler 1kb plus DNA Ladder on 2% gel: 75V, 400amp, 1 hour
 
