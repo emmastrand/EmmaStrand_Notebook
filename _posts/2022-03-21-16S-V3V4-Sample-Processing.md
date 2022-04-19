@@ -270,6 +270,36 @@ all 4 ng/uL input with 338F and 806RB primers. All temperature seem to work..
 
 ![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16S_v3v4/annealing-temp-range.png?raw=true)
 
+### 20220419 Trial 6
+
+Testing a couple M. capitata samples with 515F again to figure out if it's a V3 region issue or DNA sample issue.
+
+8 ng/uL DNA input for 2 temperatures
+
+| PCR   strip tube # 	| SampleID          	| Input concentration 	| DNA location                          	| Annealing Temperature 	|
+|--------------------	|-------------------	|---------------------	|---------------------------------------	|-----------------------	|
+| 1                  	| M-217 (Ext ID 16) 	| 8 ng/uL             	| 20220406 8 ng/uL dilution strip tube  	| 57 C                  	|
+| 2                  	| M-212 (Ext ID 17) 	| 8 ng/uL             	| 20220406 8 ng/uL dilution strip tube  	| 57 C                  	|
+| 3                  	| P. ast KW-10      	| 8 ng/uL             	| 20220406 8 ng/uL dilution strip tube  	| 57 C                  	|
+| 4                  	| Negative control  	| 8 ng/uL             	| Original DNA tube - 3 uL              	| 57 C                  	|
+| 5                  	| M-217 (Ext ID 16) 	| 8 ng/uL             	| 20220406 8 ng/uL dilution strip tube  	| 63 C                  	|
+| 6                  	| M-212 (Ext ID 17) 	| 8 ng/uL             	| 20220406 8 ng/uL dilution strip tube  	| 63 C                  	|
+| 7                  	| P. ast KW-10      	| 8 ng/uL             	| 20220406 8 ng/uL dilution strip tube  	| 63 C                  	|
+| 8                  	| Negative control  	| 8 ng/uL             	| Original DNA tube - 3 uL              	| 63 C                  	|
+
+|               	| uL   	| N (8*3*1.05) 	| uL    	|
+|---------------	|------	|--------------	|-------	|
+| Phusion MM    	| 12.5 	| 25.2         	| 315   	|
+| 515 F primer  	| 0.5  	| 25.2         	| 12.6  	|
+| 806 RB primer 	| 0.5  	| 25.2         	| 12.6  	|
+| Water         	| 10.5 	| 25.2         	| 264.6 	|
+
+![]()
+
+#### GeneRuler 1kb plus DNA Ladder on 2% gel: 75V, 400amp, 1 hour
+
+![]()
+
 ## <a name="Seq1"></a> **Sequencing test run 1**
 
 Samples to send:
