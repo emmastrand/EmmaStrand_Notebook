@@ -333,4 +333,30 @@ Questions to answer from sequencing:
 - Does 63C annealing temperature for the V4 (515F) region yield better microbiome vs host ratios? Is this still all host?  
 - What kind of noise do we get from negative controls?    
 
-**Do our extraction kits and process bias what DNA we get?**
+### 19 samples to sequence
+
+| SampleID 	| Strip tube # to Janet 	| 16S Region 	| Forward Primer Used 	| Annealing Temperature 	| SampleID                	| DNA input             	| Date PCR run     	| Band information 	| Replicate # (uL total after gel) 	| uL leftover after  	|
+|----------	|-----------------------	|------------	|---------------------	|-----------------------	|-------------------------	|-----------------------	|------------------	|------------------	|----------------------------------	|--------------------	|
+| ELS001   	| 1                     	| V3V4       	| 338F                	| 57 C                  	| P. acuta 2513 adult     	| 8 ng/uL (24 ng total) 	| 20220406 Trial 3 	| Bright           	| 3                                	| 45                 	|
+| ELS002   	| 2                     	| V3V4       	| 338F                	| 57 C                  	| P. ast KW-10 adult      	| 8 ng/uL (24 ng total) 	| 20220406 Trial 3 	| Bright           	| 3                                	| 45                 	|
+| ELS003   	| 3                     	| V3V4       	| 338F                	| 57 C                  	| Plug 10 settled recruit 	| 8 ng/uL (24 ng total) 	| 20220406 Trial 3 	| Bright           	| 3                                	| 45                 	|
+| ELS004   	| 4                     	| V3V4       	| 338F                	| 57 C                  	| P. acuta 2878           	| 4 ng/uL (12 ng total) 	| 20220321 Trial 2 	| Faint            	| 2                                	| 20                 	|
+| ELS005   	| 5                     	| V3V4       	| 338F                	| 57 C                  	| D1 eggs                 	| too low               	| 20220321 Trial 2 	| Faint            	| 2                                	| 20                 	|
+| ELS006   	| 6                     	| V3V4       	| 338F                	| 63 C                  	| P. acuta 2513 adult     	| 4 ng/uL (12 ng total) 	| 20220418 Trial 5 	| Bright           	| 3                                	| 45                 	|
+| ELS007   	| 7                     	| V3V4       	| 338F                	| 63 C                  	| P. ast KW-10 adult      	| 4 ng/uL (12 ng total) 	| 20220418 Trial 5 	| Bright           	| 3                                	| 45                 	|
+| ELS008   	| 8                     	| V3V4       	| 338F                	| 63 C                  	| Plug 10 settled recruit 	| 4 ng/uL (12 ng total) 	| 20220418 Trial 5 	| Faint            	| 3                                	| 45                 	|
+| ELS009   	| 9                     	| V3V4       	| 341F                	| 57 C                  	| P. acuta 2513 adult     	| 8 ng/uL (24 ng total) 	| 20220413 Trial 4 	| Bright           	| 3                                	| 45                 	|
+| ELS010   	| 10                    	| V3V4       	| 341F                	| 57 C                  	| P. ast KW-10 adult      	| 8 ng/uL (24 ng total) 	| 20220413 Trial 4 	| Bright           	| 3                                	| 45                 	|
+| ELS011   	| 11                    	| V3V4       	| 341F                	| 57 C                  	| Plug 10 settled recruit 	| 8 ng/uL (24 ng total) 	| 20220413 Trial 4 	| Faint            	| 3                                	| 45                 	|
+| ELS012   	| 12                    	| V3V4       	| 341F                	| 57 C                  	| Plug 4 settled recruit  	| 8 ng/uL (24 ng total) 	| 20220413 Trial 4 	| Faint            	| 3                                	| 45                 	|
+| ELS013   	| 13                    	| V3V4       	| 341F                	| 57 C                  	| D1 eggs                 	| too low               	| 20220413 Trial 4 	| Very faint       	| 3                                	| 45                 	|
+| ELS014   	| 14                    	| V4         	| 515F                	| 63 C                  	| M-217                   	| 8 ng/uL (24 ng total) 	| 20220419 Trial 6 	| Bright           	| 3                                	| 45                 	|
+| ELS015   	| 15                    	| V4         	| 515F                	| 63 C                  	| M-212                   	| 8 ng/uL (24 ng total) 	| 20220419 Trial 6 	| Bright           	| 3                                	| 45                 	|
+| ELS016   	| 16                    	| V4         	| 515F                	| 63 C                  	| P. ast KW-10 adult      	| 8 ng/uL (24 ng total) 	| 20220419 Trial 6 	| Bright           	| 3                                	| 45                 	|
+| ELS017   	| 17                    	| V3V4       	| 338F                	| 57 C                  	| Negative control        	| NA                    	| 20220406 Trial 3 	| None             	| 3                                	| 45                 	|
+| ELS018   	| 18                    	| V3V4       	| 341F                	| 57 C                  	| Negative control        	| NA                    	| 20220413 Trial 4 	| None             	| 3                                	| 45                 	|
+| ELS019   	| 19                    	| V4         	| 515F                	| 63 C                  	| Negative control        	| NA                    	| 20220419 Trial 6 	| None             	| 3                                	| 45                 	|
+
+### Stitched gel image from the above samples
+
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16S_v3v4/stitched-gel-seq1.png?raw=true)
