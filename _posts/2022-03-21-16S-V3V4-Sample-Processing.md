@@ -321,7 +321,7 @@ Testing a couple M. capitata samples with 515F again to figure out if it's a V3 
 
 #### GeneRuler 1kb plus DNA Ladder on 2% gel: 75V, 400amp, 1 hour
 
-![]()
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16S_v3v4/trial6-gel.jpg?raw=true)
 
 ## <a name="Seq1"></a> **Sequencing test run 1**
 
