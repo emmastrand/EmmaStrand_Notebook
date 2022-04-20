@@ -323,31 +323,14 @@ Testing a couple M. capitata samples with 515F again to figure out if it's a V3 
 
 ![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16S_v3v4/trial6-gel.jpg?raw=true)
 
+**M. cap adults are not working with V3 region specifically, both 341F and 338F primers.**
+
 ## <a name="Seq1"></a> **Sequencing test run 1**
 
-Samples to send:
+Questions to answer from sequencing:    
+- Do we get microbiome or host sequences from 338F and 341F V3V4 region PCR products?  
+- Which V3V34 primer (338F and or 341F) yields higher microbiome sequences?   
+- Does 63C annealing temperature for the V4 (515F) region yield better microbiome vs host ratios? Is this still all host?  
+- What kind of noise do we get from negative controls?    
 
-### Stitched gel from 338F samples:
-
-![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16S_v3v4/gel-seqrun1.jpg?raw=true)
-
-- 2513, KW-10, and Plug10 all strong bands with higher DNA ng input.  
-- 2878 I only got a faint band once, and the rest of the time I got no band for this sample.      
-- M-217 and M-212 I can't seem to get a band with these. Only one faint band from trial1 but even when I up the DNA input I still get no bands.      
-- Negative control as quality control  
-- D1 eggs I can get a faint band but can't up the DNA input since the qubit value is low - I just put in 3 uL of undiluted DNA extract.
-
-| SampleID 	| Strip tube # to Janet 	| Original strip tube # 	| SampleID         	| Lifestage       	| Species            	| DNA input             	| Date PCR run 	| Trial # 	| Band information 	| Replicate # (uL total after gel) 	| uL leftover after  	|
-|----------	|-----------------------	|-----------------------	|------------------	|-----------------	|--------------------	|-----------------------	|--------------	|---------	|------------------	|----------------------------------	|--------------------	|
-| ELS001   	| 1                     	| 7                     	| 2513             	| Adult           	| Pocillopora acuta  	| 8 ng/uL (24 ng total) 	| 20220406     	| 3       	| strong           	| 3 (70 uL)                        	| 45 uL              	|
-| ELS002   	| 2                     	| 8                     	| KW-10            	| Adult           	| Porites asteroides 	| 8 ng/uL (24 ng total) 	| 20220406     	| 3       	| strong           	| 3 (70 uL)                        	| 45 uL              	|
-| ELS003   	| 3                     	| 9                     	| Plug10           	| Settled recruit 	| Montipora capitata 	| 8 ng/uL (24 ng total) 	| 20220406     	| 3       	| strong           	| 3 (70 uL)                        	| 45 uL              	|
-| ELS004   	| 4                     	| 10                    	| 2878             	| Adult           	| Pocillopora acuta  	| 4 ng/uL (12 ng total) 	| 20220321     	| 1       	| faint            	| 3 (70 uL)                        	| 45 uL              	|
-| ELS005   	| 5                     	| 11                    	| M-217            	| Adult           	| Montipora capitata 	| 8 ng/uL (24 ng total) 	| 20220406     	| 3       	| none             	| 3 (70 uL)                        	| 45 uL              	|
-| ELS006   	| 6                     	| 12                    	| M-212            	| Adult           	| Montipora capitata 	| 8 ng/uL (24 ng total) 	| 20220406     	| 3       	| none             	| 3 (70 uL)                        	| 45 uL              	|
-| ELS007   	| 7                     	| (-)                   	| Negative control 	| NA              	| NA                 	| NA                    	| 20220406     	| 3       	| none             	| 3 (70 uL)                        	| 45 uL              	|
-| ELS008   	| 8                     	| 5                     	| D1               	| Eggs            	| Montipora capitata 	| **too low**           	| 20220404     	| 2       	| faint            	| 2 (45 uL)                        	| 20 uL              	|
-
-
-
-Along with Kevin's if he needs to send any.
+**Do our extraction kits and process bias what DNA we get?**
