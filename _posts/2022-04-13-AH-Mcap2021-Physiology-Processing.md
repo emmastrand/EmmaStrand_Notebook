@@ -86,22 +86,21 @@ Notes:
 - We were having trouble with the brightness and focus on 20220419. These images may not be as sharp but should still be able to get length and width out of them.  
 
 
-
-| Timepoint 	| Response 	| Tube ID 	| Date Collected 	| Time 	| Treatment 	| Tank 	| Larval volume 	| Sample method 	| Storage 	| Notes 	| Photograph ID's 	| Date Processed 	| Initials 	| Photo Uploaded? 	|
-|-----------	|----------	|---------	|----------------	|------	|-----------	|------	|---------------	|---------------	|---------	|-------	|-----------------	|----------------	|----------	|-----------------	|
-| Baseline  	| Size     	| P1      	| 20210614       	| 1840 	| Ambient   	| Pool 	| 100uL         	| 4% PFA        	| 4C      	|       	| P1-#            	| 20220419       	| ES       	| Yes             	|
-| Baseline  	| Size     	| P2      	| 20210614       	| 1840 	| Ambient   	| Pool 	| 100uL         	| 4% PFA        	| 4C      	|       	| P2-#            	| 20220419       	| ES       	| Yes             	|
-| Baseline  	| Size     	| P3      	| 20210614       	| 1840 	| Ambient   	| Pool 	| 100uL         	| 4% PFA        	| 4C      	|       	| P3-#            	| 20220419       	| ES       	| Yes             	|
-| Baseline  	| Size     	| P4      	| 20210614       	| 1840 	| Ambient   	| Pool 	| 100uL         	| 4% PFA        	| 4C      	|       	|                 	|                	|          	|                 	|
-| Sampling  	| Size     	| P5      	| 20210618       	| 1545 	| Ambient   	| A1   	| 100uL         	| 4% PFA        	| 4C      	|       	|                 	|                	|          	|                 	|
-| Sampling  	| Size     	| P6      	| 20210618       	| 1545 	| Ambient   	| A2   	| 100uL         	| 4% PFA        	| 4C      	|       	|                 	|                	|          	|                 	|
-| Sampling  	| Size     	| P7      	| 20210618       	| 1545 	| Ambient   	| A3   	| 100uL         	| 4% PFA        	| 4C      	|       	|                 	|                	|          	|                 	|
-| Sampling  	| Size     	| P8      	| 20210618       	| 1545 	| Ambient   	| A4   	| 100uL         	| 4% PFA        	| 4C      	|       	|                 	|                	|          	|                 	|
-| Sampling  	| Size     	| P9      	| 20210618       	| 1545 	| Ambient   	| A5   	| 100uL         	| 4% PFA        	| 4C      	|       	|                 	|                	|          	|                 	|
-| Sampling  	| Size     	| P10     	| 20210618       	| 1545 	| Ambient   	| A6   	| 100uL         	| 4% PFA        	| 4C      	|       	|                 	|                	|          	|                 	|
-| Sampling  	| Size     	| P11     	| 20210618       	| 1545 	| High      	| H1   	| 100uL         	| 4% PFA        	| 4C      	|       	|                 	|                	|          	|                 	|
-| Sampling  	| Size     	| P12     	| 20210618       	| 1545 	| High      	| H2   	| 100uL         	| 4% PFA        	| 4C      	|       	|                 	|                	|          	|                 	|
-| Sampling  	| Size     	| P13     	| 20210618       	| 1545 	| High      	| H3   	| 100uL         	| 4% PFA        	| 4C      	|       	|                 	|                	|          	|                 	|
-| Sampling  	| Size     	| P14     	| 20210618       	| 1545 	| High      	| H4   	| 100uL         	| 4% PFA        	| 4C      	|       	|                 	|                	|          	|                 	|
-| Sampling  	| Size     	| P15     	| 20210618       	| 1545 	| High      	| H5   	| 100uL         	| 4% PFA        	| 4C      	|       	|                 	|                	|          	|                 	|
-| Sampling  	| Size     	| P16     	| 20210618       	| 1545 	| High      	| H6   	| 100uL         	| 4% PFA        	| 4C      	|       	|                 	|                	|          	|                 	|
+| Timepoint 	| Response 	| Tube ID 	| Date Collected 	| Time 	| Treatment 	| Tank 	| Larval volume 	| Sample method 	| Storage 	| Photograph ID's              	| Date Photographed 	| Initials 	| Photo Uploaded? 	|
+|-----------	|----------	|---------	|----------------	|------	|-----------	|------	|---------------	|---------------	|---------	|------------------------------	|-------------------	|----------	|-----------------	|
+| Baseline  	| Size     	| P1      	| 20210614       	| 1840 	| Ambient   	| Pool 	| 100uL         	| 4% PFA        	| 4C      	| P1-1, P1-2, P1-3, P1-4, P1-5 	| 20220419          	| ES       	| Yes             	|
+| Baseline  	| Size     	| P2      	| 20210614       	| 1840 	| Ambient   	| Pool 	| 100uL         	| 4% PFA        	| 4C      	| P2-1, P2-2, P2-3             	| 20220419          	| ES       	| Yes             	|
+| Baseline  	| Size     	| P3      	| 20210614       	| 1840 	| Ambient   	| Pool 	| 100uL         	| 4% PFA        	| 4C      	| P3-1, P3-2, P3-3             	| 20220419          	| ES       	| Yes             	|
+| Baseline  	| Size     	| P4      	| 20210614       	| 1840 	| Ambient   	| Pool 	| 100uL         	| 4% PFA        	| 4C      	| P4-1, P4-2, P4-3             	| 20220419          	| ES       	| Yes             	|
+| Sampling  	| Size     	| P5      	| 20210618       	| 1545 	| Ambient   	| A1   	| 100uL         	| 4% PFA        	| 4C      	|                              	|                   	|          	|                 	|
+| Sampling  	| Size     	| P6      	| 20210618       	| 1545 	| Ambient   	| A2   	| 100uL         	| 4% PFA        	| 4C      	|                              	|                   	|          	|                 	|
+| Sampling  	| Size     	| P7      	| 20210618       	| 1545 	| Ambient   	| A3   	| 100uL         	| 4% PFA        	| 4C      	|                              	|                   	|          	|                 	|
+| Sampling  	| Size     	| P8      	| 20210618       	| 1545 	| Ambient   	| A4   	| 100uL         	| 4% PFA        	| 4C      	|                              	|                   	|          	|                 	|
+| Sampling  	| Size     	| P9      	| 20210618       	| 1545 	| Ambient   	| A5   	| 100uL         	| 4% PFA        	| 4C      	|                              	|                   	|          	|                 	|
+| Sampling  	| Size     	| P10     	| 20210618       	| 1545 	| Ambient   	| A6   	| 100uL         	| 4% PFA        	| 4C      	|                              	|                   	|          	|                 	|
+| Sampling  	| Size     	| P11     	| 20210618       	| 1545 	| High      	| H1   	| 100uL         	| 4% PFA        	| 4C      	|                              	|                   	|          	|                 	|
+| Sampling  	| Size     	| P12     	| 20210618       	| 1545 	| High      	| H2   	| 100uL         	| 4% PFA        	| 4C      	|                              	|                   	|          	|                 	|
+| Sampling  	| Size     	| P13     	| 20210618       	| 1545 	| High      	| H3   	| 100uL         	| 4% PFA        	| 4C      	|                              	|                   	|          	|                 	|
+| Sampling  	| Size     	| P14     	| 20210618       	| 1545 	| High      	| H4   	| 100uL         	| 4% PFA        	| 4C      	|                              	|                   	|          	|                 	|
+| Sampling  	| Size     	| P15     	| 20210618       	| 1545 	| High      	| H5   	| 100uL         	| 4% PFA        	| 4C      	|                              	|                   	|          	|                 	|
+| Sampling  	| Size     	| P16     	| 20210618       	| 1545 	| High      	| H6   	| 100uL         	| 4% PFA        	| 4C      	|                              	|                   	|          	|                 	|
