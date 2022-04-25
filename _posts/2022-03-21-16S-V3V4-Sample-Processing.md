@@ -360,3 +360,5 @@ Questions to answer from sequencing:
 ### Stitched gel image from the above samples
 
 ![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16S_v3v4/stitched-gel-seq1.png?raw=true)
+
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/16S_v3v4/NGS_submission_20220425.jpg?raw=true)
