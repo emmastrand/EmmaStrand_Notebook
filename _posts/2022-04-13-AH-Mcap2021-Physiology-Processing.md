@@ -79,8 +79,7 @@ From the 'Holobiont' tube (LETTER-Holo)
 Putnam Lab 4C Fridge, Plastic box in plastic bag; "Mcap 2021 Fixed Larvae"
 
 [Sample list for photographs](https://docs.google.com/spreadsheets/d/1jorAFWq0o-BKVvA2GuCjWuqDNZ8GWS4pwQjua1mSbjI/edit#gid=0)  
-[photos google drive](https://drive.google.com/drive/folders/1ygCd68_x85uJIw8fSU-rYvQt0P9vpfRb)   
-[google sheet for photos](https://docs.google.com/spreadsheets/d/1jorAFWq0o-BKVvA2GuCjWuqDNZ8GWS4pwQjua1mSbjI/edit#gid=0)  
+[Photos google drive](https://drive.google.com/drive/folders/1ygCd68_x85uJIw8fSU-rYvQt0P9vpfRb)   
 [Protocol](https://ahuffmyer.github.io/ASH_Putnam_Lab_Notebook/Larval-Size-Photographs-Protocol/)
 
 Notes:
