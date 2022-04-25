@@ -100,3 +100,7 @@ Example of labeled freezer box:
 Location of dry ice:
 
 ![dry-ice](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/Kbay-dry-ice.jpg?raw=true)
+
+### Images of printed datasheets
+
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/Kbay-Aug2020-clipping-coral.jpg?raw=true)
