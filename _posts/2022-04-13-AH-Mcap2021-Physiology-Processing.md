@@ -62,6 +62,7 @@ Protocol:
 | W-Symb 	| 20220425     	| ES   	| 3               	| 172    	| 190    	| 193    	| 188    	| 181    	| 180    	|                    	| 4.22  	|
 | X-Symb 	| 20220426     	| KD   	| 9               	| 121    	| 151    	| 128    	| 108    	| 116    	| 111    	|                    	| 12.80 	|
 
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/Mcap2021-AH/cell-counts.jpg?raw=true)
 
 ## <a name="Chl"></a> **Chlorophyll concentration**
 
