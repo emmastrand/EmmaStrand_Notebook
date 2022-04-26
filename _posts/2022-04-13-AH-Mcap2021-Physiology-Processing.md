@@ -86,22 +86,21 @@ Putnam Lab 4C Fridge, Plastic box in plastic bag; "Mcap 2021 Fixed Larvae"
 Notes:
 - We were having trouble with the brightness and focus on 20220419. These images may not be as sharp but should still be able to get length and width out of them.  
 
-
-| Timepoint 	| Response 	| Tube ID 	| Date Collected 	| Time 	| Treatment 	| Tank 	| Larval volume 	| Sample method 	| Storage 	| Photograph ID's              	| Date Photographed 	| Initials 	| Photo Uploaded? 	|
-|-----------	|----------	|---------	|----------------	|------	|-----------	|------	|---------------	|---------------	|---------	|------------------------------	|-------------------	|----------	|-----------------	|
-| Baseline  	| Size     	| P1      	| 20210614       	| 1840 	| Ambient   	| Pool 	| 100uL         	| 4% PFA        	| 4C      	| P1-1, P1-2, P1-3, P1-4, P1-5 	| 20220419          	| ES       	| Yes             	|
-| Baseline  	| Size     	| P2      	| 20210614       	| 1840 	| Ambient   	| Pool 	| 100uL         	| 4% PFA        	| 4C      	| P2-1, P2-2, P2-3             	| 20220419          	| ES       	| Yes             	|
-| Baseline  	| Size     	| P3      	| 20210614       	| 1840 	| Ambient   	| Pool 	| 100uL         	| 4% PFA        	| 4C      	| P3-1, P3-2, P3-3             	| 20220419          	| ES       	| Yes             	|
-| Baseline  	| Size     	| P4      	| 20210614       	| 1840 	| Ambient   	| Pool 	| 100uL         	| 4% PFA        	| 4C      	| P4-1, P4-2, P4-3             	| 20220419          	| ES       	| Yes             	|
-| Sampling  	| Size     	| P5      	| 20210618       	| 1545 	| Ambient   	| A1   	| 100uL         	| 4% PFA        	| 4C      	|                              	|                   	|          	|                 	|
-| Sampling  	| Size     	| P6      	| 20210618       	| 1545 	| Ambient   	| A2   	| 100uL         	| 4% PFA        	| 4C      	|                              	|                   	|          	|                 	|
-| Sampling  	| Size     	| P7      	| 20210618       	| 1545 	| Ambient   	| A3   	| 100uL         	| 4% PFA        	| 4C      	|                              	|                   	|          	|                 	|
-| Sampling  	| Size     	| P8      	| 20210618       	| 1545 	| Ambient   	| A4   	| 100uL         	| 4% PFA        	| 4C      	|                              	|                   	|          	|                 	|
-| Sampling  	| Size     	| P9      	| 20210618       	| 1545 	| Ambient   	| A5   	| 100uL         	| 4% PFA        	| 4C      	|                              	|                   	|          	|                 	|
-| Sampling  	| Size     	| P10     	| 20210618       	| 1545 	| Ambient   	| A6   	| 100uL         	| 4% PFA        	| 4C      	|                              	|                   	|          	|                 	|
-| Sampling  	| Size     	| P11     	| 20210618       	| 1545 	| High      	| H1   	| 100uL         	| 4% PFA        	| 4C      	|                              	|                   	|          	|                 	|
-| Sampling  	| Size     	| P12     	| 20210618       	| 1545 	| High      	| H2   	| 100uL         	| 4% PFA        	| 4C      	|                              	|                   	|          	|                 	|
-| Sampling  	| Size     	| P13     	| 20210618       	| 1545 	| High      	| H3   	| 100uL         	| 4% PFA        	| 4C      	|                              	|                   	|          	|                 	|
-| Sampling  	| Size     	| P14     	| 20210618       	| 1545 	| High      	| H4   	| 100uL         	| 4% PFA        	| 4C      	|                              	|                   	|          	|                 	|
-| Sampling  	| Size     	| P15     	| 20210618       	| 1545 	| High      	| H5   	| 100uL         	| 4% PFA        	| 4C      	|                              	|                   	|          	|                 	|
-| Sampling  	| Size     	| P16     	| 20210618       	| 1545 	| High      	| H6   	| 100uL         	| 4% PFA        	| 4C      	|                              	|                   	|          	|                 	|
+| Timepoint 	| Response 	| Tube ID 	| Date Collected 	| Time 	| Treatment 	| Tank 	| Larval volume 	| Sample method 	| Storage 	| Photograph ID's                    	| Date Photographed 	| Initials 	| Photo Uploaded? 	|
+|-----------	|----------	|---------	|----------------	|------	|-----------	|------	|---------------	|---------------	|---------	|------------------------------------	|-------------------	|----------	|-----------------	|
+| Baseline  	| Size     	| P1      	| 20210614       	| 1840 	| Ambient   	| Pool 	| 100uL         	| 4% PFA        	| 4C      	| P1-1, P1-2, P1-3, P1-4, P1-5       	| 20220419          	| ES       	| Yes             	|
+| Baseline  	| Size     	| P2      	| 20210614       	| 1840 	| Ambient   	| Pool 	| 100uL         	| 4% PFA        	| 4C      	| P2-1, P2-2, P2-3                   	| 20220419          	| ES       	| Yes             	|
+| Baseline  	| Size     	| P3      	| 20210614       	| 1840 	| Ambient   	| Pool 	| 100uL         	| 4% PFA        	| 4C      	| P3-1, P3-2, P3-3                   	| 20220419          	| ES       	| Yes             	|
+| Baseline  	| Size     	| P4      	| 20210614       	| 1840 	| Ambient   	| Pool 	| 100uL         	| 4% PFA        	| 4C      	| P4-1, P4-2, P4-3                   	| 20220419          	| ES       	| Yes             	|
+| Sampling  	| Size     	| P5      	| 20210618       	| 1545 	| Ambient   	| A1   	| 100uL         	| 4% PFA        	| 4C      	| P5-1, P5-2, P5-3, P5-4             	| 20220426          	| KD       	| Yes             	|
+| Sampling  	| Size     	| P6      	| 20210618       	| 1545 	| Ambient   	| A2   	| 100uL         	| 4% PFA        	| 4C      	| P6-1, P6-1, P6-3, P6-4, P6-5       	| 20220426          	| KD       	| Yes             	|
+| Sampling  	| Size     	| P7      	| 20210618       	| 1545 	| Ambient   	| A3   	| 100uL         	| 4% PFA        	| 4C      	| P7-1, P7-2, P7-3, P7-4, P7-5, P7-6 	| 20220426          	| KD       	| Yes             	|
+| Sampling  	| Size     	| P8      	| 20210618       	| 1545 	| Ambient   	| A4   	| 100uL         	| 4% PFA        	| 4C      	| P8-1, P8-2, P8-3, P8-4, P8-5       	| 20220426          	| KD       	| Yes             	|
+| Sampling  	| Size     	| P9      	| 20210618       	| 1545 	| Ambient   	| A5   	| 100uL         	| 4% PFA        	| 4C      	| P9-1, P9-2, P9-3, P9-4, P9-5       	| 20220426          	| KD       	| Yes             	|
+| Sampling  	| Size     	| P10     	| 20210618       	| 1545 	| Ambient   	| A6   	| 100uL         	| 4% PFA        	| 4C      	| P10-1, P10-2, P10-3, P-10-4        	| 20220426          	| KD       	| Yes             	|
+| Sampling  	| Size     	| P11     	| 20210618       	| 1545 	| High      	| H1   	| 100uL         	| 4% PFA        	| 4C      	| P11-1, P11-2, P11-3, P11-4, P11-5  	| 20220426          	| KD       	| Yes             	|
+| Sampling  	| Size     	| P12     	| 20210618       	| 1545 	| High      	| H2   	| 100uL         	| 4% PFA        	| 4C      	| P12-1, P12-2, P12-3, P12-4         	| 20220426          	| KD       	| Yes             	|
+| Sampling  	| Size     	| P13     	| 20210618       	| 1545 	| High      	| H3   	| 100uL         	| 4% PFA        	| 4C      	| P13-1, P13-2, P13-3, P13-4, P13-5  	| 20220426          	| KD       	| Yes             	|
+| Sampling  	| Size     	| P14     	| 20210618       	| 1545 	| High      	| H4   	| 100uL         	| 4% PFA        	| 4C      	| P14-1, P14-2, P14-3, P14-4         	| 20220426          	| KD       	| Yes             	|
+| Sampling  	| Size     	| P15     	| 20210618       	| 1545 	| High      	| H5   	| 100uL         	| 4% PFA        	| 4C      	| P15-1, P15-2, P15-3, P15-4         	| 20220426          	| KD       	| Yes             	|
+| Sampling  	| Size     	| P16     	| 20210618       	| 1545 	| High      	| H6   	| 100uL         	| 4% PFA        	| 4C      	| P16-1, P16-2, P16-3, P16-4, P16-5  	| 20220426          	| KD       	| Yes             	|
