@@ -71,7 +71,7 @@ Sample location: Putnam Lab -80C AH Rack; "Physiology Host/Sym/Holo Separations"
 [Google drive folder for chlorophyll](https://drive.google.com/drive/folders/1BwWwTPhXvS-zXpMG0OxGNN4cnTx3TwYW)   
 [Protocol](https://ahuffmyer.github.io/ASH_Putnam_Lab_Notebook/Chlorophyll-Content-Protocol/)
 
-From the 'Holobiont' tube (LETTER-Holo)
+From 200 uL leftover from cell count 'Sym' tube.
 
 
 
