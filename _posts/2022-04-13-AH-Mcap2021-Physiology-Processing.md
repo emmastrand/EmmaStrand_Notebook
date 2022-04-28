@@ -102,7 +102,8 @@ Putnam Lab 4C Fridge, Plastic box in plastic bag; "Mcap 2021 Fixed Larvae"
 
 [Sample list for photographs](https://docs.google.com/spreadsheets/d/1jorAFWq0o-BKVvA2GuCjWuqDNZ8GWS4pwQjua1mSbjI/edit#gid=0)  
 [Photos google drive](https://drive.google.com/drive/folders/1ygCd68_x85uJIw8fSU-rYvQt0P9vpfRb)   
-[Protocol](https://ahuffmyer.github.io/ASH_Putnam_Lab_Notebook/Larval-Size-Photographs-Protocol/)
+[Protocol](https://ahuffmyer.github.io/ASH_Putnam_Lab_Notebook/Larval-Size-Photographs-Protocol/)  
+[Larval size datasheet](https://docs.google.com/spreadsheets/d/1HX_fH3kUl7fh2ww9U2SR7nTRESpJK_1H0-r29n8GweE/edit#gid=0)
 
 Notes:
 - We were having trouble with the brightness and focus on 20220419. These images may not be as sharp but should still be able to get length and width out of them.  
