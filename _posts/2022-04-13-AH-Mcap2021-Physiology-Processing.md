@@ -90,12 +90,11 @@ Placed in fridge at 2:56 pm 20220427. Read out 20220428 at 3 pm.
 12. 200 uL 100% acetone as blank.  
 13. Read on microplate reader (protocol installed on computer).  
 
-![]()
-
 Platemap:
 
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/Mcap2021-AH/chl.jpg?raw=true)
 
-
+All files on google drive.
 
 ## <a name="larval"></a> **Larval Size Photographs**
 
