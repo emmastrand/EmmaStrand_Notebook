@@ -91,3 +91,9 @@ Finally, to calculate the volume of water needed, subtract the DNA volume requir
 16. Aliquot 45 μl of each product from the PCR product stock (in Step 11) into new PCR strip tubes appropriately labeled with the sample ID. These tubes will be delivered to the sequencing center. Store at -20&deg;C until delivering to the sequencing center.     
 
 Example of [google spreadsheet](https://docs.google.com/spreadsheets/d/184gZr6-Bc48Q-48O8OhfnEsu5wRloLiekuJg3T_IzXw/edit?usp=sharing) for data processing, including master mix and dilution calculations, and 96-well PCR platemaps.
+
+### Sequencing details from Janet
+
+A two-step PCR protocol was used to prepare PCR products for sequencing according to a modification of Illumina’s 16S Metagenomic Sequencing Library Preparation protocol.  A first round of PCR was performed using *insert your methods here*. Samples were then submitted to the RI-INBRE Molecular Informatics Core at the University of Rhode Island (RI, USA) for the index PCR and sequencing.
+
+In brief, PCR products from the first round of PCR were cleaned with NucleoMag beads (Takara Bio, USA) and then visualized by agarose gel electrophoresis. A second round of PCR (50 ng of template DNA, 8 cycles) was performed to attach Nextera XT indices and adapters using the Illumina Nextera XT® Index Kit (Illumina, San Diego, CA) and Phusion HF PCR mastermix (Thermo Fisher Scientific, US). PCR products from the second PCR were cleaned with NucleoMag beads and analyzed by agarose gel electrophoresis. Selected samples were run on an Agilent BioAnalyzer DNA1000 chip (Santa Clara, CA). Quantification was performed on all samples prior to pooling using a Qubit fluorometer (Invitrogen, Carlsbad, CA, USA), and the final pooled library was quantified by qPCR in a Roche LightCycler480 with the KAPA Biosystems Illumina Kit (KAPA Biosystems, Woburn, MA). Samples were analyzed using 2xyour run bp paired-end sequencing on an Illumina MiSeq (Illumina, San Diego, CA).

@@ -73,6 +73,28 @@ Sample location: Putnam Lab -80C AH Rack; "Physiology Host/Sym/Holo Separations"
 
 From 200 uL leftover from cell count 'Sym' tube.
 
+1. Thaw homogenate  
+2. Take 200 uL leftover from cell count 'Sym' tube and place in new 1.5 mL microcentrifuge tube.  
+3. Spin down at 13,000 rpm for 3 minutes.  
+4. Remove supernatant and throw away (since this is 1X PBS not host supernatant).  
+5. Add 1 mL 100% acetone to each tube.  
+6. Vortex for 15 seconds.  
+7. Place in 4C flammable fridge for 24 hours.
+
+Placed in fridge at 2:56 pm 20220427. Read out 20220428 at 3 pm.  
+
+8. Vortex 15 seconds  
+9. Centrifuge at 13,000 rpm for 3 minutes.  
+10. Take 200 uL of the supernatant and place in well in 96 well quartz plate.  
+11. Repeat Step 10 to create a duplicate (so you have 2 wells per sample). Use silicone pad to cover up wells with sample already in them.    
+12. 200 uL 100% acetone as blank.  
+13. Read on microplate reader (protocol installed on computer).  
+
+![]()
+
+Platemap:
+
+
 
 
 ## <a name="larval"></a> **Larval Size Photographs**
