@@ -90,7 +90,7 @@ Before starting the pH calibration, take samples out of the fridge so that they 
 *Issue*: In script, where does the umol.cm2.hr calc come from? (deltaTA/2)*(1.023)*((vol.L*1000)/surface.area.cm2)*(1/timediff)*(1/1000). And where does the 36 coefficient for normalizing TA come from?  
 *Resolution*: Find the paper source and/or make a note of this in the script or in the paper.
 
-##### Salinity issue
+### Salinity issue
 
 1. Are there any samples that were done at both URI and CSUN?
 
