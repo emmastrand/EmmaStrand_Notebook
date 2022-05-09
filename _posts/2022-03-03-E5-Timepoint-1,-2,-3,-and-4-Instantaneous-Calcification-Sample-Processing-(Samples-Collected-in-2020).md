@@ -90,12 +90,38 @@ Before starting the pH calibration, take samples out of the fridge so that they 
 *Issue*: In script, where does the umol.cm2.hr calc come from? (deltaTA/2)*(1.023)*((vol.L*1000)/surface.area.cm2)*(1/timediff)*(1/1000). And where does the 36 coefficient for normalizing TA come from?  
 *Resolution*: Find the paper source and/or make a note of this in the script or in the paper.
 
-Emma to-do:    
-- TA protocol updates   
-- daily: push to E5   
+##### Salinity issue
 
-Ariana: read in output for calc rates and check completeness script, decide on outliers  
-- No effect of titration run or mass for Jan, March, or September
+1. Are there any samples that were done at both URI and CSUN?
+
+TA.norm = TA * Salinity/36
+
+**Initial 1 Run 3**  
+CSUN:  
+- TA: 2347.879  
+- Salinity lab: 36.25  
+- **TA.norm: 2364.184**
+
+Putnam Lab:   
+- TA: 2337.256  
+- Salinity lab: 38.02  
+- **TA.norm: 2468.402**
+
+2. Are there any runs that have samples split between URI and CSUN?
+
+Run 1 = 1 coral done at CSUN; the rest of the run done at URI
+Run 2 = all URI  
+Run 3 = 2 done at CSUN; the rest of the run done at URI
+
+CSUN consistently below URI: ~36.35 psu and URI is ~37.5-38.5 psu.
+
+Average for all CSUN samples = 36.164 psu  
+
+Options:  
+1. We could use average CSUN value for all samples.  
+2. Some URI samples are in the 36 range and I'd like to keep those.. So if any URI value is above a threshold (37.5?) we could replace that value with the average CSUN value or -1.5 psu from that value.  
+3. Would only work for September time point (bc the other 3 are only URI): Run 1 and 3 have CSUN values, we could replace URI salinity values with the CSUN salinity value for that run.  
+
 
 **ALL TP**:
 - effect of environment of chamber (Jan - none but no pH values, March - none, Sept- pH)
