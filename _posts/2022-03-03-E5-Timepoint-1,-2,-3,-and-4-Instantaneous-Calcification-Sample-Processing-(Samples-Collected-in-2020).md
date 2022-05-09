@@ -81,6 +81,9 @@ Before starting the pH calibration, take samples out of the fridge so that they 
 *Issue*: Salinity readings at CSUN vs URI (36 range vs 40 psu range..). Test batch effect. Calibrated with 50 mS/cm solution and then the probe was reading at ~55 when measuring the same solution post-calibration. Calibrated to two point 12.9 mS/cm and 1413 uS/cm and the probe was reading 36-37 psu range. Closer to what was run at CSUN.  
 *Resolution*: We got our salinity values down to ~38 when re-measuring but even at room temperature these are still our average values. I think this has to do with our calibration solution or our probe.. Samples from January TP1 with high salinity but was 50 mL falcon tube: POR-70. Salinity values at URI are 2 units higher b/c the probe was reading 2 units higher than it should be. Correct for this in our data but not CSUN's.   
 
+1. Replace URI's salinity values with average salinity of CSUN (36.164)  
+2. Replace with that run's "correct" salinity value (under 37) for Run 1, 2, and 3. This doesn't solve other timepoint's issue though.  
+
 *Issue*: 50 mL empty falcon tube bottles once done are sitting in the completed bin.  
 *Resolution*: Figure out the waste protocol for these bottles since they had mercuric chloride in them. Wait until processing is done to get rid of them. More of a reminder than an active issue.
 
