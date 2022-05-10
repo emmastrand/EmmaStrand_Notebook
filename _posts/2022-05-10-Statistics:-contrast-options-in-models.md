@@ -172,4 +172,4 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 
 Figure to go along with this data below. The models that use sum coding seem to match more of the effects happening that I see in this figure..
 
-![]()
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/stats-coding-example-figure.png?raw=true)
