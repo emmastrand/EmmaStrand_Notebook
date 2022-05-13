@@ -50,7 +50,6 @@ mkdir PJ_methylseq1  # only run this line if you don't have the directory create
 nextflow run nf-core/methylseq \
 -profile singularity \
 --aligner bismark \
---skip_deduplication \ ##because this is from the MBD-BS method
 --igenomes_ignore \
 --resume \
 --fasta <PATH_TO_GENOME_FASTA> \
