@@ -19,7 +19,8 @@ References:
 
 Contents:  
 - [**Setting Up Andromeda**](#Setting_up)  
-- [**Initial fastqc on test run files**](#fastqc)    
+- [**Initial fastqc run**](#fastqc)   
+- [**Initial Multiqc Report**](#multiqc)     
 - [**Methylseq: Trimming parameters test**](#Test)  
 
 ## <a name="Setting_up"></a> **Setting Up Andromeda**
@@ -45,7 +46,7 @@ $ cp /data/putnamlab/KITT/hputnam/20211008_HoloInt_WGBS/1090_S0_L001_R{1,2}_001.
 $ cp /data/putnamlab/KITT/hputnam/20211008_HoloInt_WGBS/1103_S0_L001_R{1,2}_001.fastq.gz /data/putnamlab/estrand/HoloInt_WGBS/test_set
 ```
 
-## <a name="fastqc"></a> **Initial fastqc and multiqc on test run files**
+## <a name="fastqc"></a> **Initial fastqc run**
 
 `fastqc.sh`. This timed out at 24 hours.
 
@@ -81,9 +82,7 @@ multiqc --interactive fastqc_results
 scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/HoloInt_WGBS/fastqc_results/multiqc_report.html /Users/emmastrand/MyProjects/Acclim_Dynamics/Molecular_paper
 ```
 
-This run timed out so I am running multiqc on those that did run. I originally ran the above script with the wrong path for the first cd function so the path for multiqc was incorrect. I can run the multiqc function outside of a script just in command line. 
-
-
+## <a name="multiqc"></a> **Initial MultiQC Report**
 
 
 ## <a name="Test"></a> **Methylseq: Trimming parameters test**
