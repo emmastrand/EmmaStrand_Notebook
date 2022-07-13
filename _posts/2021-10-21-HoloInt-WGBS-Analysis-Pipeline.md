@@ -48,11 +48,11 @@ $ cp /data/putnamlab/KITT/hputnam/20211008_HoloInt_WGBS/1103_S0_L001_R{1,2}_001.
 
 ## <a name="fastqc"></a> **Initial fastqc run**
 
-`fastqc.sh`. This timed out at 24 hours.
+`fastqc.sh`. This took over 24 hours and timed out the first time around so I increased the -t to 60 hours. 
 
 ```
 #!/bin/bash
-#SBATCH -t 24:00:00
+#SBATCH -t 60:00:00
 #SBATCH --nodes=1 --ntasks-per-node=1
 #SBATCH --export=NONE
 #SBATCH --mem=100GB
@@ -78,27 +78,31 @@ done
 multiqc --interactive fastqc_results
 ```
 
+
+
 ```
-scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/HoloInt_WGBS/fastqc_results/multiqc_report.html /Users/emmastrand/MyProjects/Acclim_Dynamics/Molecular_paper
+scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/HoloInt_WGBS/fastqc_results/multiqc_report.html /Users/emmastrand/MyProjects/Acclim_Dynamics/Molecular_paper/WGBS/output/multiqc_report.html
 ```
 
 ## <a name="multiqc"></a> **Initial MultiQC Report**
 
 
+![]()
+![]()
+![]()
+![]()
+![]()
+![]()
+![]()
+![]()
+![]()
+![]()
+
+
+
 ## <a name="Test"></a> **Methylseq: Trimming parameters test**
 
 This was done on a small subset (n=5) to reduce the time that these scripts had to run. I.e. 5 samples instead of 60.
-
-### Creating a test run folder
-
-```
-$ mkdir test_set
-$ cp /data/putnamlab/KITT/hputnam/20211008_HoloInt_WGBS/1047_S0_L001_R{1,2}_001.fastq.gz /data/putnamlab/estrand/HoloInt_WGBS/test_set
-$ cp /data/putnamlab/KITT/hputnam/20211008_HoloInt_WGBS/1051_S0_L001_R{1,2}_001.fastq.gz /data/putnamlab/estrand/HoloInt_WGBS/test_set
-$ cp /data/putnamlab/KITT/hputnam/20211008_HoloInt_WGBS/1059_S0_L001_R{1,2}_001.fastq.gz /data/putnamlab/estrand/HoloInt_WGBS/test_set
-$ cp /data/putnamlab/KITT/hputnam/20211008_HoloInt_WGBS/1090_S0_L001_R{1,2}_001.fastq.gz /data/putnamlab/estrand/HoloInt_WGBS/test_set
-$ cp /data/putnamlab/KITT/hputnam/20211008_HoloInt_WGBS/1103_S0_L001_R{1,2}_001.fastq.gz /data/putnamlab/estrand/HoloInt_WGBS/test_set
-```
 
 ### Options tested
 
