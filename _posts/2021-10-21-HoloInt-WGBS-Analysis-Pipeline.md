@@ -19,7 +19,7 @@ References:
 
 Contents:  
 - [**Setting Up Andromeda**](#Setting_up)  
-- [**Initial fastqc on files**](#fastqc)    
+- [**Initial fastqc on test run files**](#fastqc)    
 - [**Methylseq: Trimming parameters test**](#Test)  
 
 ## <a name="Setting_up"></a> **Setting Up Andromeda**
@@ -32,9 +32,22 @@ $ mkdir scripts
 $ mkdir fastqc_results
 ```
 
-## <a name="fastqc"></a> **Initial fastqc on files**
+Test runs were done on a small subset (n=5) to reduce the time that these scripts had to run. I.e. 5 samples instead of 60.
 
-`fastqc.sh`
+### Creating a test run folder
+
+```
+$ mkdir test_set
+$ cp /data/putnamlab/KITT/hputnam/20211008_HoloInt_WGBS/1047_S0_L001_R{1,2}_001.fastq.gz /data/putnamlab/estrand/HoloInt_WGBS/test_set
+$ cp /data/putnamlab/KITT/hputnam/20211008_HoloInt_WGBS/1051_S0_L001_R{1,2}_001.fastq.gz /data/putnamlab/estrand/HoloInt_WGBS/test_set
+$ cp /data/putnamlab/KITT/hputnam/20211008_HoloInt_WGBS/1059_S0_L001_R{1,2}_001.fastq.gz /data/putnamlab/estrand/HoloInt_WGBS/test_set
+$ cp /data/putnamlab/KITT/hputnam/20211008_HoloInt_WGBS/1090_S0_L001_R{1,2}_001.fastq.gz /data/putnamlab/estrand/HoloInt_WGBS/test_set
+$ cp /data/putnamlab/KITT/hputnam/20211008_HoloInt_WGBS/1103_S0_L001_R{1,2}_001.fastq.gz /data/putnamlab/estrand/HoloInt_WGBS/test_set
+```
+
+## <a name="fastqc"></a> **Initial fastqc and multiqc on test run files**
+
+`fastqc.sh`. This timed out at 24 hours.
 
 ```
 #!/bin/bash
@@ -51,14 +64,14 @@ $ mkdir fastqc_results
 
 source /usr/share/Modules/init/sh # load the module function
 
-cd /data/putnamlab/estrand/HoloInt_WGBS/fastqc_results
+cd /data/putnamlab/estrand/HoloInt_WGBS
 
 module load FastQC/0.11.9-Java-11
 module load MultiQC/1.9-intel-2020a-Python-3.8.2
 
 for file in /data/putnamlab/KITT/hputnam/20211008_HoloInt_WGBS/*fastq.gz
 do
-fastqc $file --outdir /data/putnamlab/estrand/HoloInt_WGBS/fastqc_results         
+fastqc $file --outdir /data/putnamlab/estrand/HoloInt_WGBS/fastqc_results/         
 done
 
 multiqc --interactive fastqc_results
@@ -68,23 +81,42 @@ multiqc --interactive fastqc_results
 scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/HoloInt_WGBS/fastqc_results/multiqc_report.html /Users/emmastrand/MyProjects/Acclim_Dynamics/Molecular_paper
 ```
 
-Results here:
+This run timed out so I am running multiqc on those that did run. I originally ran the above script with the wrong path for the first cd function so the path for multiqc was incorrect. I can run the multiqc function outside of a script just in command line. 
+
+
+
 
 ## <a name="Test"></a> **Methylseq: Trimming parameters test**
 
+This was done on a small subset (n=5) to reduce the time that these scripts had to run. I.e. 5 samples instead of 60.
+
+### Creating a test run folder
+
+```
+$ mkdir test_set
+$ cp /data/putnamlab/KITT/hputnam/20211008_HoloInt_WGBS/1047_S0_L001_R{1,2}_001.fastq.gz /data/putnamlab/estrand/HoloInt_WGBS/test_set
+$ cp /data/putnamlab/KITT/hputnam/20211008_HoloInt_WGBS/1051_S0_L001_R{1,2}_001.fastq.gz /data/putnamlab/estrand/HoloInt_WGBS/test_set
+$ cp /data/putnamlab/KITT/hputnam/20211008_HoloInt_WGBS/1059_S0_L001_R{1,2}_001.fastq.gz /data/putnamlab/estrand/HoloInt_WGBS/test_set
+$ cp /data/putnamlab/KITT/hputnam/20211008_HoloInt_WGBS/1090_S0_L001_R{1,2}_001.fastq.gz /data/putnamlab/estrand/HoloInt_WGBS/test_set
+$ cp /data/putnamlab/KITT/hputnam/20211008_HoloInt_WGBS/1103_S0_L001_R{1,2}_001.fastq.gz /data/putnamlab/estrand/HoloInt_WGBS/test_set
+```
+
+### Options tested
+
 **Goal**: Reduce M-bias but keep as much of the sequence as possible.
 
-**Reasoning behind values**:  
+**Reasoning behind values**: I chose to not include the Zymo preset because this one worked the least well for Kevin's set. I proceeded with my own preset cut-offs to test. I included the final version that Kevin went with for his and what appeared to be the second best option as well.
 
 Options tested:  
 1. HoloInt_methylseq.sh: clip_r1 = 10, clip_r2 = 10, three_prime_clip_r1 = 10, three_prime_clip_r2 = 10    
-2. HoloInt_methylseq2.sh: clip_r1 = 15, clip_r2 = 30, three_prime_clip_r1 = 30, three_prime_clip_r2 = 15 (options that worked best for Kevin Past workflow)  
-3. HoloInt_methylseq3.sh:
+2. HoloInt_methylseq2.sh: clip_r1 = 15, clip_r2 = 30, three_prime_clip_r1 = 30, three_prime_clip_r2 = 15 (options that worked best for Kevin Past workflow)   
+3. HoloInt_methylseq3.sh: clip_r1 = 15, clip_r2 = 30, three_prime_clip_r1 = 15, three_prime_clip_r2 = 15    
+4. HoloInt_methylseq4.sh: clip_r1 = 15, clip_r2 = 15, three_prime_clip_r1 = 15, three_prime_clip_r2 = 15  
 
 1: 10, 30, 10, 10   
 2: 10, 30, 30, 10  
-3: 15, 30, 30, 15
-4: 15, 30, 15, 15
+3: 15, 30, 30, 15  
+4: 15, 30, 15, 15  
 
 
 Nextflow version 21.03.0 requires an -input command.
@@ -167,7 +199,7 @@ nextflow run nf-core/methylseq -resume \
 --igenomes_ignore \
 --fasta /data/putnamlab/estrand/Pocillopora_acuta_HIv1.assembly.fasta \
 --save_reference \
---input '/data/putnamlab/KITT/hputnam/20211008_HoloInt_WGBS/*_R{1,2}_001.fastq.gz' \
+--input '/data/putnamlab/estrand/HoloInt_WGBS/test_set/*_R{1,2}_001.fastq.gz' \
 --clip_r1 15 \
 --clip_r2 30 \
 --three_prime_clip_r1 30 --three_prime_clip_r2 15 \
@@ -177,4 +209,49 @@ nextflow run nf-core/methylseq -resume \
 --unmapped \
 --outdir /data/putnamlab/estrand/HoloInt_WGBS/HoloInt_methylseq2 \
 -name WGBS_methylseq_HoloInt2
+```
+
+### HoloInt_methylseq3
+
+```
+nano HoloInt_methylseq3.sh
+```
+
+```
+#!/bin/bash
+#SBATCH --job-name="methylseq"
+#SBATCH -t 500:00:00  
+#SBATCH --nodes=1 --ntasks-per-node=10
+#SBATCH --mem=500GB
+#SBATCH --account=putnamlab
+#SBATCH --export=NONE
+#SBATCH -D /data/putnamlab/estrand/HoloInt_WGBS/HoloInt_methylseq3
+#SBATCH -p putnamlab
+#SBATCH --cpus-per-task=3
+#SBATCH --error="script_error_HoloInt_methylseq3" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_HoloInt_methylseq3" #once your job is completed, any final job report comments will be put in this file
+
+# load modules needed
+source /usr/share/Modules/init/sh # load the module function
+
+module load Nextflow/21.03.0
+
+# run nextflow methylseq
+
+nextflow run nf-core/methylseq -resume \
+-profile singularity \
+--aligner bismark \
+--igenomes_ignore \
+--fasta /data/putnamlab/estrand/Pocillopora_acuta_HIv1.assembly.fasta \
+--save_reference \
+--input '/data/putnamlab/estrand/HoloInt_WGBS/test_set/*_R{1,2}_001.fastq.gz' \
+--clip_r1 15 \
+--clip_r2 30 \
+--three_prime_clip_r1 15 --three_prime_clip_r2 15 \
+--non_directional \
+--cytosine_report \
+--relax_mismatches \
+--unmapped \
+--outdir /data/putnamlab/estrand/HoloInt_WGBS/HoloInt_methylseq3 \
+-name WGBS_methylseq_HoloInt3
 ```
