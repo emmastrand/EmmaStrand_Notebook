@@ -27,7 +27,7 @@ Contents:
 - [**Initial Multiqc Report**](#multiqc)    
 - [**NF-core: Methylseq**](#Test)  
 - [**Bismark Multiqc Report**](#bismark_multiqc)  
-
+- [**Merge Strands**](#merge_strands)  
 
 ## <a name="Setting_up"></a> **Setting Up Andromeda**
 
@@ -294,3 +294,6 @@ Ran first and then moved all output to BleachingPairs_methylseq directory folder
 ![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%20WGBS%20Multiqc%20Report/bismark%20multiqc%20report/methylseq1/read%20filtering.png?raw=true)
 
 ![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%20WGBS%20Multiqc%20Report/bismark%20multiqc%20report/methylseq1/trimmed%20seq%20length.png?raw=true)
+
+
+## <a name="merge_strands"></a> **Merge Strands**
