@@ -25,7 +25,9 @@ Contents:
 - [**Setting Up Andromeda**](#Setting_up)  
 - [**Initial fastqc on files**](#fastqc)    
 - [**Initial Multiqc Report**](#multiqc)    
-- [**Methylseq: Trimming parameters test**](#Test)  
+- [**NF-core: Methylseq**](#Test)  
+- [**Bismark Multiqc Report**](#bismark_multiqc)  
+
 
 ## <a name="Setting_up"></a> **Setting Up Andromeda**
 
@@ -209,23 +211,12 @@ Does bisulfite conversion cause a higher # of T's (mostly unmethylated in a WGBS
 
 ![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%20WGBS%20Multiqc%20Report/status%20checks.png?raw=true)
 
-## <a name="Test"></a> **Methylseq: Trimming parameters test**
+## <a name="Test"></a> **NF-core: Methylseq**
 
 **Goal**: Reduce M-bias but keep as much of the sequence as possible. The first iteration of my methylseq script output looked good
 
 Nextflow version 21.03.0 requires an -input command.  
 The --name output needs to be different every time you run this script.  
-
-### Options tested
-
-**Reasoning behind values**: I chose to not include the Zymo preset because this one worked the least well for Kevin's set. I proceeded with my own preset cut-offs to test. I included the final version that Kevin went with for his and what appeared to be the second best option as well.
-
-Options tested:  
-1. BleachingPairs_methylseq.sh: clip_r1 = 10, clip_r2 = 10, three_prime_clip_r1 = 10, three_prime_clip_r2 = 10    
-2. BleachingPairs_methylseq2.sh: clip_r1 = 15, clip_r2 = 30, three_prime_clip_r1 = 30, three_prime_clip_r2 = 15 (options that worked best for Kevin Past workflow)   
-3. BleachingPairs_methylseq3.sh: clip_r1 = 15, clip_r2 = 30, three_prime_clip_r1 = 15, three_prime_clip_r2 = 15    
-4. BleachingPairs_methylseq4.sh: clip_r1 = 15, clip_r2 = 15, three_prime_clip_r1 = 15, three_prime_clip_r2 = 15  
-
 
 ### BleachingPairs_methylseq (1) script
 
@@ -270,8 +261,36 @@ nextflow run nf-core/methylseq -profile singularity \
 
 Ran first and then moved all output to BleachingPairs_methylseq directory folder.
 
-### BleachingPairs_methylseq (1) multiqc report output
+## <a name="bismark_multiqc"></a> **Bismark Multiqc Report**
 
  Comparing statistics for the methylseq summary output in this post: https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/Dec-July-2019-analysis/scripts/methylseq_statistics.md. It does not appear that extraction or pico methyl seq date affected these statistics. I'm good to move on to the following scripts for DMG analysis.
 
- 
+ Versions of all packages that bismark uses are in multiqc report output.
+
+ **Based on the below stats, it looks like the methylseq script (BleachingPairs_methylseq - 1) worked well and there is not an m-bias issue to worry about.**
+
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%20WGBS%20Multiqc%20Report/bismark%20multiqc%20report/methylseq1/alignment%20rates.png?raw=true)
+
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%20WGBS%20Multiqc%20Report/bismark%20multiqc%20report/methylseq1/deduplication.png?raw=true)
+
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%20WGBS%20Multiqc%20Report/bismark%20multiqc%20report/methylseq1/strand%20alignment.png?raw=true)
+
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%20WGBS%20Multiqc%20Report/bismark%20multiqc%20report/methylseq1/cytosine%20methylation.png?raw=true)
+
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%20WGBS%20Multiqc%20Report/bismark%20multiqc%20report/methylseq1/R1%20m%20bias.png?raw=true)
+
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%20WGBS%20Multiqc%20Report/bismark%20multiqc%20report/methylseq1/R2%20m%20bias.png?raw=true)
+
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%20WGBS%20Multiqc%20Report/bismark%20multiqc%20report/methylseq1/coverage%20quality.png?raw=true)
+
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%20WGBS%20Multiqc%20Report/bismark%20multiqc%20report/methylseq1/genome%20coverage.png?raw=true)
+
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%20WGBS%20Multiqc%20Report/bismark%20multiqc%20report/methylseq1/insert%20size%20histogram.png?raw=true)
+
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%20WGBS%20Multiqc%20Report/bismark%20multiqc%20report/methylseq1/GC%20content%20distribution.png?raw=true)
+
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%20WGBS%20Multiqc%20Report/bismark%20multiqc%20report/methylseq1/complexity%20curve.png?raw=true)
+
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%20WGBS%20Multiqc%20Report/bismark%20multiqc%20report/methylseq1/read%20filtering.png?raw=true)
+
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%20WGBS%20Multiqc%20Report/bismark%20multiqc%20report/methylseq1/trimmed%20seq%20length.png?raw=true)
