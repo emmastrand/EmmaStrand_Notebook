@@ -96,6 +96,8 @@ scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/BleachingPairs_WGB
 
 ## <a name="multiqc"></a> **Initial MultiQC Report**
 
+[Full initial multiqc report](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/Dec-July-2019-analysis/output/WGBS/initial_multiqc_report.html)
+
 **All samples have sequences of a single length (151bp).**
 
 | **Sample Name**     | **% Dups** | **% GC** | **M Seqs** |
@@ -265,7 +267,7 @@ Ran first and then moved all output to BleachingPairs_methylseq directory folder
 
  Comparing statistics for the methylseq summary output in this post: https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/Dec-July-2019-analysis/scripts/methylseq_statistics.md. It does not appear that extraction or pico methyl seq date affected these statistics. I'm good to move on to the following scripts for DMG analysis.
 
- Versions of all packages that bismark uses are in multiqc report output.
+ Versions of all packages that bismark uses are in [bismark multiqc report output](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/Dec-July-2019-analysis/output/WGBS/BleachingPairs_methylseq_multiqc_report.html).
 
  **Based on the below stats, it looks like the methylseq script (BleachingPairs_methylseq - 1) worked well and there is not an m-bias issue to worry about.**
 
