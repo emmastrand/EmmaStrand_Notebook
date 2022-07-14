@@ -41,6 +41,19 @@ $ mkdir scripts
 
 http://cyanophora.rutgers.edu/montipora/
 
+### Creating a test run folder
+
+Creating a test set folder in case I need to run different iterations of the methylseq script.
+
+```
+$ mkdir test_set
+$ cp /data/putnamlab/KITT/hputnam/20211008_BleachingPairs_WGBS/16_S138_L003_R{1,2}_001.fastq.gz /data/putnamlab/estrand/BleachingPairs_WGBS/test_set
+$ cp /data/putnamlab/KITT/hputnam/20211008_BleachingPairs_WGBS/17_S134_L003_R{1,2}_001.fastq.gz /data/putnamlab/estrand/BleachingPairs_WGBS/test_set
+$ cp /data/putnamlab/KITT/hputnam/20211008_BleachingPairs_WGBS/18_S154_L003_R{1,2}_001.fastq.gz /data/putnamlab/estrand/BleachingPairs_WGBS/test_set
+$ cp /data/putnamlab/KITT/hputnam/20211008_BleachingPairs_WGBS/21_S119_L003_R{1,2}_001.fastq.gz /data/putnamlab/estrand/BleachingPairs_WGBS/test_set
+$ cp /data/putnamlab/KITT/hputnam/20211008_BleachingPairs_WGBS/22_S120_L003_R{1,2}_001.fastq.gz /data/putnamlab/estrand/BleachingPairs_WGBS/test_set
+```
+
 ## <a name="fastqc"></a> **Initial fastqc on files**
 
 `fastqc.sh`. This took 14 hours for 40 files. Maybe I would do this only on a subset next time.
@@ -198,23 +211,10 @@ Does bisulfite conversion cause a higher # of T's (mostly unmethylated in a WGBS
 
 ## <a name="Test"></a> **Methylseq: Trimming parameters test**
 
-**Goal**: Reduce M-bias but keep as much of the sequence as possible.
+**Goal**: Reduce M-bias but keep as much of the sequence as possible. The first iteration of my methylseq script output looked good
 
 Nextflow version 21.03.0 requires an -input command.  
 The --name output needs to be different every time you run this script.  
-
-### Creating a test run folder
-
-Tests for methylseq were done on a small subset (n=5) to reduce the time that these scripts had to run. I.e. 5 samples instead of 60.
-
-```
-$ mkdir test_set
-$ cp /data/putnamlab/KITT/hputnam/20211008_BleachingPairs_WGBS/16_S138_L003_R{1,2}_001.fastq.gz /data/putnamlab/estrand/BleachingPairs_WGBS/test_set
-$ cp /data/putnamlab/KITT/hputnam/20211008_BleachingPairs_WGBS/17_S134_L003_R{1,2}_001.fastq.gz /data/putnamlab/estrand/BleachingPairs_WGBS/test_set
-$ cp /data/putnamlab/KITT/hputnam/20211008_BleachingPairs_WGBS/18_S154_L003_R{1,2}_001.fastq.gz /data/putnamlab/estrand/BleachingPairs_WGBS/test_set
-$ cp /data/putnamlab/KITT/hputnam/20211008_BleachingPairs_WGBS/21_S119_L003_R{1,2}_001.fastq.gz /data/putnamlab/estrand/BleachingPairs_WGBS/test_set
-$ cp /data/putnamlab/KITT/hputnam/20211008_BleachingPairs_WGBS/22_S120_L003_R{1,2}_001.fastq.gz /data/putnamlab/estrand/BleachingPairs_WGBS/test_set
-```
 
 ### Options tested
 
@@ -227,7 +227,7 @@ Options tested:
 4. BleachingPairs_methylseq4.sh: clip_r1 = 15, clip_r2 = 15, three_prime_clip_r1 = 15, three_prime_clip_r2 = 15  
 
 
-### BleachingPairs_methylseq (1)
+### BleachingPairs_methylseq (1) script
 
 ```
 nano BleachingPairs_methylseq.sh
@@ -268,6 +268,10 @@ nextflow run nf-core/methylseq -profile singularity \
 -name WGBS_methylseq_BleachingPairs3
 ```
 
-Run first and then moved all output to BleachingPairs_methylseq directory folder.
+Ran first and then moved all output to BleachingPairs_methylseq directory folder.
 
-### BleachingPairs_methylseq2
+### BleachingPairs_methylseq (1) multiqc report output
+
+ Comparing statistics for the methylseq summary output in this post: https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/Dec-July-2019-analysis/scripts/methylseq_statistics.md. It does not appear that extraction or pico methyl seq date affected these statistics. I'm good to move on to the following scripts for DMG analysis.
+
+ 
