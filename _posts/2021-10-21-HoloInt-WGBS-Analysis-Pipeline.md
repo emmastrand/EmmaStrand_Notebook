@@ -22,6 +22,7 @@ Contents:
 - [**Initial fastqc run**](#fastqc)   
 - [**Initial Multiqc Report**](#multiqc)     
 - [**Methylseq: Trimming parameters test**](#Test)  
+- [**Bismark Multiqc Report**](#bismark_multiqc)  
 
 ## <a name="Setting_up"></a> **Setting Up Andromeda**
 
@@ -244,15 +245,8 @@ This was done on a small subset (n=5) to reduce the time that these scripts had 
 
 Options tested:  
 1. HoloInt_methylseq.sh: clip_r1 = 10, clip_r2 = 10, three_prime_clip_r1 = 10, three_prime_clip_r2 = 10    
-2. HoloInt_methylseq2.sh: clip_r1 = 15, clip_r2 = 30, three_prime_clip_r1 = 30, three_prime_clip_r2 = 15 (options that worked best for Kevin Past workflow)   
-3. HoloInt_methylseq3.sh: clip_r1 = 15, clip_r2 = 30, three_prime_clip_r1 = 15, three_prime_clip_r2 = 15    
-4. HoloInt_methylseq4.sh: clip_r1 = 15, clip_r2 = 15, three_prime_clip_r1 = 15, three_prime_clip_r2 = 15  
-
-1: 10, 30, 10, 10   
-2: 10, 30, 30, 10  
-3: 15, 30, 30, 15  
-4: 15, 30, 15, 15  
-
+2. HoloInt_methylseq2.sh: clip_r1 = 15, clip_r2 = 30, three_prime_clip_r1 = 15, three_prime_clip_r2 = 15 (options that worked best for Kevin Past workflow)   
+3. HoloInt_methylseq3.sh: clip_r1 = 15, clip_r2 = 30, three_prime_clip_r1 = 30, three_prime_clip_r2 = 15    
 
 Nextflow version 21.03.0 requires an -input command.
 
@@ -287,7 +281,7 @@ nextflow run nf-core/methylseq -resume \
 --igenomes_ignore \
 --fasta /data/putnamlab/estrand/Pocillopora_acuta_HIv1.assembly.fasta \
 --save_reference \
---input '/data/putnamlab/KITT/hputnam/20211008_HoloInt_WGBS/*_R{1,2}_001.fastq.gz' \
+--input '/data/putnamlab/estrand/HoloInt_WGBS/test_set/*_R{1,2}_001.fastq.gz' \
 --clip_r1 10 \
 --clip_r2 10 \
 --three_prime_clip_r1 10 --three_prime_clip_r2 10 \
@@ -295,11 +289,9 @@ nextflow run nf-core/methylseq -resume \
 --cytosine_report \
 --relax_mismatches \
 --unmapped \
---outdir /data/putnamlab/estrand/HoloInt_WGBS \
--name WGBS_methylseq_HoloInt
+--outdir /data/putnamlab/estrand/HoloInt_WGBS/HoloInt_methylseq \
+-name WGBS_methylseq_HoloInt-10
 ```
-
-I ran this first and then moved all of the output to a new HoloInt_methylseq directory folder.
 
 ### HoloInt_methylseq2
 
@@ -309,62 +301,15 @@ nano HoloInt_methylseq2.sh
 
 ```
 #!/bin/bash
-#SBATCH --job-name="methylseq"
-#SBATCH -t 500:00:00  
+#SBATCH --job-name="methylseq2"
+#SBATCH -t 120:00:00 #use higher # next time
 #SBATCH --nodes=1 --ntasks-per-node=10
 #SBATCH --mem=500GB
 #SBATCH --account=putnamlab
 #SBATCH --export=NONE
-#SBATCH -D /data/putnamlab/estrand/HoloInt_WGBS/HoloInt_methylseq2
+#SBATCH -D /data/putnamlab/estrand/HoloInt_WGBS
 #SBATCH -p putnamlab
 #SBATCH --cpus-per-task=3
-#SBATCH --error="script_error_HoloInt_methylseq2" #if your job fails, the error report will be put in this file
-#SBATCH --output="output_script_HoloInt_methylseq2" #once your job is completed, any final job report comments will be put in this file
-
-# load modules needed
-source /usr/share/Modules/init/sh # load the module function
-
-module load Nextflow/21.03.0
-
-# run nextflow methylseq
-
-nextflow run nf-core/methylseq -resume \
--profile singularity \
---aligner bismark \
---igenomes_ignore \
---fasta /data/putnamlab/estrand/Pocillopora_acuta_HIv1.assembly.fasta \
---save_reference \
---input '/data/putnamlab/estrand/HoloInt_WGBS/test_set/*_R{1,2}_001.fastq.gz' \
---clip_r1 15 \
---clip_r2 30 \
---three_prime_clip_r1 30 --three_prime_clip_r2 15 \
---non_directional \
---cytosine_report \
---relax_mismatches \
---unmapped \
---outdir /data/putnamlab/estrand/HoloInt_WGBS/HoloInt_methylseq2 \
--name WGBS_methylseq_HoloInt2
-```
-
-### HoloInt_methylseq3
-
-```
-nano HoloInt_methylseq3.sh
-```
-
-```
-#!/bin/bash
-#SBATCH --job-name="methylseq"
-#SBATCH -t 500:00:00  
-#SBATCH --nodes=1 --ntasks-per-node=10
-#SBATCH --mem=500GB
-#SBATCH --account=putnamlab
-#SBATCH --export=NONE
-#SBATCH -D /data/putnamlab/estrand/HoloInt_WGBS/HoloInt_methylseq3
-#SBATCH -p putnamlab
-#SBATCH --cpus-per-task=3
-#SBATCH --error="script_error_HoloInt_methylseq3" #if your job fails, the error report will be put in this file
-#SBATCH --output="output_script_HoloInt_methylseq3" #once your job is completed, any final job report comments will be put in this file
 
 # load modules needed
 source /usr/share/Modules/init/sh # load the module function
@@ -387,6 +332,49 @@ nextflow run nf-core/methylseq -resume \
 --cytosine_report \
 --relax_mismatches \
 --unmapped \
+--outdir /data/putnamlab/estrand/HoloInt_WGBS/HoloInt_methylseq2 \
+-name WGBS_methylseq_HoloInt-15
+```
+
+### HoloInt_methylseq3
+
+```
+nano HoloInt_methylseq3.sh
+```
+
+```
+#!/bin/bash
+#SBATCH --job-name="methylseq3"
+#SBATCH -t 120:00:00 #use higher # next time
+#SBATCH --nodes=1 --ntasks-per-node=10
+#SBATCH --mem=500GB
+#SBATCH --account=putnamlab
+#SBATCH --export=NONE
+#SBATCH -D /data/putnamlab/estrand/HoloInt_WGBS
+#SBATCH -p putnamlab
+#SBATCH --cpus-per-task=3
+
+# load modules needed
+source /usr/share/Modules/init/sh # load the module function
+
+module load Nextflow/21.03.0
+
+# run nextflow methylseq
+
+nextflow run nf-core/methylseq -resume \
+-profile singularity \
+--aligner bismark \
+--igenomes_ignore \
+--fasta /data/putnamlab/estrand/Pocillopora_acuta_HIv1.assembly.fasta \
+--save_reference \
+--input '/data/putnamlab/estrand/HoloInt_WGBS/test_set/*_R{1,2}_001.fastq.gz' \
+--clip_r1 15 \
+--clip_r2 30 \
+--three_prime_clip_r1 30 --three_prime_clip_r2 15 \
+--non_directional \
+--cytosine_report \
+--relax_mismatches \
+--unmapped \
 --outdir /data/putnamlab/estrand/HoloInt_WGBS/HoloInt_methylseq3 \
--name WGBS_methylseq_HoloInt3
+-name WGBS_methylseq_HoloInt-30
 ```
