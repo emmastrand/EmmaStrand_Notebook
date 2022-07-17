@@ -88,7 +88,7 @@ scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/HoloInt_WGBS/multi
 
 Full report here: https://github.com/hputnam/Acclim_Dynamics/blob/master/Molecular_paper/WGBS/output/initial_multiqc_report.html
 
-**All samples have sequences of a single length (150bp , 151bp).** 
+**All samples have sequences of a single length (150bp , 151bp).**
 
 | Sample Name         | % Dups | % GC | M Seqs |
 |---------------------|--------|------|--------|
@@ -213,18 +213,24 @@ Full report here: https://github.com/hputnam/Acclim_Dynamics/blob/master/Molecul
 | 2879_S0_L001_R1_001 |  23.2% |  29% |  85.7  |
 | 2879_S0_L001_R2_001 |  23.0% |  28% |  85.7  |
 
-![]()
-![]()
-![]()
-![]()
-![]()
-![]()
-![]()
-![]()
-![]()
-![]()
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/HoloInt%20WGBS%20Multiqc%20Report/initial%20fastqc/seq%20counts.png?raw=true)
 
+Sample 1709 had a very large # of reads. The rest are within the range of my other projects (not low reads, graph is relative).
 
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/HoloInt%20WGBS%20Multiqc%20Report/initial%20fastqc/seq%20quality.png?raw=true)
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/HoloInt%20WGBS%20Multiqc%20Report/initial%20fastqc/per%20seq%20quality.png?raw=true)
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/HoloInt%20WGBS%20Multiqc%20Report/initial%20fastqc/per%20seq%20GC%20content.png?raw=true)
+
+This peak has a normal distribution (good, what we're looking for) but is shifted to a peak ~20-25... This is usually higher? Red flag?
+Is this shifted because methylation changes unmethylated Cytosine to Thymine and therefore a smaller amount of GC content? Especially in an invertebrate that only has 20% methylation.. This is actually a green flag then?
+
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/HoloInt%20WGBS%20Multiqc%20Report/initial%20fastqc/per%20base%20N%20content.png?raw=true)
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/HoloInt%20WGBS%20Multiqc%20Report/initial%20fastqc/seq%20duplication%20levels.png?raw=true)
+
+~6 samples have a red peak >10. I'm not sure why.. come back to this.
+
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/HoloInt%20WGBS%20Multiqc%20Report/initial%20fastqc/overrepresented%20seqs.png?raw=true)
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/HoloInt%20WGBS%20Multiqc%20Report/initial%20fastqc/adapter%20content.png?raw=true)
 
 ## <a name="Test"></a> **Methylseq: Trimming parameters test**
 
