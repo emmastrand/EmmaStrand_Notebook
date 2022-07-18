@@ -293,6 +293,22 @@ nextflow run nf-core/methylseq -resume \
 -name WGBS_methylseq_HoloInt-10
 ```
 
+The multiqc report ran into this error: `Missing output file(s) multiqc_plots expected by process multiqc (1)`.  
+
+I ran this command in the terminal and it worked :
+
+```
+multiqc -f --title "WGBS_methylseq_HoloInt-10" --filename WGBS_methylseq_HoloInt_10_multiqc_report  . \
+      -m custom_content -m picard -m qualimap -m bismark -m samtools -m preseq -m cutadapt -m fastqc
+```
+
+Ouptut: WGBS_methylseq_HoloInt_10_multiqc_report.html.
+
+```
+scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/HoloInt_WGBS/HoloInt_methylseq/WGBS_methylseq_HoloInt_10_multiqc_report.html /Users/emmastrand/MyProjects/Acclim_Dynamics/Molecular_paper/WGBS/output/WGBS_methylseq_HoloInt_10_multiqc_report.html
+```
+
+
 ### HoloInt_methylseq2
 
 ```
