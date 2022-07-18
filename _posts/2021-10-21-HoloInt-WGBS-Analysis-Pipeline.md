@@ -23,6 +23,7 @@ Contents:
 - [**Initial Multiqc Report**](#multiqc)     
 - [**Methylseq: Trimming parameters test**](#Test)  
 - [**Bismark Multiqc Report**](#bismark_multiqc)  
+- [**Troubleshooting**](#troubleshooting)  
 
 ## <a name="Setting_up"></a> **Setting Up Andromeda**
 
@@ -235,9 +236,9 @@ Is this shifted because methylation changes unmethylated Cytosine to Thymine and
 
 ## <a name="Test"></a> **Methylseq: Trimming parameters test**
 
-This was done on a small subset (n=5) to reduce the time that these scripts had to run. I.e. 5 samples instead of 60.
-
 ### Options tested
+
+This was done on a small subset (n=5) to reduce the time that these scripts had to run. I.e. 5 samples instead of 60.
 
 **Goal**: Reduce M-bias but keep as much of the sequence as possible.
 
@@ -298,7 +299,9 @@ The multiqc report ran into this error: `Missing output file(s) multiqc_plots ex
 I ran this command in the terminal and it worked :
 
 ```
-multiqc -f --title "WGBS_methylseq_HoloInt-10" --filename WGBS_methylseq_HoloInt_10_multiqc_report  . \
+$ module load MultiQC/1.9-intel-2020a-Python-3.8.2
+
+$ multiqc -f --title "WGBS_methylseq_HoloInt-10" --filename WGBS_methylseq_HoloInt_10_multiqc_report  . \
       -m custom_content -m picard -m qualimap -m bismark -m samtools -m preseq -m cutadapt -m fastqc
 ```
 
@@ -334,7 +337,7 @@ module load Nextflow/21.03.0
 
 # run nextflow methylseq
 
-nextflow run nf-core/methylseq -resume \
+nextflow run nf-core/methylseq \
 -profile singularity \
 --aligner bismark \
 --igenomes_ignore \
@@ -349,7 +352,24 @@ nextflow run nf-core/methylseq -resume \
 --relax_mismatches \
 --unmapped \
 --outdir /data/putnamlab/estrand/HoloInt_WGBS/HoloInt_methylseq2 \
--name WGBS_methylseq_HoloInt-15
+-name WGBS_methylseq_HoloInt2
+```
+
+The multiqc report ran into this error: `Missing output file(s) multiqc_plots expected by process multiqc (1)`.  
+
+I ran this command in the terminal and it worked (within the HoloInt_methylseq2 folder):
+
+```
+$ module load MultiQC/1.9-intel-2020a-Python-3.8.2
+
+$ multiqc -f --title "WGBS_methylseq_HoloInt2" --filename WGBS_methylseq_HoloInt2_multiqc_report  . \
+      -m custom_content -m picard -m qualimap -m bismark -m samtools -m preseq -m cutadapt -m fastqc
+```
+
+Ouptut: WGBS_methylseq_HoloInt2_multiqc_report.html.
+
+```
+scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/HoloInt_WGBS/HoloInt_methylseq2/WGBS_methylseq_HoloInt2_multiqc_report.html /Users/emmastrand/MyProjects/Acclim_Dynamics/Molecular_paper/WGBS/output/WGBS_methylseq_HoloInt2_multiqc_report.html
 ```
 
 ### HoloInt_methylseq3
@@ -377,7 +397,7 @@ module load Nextflow/21.03.0
 
 # run nextflow methylseq
 
-nextflow run nf-core/methylseq -resume \
+nextflow run nf-core/methylseq \
 -profile singularity \
 --aligner bismark \
 --igenomes_ignore \
@@ -392,5 +412,106 @@ nextflow run nf-core/methylseq -resume \
 --relax_mismatches \
 --unmapped \
 --outdir /data/putnamlab/estrand/HoloInt_WGBS/HoloInt_methylseq3 \
--name WGBS_methylseq_HoloInt-30
+-name WGBS_methylseq_HoloInt3
+```
+
+The multiqc report ran into this error: `Missing output file(s) multiqc_plots expected by process multiqc (1)`.  
+
+I ran this command in the terminal and it worked (within the HoloInt_methylseq2 folder):
+
+```
+$ module load MultiQC/1.9-intel-2020a-Python-3.8.2
+
+$ multiqc -f --title "WGBS_methylseq_HoloInt3" --filename WGBS_methylseq_HoloInt3_multiqc_report  . \
+      -m custom_content -m picard -m qualimap -m bismark -m samtools -m preseq -m cutadapt -m fastqc
+```
+
+Ouptut: WGBS_methylseq_HoloInt3_multiqc_report.html.
+
+```
+scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/HoloInt_WGBS/HoloInt_methylseq3/WGBS_methylseq_HoloInt3_multiqc_report.html /Users/emmastrand/MyProjects/Acclim_Dynamics/Molecular_paper/WGBS/output/WGBS_methylseq_HoloInt3_multiqc_report.html
+```
+
+### Results of the multiqc on the three reports above
+
+HoloInt_methylseq full report: https://github.com/hputnam/Acclim_Dynamics/blob/master/Molecular_paper/WGBS/output/WGBS_methylseq_HoloInt_10_multiqc_report.html   
+HoloInt_methylseq2 full report:  
+HoloInt_methylseq3 full report:  
+
+
+
+## <a name="troubleshooting"></a> **Troubleshooting**
+
+### Original methylseq parameters (old_HoloInt_methylseq)
+
+This doesn't look right.. I don't think this script ran all the way..
+
+```
+#!/bin/bash
+#SBATCH --job-name="methylseq"
+#SBATCH -t 120:00:00
+#SBATCH --nodes=1 --ntasks-per-node=10
+#SBATCH --mem=128GB
+#SBATCH --export=NONE
+#SBATCH -D /data/putnamlab/estrand/HoloInt_WGBS
+#SBATCH --cpus-per-task=3
+
+# load modules needed
+source /usr/share/Modules/init/sh # load the module function
+
+module load Nextflow/21.03.0
+
+# run nextflow methylseq
+
+nextflow run nf-core/methylseq -resume \
+-profile singularity \
+--aligner bismark \
+--igenomes_ignore \
+--fasta /data/putnamlab/estrand/Pocillopora_acuta_HIv1.assembly.fasta \
+--save_reference \
+--input '/data/putnamlab/KITT/hputnam/20211008_HoloInt_WGBS/*_R{1,2}_001.fastq.gz' \
+--clip_r1 10 \
+--clip_r2 10 \
+--three_prime_clip_r1 10 --three_prime_clip_r2 10 \
+--non_directional \
+--cytosine_report \
+--relax_mismatches \
+--unmapped \
+--outdir /data/putnamlab/estrand/HoloInt_WGBS
+```
+
+I couldn't find the multiqc report from this script so I ran this command in the terminal and it worked (in the old_HoloInt_methylseq folder):
+
+```
+$ module load MultiQC/1.9-intel-2020a-Python-3.8.2
+
+$ multiqc -f --filename WGBS_methylseq_HoloInt_original_multiqc_report  . \
+      -m custom_content -m picard -m qualimap -m bismark -m samtools -m preseq -m cutadapt -m fastqc
+
+[WARNING]         multiqc : MultiQC Version v1.12 now available!
+[INFO   ]         multiqc : This is MultiQC v1.9
+[INFO   ]         multiqc : Template    : default
+[INFO   ]         multiqc : Searching   : /data/putnamlab/estrand/HoloInt_WGBS/old_HoloInt_methylseq
+[INFO   ]         multiqc : Only using modules custom_content, picard, qualimap, bismark, samtools, preseq, cutadapt, fastqc
+Searching 3881 files..  [####################################]  100%          
+[INFO   ]  custom_content : nf-core-methylseq-summary: Found 1 sample (html)
+[INFO   ]        qualimap : Found 50 BamQC reports
+[INFO   ]          preseq : Found 49 reports
+[INFO   ]         bismark : Found 60 alignment reports
+[INFO   ]         bismark : Found 50 dedup reports
+[INFO   ]         bismark : Found 29 methextract reports
+[INFO   ]        cutadapt : Found 120 reports
+[INFO   ]          fastqc : Found 240 reports
+[INFO   ]         multiqc : Compressing plot data
+[INFO   ]         multiqc : Report      : WGBS_methylseq_HoloInt_original_multiqc_report.html
+[INFO   ]         multiqc : Data        : WGBS_methylseq_HoloInt_original_multiqc_report_data
+[INFO   ]         multiqc : MultiQC complete
+```
+
+The above numbers look wonky.. Should be 60 preseq reports?
+
+Ouptut: WGBS_methylseq_HoloInt_original_multiqc_report.html.
+
+```
+scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/HoloInt_WGBS/old_HoloInt_methylseq/WGBS_methylseq_HoloInt_original_multiqc_report.html /Users/emmastrand/MyProjects/Acclim_Dynamics/Molecular_paper/WGBS/output/WGBS_methylseq_HoloInt_original_multiqc_report.html
 ```
