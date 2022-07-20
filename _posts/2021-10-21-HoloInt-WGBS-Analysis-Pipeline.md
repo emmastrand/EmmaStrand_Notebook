@@ -434,10 +434,31 @@ scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/HoloInt_WGBS/HoloI
 
 ### Results of the multiqc on the three reports above
 
-HoloInt_methylseq full report: https://github.com/hputnam/Acclim_Dynamics/blob/master/Molecular_paper/WGBS/output/WGBS_methylseq_HoloInt_10_multiqc_report.html   
-HoloInt_methylseq2 full report:  
-HoloInt_methylseq3 full report:  
+HoloInt_methylseq full report: https://github.com/hputnam/Acclim_Dynamics/blob/master/Molecular_paper/WGBS/output/WGBS_methylseq_HoloInt_10_multiqc_report.html     
+HoloInt_methylseq2 full report:  https://github.com/hputnam/Acclim_Dynamics/blob/master/Molecular_paper/WGBS/output/WGBS_methylseq_HoloInt2_multiqc_report.html  
+HoloInt_methylseq3 full report:  https://github.com/hputnam/Acclim_Dynamics/blob/master/Molecular_paper/WGBS/output/WGBS_methylseq_HoloInt3_multiqc_report.html  
 
+Comparison of methylseq statistics found here: https://github.com/hputnam/Acclim_Dynamics/blob/master/Molecular_paper/scripts/methylseq_statistics.md
+
+*HoloInt_methylseq*
+
+![](https://github.com/hputnam/Acclim_Dynamics/blob/master/Molecular_paper/WGBS/output/methylseq_multiqc_comparison/HoloInt_methylseq/m-bias%20CpG%20R1.png?raw=true)
+
+![](https://github.com/hputnam/Acclim_Dynamics/blob/master/Molecular_paper/WGBS/output/methylseq_multiqc_comparison/HoloInt_methylseq/m-bias%20CpG%20R2.png?raw=true)
+
+*HoloInt_methylseq2*
+
+![](https://github.com/hputnam/Acclim_Dynamics/blob/master/Molecular_paper/WGBS/output/methylseq_multiqc_comparison/HoloInt_methylseq2/M-bias%20CpG%20R1.png?raw=true)
+
+![](https://github.com/hputnam/Acclim_Dynamics/blob/master/Molecular_paper/WGBS/output/methylseq_multiqc_comparison/HoloInt_methylseq2/M-bias%20CpG%20R2.png?raw=true)
+
+*HoloInt_methylseq3*
+
+![](https://github.com/hputnam/Acclim_Dynamics/blob/master/Molecular_paper/WGBS/output/methylseq_multiqc_comparison/HoloInt_methylseq3/M-bias%20CpG%20R1.png?raw=true)
+
+![](https://github.com/hputnam/Acclim_Dynamics/blob/master/Molecular_paper/WGBS/output/methylseq_multiqc_comparison/HoloInt_methylseq3/M-bias%20CpG%20R2.png?raw=true)
+
+Based on the above, I am moving forward with HoloInt_methylseq trimming of clip 10 for all four options.
 
 
 ## <a name="troubleshooting"></a> **Troubleshooting**
