@@ -22,7 +22,7 @@ Contents:
 - [**Initial fastqc run**](#fastqc)   
 - [**Initial Multiqc Report**](#multiqc)     
 - [**Methylseq: Trimming parameters test**](#Test)  
-- [**Bismark Multiqc Report**](#bismark_multiqc)  
+- [**Methylseq: final script run**](#methylseq_final)
 - [**Troubleshooting**](#troubleshooting)  
 
 ## <a name="Setting_up"></a> **Setting Up Andromeda**
@@ -238,7 +238,7 @@ Is this shifted because methylation changes unmethylated Cytosine to Thymine and
 
 ### Options tested
 
-This was done on a small subset (n=5) to reduce the time that these scripts had to run. I.e. 5 samples instead of 60.
+This was done on a small subset (n=5) to reduce the time that these scripts had to run. I.e. 5 samples instead of 60. Each script took a little over 24 hours to run.
 
 **Goal**: Reduce M-bias but keep as much of the sequence as possible.
 
@@ -461,9 +461,50 @@ Comparison of methylseq statistics found here: https://github.com/hputnam/Acclim
 Based on the above, I am moving forward with HoloInt_methylseq trimming of clip 10 for all four options.
 
 
+## <a name="methylseq_final"></a> **Methylseq: final script run**
+
+`HoloInt_methylseq_final.sh`:
+
+```
+#!/bin/bash
+#SBATCH --job-name="methylseq_final"
+#SBATCH -t 250:00:00
+#SBATCH --nodes=1 --ntasks-per-node=10
+#SBATCH --mem=500GB
+#SBATCH --account=putnamlab
+#SBATCH --export=NONE
+#SBATCH -D /data/putnamlab/estrand/HoloInt_WGBS/HoloInt_methylseq_final
+#SBATCH -p putnamlab
+#SBATCH --cpus-per-task=3
+
+# load modules needed
+source /usr/share/Modules/init/sh # load the module function
+
+module load Nextflow/21.03.0
+
+# run nextflow methylseq
+
+nextflow run nf-core/methylseq -resume \
+-profile singularity \
+--aligner bismark \
+--igenomes_ignore \
+--fasta /data/putnamlab/estrand/Pocillopora_acuta_HIv1.assembly.fasta \
+--save_reference \
+--input '/data/putnamlab/KITT/hputnam/20211008_HoloInt_WGBS/*_R{1,2}_001.fastq.gz' \
+--clip_r1 10 \
+--clip_r2 10 \
+--three_prime_clip_r1 10 --three_prime_clip_r2 10 \
+--non_directional \
+--cytosine_report \
+--relax_mismatches \
+--unmapped \
+--outdir /data/putnamlab/estrand/HoloInt_WGBS/HoloInt_methylseq_final \
+-name WGBS_methylseq_HoloInt_final
+```
+
 ## <a name="troubleshooting"></a> **Troubleshooting**
 
-### Original methylseq parameters (old_HoloInt_methylseq)
+### Original methylseq parameters (old_HoloInt_methylseq) - the first time it was run (which I don't think was fully which is why I ran this again)
 
 This doesn't look right.. I don't think this script ran all the way..
 
