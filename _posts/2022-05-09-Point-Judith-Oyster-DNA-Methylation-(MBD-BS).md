@@ -35,6 +35,7 @@ $ mkdir /data/putnamlab/estrand/PointJudithData_MBDBS
 ## within the new PointJudithData_MBDBS folder
 $ mkdir fastqc_results
 $ mkdir scripts
+$ mkdir PJ_methylseq1 ### for methylseq output
 ```
 
 ### Creating a test run folder
@@ -119,10 +120,6 @@ Run this first to assess m-bias and then decide if we need more trial runs. See 
 
 module load Nextflow/21.03.0
 
-# make directory for Output
-
-mkdir PJ_methylseq1  # only run this line if you don't have the directory created
-
 # run nextflow methylseq
 
 nextflow run nf-core/methylseq \
@@ -141,5 +138,5 @@ nextflow run nf-core/methylseq \
 --cytosine_report \
 ##--relax_mismatches \ ##### DECIDE IF WE KEEP THIS OR NOT #####
 --unmapped \
---outdir PJ_methylseq1 #Change if you want to change the name of the output folder
+--outdir /data/putnamlab/estrand/PointJudithData_MBDBS/PJ_methylseq1 #Change if you want to change the name of the output folder
 ```
