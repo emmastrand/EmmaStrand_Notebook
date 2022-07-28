@@ -11,10 +11,6 @@ projects: Point Judith Oyster
 
 We used MBD-BS for our 2022 lab meetings oyster methylation paper: [Cvir github page](https://github.com/hputnam/Cvir_Nut_Int); [laboratory protocol details post](https://github.com/hputnam/Cvir_Nut_Int#m-schedl-mbdbs-library-preps). Sequenced on a single Illumina NovaSeq S4 flow cell lane for 2 x 150 bp sequencing at Genewiz.
 
-C. virginica genome (the reference we will be using): https://www.ncbi.nlm.nih.gov/genome/398.
-
-`$ wget https://www.ncbi.nlm.nih.gov/genome/398` into desired directory.
-
 Proposed workflow:  
 1. FastQC and multiqc report on raw files.  
 2. Based on the quality of those reads, decide the num_mismatches parameter option. If we think we will have a higher number of mismatches if we have poorer quality data, then we use the `--relax_mismatches` flag. If we have really high quality data, then we an set a different cut-off for this. [See methylation QC markdown in lab repo](https://github.com/Putnam-Lab/Lab_Management/blob/master/Bioinformatics_%26_Coding/Workflows/Methylation_QC.md#-nextflow-methylseq-pipeline-methylation-quantification).   
@@ -22,19 +18,101 @@ Proposed workflow:
 4. Run 3-4 different parameter choices for the four clipping values.  
 5. Based on the results from that parameter comparison (goal = lowest m-bias), then choose final 4 clipping values.  
 
-#### Proposed methylseq script
+Contents:  
+- [**Setting Up Andromeda**](#Setting_up)  
+- [**Initial fastqc on files**](#fastqc)    
+- [**Initial Multiqc Report**](#multiqc)    
+- [**NF-core: Methylseq**](#methylseq)    
+
+## <a name="Setting_up"></a> **Setting Up Andromeda**
+
+Original data lives here: /data/putnamlab/KITT/hputnam/20200119_Oyst_Nut/MBDBS.
+
+#### Make a new directory for output files
+
+```
+$ mkdir /data/putnamlab/estrand/PointJudithData_MBDBS
+## within the new PointJudithData_MBDBS folder
+$ mkdir fastqc_results
+$ mkdir scripts
+```
+
+### Creating a test run folder
+
+Creating a test set folder in case I need to run different iterations of the methylseq script.
+
+```
+$ mkdir test_set
+$ cp /data/putnamlab/KITT/hputnam/20200119_Oyst_Nut/MBDBS/HPB10_S44_L001_R{1,2}_001.fastq.gz /data/putnamlab/estrand/PointJudithData_MBDBS/test_set
+$ cp /data/putnamlab/KITT/hputnam/20200119_Oyst_Nut/MBDBS/HPB11_S45_L001_R{1,2}_001.fastq.gz /data/putnamlab/estrand/PointJudithData_MBDBS/test_set
+$ cp /data/putnamlab/KITT/hputnam/20200119_Oyst_Nut/MBDBS/HPB12_S46_L001_R{1,2}_001.fastq.gz /data/putnamlab/estrand/PointJudithData_MBDBS/test_set
+```
+
+#### Download genome file  
+
+C. virginica genome (the reference we will be using): https://www.ncbi.nlm.nih.gov/genome/398.
+
+`$ wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/002/022/765/GCF_002022765.2_C_virginica-3.0/GCF_002022765.2_C_virginica-3.0_genomic.fna.gz` into desired directory.   
+
+
+## <a name="fastqc"></a> **Initial fastqc on files**
+
+`fastqc.sh`.  
 
 ```
 #!/bin/bash
-#SBATCH --job-name="methylseq"
-#SBATCH -t 500:00:00
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab
+#SBATCH -D /data/putnamlab/estrand/PointJudithData_MBDBS/scripts               
+#SBATCH --error="script_error_fastqc" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_fastqc" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function
+
+cd /data/putnamlab/estrand/PointJudithData_MBDBS
+
+module load FastQC/0.11.9-Java-11
+module load MultiQC/1.9-intel-2020a-Python-3.8.2
+
+for file in /data/putnamlab/KITT/hputnam/20200119_Oyst_Nut/MBDBS/*fastq.gz
+do
+fastqc $file --outdir /data/putnamlab/estrand/PointJudithData_MBDBS/fastqc_results         
+done
+
+multiqc --interactive fastqc_results
+```
+
+## <a name="multiqc"></a> **Initial MultiQC Report**
+
+```
+scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/PointJudithData_MBDBS/fastqc_results/multiqc_report.html /Users/emmastrand/MyProjects/Cvir_Nut_Int/output/MBDBS/initial_multiqc_report.html
+```
+
+
+## <a name="methylseq"></a> **NF-core: Methylseq**
+
+#### Methylseq1
+
+Run this first to assess m-bias and then decide if we need more trial runs. See Emma Strand and Kevin Wong's notebook posts for methylation scripts and how they dealt with these issues.
+
+```
+#!/bin/bash
+#SBATCH --job-name="methylseq1"
+#SBATCH -t 500:00:00 # this value needs to be really high for methylseq programs
 #SBATCH --nodes=1 --ntasks-per-node=10
 #SBATCH --mem=120GB
 #SBATCH --account=putnamlab
 #SBATCH --export=NONE
 #SBATCH --mail-type=BEGIN,END,FAIL
 #SBATCH --mail-user=emma_strand@uri.edu
-#SBATCH -D ####insert directory####
+#SBATCH -D /data/putnamlab/estrand/PointJudithData_MBDBS/scripts               
+#SBATCH --error="script_error_methylseq1" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_methylseq1" #once your job is completed, any final job report comments will be put in this file
 #SBATCH --exclusive
 
 # load modules needed
@@ -52,16 +130,16 @@ nextflow run nf-core/methylseq \
 --aligner bismark \
 --igenomes_ignore \
 --resume \
---fasta <PATH_TO_GENOME_FASTA> \
+--fasta data/putnamlab/estrand/PointJudithData_MBDBS/GCF_002022765.2_C_virginica-3.0_genomic.fna.gz \
 --save_reference \
---input '<PATH_TO_RAW_SEQUENCES>/*_R{1,2}_001.fastq.gz' \
---clip_r1 <INSERT HERE> \
---clip_r2 <INSERT HERE> \
---three_prime_clip_r1 <INSERT HERE> \  
---three_prime_clip_r2 <INSERT HERE> \  
+--input '/data/putnamlab/KITT/hputnam/20200119_Oyst_Nut/MBDBS/*_R{1,2}_001.fastq.gz' \
+--clip_r1 10 \
+--clip_r2 10 \
+--three_prime_clip_r1 10 \  
+--three_prime_clip_r2 10 \  
 --non_directional \
 --cytosine_report \
---relax_mismatches \ ##### DECIDE IF WE KEEP THIS OR NOT #####
+##--relax_mismatches \ ##### DECIDE IF WE KEEP THIS OR NOT #####
 --unmapped \
 --outdir PJ_methylseq1 #Change if you want to change the name of the output folder
 ```
