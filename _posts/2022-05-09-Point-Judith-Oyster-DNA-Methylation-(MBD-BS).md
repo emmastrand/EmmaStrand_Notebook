@@ -55,10 +55,11 @@ C. virginica genome (the reference we will be using): https://www.ncbi.nlm.nih.g
 
 `$ wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/002/022/765/GCF_002022765.2_C_virginica-3.0/GCF_002022765.2_C_virginica-3.0_genomic.fna.gz` into desired directory.   
 
+fna = FastA format file containing Nucleotide sequence (DNA)
 
 ## <a name="fastqc"></a> **Initial fastqc on files**
 
-`fastqc.sh`.  
+`fastqc.sh`.  This took less than 10 minutes.
 
 ```
 #!/bin/bash
@@ -91,9 +92,18 @@ multiqc --interactive fastqc_results
 ## <a name="multiqc"></a> **Initial MultiQC Report**
 
 ```
-scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/PointJudithData_MBDBS/fastqc_results/multiqc_report.html /Users/emmastrand/MyProjects/Cvir_Nut_Int/output/MBDBS/initial_multiqc_report.html
+scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/PointJudithData_MBDBS/multiqc_report.html /Users/emmastrand/MyProjects/Cvir_Nut_Int/output/MBDBS/initial_multiqc_report.html
 ```
 
+Full report here: https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/MBDBS/initial_multiqc_report.html
+
+Number of reads range from 820k to 1550k but most fall around 900-100k per sample. Most sequences are the full 300 bp length, and none lower than 280 bp.
+
+**Mean quality sequencing is low**
+
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/MBDBS/multiqc/mean%20quality.png?raw=true)
+
+We might need to mess with cut off variations in the methylseq because of this. We'll see how low cut-offs go first.
 
 ## <a name="methylseq"></a> **NF-core: Methylseq**
 
@@ -103,40 +113,38 @@ Run this first to assess m-bias and then decide if we need more trial runs. See 
 
 ```
 #!/bin/bash
-#SBATCH --job-name="methylseq1"
-#SBATCH -t 500:00:00 # this value needs to be really high for methylseq programs
+#SBATCH --job-name="1methylseq"
+#SBATCH -t 200:00:00
 #SBATCH --nodes=1 --ntasks-per-node=10
 #SBATCH --mem=120GB
 #SBATCH --account=putnamlab
 #SBATCH --export=NONE
-#SBATCH --mail-type=BEGIN,END,FAIL
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_WGBS
+#SBATCH -p putnamlab
+#SBATCH --cpus-per-task=3
 #SBATCH --mail-user=emma_strand@uri.edu
-#SBATCH -D /data/putnamlab/estrand/PointJudithData_MBDBS/scripts               
 #SBATCH --error="script_error_methylseq1" #if your job fails, the error report will be put in this file
 #SBATCH --output="output_script_methylseq1" #once your job is completed, any final job report comments will be put in this file
-#SBATCH --exclusive
 
 # load modules needed
-
+source /usr/share/Modules/init/sh # load the module function
 module load Nextflow/21.03.0
 
 # run nextflow methylseq
 
-nextflow run nf-core/methylseq \
 -profile singularity \
 --aligner bismark \
 --igenomes_ignore \
---resume \
---fasta data/putnamlab/estrand/PointJudithData_MBDBS/GCF_002022765.2_C_virginica-3.0_genomic.fna.gz \
+--fasta /data/putnamlab/estrand/PointJudithData_MBDBS/GCF_002022765.2_C_virginica-3.0_genomic.fna \
 --save_reference \
 --input '/data/putnamlab/KITT/hputnam/20200119_Oyst_Nut/MBDBS/*_R{1,2}_001.fastq.gz' \
 --clip_r1 10 \
 --clip_r2 10 \
---three_prime_clip_r1 10 \  
---three_prime_clip_r2 10 \  
+--three_prime_clip_r1 10 --three_prime_clip_r2 10 \
 --non_directional \
 --cytosine_report \
-##--relax_mismatches \ ##### DECIDE IF WE KEEP THIS OR NOT #####
+--relax_mismatches \
 --unmapped \
---outdir /data/putnamlab/estrand/PointJudithData_MBDBS/PJ_methylseq1 #Change if you want to change the name of the output folder
+--outdir /data/putnamlab/estrand/PointJudithData_MBDBS/PJ_methylseq1 \
+-name PJ_methylseq1
 ```
