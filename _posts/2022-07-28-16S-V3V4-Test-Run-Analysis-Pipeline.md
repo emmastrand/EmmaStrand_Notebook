@@ -37,7 +37,7 @@ Raw data path: `/data/putnamlab/KITT/hputnam/2022728_16sTest_Coral`. Contains md
 
 ## <a name="fastqc"></a> **Initial fastqc on files**
 
-`fastqc.sh` created in the scripts folder.
+`fastqc.sh` created in the scripts folder. This takes under 10 minutes.
 
 ```
 #!/bin/bash
@@ -67,5 +67,8 @@ multiqc --interactive /data/putnamlab/estrand/Test_V3V4_16S/fastqc_results  ### 
 mv multiqc_report.html V3V4Test_initial_multiqc_report.html # renames file
 ```
 
-
 ## <a name="multiqc"></a> **Initial MultiQC Report**
+
+```
+scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/Test_V3V4_16S/V3V4Test_initial_multiqc_report.html /Users/emmastrand/MyProjects/EmmaStrand_Notebook/Lab-work/V3V4Test_initial_multiqc_report.html
+```
