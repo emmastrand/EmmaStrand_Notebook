@@ -69,10 +69,20 @@ mv multiqc_report.html V3V4Test_initial_multiqc_report.html # renames file
 
 ## <a name="multiqc"></a> **Initial MultiQC Report**
 
-All samples run together. 
+All samples run together.
 
 ```
 scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/Test_V3V4_16S/V3V4Test_initial_multiqc_report.html /Users/emmastrand/MyProjects/EmmaStrand_Notebook/Lab-work/V3V4Test_initial_multiqc_report.html
 ```
 
 Full multiqc report here: https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Lab-work/V3V4Test_initial_multiqc_report.html
+
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/V3V4_test_multiqc_report/seq_quality.png?raw=true)
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/V3V4_test_multiqc_report/seq_counts.png?raw=true)
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/V3V4_test_multiqc_report/per%20seq%20quality.png?raw=true)
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/V3V4_test_multiqc_report/per%20seq%20GC%20content.png?raw=true)
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/V3V4_test_multiqc_report/per%20base%20N%20content.png?raw=true)
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/V3V4_test_multiqc_report/seq%20length%20dist.png?raw=true)
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/V3V4_test_multiqc_report/seq%20dup%20levels.png?raw=true)
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/V3V4_test_multiqc_report/overrep.png?raw=true)
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/V3V4_test_multiqc_report/adapter%20content.png?raw=true)
