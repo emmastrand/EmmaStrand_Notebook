@@ -69,7 +69,7 @@ mv multiqc_report.html V3V4Test_initial_multiqc_report.html # renames file
 
 ## <a name="multiqc"></a> **Initial MultiQC Report**
 
-All samples run together.
+All samples run together. The RED indicates ITS2 samples, the grey indicates 16S samples. 
 
 ```
 scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/Test_V3V4_16S/V3V4Test_initial_multiqc_report.html /Users/emmastrand/MyProjects/EmmaStrand_Notebook/Lab-work/V3V4Test_initial_multiqc_report.html
