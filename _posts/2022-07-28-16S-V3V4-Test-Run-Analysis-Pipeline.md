@@ -22,6 +22,9 @@ Contents:
 - [**Initial fastqc on files**](#fastqc)  
 - [**Initial Multiqc Report**](#multiqc)    
 
+
+Test results with other 16S runs in this google sheet: https://docs.google.com/spreadsheets/d/1ZHO469WzDxJ7PwNkERvx11j54PQk54sZM_B1KnaKIt0/edit#gid=1005240003
+
 ## <a name="Setting_up"></a> **Setting Up Andromeda**
 
 Make a new directory for the test output, fastqc results, and scripts.
@@ -69,7 +72,7 @@ mv multiqc_report.html V3V4Test_initial_multiqc_report.html # renames file
 
 ## <a name="multiqc"></a> **Initial MultiQC Report**
 
-All samples run together. The RED indicates ITS2 samples, the grey indicates 16S samples. 
+All samples run together. The RED indicates ITS2 samples, the grey indicates 16S samples.
 
 ```
 scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/Test_V3V4_16S/V3V4Test_initial_multiqc_report.html /Users/emmastrand/MyProjects/EmmaStrand_Notebook/Lab-work/V3V4Test_initial_multiqc_report.html
@@ -86,3 +89,93 @@ Full multiqc report here: https://github.com/emmastrand/EmmaStrand_Notebook/blob
 ![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/V3V4_test_multiqc_report/seq%20dup%20levels.png?raw=true)
 ![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/V3V4_test_multiqc_report/overrep.png?raw=true)
 ![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/V3V4_test_multiqc_report/adapter%20content.png?raw=true)
+
+## <a name="separate"></a> **Separate 16S projects**
+
+Made a new directory `sample_sets`. 1.) `V3V4_338F`. 2.) `V3V4_341F`. 3.) `V4_515F`.
+
+Copying files into each folder:
+
+1.) `V3V4_338F`
+
+```
+$ cp /data/putnamlab/KITT/hputnam/2022728_16sTest_Coral/ELS12_S30_L001_R{1,2}_001.fastq.gz /data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_338F
+$ cp /data/putnamlab/KITT/hputnam/2022728_16sTest_Coral/ELS13_S31_L001_R{1,2}_001.fastq.gz /data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_338F
+$ cp /data/putnamlab/KITT/hputnam/2022728_16sTest_Coral/ELS14_S32_L001_R{1,2}_001.fastq.gz /data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_338F
+$ cp /data/putnamlab/KITT/hputnam/2022728_16sTest_Coral/ELS15_S33_L001_R{1,2}_001.fastq.gz /data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_338F
+$ cp /data/putnamlab/KITT/hputnam/2022728_16sTest_Coral/ELS16_S34_L001_R{1,2}_001.fastq.gz /data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_338F
+$ cp /data/putnamlab/KITT/hputnam/2022728_16sTest_Coral/ELS17_S35_L001_R{1,2}_001.fastq.gz /data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_338F
+$ cp /data/putnamlab/KITT/hputnam/2022728_16sTest_Coral/ELS18_S36_L001_R{1,2}_001.fastq.gz /data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_338F
+$ cp /data/putnamlab/KITT/hputnam/2022728_16sTest_Coral/ELS19_S37_L001_R{1,2}_001.fastq.gz /data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_338F
+$ cp /data/putnamlab/KITT/hputnam/2022728_16sTest_Coral/ELS28_S46_L001_R{1,2}_001.fastq.gz /data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_338F
+```
+
+2.) `V3V4_341F`
+
+```
+$ cp /data/putnamlab/KITT/hputnam/2022728_16sTest_Coral/ELS20_S38_L001_R{1,2}_001.fastq.gz /data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_341F
+$ cp /data/putnamlab/KITT/hputnam/2022728_16sTest_Coral/ELS21_S39_L001_R{1,2}_001.fastq.gz /data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_341F
+$ cp /data/putnamlab/KITT/hputnam/2022728_16sTest_Coral/ELS22_S40_L001_R{1,2}_001.fastq.gz /data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_341F
+$ cp /data/putnamlab/KITT/hputnam/2022728_16sTest_Coral/ELS23_S41_L001_R{1,2}_001.fastq.gz /data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_341F
+$ cp /data/putnamlab/KITT/hputnam/2022728_16sTest_Coral/ELS24_S42_L001_R{1,2}_001.fastq.gz /data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_341F
+$ cp /data/putnamlab/KITT/hputnam/2022728_16sTest_Coral/ELS29_S47_L001_R{1,2}_001.fastq.gz /data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_341F
+```
+
+3.) `V4_515F`.
+
+```
+$ cp /data/putnamlab/KITT/hputnam/2022728_16sTest_Coral/ELS25_S43_L001_R{1,2}_001.fastq.gz /data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V4_515F
+$ cp /data/putnamlab/KITT/hputnam/2022728_16sTest_Coral/ELS26_S44_L001_R{1,2}_001.fastq.gz /data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V4_515F
+$ cp /data/putnamlab/KITT/hputnam/2022728_16sTest_Coral/ELS27_S45_L001_R{1,2}_001.fastq.gz /data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V4_515F
+$ cp /data/putnamlab/KITT/hputnam/2022728_16sTest_Coral/ELS30_S48_L001_R{1,2}_001.fastq.gz /data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V4_515F
+```
+
+### Cut-offs for each set of primers:
+
+*Based on sequence quality*
+
+- Truncating R = 220  
+- Truncating F = 250
+
+*Based on primer length*
+
+- Trim R = 20 (all 806R)  
+- Trim F = 19 (338F and 515F)  
+- Trim F = 17 (341F)
+
+## <a name="metadata"></a> **Create metadata files**
+
+### 1. Sample manifest files
+
+```
+$ cd V3V4_338F
+$ find raw_data -type f -print | sed 's_/_,_g' > metadata/filelist_V3V4_338F.csv
+
+$ cd V3V4_341F
+$ find raw_data -type f -print | sed 's_/_,_g' > metadata/filelist_V3V4_341F.csv
+
+$ cd V4_515F
+$ find raw_data -type f -print | sed 's_/_,_g' > metadata/filelist_V4_515F.csv
+```
+
+copy those outside of andromeda
+
+```
+scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_338F/metadata/filelist_V3V4_338F.csv /Users/emmastrand/MyProjects/EmmaStrand_Notebook/Lab-work/V3V4_test/
+
+scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_341F/metadata/filelist_V3V4_341F.csv /Users/emmastrand/MyProjects/EmmaStrand_Notebook/Lab-work/V3V4_test/
+
+scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V4_515F/metadata/filelist_V4_515F.csv /Users/emmastrand/MyProjects/EmmaStrand_Notebook/Lab-work/V3V4_test/
+```
+
+Run R metadata creation script and scp back onto andromeda (in a window outside andromeda)
+
+```
+scp /Users/emmastrand/MyProjects/EmmaStrand_Notebook/Lab-work/V3V4_test/sample_manifest338.txt emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_338F/metadata/sample_manifest338.txt
+
+scp /Users/emmastrand/MyProjects/EmmaStrand_Notebook/Lab-work/V3V4_test/sample_manifest341.txt emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_341F/metadata/sample_manifest341.txt
+
+scp /Users/emmastrand/MyProjects/EmmaStrand_Notebook/Lab-work/V3V4_test/sample_manifest515.txt emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V4_515F/metadata/sample_manifest515.txt
+```
+
+### 2. Sample metadata list

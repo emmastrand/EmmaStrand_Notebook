@@ -119,8 +119,8 @@ Run this first to assess m-bias and then decide if we need more trial runs. See 
 #SBATCH --mem=120GB
 #SBATCH --account=putnamlab
 #SBATCH --export=NONE
-#SBATCH -D /data/putnamlab/estrand/BleachingPairs_WGBS
-#SBATCH -p putnamlab
+#SBATCH -D /data/putnamlab/estrand/PointJudithData_MBDBS
+#SBATCH -q putnamlab
 #SBATCH --cpus-per-task=3
 #SBATCH --mail-user=emma_strand@uri.edu
 #SBATCH --error="script_error_methylseq1" #if your job fails, the error report will be put in this file
@@ -128,11 +128,11 @@ Run this first to assess m-bias and then decide if we need more trial runs. See 
 
 # load modules needed
 source /usr/share/Modules/init/sh # load the module function
-module load Nextflow/21.03.0
+module load Nextflow/22.04.0
 
 # run nextflow methylseq
 
--profile singularity \
+nextflow run nf-core/methylseq -profile singularity \
 --aligner bismark \
 --igenomes_ignore \
 --fasta /data/putnamlab/estrand/PointJudithData_MBDBS/GCF_002022765.2_C_virginica-3.0_genomic.fna \

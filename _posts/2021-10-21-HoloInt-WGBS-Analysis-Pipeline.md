@@ -463,7 +463,7 @@ Based on the above, I am moving forward with HoloInt_methylseq trimming of clip 
 
 ## <a name="methylseq_final"></a> **Methylseq: final script run**
 
-`HoloInt_methylseq_final.sh`:
+`HoloInt_methylseq_final.sh`. This timed out after 10 days so I ran again with the -resume flag and changed the output name to `WGBS_methylseq_HoloInt_final2`.  
 
 ```
 #!/bin/bash

@@ -1,0 +1,10 @@
+sample-id	forward-absolute-filepath	reverse-absolute-filepath
+ELS12	/data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_338F/raw_data/ELS12_S30_L001_R1_001.fastq.gz	/data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_338F/raw_data/ELS12_S30_L001_R2_001.fastq.gz
+ELS13	/data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_338F/raw_data/ELS13_S31_L001_R1_001.fastq.gz	/data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_338F/raw_data/ELS13_S31_L001_R2_001.fastq.gz
+ELS14	/data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_338F/raw_data/ELS14_S32_L001_R1_001.fastq.gz	/data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_338F/raw_data/ELS14_S32_L001_R2_001.fastq.gz
+ELS15	/data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_338F/raw_data/ELS15_S33_L001_R1_001.fastq.gz	/data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_338F/raw_data/ELS15_S33_L001_R2_001.fastq.gz
+ELS16	/data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_338F/raw_data/ELS16_S34_L001_R1_001.fastq.gz	/data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_338F/raw_data/ELS16_S34_L001_R2_001.fastq.gz
+ELS17	/data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_338F/raw_data/ELS17_S35_L001_R1_001.fastq.gz	/data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_338F/raw_data/ELS17_S35_L001_R2_001.fastq.gz
+ELS18	/data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_338F/raw_data/ELS18_S36_L001_R1_001.fastq.gz	/data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_338F/raw_data/ELS18_S36_L001_R2_001.fastq.gz
+ELS19	/data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_338F/raw_data/ELS19_S37_L001_R1_001.fastq.gz	/data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_338F/raw_data/ELS19_S37_L001_R2_001.fastq.gz
+ELS28	/data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_338F/raw_data/ELS28_S46_L001_R1_001.fastq.gz	/data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_338F/raw_data/ELS28_S46_L001_R2_001.fastq.gz
