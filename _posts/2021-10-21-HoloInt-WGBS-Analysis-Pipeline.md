@@ -21,8 +21,9 @@ Contents:
 - [**Setting Up Andromeda**](#Setting_up)  
 - [**Initial fastqc run**](#fastqc)   
 - [**Initial Multiqc Report**](#multiqc)     
-- [**Methylseq: Trimming parameters test**](#Test)  
-- [**Methylseq: final script run**](#methylseq_final)
+- [**Methylseq: Trimming parameters test**](#Test)   
+- [**Methylseq: Final Script Run**](#methylseq_final)  
+- [**Methylseq: Final Multiqc Report Output**](#final_multiqc)  
 - [**Troubleshooting**](#troubleshooting)  
 
 ## <a name="Setting_up"></a> **Setting Up Andromeda**
@@ -463,7 +464,7 @@ Based on the above, I am moving forward with HoloInt_methylseq trimming of clip 
 
 ## <a name="methylseq_final"></a> **Methylseq: final script run**
 
-`HoloInt_methylseq_final.sh`. This timed out after 10 days so I ran again with the -resume flag and changed the output name to `WGBS_methylseq_HoloInt_final2`.  
+`HoloInt_methylseq_final.sh`. This timed out after 10 days so I ran again with the -resume flag and changed the output name to `WGBS_methylseq_HoloInt_final2`. Total this took 2 weeks. 
 
 ```
 #!/bin/bash
@@ -501,6 +502,36 @@ nextflow run nf-core/methylseq -resume \
 --outdir /data/putnamlab/estrand/HoloInt_WGBS/HoloInt_methylseq_final \
 -name WGBS_methylseq_HoloInt_final
 ```
+
+The multiqc function is running into errors from the above script so I ran:
+
+```
+multiqc -f --title "WGBS_methylseq_HoloInt_final2" --filename WGBS_methylseq_HoloInt_final2_multiqc_report  . \
+      -m custom_content -m picard -m qualimap -m bismark -m samtools -m preseq -m cutadapt -m fastqc
+```
+
+This was part of the output file. Shouldn't there be 60 preseq files, not 59? 
+
+```
+[INFO   ]        qualimap : Found 60 BamQC reports
+[INFO   ]          preseq : Found 59 reports
+[INFO   ]         bismark : Found 60 alignment reports
+[INFO   ]         bismark : Found 60 dedup reports
+[INFO   ]         bismark : Found 60 methextract reports
+[INFO   ]        cutadapt : Found 120 reports
+[INFO   ]          fastqc : Found 240 reports
+``` 
+
+Copying this file to project folder: 
+
+```
+scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/HoloInt_WGBS/HoloInt_methylseq_final/WGBS_methylseq_HoloInt_final2_multiqc_report.html /Users/emmastrand/MyProjects/Acclim_Dynamics/Molecular_paper/WGBS/output/WGBS_methylseq_HoloInt_final2_multiqc_report.html
+```
+
+## <a name="final_multiqc"></a> **Methylseq: Final Multiqc Report Output**
+
+
+
 
 ## <a name="troubleshooting"></a> **Troubleshooting**
 
