@@ -84,56 +84,44 @@ write.table(sample_manifest515, "~/MyProjects/EmmaStrand_Notebook/Lab-work/V3V4_
 
 ## 2. Sample metadata file 
 ## sequencing ID and colonyID info downloaded from this google sheet: https://docs.google.com/spreadsheets/d/1lLvCp-RoRiBSGZ4NBPwi6cmZuozmfS20OJ7hBIueldU/edit#gid=0
-metadata <- read_excel("~/MyProjects/EmmaStrand_Notebook/Lab-work/V3V4_16S_March2020.xlsx", skip=3, sheet = "Sequencing URI GSC 1") %>%
-  subset(`Type of Sequencing` == "16S")
+metadata <- read_excel("~/MyProjects/EmmaStrand_Notebook/Lab-work/V3V4_16S_March2020.xlsx", 
+                       skip=3, sheet = "Sequencing URI GSC 1") %>%
+  subset(`Type of Sequencing` == "16S") %>% select(-`...13`) %>% rename(Sample_info = SampleID...7) %>%
+  rename(SampleID = SampleID...1)
 
-#### left off at editing the sample ID taking the extra 0 out
+metadata$SampleID <- substr(metadata$SampleID, 5, 6)
+metadata$initials <- "ELS"
 
-
-
-
-sequencing.id <- read.csv("~/MyProjects/HI_Bleaching_Timeseries/data/16S/metadata/16S_sequencingID.csv", header = TRUE) %>%
-  subset(Project == "ES_BP" & Type == "16S") %>% # selecting for just this 16S project's data and excluding Ariana and Kevin's 
-  dplyr::rename(ColonyID = Coral.ID) %>%
-  select(Sample.ID, ColonyID, Timepoint) %>%
-  mutate(Timepoint = case_when(
-    Timepoint == "2019-07-20" ~ "2019-07-19",
-    Timepoint == "2019-12-04" ~ "2019-12-04"))
-
-sequencing.id$ColonyID <- sub(".","", sequencing.id$ColonyID)
-sequencing.id$ColonyID <- sub(".","", sequencing.id$ColonyID) # do this twice to get rid of both the M and "-" symbol
-  
-collection.summary <- collection.summary %>% unite(Group, ColonyID, Timepoint, sep = "Sequencing URI GSC 1")
-sequencing.id <- sequencing.id %>% unite(Group, ColonyID, Timepoint, sep = " ")
-
-metadata <- full_join(collection.summary, sequencing.id, by = "Group") %>% na.omit() %>%
-  separate(Group, c("ColonyID", "Year", "Month", "Day")) %>%
-  unite(Timepoint, Year, Month, sep = "-") %>% unite(Timepoint, Timepoint, Day, sep = "-") 
-
-metadata <- metadata %>% rename(`#SampleID` = Sample.ID)
-
-metadata <- metadata[, c(7,1,2,3,4,5,6)] # reordering the columns 
+metadata <- metadata %>% 
+  unite(SampleID, initials, SampleID, sep="", remove = TRUE) %>% 
+  rename(`#SampleID` = SampleID) %>% select(-`Well #`, -`Type of Sequencing`, -11, -12)
 
 categories <- c("#q2:types", "categorical", "categorical", "categorical", "categorical", 
-                "categorical", "categorical") # QIIME2 needs each column to be specified 
+                "categorical", "categorical", "categorical") # QIIME2 needs each column to be specified 
 
 metadata <- rbind(metadata, categories)
-metadata <- metadata[c(41,1:40),]
+metadata <- metadata[c(20,1:19),]
 
-write.table(metadata, "~/MyProjects/HI_Bleaching_Timeseries/data/16S/metadata/metadata.txt", sep = "\t", row.names = FALSE, quote = FALSE)
+metadata338 <- metadata[c(1:9,18),]
+metadata341 <- metadata[c(1,10:14,19),]
+metadata515 <- metadata[c(1,15:17,20),]
+
+write.table(metadata338, "~/MyProjects/EmmaStrand_Notebook/Lab-work/V3V4_test/metadata338.txt", sep = "\t", row.names = FALSE, quote = FALSE)
+write.table(metadata341, "~/MyProjects/EmmaStrand_Notebook/Lab-work/V3V4_test/metadata341.txt", sep = "\t", row.names = FALSE, quote = FALSE)
+write.table(metadata515, "~/MyProjects/EmmaStrand_Notebook/Lab-work/V3V4_test/metadata515.txt", sep = "\t", row.names = FALSE, quote = FALSE)
 
 # Denoising statistics 
 ## comparing 3 options for denoising parameters 
 
-denoise_260230 <- read.table("~/MyProjects/HI_Bleaching_Timeseries/data/16S/processed_data/denoising-stats_260230.tsv", sep="\t", header = TRUE)
-denoise_270240 <- read.table("~/MyProjects/HI_Bleaching_Timeseries/data/16S/processed_data/denoising-stats_270240.tsv", sep="\t", header = TRUE)
-denoise_280240 <- read.table("~/MyProjects/HI_Bleaching_Timeseries/data/16S/processed_data/denoising-stats_280240.tsv", sep="\t", header = TRUE)
+denoise_338 <- read.table("~/MyProjects/EmmaStrand_Notebook/Lab-work/V3V4_test/denoising-stats_338.tsv", sep="\t", header = TRUE)
+denoise_341 <- read.table("~/MyProjects/EmmaStrand_Notebook/Lab-work/V3V4_test/denoising-stats_341.tsv", sep="\t", header = TRUE)
+denoise_515 <- read.table("~/MyProjects/EmmaStrand_Notebook/Lab-work/V3V4_test/denoising-stats_515.tsv", sep="\t", header = TRUE)
 
-denoise_260230$parameter <- "260forward_230reverse"
-denoise_270240$parameter <- "270forward_240reverse"
-denoise_280240$parameter <- "280forward_240reverse"
+denoise_338$parameter <- "338F"
+denoise_341$parameter <- "341F"
+denoise_515$parameter <- "515F"
 
-denoising.stats <- union(denoise_260230, denoise_270240) %>% union(denoise_280240)
+denoising.stats <- union(denoise_338, denoise_341) %>% union(denoise_515)
 
 denoise.reads <- denoising.stats[, c(1,2,3,5,6,8,10)] # reordering columns to make it easier to plot
 denoise.percent <- denoising.stats[, c(1,4,7,9,10)] # reordering columns to make it easier to plot
@@ -149,20 +137,20 @@ percent <- ggplot(data = denoise.percent, aes(x = parameter, y = value, group = 
   theme_classic() + geom_boxplot() +
   facet_grid(~statistic, scales = "free") +
   theme(legend.position = "none") +
-  ylab("# reads") + 
-  theme(axis.text.x = element_text(angle = 60, vjust = 1.2, hjust = 1.3)); denoise.plot #Set the text angle
+  ylab("% reads") + 
+  theme(axis.text.x = element_text(angle = 60, vjust = 1.2, hjust = 1.3)); percent #Set the text angle
 
 reads <- ggplot(data = denoise.reads, aes(x = parameter, y = value, group = parameter, color = parameter)) +
   theme_classic() + geom_boxplot() +
   facet_grid(~statistic, scales = "free") +
   theme(legend.position = "none") +
   ylab("# reads") + 
-  theme(axis.text.x = element_text(angle = 60, vjust = 1.2, hjust = 1.3)); denoise.plot #Set the text angle
+  theme(axis.text.x = element_text(angle = 60, vjust = 1.2, hjust = 1.3)); reads #Set the text angle
 
 percent
 reads
 
-ggsave(file="~/MyProjects/HI_Bleaching_Timeseries/data/16S/processed_data/denoising-percent.png", percent, width = 11, height = 6, units = c("in"))
-ggsave(file="~/MyProjects/HI_Bleaching_Timeseries/data/16S/processed_data/denoising-reads.png", reads, width = 11, height = 6, units = c("in"))
+ggsave(file="~/MyProjects/EmmaStrand_Notebook/Lab-work/V3V4_test/denoising-percent.png", percent, width = 11, height = 6, units = c("in"))
+ggsave(file="~/MyProjects/EmmaStrand_Notebook/Lab-work/V3V4_test/denoising-reads.png", reads, width = 11, height = 6, units = c("in"))
 
   

@@ -1,0 +1,6 @@
+#SampleID	Region	Forward Primer Used	Annealing Temperature	Sample_info	DNA input	Date PCR run	Band information
+#q2:types	categorical	categorical	categorical	categorical	categorical	categorical	categorical
+ELS25	V4	515F	63 C	M-217	8 ng/uL (24 ng total)	20220419 Trial 6	Bright
+ELS26	V4	515F	63 C	M-212	8 ng/uL (24 ng total)	20220419 Trial 6	Bright
+ELS27	V4	515F	63 C	P. ast KW-10 adult	8 ng/uL (24 ng total)	20220419 Trial 6	Bright
+ELS30	V4	515F	63 C	Negative control	NA	20220419 Trial 6	None

@@ -1,0 +1,8 @@
+sample-id	input	filtered	percentage of input passed filter	denoised	merged	percentage of input merged	non-chimeric	percentage of input non-chimeric
+#q2:types	numeric	numeric	numeric	numeric	numeric	numeric	numeric	numeric
+ELS20	10235	6132	59.91	5665	1843	18.01	1829	17.87
+ELS21	10499	6780	64.58	6339	740	7.05	738	7.03
+ELS22	10977	7194	65.54	6733	2081	18.96	1937	17.65
+ELS23	9380	5974	63.69	5724	2565	27.35	2525	26.92
+ELS24	11099	6974	62.83	6897	4424	39.86	4424	39.86
+ELS29	152	87	57.24	81	0	0	0	0

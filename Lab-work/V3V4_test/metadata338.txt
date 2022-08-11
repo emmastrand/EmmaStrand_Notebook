@@ -1,0 +1,11 @@
+#SampleID	Region	Forward Primer Used	Annealing Temperature	Sample_info	DNA input	Date PCR run	Band information
+#q2:types	categorical	categorical	categorical	categorical	categorical	categorical	categorical
+ELS12	V3V4	338F	57 C	P. acuta 2513 adult	8 ng/uL (24 ng total)	20220406 Trial 3	Bright
+ELS13	V3V4	338F	57 C	P. ast KW-10 adult	8 ng/uL (24 ng total)	20220406 Trial 3	Bright
+ELS14	V3V4	338F	57 C	Plug 10 settled recruit	8 ng/uL (24 ng total)	20220406 Trial 3	Bright
+ELS15	V3V4	338F	57 C	P. acuta 2878	4 ng/uL (12 ng total)	20220321 Trial 1	Faint
+ELS16	V3V4	338F	57 C	D1 eggs	too low	20220404 Trial 2	Faint
+ELS17	V3V4	338F	63 C	P. acuta 2513 adult	4 ng/uL (12 ng total)	20220418 Trial 5	Bright
+ELS18	V3V4	338F	63 C	P. ast KW-10 adult	4 ng/uL (12 ng total)	20220418 Trial 5	Bright
+ELS19	V3V4	338F	63 C	Plug 10 settled recruit	4 ng/uL (12 ng total)	20220418 Trial 5	Faint
+ELS28	V3V4	338F	57 C	Negative control	NA	20220406 Trial 3	None

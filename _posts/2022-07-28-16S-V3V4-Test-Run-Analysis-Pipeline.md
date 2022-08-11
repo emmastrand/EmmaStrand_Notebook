@@ -20,8 +20,10 @@ Questions to answer:
 Contents:  
 - [**Setting Up Andromeda**](#Setting_up)  
 - [**Initial fastqc on files**](#fastqc)  
-- [**Initial Multiqc Report**](#multiqc)    
-
+- [**Initial Multiqc Report**](#multiqc)   
+- [**Separate 16S projects**](#separate)    
+- [**Create metadata files**](#metadata)    
+- [**QIIME2: Sample Import**](#import)    
 
 Test results with other 16S runs in this google sheet: https://docs.google.com/spreadsheets/d/1ZHO469WzDxJ7PwNkERvx11j54PQk54sZM_B1KnaKIt0/edit#gid=1005240003
 
@@ -179,3 +181,317 @@ scp /Users/emmastrand/MyProjects/EmmaStrand_Notebook/Lab-work/V3V4_test/sample_m
 ```
 
 ### 2. Sample metadata list
+
+Run R metadata creation script and scp back onto andromeda (in a window outside andromeda)
+
+```
+scp /Users/emmastrand/MyProjects/EmmaStrand_Notebook/Lab-work/V3V4_test/metadata338.txt emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_338F/metadata/metadata338.txt
+
+scp /Users/emmastrand/MyProjects/EmmaStrand_Notebook/Lab-work/V3V4_test/metadata341.txt emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_341F/metadata/metadata341.txt
+
+scp /Users/emmastrand/MyProjects/EmmaStrand_Notebook/Lab-work/V3V4_test/metadata515.txt emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V4_515F/metadata/metadata515.txt
+```
+
+## <a name="import"></a> **QIIME2: Sample Import**
+
+### 338F 
+
+This took about 2 minutes. 
+
+`import338.sh`:
+
+```
+#!/bin/bash
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab                  
+#SBATCH --error="script_error_import338" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_import338" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function
+module load QIIME2/2021.8
+
+#### METADATA FILES ####
+# File path -- change this to correspond to what script you are running
+cd /data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_338F/
+
+# Metadata path
+METADATA="metadata/metadata338.txt"
+
+# Sample manifest path
+MANIFEST="metadata/sample_manifest338.txt"
+
+#########################
+
+qiime tools import \
+  --type 'SampleData[PairedEndSequencesWithQuality]' \
+  --input-path $MANIFEST \
+  --input-format PairedEndFastqManifestPhred33V2 \
+  --output-path V3V4_338-paired-end-sequences.qza
+```
+
+### 341F 
+
+`import341.sh`:
+
+```
+#!/bin/bash
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab                  
+#SBATCH --error="script_error_import341" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_import341" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function
+module load QIIME2/2021.8
+
+#### METADATA FILES ####
+# File path -- change this to correspond to what script you are running
+cd /data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_341F/
+
+# Metadata path
+METADATA="metadata/metadata341.txt"
+
+# Sample manifest path
+MANIFEST="metadata/sample_manifest341.txt"
+
+#########################
+
+qiime tools import \
+  --type 'SampleData[PairedEndSequencesWithQuality]' \
+  --input-path $MANIFEST \
+  --input-format PairedEndFastqManifestPhred33V2 \
+  --output-path V3V4_341-paired-end-sequences.qza
+```
+
+### 515F 
+
+`import515.sh`: 
+
+```
+#!/bin/bash
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab                  
+#SBATCH --error="script_error_import515" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_import515" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function
+module load QIIME2/2021.8
+
+#### METADATA FILES ####
+# File path -- change this to correspond to what script you are running
+cd /data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V4_515F/
+
+# Metadata path
+METADATA="metadata/metadata515.txt"
+
+# Sample manifest path
+MANIFEST="metadata/sample_manifest515.txt"
+
+#########################
+
+qiime tools import \
+  --type 'SampleData[PairedEndSequencesWithQuality]' \
+  --input-path $MANIFEST \
+  --input-format PairedEndFastqManifestPhred33V2 \
+  --output-path V3V4_515-paired-end-sequences.qza
+```
+
+
+## <a name="denoise"></a> **QIIME2: Denoise**
+
+### 338F 
+
+See multiqc section for parameter choices 
+
+`denoise338.sh`: 
+
+```
+#!/bin/bash
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab                  
+#SBATCH --error="script_error_denoise338" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_denoise338" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function
+module load QIIME2/2021.8
+
+#### METADATA FILES ####
+# File path -- change this to correspond to what script you are running
+cd /data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_338F/
+
+# Metadata path
+METADATA="metadata/metadata338.txt"
+
+# Sample manifest path
+MANIFEST="metadata/sample_manifest338.txt"
+
+#########################
+
+qiime dada2 denoise-paired --verbose --i-demultiplexed-seqs V3V4_338-paired-end-sequences.qza \
+  --p-trunc-len-r 220 --p-trunc-len-f 250 \
+  --p-trim-left-r 20 --p-trim-left-f 19 \
+  --o-table table_338.qza \
+  --o-representative-sequences rep-seqs_338.qza \
+  --o-denoising-stats denoising-stats_338.qza \
+  --p-n-threads 20
+
+#### CLUSTERING
+
+# Summarize feature table and sequences
+qiime metadata tabulate \
+  --m-input-file denoising-stats_338.qza \
+  --o-visualization denoising-stats_338.qzv
+qiime feature-table summarize \
+  --i-table table_338.qza \
+  --o-visualization table_338.qzv \
+  --m-sample-metadata-file $METADATA
+qiime feature-table tabulate-seqs \
+  --i-data rep-seqs_338.qza \
+  --o-visualization rep-seqs_338.qzv
+```
+
+### 341F 
+
+See multiqc section for parameter choices 
+
+`denoise341.sh`: 
+
+```
+#!/bin/bash
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab                  
+#SBATCH --error="script_error_denoise341" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_denoise341" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function
+module load QIIME2/2021.8
+
+#### METADATA FILES ####
+# File path -- change this to correspond to what script you are running
+cd /data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_341F/
+
+# Metadata path
+METADATA="metadata/metadata341.txt"
+
+# Sample manifest path
+MANIFEST="metadata/sample_manifest341.txt"
+
+#########################
+
+qiime dada2 denoise-paired --verbose --i-demultiplexed-seqs V3V4_341-paired-end-sequences.qza \
+  --p-trunc-len-r 220 --p-trunc-len-f 250 \
+  --p-trim-left-r 20 --p-trim-left-f 17 \
+  --o-table table_341.qza \
+  --o-representative-sequences rep-seqs_341.qza \
+  --o-denoising-stats denoising-stats_341.qza \
+  --p-n-threads 20
+
+#### CLUSTERING
+
+# Summarize feature table and sequences
+qiime metadata tabulate \
+  --m-input-file denoising-stats_341.qza \
+  --o-visualization denoising-stats_341.qzv
+qiime feature-table summarize \
+  --i-table table_341.qza \
+  --o-visualization table_341.qzv \
+  --m-sample-metadata-file $METADATA
+qiime feature-table tabulate-seqs \
+  --i-data rep-seqs_341.qza \
+  --o-visualization rep-seqs_341.qzv
+```
+
+### 515F 
+
+See multiqc section for parameter choices 
+
+`denoise515.sh`: 
+
+```
+#!/bin/bash
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab                  
+#SBATCH --error="script_error_denoise515" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_denoise515" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function
+module load QIIME2/2021.8
+
+#### METADATA FILES ####
+# File path -- change this to correspond to what script you are running
+cd /data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V4_515F/
+
+# Metadata path
+METADATA="metadata/metadata515.txt"
+
+# Sample manifest path
+MANIFEST="metadata/sample_manifest515.txt"
+
+#########################
+
+qiime dada2 denoise-paired --verbose --i-demultiplexed-seqs V3V4_515-paired-end-sequences.qza \
+  --p-trunc-len-r 220 --p-trunc-len-f 250 \
+  --p-trim-left-r 20 --p-trim-left-f 19 \
+  --o-table table_515.qza \
+  --o-representative-sequences rep-seqs_515.qza \
+  --o-denoising-stats denoising-stats_515.qza \
+  --p-n-threads 20
+
+#### CLUSTERING
+
+# Summarize feature table and sequences
+qiime metadata tabulate \
+  --m-input-file denoising-stats_515.qza \
+  --o-visualization denoising-stats_515.qzv
+qiime feature-table summarize \
+  --i-table table_515.qza \
+  --o-visualization table_515.qzv \
+  --m-sample-metadata-file $METADATA
+qiime feature-table tabulate-seqs \
+  --i-data rep-seqs_515.qza \
+  --o-visualization rep-seqs_515.qzv
+```
+
+### copying outside terminal to work with in R
+
+```
+scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_338F/denoising-stats_338.qzv /Users/emmastrand/MyProjects/EmmaStrand_Notebook/Lab-work/V3V4_test/
+
+scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_341F/denoising-stats_341.qzv /Users/emmastrand/MyProjects/EmmaStrand_Notebook/Lab-work/V3V4_test/
+
+scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V4_515F/denoising-stats_515.qzv /Users/emmastrand/MyProjects/EmmaStrand_Notebook/Lab-work/V3V4_test/
+```
+
+Open qiime2 view and drop in the first file you want to view. Click 'Download metadata TSV file' and save that file to '~/MyProjects/EmmaStrand_Notebook/Lab-work/V3V4_test/' folder.
+
+*Run the denoising stats portion of the '16S_metadata.R' script and then return to the following steps below.* 
+
