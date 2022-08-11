@@ -495,3 +495,12 @@ Open qiime2 view and drop in the first file you want to view. Click 'Download me
 
 *Run the denoising stats portion of the '16S_metadata.R' script and then return to the following steps below.* 
 
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Lab-work/V3V4_test/denoising-percent.png?raw=true)
+
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Lab-work/V3V4_test/denoising-reads.png?raw=true)
+
+This isn't super encouraging as 20% is much lower than our other projects output is.. 
+
+For reference, see our results from V4 with oyster microbiome: https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2022-03-07-Point-Judith-Oyster-Gut-16S-V6-Analysis.md#denoise-paramter-trials and Kevin's Porites was ~45% kept by the end of denoising statistics. 
+
+
