@@ -25,7 +25,7 @@ Contents:
 - [**Create metadata files**](#metadata)    
 - [**QIIME2: Sample Import**](#import)    
 - [**QIIME2: Denoise**](#denoise)    
-
+- [**QIIME2: Taxonomic ID**](#tax)    
 
 Test results with other 16S runs in this google sheet: https://docs.google.com/spreadsheets/d/1ZHO469WzDxJ7PwNkERvx11j54PQk54sZM_B1KnaKIt0/edit#gid=1005240003
 
