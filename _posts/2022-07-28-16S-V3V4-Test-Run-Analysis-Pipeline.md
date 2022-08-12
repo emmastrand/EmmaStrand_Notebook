@@ -24,6 +24,8 @@ Contents:
 - [**Separate 16S projects**](#separate)    
 - [**Create metadata files**](#metadata)    
 - [**QIIME2: Sample Import**](#import)    
+- [**QIIME2: Denoise**](#denoise)    
+
 
 Test results with other 16S runs in this google sheet: https://docs.google.com/spreadsheets/d/1ZHO469WzDxJ7PwNkERvx11j54PQk54sZM_B1KnaKIt0/edit#gid=1005240003
 
@@ -504,3 +506,190 @@ This isn't super encouraging as 20% is much lower than our other projects output
 For reference, see our results from V4 with oyster microbiome: https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2022-03-07-Point-Judith-Oyster-Gut-16S-V6-Analysis.md#denoise-paramter-trials and Kevin's Porites was ~45% kept by the end of denoising statistics. 
 
 
+## <a name="tax"></a> **QIIME2: Taxonomic ID**
+
+For 338F and 341F use full database for now and make a V3V4 specific on later on if we do full analysis: 
+
+```
+$ cd /data/putnamlab/estrand/Test_V3V4_16S
+$ wget https://data.qiime2.org/2021.11/common/silva-138-99-nb-classifier.qza  
+# name of file: silva-138-99-nb-classifier.qza
+```
+
+For 515F use the silva databse I used for HI project: `/data/putnamlab/estrand/BleachingPairs_16S/metadata/silva-138-99-515-806-nb-classifier.qza` 
+
+### 338F 
+
+`tax338.sh`: 
+
+```
+#!/bin/bash
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab                  
+#SBATCH --error="script_error_taxonomy338" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_taxonomy338" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function
+module load QIIME2/2021.8
+
+#### METADATA FILES ####
+# File path -- change this to correspond to what script you are running
+cd /data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_338F
+
+# Metadata path
+METADATA="metadata/metadata338.txt"
+
+# Sample manifest path
+MANIFEST="metadata/sample_manifest338.txt"
+
+#########################
+
+#### TAXONOMY CLASSIFICATION
+
+qiime feature-classifier classify-sklearn \
+  --i-classifier /data/putnamlab/estrand/Test_V3V4_16S/silva-138-99-nb-classifier.qza \
+  --i-reads rep-seqs_338.qza \
+  --o-classification taxonomy_338.qza
+
+## UNFILTERED
+
+qiime metadata tabulate \
+    --m-input-file taxonomy_338.qza \
+    --o-visualization taxonomy_338.qzv
+qiime taxa barplot \
+    --i-table table_338.qza \
+    --i-taxonomy taxonomy_338.qza \
+    --m-metadata-file $METADATA \
+    --o-visualization taxa-bar-plots338.qzv
+qiime metadata tabulate \
+    --m-input-file rep-seqs_338.qza \
+    --m-input-file taxonomy_338.qza \
+    --o-visualization tabulated-feature-metadata338.qzv
+```
+
+### 341F 
+
+`tax341.sh`: 
+
+```
+#!/bin/bash
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab                  
+#SBATCH --error="script_error_taxonomy341" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_taxonomy341" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function
+module load QIIME2/2021.8
+
+#### METADATA FILES ####
+# File path -- change this to correspond to what script you are running
+cd /data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_341F
+
+# Metadata path
+METADATA="metadata/metadata341.txt"
+
+# Sample manifest path
+MANIFEST="metadata/sample_manifest341.txt"
+
+#########################
+
+#### TAXONOMY CLASSIFICATION
+
+qiime feature-classifier classify-sklearn \
+  --i-classifier /data/putnamlab/estrand/Test_V3V4_16S/silva-138-99-nb-classifier.qza \
+  --i-reads rep-seqs_341.qza \
+  --o-classification taxonomy_341.qza
+
+## UNFILTERED
+
+qiime metadata tabulate \
+    --m-input-file taxonomy_341.qza \
+    --o-visualization taxonomy_341.qzv
+qiime taxa barplot \
+    --i-table table_341.qza \
+    --i-taxonomy taxonomy_341.qza \
+    --m-metadata-file $METADATA \
+    --o-visualization taxa-bar-plots341.qzv
+qiime metadata tabulate \
+    --m-input-file rep-seqs_341.qza \
+    --m-input-file taxonomy_341.qza \
+    --o-visualization tabulated-feature-metadata341.qzv
+```
+
+
+### 515F 
+
+`tax515.sh`: 
+
+```
+#!/bin/bash
+#SBATCH -t 24:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --mail-type=BEGIN,END,FAIL #email you when job starts, stops and/or fails
+#SBATCH --mail-user=emma_strand@uri.edu #your email to send notifications
+#SBATCH --account=putnamlab                  
+#SBATCH --error="script_error_taxonomy515" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_taxonomy515" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function
+module load QIIME2/2021.8
+
+#### METADATA FILES ####
+# File path -- change this to correspond to what script you are running
+cd /data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V4_515F
+
+# Metadata path
+METADATA="metadata/metadata515.txt"
+
+# Sample manifest path
+MANIFEST="metadata/sample_manifest515.txt"
+
+#########################
+
+#### TAXONOMY CLASSIFICATION
+
+qiime feature-classifier classify-sklearn \
+  --i-classifier /data/putnamlab/estrand/BleachingPairs_16S/metadata/silva-138-99-515-806-nb-classifier.qza \
+  --i-reads rep-seqs_515.qza \
+  --o-classification taxonomy_515.qza
+
+## UNFILTERED
+
+qiime metadata tabulate \
+    --m-input-file taxonomy_515.qza \
+    --o-visualization taxonomy_515.qzv
+qiime taxa barplot \
+    --i-table table_515.qza \
+    --i-taxonomy taxonomy_515.qza \
+    --m-metadata-file $METADATA \
+    --o-visualization taxa-bar-plots515.qzv
+qiime metadata tabulate \
+    --m-input-file rep-seqs_515.qza \
+    --m-input-file taxonomy_515.qza \
+    --o-visualization tabulated-feature-metadata515.qzv
+```
+
+### copying output to desktop outside of andromeda 
+
+```
+scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_338F/taxa-bar-plots338.qzv /Users/emmastrand/MyProjects/EmmaStrand_Notebook/Lab-work/V3V4_test/
+scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_338F/table_338.qzv /Users/emmastrand/MyProjects/EmmaStrand_Notebook/Lab-work/V3V4_test/
+
+scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_341F/taxa-bar-plots341.qzv /Users/emmastrand/MyProjects/EmmaStrand_Notebook/Lab-work/V3V4_test/
+scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V3V4_341F/table_341.qzv /Users/emmastrand/MyProjects/EmmaStrand_Notebook/Lab-work/V3V4_test/
+
+scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V4_515F/taxa-bar-plots515.qzv /Users/emmastrand/MyProjects/EmmaStrand_Notebook/Lab-work/V3V4_test/
+scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V4_515F/table_515.qzv /Users/emmastrand/MyProjects/EmmaStrand_Notebook/Lab-work/V3V4_test/
+```

@@ -140,19 +140,19 @@ denoise.percent$statistic <- factor(denoise.percent$statistic, levels=c("percent
 
 percent <- ggplot(data = denoise.percent, aes(x = parameter, y = value, group = parameter, color = Sample_info)) +
   theme_classic() + geom_boxplot() +
-  geom_point(aes(color=`Sample_info`, size=2)) + 
+  geom_point(aes(color=`Sample_info`), size=2) + 
   facet_grid(~statistic, scales = "free") +
   theme(legend.position = "right") +
   ylab("% reads") + 
-  theme(axis.text.x = element_text(angle = 60, vjust = 1.2, hjust = 1.3)); percent #Set the text angle
+  theme(axis.text.x = element_text(angle = 60, vjust = 1.2, hjust = 1.3)) #Set the text angle
 
 reads <- ggplot(data = denoise.reads, aes(x = parameter, y = value, group = parameter, color = Sample_info)) +
   theme_classic() + geom_boxplot() +
-  geom_point(aes(color=`Sample_info`, size=2)) + 
+  geom_point(aes(color=`Sample_info`), size=2) + 
   facet_grid(~statistic, scales = "free") +
   theme(legend.position = "right") +
   ylab("# reads") + 
-  theme(axis.text.x = element_text(angle = 60, vjust = 1.2, hjust = 1.3)); reads #Set the text angle
+  theme(axis.text.x = element_text(angle = 60, vjust = 1.2, hjust = 1.3)) #Set the text angle
 
 ggsave(file="~/MyProjects/EmmaStrand_Notebook/Lab-work/V3V4_test/denoising-percent.png", percent, width = 11, height = 6, units = c("in"))
 ggsave(file="~/MyProjects/EmmaStrand_Notebook/Lab-work/V3V4_test/denoising-reads.png", reads, width = 11, height = 6, units = c("in"))
