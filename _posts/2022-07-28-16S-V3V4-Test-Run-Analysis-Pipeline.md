@@ -709,3 +709,32 @@ scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/Test_V3V4_16S/samp
 ### 515F Taxonomic Results (unfiltered) 
 
 ![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Lab-work/V3V4_test/taxabarplot-515.png?raw=true))
+
+
+## Results summary
+
+**I cannot get Mcapitata adult fragments to show a band on the gel post PCR with either 338F or 341F primers, which is why there are only settled recruits and eggs for M. capitata in the 338 and 341 sections.** 
+
+
+#### 1.) Do we get microbiome or host sequences from 338F and 341F V3V4 region PCR products?  
+
+We get a majority of sequences to be Cyanobacteria and Proteobacteria with both 338F and 341F primers. We don't get the levels of high general D:Bacteria sequences that we do with 515F which is great! But I'm concerned with the low % and # read values at the end of QIIME2 denoising section. I'm still not sure if we can trust this..? We would benefit from consulting our collaborators for a second opinion.    
+
+
+#### 2.) Which V3V34 primer (338F and or 341F) yields higher microbiome sequences?  
+
+There doesn't appear to be a substantial visual difference between 338F and 341F. See KW10 Porites, Mcap Plug 10 settled recruit, Mcap D1 eggs, and Pacuta 2513 adult samples for comparison. These appear to be very similar results which is relieving and gives me more confidence in our methods. However, I still cannot get adult Mcapitata fragments to work with either 338F or 341F (no band shows up on gel). 
+
+#### 3.) Does 63C annealing temperature for the V4 (515F) region yield better microbiome vs host ratios? Is this still all host?  
+
+This seems to be variable with one adult Mcapitata fragment yielding high general bacteria and one with little to no general bacteria. I don't think this is an annealing temperature issue rather than a V4 only region specific issue.  
+
+
+#### 4.) What kind of noise do we get from negative controls?  
+
+This seems to really variable.. The 338F negative control had many reads that passed filtering and were assigned to taxonomic units while the negative control from 341F and 515F did not. 
+
+
+#### Final thoughts 
+
+Especially because I cannot get Mcapitata fragments to show up with either of the V3V4 primers, I'm not super confident this is worth pursuing.. Maybe Pacuta only for Holobiont Integration but not KBay adult Mcapitata samples. 
