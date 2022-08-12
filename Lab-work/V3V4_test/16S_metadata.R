@@ -123,8 +123,13 @@ denoise_515$parameter <- "515F"
 
 denoising.stats <- union(denoise_338, denoise_341) %>% union(denoise_515)
 
-denoise.reads <- denoising.stats[, c(1,2,3,5,6,8,10)] # reordering columns to make it easier to plot
-denoise.percent <- denoising.stats[, c(1,4,7,9,10)] # reordering columns to make it easier to plot
+denoise.meta <- metadata[c(2:20),]
+denoise.meta <- denoise.meta %>% rename(sample.id = `#SampleID`)
+
+denoising.stats <- full_join(denoising.stats, denoise.meta)
+
+denoise.reads <- denoising.stats[, c(1,2,3,5,6,8,10:17)] # reordering columns to make it easier to plot
+denoise.percent <- denoising.stats[, c(1,4,7,9,10:17)] # reordering columns to make it easier to plot
 
 denoise.reads <- denoise.reads %>% gather(statistic, value, 2:6) # aggregates the three variables we are interested in to make it easier to plot 
 denoise.percent <- denoise.percent %>% gather(statistic, value, 2:4) # aggregates the three variables we are interested in to make it easier to plot 
@@ -133,22 +138,21 @@ denoise.reads$statistic <- factor(denoise.reads$statistic, levels=c("input","fil
 denoise.percent$statistic <- factor(denoise.percent$statistic, levels=c("percentage.of.input.passed.filter", "percentage.of.input.merged",
                                                                         "percentage.of.input.non.chimeric"))
 
-percent <- ggplot(data = denoise.percent, aes(x = parameter, y = value, group = parameter, color = parameter)) +
+percent <- ggplot(data = denoise.percent, aes(x = parameter, y = value, group = parameter, color = Sample_info)) +
   theme_classic() + geom_boxplot() +
+  geom_point(aes(color=`Sample_info`, size=2)) + 
   facet_grid(~statistic, scales = "free") +
-  theme(legend.position = "none") +
+  theme(legend.position = "right") +
   ylab("% reads") + 
   theme(axis.text.x = element_text(angle = 60, vjust = 1.2, hjust = 1.3)); percent #Set the text angle
 
-reads <- ggplot(data = denoise.reads, aes(x = parameter, y = value, group = parameter, color = parameter)) +
+reads <- ggplot(data = denoise.reads, aes(x = parameter, y = value, group = parameter, color = Sample_info)) +
   theme_classic() + geom_boxplot() +
+  geom_point(aes(color=`Sample_info`, size=2)) + 
   facet_grid(~statistic, scales = "free") +
-  theme(legend.position = "none") +
+  theme(legend.position = "right") +
   ylab("# reads") + 
   theme(axis.text.x = element_text(angle = 60, vjust = 1.2, hjust = 1.3)); reads #Set the text angle
-
-percent
-reads
 
 ggsave(file="~/MyProjects/EmmaStrand_Notebook/Lab-work/V3V4_test/denoising-percent.png", percent, width = 11, height = 6, units = c("in"))
 ggsave(file="~/MyProjects/EmmaStrand_Notebook/Lab-work/V3V4_test/denoising-reads.png", reads, width = 11, height = 6, units = c("in"))
