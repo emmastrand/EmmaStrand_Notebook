@@ -693,3 +693,19 @@ scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/Test_V3V4_16S/samp
 scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V4_515F/taxa-bar-plots515.qzv /Users/emmastrand/MyProjects/EmmaStrand_Notebook/Lab-work/V3V4_test/
 scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/Test_V3V4_16S/sample_sets/V4_515F/table_515.qzv /Users/emmastrand/MyProjects/EmmaStrand_Notebook/Lab-work/V3V4_test/
 ```
+
+### Table summary results (unfiltered) 
+
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Lab-work/V3V4_test/table-stats.png?raw=true)
+
+### 338F Taxonomic Results (unfiltered)
+
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Lab-work/V3V4_test/taxabarplot-338.png?raw=true)
+
+### 341F Taxonomic Results (unfiltered)
+
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Lab-work/V3V4_test/taxabarplot-341.png?raw=true) 
+
+### 515F Taxonomic Results (unfiltered) 
+
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Lab-work/V3V4_test/taxabarplot-515.png?raw=true))
