@@ -715,10 +715,12 @@ scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/Test_V3V4_16S/samp
 
 **I cannot get Mcapitata adult fragments to show a band on the gel post PCR with either 338F or 341F primers, which is why there are only settled recruits and eggs for M. capitata in the 338 and 341 sections.** 
 
+There are a ton of PCR inhibitors in tissue homogenate - we could dilute the input to try to yield higher microbioal sequences and use a DNA only kit that is made to target microbioal sequences. But the nature of us going DNA/RNA duet extractions is high priority for gene exp and DNA methylation from the same genomic input. Our 16S work may be better off as separate extractions. 
+
 
 #### 1.) Do we get microbiome or host sequences from 338F and 341F V3V4 region PCR products?  
 
-We get a majority of sequences to be Cyanobacteria and Proteobacteria with both 338F and 341F primers. We don't get the levels of high general D:Bacteria sequences that we do with 515F which is great! But I'm concerned with the low % and # read values at the end of QIIME2 denoising section. I'm still not sure if we can trust this..? We would benefit from consulting our collaborators for a second opinion.    
+We get a majority of sequences to be Cyanobacteria and Proteobacteria with both 338F and 341F primers. We don't get the levels of high general D:Bacteria sequences that we do with 515F which is great! But I'm concerned with the low % and # read values at the end of QIIME2 denoising section. 2,000 read depth is passable but 5-10k is a better range to shoot for. 
 
 
 #### 2.) Which V3V34 primer (338F and or 341F) yields higher microbiome sequences?  
@@ -729,12 +731,19 @@ There doesn't appear to be a substantial visual difference between 338F and 341F
 
 This seems to be variable with one adult Mcapitata fragment yielding high general bacteria and one with little to no general bacteria. I don't think this is an annealing temperature issue rather than a V4 only region specific issue.  
 
-
 #### 4.) What kind of noise do we get from negative controls?  
 
 This seems to really variable.. The 338F negative control had many reads that passed filtering and were assigned to taxonomic units while the negative control from 341F and 515F did not. 
+
+338F: This negative control has the same # of reads as the samples which is not what we want and more less renders the samples un-usable. This could be in well to well contamination. We can look at the composition of neighboring wells and compare to the composition of the negative control.      
+341F: Lower # of readss than the samples and no bacteria reads assigned, yay! Great.  
+515F: This still has lower # of reads, not zero but lower than 5,000 sub samples threshold which is great.  
+
+Alternatives: Do an extraction negative control and sequence multiple negative controls. If there is high # of reads, view to a more in depth tax unit and see if these are human contamination (i.e. someone breathing on it but with masks that shouldn't be an issue). 
 
 
 #### Final thoughts 
 
 Especially because I cannot get Mcapitata fragments to show up with either of the V3V4 primers, I'm not super confident this is worth pursuing.. Maybe Pacuta only for Holobiont Integration but not KBay adult Mcapitata samples. 
+
+Wesley is going to reach out to Austin from Donahue lab b/c he successfully sequenced Mcap microbiome too. Nelson's lab hasn't done extractions in a couple years and are going to try to sequence KBay project fully for 16S so if theirs works then we don't need to pursue KBay Mcap samples at URI. 
