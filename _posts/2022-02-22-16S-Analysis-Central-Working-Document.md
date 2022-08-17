@@ -23,6 +23,12 @@ How does the microbial community shift in:
 - Does temperature or pCO2 cause a greater shift in microbial community?  
 - Are there ambient, seasonal changes in microbial community through the fall season?
 
+Multiqc reports:  
+- [Holobiont Integration](https://github.com/hputnam/Acclim_Dynamics/blob/master/16S_seq/ES-run/16S_raw_qc_multiqc_report_ES.html) 
+
+[Holobiont Integration QIIME2 pipeline](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2021-06-21-16s-Analysis-Pipeline.md)   
+[Holobiont Integration Mothur pipeline](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2022-02-17-Holobiont-Integration-16S-Mothur-Pipeline.md#holobiont-integration-16s-mothur-pipeline)  
+
 
 ### KBay Bleaching Pairs
 
@@ -33,6 +39,12 @@ Github repo link: [here](https://github.com/hputnam/HI_Bleaching_Timeseries).
 - Is there a particular community that is associated with 'stronger' phenotypes?  
 
 With just 16S data, questions RE how big of a shift and how confident we can be in that shift change might be hard to answer.. a.k.a. all we have is relative abundance. **We need to be careful interpreting this. With this type of data, we cannot confidently say genus Y decreased by X% over time because time point's data is only relative to itself.**
+
+Multiqc report:  
+- [KBay Bleaching Pairs](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/data/16S/BleachedPairs_16S_raw_qc_multiqc_report.html)
+
+[KBay QIIME2 pipeline](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2022-01-07-KBay-Pairs-16S-Analysis-Pipeline.md)  
+[KBay Mothur pipeline](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2022-01-24-KBay-Bleached-Pairs-16S-Analysis-Mothur.md) 
 
 ### Point Judith Oyster Gut V6, V4V5 project links
 
@@ -78,17 +90,8 @@ End product from sequencing: 2 files for each sequence that has already been dem
 
 ## Bioinformatic processing
 
-Multiqc reports:  
-- [Holobiont Integration](https://github.com/hputnam/Acclim_Dynamics/blob/master/16S_seq/ES-run/16S_raw_qc_multiqc_report_ES.html)    
-- [KBay Bleaching Pairs](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/data/16S/BleachedPairs_16S_raw_qc_multiqc_report.html)
-
 For V4, we would expect about 250 nt as the minimum length of sequences. Use minlength=250.  
 Reference database: Silva has high diversity and high alignment quality and is manually curated: Newest version is 138.1.  
-
-[KBay QIIME2 pipeline](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2022-01-07-KBay-Pairs-16S-Analysis-Pipeline.md)  
-[KBay Mothur pipeline](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2022-01-24-KBay-Bleached-Pairs-16S-Analysis-Mothur.md)   
-[Holobiont Integration QIIME2 pipeline](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2021-06-21-16s-Analysis-Pipeline.md)   
-[Holobiont Integration Mothur pipeline](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2022-02-17-Holobiont-Integration-16S-Mothur-Pipeline.md#holobiont-integration-16s-mothur-pipeline)  
 
 **General issues to work through:**  
 - Unclassified general bacteria showing up just for *M. capitata*  
