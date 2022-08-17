@@ -40,6 +40,15 @@ With just 16S data, questions RE how big of a shift and how confident we can be 
 - [V4V5 QIIME2 pipeline](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2022-03-02-Point-Judith-Oyster-Gut-16S-V4V5-Analysis.md)   
 - [V6 QIIME2 pipeline](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2022-03-07-Point-Judith-Oyster-Gut-16S-V6-Analysis.md)
 
+### Test sequencing run with V3V4 and V4 region primers 
+
+Samples from Holobiont Integration, KBay Bleaching Pairs, and Ariana Huffmyer's Mcapitata eggs/settled recruits.  
+
+- [Labwork excel sheet](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Lab-work/V3V4_16S_March2020.xlsx)   
+- [Initial multiqc report](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/Lab-work/V3V4Test_initial_multiqc_report.html)    
+- [Data folder for R scripts and outputs](https://github.com/emmastrand/EmmaStrand_Notebook/tree/master/Lab-work/V3V4_test)    
+- [QIIME2 pipline](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2022-07-28-16S-V3V4-Test-Run-Analysis-Pipeline.md#analysis-pipeline-for-16s-v3v4-test-sequencing-run-1)  
+
 ## Resources on 16S amplicon sequencing
 
 These are likely private google slides and document. Contact emma_strand@uri.edu for more information on this if you do not have access.
