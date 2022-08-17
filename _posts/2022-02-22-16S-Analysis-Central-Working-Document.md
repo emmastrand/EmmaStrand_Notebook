@@ -11,7 +11,7 @@ projects: Putnam Lab
 
 This will be my working document to connect all the datasets and different analysis pipelines together. I'm working with 2 datasets: Holobiont Integration and KBay Bleaching Pairs, and working through 2 different programs: QIIME2 and Mothur for the 16S analysis pipeline.
 
-## Question drives the experimental design, methods, analysis, and writing
+## Projects 
 
 ### Holobiont Integration
 
@@ -95,18 +95,7 @@ Reference database: Silva has high diversity and high alignment quality and is m
 - Low number of reads that are unique and aligning, therefore low subsample groups for KBay project   
 - Pipeline decision: Mothur or QIIME2?  
 - OTU vs. ASV decision - make note in each notebook post above RE what pipeline is using OTU vs ASV  
-- Look into what the biases are for the primer that we used for our data (V4 vs. V3/4)
-
-### Current progress / issues - as monday early afternoon Mar 7 2022
-
-Holobiont Integration Mothur: running from contigs.sh - update these steps and run again   
-Holobiont Integration QIIME2: Finished. Waiting decision on reseq.
-
-KBay QIIME2: I'm losing most of my sequencing at the input step.. could this be the same error as Mothur above? See note below KBay Mothur.  
-KBay Mothur: running from contigs.sh again - updated steps and run again. Low # of contigs from the very beginning... **sequencing issue?**
-
-PJ Oyster V6: running qiime2 pipeline - fastqc and import step.
-
+- Look into what the biases are for the primer that we used for our data (V4 vs. V3/4)   
 
 #### Mothur Threshold Decisions
 
