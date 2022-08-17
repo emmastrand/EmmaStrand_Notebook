@@ -7,9 +7,13 @@ tags: 16S, Holobiont Integration, KBay, bioinformatics
 projects: Putnam Lab
 ---
 
-# 16S Analysis Central Document
+# 16S rRNA Sequencing Analysis Central Document
 
 This will be my working document to connect all the datasets and different analysis pipelines together. I'm working with 2 datasets: Holobiont Integration and KBay Bleaching Pairs, and working through 2 different programs: QIIME2 and Mothur for the 16S analysis pipeline.
+
+![](https://ars.els-cdn.com/content/image/1-s2.0-S0022202X16003481-gr1.jpg) 
+
+Diagram reference: [Jo et al 2016](https://www.sciencedirect.com/science/article/pii/S0022202X16003481#fig1)
 
 ## Projects 
 
