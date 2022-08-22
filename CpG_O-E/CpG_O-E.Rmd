@@ -1,0 +1,40 @@
+---
+title: "CpG_O-E"
+author: "EL Strand"
+date: "5/27/2020"
+output: html_document
+---
+
+CpG O/E Analysis
+See for XX prior steps and background information.
+
+Below based on scripts and pipeline instructions from [Dimond et al 2016](https://onlinelibrary.wiley.com/doi/pdf/10.1111/mec.13414?casa_token=J5-ThKmLEYsAAAAA:y5x-yut6DwxurmYAVWRa-xDoybiwM-9pzEloQ3gbADjz6zc5v4HPaNALEK29LropHhwIWjBmNANRQg).
+
+CpG Density: https://github.com/jldimond/Coral-CpG/blob/master/analyses/scripts/CpG_Density.R
+
+Clear workspace, set working directory (because there is no project directory here), and loading in required libraries.
+```{r}
+rm(list=ls()) # clear work space
+setwd("~/MyProjects/_non-repos/CpG_OE_data") #set working directory
+
+library(mixtools)
+```
+
+Read in data files created in XXX. 
+```{r}
+Mcap <- read.delim("Mcap_ID_CpG", header=F)
+```
+
+
+Fitting mixture model with mixtools normalmixEM
+```{r}
+Mdata <- Mcap$V2
+Mcap_data <- Mdata[Mdata >= 0.001 & Mdata <= 1.5] #Cutting off high and low values
+set.seed(1)
+Mcap_mixmdl <- normalmixEM(Mcap_data, k=2)
+plot(Mcap_mixmdl, which = 2, col2 = c("red", "blue"), xlab2 = " ", main2 = "Montipora capitata", font.main = 3)
+lines(density(Mcap_data), lty=2, lwd=2)
+```
+
+
+
