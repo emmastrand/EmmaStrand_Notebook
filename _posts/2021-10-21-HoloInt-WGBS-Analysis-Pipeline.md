@@ -530,6 +530,8 @@ scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/HoloInt_WGBS/HoloI
 
 ## <a name="final_multiqc"></a> **Methylseq: Final Multiqc Report Output**
 
+*I created a new github repo for the molecular portion of this project: MyProjects/Acclim_Dynamics_molecular/.* 
+
 
 
 
