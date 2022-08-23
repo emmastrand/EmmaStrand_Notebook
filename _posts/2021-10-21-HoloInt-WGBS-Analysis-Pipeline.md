@@ -532,7 +532,18 @@ scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/HoloInt_WGBS/HoloI
 
 *I created a new github repo for the molecular portion of this project: MyProjects/Acclim_Dynamics_molecular/.* 
 
-
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/HoloInt%20WGBS%20Multiqc%20Report/methylseq%20multiqc/coverage%20histogram.png?raw=true)
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/HoloInt%20WGBS%20Multiqc%20Report/methylseq%20multiqc/cumulative%20genome%20coverage.png?raw=true)
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/HoloInt%20WGBS%20Multiqc%20Report/methylseq%20multiqc/insert%20size%20histogram.png?raw=true)
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/HoloInt%20WGBS%20Multiqc%20Report/methylseq%20multiqc/GC%20content%20distribution.png?raw=true)
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/HoloInt%20WGBS%20Multiqc%20Report/methylseq%20multiqc/complexity%20curve.png?raw=true)
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/HoloInt%20WGBS%20Multiqc%20Report/methylseq%20multiqc/alignment%20rates.png?raw=true)
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/HoloInt%20WGBS%20Multiqc%20Report/methylseq%20multiqc/deduplication.png?raw=true)
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/HoloInt%20WGBS%20Multiqc%20Report/methylseq%20multiqc/strand%20alignment.png?raw=true)
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/HoloInt%20WGBS%20Multiqc%20Report/methylseq%20multiqc/cytosine%20methylation.png?raw=true)
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/HoloInt%20WGBS%20Multiqc%20Report/methylseq%20multiqc/m-bias-cpg-R1.png?raw=true)
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/HoloInt%20WGBS%20Multiqc%20Report/methylseq%20multiqc/m-bias-cpg-R2.png?raw=true)
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/HoloInt%20WGBS%20Multiqc%20Report/methylseq%20multiqc/trimmed%20seq%20lengths.png?raw=true)
 
 
 ## <a name="troubleshooting"></a> **Troubleshooting**
