@@ -29,6 +29,7 @@ Contents:
 - [**Bismark Multiqc Report**](#bismark_multiqc)  
 - [**Merge Strands**](#merge_strands)  
 
+
 ## <a name="Setting_up"></a> **Setting Up Andromeda**
 
 #### Make a new directory for output files
@@ -299,3 +300,51 @@ Ran first and then moved all output to BleachingPairs_methylseq directory folder
 
 
 ## <a name="merge_strands"></a> **Merge Strands**
+
+See more detailed information on these steps, what the script is doing, and what the flags mean here:  
+- https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2021-10-21-HoloInt-WGBS-Analysis-Pipeline.md#-merge-strands 
+- https://github.com/Putnam-Lab/Lab_Management/blob/master/Bioinformatics_%26_Coding/Workflows/Methylation_QC.md#-merge-strands 
+
+File path: `/data/putnamlab/estrand/BleachingPairs_WGBS/BleachingPairs_methylseq/bismark_methylation_calls/methylation_coverage/*deduplicated.bismark.cov.gz`. 
+
+Input: `*deduplicated.bismark.cov.gz`.  
+Output: `*merged_CpG_evidence.cov`.
+
+Make a new directory for this output: `mkdir merged_cov`. 
+
+`merge_strands.sh` (named cov_to_cyto in other lab members' pipelines): 
+
+```
+#!/bin/bash
+#SBATCH --job-name="merge"
+#SBATCH -t 500:00:00
+#SBATCH --nodes=1 --ntasks-per-node=10
+#SBATCH --mem=500GB
+#SBATCH --account=putnamlab
+#SBATCH --export=NONE
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_WGBS/merged_cov #### this should be your new output directory so all the outputs ends up here
+#SBATCH --cpus-per-task=3
+#SBATCH --error="script_error_merge" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_merge" #once your job is completed, any final job report comments will be put in this file
+
+# load modules needed (specific need for my computer)
+source /usr/share/Modules/init/sh # load the module function
+
+# load modules needed
+
+module load Bismark/0.20.1-foss-2018b
+
+# run coverage2cytosine merge of strands
+# change paths below 
+# change file names below (_L003_*)
+# there can't be any spaces after the \
+
+find /data/putnamlab/estrand/BleachingPairs_WGBS/BleachingPairs_methylseq/bismark_methylation_calls/methylation_coverage/*deduplicated.bismark.cov.gz \
+ | xargs basename -s _L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz \
+ | xargs -I{} coverage2cytosine \
+ --genome_folder /data/putnamlab/estrand/BleachingPairs_WGBS/BleachingPairs_methylseq/reference_genome/BismarkIndex \
+ -o {} \
+ --merge_CpG \
+ --zero_based \
+/data/putnamlab/estrand/BleachingPairs_WGBS/BleachingPairs_methylseq/bismark_methylation_calls/methylation_coverage/{}_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz
+```

@@ -546,6 +546,7 @@ scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/HoloInt_WGBS/HoloI
 ![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/HoloInt%20WGBS%20Multiqc%20Report/methylseq%20multiqc/m-bias-cpg-R2.png?raw=true)
 ![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/HoloInt%20WGBS%20Multiqc%20Report/methylseq%20multiqc/trimmed%20seq%20lengths.png?raw=true)
 
+Based on this assessment we will likely take a few of the wonky samples out prior to analysis, but will keep them in through the next following steps. 
 
 ## <a name="merge"></a> **Merge Strands**
 
@@ -580,17 +581,19 @@ source /usr/share/Modules/init/sh # load the module function
 
 module load Bismark/0.20.1-foss-2018b
 
-
 # run coverage2cytosine merge of strands
+# change paths below 
+# change file names below (_S0_L001_*)
+# there can't be any spaces after the \
 
- find /data/putnamlab/estrand/HoloInt_WGBS/HoloInt_methylseq_final/bismark_methylation_calls/methylation_coverage/*deduplicated.bismark.cov.gz \ ### CHANGE THIS PATH 
- | xargs basename -s _S0_L001_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz \ ### CHANGE THIS FILE NAME 
+find /data/putnamlab/estrand/HoloInt_WGBS/HoloInt_methylseq_final/bismark_methylation_calls/methylation_coverage/*deduplicated.bismark.cov.gz \
+ | xargs basename -s _S0_L001_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz \
  | xargs -I{} coverage2cytosine \
- --genome_folder /data/putnamlab/estrand/HoloInt_WGBS/HoloInt_methylseq_final/reference_genome/BismarkIndex \ ### CHANGE THIS PATH 
+ --genome_folder /data/putnamlab/estrand/HoloInt_WGBS/HoloInt_methylseq_final/reference_genome/BismarkIndex \
  -o {} \
  --merge_CpG \
  --zero_based \
-/data/putnamlab/estrand/HoloInt_WGBS/HoloInt_methylseq_final/bismark_methylation_calls/methylation_coverage/{}_L001_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz ### CHANGE THIS PATH 
+/data/putnamlab/estrand/HoloInt_WGBS/HoloInt_methylseq_final/bismark_methylation_calls/methylation_coverage/{}_S0_L001_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz
 ```
 
 The script is saying:  
