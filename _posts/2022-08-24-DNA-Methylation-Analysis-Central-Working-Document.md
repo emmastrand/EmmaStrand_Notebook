@@ -11,10 +11,10 @@ projects: Putnam Lab
 
 This will be my working document to connect all the datasets and different analysis pipelines together. I'm working with 2 datasets for my own dissertation: Holobiont Integration and KBay Bleaching Pairs, and a separate project on oyster nutrition. 
 
-![](https://www.creativebiomart.net/epigenetics/wp-content/themes/epigenetics/upload/images/DNA-Methylation-Analysis-Service-1.jpg)
+![](https://www.creativebiomart.net/epigenetics/wp-content/themes/epigenetics/upload/images/DNA-Methylation-Analysis-Service-1.jpg)  
 Diagram reference: Creative Biomart: Epigenetics
 
-![](https://labster-image-manager.s3.amazonaws.com/18ddc19c-4564-44b4-a843-2ea5ceccb0d8/DNA_methylation.en.x512.png)
+![](https://labster-image-manager.s3.amazonaws.com/18ddc19c-4564-44b4-a843-2ea5ceccb0d8/DNA_methylation.en.x512.png)  
 Diagram reference: Labster Theory 
 
 ## Projects 
@@ -29,11 +29,11 @@ How do DNA methylation patterns in *Pocillopora acuta*:
 - Change with chronic stress treatments: temperature and ocean acidification? 
 - Is there a core methylation pattern regardless of environmental change? 
 
-ow do DNA methylation patterns in Symbiodinaeceae *Cladocopium spp.*: 
+How do DNA methylation patterns in Symbiodinaeceae *Cladocopium spp.*: 
 - Change with chronic stress treatments: temperature and ocean acidification? 
 - Is there a core methylation pattern regardless of environmental change? 
 
-Holobiont Integration WGBS pipeline: https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2021-10-21-HoloInt-WGBS-Analysis-Pipeline.md 
+[Holobiont Integration WGBS pipeline](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2021-10-21-HoloInt-WGBS-Analysis-Pipeline.md )
 
 ### Diploidy vs Triploidy: Holobiont Integration (WGBS)
 
@@ -55,7 +55,7 @@ Github repo link: [here](https://github.com/hputnam/HI_Bleaching_Timeseries).
 - How do DNA methylation patterns change pre- and post- bleaching event (July vs. December)? This may be hard to distinguish from the above question of seasonality..   
 - Are there particular DNA methylation patterns that are associated with 'stronger' phenotypes?  
 
-KBay WGBS pipeline: https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2021-10-21-KBay-Bleaching-Pairs-WGBS-Analysis-Pipeline.md 
+[KBay WGBS pipeline](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2021-10-21-KBay-Bleaching-Pairs-WGBS-Analysis-Pipeline.md)
 
 ### Point Judith, Rhode Island (MBD-BS)
 
@@ -63,7 +63,7 @@ Github repo link: [here](https://github.com/hputnam/Cvir_Nut_Int).
 
 Adult *C. virginica* oysters from gut tissue. How nutrient enrichment change (or not change) DNA methylation patterns? 
 
-Cvir MBD-BS pipeline: https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2022-05-09-Point-Judith-Oyster-DNA-Methylation-(MBD-BS).md. 
+[Cvir MBD-BS pipeline](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2022-05-09-Point-Judith-Oyster-DNA-Methylation-(MBD-BS).md). 
 
 
 ## Resources on DNA methylation analysis 
