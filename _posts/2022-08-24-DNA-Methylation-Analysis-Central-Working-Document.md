@@ -76,6 +76,16 @@ Adult *C. virginica* oysters from gut tissue. How nutrient enrichment change (or
 - Becker WGBS workflow (Pocillopora verrucosa): https://github.com/hputnam/Becker_E5/blob/master/Bioinformatics/Workflows/Becker_WGBS_Workflow.md
 - Methods comparison (Trigg et al 2021): https://onlinelibrary.wiley.com/doi/pdf/10.1111/1755-0998.13542. 
 
+### Reference Genomes Used
+
+- *Pocillopora acuta*: https://www.biorxiv.org/content/10.1101/698688v3.abstract  
+- *Porites asteroides*: https://www.biorxiv.org/content/10.1101/2022.07.01.498470v1.abstract 
+- *Pocillopora verrucosa*: http://pver.reefgenomics.org/download/Pver_genome_assembly_v1.0.fasta.gz; [Buitrago-Lopez et al 2020](https://academic.oup.com/gbe/article/12/10/1911/5898631)
+- *Monitpora capitata*: http://cyanophora.rutgers.edu/montipora/
+- *Crassostrea virginica*: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/002/022/765/GCF_002022765.2_C_virginica-3.0/GCF_002022765.2_C_virginica-3.0_genomic.fna.gz
+
+*Before using a reference genome, be sure to double check if there is a newer version released and how that will affect your pipeline.* 
+
 ## Lab work / Pre-bioinformatic processing 
 
 ### Whole Genome Bisulfite Sequencing 
