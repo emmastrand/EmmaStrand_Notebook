@@ -23,7 +23,8 @@ Contents:
 - [**Initial Multiqc Report**](#multiqc)     
 - [**Methylseq: Trimming parameters test**](#Test)   
 - [**Methylseq: Final Script Run**](#methylseq_final)  
-- [**Methylseq: Final Multiqc Report Output**](#final_multiqc)  
+- [**Methylseq: Final Multiqc Report Output**](#final_multiqc) 
+- [**Merge Strands**](#merge)  
 - [**Troubleshooting**](#troubleshooting)  
 
 ## <a name="Setting_up"></a> **Setting Up Andromeda**
@@ -544,6 +545,81 @@ scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/HoloInt_WGBS/HoloI
 ![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/HoloInt%20WGBS%20Multiqc%20Report/methylseq%20multiqc/m-bias-cpg-R1.png?raw=true)
 ![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/HoloInt%20WGBS%20Multiqc%20Report/methylseq%20multiqc/m-bias-cpg-R2.png?raw=true)
 ![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/HoloInt%20WGBS%20Multiqc%20Report/methylseq%20multiqc/trimmed%20seq%20lengths.png?raw=true)
+
+
+## <a name="merge"></a> **Merge Strands**
+
+The file output from the methylseq pipeline that is used for the following steps: `bismark_methylation_calls/methylation_coverage/*deduplicated.bismark.cov.gz`. 
+
+The Bismark `coverage2cytosine` command re-reads the genome-wide report and merges methylation evidence of both top and bottom strand to create one file. 
+
+Input: `*deduplicated.bismark.cov.gz`.  
+Output: `*merged_CpG_evidence.cov`.
+
+Make a new directory for this output: `mkdir merged_cov`. 
+
+`merge_strands.sh` (named cov_to_cyto in other lab members' pipelines): 
+
+```
+#!/bin/bash
+#SBATCH --job-name="merge"
+#SBATCH -t 500:00:00
+#SBATCH --nodes=1 --ntasks-per-node=10
+#SBATCH --mem=500GB
+#SBATCH --account=putnamlab
+#SBATCH --export=NONE
+#SBATCH -D /data/putnamlab/estrand/HoloInt_WGBS/merged_cov #### this should be your new output directory so all the outputs ends up here
+#SBATCH --cpus-per-task=3
+#SBATCH --error="script_error_merge" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_merge" #once your job is completed, any final job report comments will be put in this file
+
+# load modules needed (specific need for my computer)
+source /usr/share/Modules/init/sh # load the module function
+
+# load modules needed
+
+module load Bismark/0.20.1-foss-2018b
+
+
+# run coverage2cytosine merge of strands
+
+ find /data/putnamlab/estrand/HoloInt_WGBS/HoloInt_methylseq_final/bismark_methylation_calls/methylation_coverage/*deduplicated.bismark.cov.gz \ ### CHANGE THIS PATH 
+ | xargs basename -s _S0_L001_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz \ ### CHANGE THIS FILE NAME 
+ | xargs -I{} coverage2cytosine \
+ --genome_folder /data/putnamlab/estrand/HoloInt_WGBS/HoloInt_methylseq_final/reference_genome/BismarkIndex \ ### CHANGE THIS PATH 
+ -o {} \
+ --merge_CpG \
+ --zero_based \
+/data/putnamlab/estrand/HoloInt_WGBS/HoloInt_methylseq_final/bismark_methylation_calls/methylation_coverage/{}_L001_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz ### CHANGE THIS PATH 
+```
+
+The script is saying:  
+- for every file in `methylation_coverage` repo that ends with `deduplicated.bismark.cov.gz` (there should be 60 for this project),  
+- and has basename of `_S0_L001_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz` (everything that comes after the sample ID)
+- perform the function `coverage2cytosine` within the Bismark module 
+- identifies where the output genome is located (folder `reference_genome/BismarkIndex` within methylseq output folder)
+- `--zero_based`: uses 0-based genomic coordinates instead of 1-based coordinates. Default is OFF  
+- `-o`: output file names; {} identifies these remain the same 
+- `merge_CpG`: write out additional coverage files that has the top and bottom strand methylation evidence pooled into a single CpG dinucleotide entity. 
+
+Help on merge_CpG function: https://github.com/FelixKrueger/Bismark/issues/86/. 
+
+The output files will look like (without the headers): 
+
+| **Scaffold** | **Start Position** | **Stop Position** | **% Methylated** | **Methylated** | **Unmethylated** |
+|--------------|--------------------|-------------------|------------------|----------------|------------------|
+| 000000F      | 29076              | 29078             | 0.000000         | 0              | 5                |
+| 000000F      | 29158              | 29160             | 0.000000         | 0              | 12               |
+| 000000F      | 29185              | 29187             | 0.000000         | 0              | 8                |
+| 000000F      | 29215              | 29217             | 0.000000         | 0              | 4                |
+| 000000F      | 29232              | 29234             | 0.000000         | 0              | 3                |
+| 000000F      | 29241              | 29243             | 11.111111        | 1              | 8                |
+| 000000F      | 29277              | 29279             | 0.000000         | 0              | 11               |
+| 000000F      | 29282              | 29284             | 0.000000         | 0              | 12               |
+| 000000F      | 29313              | 29315             | 0.000000         | 0              | 11               |
+| 29335        | 29335              | 29337             | 0.000000         | 0              | 10               |
+
+Each CpG dinucleotide will have data for % methylation, and how many times that CpG was methylated or unmethylated. 
 
 
 ## <a name="troubleshooting"></a> **Troubleshooting**
