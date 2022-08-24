@@ -28,7 +28,9 @@ Contents:
 - [**NF-core: Methylseq**](#Test)  
 - [**Bismark Multiqc Report**](#bismark_multiqc)  
 - [**Merge Strands**](#merge_strands)  
-
+- [**Sort CpG .cov file**](#sort)   
+- [**Filter for a specific coverage (5X, 10X)**](#filter_cov)   
+- [**Filter to positions found in all samples**](#filter_pos)   
 
 ## <a name="Setting_up"></a> **Setting Up Andromeda**
 
@@ -312,6 +314,8 @@ Output: `*merged_CpG_evidence.cov`.
 
 Make a new directory for this output: `mkdir merged_cov`. 
 
+This takes 3+ hours (40 samples). 
+
 `merge_strands.sh` (named cov_to_cyto in other lab members' pipelines): 
 
 ```
@@ -348,3 +352,125 @@ find /data/putnamlab/estrand/BleachingPairs_WGBS/BleachingPairs_methylseq/bismar
  --zero_based \
 /data/putnamlab/estrand/BleachingPairs_WGBS/BleachingPairs_methylseq/bismark_methylation_calls/methylation_coverage/{}_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz
 ```
+
+## <a name="sort"></a> **Sort CpG .cov file**
+
+This function sorts all the merged files so that all scaffolds are in the same order. This needs to be done for multiIntersectBed to run correctly. This sets up a loop to do this for every sample (file). 
+
+`bedtools_sort.sh`: 
+
+```
+#!/bin/bash
+#SBATCH --job-name="KB-sort"
+#SBATCH -t 500:00:00
+#SBATCH --nodes=1 --ntasks-per-node=10
+#SBATCH --mem=500GB
+#SBATCH --account=putnamlab
+#SBATCH --export=NONE
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_WGBS/merged_cov #### this is the output from the merge cov step above 
+#SBATCH --cpus-per-task=3
+#SBATCH --error="script_error_sort" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_sort" #once your job is completed, any final job report comments will be put in this file
+
+# load modules needed (specific need for my computer)
+source /usr/share/Modules/init/sh # load the module function
+
+# load BEDTools 
+module load BEDTools/2.27.1-foss-2018b
+
+for f in *merged_CpG_evidence.cov
+do
+  STEM=$(basename "${f}" .CpG_report.merged_CpG_evidence.cov)
+  bedtools sort -i "${f}" \
+  > "${STEM}"_sorted.cov
+done
+```
+
+The script is saying: 
+- For every sample's .cov file in the output folder `merged_cov`, use bedtools function to sort and then output a file with the same name plus `_sorted.cov`. 
+
+## <a name="filter_cov"></a> **Filter for a specific coverage (5X, 10X)**
+
+This script is running a loop to filter CpGs for a specified coverage and creating tab files.
+
+Essentially, the loop in this script will take columns 5 (Methylated) and 6 (Unmethylated) positions and keeps that row if it is greater than or equal to 5. This means that we have 5x coverage for this position. This limits our interpretation to 0%, 20%, 40%, 60%, 80%, 100% methylation resolution per position.
+
+Input File: `*merged_CpG_evidence.cov`  
+Output File: `5x_sorted.tab` or `10x_sorted.tab`
+
+`covX.sh`: 
+
+```
+#!/bin/bash
+#SBATCH --job-name="KB-5X"
+#SBATCH -t 500:00:00
+#SBATCH --nodes=1 --ntasks-per-node=10
+#SBATCH --mem=500GB
+#SBATCH --account=putnamlab
+#SBATCH --export=NONE
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_WGBS/merged_cov #### this is the output from the merge cov step above 
+#SBATCH --cpus-per-task=3
+#SBATCH --error="script_error_5X" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_5X" #once your job is completed, any final job report comments will be put in this file
+
+# load modules needed (specific need for my computer)
+source /usr/share/Modules/init/sh # load the module function
+
+### Filtering for CpG for 5x coverage. To change the coverage, replace X with your desired coverage in ($5+6 >= X)
+
+for f in *_sorted.cov
+do
+  STEM=$(basename "${f}" _sorted.cov)
+  cat "${f}" | awk -F $'\t' 'BEGIN {OFS = FS} {if ($5+$6 >= 5) {print $1, $2, $3, $4, $5, $6}}' \
+  > "${STEM}"_5x_sorted.tab
+done
+
+### Filtering for CpG for 10x coverage. To change the coverage, replace X with your desired coverage in ($5+6 >= X)
+
+for f in *_sorted.cov
+do
+  STEM=$(basename "${f}" _sorted.cov)
+  cat "${f}" | awk -F $'\t' 'BEGIN {OFS = FS} {if ($5+$6 >= 10) {print $1, $2, $3, $4, $5, $6}}' \
+  > "${STEM}"_10x_sorted.tab
+done
+```
+
+Moving forward I want to see the differences in data we get from 5X and 10X. We'll have to decide which threshold to use moving forward. We want confidence and high resolution but also a large dataset so we need a happy medium. 
+
+## <a name="filter_pos"></a> **Filter to positions found in all samples**
+
+We need to create a file that is filtered to only positions that are found in all samples (both methylated and unmethylated). `multiIntersectBed` creates a file that merges all samples together. The 4th column then tells you how samples have that position. We can then filter positions based on this column that is equal to our sample size. n=40 for this project. 
+
+Input file: `5x_sorted.tab` and `10x_sorted.tab`  
+Output file: `CpG.filt.all.samps.5x_sorted.bed` and `CpG.filt.all.samps.10x_sorted.bed`
+
+`cov_allsamples.sh`: 
+
+```
+#!/bin/bash
+#SBATCH --job-name="H-all_cov"
+#SBATCH -t 500:00:00
+#SBATCH --nodes=1 --ntasks-per-node=10
+#SBATCH --mem=500GB
+#SBATCH --account=putnamlab
+#SBATCH --export=NONE
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_WGBS/merged_cov #### this is the output from the merge cov step above 
+#SBATCH --cpus-per-task=3
+#SBATCH --error="script_error_all_cov" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_all_cov" #once your job is completed, any final job report comments will be put in this file
+
+# load modules needed  
+source /usr/share/Modules/init/sh # load the module function (specific to my computer)
+module load BEDTools/2.27.1-foss-2018b
+
+multiIntersectBed -i *_5x_sorted.tab > CpG.all.samps.5x_sorted.bed
+multiIntersectBed -i *_10x_sorted.tab > CpG.all.samps.10x_sorted.bed
+
+cat CpG.all.samps.5x_sorted.bed | awk '$4 ==40' > CpG.filt.all.samps.5x_sorted.bed
+
+cat CpG.all.samps.10x_sorted.bed | awk '$4 ==40' > CpG.filt.all.samps.10x_sorted.bed
+```
+
+## <a name="gene_anno"></a> **Gene annotation**
+
+This step needs a modified gff file that is only includes gene positions. 
