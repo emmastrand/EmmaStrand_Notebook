@@ -30,7 +30,9 @@ Contents:
 - [**Merge Strands**](#merge_strands)  
 - [**Sort CpG .cov file**](#sort)   
 - [**Filter for a specific coverage (5X, 10X)**](#filter_cov)   
-- [**Filter to positions found in all samples**](#filter_pos)   
+- [**Create a file with positions found in all samples**](#filter_pos)   
+- [**Gene Annotation file**](#gene_anno)  
+- [**IntersectBed: Loci mapped to annotated gene**](#intersectBed_map) 
 
 ## <a name="Setting_up"></a> **Setting Up Andromeda**
 
@@ -314,7 +316,7 @@ Output: `*merged_CpG_evidence.cov`.
 
 Make a new directory for this output: `mkdir merged_cov`. 
 
-This takes 3+ hours (40 samples). 
+This takes 10+ hours (40 samples but # of reads more relevant to this #). 
 
 `merge_strands.sh` (named cov_to_cyto in other lab members' pipelines): 
 
@@ -352,6 +354,8 @@ find /data/putnamlab/estrand/BleachingPairs_WGBS/BleachingPairs_methylseq/bismar
  --zero_based \
 /data/putnamlab/estrand/BleachingPairs_WGBS/BleachingPairs_methylseq/bismark_methylation_calls/methylation_coverage/{}_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz
 ```
+
+No errors in the output scripts, move on to the next step. 
 
 ## <a name="sort"></a> **Sort CpG .cov file**
 
@@ -437,7 +441,7 @@ done
 
 Moving forward I want to see the differences in data we get from 5X and 10X. We'll have to decide which threshold to use moving forward. We want confidence and high resolution but also a large dataset so we need a happy medium. 
 
-## <a name="filter_pos"></a> **Filter to positions found in all samples**
+## <a name="filter_pos"></a> **Create a file with positions found in all samples**
 
 We need to create a file that is filtered to only positions that are found in all samples (both methylated and unmethylated). `multiIntersectBed` creates a file that merges all samples together. The 4th column then tells you how samples have that position. We can then filter positions based on this column that is equal to our sample size. n=40 for this project. 
 
@@ -448,7 +452,7 @@ Output file: `CpG.filt.all.samps.5x_sorted.bed` and `CpG.filt.all.samps.10x_sort
 
 ```
 #!/bin/bash
-#SBATCH --job-name="H-all_cov"
+#SBATCH --job-name="KB-all_cov"
 #SBATCH -t 500:00:00
 #SBATCH --nodes=1 --ntasks-per-node=10
 #SBATCH --mem=500GB
@@ -473,4 +477,70 @@ cat CpG.all.samps.10x_sorted.bed | awk '$4 ==40' > CpG.filt.all.samps.10x_sorted
 
 ## <a name="gene_anno"></a> **Gene annotation**
 
-This step needs a modified gff file that is only includes gene positions. 
+This step needs a modified gff file that is only includes gene positions. This can be found on the Rutger's data site for *M. capiata* genome resources: http://cyanophora.rutgers.edu/montipora/. I have been using version 2 in the methylseq pipeline so I downloaded the gff file from this same version. `$ wget http://cyanophora.rutgers.edu/montipora/Montipora_capitata_HIv2.genes.gff3.gz` and `gunzip Montipora_capitata_HIv2.genes.gff3.gz`. 
+
+**gff3 vs gff files: different versions of a gene annotation file. May have to troubleshoot if intersectBed doesn't recognize the gff3 format.** 
+
+File name = Montipora_capitata_HIv2.genes.gff3: 
+
+```
+Montipora_capitata_HIv2___Scaffold_1001___length_25332  Liftoff gene    13647   15880   .       +       .       ID=Montipora_capitata_PredGene_adi2mcaRNA38900_R1;Name=Montipora_capitata_PredGene_adi2mcaRNA38900_R1.t1;coverage=0.853;sequence_ID=0.853;valid_ORFs=0;extra_copy_number=0;copy_num_ID=Montipora_capitata_PredGene_adi2mcaRNA38900_R1_0;partial_mapping=True;low_identity=True
+Montipora_capitata_HIv2___Scaffold_1001___length_25332  Liftoff mRNA    13647   15880   .       +       .       ID=Montipora_capitata_PredGene_adi2mcaRNA38900_R1.t1;Parent=Montipora_capitata_PredGene_adi2mcaRNA38900_R1;Name=Montipora_capitata_PredGene_adi2mcaRNA38900_R1.t1;matches_ref_protein=False;valid_ORF=False;missing_start_codon=True;extra_copy_number=0
+Montipora_capitata_HIv2___Scaffold_1001___length_25332  Liftoff exon    13647   13660   .       +       .       ID=Montipora_capitata_PredGene_adi2mcaRNA38900_R1.t1.exon1;Parent=Montipora_capitata_PredGene_adi2mcaRNA38900_R1.t1;extra_copy_number=0
+Montipora_capitata_HIv2___Scaffold_1001___length_25332  Liftoff exon    14161   14288   .       +       .       ID=Montipora_capitata_PredGene_adi2mcaRNA38900_R1.t1.exon2;Parent=Montipora_capitata_PredGene_adi2mcaRNA38900_R1.t1;extra_copy_number=0
+Montipora_capitata_HIv2___Scaffold_1001___length_25332  Liftoff exon    14341   14417   .       +       .       ID=Montipora_capitata_PredGene_adi2mcaRNA38900_R1.t1.exon3;Parent=Montipora_capitata_PredGene_adi2mcaRNA38900_R1.t1;extra_copy_number=0
+Montipora_capitata_HIv2___Scaffold_1001___length_25332  Liftoff exon    15803   15880   .       +       .       ID=Montipora_capitata_PredGene_adi2mcaRNA38900_R1.t1.exon4;Parent=Montipora_capitata_PredGene_adi2mcaRNA38900_R1.t1;extra_copy_number=0
+Montipora_capitata_HIv2___Scaffold_1001___length_25332  Liftoff CDS     13647   13660   .       +       .       ID=cds.Montipora_capitata_PredGene_adi2mcaRNA38900_R1.t1;Parent=Montipora_capitata_PredGene_adi2mcaRNA38900_R1.t1;5_prime_partial=true;extra_copy_number=0
+Montipora_capitata_HIv2___Scaffold_1001___length_25332  Liftoff CDS     14161   14288   .       +       .       ID=cds.Montipora_capitata_PredGene_adi2mcaRNA38900_R1.t1;Parent=Montipora_capitata_PredGene_adi2mcaRNA38900_R1.t1;extra_copy_number=0
+Montipora_capitata_HIv2___Scaffold_1001___length_25332  Liftoff CDS     14341   14417   .       +       .       ID=cds.Montipora_capitata_PredGene_adi2mcaRNA38900_R1.t1;Parent=Montipora_capitata_PredGene_adi2mcaRNA38900_R1.t1;extra_copy_number=0
+Montipora_capitata_HIv2___Scaffold_1001___length_25332  Liftoff CDS     15803   15880   .       +       .       ID=cds.Montipora_capitata_PredGene_adi2mcaRNA38900_R1.t1;Parent=Montipora_capitata_PredGene_adi2mcaRNA38900_R1.t1;extra_copy_number=0
+```
+
+**This file is named .genes. but includes CDS and exons (which are part of genes). I'm filtering for 'genes' for now but I might need to come back to this step and use the whole file...**
+
+
+## <a name="intersectBed_map"></a> **IntersectBed: Loci mapped to annotated gene**
+
+Next, merge each sample file with gene annotation file using `intersectBed`. 
+
+Input files: `*5x_sorted.tab` and `*10x_sorted.tab` and `Montipora_capitata_HIv2.genes.gff3`  
+Output files: `*_5x_sorted.tab_gene` and `*_10x_sorted.tab_gene`
+
+`intersectBed.sh`:
+
+```
+#!/bin/bash
+#SBATCH --job-name="KB-intersectBed"
+#SBATCH -t 500:00:00
+#SBATCH --nodes=1 --ntasks-per-node=10
+#SBATCH --mem=500GB
+#SBATCH --account=putnamlab
+#SBATCH --export=NONE
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_WGBS/merged_cov #### this is the output from the merge cov step above 
+#SBATCH --cpus-per-task=3
+#SBATCH --error="script_error_intersectBed" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_intersectBed" #once your job is completed, any final job report comments will be put in this file
+
+# load modules needed  
+source /usr/share/Modules/init/sh # load the module function (specific to my computer)
+module load BEDTools/2.27.1-foss-2018b
+
+for i in *5x_sorted.tab
+do
+  intersectBed \
+  -wb \
+  -a ${i} \
+  -b /data/putnamlab/estrand/Montipora_capitata_HIv2.genes.gff3 \
+  > ${i}_gene
+done
+
+for i in *10x_sorted.tab
+do
+  intersectBed \
+  -wb \
+  -a ${i} \
+  -b /data/putnamlab/estrand/Montipora_capitata_HIv2.genes.gff3 \
+  > ${i}_gene
+done
+```
+

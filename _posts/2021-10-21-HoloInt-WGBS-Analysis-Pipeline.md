@@ -27,7 +27,9 @@ Contents:
 - [**Merge Strands**](#merge)  
 - [**Sort CpG .cov file**](#sort)   
 - [**Filter for a specific coverage (5X, 10X)**](#filter_cov)   
-- [**Filter to positions found in all samples**](#filter_pos)   
+- [**Create a file with positions found in all samples**](#filter_pos)   
+- [**Gene Annotation file**](#gene_anno)  
+- [**IntersectBed: Loci mapped to annotated gene**](#intersectBed_map) 
 - [**Troubleshooting**](#troubleshooting)  
 
 ## <a name="Setting_up"></a> **Setting Up Andromeda**
@@ -562,7 +564,7 @@ Output: `*merged_CpG_evidence.cov`.
 
 Make a new directory for this output: `mkdir merged_cov`. 
 
-This takes 4+ hours (60 samples). 
+This takes ~7 hours (60 samples). 
 
 `merge_strands.sh` (named cov_to_cyto in other lab members' pipelines): 
 
@@ -666,6 +668,16 @@ done
 The script is saying: 
 - For every sample's .cov file in the output folder `merged_cov`, use bedtools function to sort and then output a file with the same name plus `_sorted.cov`. 
 
+No errors reported with this script, move on to the next one. Viewing one file to make sure this worked and it appears to be sorted. 
+
+```
+less 1536_sorted.cov
+
+Pocillopora_acuta_HIv1___Scaffold_000000F___length_7015273      3246    3248    0.000000        0       2
+Pocillopora_acuta_HIv1___Scaffold_000000F___length_7015273      3517    3519    0.000000        0       3
+Pocillopora_acuta_HIv1___Scaffold_000000F___length_7015273      3538    3540    0.000000        0       3
+Pocillopora_acuta_HIv1___Scaffold_000000F___length_7015273      3555    3557    0.000000        0       3
+```
 
 ## <a name="filter_cov"></a> **Filter for a specific coverage (5X, 10X)**
 
@@ -715,13 +727,23 @@ done
 
 Moving forward I want to see the differences in data we get from 5X and 10X. We'll have to decide which threshold to use moving forward. We want confidence and high resolution but also a large dataset so we need a happy medium. 
 
+No errors or output messages so we are good to move on. 
 
-## <a name="filter_pos"></a> **Filter to positions found in all samples**
+At this point all samples have the following files: 
+- `1755.CpG_report.txt`  
+- `1755.CpG_report.merged_CpG_evidence.cov`  
+- `1755_5x_sorted.tab`  
+- `1755_10x_sorted.tab`   
+
+
+## <a name="filter_pos"></a> **Create a file with positions found in all samples**
 
 We need to create a file that is filtered to only positions that are found in all samples (both methylated and unmethylated). `multiIntersectBed` creates a file that merges all samples together. The 4th column then tells you how samples have that position. We can then filter positions based on this column that is equal to our sample size. n=60 for this project. 
 
+Here is where we can loose the most reads. 
+
 Input file: `5x_sorted.tab` and `10x_sorted.tab`  
-Output file: `CpG.filt.all.samps.5x_sorted.bed` and `CpG.filt.all.samps.10x_sorted.bed`
+Output file: `CpG.filt.all.samps.5x_sorted.bed` and `CpG.filt.all.samps.10x_sorted.bed` (one file for each coverage that has positions found in all samples)
 
 `cov_allsamples.sh`: 
 
@@ -750,13 +772,191 @@ cat CpG.all.samps.5x_sorted.bed | awk '$4 ==60' > CpG.filt.all.samps.5x_sorted.b
 cat CpG.all.samps.10x_sorted.bed | awk '$4 ==60' > CpG.filt.all.samps.10x_sorted.bed
 ```
 
-## <a name="gene_anno"></a> **Gene annotation**
+No errors in the script and all four files were created. 
+
+## <a name="gene_anno"></a> **Gene Annotation file**
 
 This step needs a modified gff file that is only includes gene positions. 
 
+http://ihpe.univ-perp.fr/acces-aux-donnees/. This website has a `Data_to_downoload.rar` file that I downloaded to Andromeda using `wget http://ihpe.univ-perp.fr/telechargement/Data_to_downoload.rar`. Kevin Bryan downloaded the module `unrar/6.0.2-GCCcore-10.2.0` for me to use the function `unrar` to see what files are stored in this `Data_to_downoload.rar` file. 
+
+`Data_to_downoload.rar` is not mispelled. There is an extra "o" after "down". 
+
+```
+# mkdir /data/putnamlab/estrand/Pacuta_download_genome_rar
+# wget command above
+
+# load the module 
+$ module load unrar/6.0.2-GCCcore-10.2.0
+
+# to see all files that are in this .rar file
+$ unrar -l Data_to_downoload.rar 
+
+Some files of interest in the output: 
+/Pocillopora_acuta_genome_v1.fasta
+/READ_ME.txt
+/Structural_annotation_abintio.gff
+/Structural_annotation_experimental.gff
+/Functionnal_annotation_orthoMCL_abinitio
+
+# download only one file from the .rar file 
+unrar x Data_to_downoload.rar Data_to_downoload/READ_ME.txt 
+# then deleted the Data_to_downoload directory folder made in the above command (b/c mispelled)
+
+unrar x Data_to_downoload.rar Data_to_downoload/Structural_annotation_abintio.gff
+```
+
+After opening the READ_ME.txt file, I belive this is the .gff I'm looking for: 
+- `Data_to_downoload/Structural_annotation_abintio.gff` (not spelled the same as in the READ_ME.txt file. File name is missing an "i").  
+- This file is the results of the structural annotation performed on the genes predicted from AUGUSTUS. It give the position of genes, transcripts, exon (initial, internal and terminal) CDS, intron, start codon and stop codon  on the genome sequence. It is in gff format.
+
+Contents of that file: 
+
+```
+scaffold7cov100 b2h     ep      12544   12555   0       .       .       grp=TCONS00053944;pri=4;src=E "3.16e+04;0.995;16:2"
+scaffold7cov100 b2h     ep      12533   12556   0       .       .       grp=TCONS00035771;pri=4;src=E "1.58e+03;0.995;3:2"
+scaffold7cov100 b2h     ep      12532   12564   0       .       .       grp=TCONS00018041;pri=4;src=E "316;0.995;0:2"
+scaffold7cov100 b2h     ep      12535   12564   0       .       .       grp=TCONS00051924;pri=4;src=E "1.58e+03;0.995;3:2"
+scaffold7cov100 b2h     ep      12533   12565   0       .       .       grp=TCONS00013753;pri=4;src=E "588;0.995;1:2"
+```
+
+Filtering the 3rd column for only 'genes': 
+
+```
+$ awk '{if ($3 == "gene") {print}}' Structural_annotation_abintio.gff  > Structural_annotation_abintio_genes.gff
+```
+
+**This filters out exon and CDS? Those are parts of genes so don't we want those too? I'm filtering for 'genes' for now but I might need to come back to this step and use a version that has all the parts of a gene..** 
+
+## <a name="intersectBed_map"></a> **IntersectBed: Loci mapped to annotated gene**
+
+Next, merge each sample file with gene annotation file using `intersectBed`. 
+
+Input files: `*5x_sorted.tab` and `*10x_sorted.tab` and `Montipora_capitata_HIv2.genes.gff3`  
+Output files: `*_5x_sorted.tab_gene` and `*_10x_sorted.tab_gene`
+
+`intersectBed.sh`:
+
+```
+#!/bin/bash
+#SBATCH --job-name="H-intersectBed"
+#SBATCH -t 500:00:00
+#SBATCH --nodes=1 --ntasks-per-node=10
+#SBATCH --mem=500GB
+#SBATCH --account=putnamlab
+#SBATCH --export=NONE
+#SBATCH -D /data/putnamlab/estrand/HoloInt_WGBS/merged_cov #### this is the output from the merge cov step above 
+#SBATCH --cpus-per-task=3
+#SBATCH --error="script_error_intersectBed" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_intersectBed" #once your job is completed, any final job report comments will be put in this file
+
+# load modules needed  
+source /usr/share/Modules/init/sh # load the module function (specific to my computer)
+module load BEDTools/2.27.1-foss-2018b
+
+for i in *5x_sorted.tab
+do
+  intersectBed \
+  -wb \
+  -a ${i} \
+  -b /data/putnamlab/estrand/Pacuta_download_genome_rar/Data_to_downoload/Structural_annotation_abintio_genes.gff \
+  > ${i}_gene
+done
+
+for i in *10x_sorted.tab
+do
+  intersectBed \
+  -wb \
+  -a ${i} \
+  -b /data/putnamlab/estrand/Pacuta_download_genome_rar/Data_to_downoload/Structural_annotation_abintio_genes.gff \
+  > ${i}_gene
+done
+```
+
+The _gene files came back empty..
+
+I think it's because the Structural_annotation_abintio.gff (and genes subset file I made) and the sorted tab files for coverage don't have the same gene names? So intersectBed is coming up with a blank file because none of them are the same. 
+
+`Structural_annotation_abintio_genes.gff`: 
+
+```
+# start gene g1
+scaffold6cov64  AUGUSTUS        gene    1       5652    0.46    -       .       g1
+# end gene g1
+# start gene g2
+scaffold6cov64  AUGUSTUS        gene    5805    6678    0.57    +       .       g2
+# end gene g2
+# start gene g3
+scaffold7cov100 AUGUSTUS        gene    1       2566    0.96    +       .       g3
+# end gene g3
+# start gene g4
+```
+
+Sample ID File: `2197_5x_sorted.tab`
+
+```
+Pocillopora_acuta_HIv1___Scaffold_000000F___length_7015273      3981    3983    0.000000        0       5
+Pocillopora_acuta_HIv1___Scaffold_000000F___length_7015273      11833   11835   0.000000        0       5
+Pocillopora_acuta_HIv1___Scaffold_000000F___length_7015273      11869   11871   0.000000        0       5
+Pocillopora_acuta_HIv1___Scaffold_000000F___length_7015273      11880   11882   0.000000        0       5
+Pocillopora_acuta_HIv1___Scaffold_000000F___length_7015273      14825   14827   0.000000        0       10
+Pocillopora_acuta_HIv1___Scaffold_000000F___length_7015273      14876   14878   0.000000        0       10
+Pocillopora_acuta_HIv1___Scaffold_000000F___length_7015273      14904   14906   0.000000        0       8
+Pocillopora_acuta_HIv1___Scaffold_000000F___length_7015273      14910   14912   0.000000        0       10
+Pocillopora_acuta_HIv1___Scaffold_000000F___length_7015273      14947   14949   0.000000        0       10
+Pocillopora_acuta_HIv1___Scaffold_000000F___length_7015273      14970   14972   0.000000        0       10
+```
 
 
 
+## <a name="intersectBed_map"></a> **IntersectBed: File to only positions found in all samples**
+
+`intersect_enrichment.sh`: 
+
+```
+#!/bin/bash
+#SBATCH --job-name="H-iBenrich"
+#SBATCH -t 500:00:00
+#SBATCH --nodes=1 --ntasks-per-node=10
+#SBATCH --mem=500GB
+#SBATCH --account=putnamlab
+#SBATCH --export=NONE
+#SBATCH -D /data/putnamlab/estrand/HoloInt_WGBS/merged_cov #### this is the output from the merge cov step above 
+#SBATCH --cpus-per-task=3
+#SBATCH --error="script_error_iBenrich" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_iBenrich" #once your job is completed, any final job report comments will be put in this file
+
+# load modules needed  
+source /usr/share/Modules/init/sh # load the module function (specific to my computer)
+module load BEDTools/2.27.1-foss-2018b
+
+for i in *_5x_sorted.tab_gene
+do
+  intersectBed \
+  -a ${i} \
+  -b CpG.filt.all.samps.5x_sorted.bed \
+  > ${i}_CpG_5x_enrichment.bed
+done
+
+for i in *_10x_sorted.tab_gene
+do
+  intersectBed \
+  -a ${i} \
+  -b CpG.filt.all.samps.10x_sorted.bed \
+  > ${i}_CpG_10x_enrichment.bed
+done
+```
+
+```
+wc -l *10x_enrichment.bed > 10x_enrichment_sample_size.txt 
+wc -l *5x_enrichment.bed > 5x_enrichment_sample_size.txt
+```
+
+### 5X COVERAGE 
+
+
+
+### 10X COVERAGE 
 
 
 
