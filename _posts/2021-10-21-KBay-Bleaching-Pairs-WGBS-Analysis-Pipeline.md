@@ -499,6 +499,13 @@ Montipora_capitata_HIv2___Scaffold_1001___length_25332  Liftoff CDS     15803   
 **This file is named .genes. but includes CDS and exons (which are part of genes). I'm filtering for 'genes' for now but I might need to come back to this step and use the whole file...**
 
 
+Filtering the 3rd column for only 'genes': 
+
+```
+$ awk '{if ($3 == "gene") {print}}' Montipora_capitata_HIv2.genes.gff3  > Montipora_capitata_HIv2.genes_only.gff3
+```
+
+
 ## <a name="intersectBed_map"></a> **IntersectBed: Loci mapped to annotated gene**
 
 Next, merge each sample file with gene annotation file using `intersectBed`. 
@@ -530,7 +537,7 @@ do
   intersectBed \
   -wb \
   -a ${i} \
-  -b /data/putnamlab/estrand/Montipora_capitata_HIv2.genes.gff3 \
+  -b /data/putnamlab/estrand/Montipora_capitata_HIv2.genes_only.gff3 \
   > ${i}_gene
 done
 
@@ -539,8 +546,13 @@ do
   intersectBed \
   -wb \
   -a ${i} \
-  -b /data/putnamlab/estrand/Montipora_capitata_HIv2.genes.gff3 \
+  -b /data/putnamlab/estrand/Montipora_capitata_HIv2.genes_only.gff3 \
   > ${i}_gene
 done
 ```
+
+## <a name="intersectBed_map"></a> **IntersectBed: File to only positions found in all samples**
+
+
+
 

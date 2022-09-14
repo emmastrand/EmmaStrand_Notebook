@@ -907,6 +907,7 @@ Pocillopora_acuta_HIv1___Scaffold_000000F___length_7015273      14947   14949   
 Pocillopora_acuta_HIv1___Scaffold_000000F___length_7015273      14970   14972   0.000000        0       10
 ```
 
+### left off here: might be using wrong gff file... try one not built with augustus? what other files are in the .rar file? Do we have this correct file anywhere else on andromeda?
 
 
 ## <a name="intersectBed_map"></a> **IntersectBed: File to only positions found in all samples**
