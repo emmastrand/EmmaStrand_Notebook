@@ -477,23 +477,18 @@ cat CpG.all.samps.10x_sorted.bed | awk '$4 ==40' > CpG.filt.all.samps.10x_sorted
 
 ## <a name="gene_anno"></a> **Gene annotation**
 
-This step needs a modified gff file that is only includes gene positions. This can be found on the Rutger's data site for *M. capiata* genome resources: http://cyanophora.rutgers.edu/montipora/. I have been using version 2 in the methylseq pipeline so I downloaded the gff file from this same version. `$ wget http://cyanophora.rutgers.edu/montipora/Montipora_capitata_HIv2.genes.gff3.gz` and `gunzip Montipora_capitata_HIv2.genes.gff3.gz`. 
+This step needs a modified gff file that is only includes gene positions. This can be found on the Rutger's data site for *M. capiata* genome resources: http://cyanophora.rutgers.edu/montipora/. I used v2 of the genome previously in this script and then a more updated version of the genome came out (v3). There are minimal differences in the v2 and v3 genomes but the gene annotation is much more accurate in v3. Therefore, for the following steps I will be using the gff files from v3. 
+
+##### 2022-10-12 left off at this step, I need to wget the below link to download v3, gunzip command to unzip that file, less command to view the file contents and paste below, re-run the filtering for only genes, edit the intersectBed script with the v3 genes only file and will then be all caught up. Andromeda is down for maintenance today. 
+
+ `$ wget http://cyanophora.rutgers.edu/montipora/Montipora_capitata_HIv3.genes.gff3.gz` and `gunzip Montipora_capitata_HIv3.genes.gff3.gz`. 
 
 **gff3 vs gff files: different versions of a gene annotation file. May have to troubleshoot if intersectBed doesn't recognize the gff3 format.** 
 
 File name = Montipora_capitata_HIv2.genes.gff3: 
 
 ```
-Montipora_capitata_HIv2___Scaffold_1001___length_25332  Liftoff gene    13647   15880   .       +       .       ID=Montipora_capitata_PredGene_adi2mcaRNA38900_R1;Name=Montipora_capitata_PredGene_adi2mcaRNA38900_R1.t1;coverage=0.853;sequence_ID=0.853;valid_ORFs=0;extra_copy_number=0;copy_num_ID=Montipora_capitata_PredGene_adi2mcaRNA38900_R1_0;partial_mapping=True;low_identity=True
-Montipora_capitata_HIv2___Scaffold_1001___length_25332  Liftoff mRNA    13647   15880   .       +       .       ID=Montipora_capitata_PredGene_adi2mcaRNA38900_R1.t1;Parent=Montipora_capitata_PredGene_adi2mcaRNA38900_R1;Name=Montipora_capitata_PredGene_adi2mcaRNA38900_R1.t1;matches_ref_protein=False;valid_ORF=False;missing_start_codon=True;extra_copy_number=0
-Montipora_capitata_HIv2___Scaffold_1001___length_25332  Liftoff exon    13647   13660   .       +       .       ID=Montipora_capitata_PredGene_adi2mcaRNA38900_R1.t1.exon1;Parent=Montipora_capitata_PredGene_adi2mcaRNA38900_R1.t1;extra_copy_number=0
-Montipora_capitata_HIv2___Scaffold_1001___length_25332  Liftoff exon    14161   14288   .       +       .       ID=Montipora_capitata_PredGene_adi2mcaRNA38900_R1.t1.exon2;Parent=Montipora_capitata_PredGene_adi2mcaRNA38900_R1.t1;extra_copy_number=0
-Montipora_capitata_HIv2___Scaffold_1001___length_25332  Liftoff exon    14341   14417   .       +       .       ID=Montipora_capitata_PredGene_adi2mcaRNA38900_R1.t1.exon3;Parent=Montipora_capitata_PredGene_adi2mcaRNA38900_R1.t1;extra_copy_number=0
-Montipora_capitata_HIv2___Scaffold_1001___length_25332  Liftoff exon    15803   15880   .       +       .       ID=Montipora_capitata_PredGene_adi2mcaRNA38900_R1.t1.exon4;Parent=Montipora_capitata_PredGene_adi2mcaRNA38900_R1.t1;extra_copy_number=0
-Montipora_capitata_HIv2___Scaffold_1001___length_25332  Liftoff CDS     13647   13660   .       +       .       ID=cds.Montipora_capitata_PredGene_adi2mcaRNA38900_R1.t1;Parent=Montipora_capitata_PredGene_adi2mcaRNA38900_R1.t1;5_prime_partial=true;extra_copy_number=0
-Montipora_capitata_HIv2___Scaffold_1001___length_25332  Liftoff CDS     14161   14288   .       +       .       ID=cds.Montipora_capitata_PredGene_adi2mcaRNA38900_R1.t1;Parent=Montipora_capitata_PredGene_adi2mcaRNA38900_R1.t1;extra_copy_number=0
-Montipora_capitata_HIv2___Scaffold_1001___length_25332  Liftoff CDS     14341   14417   .       +       .       ID=cds.Montipora_capitata_PredGene_adi2mcaRNA38900_R1.t1;Parent=Montipora_capitata_PredGene_adi2mcaRNA38900_R1.t1;extra_copy_number=0
-Montipora_capitata_HIv2___Scaffold_1001___length_25332  Liftoff CDS     15803   15880   .       +       .       ID=cds.Montipora_capitata_PredGene_adi2mcaRNA38900_R1.t1;Parent=Montipora_capitata_PredGene_adi2mcaRNA38900_R1.t1;extra_copy_number=0
+
 ```
 
 **This file is named .genes. but includes CDS and exons (which are part of genes). I'm filtering for 'genes' for now but I might need to come back to this step and use the whole file...**
@@ -537,7 +532,7 @@ do
   intersectBed \
   -wb \
   -a ${i} \
-  -b /data/putnamlab/estrand/Montipora_capitata_HIv2.genes_only.gff3 \
+  -b /data/putnamlab/estrand/Montipora_capitata_HIv3.genes_only.gff3 \
   > ${i}_gene
 done
 
@@ -546,7 +541,7 @@ do
   intersectBed \
   -wb \
   -a ${i} \
-  -b /data/putnamlab/estrand/Montipora_capitata_HIv2.genes_only.gff3 \
+  -b /data/putnamlab/estrand/Montipora_capitata_HIv3.genes_only.gff3 \
   > ${i}_gene
 done
 ```

@@ -776,6 +776,135 @@ No errors in the script and all four files were created.
 
 ## <a name="gene_anno"></a> **Gene Annotation file**
 
+This step needs a modified gff file that is only includes gene positions. We are using the *Pocillopora acuta* genome files from the Rutgers team: http://cyanophora.rutgers.edu/Pocillopora_acuta/. We used version 1 for the methylseq script initially and then consulted with Tim for the major changes to the genome files between version 1 and version 2. 
+
+###### 2022-10-12 I left off at this step, I'm waiting for Tim's reply on v1 vs v2 data, then will need to download the correct gff version, unzip, filter for genes only, edit intersectBed script below and re-run. Andromeda is down for maintenance today. 
+
+```
+$ cd /data/putnamlab/estrand/HoloInt_WGBS
+$ wget 
+
+## contents of that file 
+$ less 
+
+
+
+
+
+```
+
+
+Filtering the 3rd column for only 'genes': 
+
+```
+$ awk '{if ($3 == "gene") {print}}' X.gff  > X_genes.gff
+```
+
+**This filters out exon and CDS? Those are parts of genes so don't we want those too? I'm filtering for 'genes' for now but I might need to come back to this step and use a version that has all the parts of a gene..** 
+
+## <a name="intersectBed_map"></a> **IntersectBed: Loci mapped to annotated gene**
+
+Next, merge each sample file with gene annotation file using `intersectBed`. 
+
+Input files: `*5x_sorted.tab` and `*10x_sorted.tab` and `Montipora_capitata_HIv2.genes.gff3`  
+Output files: `*_5x_sorted.tab_gene` and `*_10x_sorted.tab_gene`
+
+`intersectBed.sh`:
+
+```
+#!/bin/bash
+#SBATCH --job-name="H-intersectBed"
+#SBATCH -t 500:00:00
+#SBATCH --nodes=1 --ntasks-per-node=10
+#SBATCH --mem=500GB
+#SBATCH --account=putnamlab
+#SBATCH --export=NONE
+#SBATCH -D /data/putnamlab/estrand/HoloInt_WGBS/merged_cov #### this is the output from the merge cov step above 
+#SBATCH --cpus-per-task=3
+#SBATCH --error="script_error_intersectBed" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_intersectBed" #once your job is completed, any final job report comments will be put in this file
+
+# load modules needed  
+source /usr/share/Modules/init/sh # load the module function (specific to my computer)
+module load BEDTools/2.27.1-foss-2018b
+
+for i in *5x_sorted.tab
+do
+  intersectBed \
+  -wb \
+  -a ${i} \
+  -b /data/putnamlab/estrand/X_genes.gff \
+  > ${i}_gene
+done
+
+for i in *10x_sorted.tab
+do
+  intersectBed \
+  -wb \
+  -a ${i} \
+  -b /data/putnamlab/estrand/X_genes.gff \
+  > ${i}_gene
+done
+```
+
+
+
+## <a name="intersectBed_map"></a> **IntersectBed: File to only positions found in all samples**
+
+`intersect_enrichment.sh`: 
+
+```
+#!/bin/bash
+#SBATCH --job-name="H-iBenrich"
+#SBATCH -t 500:00:00
+#SBATCH --nodes=1 --ntasks-per-node=10
+#SBATCH --mem=500GB
+#SBATCH --account=putnamlab
+#SBATCH --export=NONE
+#SBATCH -D /data/putnamlab/estrand/HoloInt_WGBS/merged_cov #### this is the output from the merge cov step above 
+#SBATCH --cpus-per-task=3
+#SBATCH --error="script_error_iBenrich" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_iBenrich" #once your job is completed, any final job report comments will be put in this file
+
+# load modules needed  
+source /usr/share/Modules/init/sh # load the module function (specific to my computer)
+module load BEDTools/2.27.1-foss-2018b
+
+for i in *_5x_sorted.tab_gene
+do
+  intersectBed \
+  -a ${i} \
+  -b CpG.filt.all.samps.5x_sorted.bed \
+  > ${i}_CpG_5x_enrichment.bed
+done
+
+for i in *_10x_sorted.tab_gene
+do
+  intersectBed \
+  -a ${i} \
+  -b CpG.filt.all.samps.10x_sorted.bed \
+  > ${i}_CpG_10x_enrichment.bed
+done
+```
+
+```
+wc -l *10x_enrichment.bed > 10x_enrichment_sample_size.txt 
+wc -l *5x_enrichment.bed > 5x_enrichment_sample_size.txt
+```
+
+### 5X COVERAGE 
+
+
+
+### 10X COVERAGE 
+
+
+
+
+## <a name="troubleshooting"></a> **Troubleshooting**
+
+### Gene annotation with the wrong Pacuta file 
+
 This step needs a modified gff file that is only includes gene positions. 
 
 http://ihpe.univ-perp.fr/acces-aux-donnees/. This website has a `Data_to_downoload.rar` file that I downloaded to Andromeda using `wget http://ihpe.univ-perp.fr/telechargement/Data_to_downoload.rar`. Kevin Bryan downloaded the module `unrar/6.0.2-GCCcore-10.2.0` for me to use the function `unrar` to see what files are stored in this `Data_to_downoload.rar` file. 
@@ -828,7 +957,7 @@ $ awk '{if ($3 == "gene") {print}}' Structural_annotation_abintio.gff  > Structu
 
 **This filters out exon and CDS? Those are parts of genes so don't we want those too? I'm filtering for 'genes' for now but I might need to come back to this step and use a version that has all the parts of a gene..** 
 
-## <a name="intersectBed_map"></a> **IntersectBed: Loci mapped to annotated gene**
+### **IntersectBed: Loci mapped to annotated gene**
 
 Next, merge each sample file with gene annotation file using `intersectBed`. 
 
@@ -907,62 +1036,7 @@ Pocillopora_acuta_HIv1___Scaffold_000000F___length_7015273      14947   14949   
 Pocillopora_acuta_HIv1___Scaffold_000000F___length_7015273      14970   14972   0.000000        0       10
 ```
 
-### left off here: might be using wrong gff file... try one not built with augustus? what other files are in the .rar file? Do we have this correct file anywhere else on andromeda?
-
-
-## <a name="intersectBed_map"></a> **IntersectBed: File to only positions found in all samples**
-
-`intersect_enrichment.sh`: 
-
-```
-#!/bin/bash
-#SBATCH --job-name="H-iBenrich"
-#SBATCH -t 500:00:00
-#SBATCH --nodes=1 --ntasks-per-node=10
-#SBATCH --mem=500GB
-#SBATCH --account=putnamlab
-#SBATCH --export=NONE
-#SBATCH -D /data/putnamlab/estrand/HoloInt_WGBS/merged_cov #### this is the output from the merge cov step above 
-#SBATCH --cpus-per-task=3
-#SBATCH --error="script_error_iBenrich" #if your job fails, the error report will be put in this file
-#SBATCH --output="output_script_iBenrich" #once your job is completed, any final job report comments will be put in this file
-
-# load modules needed  
-source /usr/share/Modules/init/sh # load the module function (specific to my computer)
-module load BEDTools/2.27.1-foss-2018b
-
-for i in *_5x_sorted.tab_gene
-do
-  intersectBed \
-  -a ${i} \
-  -b CpG.filt.all.samps.5x_sorted.bed \
-  > ${i}_CpG_5x_enrichment.bed
-done
-
-for i in *_10x_sorted.tab_gene
-do
-  intersectBed \
-  -a ${i} \
-  -b CpG.filt.all.samps.10x_sorted.bed \
-  > ${i}_CpG_10x_enrichment.bed
-done
-```
-
-```
-wc -l *10x_enrichment.bed > 10x_enrichment_sample_size.txt 
-wc -l *5x_enrichment.bed > 5x_enrichment_sample_size.txt
-```
-
-### 5X COVERAGE 
-
-
-
-### 10X COVERAGE 
-
-
-
-
-## <a name="troubleshooting"></a> **Troubleshooting**
+#### left off here: might be using wrong gff file... try one not built with augustus? what other files are in the .rar file? Do we have this correct file anywhere else on andromeda?
 
 ### Original methylseq parameters (old_HoloInt_methylseq) - the first time it was run (which I don't think was fully which is why I ran this again)
 
