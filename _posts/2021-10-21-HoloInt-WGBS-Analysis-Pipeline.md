@@ -781,6 +781,18 @@ This step needs a modified gff file that is only includes gene positions. We are
 ###### 2022-10-12 I left off at this step, I'm waiting for Tim's reply on v1 vs v2 data, then will need to download the correct gff version, unzip, filter for genes only, edit intersectBed script below and re-run. Andromeda is down for maintenance today. 
 
 ```
+Hey Emma,
+
+Unfortunately, the two different versions of the P. acute genome are very different. 
+Our collaborator put a lot of work into the version 2 trying to remove redundant haplotigs that shouldn’t be included in the assembly. 
+I think the version 1 is not too bad however there are a number of redundant sequence in there that were removed in the version 2.
+He also did a lot of work refining the gene models using the new, less redundant assembly. 
+
+Cheers,
+Tim.
+```
+
+```
 $ cd /data/putnamlab/estrand/HoloInt_WGBS
 $ wget 
 
