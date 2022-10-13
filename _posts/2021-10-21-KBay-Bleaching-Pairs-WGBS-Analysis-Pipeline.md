@@ -479,26 +479,30 @@ cat CpG.all.samps.10x_sorted.bed | awk '$4 ==40' > CpG.filt.all.samps.10x_sorted
 
 This step needs a modified gff file that is only includes gene positions. This can be found on the Rutger's data site for *M. capiata* genome resources: http://cyanophora.rutgers.edu/montipora/. I used v2 of the genome previously in this script and then a more updated version of the genome came out (v3). There are minimal differences in the v2 and v3 genomes but the gene annotation is much more accurate in v3. Therefore, for the following steps I will be using the gff files from v3. 
 
-##### 2022-10-12 left off at this step, I need to wget the below link to download v3, gunzip command to unzip that file, less command to view the file contents and paste below, re-run the filtering for only genes, edit the intersectBed script with the v3 genes only file and will then be all caught up. Andromeda is down for maintenance today. 
-
  `$ wget http://cyanophora.rutgers.edu/montipora/Montipora_capitata_HIv3.genes.gff3.gz` and `gunzip Montipora_capitata_HIv3.genes.gff3.gz`. 
 
 **gff3 vs gff files: different versions of a gene annotation file. May have to troubleshoot if intersectBed doesn't recognize the gff3 format.** 
 
-File name = Montipora_capitata_HIv2.genes.gff3: 
+File name = Montipora_capitata_HIv3.genes.gff3: 
 
 ```
-
+Montipora_capitata_HIv3___Scaffold_12   AUGUSTUS        transcript      27295   28641   .       -       .       ID=Montipora_capitata_HIv3___RNAseq.g37162.t1
+Montipora_capitata_HIv3___Scaffold_12   AUGUSTUS        CDS     27295   28641   .       -       0       Parent=Montipora_capitata_HIv3___RNAseq.g37162.t1
+Montipora_capitata_HIv3___Scaffold_12   AUGUSTUS        exon    27295   28641   .       -       0       Parent=Montipora_capitata_HIv3___RNAseq.g37162.t1
+Montipora_capitata_HIv3___Scaffold_12   AUGUSTUS        transcript      40222   40725   .       -       .       ID=Montipora_capitata_HIv3___TS.g29675.t1
+Montipora_capitata_HIv3___Scaffold_12   AUGUSTUS        CDS     40222   40725   .       -       0       Parent=Montipora_capitata_HIv3___TS.g29675.t1
+Montipora_capitata_HIv3___Scaffold_12   AUGUSTUS        exon    40222   40725   .       -       0       Parent=Montipora_capitata_HIv3___TS.g29675.t1
 ```
 
 **This file is named .genes. but includes CDS and exons (which are part of genes). I'm filtering for 'genes' for now but I might need to come back to this step and use the whole file...**
 
-
 Filtering the 3rd column for only 'genes': 
 
 ```
-$ awk '{if ($3 == "gene") {print}}' Montipora_capitata_HIv2.genes.gff3  > Montipora_capitata_HIv2.genes_only.gff3
+$ awk '{if ($3 == "gene") {print}}' Montipora_capitata_HIv3.genes.gff3  > Montipora_capitata_HIv3.genes_only.gff3
 ```
+
+This came back empty so the descriptions are all parts of genes. 
 
 
 ## <a name="intersectBed_map"></a> **IntersectBed: Loci mapped to annotated gene**
@@ -532,7 +536,7 @@ do
   intersectBed \
   -wb \
   -a ${i} \
-  -b /data/putnamlab/estrand/Montipora_capitata_HIv3.genes_only.gff3 \
+  -b /data/putnamlab/estrand/Montipora_capitata_HIv3.genes.gff3 \
   > ${i}_gene
 done
 
@@ -541,7 +545,7 @@ do
   intersectBed \
   -wb \
   -a ${i} \
-  -b /data/putnamlab/estrand/Montipora_capitata_HIv3.genes_only.gff3 \
+  -b /data/putnamlab/estrand/Montipora_capitata_HIv3.genes.gff3 \
   > ${i}_gene
 done
 ```
