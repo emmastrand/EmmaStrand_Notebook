@@ -9,7 +9,11 @@ projects: KBay
 
 # KBay Bleaching Pairs RNASeq Pipeline Analysis
 
-### KBay Bleaching Pairs project details 
+Contents:  
+- [**Project Details**](#details) 
+- [**Setting Up Andromeda**](#Setting_up)  
+
+## <a name="details"></a> **KBay Bleaching Pairs project details **
 
 Project github: [HI_Bleaching_Pairs](https://github.com/hputnam/HI_Bleaching_Timeseries)  
 Molecular laboratory work spreadsheet: [excel doc](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/data/Molecular-labwork.xlsx)  
@@ -41,15 +45,9 @@ For detailed explanations of each step, refer to the below pipelines.
 - Erin Chille RNAseq pipeline: https://github.com/echille/Mcapitata_Developmental_Gene_Expression_Timeseries/blob/master/1-QC-Align-Assemble/mcap_rnaseq_analysis.md  
 - Jill Ashey RNAseq pipeline: https://github.com/JillAshey/SedimentStress/blob/master/Bioinf/RNASeq_pipeline_HI.md  
 
-### Overview 
+## Function Annotation pipeline 
 
-1. Functional annotation from genome (M.cap v3) file. 
-2. 
-
-
-
-Contents:  
-- [**Setting Up Andromeda**](#Setting_up)  
+See here for *M. capitata* genome version 3 functional annotation: https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2022-11-02-M.capitata-Genome-v3-Functional-Annotation.md. 
 
 ## <a name="Setting_up"></a> **Setting Up Andromeda**
 
