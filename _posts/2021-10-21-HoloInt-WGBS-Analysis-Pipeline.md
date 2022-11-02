@@ -1128,9 +1128,9 @@ wc -l *5x_enrichment.bed > 5x_enrichment_sample_size.txt
 ## <a name="export"></a> **Export Files**
 
 ```
-scp 'emma_strand@ssh3.hac.uri.edu:/data/putnamlab/estrand/BleachingPairs_WGBS/merged_cov_genomev2/*_5x_enrichment.bed' ~/MyProjects/Acclim_Dynamics_molecular/data/WGBS/output/meth_counts_5x
+scp 'emma_strand@ssh3.hac.uri.edu:/data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*_5x_enrichment.bed' ~/MyProjects/Acclim_Dynamics_molecular/data/WGBS/output/meth_counts_5x
 
-scp 'emma_strand@ssh3.hac.uri.edu:/data/putnamlab/estrand/BleachingPairs_WGBS/merged_cov_genomev2/*_10x_enrichment.bed' ~/MyProjects/Acclim_Dynamics_molecular/data/WGBS/output/meth_counts_10x
+scp 'emma_strand@ssh3.hac.uri.edu:/data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*_10x_enrichment.bed' ~/MyProjects/Acclim_Dynamics_molecular/data/WGBS/output/meth_counts_10x
 ```
 
 

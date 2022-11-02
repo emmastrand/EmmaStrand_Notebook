@@ -32,7 +32,10 @@ Contents:
 - [**Filter for a specific coverage (5X, 10X)**](#filter_cov)   
 - [**Create a file with positions found in all samples**](#filter_pos)   
 - [**Gene Annotation file**](#gene_anno)  
-- [**IntersectBed: Loci mapped to annotated gene**](#intersectBed_map) 
+- [**IntersectBed: Loci mapped to annotated gene**](#intersectBed_map)  
+- [**IntersectBed: File to only positions found in all samples**](#intersectBed_all)
+- [**Exporting Files**](#export) 
+
 
 ## <a name="Setting_up"></a> **Setting Up Andromeda**
 
@@ -744,9 +747,61 @@ do
 done
 ```
 
-## <a name="intersectBed_map"></a> **IntersectBed: File to only positions found in all samples**
-
-
+## <a name="intersectBed_all"></a> **IntersectBed: File to only positions found in all samples**
 
 ### GENOME VERSION 3 
 
+`intersect_enrichment-v3.sh`
+
+```
+#!/bin/bash
+#SBATCH --job-name="v3KB-enrich"
+#SBATCH -t 500:00:00
+#SBATCH --nodes=1 --ntasks-per-node=10
+#SBATCH --mem=500GB
+#SBATCH --account=putnamlab
+#SBATCH --export=NONE
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_WGBS/merged_cov_genomev3 #### this is the output from the merge cov step above 
+#SBATCH --cpus-per-task=3
+#SBATCH --error="script_error_v3KB-enrich" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_v3KB-enrich" #once your job is completed, any final job report comments will be put in this file
+
+# load modules needed  
+source /usr/share/Modules/init/sh # load the module function (specific to my computer)
+module load BEDTools/2.27.1-foss-2018b
+
+for i in *_5x_sorted.tab_gene
+do
+  intersectBed \
+  -a ${i} \
+  -b CpG.filt.all.samps.5x_sorted.bed \
+  > ${i}_CpG_5x_enrichment.bed
+done
+
+for i in *_10x_sorted.tab_gene
+do
+  intersectBed \
+  -a ${i} \
+  -b CpG.filt.all.samps.10x_sorted.bed \
+  > ${i}_CpG_10x_enrichment.bed
+done
+```
+
+Within merged_cov_genomev3 folder:
+
+```
+wc -l *10x_enrichment.bed > 10x_enrichment_sample_size.txt 
+wc -l *5x_enrichment.bed > 5x_enrichment_sample_size.txt
+```
+
+### 5X COVERAGE 
+
+### 10X COVERAGE
+
+## <a name="export"></a> **Export Files**
+
+```
+scp 'emma_strand@ssh3.hac.uri.edu:/data/putnamlab/estrand/BleachingPairs_WGBS/merged_cov_genomev3/*_5x_enrichment.bed' ~/MyProjects/Acclim_Dynamics_molecular/data/WGBS/output/meth_counts_5x
+
+scp 'emma_strand@ssh3.hac.uri.edu:/data/putnamlab/estrand/BleachingPairs_WGBS/merged_cov_genomev3/*_10x_enrichment.bed' ~/MyProjects/Acclim_Dynamics_molecular/data/WGBS/output/meth_counts_10x
+```
