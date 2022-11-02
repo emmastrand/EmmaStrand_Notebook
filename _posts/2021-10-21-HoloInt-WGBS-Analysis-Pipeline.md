@@ -30,6 +30,8 @@ Contents:
 - [**Create a file with positions found in all samples**](#filter_pos)   
 - [**Gene Annotation file**](#gene_anno)  
 - [**IntersectBed: Loci mapped to annotated gene**](#intersectBed_map) 
+- [**IntersectBed: File to only positions found in all samples**](#intersectBed_all) 
+- [**Export File**](#export) 
 - [**Troubleshooting**](#troubleshooting)  
 
 ## <a name="Setting_up"></a> **Setting Up Andromeda**
@@ -258,7 +260,7 @@ Options tested:
 
 Nextflow version 21.03.0 requires an -input command.
 
-### HoloInt_methylseq (1)
+### HoloInt_methylseq (1) 
 
 ```
 nano HoloInt_methylseq.sh
@@ -470,6 +472,8 @@ Based on the above, I am moving forward with HoloInt_methylseq trimming of clip 
 
 ## <a name="methylseq_final"></a> **Methylseq: final script run**
 
+### GENOME VERSION 1
+
 `HoloInt_methylseq_final.sh`. This timed out after 10 days so I ran again with the -resume flag and changed the output name to `WGBS_methylseq_HoloInt_final2`. Total this took 2 weeks. 
 
 ```
@@ -536,6 +540,8 @@ scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/HoloInt_WGBS/HoloI
 
 ## <a name="final_multiqc"></a> **Methylseq: Final Multiqc Report Output**
 
+### GENOME VERSION 1 
+
 *I created a new github repo for the molecular portion of this project: MyProjects/Acclim_Dynamics_molecular/.* 
 
 ![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/HoloInt%20WGBS%20Multiqc%20Report/methylseq%20multiqc/coverage%20histogram.png?raw=true)
@@ -553,7 +559,58 @@ scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/HoloInt_WGBS/HoloI
 
 Based on this assessment we will likely take a few of the wonky samples out prior to analysis, but will keep them in through the next following steps. 
 
+### GENOME VERSION 2
+
+A newer version of the genome was released while I was analyzing this data so I want to run this again with the newer version (http://cyanophora.rutgers.edu/Pocillopora_acuta/).
+
+`wget http://cyanophora.rutgers.edu/Pocillopora_acuta/Pocillopora_acuta_HIv2.assembly.fasta.gz` and `gunzip Pocillopora_acuta_HIv2.assembly.fasta.gz`. 
+
+`HoloInt_methylseq_genomev2.sh`: 
+
+```
+#!/bin/bash
+#SBATCH --job-name="methylseq_v2"
+#SBATCH -t 600:00:00
+#SBATCH --nodes=1 --ntasks-per-node=10
+#SBATCH --mem=500GB
+#SBATCH --account=putnamlab
+#SBATCH --export=NONE
+#SBATCH -D /data/putnamlab/estrand/HoloInt_WGBS/HoloInt_methylseq_genomev2
+#SBATCH -p putnamlab
+#SBATCH --cpus-per-task=3
+#SBATCH --error="script_error_methylseq_v2" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_methylseq_v2" #once your job is completed, any final job report comments will be put in this file
+
+# load modules needed
+source /usr/share/Modules/init/sh # load the module function
+
+module load Nextflow/21.03.0
+module load FastQC/0.11.9-Java-11
+module load MultiQC/1.9-intel-2020a-Python-3.8.2
+
+# run nextflow methylseq
+
+nextflow run nf-core/methylseq -resume \
+-profile singularity \
+--aligner bismark \
+--igenomes_ignore \
+--fasta /data/putnamlab/estrand/Pocillopora_acuta_HIv2.assembly.fasta \
+--save_reference \
+--input '/data/putnamlab/KITT/hputnam/20211008_HoloInt_WGBS/*_R{1,2}_001.fastq.gz' \
+--clip_r1 10 \
+--clip_r2 10 \
+--three_prime_clip_r1 10 --three_prime_clip_r2 10 \
+--non_directional \
+--cytosine_report \
+--relax_mismatches \
+--unmapped \
+--outdir /data/putnamlab/estrand/HoloInt_WGBS/HoloInt_methylseq_genomev2 \
+-name HoloInt_methylseq_genomev2_3 ### I had to change this any time running a new project or running this script again
+```
+
+
 ## <a name="merge"></a> **Merge Strands**
+
 
 The file output from the methylseq pipeline that is used for the following steps: `bismark_methylation_calls/methylation_coverage/*deduplicated.bismark.cov.gz`. 
 
@@ -561,6 +618,8 @@ The Bismark `coverage2cytosine` command re-reads the genome-wide report and merg
 
 Input: `*deduplicated.bismark.cov.gz`.  
 Output: `*merged_CpG_evidence.cov`.
+
+### GENOME VERSION 1
 
 Make a new directory for this output: `mkdir merged_cov`. 
 
@@ -603,6 +662,49 @@ find /data/putnamlab/estrand/HoloInt_WGBS/HoloInt_methylseq_final/bismark_methyl
 /data/putnamlab/estrand/HoloInt_WGBS/HoloInt_methylseq_final/bismark_methylation_calls/methylation_coverage/{}_S0_L001_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz
 ```
 
+### GENOME VERSION 2
+
+Make a new directory for this output: `mkdir merged_cov`. 
+
+`scripts/genomev2/merge_strandsv2.sh` 
+
+```
+#!/bin/bash
+#SBATCH --job-name="v2merge"
+#SBATCH -t 500:00:00
+#SBATCH --nodes=1 --ntasks-per-node=10
+#SBATCH --mem=500GB
+#SBATCH --account=putnamlab
+#SBATCH --export=NONE
+#SBATCH -D /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2 #### this should be your new output directory so all the outputs ends up here
+#SBATCH --cpus-per-task=3
+#SBATCH --error="script_error_merge_v2" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_merge_v2" #once your job is completed, any final job report comments will be put in this file
+
+# load modules needed (specific need for my computer)
+source /usr/share/Modules/init/sh # load the module function
+
+# load modules needed
+
+module load Bismark/0.20.1-foss-2018b
+
+# run coverage2cytosine merge of strands
+# change paths below 
+# change file names below (_S0_L001_*)
+# there can't be any spaces after the \
+
+find /data/putnamlab/estrand/HoloInt_WGBS/HoloInt_methylseq_genomev2/bismark_methylation_calls/methylation_coverage/*deduplicated.bismark.cov.gz \
+ | xargs basename -s _S0_L001_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz \
+ | xargs -I{} coverage2cytosine \
+ --genome_folder /data/putnamlab/estrand/HoloInt_WGBS/HoloInt_methylseq_genomev2/reference_genome/BismarkIndex \
+ -o {} \
+ --merge_CpG \
+ --zero_based \
+/data/putnamlab/estrand/HoloInt_WGBS/HoloInt_methylseq_genomev2/bismark_methylation_calls/methylation_coverage/{}_S0_L001_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz
+```
+
+### OVERVIEW 
+
 The script is saying:  
 - for every file in `methylation_coverage` repo that ends with `deduplicated.bismark.cov.gz` (there should be 60 for this project),  
 - and has basename of `_S0_L001_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz` (everything that comes after the sample ID)
@@ -636,6 +738,8 @@ Each CpG dinucleotide will have data for % methylation, and how many times that 
 
 This function sorts all the merged files so that all scaffolds are in the same order. This needs to be done for multiIntersectBed to run correctly. This sets up a loop to do this for every sample (file). 
 
+### GENOME VERSION 1
+
 `bedtools_sort.sh`: 
 
 ```
@@ -665,6 +769,39 @@ do
 done
 ```
 
+### GENOME VERSION 2
+
+`bedtools_sortv2.sh`: 
+
+```
+#!/bin/bash
+#SBATCH --job-name="v2H-sort"
+#SBATCH -t 500:00:00
+#SBATCH --nodes=1 --ntasks-per-node=10
+#SBATCH --mem=500GB
+#SBATCH --account=putnamlab
+#SBATCH --export=NONE
+#SBATCH -D /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2 #### this is the output from the merge cov step above 
+#SBATCH --cpus-per-task=3
+#SBATCH --error="script_error_sortv2" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_sortv2" #once your job is completed, any final job report comments will be put in this file
+
+# load modules needed (specific need for my computer)
+source /usr/share/Modules/init/sh # load the module function
+
+# load BEDTools 
+module load BEDTools/2.27.1-foss-2018b
+
+for f in *merged_CpG_evidence.cov
+do
+  STEM=$(basename "${f}" .CpG_report.merged_CpG_evidence.cov)
+  bedtools sort -i "${f}" \
+  > "${STEM}"_sorted.cov
+done
+```
+
+### OVERVIEW 
+
 The script is saying: 
 - For every sample's .cov file in the output folder `merged_cov`, use bedtools function to sort and then output a file with the same name plus `_sorted.cov`. 
 
@@ -673,11 +810,13 @@ No errors reported with this script, move on to the next one. Viewing one file t
 ```
 less 1536_sorted.cov
 
+# example of output from this step V1
 Pocillopora_acuta_HIv1___Scaffold_000000F___length_7015273      3246    3248    0.000000        0       2
 Pocillopora_acuta_HIv1___Scaffold_000000F___length_7015273      3517    3519    0.000000        0       3
 Pocillopora_acuta_HIv1___Scaffold_000000F___length_7015273      3538    3540    0.000000        0       3
 Pocillopora_acuta_HIv1___Scaffold_000000F___length_7015273      3555    3557    0.000000        0       3
 ```
+
 
 ## <a name="filter_cov"></a> **Filter for a specific coverage (5X, 10X)**
 
@@ -687,6 +826,8 @@ Essentially, the loop in this script will take columns 5 (Methylated) and 6 (Unm
 
 Input File: `*merged_CpG_evidence.cov`  
 Output File: `5x_sorted.tab` and `10x_sorted.tab`
+
+### GENOME VERSION 1
 
 `covX.sh`: 
 
@@ -725,6 +866,47 @@ do
 done
 ```
 
+### GENOME VERSION 2
+
+`covX-v2.sh`: 
+
+```
+#!/bin/bash
+#SBATCH --job-name="v2H-covX"
+#SBATCH -t 500:00:00
+#SBATCH --nodes=1 --ntasks-per-node=10
+#SBATCH --mem=500GB
+#SBATCH --account=putnamlab
+#SBATCH --export=NONE
+#SBATCH -D /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2 #### this is the output from the merge cov step above 
+#SBATCH --cpus-per-task=3
+#SBATCH --error="script_error_covX-v2" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_covX-v2" #once your job is completed, any final job report comments will be put in this file
+
+# load modules needed (specific need for my computer)
+source /usr/share/Modules/init/sh # load the module function
+
+### Filtering for CpG for 5x coverage. To change the coverage, replace X with your desired coverage in ($5+6 >= X)
+
+for f in *_sorted.cov
+do
+  STEM=$(basename "${f}" _sorted.cov)
+  cat "${f}" | awk -F $'\t' 'BEGIN {OFS = FS} {if ($5+$6 >= 5) {print $1, $2, $3, $4, $5, $6}}' \
+  > "${STEM}"_5x_sorted.tab
+done
+
+### Filtering for CpG for 10x coverage. To change the coverage, replace X with your desired coverage in ($5+6 >= X)
+
+for f in *_sorted.cov
+do
+  STEM=$(basename "${f}" _sorted.cov)
+  cat "${f}" | awk -F $'\t' 'BEGIN {OFS = FS} {if ($5+$6 >= 10) {print $1, $2, $3, $4, $5, $6}}' \
+  > "${STEM}"_10x_sorted.tab
+done
+```
+
+### OVERVIEW 
+
 Moving forward I want to see the differences in data we get from 5X and 10X. We'll have to decide which threshold to use moving forward. We want confidence and high resolution but also a large dataset so we need a happy medium. 
 
 No errors or output messages so we are good to move on. 
@@ -744,6 +926,8 @@ Here is where we can loose the most reads.
 
 Input file: `5x_sorted.tab` and `10x_sorted.tab`  
 Output file: `CpG.filt.all.samps.5x_sorted.bed` and `CpG.filt.all.samps.10x_sorted.bed` (one file for each coverage that has positions found in all samples)
+
+### GENOME VERSION 1
 
 `cov_allsamples.sh`: 
 
@@ -774,69 +958,97 @@ cat CpG.all.samps.10x_sorted.bed | awk '$4 ==60' > CpG.filt.all.samps.10x_sorted
 
 No errors in the script and all four files were created. 
 
+### GENOME VERSION 2
+
+`cov_allsamples-v2.sh`: 
+
+```
+#!/bin/bash
+#SBATCH --job-name="v2H-all_cov"
+#SBATCH -t 500:00:00
+#SBATCH --nodes=1 --ntasks-per-node=10
+#SBATCH --mem=500GB
+#SBATCH --account=putnamlab
+#SBATCH --export=NONE
+#SBATCH -D /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2 #### this is the output from the merge cov step above 
+#SBATCH --cpus-per-task=3
+#SBATCH --error="script_error_all_cov-v2" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_all_cov-v2" #once your job is completed, any final job report comments will be put in this file
+
+# load modules needed  
+source /usr/share/Modules/init/sh # load the module function (specific to my computer)
+module load BEDTools/2.27.1-foss-2018b
+
+multiIntersectBed -i *_5x_sorted.tab > CpG.all.samps.5x_sorted.bed
+multiIntersectBed -i *_10x_sorted.tab > CpG.all.samps.10x_sorted.bed
+
+cat CpG.all.samps.5x_sorted.bed | awk '$4 ==60' > CpG.filt.all.samps.5x_sorted.bed
+
+cat CpG.all.samps.10x_sorted.bed | awk '$4 ==60' > CpG.filt.all.samps.10x_sorted.bed
+```
+
 ## <a name="gene_anno"></a> **Gene Annotation file**
 
-This step needs a modified gff file that is only includes gene positions. We are using the *Pocillopora acuta* genome files from the Rutgers team: http://cyanophora.rutgers.edu/Pocillopora_acuta/. We used version 1 for the methylseq script initially and then consulted with Tim for the major changes to the genome files between version 1 and version 2. 
+http://cyanophora.rutgers.edu/Pocillopora_acuta/. This is the step I switched to version 2 fully and did not do with version 1. 
 
-###### 2022-10-12 I left off at this step, I'm waiting for Tim's reply on v1 vs v2 data, then will need to download the correct gff version, unzip, filter for genes only, edit intersectBed script below and re-run. Andromeda is down for maintenance today. 
+### GENOME VERSION 2
 
-```
-Hey Emma,
+#### Download the genome. 
 
-Unfortunately, the two different versions of the P. acute genome are very different. 
-Our collaborator put a lot of work into the version 2 trying to remove redundant haplotigs that shouldn’t be included in the assembly. 
-I think the version 1 is not too bad however there are a number of redundant sequence in there that were removed in the version 2.
-He also did a lot of work refining the gene models using the new, less redundant assembly. 
+`wget http://cyanophora.rutgers.edu/Pocillopora_acuta/Pocillopora_acuta_HIv2.genes.gff3.gz`  
+`gunzip Pocillopora_acuta_HIv2.genes.gff3.gz` 
 
-Cheers,
-Tim.
-```
+#### View the contents. 
 
 ```
-$ cd /data/putnamlab/estrand/HoloInt_WGBS
-$ wget 
+$ head Pocillopora_acuta_HIv2.genes.gff3
 
-## contents of that file 
-$ less 
-
-
-
-
-
+Pocillopora_acuta_HIv2___Sc0000016	AUGUSTUS	transcript	151	2746	.	+	.	ID=Pocillopora_acuta_HIv2___RNAseq.g24100.t1
+Pocillopora_acuta_HIv2___Sc0000016	AUGUSTUS	CDS	151	172	.	+	0	Parent=Pocillopora_acuta_HIv2___RNAseq.g24100.t1
+Pocillopora_acuta_HIv2___Sc0000016	AUGUSTUS	exon	151	172	.	+	0	Parent=Pocillopora_acuta_HIv2___RNAseq.g24100.t1
+Pocillopora_acuta_HIv2___Sc0000016	AUGUSTUS	CDS	264	304	.	+	2	Parent=Pocillopora_acuta_HIv2___RNAseq.g24100.t1
+Pocillopora_acuta_HIv2___Sc0000016	AUGUSTUS	exon	264	304	.	+	2	Parent=Pocillopora_acuta_HIv2___RNAseq.g24100.t1
+Pocillopora_acuta_HIv2___Sc0000016	AUGUSTUS	CDS	1491	1602	.	+	0	Parent=Pocillopora_acuta_HIv2___RNAseq.g24100.t1
+Pocillopora_acuta_HIv2___Sc0000016	AUGUSTUS	exon	1491	1602	.	+	0	Parent=Pocillopora_acuta_HIv2___RNAseq.g24100.t1
+Pocillopora_acuta_HIv2___Sc0000016	AUGUSTUS	CDS	1889	1990	.	+	2	Parent=Pocillopora_acuta_HIv2___RNAseq.g24100.t1
+Pocillopora_acuta_HIv2___Sc0000016	AUGUSTUS	exon	1889	1990	.	+	2	Parent=Pocillopora_acuta_HIv2___RNAseq.g24100.t1
+Pocillopora_acuta_HIv2___Sc0000016	AUGUSTUS	CDS	2107	2127	.	+	2	Parent=Pocillopora_acuta_HIv2___RNAseq.g24100.t1
 ```
 
-
-Filtering the 3rd column for only 'genes': 
+#### Filtering the 3rd column for only 'genes': 
 
 ```
-$ awk '{if ($3 == "gene") {print}}' X.gff  > X_genes.gff
+$ awk '{if ($3 == "gene") {print}}' Pocillopora_acuta_HIv2.genes.gff3  > Pocillopora_acuta_HIv2.genes_genesonly.gff3
 ```
 
-**This filters out exon and CDS? Those are parts of genes so don't we want those too? I'm filtering for 'genes' for now but I might need to come back to this step and use a version that has all the parts of a gene..** 
+This came up empty so the original file is only genes and we don't need to filter to this. I removed the file created. 
+
 
 ## <a name="intersectBed_map"></a> **IntersectBed: Loci mapped to annotated gene**
+
+### GENOME VERSION 2
 
 Next, merge each sample file with gene annotation file using `intersectBed`. 
 
 Input files: `*5x_sorted.tab` and `*10x_sorted.tab` and `Montipora_capitata_HIv2.genes.gff3`  
 Output files: `*_5x_sorted.tab_gene` and `*_10x_sorted.tab_gene`
 
-`intersectBed.sh`:
+`intersectBed-v2.sh`:
 
 ```
 #!/bin/bash
-#SBATCH --job-name="H-intersectBed"
+#SBATCH --job-name="v2H-intersectBed"
 #SBATCH -t 500:00:00
 #SBATCH --nodes=1 --ntasks-per-node=10
 #SBATCH --mem=500GB
 #SBATCH --account=putnamlab
 #SBATCH --export=NONE
-#SBATCH -D /data/putnamlab/estrand/HoloInt_WGBS/merged_cov #### this is the output from the merge cov step above 
+#SBATCH -D /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2 #### this is the output from the merge cov step above 
 #SBATCH --cpus-per-task=3
-#SBATCH --error="script_error_intersectBed" #if your job fails, the error report will be put in this file
-#SBATCH --output="output_script_intersectBed" #once your job is completed, any final job report comments will be put in this file
+#SBATCH --error="script_error_intersectBed-v2" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_intersectBed-v2" #once your job is completed, any final job report comments will be put in this file
 
-# load modules needed  
+#  load modules needed  
 source /usr/share/Modules/init/sh # load the module function (specific to my computer)
 module load BEDTools/2.27.1-foss-2018b
 
@@ -845,7 +1057,7 @@ do
   intersectBed \
   -wb \
   -a ${i} \
-  -b /data/putnamlab/estrand/X_genes.gff \
+  -b /data/putnamlab/estrand/Pocillopora_acuta_HIv2.genes.gff3 \
   > ${i}_gene
 done
 
@@ -854,29 +1066,29 @@ do
   intersectBed \
   -wb \
   -a ${i} \
-  -b /data/putnamlab/estrand/X_genes.gff \
+  -b /data/putnamlab/estrand/Pocillopora_acuta_HIv2.genes.gff3 \
   > ${i}_gene
 done
 ```
 
+## <a name="intersectBed_all"></a> **IntersectBed: File to only positions found in all samples**
 
+### GENOME VERSION 2
 
-## <a name="intersectBed_map"></a> **IntersectBed: File to only positions found in all samples**
-
-`intersect_enrichment.sh`: 
+`intersect_enrichment-v2.sh`: 
 
 ```
 #!/bin/bash
-#SBATCH --job-name="H-iBenrich"
+#SBATCH --job-name="v2H-enrich"
 #SBATCH -t 500:00:00
 #SBATCH --nodes=1 --ntasks-per-node=10
 #SBATCH --mem=500GB
 #SBATCH --account=putnamlab
 #SBATCH --export=NONE
-#SBATCH -D /data/putnamlab/estrand/HoloInt_WGBS/merged_cov #### this is the output from the merge cov step above 
+#SBATCH -D /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2 #### this is the output from the merge cov step above 
 #SBATCH --cpus-per-task=3
-#SBATCH --error="script_error_iBenrich" #if your job fails, the error report will be put in this file
-#SBATCH --output="output_script_iBenrich" #once your job is completed, any final job report comments will be put in this file
+#SBATCH --error="script_error_v2H-enrich" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_v2H-enrich" #once your job is completed, any final job report comments will be put in this file
 
 # load modules needed  
 source /usr/share/Modules/init/sh # load the module function (specific to my computer)
@@ -899,6 +1111,8 @@ do
 done
 ```
 
+Within merged_cov_genomev2 folder: 
+
 ```
 wc -l *10x_enrichment.bed > 10x_enrichment_sample_size.txt 
 wc -l *5x_enrichment.bed > 5x_enrichment_sample_size.txt
@@ -911,9 +1125,22 @@ wc -l *5x_enrichment.bed > 5x_enrichment_sample_size.txt
 ### 10X COVERAGE 
 
 
+## <a name="export"></a> **Export Files**
+
+```
+scp 'emma_strand@ssh3.hac.uri.edu:/data/putnamlab/estrand/BleachingPairs_WGBS/merged_cov_genomev2/*_5x_enrichment.bed' ~/MyProjects/Acclim_Dynamics_molecular/data/WGBS/output/meth_counts_5x
+
+scp 'emma_strand@ssh3.hac.uri.edu:/data/putnamlab/estrand/BleachingPairs_WGBS/merged_cov_genomev2/*_10x_enrichment.bed' ~/MyProjects/Acclim_Dynamics_molecular/data/WGBS/output/meth_counts_10x
+```
 
 
 ## <a name="troubleshooting"></a> **Troubleshooting**
+
+### Versions 1 and 2 of the Pacuta genome
+
+Halfway through my analysis, a new and improved P. acuta genome was released. I did the analysis with both of these files. 
+
+
 
 ### Gene annotation with the wrong Pacuta file 
 

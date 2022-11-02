@@ -78,7 +78,7 @@ Adult *C. virginica* oysters from gut tissue. How nutrient enrichment change (or
 
 ### Reference Genomes Used
 
-- *Pocillopora acuta*: https://www.biorxiv.org/content/10.1101/698688v3.abstract  
+- *Pocillopora acuta*: http://cyanophora.rutgers.edu/Pocillopora_acuta/   
 - *Porites asteroides*: https://www.biorxiv.org/content/10.1101/2022.07.01.498470v1.abstract 
 - *Pocillopora verrucosa*: http://pver.reefgenomics.org/download/Pver_genome_assembly_v1.0.fasta.gz; [Buitrago-Lopez et al 2020](https://academic.oup.com/gbe/article/12/10/1911/5898631)
 - *Montipora capitata*: http://cyanophora.rutgers.edu/montipora/

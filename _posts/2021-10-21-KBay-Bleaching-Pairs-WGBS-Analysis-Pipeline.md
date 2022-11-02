@@ -225,7 +225,7 @@ Does bisulfite conversion cause a higher # of T's (mostly unmethylated in a WGBS
 Nextflow version 21.03.0 requires an -input command.  
 The --name output needs to be different every time you run this script.  
 
-### BleachingPairs_methylseq (1) script
+### BleachingPairs_methylseq (1) script: GENOME VERSION 2
 
 ```
 nano BleachingPairs_methylseq.sh
@@ -302,6 +302,48 @@ Ran first and then moved all output to BleachingPairs_methylseq directory folder
 
 ![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%20WGBS%20Multiqc%20Report/bismark%20multiqc%20report/methylseq1/trimmed%20seq%20length.png?raw=true)
 
+### GENOME VERSION 3 
+
+`wget http://cyanophora.rutgers.edu/montipora/Montipora_capitata_HIv3.assembly.fasta.gz` and `gunzip Montipora_capitata_HIv3.assembly.fasta.gz`. 
+
+`BleachingPairs_methylseq_v3.sh`:
+
+```
+#!/bin/bash
+#SBATCH --job-name="v3_BPmeth"
+#SBATCH -t 500:00:00
+#SBATCH --nodes=1 --ntasks-per-node=10
+#SBATCH --mem=100GB
+#SBATCH --account=putnamlab
+#SBATCH --export=NONE
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_WGBS
+#SBATCH --cpus-per-task=3
+#SBATCH --error="script_error_v3_BPmeth" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_v3_BPmeth" #once your job is completed, any final job report comments will be put in this file
+
+# load modules needed
+source /usr/share/Modules/init/sh # load the module function
+module load Nextflow/21.03.0
+
+# run nextflow methylseq
+
+nextflow run nf-core/methylseq -resume \
+-profile singularity \
+--aligner bismark \
+--igenomes_ignore \
+--fasta /data/putnamlab/estrand/Montipora_capitata_HIv3.assembly.fasta \
+--save_reference \
+--input '/data/putnamlab/KITT/hputnam/20211008_BleachingPairs_WGBS/*_R{1,2}_001.fastq.gz' \
+--clip_r1 10 \
+--clip_r2 10 \
+--three_prime_clip_r1 10 --three_prime_clip_r2 10 \
+--non_directional \
+--cytosine_report \
+--relax_mismatches \
+--unmapped \
+--outdir /data/putnamlab/estrand/BleachingPairs_WGBS/BleachingPairs_methylseq_v3 \
+-name WGBS_methylseq_BleachingPairs_v3_3
+```
 
 ## <a name="merge_strands"></a> **Merge Strands**
 
@@ -309,14 +351,16 @@ See more detailed information on these steps, what the script is doing, and what
 - https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2021-10-21-HoloInt-WGBS-Analysis-Pipeline.md#-merge-strands 
 - https://github.com/Putnam-Lab/Lab_Management/blob/master/Bioinformatics_%26_Coding/Workflows/Methylation_QC.md#-merge-strands 
 
-File path: `/data/putnamlab/estrand/BleachingPairs_WGBS/BleachingPairs_methylseq/bismark_methylation_calls/methylation_coverage/*deduplicated.bismark.cov.gz`. 
-
 Input: `*deduplicated.bismark.cov.gz`.  
 Output: `*merged_CpG_evidence.cov`.
 
+This takes 10+ hours (40 samples but # of reads more relevant to this #). 
+
+### GENOME VERSION 2 
+
 Make a new directory for this output: `mkdir merged_cov`. 
 
-This takes 10+ hours (40 samples but # of reads more relevant to this #). 
+File path: `/data/putnamlab/estrand/BleachingPairs_WGBS/BleachingPairs_methylseq/bismark_methylation_calls/methylation_coverage/*deduplicated.bismark.cov.gz`. 
 
 `merge_strands.sh` (named cov_to_cyto in other lab members' pipelines): 
 
@@ -357,9 +401,53 @@ find /data/putnamlab/estrand/BleachingPairs_WGBS/BleachingPairs_methylseq/bismar
 
 No errors in the output scripts, move on to the next step. 
 
+### GENOME VERSION 3 
+
+Make a new directory for this output: `mkdir merged_cov_genomev3`. 
+
+
+`merge_strands-v3.sh` (named cov_to_cyto in other lab members' pipelines): 
+
+```
+#!/bin/bash
+#SBATCH --job-name="v3-merge"
+#SBATCH -t 500:00:00
+#SBATCH --nodes=1 --ntasks-per-node=10
+#SBATCH --mem=500GB
+#SBATCH --account=putnamlab
+#SBATCH --export=NONE
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_WGBS/merged_cov_genomev3 #### this should be your new output directory so all the outputs ends up here
+#SBATCH --cpus-per-task=3
+#SBATCH --error="script_error_merge-v3" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_merge-v3" #once your job is completed, any final job report comments will be put in this file
+
+# load modules needed (specific need for my computer)
+source /usr/share/Modules/init/sh # load the module function
+
+# load modules needed
+
+module load Bismark/0.20.1-foss-2018b
+
+# run coverage2cytosine merge of strands
+# change paths below 
+# change file names below (_L003_*)
+# there can't be any spaces after the \
+
+find /data/putnamlab/estrand/BleachingPairs_WGBS/BleachingPairs_methylseq_v3/bismark_methylation_calls/methylation_coverage/*deduplicated.bismark.cov.gz \
+ | xargs basename -s _L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz \
+ | xargs -I{} coverage2cytosine \
+ --genome_folder /data/putnamlab/estrand/BleachingPairs_WGBS/BleachingPairs_methylseq_v3/reference_genome/BismarkIndex \
+ -o {} \
+ --merge_CpG \
+ --zero_based \
+/data/putnamlab/estrand/BleachingPairs_WGBS/BleachingPairs_methylseq_v3/bismark_methylation_calls/methylation_coverage/{}_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz
+```
+
 ## <a name="sort"></a> **Sort CpG .cov file**
 
 This function sorts all the merged files so that all scaffolds are in the same order. This needs to be done for multiIntersectBed to run correctly. This sets up a loop to do this for every sample (file). 
+
+### GENOME VERSION 2
 
 `bedtools_sort.sh`: 
 
@@ -390,6 +478,39 @@ do
 done
 ```
 
+### GENOME VERSION 3 
+
+`bedtools_sort-v3.sh`: 
+
+```
+#!/bin/bash
+#SBATCH --job-name="v3-KB-sort"
+#SBATCH -t 500:00:00
+#SBATCH --nodes=1 --ntasks-per-node=10
+#SBATCH --mem=500GB
+#SBATCH --account=putnamlab
+#SBATCH --export=NONE
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_WGBS/merged_cov_genomev3 #### this is the output from the merge cov step above 
+#SBATCH --cpus-per-task=3
+#SBATCH --error="script_error_sortv3" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_sortv3" #once your job is completed, any final job report comments will be put in this file
+
+# load modules needed (specific need for my computer)
+source /usr/share/Modules/init/sh # load the module function
+
+# load BEDTools 
+module load BEDTools/2.27.1-foss-2018b
+
+for f in *merged_CpG_evidence.cov
+do
+  STEM=$(basename "${f}" .CpG_report.merged_CpG_evidence.cov)
+  bedtools sort -i "${f}" \
+  > "${STEM}"_sorted.cov
+done
+```
+
+### OVERVIEW 
+
 The script is saying: 
 - For every sample's .cov file in the output folder `merged_cov`, use bedtools function to sort and then output a file with the same name plus `_sorted.cov`. 
 
@@ -401,6 +522,8 @@ Essentially, the loop in this script will take columns 5 (Methylated) and 6 (Unm
 
 Input File: `*merged_CpG_evidence.cov`  
 Output File: `5x_sorted.tab` or `10x_sorted.tab`
+
+### GENOME VERSION 2
 
 `covX.sh`: 
 
@@ -439,6 +562,47 @@ do
 done
 ```
 
+### GENOME VERSION 3 
+
+`covX-v3.sh`: 
+
+```
+#!/bin/bash
+#SBATCH --job-name="v3-KB-5X"
+#SBATCH -t 500:00:00
+#SBATCH --nodes=1 --ntasks-per-node=10
+#SBATCH --mem=500GB
+#SBATCH --account=putnamlab
+#SBATCH --export=NONE
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_WGBS/merged_cov_genomev3 #### this is the output from the merge cov step above 
+#SBATCH --cpus-per-task=3
+#SBATCH --error="script_error_5X-v3" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_5X-v3" #once your job is completed, any final job report comments will be put in this file
+
+# load modules needed (specific need for my computer)
+source /usr/share/Modules/init/sh # load the module function
+
+### Filtering for CpG for 5x coverage. To change the coverage, replace X with your desired coverage in ($5+6 >= X)
+
+for f in *_sorted.cov
+do
+  STEM=$(basename "${f}" _sorted.cov)
+  cat "${f}" | awk -F $'\t' 'BEGIN {OFS = FS} {if ($5+$6 >= 5) {print $1, $2, $3, $4, $5, $6}}' \
+  > "${STEM}"_5x_sorted.tab
+done
+
+### Filtering for CpG for 10x coverage. To change the coverage, replace X with your desired coverage in ($5+6 >= X)
+
+for f in *_sorted.cov
+do
+  STEM=$(basename "${f}" _sorted.cov)
+  cat "${f}" | awk -F $'\t' 'BEGIN {OFS = FS} {if ($5+$6 >= 10) {print $1, $2, $3, $4, $5, $6}}' \
+  > "${STEM}"_10x_sorted.tab
+done
+```
+
+### OVERVIEW 
+
 Moving forward I want to see the differences in data we get from 5X and 10X. We'll have to decide which threshold to use moving forward. We want confidence and high resolution but also a large dataset so we need a happy medium. 
 
 ## <a name="filter_pos"></a> **Create a file with positions found in all samples**
@@ -447,6 +611,8 @@ We need to create a file that is filtered to only positions that are found in al
 
 Input file: `5x_sorted.tab` and `10x_sorted.tab`  
 Output file: `CpG.filt.all.samps.5x_sorted.bed` and `CpG.filt.all.samps.10x_sorted.bed`
+
+### GENOME VERSION 2 
 
 `cov_allsamples.sh`: 
 
@@ -475,13 +641,41 @@ cat CpG.all.samps.5x_sorted.bed | awk '$4 ==40' > CpG.filt.all.samps.5x_sorted.b
 cat CpG.all.samps.10x_sorted.bed | awk '$4 ==40' > CpG.filt.all.samps.10x_sorted.bed
 ```
 
+### GENOME VERSION 3 
+
+`cov_allsamples-v3.sh`: 
+
+```
+#!/bin/bash
+#SBATCH --job-name="v3-KB-all_cov"
+#SBATCH -t 500:00:00
+#SBATCH --nodes=1 --ntasks-per-node=10
+#SBATCH --mem=500GB
+#SBATCH --account=putnamlab
+#SBATCH --export=NONE
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_WGBS/merged_cov_genomev3 #### this is the output from the merge cov step above 
+#SBATCH --cpus-per-task=3
+#SBATCH --error="script_error_all_cov-v3" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_all_cov-v3" #once your job is completed, any final job report comments will be put in this file
+
+# load modules needed  
+source /usr/share/Modules/init/sh # load the module function (specific to my computer)
+module load BEDTools/2.27.1-foss-2018b
+
+multiIntersectBed -i *_5x_sorted.tab > CpG.all.samps.5x_sorted.bed
+multiIntersectBed -i *_10x_sorted.tab > CpG.all.samps.10x_sorted.bed
+
+cat CpG.all.samps.5x_sorted.bed | awk '$4 ==40' > CpG.filt.all.samps.5x_sorted.bed
+
+cat CpG.all.samps.10x_sorted.bed | awk '$4 ==40' > CpG.filt.all.samps.10x_sorted.bed
+```
+
 ## <a name="gene_anno"></a> **Gene annotation**
 
-This step needs a modified gff file that is only includes gene positions. This can be found on the Rutger's data site for *M. capiata* genome resources: http://cyanophora.rutgers.edu/montipora/. I used v2 of the genome previously in this script and then a more updated version of the genome came out (v3). There are minimal differences in the v2 and v3 genomes but the gene annotation is much more accurate in v3. Therefore, for the following steps I will be using the gff files from v3. 
+This step needs a modified gff file that is only includes gene positions. This can be found on the Rutger's data site for *M. capiata* genome resources: http://cyanophora.rutgers.edu/montipora/. I used v2 of the genome previously in this script and then a more updated version of the genome came out (v3). I re-ran all above steps with v3 genome and will be using only v3 from this point on. 
 
  `$ wget http://cyanophora.rutgers.edu/montipora/Montipora_capitata_HIv3.genes.gff3.gz` and `gunzip Montipora_capitata_HIv3.genes.gff3.gz`. 
 
-**gff3 vs gff files: different versions of a gene annotation file. May have to troubleshoot if intersectBed doesn't recognize the gff3 format.** 
 
 File name = Montipora_capitata_HIv3.genes.gff3: 
 
@@ -494,38 +688,38 @@ Montipora_capitata_HIv3___Scaffold_12   AUGUSTUS        CDS     40222   40725   
 Montipora_capitata_HIv3___Scaffold_12   AUGUSTUS        exon    40222   40725   .       -       0       Parent=Montipora_capitata_HIv3___TS.g29675.t1
 ```
 
-**This file is named .genes. but includes CDS and exons (which are part of genes). I'm filtering for 'genes' for now but I might need to come back to this step and use the whole file...**
-
 Filtering the 3rd column for only 'genes': 
 
 ```
 $ awk '{if ($3 == "gene") {print}}' Montipora_capitata_HIv3.genes.gff3  > Montipora_capitata_HIv3.genes_only.gff3
 ```
 
-This came back empty so the descriptions are all parts of genes. 
+This came back empty so the descriptions are all parts of genes. Removing the created file above and moving on with the original file (`Montipora_capitata_HIv3.genes.gff3`). (In other pipelines our lab has done, we needed this step). 
 
 
 ## <a name="intersectBed_map"></a> **IntersectBed: Loci mapped to annotated gene**
 
 Next, merge each sample file with gene annotation file using `intersectBed`. 
 
-Input files: `*5x_sorted.tab` and `*10x_sorted.tab` and `Montipora_capitata_HIv2.genes.gff3`  
+Input files: `*5x_sorted.tab` and `*10x_sorted.tab` and `Montipora_capitata_HIv3.genes.gff3`  
 Output files: `*_5x_sorted.tab_gene` and `*_10x_sorted.tab_gene`
 
-`intersectBed.sh`:
+### GENOME VERSION 3 
+
+`intersectBed-v3.sh`:
 
 ```
 #!/bin/bash
-#SBATCH --job-name="KB-intersectBed"
+#SBATCH --job-name="v3KB-intersectBed"
 #SBATCH -t 500:00:00
 #SBATCH --nodes=1 --ntasks-per-node=10
 #SBATCH --mem=500GB
 #SBATCH --account=putnamlab
 #SBATCH --export=NONE
-#SBATCH -D /data/putnamlab/estrand/BleachingPairs_WGBS/merged_cov #### this is the output from the merge cov step above 
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_WGBS/merged_cov_genomev3 #### this is the output from the merge cov step above 
 #SBATCH --cpus-per-task=3
-#SBATCH --error="script_error_intersectBed" #if your job fails, the error report will be put in this file
-#SBATCH --output="output_script_intersectBed" #once your job is completed, any final job report comments will be put in this file
+#SBATCH --error="script_error_intersectBed-v3" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_intersectBed-v3" #once your job is completed, any final job report comments will be put in this file
 
 # load modules needed  
 source /usr/share/Modules/init/sh # load the module function (specific to my computer)
@@ -554,4 +748,5 @@ done
 
 
 
+### GENOME VERSION 3 
 
