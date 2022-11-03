@@ -101,7 +101,19 @@ scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/BleachingPairs_RNA
 
 ### fastqc results 
 
-*insert link to report* 
+All samples have sequences of a single length (101bp).
+
+![](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/Dec-July-2019-analysis/output/RNASeq/seq-quality.png?raw=true)
+
+![](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/Dec-July-2019-analysis/output/RNASeq/seq-counts.png?raw=true)
+
+![](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/Dec-July-2019-analysis/output/RNASeq/perseq-quality.png?raw=true)
+
+![](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/Dec-July-2019-analysis/output/RNASeq/perseq-GC-content.png?raw=true)
+
+![](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/Dec-July-2019-analysis/output/RNASeq/seq-dup.png?raw=true)
+
+![](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/Dec-July-2019-analysis/output/RNASeq/adapter-content.png?raw=true)
 
 ## <a name="trim"></a> **Trimming Reads**
 
