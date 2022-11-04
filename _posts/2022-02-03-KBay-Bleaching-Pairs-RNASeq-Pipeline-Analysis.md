@@ -39,13 +39,6 @@ A. Huffmyer first-pass analysis of these files: /data/putnamlab/ashuffmyer/pairs
 
 For detailed explanations of each step, refer to the below pipelines. 
 
-**Functional Annotation** 
-
-- Erin Chille Functional Annotation: https://github.com/echille/Mcapitata_Developmental_Gene_Expression_Timeseries/blob/master/0-BLAST-GO-KO/2020-10-08-M-capitata-functional-annotation-pipeline.md  
-- Jill Ashey Functional Annotation: https://github.com/JillAshey/FunctionalAnnotation/blob/main/FunctionalAnnotation_Worflow.md  
-- Kevin Wong Functional Annotation: https://github.com/hputnam/Past_Genome/blob/master/genome_annotation_pipeline.md#functional-annotation-1
-- Danielle Becker-Polinski Functional Annotation: https://github.com/daniellembecker/DanielleBecker_Lab_Notebook/blob/master/_posts/2021-12-08-Molecular-Underpinnings-Functional-Annotation-Pipeline.md#overview
-
 **RNASeq** 
 
 - Erin Chille RNAseq pipeline: https://github.com/echille/Mcapitata_Developmental_Gene_Expression_Timeseries/blob/master/1-QC-Align-Assemble/mcap_rnaseq_analysis.md  
