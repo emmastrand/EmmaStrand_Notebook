@@ -15,6 +15,8 @@ Contents:
 - [**FastQC**](#fastqc)  
 - [**Trim Reads**](#trim)  
 - [**Align Trimmed Reads to Reference Genome**](#align) 
+- [**Assemble aligned reads and quantify transcripts**](#assemble) 
+- [**Create Gene Counts Matrix**](#genecounts) 
 
 
 ## <a name="details"></a> KBay Bleaching Pairs project details
@@ -127,7 +129,7 @@ Fill in the trimming parameters based on the initial multiqc report.
 
 ```
 #!/bin/bash
-#SBATCH -t 60:00:00
+#SBATCH -t 100:00:00
 #SBATCH --nodes=1 --ntasks-per-node=1
 #SBATCH --export=NONE
 #SBATCH --mem=100GB
@@ -141,7 +143,7 @@ source /usr/share/Modules/init/sh # load the module function (specific to my com
 # Load modules needed 
 module load fastp/0.19.7-foss-2018b
 module load FastQC/0.11.8-Java-1.8
-module load MultiQC/1.7-foss-2018b-Python-2.7.15
+module load MultiQC/1.9-intel-2020a-Python-3.8.2
 
 # Make an array (list) of sequences to trim
 # Needs to be in directory above (raw data directory)
@@ -153,7 +155,6 @@ for i in ${array1[@]}; do
         --in2 $(echo ${i}|sed s/_R1/_R2/)\
         --out1 /data/putnamlab/estrand/BleachingPairs_RNASeq/processed/trimmed.${i} \
         --out2 /data/putnamlab/estrand/BleachingPairs_RNASeq/processed/trimmed.$(echo ${i}|sed s/_R1/_R2/) \
-        --failed_out /data/putnamlab/estrand/BleachingPairs_RNASeq/processed/trimmed.${i}_failed.txt \
         --qualified_quality_phred 20 \
         --unqualified_percent_limit 10 \
         --length_required 100 \
@@ -165,15 +166,15 @@ done
 echo "Read trimming of adapters complete." $(date)
 
 # Quality Assessment of Trimmed Reads
-
 cd /data/putnamlab/estrand/BleachingPairs_RNASeq/processed/ #The following command will be run in the /clean directory
 
-multiqc --interactive ./ #Compile MultiQC report from FastQC files
+# Compile MultiQC report from FastQC files 
+multiqc --interactive ./  
 
 echo "Cleaned MultiQC report generated." $(date)
 ```
 
-Exporting this report (outside of Andromeda)
+**Exporting this report (outside of Andromeda)**
 
 ```
 scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/BleachingPairs_RNASeq/processed/multiqc_report.html /Users/emmastrand/MyProjects/HI_Bleaching_Timeseries/Dec-July-2019-analysis/output/RNASeq/processed_multiqc_report.html
@@ -183,6 +184,8 @@ scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/BleachingPairs_RNA
 
 I use the program `HISAT2`, but other pipelines use `STAR`.  
 
+1. Index the reference genome
+2. Alignment of clean reads to the reference genome
 
 ### Reference genome information 
 
@@ -223,7 +226,96 @@ array=($(ls /data/putnamlab/estrand/BleachingPairs_RNASeq/processed/*.fastq.gz))
 for i in ${array[@]}; do
     sample_name=`echo $i| awk -F [.] '{print $2}'`
     hisat2 -p 8 --rna-strandness RF --dta -q -x Mcap_ref -1 /data/putnamlab/estrand/BleachingPairs_RNASeq/processed/trimmed.${i} -2 /data/putnamlab/estrand/BleachingPairs_RNASeq/processed/trimmed.$(echo ${i}|sed s/_R1/_R2/) -S ${sample_name}.sam
+    samtools sort -@ 8 -o ${sample_name}.bam ${sample_name}.sam
+    	echo "${i} bam-ified!"
+    rm ${sample_name}.sam
+done
+```
 
-    
-    
+## <a name="assemble"></a> **Assemble aligned reads and quantify transcripts**
+
+`StringTie` is a fast and highly efficient assembler of RNA-Seq alignments into potential transcripts.
+
+1. Reference-guided assembly with novel transcript discovery
+2. Merge output GTF files and assess the assembly performance
+3. Compilation of GTF-files into gene and transcript count matrices
+
+`assemble.sh`: 
+
+```
+#!/bin/bash
+#SBATCH -t 60:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --account=putnamlab
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_RNASeq/output/                
+#SBATCH --error=../"%x_error.%j" #if your job fails, the error report will be put in this file
+#SBATCH --output=../"%x_output.%j" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function (specific need to my computer)
+module load StringTie/2.1.4-GCC-9.3.0
+module load gffcompare/0.11.5-foss-2018b
+
+# Assemble and estimate reads
+
+array1=($(ls *.bam))
+
+for i in ${array1[@]}; do
+    sample_name=`echo $i| awk -F [_] '{print $1"_"$2"_"$3}'`
+    stringtie -p 8 -e -B -G /data/putnamlab/estrand/Montipora_capitata_HIv3.genes.gff3 -o /data/putnamlab/estrand/BleachingPairs_RNASeq/output/${i}.gtf /data/putnamlab/estrand/BleachingPairs_RNASeq/output/${i}
+done
+
+# Merge stringTie gtf results
+
+ls *gtf > mergelist.txt
+cat mergelist.txt
+
+stringtie --merge -p 8 -G /data/putnamlab/estrand/Montipora_capitata_HIv3.genes.gff3 -o stringtie_merged.gtf mergelist.txt
+
+echo "Stringtie merge complete" $(date)
+```
+
+## <a name="genecount"></a> **Create gene counts matrix**
+
+The StringTie program includes a script, prepDE.py that compiles your assembly files into gene and transcript count matrices. This script requires as input the list of sample names and their full file paths, sample_list.txt. This file will live in StringTie program directory.
+
+Copy this file: `cp /data/putnamlab/ashuffmyer/pairs-rnaseq/prepDE.py .`
+
+`genecount.sh`: 
+
+```
+#!/bin/bash
+#SBATCH -t 60:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --account=putnamlab
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_RNASeq/output/                
+#SBATCH --error=../"%x_error.%j" #if your job fails, the error report will be put in this file
+#SBATCH --output=../"%x_output.%j" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function (specific need to my computer)
+module load StringTie/2.1.4-GCC-9.3.0
+module load Python/2.7.15-foss-2018b
+
+# Assess the performance of the assembly
+gffcompare -r /data/putnamlab/estrand/Montipora_capitata_HIv3.genes.gff3 -o merged stringtie_merged.gtf
+
+echo "GFFcompare complete, Starting gene count matrix assembly..." $(date)
+
+# Make gtf list text file
+
+for filename in *.bam.gtf; do echo $filename $PWD/$filename; done > listGTF.txt
+
+# Compile the gene count matrix
+
+python prepDE.py -g KB_gene_count_matrix.csv -i listGTF.txt
+echo "Gene count matrix compiled." $(date)
+```
+
+**Copy that output to local computer**
+
+```
+scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/BleachingPairs_RNASeq/output/KB_gene_count_matrix.csv /Users/emmastrand/MyProjects/HI_Bleaching_Timeseries/Dec-July-2019-analysis/output/RNASeq/KB_gene_count_matrix.csv
 ```
