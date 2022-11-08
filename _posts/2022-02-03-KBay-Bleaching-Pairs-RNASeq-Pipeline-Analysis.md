@@ -173,6 +173,11 @@ echo "Cleaned MultiQC report generated." $(date)
 scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/BleachingPairs_RNASeq/processed/multiqc_report.html /Users/emmastrand/MyProjects/HI_Bleaching_Timeseries/Dec-July-2019-analysis/output/RNASeq/processed_multiqc_report.html
 ```
 
+### Processed Multiqc report 
+
+
+
+
 ## <a name="align"></a> **Align Trimmed Reads to Reference Genome**
 
 I use the program `HISAT2`, but other pipelines use `STAR`.  
