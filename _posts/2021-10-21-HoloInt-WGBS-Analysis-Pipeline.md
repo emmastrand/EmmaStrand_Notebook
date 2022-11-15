@@ -572,7 +572,7 @@ A newer version of the genome was released while I was analyzing this data so I 
 #SBATCH --job-name="methylseq_v2"
 #SBATCH -t 600:00:00
 #SBATCH --nodes=1 --ntasks-per-node=10
-#SBATCH --mem=500GB
+#SBATCH --mem=128GB
 #SBATCH --account=putnamlab
 #SBATCH --export=NONE
 #SBATCH -D /data/putnamlab/estrand/HoloInt_WGBS/HoloInt_methylseq_genomev2
