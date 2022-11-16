@@ -348,6 +348,27 @@ nextflow run nf-core/methylseq -resume \
 -name WGBS_methylseq_BleachingPairs_v3_3
 ```
 
+The multiqc function is running into errors from the above script so I ran:
+
+```
+interactive 
+
+module load MultiQC/1.9-intel-2020a-Python-3.8.2
+
+multiqc -f --filename WGBS_methylseq_KBAY_genomev3_multiqc_report  . \
+      -m custom_content -m picard -m qualimap -m bismark -m samtools -m preseq -m cutadapt -m fastqc
+```
+
+Copying this file to project folder: 
+
+```
+scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/BleachingPairs_WGBS/BleachingPairs_methylseq_v3/WGBS_methylseq_KBAY_genomev3_multiqc_report.html /Users/emmastrand/MyProjects/HI_Bleaching_Timeseries/Dec-July-2019-analysis/output/WGBS/WGBS_methylseq_KBAY_genomev3_multiqc_report.html
+```
+
+### Multiqc Report 
+
+Full report can be found here: https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/Dec-July-2019-analysis/output/WGBS/WGBS_methylseq_KBAY_genomev3_multiqc_report.html. 
+
 ## <a name="merge_strands"></a> **Merge Strands**
 
 See more detailed information on these steps, what the script is doing, and what the flags mean here:  
@@ -416,7 +437,7 @@ Make a new directory for this output: `mkdir merged_cov_genomev3`.
 #SBATCH --job-name="v3-merge"
 #SBATCH -t 500:00:00
 #SBATCH --nodes=1 --ntasks-per-node=10
-#SBATCH --mem=500GB
+#SBATCH --mem=128GB
 #SBATCH --account=putnamlab
 #SBATCH --export=NONE
 #SBATCH -D /data/putnamlab/estrand/BleachingPairs_WGBS/merged_cov_genomev3 #### this should be your new output directory so all the outputs ends up here
