@@ -135,7 +135,7 @@ module load Nextflow/22.04.0
 nextflow run nf-core/methylseq -profile singularity \
 --aligner bismark \
 --igenomes_ignore \
---fasta /data/putnamlab/estrand/PointJudithData_MBDBS/GCF_002022765.2_C_virginica-3.0_genomic.fna \
+--fasta /data/putnamlab/estrand/PointJudithData_MBDBS/GCF_002022765.2_C_virginica-3.0_genomic.fa \
 --save_reference \
 --input '/data/putnamlab/KITT/hputnam/20200119_Oyst_Nut/MBDBS/*_R{1,2}_001.fastq.gz' \
 --clip_r1 10 \
@@ -145,6 +145,5 @@ nextflow run nf-core/methylseq -profile singularity \
 --cytosine_report \
 --relax_mismatches \
 --unmapped \
---outdir /data/putnamlab/estrand/PointJudithData_MBDBS/PJ_methylseq1 \
--name PJ_methylseq1
+--outdir /data/putnamlab/estrand/PointJudithData_MBDBS/PJ_methylseq1
 ```
