@@ -109,6 +109,8 @@ We might need to mess with cut off variations in the methylseq because of this. 
 
 #### Methylseq1
 
+`PJ_methylseq1.sh`: 
+
 Run this first to assess m-bias and then decide if we need more trial runs. See Emma Strand and Kevin Wong's notebook posts for methylation scripts and how they dealt with these issues.
 
 ```
@@ -116,19 +118,16 @@ Run this first to assess m-bias and then decide if we need more trial runs. See 
 #SBATCH --job-name="1methylseq"
 #SBATCH -t 200:00:00
 #SBATCH --nodes=1 --ntasks-per-node=10
-#SBATCH --mem=120GB
+#SBATCH --mem=128GB
 #SBATCH --account=putnamlab
 #SBATCH --export=NONE
 #SBATCH -D /data/putnamlab/estrand/PointJudithData_MBDBS
-#SBATCH -q putnamlab
-#SBATCH --cpus-per-task=3
-#SBATCH --mail-user=emma_strand@uri.edu
-#SBATCH --error="script_error_methylseq1" #if your job fails, the error report will be put in this file
-#SBATCH --output="output_script_methylseq1" #once your job is completed, any final job report comments will be put in this file
+#SBATCH --error=../"%x_error.%j" #if your job fails, the error report will be put in this file
+#SBATCH --output=../"%x_output.%j" #once your job is completed, any final job report comments will be put in this file
 
 # load modules needed
 source /usr/share/Modules/init/sh # load the module function
-module load Nextflow/22.04.0
+module load Nextflow/21.03.0
 
 # run nextflow methylseq
 
