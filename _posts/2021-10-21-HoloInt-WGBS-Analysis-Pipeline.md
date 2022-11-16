@@ -608,9 +608,39 @@ nextflow run nf-core/methylseq -resume \
 -name HoloInt_methylseq_genomev2_3 ### I had to change this any time running a new project or running this script again
 ```
 
+The multiqc function is running into errors from the above script so I ran:
+
+```
+interactive 
+
+module load MultiQC/1.9-intel-2020a-Python-3.8.2
+
+multiqc -f --filename WGBS_methylseq_HoloInt_genomev2_multiqc_report  . \
+      -m custom_content -m picard -m qualimap -m bismark -m samtools -m preseq -m cutadapt -m fastqc
+```
+
+Copying this file to project folder: 
+
+```
+scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/HoloInt_WGBS/HoloInt_methylseq_genomev2/WGBS_methylseq_HoloInt_genomev2_multiqc_report.html /Users/emmastrand/MyProjects/Acclim_Dynamics_molecular/data/WGBS/output/WGBS_methylseq_HoloInt_genomev2_multiqc_report.html
+```
+
+### MultiQC Report 
+
+![](https://github.com/emmastrand/Acclim_Dynamics_molecular/blob/main/data/WGBS/output/genomev2-multiqc/cov%20hist.png?raw=true)
+![](https://github.com/emmastrand/Acclim_Dynamics_molecular/blob/main/data/WGBS/output/genomev2-multiqc/cumulative%20genome%20cov.png?raw=true)
+![](https://github.com/emmastrand/Acclim_Dynamics_molecular/blob/main/data/WGBS/output/genomev2-multiqc/insert%20size%20hist.png?raw=true)
+![](https://github.com/emmastrand/Acclim_Dynamics_molecular/blob/main/data/WGBS/output/genomev2-multiqc/gc%20content.png?raw=true)
+![](https://github.com/emmastrand/Acclim_Dynamics_molecular/blob/main/data/WGBS/output/genomev2-multiqc/complexity%20curve.png?raw=true)
+![](https://github.com/emmastrand/Acclim_Dynamics_molecular/blob/main/data/WGBS/output/genomev2-multiqc/bismark%20alignment.png?raw=true)
+![](https://github.com/emmastrand/Acclim_Dynamics_molecular/blob/main/data/WGBS/output/genomev2-multiqc/deduplication.png?raw=true)
+![](https://github.com/emmastrand/Acclim_Dynamics_molecular/blob/main/data/WGBS/output/genomev2-multiqc/strand%20alignment.png?raw=true)
+![](https://github.com/emmastrand/Acclim_Dynamics_molecular/blob/main/data/WGBS/output/genomev2-multiqc/cytosine%20methylation.png?raw=true)
+![](https://github.com/emmastrand/Acclim_Dynamics_molecular/blob/main/data/WGBS/output/genomev2-multiqc/m%20bias.png?raw=true)
+![](https://github.com/emmastrand/Acclim_Dynamics_molecular/blob/main/data/WGBS/output/genomev2-multiqc/trimmed%20seq%20lengths.png?raw=true)
+
 
 ## <a name="merge"></a> **Merge Strands**
-
 
 The file output from the methylseq pipeline that is used for the following steps: `bismark_methylation_calls/methylation_coverage/*deduplicated.bismark.cov.gz`. 
 
@@ -664,7 +694,7 @@ find /data/putnamlab/estrand/HoloInt_WGBS/HoloInt_methylseq_final/bismark_methyl
 
 ### GENOME VERSION 2
 
-Make a new directory for this output: `mkdir merged_cov`. 
+Make a new directory for this output: `mkdir merged_cov_genomev2`. 
 
 `scripts/genomev2/merge_strandsv2.sh` 
 
@@ -673,7 +703,7 @@ Make a new directory for this output: `mkdir merged_cov`.
 #SBATCH --job-name="v2merge"
 #SBATCH -t 500:00:00
 #SBATCH --nodes=1 --ntasks-per-node=10
-#SBATCH --mem=500GB
+#SBATCH --mem=128GB
 #SBATCH --account=putnamlab
 #SBATCH --export=NONE
 #SBATCH -D /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2 #### this should be your new output directory so all the outputs ends up here

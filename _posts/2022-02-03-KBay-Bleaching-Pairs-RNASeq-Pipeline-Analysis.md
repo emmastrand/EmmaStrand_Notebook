@@ -175,8 +175,23 @@ scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/BleachingPairs_RNA
 
 ### Processed Multiqc report 
 
+#### 80 samples had less than 1% of reads made up of overrepresented sequences
 
+#### No samples found with any adapter contamination > 0.1%
 
+![](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/Dec-July-2019-analysis/output/RNASeq/processed%20multiqc/seq%20counts.png?raw=true)
+
+![](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/Dec-July-2019-analysis/output/RNASeq/processed%20multiqc/seq%20quality.png?raw=true)
+
+![](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/Dec-July-2019-analysis/output/RNASeq/processed%20multiqc/per%20seq%20quality.png?raw=true)
+
+![](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/Dec-July-2019-analysis/output/RNASeq/processed%20multiqc/per%20base%20n%20content.png?raw=true)
+
+![](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/Dec-July-2019-analysis/output/RNASeq/processed%20multiqc/per%20seq%20GC%20content.png?raw=true)
+
+![](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/Dec-July-2019-analysis/output/RNASeq/processed%20multiqc/seq%20duplication.png?raw=true)
+
+![](https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/Dec-July-2019-analysis/output/RNASeq/processed%20multiqc/seq%20length%20dist.png?raw=true)
 
 ## <a name="align"></a> **Align Trimmed Reads to Reference Genome**
 
@@ -223,7 +238,7 @@ array=($(ls /data/putnamlab/estrand/BleachingPairs_RNASeq/processed/*.fastq.gz))
 
 for i in ${array[@]}; do
     sample_name=`echo $i| awk -F [.] '{print $2}'`
-    hisat2 -p 8 --rna-strandness RF --dta -q -x Mcap_ref -1 /data/putnamlab/estrand/BleachingPairs_RNASeq/processed/trimmed.${i} -2 /data/putnamlab/estrand/BleachingPairs_RNASeq/processed/trimmed.$(echo ${i}|sed s/_R1/_R2/) -S ${sample_name}.sam
+    hisat2 -p 8 --rna-strandness RF --dta -q -x Mcap_ref -1 ${i} -2 $(echo ${i}|sed s/_R1/_R2/) -S ${sample_name}.sam
     samtools sort -@ 8 -o ${sample_name}.bam ${sample_name}.sam
     	echo "${i} bam-ified!"
     rm ${sample_name}.sam
