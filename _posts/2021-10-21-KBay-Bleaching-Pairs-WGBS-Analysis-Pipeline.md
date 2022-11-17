@@ -694,7 +694,24 @@ cat CpG.all.samps.5x_sorted.bed | awk '$4 ==40' > CpG.filt.all.samps.5x_sorted.b
 cat CpG.all.samps.10x_sorted.bed | awk '$4 ==40' > CpG.filt.all.samps.10x_sorted.bed
 ```
 
-No errors - move on.
+head `CpG.all.samps.5x_sorted.bed`: 
+
+```
+Montipora_capitata_HIv3___Scaffold_1    15160   15162   2       1,16    1       0       0       0       0       0       0       0       0       0       0       0
+       0       0       0       1       0       0       0       0       0       0       0       0       0       0
+Montipora_capitata_HIv3___Scaffold_1    15182   15184   2       1,16    1       0       0       0       0       0       0       0       0       0       0       0
+       0       0       0       1       0       0       0       0       0       0       0       0       0       0
+Montipora_capitata_HIv3___Scaffold_1    15206   15210   2       1,16    1       0       0       0       0       0       0       0       0       0       0       0
+       0       0       0       1       0       0       0       0       0       0       0       0       0       0
+Montipora_capitata_HIv3___Scaffold_1    15226   15228   2       1,16    1       0       0       0       0       0       0       0       0       0       0       0
+       0       0       0       1       0       0       0       0       0       0       0       0       0       0
+Montipora_capitata_HIv3___Scaffold_1    15259   15261   11      1,3,7,10,12,13,16,17,19,22,23   1       0       1       0       0       0       1       0       0
+       1       0       1       1       0       0       1       1       0       1       0       0       1       1       0       0       0
+Montipora_capitata_HIv3___Scaffold_1    15275   15277   10      1,3,4,7,10,12,13,16,19,22       1       0       1       1       0       0       1       0       0
+       1       0       1       1       0       0       1       0       0       1       0       0       1       0       0       0       0
+```
+
+
 
 ## <a name="gene_anno"></a> **Gene annotation**
 
