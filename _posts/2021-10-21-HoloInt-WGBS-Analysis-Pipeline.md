@@ -937,6 +937,8 @@ do
 done
 ```
 
+No error messages. Move on
+
 ### OVERVIEW 
 
 Moving forward I want to see the differences in data we get from 5X and 10X. We'll have to decide which threshold to use moving forward. We want confidence and high resolution but also a large dataset so we need a happy medium. 
@@ -999,7 +1001,7 @@ No errors in the script and all four files were created.
 #SBATCH --job-name="v2H-all_cov"
 #SBATCH -t 500:00:00
 #SBATCH --nodes=1 --ntasks-per-node=10
-#SBATCH --mem=500GB
+#SBATCH --mem=128GB
 #SBATCH --account=putnamlab
 #SBATCH --export=NONE
 #SBATCH -D /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2 #### this is the output from the merge cov step above 
