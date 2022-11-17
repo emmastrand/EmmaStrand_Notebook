@@ -595,7 +595,7 @@ done
 #SBATCH --job-name="v3-KB-5X"
 #SBATCH -t 500:00:00
 #SBATCH --nodes=1 --ntasks-per-node=10
-#SBATCH --mem=500GB
+#SBATCH --mem=128GB
 #SBATCH --account=putnamlab
 #SBATCH --export=NONE
 #SBATCH -D /data/putnamlab/estrand/BleachingPairs_WGBS/merged_cov_genomev3 #### this is the output from the merge cov step above 

@@ -111,7 +111,9 @@ We might need to mess with cut off variations in the methylseq because of this. 
 
 `PJ_methylseq1.sh`: 
 
-Run this first to assess m-bias and then decide if we need more trial runs. See Emma Strand and Kevin Wong's notebook posts for methylation scripts and how they dealt with these issues.
+Run this first to assess m-bias and then decide if we need more trial runs. See Emma Strand and Kevin Wong's notebook posts for methylation scripts and how they dealt with these issues. 
+
+Run time: 3h 49m 45s
 
 ```
 #!/bin/bash
@@ -147,7 +149,7 @@ nextflow run nf-core/methylseq -profile singularity \
 --outdir /data/putnamlab/estrand/PointJudithData_MBDBS/PJ_methylseq1
 ```
 
-The multiqc function is running into errors from the above script so I tried to run the below but it said it would take five days??:
+The multiqc function is running into errors from the above script so I ran (this took much longer than KBay and HoloInt?):
 
 ```
 interactive 
@@ -156,6 +158,8 @@ module load MultiQC/1.9-intel-2020a-Python-3.8.2
 
 multiqc -f --filename MBDBS_methylseq_PJ_multiqc_report  . \
       -m custom_content -m picard -m qualimap -m bismark -m samtools -m preseq -m cutadapt -m fastqc
+
+mv MBDBS_methylseq_PJ_multiqc_report.html MBDBS_methylseq_PJ_multiqc_report2.html
 ```
 
 I found another multiqc report that I think is what I'm looking for?
@@ -164,6 +168,8 @@ Copying this file to project folder:
 
 ```
 scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/PointJudithData_MBDBS/PJ_methylseq1/MultiQC/multiqc_report.html /Users/emmastrand/MyProjects/Cvir_Nut_Int/output/MBDBS/MBDBS_methylseq_PJ_multiqc_report.html
+
+scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/PointJudithData_MBDBS/MBDBS_methylseq_PJ_multiqc_report.html /Users/emmastrand/MyProjects/Cvir_Nut_Int/output/MBDBS/MBDBS_methylseq_PJ_multiqc_report2.html
 ```
 
 ### Full Multiqc Report 

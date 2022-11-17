@@ -830,6 +830,8 @@ do
 done
 ```
 
+No errors - move on.
+
 ### OVERVIEW 
 
 The script is saying: 
@@ -905,7 +907,7 @@ done
 #SBATCH --job-name="v2H-covX"
 #SBATCH -t 500:00:00
 #SBATCH --nodes=1 --ntasks-per-node=10
-#SBATCH --mem=500GB
+#SBATCH --mem=128GB
 #SBATCH --account=putnamlab
 #SBATCH --export=NONE
 #SBATCH -D /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2 #### this is the output from the merge cov step above 
