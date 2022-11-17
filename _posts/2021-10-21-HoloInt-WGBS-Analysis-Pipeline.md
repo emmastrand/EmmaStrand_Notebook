@@ -1105,6 +1105,8 @@ do
 done
 ```
 
+No errors - move on. 
+
 ## <a name="intersectBed_all"></a> **IntersectBed: File to only positions found in all samples**
 
 ### GENOME VERSION 2
@@ -1116,7 +1118,7 @@ done
 #SBATCH --job-name="v2H-enrich"
 #SBATCH -t 500:00:00
 #SBATCH --nodes=1 --ntasks-per-node=10
-#SBATCH --mem=500GB
+#SBATCH --mem=128GB
 #SBATCH --account=putnamlab
 #SBATCH --export=NONE
 #SBATCH -D /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2 #### this is the output from the merge cov step above 
