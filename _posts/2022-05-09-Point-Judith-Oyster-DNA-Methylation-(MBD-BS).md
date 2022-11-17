@@ -146,3 +146,27 @@ nextflow run nf-core/methylseq -profile singularity \
 --unmapped \
 --outdir /data/putnamlab/estrand/PointJudithData_MBDBS/PJ_methylseq1
 ```
+
+The multiqc function is running into errors from the above script so I tried to run the below but it said it would take five days??:
+
+```
+interactive 
+
+module load MultiQC/1.9-intel-2020a-Python-3.8.2
+
+multiqc -f --filename MBDBS_methylseq_PJ_multiqc_report  . \
+      -m custom_content -m picard -m qualimap -m bismark -m samtools -m preseq -m cutadapt -m fastqc
+```
+
+I found another multiqc report that I think is what I'm looking for?
+
+Copying this file to project folder: 
+
+```
+scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/PointJudithData_MBDBS/PJ_methylseq1/MultiQC/multiqc_report.html /Users/emmastrand/MyProjects/Cvir_Nut_Int/output/MBDBS/MBDBS_methylseq_PJ_multiqc_report.html
+```
+
+### Full Multiqc Report 
+
+https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/MBDBS/MBDBS_methylseq_PJ_multiqc_report.html
+
