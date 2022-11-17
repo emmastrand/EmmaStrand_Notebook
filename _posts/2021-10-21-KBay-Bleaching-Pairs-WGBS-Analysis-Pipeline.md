@@ -29,6 +29,7 @@ Contents:
 - [**Bismark Multiqc Report**](#bismark_multiqc)  
 - [**Merge Strands**](#merge_strands)  
 - [**Sort CpG .cov file**](#sort)   
+- [**Create bedgraph files**](#bedgraph) 
 - [**Filter for a specific coverage (5X, 10X)**](#filter_cov)   
 - [**Create a file with positions found in all samples**](#filter_pos)   
 - [**Gene Annotation file**](#gene_anno)  
@@ -538,6 +539,46 @@ done
 The script is saying: 
 - For every sample's .cov file in the output folder `merged_cov`, use bedtools function to sort and then output a file with the same name plus `_sorted.cov`. 
 
+## <a name="bedgraph"></a> **Greate bedgraph files**
+
+### GENOME VERSION 3 
+
+`bedgraph-v3.sh`: 
+
+```
+#!/bin/bash
+#SBATCH --job-name="bedgraph-v3"
+#SBATCH -t 500:00:00
+#SBATCH --nodes=1 --ntasks-per-node=10
+#SBATCH --mem=128GB
+#SBATCH --export=NONE
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_WGBS/merged_cov_genomev3 #### this is the output from the merge cov step above 
+#SBATCH --cpus-per-task=3
+#SBATCH --error="%x_error.%j" #if your job fails, the error report will be put in this file
+#SBATCH --output="%x_output.%j" #once your job is completed, any final job report comments will be put in this file
+
+# load modules needed (specific need for my computer)
+source /usr/share/Modules/init/sh # load the module function
+
+# Bedgraphs for 5X coverage 
+
+for f in *_sorted.cov
+do
+  STEM=$(basename "${f}" _sorted.cov)
+  cat "${f}" | awk -F $'\t' 'BEGIN {OFS = FS} {if ($5+$6 >= 5) {print $1, $2, $3, $4}}' \
+  > "${STEM}"_5x_sorted.bedgraph
+done
+
+# Bedgraphs for 10X coverage 
+
+for f in *_sorted.cov
+do
+  STEM=$(basename "${f}" _sorted.cov)
+  cat "${f}" | awk -F $'\t' 'BEGIN {OFS = FS} {if ($5+$6 >= 10) {print $1, $2, $3, $4}}' \
+  > "${STEM}"_10x_sorted.bedgraph
+done
+```
+
 ## <a name="filter_cov"></a> **Filter for a specific coverage (5X, 10X)**
 
 This script is running a loop to filter CpGs for a specified coverage and creating tab files.
@@ -629,6 +670,74 @@ done
 
 Moving forward I want to see the differences in data we get from 5X and 10X. We'll have to decide which threshold to use moving forward. We want confidence and high resolution but also a large dataset so we need a happy medium. 
 
+### 5x coverage
+
+`wc -l *5x_sorted.tab`:
+
+```
+9475520 17_S134_5x_sorted.tab
+   10544006 18_S154_5x_sorted.tab
+   11086014 21_S119_5x_sorted.tab
+    8324187 22_S120_5x_sorted.tab
+    9565847 23_S141_5x_sorted.tab
+    7217442 24_S147_5x_sorted.tab
+   15508592 25_S148_5x_sorted.tab
+    6679878 26_S121_5x_sorted.tab
+   13129157 28_S122_5x_sorted.tab
+   11203815 2_S128_5x_sorted.tab
+    1414587 31_S127_5x_sorted.tab
+    7641308 33_S142_5x_sorted.tab
+    9390715 34_S136_5x_sorted.tab
+    6851807 38_S129_5x_sorted.tab
+   10867493 39_S145_5x_sorted.tab
+   11144799 40_S135_5x_sorted.tab
+   10887332 42_S131_5x_sorted.tab
+   12484052 43_S143_5x_sorted.tab
+    9865682 44_S125_5x_sorted.tab
+    8637091 45_S156_5x_sorted.tab
+   14300207 4_S146_5x_sorted.tab
+   11738047 50_S139_5x_sorted.tab
+   11123515 54_S144_5x_sorted.tab
+    6034212 58_S157_5x_sorted.tab
+    6793494 59_S158_5x_sorted.tab
+   11607615 6_S132_5x_sorted.tab
+  253516414 total
+```
+
+### 10x coverage
+
+`wc -l *10x_sorted.tab`:
+
+```
+   1898361 17_S134_10x_sorted.tab
+   2928908 18_S154_10x_sorted.tab
+   3191365 21_S119_10x_sorted.tab
+   1454107 22_S120_10x_sorted.tab
+   1885121 23_S141_10x_sorted.tab
+   1044970 24_S147_10x_sorted.tab
+   9192668 25_S148_10x_sorted.tab
+    839032 26_S121_10x_sorted.tab
+   5449797 28_S122_10x_sorted.tab
+   3214753 2_S128_10x_sorted.tab
+     40842 31_S127_10x_sorted.tab
+   1044145 33_S142_10x_sorted.tab
+   1893638 34_S136_10x_sorted.tab
+    800425 38_S129_10x_sorted.tab
+   3126530 39_S145_10x_sorted.tab
+   3254802 40_S135_10x_sorted.tab
+   3235614 42_S131_10x_sorted.tab
+   4763284 43_S143_10x_sorted.tab
+   2320334 44_S125_10x_sorted.tab
+   1724432 45_S156_10x_sorted.tab
+   6886932 4_S146_10x_sorted.tab
+   3872754 50_S139_10x_sorted.tab
+   3448169 54_S144_10x_sorted.tab
+    893503 58_S157_10x_sorted.tab
+    944123 59_S158_10x_sorted.tab
+   3462425 6_S132_10x_sorted.tab
+  72811034 total
+```
+
 ## <a name="filter_pos"></a> **Create a file with positions found in all samples**
 
 We need to create a file that is filtered to only positions that are found in all samples (both methylated and unmethylated). `multiIntersectBed` creates a file that merges all samples together. The 4th column then tells you how samples have that position. We can then filter positions based on this column that is equal to our sample size. n=40 for this project. 
@@ -636,34 +745,6 @@ We need to create a file that is filtered to only positions that are found in al
 Input file: `5x_sorted.tab` and `10x_sorted.tab`  
 Output file: `CpG.filt.all.samps.5x_sorted.bed` and `CpG.filt.all.samps.10x_sorted.bed`
 
-### GENOME VERSION 2 
-
-`cov_allsamples.sh`: 
-
-```
-#!/bin/bash
-#SBATCH --job-name="KB-all_cov"
-#SBATCH -t 500:00:00
-#SBATCH --nodes=1 --ntasks-per-node=10
-#SBATCH --mem=500GB
-#SBATCH --account=putnamlab
-#SBATCH --export=NONE
-#SBATCH -D /data/putnamlab/estrand/BleachingPairs_WGBS/merged_cov #### this is the output from the merge cov step above 
-#SBATCH --cpus-per-task=3
-#SBATCH --error="script_error_all_cov" #if your job fails, the error report will be put in this file
-#SBATCH --output="output_script_all_cov" #once your job is completed, any final job report comments will be put in this file
-
-# load modules needed  
-source /usr/share/Modules/init/sh # load the module function (specific to my computer)
-module load BEDTools/2.27.1-foss-2018b
-
-multiIntersectBed -i *_5x_sorted.tab > CpG.all.samps.5x_sorted.bed
-multiIntersectBed -i *_10x_sorted.tab > CpG.all.samps.10x_sorted.bed
-
-cat CpG.all.samps.5x_sorted.bed | awk '$4 ==40' > CpG.filt.all.samps.5x_sorted.bed
-
-cat CpG.all.samps.10x_sorted.bed | awk '$4 ==40' > CpG.filt.all.samps.10x_sorted.bed
-```
 
 ### GENOME VERSION 3 
 
@@ -711,7 +792,11 @@ Montipora_capitata_HIv3___Scaffold_1    15275   15277   10      1,3,4,7,10,12,13
        1       0       1       1       0       0       1       0       0       1       0       0       1       0       0       0       0
 ```
 
+head `CpG.filt.all.samps.5x_sorted.bed`: 
 
+```
+empty..
+```
 
 ## <a name="gene_anno"></a> **Gene annotation**
 
