@@ -1074,7 +1074,7 @@ Output files: `*_5x_sorted.tab_gene` and `*_10x_sorted.tab_gene`
 #SBATCH --job-name="v2H-intersectBed"
 #SBATCH -t 500:00:00
 #SBATCH --nodes=1 --ntasks-per-node=10
-#SBATCH --mem=500GB
+#SBATCH --mem=128GB
 #SBATCH --account=putnamlab
 #SBATCH --export=NONE
 #SBATCH -D /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2 #### this is the output from the merge cov step above 

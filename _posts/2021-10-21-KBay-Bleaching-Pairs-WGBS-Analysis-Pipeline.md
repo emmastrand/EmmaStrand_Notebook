@@ -694,6 +694,8 @@ cat CpG.all.samps.5x_sorted.bed | awk '$4 ==40' > CpG.filt.all.samps.5x_sorted.b
 cat CpG.all.samps.10x_sorted.bed | awk '$4 ==40' > CpG.filt.all.samps.10x_sorted.bed
 ```
 
+No errors - move on.
+
 ## <a name="gene_anno"></a> **Gene annotation**
 
 This step needs a modified gff file that is only includes gene positions. This can be found on the Rutger's data site for *M. capiata* genome resources: http://cyanophora.rutgers.edu/montipora/. I used v2 of the genome previously in this script and then a more updated version of the genome came out (v3). I re-ran all above steps with v3 genome and will be using only v3 from this point on. 
@@ -737,7 +739,7 @@ Output files: `*_5x_sorted.tab_gene` and `*_10x_sorted.tab_gene`
 #SBATCH --job-name="v3KB-intersectBed"
 #SBATCH -t 500:00:00
 #SBATCH --nodes=1 --ntasks-per-node=10
-#SBATCH --mem=500GB
+#SBATCH --mem=128GB
 #SBATCH --account=putnamlab
 #SBATCH --export=NONE
 #SBATCH -D /data/putnamlab/estrand/BleachingPairs_WGBS/merged_cov_genomev3 #### this is the output from the merge cov step above 
