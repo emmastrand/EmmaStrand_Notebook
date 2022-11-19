@@ -798,6 +798,21 @@ head `CpG.filt.all.samps.5x_sorted.bed`:
 empty..
 ```
 
+Try with lower # of column #4 value -- this cuts off after loci found in 26 samples or more. 
+
+```
+cat CpG.all.samps.5x_sorted.bed | awk '$4 ==26' > CpG.filt.all.samps.5x_sorted-26.bed 
+
+wc -l CpG.filt.all.samps.5x_sorted-26.bed
+
+739760 CpG.filt.all.samps.5x_sorted-10.bed
+776113 CpG.filt.all.samps.5x_sorted-15.bed
+420987 CpG.filt.all.samps.5x_sorted-25.bed
+158992 CpG.filt.all.samps.5x_sorted-26.bed
+0 CpG.filt.all.samps.5x_sorted-27.bed
+0 CpG.filt.all.samps.5x_sorted-30.bed
+```
+
 ## <a name="gene_anno"></a> **Gene annotation**
 
 This step needs a modified gff file that is only includes gene positions. This can be found on the Rutger's data site for *M. capiata* genome resources: http://cyanophora.rutgers.edu/montipora/. I used v2 of the genome previously in this script and then a more updated version of the genome came out (v3). I re-ran all above steps with v3 genome and will be using only v3 from this point on. 

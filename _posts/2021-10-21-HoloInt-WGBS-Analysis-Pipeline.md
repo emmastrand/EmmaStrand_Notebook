@@ -849,6 +849,45 @@ Pocillopora_acuta_HIv1___Scaffold_000000F___length_7015273      3538    3540    
 Pocillopora_acuta_HIv1___Scaffold_000000F___length_7015273      3555    3557    0.000000        0       3
 ```
 
+## <a name="bedgraph"></a> **Greate bedgraph files**
+
+### GENOME VERSION 2 
+
+`bedgraph-v2.sh`: 
+
+```
+#!/bin/bash
+#SBATCH --job-name="bedgraph-v2"
+#SBATCH -t 500:00:00
+#SBATCH --nodes=1 --ntasks-per-node=10
+#SBATCH --mem=128GB
+#SBATCH --export=NONE
+#SBATCH -D /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2 #### this is the output from the merge cov step above 
+#SBATCH --cpus-per-task=3
+#SBATCH --error="%x_error.%j" #if your job fails, the error report will be put in this file
+#SBATCH --output="%x_output.%j" #once your job is completed, any final job report comments will be put in this file
+
+# load modules needed (specific need for my computer)
+source /usr/share/Modules/init/sh # load the module function
+
+# Bedgraphs for 5X coverage 
+
+for f in *_sorted.cov
+do
+  STEM=$(basename "${f}" _sorted.cov)
+  cat "${f}" | awk -F $'\t' 'BEGIN {OFS = FS} {if ($5+$6 >= 5) {print $1, $2, $3, $4}}' \
+  > "${STEM}"_5x_sorted.bedgraph
+done
+
+# Bedgraphs for 10X coverage 
+
+for f in *_sorted.cov
+do
+  STEM=$(basename "${f}" _sorted.cov)
+  cat "${f}" | awk -F $'\t' 'BEGIN {OFS = FS} {if ($5+$6 >= 10) {print $1, $2, $3, $4}}' \
+  > "${STEM}"_10x_sorted.bedgraph
+done
+```
 
 ## <a name="filter_cov"></a> **Filter for a specific coverage (5X, 10X)**
 
@@ -937,8 +976,6 @@ do
 done
 ```
 
-No error messages. Move on
-
 ### OVERVIEW 
 
 Moving forward I want to see the differences in data we get from 5X and 10X. We'll have to decide which threshold to use moving forward. We want confidence and high resolution but also a large dataset so we need a happy medium. 
@@ -951,6 +988,141 @@ At this point all samples have the following files:
 - `1755_5x_sorted.tab`  
 - `1755_10x_sorted.tab`   
 
+### 5x coverage
+
+`wc -l *5x_sorted.tab`: 
+
+```
+    6865623 1047_5x_sorted.tab
+    8069887 1051_5x_sorted.tab
+    7444259 1059_5x_sorted.tab
+    7980157 1090_5x_sorted.tab
+    6832422 1103_5x_sorted.tab
+   2852639 1147_5x_sorted.tab
+    6283492 1159_5x_sorted.tab
+    6976028 1168_5x_sorted.tab
+    7422350 1184_5x_sorted.tab
+    7882151 1205_5x_sorted.tab
+    5010918 1225_5x_sorted.tab
+    6755446 1238_5x_sorted.tab
+    8279427 1281_5x_sorted.tab
+    6140381 1296_5x_sorted.tab
+    7465439 1303_5x_sorted.tab
+      80637 1312_5x_sorted.tab
+    7859939 1329_5x_sorted.tab
+    7546253 1415_5x_sorted.tab
+    8010156 1416_5x_sorted.tab
+    6948549 1427_5x_sorted.tab
+    5184139 1445_5x_sorted.tab
+    7492393 1459_5x_sorted.tab
+    7658361 1487_5x_sorted.tab
+    7545425 1536_5x_sorted.tab
+    7246827 1559_5x_sorted.tab
+    8173394 1563_5x_sorted.tab
+    8099950 1571_5x_sorted.tab
+    7413674 1582_5x_sorted.tab
+    7495356 1596_5x_sorted.tab
+    8376183 1641_5x_sorted.tab
+    7389924 1647_5x_sorted.tab
+     688805 1707_5x_sorted.tab
+    9910482 1709_5x_sorted.tab
+    8284869 1728_5x_sorted.tab
+    7562180 1732_5x_sorted.tab
+    7367647 1755_5x_sorted.tab
+    7283732 1757_5x_sorted.tab
+    6814612 1765_5x_sorted.tab
+    4084161 1777_5x_sorted.tab
+    8032989 1820_5x_sorted.tab
+    7953679 2012_5x_sorted.tab
+    7451856 2064_5x_sorted.tab
+    6390273 2072_5x_sorted.tab
+    8048988 2087_5x_sorted.tab
+    5472832 2185_5x_sorted.tab
+    6521355 2197_5x_sorted.tab
+    1707460 2212_5x_sorted.tab
+    8257655 2300_5x_sorted.tab
+    7474390 2304_5x_sorted.tab
+    7265909 2306_5x_sorted.tab
+    7794581 2409_5x_sorted.tab
+    7172620 2413_5x_sorted.tab
+    6997311 2513_5x_sorted.tab
+    8368965 2550_5x_sorted.tab
+    6815393 2564_5x_sorted.tab
+    6847716 2668_5x_sorted.tab
+    7157433 2861_5x_sorted.tab
+    6735201 2877_5x_sorted.tab
+    8929120 2878_5x_sorted.tab
+    7282137 2879_5x_sorted.tab
+  415456130 total
+```
+
+### 10x coverage
+
+`wc -l *10x_sorted.tab`: 
+
+```
+ 3982376 1047_10x_sorted.tab
+    5467738 1051_10x_sorted.tab
+    5273220 1059_10x_sorted.tab
+    5707710 1090_10x_sorted.tab
+    3913593 1103_10x_sorted.tab
+     527796 1147_10x_sorted.tab
+    3262202 1159_10x_sorted.tab
+    4656862 1168_10x_sorted.tab
+    5010797 1184_10x_sorted.tab
+    5914757 1205_10x_sorted.tab
+    1898034 1225_10x_sorted.tab
+    4054856 1238_10x_sorted.tab
+    6454765 1281_10x_sorted.tab
+    3033366 1296_10x_sorted.tab
+    5037380 1303_10x_sorted.tab
+      46104 1312_10x_sorted.tab
+    5370531 1329_10x_sorted.tab
+    4721474 1415_10x_sorted.tab
+    5994279 1416_10x_sorted.tab
+    4263187 1427_10x_sorted.tab
+    2073468 1445_10x_sorted.tab
+    5046779 1459_10x_sorted.tab
+    5408130 1487_10x_sorted.tab
+    5030710 1536_10x_sorted.tab
+    4676058 1559_10x_sorted.tab
+    5935725 1563_10x_sorted.tab
+    6100858 1571_10x_sorted.tab
+    4908976 1582_10x_sorted.tab
+    4802522 1596_10x_sorted.tab
+    6385840 1641_10x_sorted.tab
+     4952502 1647_10x_sorted.tab
+      93089 1707_10x_sorted.tab
+    9198191 1709_10x_sorted.tab
+    5957516 1728_10x_sorted.tab
+    5272299 1732_10x_sorted.tab
+    5059171 1755_10x_sorted.tab
+    4701658 1757_10x_sorted.tab
+    3976650 1765_10x_sorted.tab
+    1147103 1777_10x_sorted.tab
+    6090104 1820_10x_sorted.tab
+    5349823 2012_10x_sorted.tab
+    5071313 2064_10x_sorted.tab
+    3560352 2072_10x_sorted.tab
+    5657362 2087_10x_sorted.tab
+    2403681 2185_10x_sorted.tab
+    3511657 2197_10x_sorted.tab
+     206987 2212_10x_sorted.tab
+    6133288 2300_10x_sorted.tab
+    4836135 2304_10x_sorted.tab
+    4608006 2306_10x_sorted.tab
+    5409933 2409_10x_sorted.tab
+    4339191 2413_10x_sorted.tab
+    4547010 2513_10x_sorted.tab
+        6939987 2550_10x_sorted.tab
+    4086151 2564_10x_sorted.tab
+    4132946 2668_10x_sorted.tab
+    4501831 2861_10x_sorted.tab
+    3682802 2877_10x_sorted.tab
+    7221073 2878_10x_sorted.tab
+    4803990 2879_10x_sorted.tab
+  272411894 total
+```
 
 ## <a name="filter_pos"></a> **Create a file with positions found in all samples**
 
@@ -1156,10 +1328,35 @@ wc -l *5x_enrichment.bed > 5x_enrichment_sample_size.txt
 
 ### 5X COVERAGE 
 
-
+```
+    2955 1047_5x_sorted.tab_gene_CpG_5x_enrichment.bed
+    2955 1051_5x_sorted.tab_gene_CpG_5x_enrichment.bed
+    2955 1059_5x_sorted.tab_gene_CpG_5x_enrichment.bed
+    2955 1090_5x_sorted.tab_gene_CpG_5x_enrichment.bed
+    2955 1103_5x_sorted.tab_gene_CpG_5x_enrichment.bed
+    2955 1147_5x_sorted.tab_gene_CpG_5x_enrichment.bed
+    2955 1159_5x_sorted.tab_gene_CpG_5x_enrichment.bed
+    2955 1168_5x_sorted.tab_gene_CpG_5x_enrichment.bed
+    2955 1184_5x_sorted.tab_gene_CpG_5x_enrichment.bed
+    2955 1205_5x_sorted.tab_gene_CpG_5x_enrichment.bed
+```
 
 ### 10X COVERAGE 
 
+```
+    190 1047_10x_sorted.tab_gene_CpG_10x_enrichment.bed
+    190 1051_10x_sorted.tab_gene_CpG_10x_enrichment.bed
+    190 1059_10x_sorted.tab_gene_CpG_10x_enrichment.bed
+    190 1090_10x_sorted.tab_gene_CpG_10x_enrichment.bed
+    190 1103_10x_sorted.tab_gene_CpG_10x_enrichment.bed
+    190 1147_10x_sorted.tab_gene_CpG_10x_enrichment.bed
+    190 1159_10x_sorted.tab_gene_CpG_10x_enrichment.bed
+    190 1168_10x_sorted.tab_gene_CpG_10x_enrichment.bed
+    190 1184_10x_sorted.tab_gene_CpG_10x_enrichment.bed
+    190 1205_10x_sorted.tab_gene_CpG_10x_enrichment.bed
+```
+
+These values seem really low..
 
 ## <a name="export"></a> **Export Files**
 
@@ -1175,8 +1372,6 @@ scp 'emma_strand@ssh3.hac.uri.edu:/data/putnamlab/estrand/HoloInt_WGBS/merged_co
 ### Versions 1 and 2 of the Pacuta genome
 
 Halfway through my analysis, a new and improved P. acuta genome was released. I did the analysis with both of these files. 
-
-
 
 ### Gene annotation with the wrong Pacuta file 
 

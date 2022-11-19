@@ -214,7 +214,7 @@ path: `/data/putnamlab/estrand/Montipora_capitata_HIv3.genes.gff3`
 
 ```
 #!/bin/bash
-#SBATCH -t 60:00:00
+#SBATCH -t 500:00:00
 #SBATCH --nodes=1 --ntasks-per-node=1
 #SBATCH --export=NONE
 #SBATCH --mem=100GB
@@ -257,7 +257,7 @@ done
 
 ```
 #!/bin/bash
-#SBATCH -t 60:00:00
+#SBATCH -t 500:00:00
 #SBATCH --nodes=1 --ntasks-per-node=1
 #SBATCH --export=NONE
 #SBATCH --mem=100GB
