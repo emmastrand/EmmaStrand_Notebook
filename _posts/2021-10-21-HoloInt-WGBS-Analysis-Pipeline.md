@@ -998,7 +998,7 @@ At this point all samples have the following files:
     7444259 1059_5x_sorted.tab
     7980157 1090_5x_sorted.tab
     6832422 1103_5x_sorted.tab
-   2852639 1147_5x_sorted.tab
+    2852639 1147_5x_sorted.tab
     6283492 1159_5x_sorted.tab
     6976028 1168_5x_sorted.tab
     7422350 1184_5x_sorted.tab
@@ -1091,7 +1091,7 @@ At this point all samples have the following files:
     4908976 1582_10x_sorted.tab
     4802522 1596_10x_sorted.tab
     6385840 1641_10x_sorted.tab
-     4952502 1647_10x_sorted.tab
+    4952502 1647_10x_sorted.tab
       93089 1707_10x_sorted.tab
     9198191 1709_10x_sorted.tab
     5957516 1728_10x_sorted.tab
@@ -1114,7 +1114,7 @@ At this point all samples have the following files:
     5409933 2409_10x_sorted.tab
     4339191 2413_10x_sorted.tab
     4547010 2513_10x_sorted.tab
-        6939987 2550_10x_sorted.tab
+    6939987 2550_10x_sorted.tab
     4086151 2564_10x_sorted.tab
     4132946 2668_10x_sorted.tab
     4501831 2861_10x_sorted.tab
@@ -1123,6 +1123,42 @@ At this point all samples have the following files:
     4803990 2879_10x_sorted.tab
   272411894 total
 ```
+
+## <a name="prefilter"></a> **Remove samples that we don't want to include in analysis**
+
+List of potential samples to take out:  
+1. 1312: 5X coverage = 80,637; low aligned uniquely in multiqc report; methylation % = 13.1% 
+2. 1147: 5X coverage = 2,852,639; low number of reads from the beginning
+3. 1707: 5X coverage = 688,805; a lot of deduplicated reads removed 
+4. 1709: 5X coverage = 9,910,482; way high reads at the beginning 
+5. 1777: 5X coverage = 4,084,161; low number of reads from the beginning
+6. 2197: Methlyation % = 4.1%
+7. 1225: Methylation % = 4.2% 
+  
+1312 is *M. capitata for another project.* Filter this one out. 
+
+Only 59 *P. acuta* samples, remove 2197 and 1225 for high methylation bias 
+
+- 2197 = ATHC 20181117 Tank 11
+- 1225 = HTAC 20181117 Tank 4 
+
+```
+mkdir unused_samples
+
+# doing cp first just in case this command doesn't run correctly 
+cp merged_cov_genomev2/1225* unused_samples/
+cp merged_cov_genomev2/2197* unused_samples/
+
+rm merged_cov_genomev2/2197* 
+rm merged_cov_genomev2/1225*
+
+# this worked and is safe 
+mv merged_cov_genomev2/1312* unused_samples/
+```
+
+After removing files - run the below scripts (again if already done previously)
+
+**Total sample number is now 57.** 
 
 ## <a name="filter_pos"></a> **Create a file with positions found in all samples**
 
@@ -1188,10 +1224,19 @@ module load BEDTools/2.27.1-foss-2018b
 multiIntersectBed -i *_5x_sorted.tab > CpG.all.samps.5x_sorted.bed
 multiIntersectBed -i *_10x_sorted.tab > CpG.all.samps.10x_sorted.bed
 
-cat CpG.all.samps.5x_sorted.bed | awk '$4 ==60' > CpG.filt.all.samps.5x_sorted.bed
+cat CpG.all.samps.5x_sorted.bed | awk '$4 ==57' > CpG.filt.all.samps.5x_sorted.bed
 
-cat CpG.all.samps.10x_sorted.bed | awk '$4 ==60' > CpG.filt.all.samps.10x_sorted.bed
+cat CpG.all.samps.10x_sorted.bed | awk '$4 ==57' > CpG.filt.all.samps.10x_sorted.bed
 ```
+
+```
+wc -l CpG.filt.all.samps.5x_sorted.bed
+202245 CpG.filt.all.samps.5x_sorted.bed
+
+wc -l CpG.filt.all.samps.10x_sorted.bed
+11731 CpG.filt.all.samps.10x_sorted.bed
+```
+
 
 ## <a name="gene_anno"></a> **Gene Annotation file**
 
@@ -1329,6 +1374,50 @@ wc -l *5x_enrichment.bed > 5x_enrichment_sample_size.txt
 ### 5X COVERAGE 
 
 ```
+
+```
+
+### 10X COVERAGE 
+
+```
+
+```
+
+
+## <a name="export"></a> **Export Files**
+
+```
+scp 'emma_strand@ssh3.hac.uri.edu:/data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*_5x_enrichment.bed' ~/MyProjects/Acclim_Dynamics_molecular/data/WGBS/output/meth_counts_5x
+
+scp 'emma_strand@ssh3.hac.uri.edu:/data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*_10x_enrichment.bed' ~/MyProjects/Acclim_Dynamics_molecular/data/WGBS/output/meth_counts_10x
+```
+
+
+## <a name="troubleshooting"></a> **Troubleshooting**
+
+### Prior to filtering out samples 1312, 1225, and 2197
+
+```
+wc -l CpG.all.samps.5x_sorted.bed
+# 10189403 CpG.all.samps.5x_sorted.bed
+
+wc -l CpG.filt.all.samps.5x_sorted.bed
+# 3465 CpG.filt.all.samps.5x_sorted.bed
+
+cat CpG.all.samps.5x_sorted.bed | awk '$4 ==57' > CpG.filt.all.samps.5x_sorted-57.bed
+# 981018 CpG.filt.all.samps.5x_sorted-57.bed
+
+cat CpG.all.samps.5x_sorted.bed | awk '$4 ==58' > CpG.filt.all.samps.5x_sorted-58.bed
+# 610555 CpG.filt.all.samps.5x_sorted-58.bed
+
+cat CpG.all.samps.5x_sorted.bed | awk '$4 ==59' > CpG.filt.all.samps.5x_sorted-59.bed
+# 204177 CpG.filt.all.samps.5x_sorted-59.bed
+```
+
+
+#### 5X COVERAGE 
+
+```
     2955 1047_5x_sorted.tab_gene_CpG_5x_enrichment.bed
     2955 1051_5x_sorted.tab_gene_CpG_5x_enrichment.bed
     2955 1059_5x_sorted.tab_gene_CpG_5x_enrichment.bed
@@ -1341,7 +1430,7 @@ wc -l *5x_enrichment.bed > 5x_enrichment_sample_size.txt
     2955 1205_5x_sorted.tab_gene_CpG_5x_enrichment.bed
 ```
 
-### 10X COVERAGE 
+#### 10X COVERAGE 
 
 ```
     190 1047_10x_sorted.tab_gene_CpG_10x_enrichment.bed
@@ -1356,18 +1445,7 @@ wc -l *5x_enrichment.bed > 5x_enrichment_sample_size.txt
     190 1205_10x_sorted.tab_gene_CpG_10x_enrichment.bed
 ```
 
-These values seem really low..
 
-## <a name="export"></a> **Export Files**
-
-```
-scp 'emma_strand@ssh3.hac.uri.edu:/data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*_5x_enrichment.bed' ~/MyProjects/Acclim_Dynamics_molecular/data/WGBS/output/meth_counts_5x
-
-scp 'emma_strand@ssh3.hac.uri.edu:/data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*_10x_enrichment.bed' ~/MyProjects/Acclim_Dynamics_molecular/data/WGBS/output/meth_counts_10x
-```
-
-
-## <a name="troubleshooting"></a> **Troubleshooting**
 
 ### Versions 1 and 2 of the Pacuta genome
 
