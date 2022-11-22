@@ -176,3 +176,19 @@ scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/PointJudithData_MB
 
 https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/MBDBS/MBDBS_methylseq_PJ_multiqc_report.html
 
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/MBDBS/multiqc/alignment-rates.png?raw=true)
+
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/MBDBS/multiqc/deduplication.png?raw=true)
+
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/MBDBS/multiqc/strand-alignment.png?raw=true)
+
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/MBDBS/multiqc/cytosine-perc-meth.png?raw=true)
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/MBDBS/multiqc/read1-mbias.png?raw=true)
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/MBDBS/multiqc/read2-mbias.png?raw=true)
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/MBDBS/multiqc/covhist.png?raw=true)
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/MBDBS/multiqc/genomecov.png?raw=true)
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/MBDBS/multiqc/insertsizehist.png?raw=true)
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/MBDBS/multiqc/gc-content.png?raw=true)
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/MBDBS/multiqc/complexity-curve.png?raw=true)
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/MBDBS/multiqc/cutadapt-filt.png?raw=true)
+![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/MBDBS/multiqc/trimseqlengths.png?raw=true)
