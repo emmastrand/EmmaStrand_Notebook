@@ -717,11 +717,143 @@ Pocillopora_acuta_HIv2___Sc0000000      27906   27908   61.111111
 Pocillopora_acuta_HIv2___Sc0000000      28031   28033   83.333333
 ```
 
+### Characterize genomic locations of CpGs for each section: Transcript, CDS, Downstream flanks, Flanks, Upstream flanks, Exons, Intergenic
+
+*Intergenic isn't working right now -- see above errors.* 
+
+`characterize-loc.sh`: 
+
+```
+#!/bin/bash
+#SBATCH --job-name="ch-loc"
+#SBATCH -t 500:00:00
+#SBATCH --nodes=1 --ntasks-per-node=10
+#SBATCH --mem=128GB
+#SBATCH --export=NONE
+#SBATCH -D /data/putnamlab/estrand/HoloInt_WGBS/genomic_feature #### this is the output from the merge cov step above 
+#SBATCH --cpus-per-task=3
+#SBATCH --error="%x_error.%j" #if your job fails, the error report will be put in this file
+#SBATCH --output="%x_output.%j" #once your job is completed, any final job report comments will be put in this file
 
 
-### Transcript 
+# load modules needed (specific need for my computer)
+source /usr/share/Modules/init/sh # load the module function
+module load BEDTools/2.27.1-foss-2018b
 
-*stopped here until addressed all of the above sections for gene vs. transcript vs. intron issue* 
 
-1. Run Characterize methylation for each CpG dinucleotide section
-2. Address issues listed at the top.
+##  Transcripts 
+
+# 5X
+for f in /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*5X*bed
+do
+  intersectBed \
+  -u \
+  -a ${f} \
+  -b Pocillopora_acuta_HIv2.genes.transcript.gff3 \
+  > ${f}-paTranscript5X
+done
+
+# 10X 
+for f in /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*10X*bed
+do
+  intersectBed \
+  -u \
+  -a ${f} \
+  -b Pocillopora_acuta_HIv2.genes.transcript.gff3 \
+  > ${f}-paTranscript10X
+done
+
+
+## CDS 
+
+#5X 
+for f in /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*5X*bed
+do
+  intersectBed \
+  -u \
+  -a ${f} \
+  -b Pocillopora_acuta_HIv2.genes.cds.gff3 \
+  > ${f}-paCDS5X
+done
+
+#10X 
+for f in /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*10X*bed
+do
+  intersectBed \
+  -u \
+  -a ${f} \
+  -b Pocillopora_acuta_HIv2.genes.cds.gff3 \
+  > ${f}-paCDS10X
+done
+
+## Flanking regions
+
+# 5X 
+for f in /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*5X*bed
+do
+  intersectBed \
+  -u \
+  -a ${f} \
+  -b Pocillopora_acuta_HIv2.flanks.gff \
+  > ${f}-paFlanks5X
+done
+
+# 10X 
+for f in /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*10X*bed
+do
+  intersectBed \
+  -u \
+  -a ${f} \
+  -b Pocillopora_acuta_HIv2.flanks.gff \
+  > ${f}-paFlanks10X
+done
+
+## Upstream flanking Regions
+
+# 5X
+for f in /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*5X*bed
+do
+  intersectBed \
+  -u \
+  -a ${f} \
+  -b Pocillopora_acuta_HIv2.flanks.Upstream.gff  \
+  > ${f}-paFlanksUpstream5X
+done
+
+# 10X
+for f in /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*10X*bed
+do
+  intersectBed \
+  -u \
+  -a ${f} \
+  -b Pocillopora_acuta_HIv2.flanks.Upstream.gff  \
+  > ${f}-paFlanksUpstream10X
+done
+
+## Downstream flanking Regions
+
+# 5X
+for f in /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*5X*bed
+do
+  intersectBed \
+  -u \
+  -a ${f} \
+  -b Pocillopora_acuta_HIv2.flanks.Downstream.gff  \
+  > ${f}-paFlanksDownstream5X
+done
+
+# 10X
+for f in /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*10X*bed
+do
+  intersectBed \
+  -u \
+  -a ${f} \
+  -b Pocillopora_acuta_HIv2.flanks.Downstream.gff  \
+  > ${f}-paFlanksDownstream10X
+done
+
+## Intergenic: 
+## Introns: not in original file
+```
+
+*left off at the above script running..* 
