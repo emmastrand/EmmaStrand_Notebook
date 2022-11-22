@@ -18,7 +18,6 @@ References:
 **Come back to:**    
 - Original gff3 doesn't contain introns -- needed?  
 - #8 intergenic region error 
-- Downstream flank CG motif 
 
 ## Setting Up Andromeda 
 
@@ -445,7 +444,7 @@ intersectBed \
 ERROR: Received illegal bin number 4294967295 from getBin call.
 ERROR: Unable to add record to tree.
 
-**Have to come back to this?** 
+*We only use the gff file created from this in further steps so I think this is OK to leave for now..* 
 
 ### Intergenic Region 
 
@@ -454,7 +453,38 @@ Error in above section so need to come back to this...
 ## Organize coverage files
 
 `wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*5x_sorted.bedgraph > Pacuta-v2-5x-bedgraph-counts.txt`
+
+```
+head Pacuta-v2-5x-bedgraph-counts.txt
+
+    6865623 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_5x_sorted.bedgraph
+    8069887 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1051_5x_sorted.bedgraph
+    7444259 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1059_5x_sorted.bedgraph
+    7980157 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1090_5x_sorted.bedgraph
+    6832422 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1103_5x_sorted.bedgraph
+    2852639 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1147_5x_sorted.bedgraph
+    6283492 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1159_5x_sorted.bedgraph
+    6976028 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1168_5x_sorted.bedgraph
+    7422350 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1184_5x_sorted.bedgraph
+    7882151 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1205_5x_sorted.bedgraph
+```
+
 `wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*10x_sorted.bedgraph > Pacuta-v2-10x-bedgraph-counts.txt`
+
+```
+head Pacuta-v2-10x-bedgraph-counts.txt
+
+    3982376 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_10x_sorted.bedgraph
+    5467738 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1051_10x_sorted.bedgraph
+    5273220 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1059_10x_sorted.bedgraph
+    5707710 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1090_10x_sorted.bedgraph
+    3913593 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1103_10x_sorted.bedgraph
+     527796 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1147_10x_sorted.bedgraph
+    3262202 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1159_10x_sorted.bedgraph
+    4656862 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1168_10x_sorted.bedgraph
+    5010797 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1184_10x_sorted.bedgraph
+    5914757 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1205_10x_sorted.bedgraph
+```
 
 ## Characterize methylation for each CpG dinucleotide
 
@@ -462,37 +492,43 @@ Methylated: > 50% methylation
 Sparsely methylated: 10-50% methylation
 Unmethylated: < 10% methylation
 
-### Methylated 
-
-**5X** 
+`characterize-meth.sh`: (~20 min)
 
 ```
+#!/bin/bash
+#SBATCH --job-name="ch-meth"
+#SBATCH -t 500:00:00
+#SBATCH --nodes=1 --ntasks-per-node=10
+#SBATCH --mem=128GB
+#SBATCH --export=NONE
+#SBATCH -D /data/putnamlab/estrand/HoloInt_WGBS/genomic_feature #### this is the output from the merge cov step above 
+#SBATCH --cpus-per-task=3
+#SBATCH --error="%x_error.%j" #if your job fails, the error report will be put in this file
+#SBATCH --output="%x_output.%j" #once your job is completed, any final job report comments will be put in this file
+
+## Methylated
+
+# 5X
 for f in /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*5x_sorted.bedgraph
 do
     awk '{if ($4 >= 50) { print $1, $2, $3, $4 }}' ${f} \
     > ${f}-Meth
 done
 
-wc -l *5x_sorted.bedgraph-Meth > ../Pacuta-v2-5x-Meth-counts.txt
-```
+wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*5x_sorted.bedgraph-Meth > Pacuta-v2-5x-Meth-counts.txt
 
-**10X** 
-
-```
+#10X
 for f in /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*10x_sorted.bedgraph
 do
     awk '{if ($4 >= 50) { print $1, $2, $3, $4 }}' ${f} \
     > ${f}-Meth
 done
 
-wc -l *10x_sorted.bedgraph-Meth > ../Pacuta-v2-10x-Meth-counts.txt
-```
+wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*10x_sorted.bedgraph-Meth > Pacuta-v2-10x-Meth-counts.txt
 
-### Sparsely methylated
+## Sparsely methylated
 
-**5X** 
-
-```
+# 5X 
 for f in /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*5x_sorted.bedgraph
 do
     awk '{if ($4 < 50) { print $1, $2, $3, $4}}' ${f} \
@@ -500,12 +536,9 @@ do
     > ${f}-sparseMeth
 done
 
-wc -l *5x_sorted.bedgraph-sparseMeth > ../Pacuta-v2-5x-sparseMeth-counts.txt
-```
+wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*5x_sorted.bedgraph-sparseMeth > Pacuta-v2-5x-sparseMeth-counts.txt
 
-**10X** 
-
-```
+# 10X
 for f in /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*10x_sorted.bedgraph
 do
     awk '{if ($4 < 50) { print $1, $2, $3, $4}}' ${f} \
@@ -513,100 +546,182 @@ do
     > ${f}-sparseMeth
 done
 
-wc -l *10x_sorted.bedgraph-sparseMeth > ../Pacuta-v2-10x-sparseMeth-counts.txt
-```
+wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*10x_sorted.bedgraph-sparseMeth > Pacuta-v2-10x-sparseMeth-counts.txt
 
-### Unmethylated
+## Unmethylated
 
-**5X** 
-
-```
+# 5X 
 for f in /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*5x_sorted.bedgraph
 do
     awk '{if ($4 <= 10) { print $1, $2, $3, $4 }}' ${f} \
     > ${f}-unMeth
 done
 
-wc -l *5x_sorted.bedgraph-unMeth > ../Pacuta-v2-5x-unMeth-counts.txt
-```
+wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*5x_sorted.bedgraph-unMeth > Pacuta-v2-5x-unMeth-counts.txt
 
-**10X** 
-
-```
+# 10X
 for f in /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*10x_sorted.bedgraph
 do
     awk '{if ($4 <= 10) { print $1, $2, $3, $4 }}' ${f} \
     > ${f}-unMeth
 done
 
-wc -l *10x_sorted.bedgraph-unMeth > ../Pacuta-v2-10x-unMeth-counts.txt
+wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*10x_sorted.bedgraph-unMeth > Pacuta-v2-10x-unMeth-counts.txt
+```
+
+`head 2012_5x_sorted.bedgraph-Meth`:
+
+```
+Pocillopora_acuta_HIv2___Sc0000000 25824 25826 90.000000
+Pocillopora_acuta_HIv2___Sc0000000 25835 25837 81.818182
+Pocillopora_acuta_HIv2___Sc0000000 27032 27034 85.714286
+Pocillopora_acuta_HIv2___Sc0000000 27058 27060 90.909091
+Pocillopora_acuta_HIv2___Sc0000000 27074 27076 86.666667
+Pocillopora_acuta_HIv2___Sc0000000 27634 27636 53.333333
+Pocillopora_acuta_HIv2___Sc0000000 27685 27687 95.454545
+Pocillopora_acuta_HIv2___Sc0000000 27791 27793 91.666667
+Pocillopora_acuta_HIv2___Sc0000000 27906 27908 61.111111
+Pocillopora_acuta_HIv2___Sc0000000 28031 28033 83.333333
+```
+
+`head 1445_5x_sorted.bedgraph-sparseMeth`:
+
+```
+Pocillopora_acuta_HIv2___Sc0000000 1363 1365 16.666667
+Pocillopora_acuta_HIv2___Sc0000000 3023 3025 12.500000
+Pocillopora_acuta_HIv2___Sc0000000 3149 3151 18.181818
+Pocillopora_acuta_HIv2___Sc0000000 5760 5762 14.285714
+Pocillopora_acuta_HIv2___Sc0000000 9015 9017 22.222222
+Pocillopora_acuta_HIv2___Sc0000000 9158 9160 11.111111
+Pocillopora_acuta_HIv2___Sc0000000 11110 11112 16.666667
+Pocillopora_acuta_HIv2___Sc0000000 11118 11120 14.285714
+Pocillopora_acuta_HIv2___Sc0000000 13679 13681 12.500000
+Pocillopora_acuta_HIv2___Sc0000000 13682 13684 12.500000
+```
+
+`head 1445_5x_sorted.bedgraph-unMeth`:
+
+```
+Pocillopora_acuta_HIv2___Sc0000000 119 121 0.000000
+Pocillopora_acuta_HIv2___Sc0000000 243 245 0.000000
+Pocillopora_acuta_HIv2___Sc0000000 374 376 0.000000
+Pocillopora_acuta_HIv2___Sc0000000 490 492 0.000000
+Pocillopora_acuta_HIv2___Sc0000000 496 498 0.000000
+Pocillopora_acuta_HIv2___Sc0000000 515 517 0.000000
+Pocillopora_acuta_HIv2___Sc0000000 551 553 10.000000
+Pocillopora_acuta_HIv2___Sc0000000 563 565 0.000000
+Pocillopora_acuta_HIv2___Sc0000000 1040 1042 0.000000
+Pocillopora_acuta_HIv2___Sc0000000 1089 1091 0.000000
+```
+
+`head Pacuta-v2-10x-unMeth-counts.txt`:
+
+```
+   101484 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_10x_sorted.bedgraph-Meth
+   135771 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1051_10x_sorted.bedgraph-Meth
+   127601 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1059_10x_sorted.bedgraph-Meth
+   131345 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1090_10x_sorted.bedgraph-Meth
+    88841 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1103_10x_sorted.bedgraph-Meth
+     8871 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1147_10x_sorted.bedgraph-Meth
+    79578 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1159_10x_sorted.bedgraph-Meth
+   130632 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1168_10x_sorted.bedgraph-Meth
+   110800 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1184_10x_sorted.bedgraph-Meth
+   111070 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1205_10x_sorted.bedgraph-Meth
 ```
 
 ## Characterize genomic locations of CpGs
 
-### Create BEDfiles
+### Create BED files
 
-**5X** 
-
-```
-for f in *5x_sorted.bedgraph
-do
-    awk '{print $1"\t"$2"\t"$3"\t"$4}' ${f} > ${f}.bed
-    wc -l ${f}.bed
-done
-
-for f in *5x_sorted.bedgraph-Meth
-do
-    awk '{print $1"\t"$2"\t"$3"\t"$4}' ${f} > ${f}.bed
-    wc -l ${f}.bed
-done
-
-for f in *5x_sorted.bedgraph-sparseMeth
-do
-    awk '{print $1"\t"$2"\t"$3"\t"$4}' ${f} > ${f}.bed
-    wc -l ${f}.bed
-done
-
-for f in *5x_sorted.bedgraph-unMeth
-do
-    awk '{print $1"\t"$2"\t"$3"\t"$4}' ${f} > ${f}.bed
-    wc -l ${f}.bed
-done
-```
-
-**5X** 
+`create-bed.sh`: 
 
 ```
-for f in *10x_sorted.bedgraph
+#!/bin/bash
+#SBATCH --job-name="bedfiles"
+#SBATCH -t 500:00:00
+#SBATCH --nodes=1 --ntasks-per-node=10
+#SBATCH --mem=128GB
+#SBATCH --export=NONE
+#SBATCH -D /data/putnamlab/estrand/HoloInt_WGBS/genomic_feature #### this is the output from the merge cov step above 
+#SBATCH --cpus-per-task=3
+#SBATCH --error="%x_error.%j" #if your job fails, the error report will be put in this file
+#SBATCH --output="%x_output.%j" #once your job is completed, any final job report comments will be put in this file
+
+## Create BED files
+
+# 5X 
+
+for f in /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*5x_sorted.bedgraph
 do
     awk '{print $1"\t"$2"\t"$3"\t"$4}' ${f} > ${f}.bed
     wc -l ${f}.bed
 done
 
-for f in *10x_sorted.bedgraph-Meth
+for f in /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*5x_sorted.bedgraph-Meth
 do
     awk '{print $1"\t"$2"\t"$3"\t"$4}' ${f} > ${f}.bed
     wc -l ${f}.bed
 done
 
-for f in *10x_sorted.bedgraph-sparseMeth
+for f in /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*5x_sorted.bedgraph-sparseMeth
 do
     awk '{print $1"\t"$2"\t"$3"\t"$4}' ${f} > ${f}.bed
     wc -l ${f}.bed
 done
 
-for f in *10x_sorted.bedgraph-unMeth
+for f in /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*5x_sorted.bedgraph-unMeth
+do
+    awk '{print $1"\t"$2"\t"$3"\t"$4}' ${f} > ${f}.bed
+    wc -l ${f}.bed
+done
+
+# 10X 
+
+for f in /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*10x_sorted.bedgraph
+do
+    awk '{print $1"\t"$2"\t"$3"\t"$4}' ${f} > ${f}.bed
+    wc -l ${f}.bed
+done
+
+for f in /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*10x_sorted.bedgraph-Meth
+do
+    awk '{print $1"\t"$2"\t"$3"\t"$4}' ${f} > ${f}.bed
+    wc -l ${f}.bed
+done
+
+for f in /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*10x_sorted.bedgraph-sparseMeth
+do
+    awk '{print $1"\t"$2"\t"$3"\t"$4}' ${f} > ${f}.bed
+    wc -l ${f}.bed
+done
+
+for f in /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*10x_sorted.bedgraph-unMeth
 do
     awk '{print $1"\t"$2"\t"$3"\t"$4}' ${f} > ${f}.bed
     wc -l ${f}.bed
 done
 ```
+
+`head head 2012_10x_sorted.bedgraph-Meth.bed`:
+
+```
+Pocillopora_acuta_HIv2___Sc0000000      25824   25826   90.000000
+Pocillopora_acuta_HIv2___Sc0000000      25835   25837   81.818182
+Pocillopora_acuta_HIv2___Sc0000000      27032   27034   85.714286
+Pocillopora_acuta_HIv2___Sc0000000      27058   27060   90.909091
+Pocillopora_acuta_HIv2___Sc0000000      27074   27076   86.666667
+Pocillopora_acuta_HIv2___Sc0000000      27634   27636   53.333333
+Pocillopora_acuta_HIv2___Sc0000000      27685   27687   95.454545
+Pocillopora_acuta_HIv2___Sc0000000      27791   27793   91.666667
+Pocillopora_acuta_HIv2___Sc0000000      27906   27908   61.111111
+Pocillopora_acuta_HIv2___Sc0000000      28031   28033   83.333333
+```
+
+
 
 ### Transcript 
 
 *stopped here until addressed all of the above sections for gene vs. transcript vs. intron issue* 
 
-1. Bedgraph script still running 
-2. Run Organize coverage files section 
-3. Run Characterize methylation for each CpG dinucleotide section
-4. Address issues listed at the top.
+1. Run Characterize methylation for each CpG dinucleotide section
+2. Address issues listed at the top.
