@@ -1374,13 +1374,33 @@ wc -l *5x_enrichment.bed > 5x_enrichment_sample_size.txt
 ### 5X COVERAGE 
 
 ```
-
+    221239 1047_5x_sorted.tab_gene_CpG_5x_enrichment.bed
+    221239 1051_5x_sorted.tab_gene_CpG_5x_enrichment.bed
+    221239 1059_5x_sorted.tab_gene_CpG_5x_enrichment.bed
+    221239 1090_5x_sorted.tab_gene_CpG_5x_enrichment.bed
+    221239 1103_5x_sorted.tab_gene_CpG_5x_enrichment.bed
+    221239 1147_5x_sorted.tab_gene_CpG_5x_enrichment.bed
+    221239 1159_5x_sorted.tab_gene_CpG_5x_enrichment.bed
+    221239 1168_5x_sorted.tab_gene_CpG_5x_enrichment.bed
+    221239 1184_5x_sorted.tab_gene_CpG_5x_enrichment.bed
+    221239 1205_5x_sorted.tab_gene_CpG_5x_enrichment.bed
 ```
 
 ### 10X COVERAGE 
 
-```
+`head 10x_enrichment_sample_size.txt` 
 
+```
+    10152 1047_10x_sorted.tab_gene_CpG_10x_enrichment.bed
+    10152 1051_10x_sorted.tab_gene_CpG_10x_enrichment.bed
+    10152 1059_10x_sorted.tab_gene_CpG_10x_enrichment.bed
+    10152 1090_10x_sorted.tab_gene_CpG_10x_enrichment.bed
+    10152 1103_10x_sorted.tab_gene_CpG_10x_enrichment.bed
+    10152 1147_10x_sorted.tab_gene_CpG_10x_enrichment.bed
+    10152 1159_10x_sorted.tab_gene_CpG_10x_enrichment.bed
+    10152 1168_10x_sorted.tab_gene_CpG_10x_enrichment.bed
+    10152 1184_10x_sorted.tab_gene_CpG_10x_enrichment.bed
+    10152 1205_10x_sorted.tab_gene_CpG_10x_enrichment.bed
 ```
 
 
