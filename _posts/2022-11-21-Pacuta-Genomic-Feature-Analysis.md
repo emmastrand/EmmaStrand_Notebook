@@ -15,6 +15,11 @@ References:
 - Kevin Wong's pipeline: https://github.com/kevinhwong1/Thermal_Transplant_Molecular/blob/main/scripts/Past_Genomic_Feature_Analysis_20221014.md#char_gene
 - Yaamini's pipeline: https://github.com/hputnam/Meth_Compare/blob/master/code/03.01-Generating-Genome-Feature-Tracks.ipynb 
 
+**Come back to:**    
+- Original gff3 doesn't contain introns -- needed?  
+- #8 intergenic region error 
+- Downstream flank CG motif 
+
 ## Setting Up Andromeda 
 
 `mkdir mkdir genomic_feature` in `/data/putnamlab/estrand/HoloInt_WGBS` path. 
@@ -250,13 +255,7 @@ wc -l Pocillopora_acuta_HIv2.flanks.Downstream.gff
 ```
 
 ### 8. Intergenic regions
-
-Re-order the original file. Not sure why but I also had to do this step (Kevin ran into the same issue)
-
-```
-sort -i Pocillopora_acuta_HIv2.genes.transcript.gff3 > Pocillopora_acuta_HIv2.genes.transcript_sorted.gff3
-```
-
+  
 
 ```
 complementBed \
@@ -269,7 +268,14 @@ complementBed \
 > Pocillopora_acuta_HIv2.intergenic.bed
 ```
 
-left off at 
+I ran into this error. Is this because it has 7 digits instead of 8? 
+
+```
+Error: Sorted input specified, but the file Pocillopora_acuta_HIv2.genes.transcript_sorted.gff3 has the following out of order record
+Pocillopora_acuta_HIv2___Sc0000000      AUGUSTUS        transcript      1005584 1048605 .       +       .       ID=Pocillopora_acuta_HIv2___TS.g10216.t2
+```
+
+`Pocillopora_acuta_HIv2.genes.transcript_sorted.gff3`: 
 
 ```
 Pocillopora_acuta_HIv2___Sc0000000      AUGUSTUS        transcript      10006818        10008014        .       -       .       ID=Pocillopora_acuta_HIv2___RNAseq.g28241.t1
@@ -283,7 +289,199 @@ Pocillopora_acuta_HIv2___Sc0000000      AUGUSTUS        transcript      10084651
 Pocillopora_acuta_HIv2___Sc0000000      AUGUSTUS        transcript      10089009        10091944        .       -       .       ID=Pocillopora_acuta_HIv2___RNAseq.g28247.t1
 Pocillopora_acuta_HIv2___Sc0000000      AUGUSTUS        transcript      10094453        10097322        .       -       .       ID=Pocillopora_acuta_HIv2___RNAseq.g28248.t1
 ```
-from 
 
-Error: Sorted input specified, but the file Pocillopora_acuta_HIv2.genes.transcript_sorted.gff3 has the following out of order record
-Pocillopora_acuta_HIv2___Sc0000000      AUGUSTUS        transcript      1005584 1048605 .       +       .       ID=Pocillopora_acuta_HIv2___TS.g10216.t2
+Re-sorting like Kevin did resulted in an empty file..
+`sort -i Pocillopora_acuta_HIv2.genes.transcript_sorted.gff3 > Pocillopora_acuta_HIv2.genes.transcript_sorted.gff3` 
+
+**Have to come back to this?** 
+
+## Create CpG motifs
+
+```
+module load EMBOSS/6.6.0-foss-2018b
+
+fuzznuc \
+-sequence ../../Pocillopora_acuta_HIv2.assembly.fasta \
+-pattern CG \
+-outfile Pacuta_v2_CpG.gff \
+-rformat gff
+
+head Pacuta_v2_CpG.gff
+##gff-version 3
+##sequence-region Pocillopora_acuta_HIv2___Sc0000000 1 15774912
+#!Date 2022-11-21
+#!Type DNA
+#!Source-version EMBOSS 6.6.0.0
+Pocillopora_acuta_HIv2___Sc0000000      fuzznuc nucleotide_motif        100     101     2       +       .       ID=Pocillopora_acuta_HIv2___Sc0000000.1;note=*pat pattern:CG
+Pocillopora_acuta_HIv2___Sc0000000      fuzznuc nucleotide_motif        120     121     2       +       .       ID=Pocillopora_acuta_HIv2___Sc0000000.2;note=*pat pattern:CG
+Pocillopora_acuta_HIv2___Sc0000000      fuzznuc nucleotide_motif        170     171     2       +       .       ID=Pocillopora_acuta_HIv2___Sc0000000.3;note=*pat pattern:CG
+Pocillopora_acuta_HIv2___Sc0000000      fuzznuc nucleotide_motif        244     245     2       +       .       ID=Pocillopora_acuta_HIv2___Sc0000000.4;note=*pat pattern:CG
+Pocillopora_acuta_HIv2___Sc0000000      fuzznuc nucleotide_motif        375     376     2       +       .       ID=Pocillopora_acuta_HIv2___Sc0000000.5;note=*pat pattern:CG
+```
+
+## Characterize CG motif locations in feature tracks
+
+`module load BEDTools/2.27.1-foss-2018b`
+
+### Transcript 
+
+```
+intersectBed \
+-u \
+-a Pacuta_v2_CpG.gff \
+-b Pocillopora_acuta_HIv2.genes.transcript.gff3 \
+> Pacuta-CGMotif-Transcript-Overlaps.txt
+```
+
+head `Pacuta-CGMotif-Transcript-Overlaps.txt`:
+
+```
+Pocillopora_acuta_HIv2___Sc0000000      fuzznuc nucleotide_motif        244     245     2       +       .       ID=Pocillopora_acuta_HIv2___Sc0000000.4;note=*pat pattern:CG
+Pocillopora_acuta_HIv2___Sc0000000      fuzznuc nucleotide_motif        375     376     2       +       .       ID=Pocillopora_acuta_HIv2___Sc0000000.5;note=*pat pattern:CG
+Pocillopora_acuta_HIv2___Sc0000000      fuzznuc nucleotide_motif        491     492     2       +       .       ID=Pocillopora_acuta_HIv2___Sc0000000.6;note=*pat pattern:CG
+Pocillopora_acuta_HIv2___Sc0000000      fuzznuc nucleotide_motif        497     498     2       +       .       ID=Pocillopora_acuta_HIv2___Sc0000000.7;note=*pat pattern:CG
+Pocillopora_acuta_HIv2___Sc0000000      fuzznuc nucleotide_motif        516     517     2       +       .       ID=Pocillopora_acuta_HIv2___Sc0000000.8;note=*pat pattern:CG
+Pocillopora_acuta_HIv2___Sc0000000      fuzznuc nucleotide_motif        552     553     2       +       .       ID=Pocillopora_acuta_HIv2___Sc0000000.9;note=*pat pattern:CG
+Pocillopora_acuta_HIv2___Sc0000000      fuzznuc nucleotide_motif        564     565     2       +       .       ID=Pocillopora_acuta_HIv2___Sc0000000.10;note=*pat pattern:CG
+Pocillopora_acuta_HIv2___Sc0000000      fuzznuc nucleotide_motif        678     679     2       +       .       ID=Pocillopora_acuta_HIv2___Sc0000000.11;note=*pat pattern:CG
+Pocillopora_acuta_HIv2___Sc0000000      fuzznuc nucleotide_motif        837     838     2       +       .       ID=Pocillopora_acuta_HIv2___Sc0000000.12;note=*pat pattern:CG
+Pocillopora_acuta_HIv2___Sc0000000      fuzznuc nucleotide_motif        852     853     2       +       .       ID=Pocillopora_acuta_HIv2___Sc0000000.13;note=*pat pattern:CG
+```
+
+`wc -l Pacuta-CGMotif-Transcript-Overlaps.txt`: 4405179 Pacuta-CGMotif-Transcript-Overlaps.txt
+
+### CDS
+
+```
+intersectBed \
+-u \
+-a Pacuta_v2_CpG.gff \
+-b Pocillopora_acuta_HIv2.genes.cds.gff3 \
+> Pacuta-CGMotif-CDS-Overlaps.txt
+```
+
+head `Pacuta-CGMotif-CDS-Overlaps.txt`:
+
+```
+Pocillopora_acuta_HIv2___Sc0000000      fuzznuc nucleotide_motif        244     245     2       +       .       ID=Pocillopora_acuta_HIv2___Sc0000000.4;note=*pat pattern:CG
+Pocillopora_acuta_HIv2___Sc0000000      fuzznuc nucleotide_motif        375     376     2       +       .       ID=Pocillopora_acuta_HIv2___Sc0000000.5;note=*pat pattern:CG
+Pocillopora_acuta_HIv2___Sc0000000      fuzznuc nucleotide_motif        1041    1042    2       +       .       ID=Pocillopora_acuta_HIv2___Sc0000000.17;note=*pat pattern:CG
+Pocillopora_acuta_HIv2___Sc0000000      fuzznuc nucleotide_motif        1090    1091    2       +       .       ID=Pocillopora_acuta_HIv2___Sc0000000.18;note=*pat pattern:CG
+Pocillopora_acuta_HIv2___Sc0000000      fuzznuc nucleotide_motif        1740    1741    2       +       .       ID=Pocillopora_acuta_HIv2___Sc0000000.39;note=*pat pattern:CG
+Pocillopora_acuta_HIv2___Sc0000000      fuzznuc nucleotide_motif        1780    1781    2       +       .       ID=Pocillopora_acuta_HIv2___Sc0000000.40;note=*pat pattern:CG
+Pocillopora_acuta_HIv2___Sc0000000      fuzznuc nucleotide_motif        1834    1835    2       +       .       ID=Pocillopora_acuta_HIv2___Sc0000000.41;note=*pat pattern:CG
+Pocillopora_acuta_HIv2___Sc0000000      fuzznuc nucleotide_motif        1837    1838    2       +       .       ID=Pocillopora_acuta_HIv2___Sc0000000.42;note=*pat pattern:CG
+Pocillopora_acuta_HIv2___Sc0000000      fuzznuc nucleotide_motif        2688    2689    2       +       .       ID=Pocillopora_acuta_HIv2___Sc0000000.66;note=*pat pattern:CG
+Pocillopora_acuta_HIv2___Sc0000000      fuzznuc nucleotide_motif        7449    7450    2       +       .       ID=Pocillopora_acuta_HIv2___Sc0000000.253;note=*pat pattern:CG
+
+```
+
+`wc -l Pacuta-CGMotif-CDS-Overlaps.txt`: 1478389 Pacuta-CGMotif-CDS-Overlaps.txt
+
+### Flanks
+
+```
+intersectBed \
+-u \
+-a Pacuta_v2_CpG.gff \
+-b Pocillopora_acuta_HIv2.flanks.gff \
+> Pacuta-CGMotif-Flanks-Overlaps.txt
+```
+
+```
+head Pacuta-CGMotif-Flanks-Overlaps.txt
+
+Pocillopora_acuta_HIv2___Sc0000000      fuzznuc nucleotide_motif        100     101     2       +       .       ID=Pocillopora_acuta_HIv2___Sc0000000.1;note=*pat pattern:CG
+Pocillopora_acuta_HIv2___Sc0000000      fuzznuc nucleotide_motif        120     121     2       +       .       ID=Pocillopora_acuta_HIv2___Sc0000000.2;note=*pat pattern:CG
+Pocillopora_acuta_HIv2___Sc0000000      fuzznuc nucleotide_motif        170     171     2       +       .       ID=Pocillopora_acuta_HIv2___Sc0000000.3;note=*pat pattern:CG
+Pocillopora_acuta_HIv2___Sc0000000      fuzznuc nucleotide_motif        9413    9414    2       +       .       ID=Pocillopora_acuta_HIv2___Sc0000000.311;note=*pat pattern:CG
+Pocillopora_acuta_HIv2___Sc0000000      fuzznuc nucleotide_motif        9426    9427    2       +       .       ID=Pocillopora_acuta_HIv2___Sc0000000.312;note=*pat pattern:CG
+Pocillopora_acuta_HIv2___Sc0000000      fuzznuc nucleotide_motif        9531    9532    2       +       .       ID=Pocillopora_acuta_HIv2___Sc0000000.313;note=*pat pattern:CG
+Pocillopora_acuta_HIv2___Sc0000000      fuzznuc nucleotide_motif        9573    9574    2       +       .       ID=Pocillopora_acuta_HIv2___Sc0000000.314;note=*pat pattern:CG
+Pocillopora_acuta_HIv2___Sc0000000      fuzznuc nucleotide_motif        9673    9674    2       +       .       ID=Pocillopora_acuta_HIv2___Sc0000000.315;note=*pat pattern:CG
+Pocillopora_acuta_HIv2___Sc0000000      fuzznuc nucleotide_motif        9678    9679    2       +       .       ID=Pocillopora_acuta_HIv2___Sc0000000.316;note=*pat pattern:CG
+Pocillopora_acuta_HIv2___Sc0000000      fuzznuc nucleotide_motif        9681    9682    2       +       .       ID=Pocillopora_acuta_HIv2___Sc0000000.317;note=*pat pattern:CG
+```
+
+`wc -l Pacuta-CGMotif-Flanks-Overlaps.txt`: 1524269 Pacuta-CGMotif-Flanks-Overlaps.txt
+
+### Upstream flanks
+
+```
+intersectBed \
+-u \
+-a Pacuta_v2_CpG.gff \
+-b Pocillopora_acuta_HIv2.flanks.Upstream.gff \
+> Pacuta-CGMotif-UpstreamFlanks-Overlaps.txt
+```
+
+```
+head Pacuta-CGMotif-UpstreamFlanks-Overlaps.txt
+
+Pocillopora_acuta_HIv2___Sc0000000      fuzznuc nucleotide_motif        9413    9414    2       +       .       ID=Pocillopora_acuta_HIv2___Sc0000000.311;note=*pat pattern:CG
+Pocillopora_acuta_HIv2___Sc0000000      fuzznuc nucleotide_motif        9426    9427    2       +       .       ID=Pocillopora_acuta_HIv2___Sc0000000.312;note=*pat pattern:CG
+Pocillopora_acuta_HIv2___Sc0000000      fuzznuc nucleotide_motif        9531    9532    2       +       .       ID=Pocillopora_acuta_HIv2___Sc0000000.313;note=*pat pattern:CG
+Pocillopora_acuta_HIv2___Sc0000000      fuzznuc nucleotide_motif        9573    9574    2       +       .       ID=Pocillopora_acuta_HIv2___Sc0000000.314;note=*pat pattern:CG
+Pocillopora_acuta_HIv2___Sc0000000      fuzznuc nucleotide_motif        9673    9674    2       +       .       ID=Pocillopora_acuta_HIv2___Sc0000000.315;note=*pat pattern:CG
+Pocillopora_acuta_HIv2___Sc0000000      fuzznuc nucleotide_motif        9678    9679    2       +       .       ID=Pocillopora_acuta_HIv2___Sc0000000.316;note=*pat pattern:CG
+Pocillopora_acuta_HIv2___Sc0000000      fuzznuc nucleotide_motif        9681    9682    2       +       .       ID=Pocillopora_acuta_HIv2___Sc0000000.317;note=*pat pattern:CG
+Pocillopora_acuta_HIv2___Sc0000000      fuzznuc nucleotide_motif        9704    9705    2       +       .       ID=Pocillopora_acuta_HIv2___Sc0000000.318;note=*pat pattern:CG
+Pocillopora_acuta_HIv2___Sc0000000      fuzznuc nucleotide_motif        9711    9712    2       +       .       ID=Pocillopora_acuta_HIv2___Sc0000000.319;note=*pat pattern:CG
+Pocillopora_acuta_HIv2___Sc0000000      fuzznuc nucleotide_motif        9763    9764    2       +       .       ID=Pocillopora_acuta_HIv2___Sc0000000.320;note=*pat pattern:CG
+```
+
+`wc -l Pacuta-CGMotif-UpstreamFlanks-Overlaps.txt`: 861078 Pacuta-CGMotif-UpstreamFlanks-Overlaps.txt
+
+### Downstream flanks
+
+```
+intersectBed \
+-u \
+-a Pacuta_v2_CpG.gff \
+-b Pocillopora_acuta_HIv2.flanks.Downstream.gff \
+> Pacuta-CGMotif-DownstreamFlanks-Overlaps.txt
+```
+
+ERROR: Received illegal bin number 4294967295 from getBin call.
+ERROR: Unable to add record to tree.
+
+**Have to come back to this?** 
+
+### Intergenic Region 
+
+Error in above section so need to come back to this...
+
+## Organize coverage files
+
+`wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*5x_sorted.bedgraph > Pacuta-v2-5x-bedgraph-counts.txt`
+`wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*10x_sorted.bedgraph > Pacuta-v2-10x-bedgraph-counts.txt`
+
+## Characterize methylation for each CpG dinucleotide
+
+Methylated: > 50% methylation
+Sparsely methylated: 10-50% methylation
+Unmethylated: < 10% methylation
+
+### Methylated 
+
+**5X** 
+
+```
+for f in /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*5x_sorted.bedgraph
+do
+    awk '{if ($4 >= 50) { print $1, $2, $3, $4 }}' ${f} \
+    > ${f}-Meth
+done
+
+wc -l *-Meth > ../Pacuta-v2-5x-Meth-counts.txt
+```
+
+**10X** 
+
+```
+for f in /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*10x_sorted.bedgraph
+do
+    awk '{if ($4 >= 50) { print $1, $2, $3, $4 }}' ${f} \
+    > ${f}-Meth
+done
+```
