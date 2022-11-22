@@ -473,7 +473,7 @@ do
     > ${f}-Meth
 done
 
-wc -l *-Meth > ../Pacuta-v2-5x-Meth-counts.txt
+wc -l *5x_sorted.bedgraph-Meth > ../Pacuta-v2-5x-Meth-counts.txt
 ```
 
 **10X** 
@@ -484,4 +484,129 @@ do
     awk '{if ($4 >= 50) { print $1, $2, $3, $4 }}' ${f} \
     > ${f}-Meth
 done
+
+wc -l *10x_sorted.bedgraph-Meth > ../Pacuta-v2-10x-Meth-counts.txt
 ```
+
+### Sparsely methylated
+
+**5X** 
+
+```
+for f in /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*5x_sorted.bedgraph
+do
+    awk '{if ($4 < 50) { print $1, $2, $3, $4}}' ${f} \
+    | awk '{if ($4 > 10) { print $1, $2, $3, $4 }}' \
+    > ${f}-sparseMeth
+done
+
+wc -l *5x_sorted.bedgraph-sparseMeth > ../Pacuta-v2-5x-sparseMeth-counts.txt
+```
+
+**10X** 
+
+```
+for f in /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*10x_sorted.bedgraph
+do
+    awk '{if ($4 < 50) { print $1, $2, $3, $4}}' ${f} \
+    | awk '{if ($4 > 10) { print $1, $2, $3, $4 }}' \
+    > ${f}-sparseMeth
+done
+
+wc -l *10x_sorted.bedgraph-sparseMeth > ../Pacuta-v2-10x-sparseMeth-counts.txt
+```
+
+### Unmethylated
+
+**5X** 
+
+```
+for f in /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*5x_sorted.bedgraph
+do
+    awk '{if ($4 <= 10) { print $1, $2, $3, $4 }}' ${f} \
+    > ${f}-unMeth
+done
+
+wc -l *5x_sorted.bedgraph-unMeth > ../Pacuta-v2-5x-unMeth-counts.txt
+```
+
+**10X** 
+
+```
+for f in /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*10x_sorted.bedgraph
+do
+    awk '{if ($4 <= 10) { print $1, $2, $3, $4 }}' ${f} \
+    > ${f}-unMeth
+done
+
+wc -l *10x_sorted.bedgraph-unMeth > ../Pacuta-v2-10x-unMeth-counts.txt
+```
+
+## Characterize genomic locations of CpGs
+
+### Create BEDfiles
+
+**5X** 
+
+```
+for f in *5x_sorted.bedgraph
+do
+    awk '{print $1"\t"$2"\t"$3"\t"$4}' ${f} > ${f}.bed
+    wc -l ${f}.bed
+done
+
+for f in *5x_sorted.bedgraph-Meth
+do
+    awk '{print $1"\t"$2"\t"$3"\t"$4}' ${f} > ${f}.bed
+    wc -l ${f}.bed
+done
+
+for f in *5x_sorted.bedgraph-sparseMeth
+do
+    awk '{print $1"\t"$2"\t"$3"\t"$4}' ${f} > ${f}.bed
+    wc -l ${f}.bed
+done
+
+for f in *5x_sorted.bedgraph-unMeth
+do
+    awk '{print $1"\t"$2"\t"$3"\t"$4}' ${f} > ${f}.bed
+    wc -l ${f}.bed
+done
+```
+
+**5X** 
+
+```
+for f in *10x_sorted.bedgraph
+do
+    awk '{print $1"\t"$2"\t"$3"\t"$4}' ${f} > ${f}.bed
+    wc -l ${f}.bed
+done
+
+for f in *10x_sorted.bedgraph-Meth
+do
+    awk '{print $1"\t"$2"\t"$3"\t"$4}' ${f} > ${f}.bed
+    wc -l ${f}.bed
+done
+
+for f in *10x_sorted.bedgraph-sparseMeth
+do
+    awk '{print $1"\t"$2"\t"$3"\t"$4}' ${f} > ${f}.bed
+    wc -l ${f}.bed
+done
+
+for f in *10x_sorted.bedgraph-unMeth
+do
+    awk '{print $1"\t"$2"\t"$3"\t"$4}' ${f} > ${f}.bed
+    wc -l ${f}.bed
+done
+```
+
+### Transcript 
+
+*stopped here until addressed all of the above sections for gene vs. transcript vs. intron issue* 
+
+1. Bedgraph script still running 
+2. Run Organize coverage files section 
+3. Run Characterize methylation for each CpG dinucleotide section
+4. Address issues listed at the top.
