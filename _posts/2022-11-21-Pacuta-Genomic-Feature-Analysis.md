@@ -23,7 +23,23 @@ References:
 
 `mkdir mkdir genomic_feature` in `/data/putnamlab/estrand/HoloInt_WGBS` path. 
 
+## Resources 
+
+https://bedtools.readthedocs.io/en/latest/content/general-usage.html
+
+We are using bedtools but the function 'sort' independently is from UNIX and will sort a BED file by chromosome then by start position in the following manner:
+
+```
+sort -k 1,1 -k2,2n a.bed
+chr1 1   10
+chr1 80  180
+chr1 750 10000
+chr1 800 1000
+```
+
 ## Prepare reference file 
+
+http://www.htslib.org/doc/faidx.html 
 
 ```
 interactive 
@@ -52,6 +68,8 @@ Pocillopora_acuta_HIv2___Sc0000006      8020306
 Pocillopora_acuta_HIv2___Sc0000007      7567371
 Pocillopora_acuta_HIv2___Sc0000008      7350670
 ```
+
+This is the same as the first column of fai file. 
 
 ## Genome annotation file 
 
@@ -156,12 +174,16 @@ Pocillopora_acuta_HIv2___Sc0000016      AUGUSTUS        transcript      180258  
 
 ### 5. All Regions 
 
+https://bedtools.readthedocs.io/en/latest/content/tools/flank.html
+
+BEDTools/2.30.0-GCC-11.2.0 
+
 Create 1kb flanking regions. Subtract existing genes so flanks do not have any overlap.
 
 ```
 interactive 
 
-module load BEDTools/2.27.1-foss-2018b
+module load BEDTools/2.27.1-foss-2018b #but sort function independently doesn't require this ; the next chunk of code will 
 
 sort -i Pocillopora_acuta_HIv2.genes.transcript.gff3 > Pocillopora_acuta_HIv2.genes.transcript_sorted.gff3
 
@@ -177,6 +199,11 @@ Pocillopora_acuta_HIv2___Sc0000000      AUGUSTUS        transcript      10084651
 Pocillopora_acuta_HIv2___Sc0000000      AUGUSTUS        transcript      10089009        10091944        .       -       .       ID=Pocillopora_acuta_HIv2___RNAseq.g28247.t1
 Pocillopora_acuta_HIv2___Sc0000000      AUGUSTUS        transcript      10094453        10097322        .       -       .       ID=Pocillopora_acuta_HIv2___RNAseq.g28248.t1
 ```
+
+https://bedtools.readthedocs.io/en/latest/content/tools/flank.html. 
+1000 on either side of the region 
+
+https://bedtools.readthedocs.io/en/latest/content/tools/subtract.html
 
 ```
 flankBed \
@@ -255,19 +282,23 @@ wc -l Pocillopora_acuta_HIv2.flanks.Downstream.gff
 
 ### 8. Intergenic regions
   
+https://bedtools.readthedocs.io/en/latest/content/tools/complement.html
+
+https://davetang.org/muse/2013/01/18/defining-genomic-regions/
+
 
 ```
 complementBed \
--i Pocillopora_acuta_HIv2.genes.transcript_sorted.gff3 \
+-i Pocillopora_acuta_HIv2.genes.transcript_sorted2.gff3 \
 -g ../../Pocillopora_acuta_HIv2.assembly.fasta.fai \
 | subtractBed \
 -a - \
--b Pocillopora_acuta_HIv2.genes.transcript_sorted.gff3 \
+-b Pocillopora_acuta_HIv2.flanks.gff \
 | awk '{print $1"\t"$2"\t"$3}' \
 > Pocillopora_acuta_HIv2.intergenic.bed
 ```
 
-I ran into this error. Is this because it has 7 digits instead of 8? 
+There is some mismatch between the transcript_sorted file and fai file.. I tried both Bedtools version v2.27 and 2.30 but got the same error. 
 
 ```
 Error: Sorted input specified, but the file Pocillopora_acuta_HIv2.genes.transcript_sorted.gff3 has the following out of order record
@@ -290,7 +321,7 @@ Pocillopora_acuta_HIv2___Sc0000000      AUGUSTUS        transcript      10094453
 ```
 
 Re-sorting like Kevin did resulted in an empty file..
-`sort -i Pocillopora_acuta_HIv2.genes.transcript_sorted.gff3 > Pocillopora_acuta_HIv2.genes.transcript_sorted.gff3` 
+`sort -i Pocillopora_acuta_HIv2.genes.transcript_sorted.gff3 > Pocillopora_acuta_HIv2.genes.transcript_sorted2.gff3` 
 
 **Have to come back to this?** 
 
@@ -856,4 +887,13 @@ done
 ## Introns: not in original file
 ```
 
-*left off at the above script running..* 
+*left off at finding the error in the above intergenic region issue.* 
+Next step is to make the below counts txt files 
+
+```
+mkdir counts.txt 
+cd counts.txt
+
+wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*paFlanksDownstream10X > Pacuta-paFlanksDownstream10X-counts.txt
+
+```
