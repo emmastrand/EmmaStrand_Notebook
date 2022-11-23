@@ -346,7 +346,7 @@ nextflow run nf-core/methylseq -resume \
 --relax_mismatches \
 --unmapped \
 --outdir /data/putnamlab/estrand/BleachingPairs_WGBS/BleachingPairs_methylseq_v3 \
--name WGBS_methylseq_BleachingPairs_v3_3
+-name WGBS_methylseq_BleachingPairs_v3_3 # this line was taken out later -- not needed 
 ```
 
 The multiqc function is running into errors from the above script so I ran:
@@ -365,6 +365,48 @@ Copying this file to project folder:
 ```
 scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/BleachingPairs_WGBS/BleachingPairs_methylseq_v3/WGBS_methylseq_KBAY_genomev3_multiqc_report.html /Users/emmastrand/MyProjects/HI_Bleaching_Timeseries/Dec-July-2019-analysis/output/WGBS/WGBS_methylseq_KBAY_genomev3_multiqc_report.html
 ```
+
+#### only 26 files were generated as .cov but all were deduplicated? 
+
+I ran the script above again to make sure it wasn't because it was stopped and started several times b/c of storage issues on andromeda. New output will be in `/data/putnamlab/estrand/BleachingPairs_WGBS/BleachingPairs_methylseq_v3_2`. 
+
+Sanity check that all samples ran:
+
+`ls bismark_deduplicated/*bam | wc`: output should be 40 
+`ls bismark_methylation_calls/methylation_coverage/*deduplicated.bismark.cov.gz | wc`: output should be 40 
+
+The files that did work the first time (in `BleachingPairs_methylseq_v3`):
+
+```
+17_S134_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz  38_S129_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz
+18_S154_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz  39_S145_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz
+21_S119_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz  40_S135_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz
+22_S120_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz  42_S131_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz
+23_S141_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz  43_S143_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz
+24_S147_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz  44_S125_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz
+25_S148_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz  45_S156_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz
+26_S121_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz  4_S146_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz
+28_S122_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz  50_S139_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz
+2_S128_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz   54_S144_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz
+31_S127_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz  58_S157_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz
+33_S142_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz  59_S158_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz
+34_S136_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz  6_S132_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz
+```
+
+Files that did not run the first time: 16, 29, 30, 32, 35, 37, 41, 46, 47, 51, 52, 55, 56, 57
+
+but the step before worked b/c the output  `less 16_S138_L003_R1_001_val_1_bismark_bt2_pe.deduplication_report.txt` yields: 
+
+```
+Total number of alignments analysed in 16_S138_L003_R1_001_val_1_bismark_bt2_pe.bam:    23895598
+Total number duplicated alignments removed:     2940163 (12.30%)
+Duplicated alignments were found at:    2599109 different position(s)
+
+Total count of deduplicated leftover sequences: 20955435 (87.70% of total)
+```
+
+So why would this not get used as input for methylation calling....
+
 
 ### Multiqc Report 
 
@@ -467,6 +509,7 @@ find /data/putnamlab/estrand/BleachingPairs_WGBS/BleachingPairs_methylseq_v3/bis
  --zero_based \
 /data/putnamlab/estrand/BleachingPairs_WGBS/BleachingPairs_methylseq_v3/bismark_methylation_calls/methylation_coverage/{}_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz
 ```
+
 
 ## <a name="sort"></a> **Sort CpG .cov file**
 
@@ -774,6 +817,10 @@ cat CpG.all.samps.5x_sorted.bed | awk '$4 ==40' > CpG.filt.all.samps.5x_sorted.b
 
 cat CpG.all.samps.10x_sorted.bed | awk '$4 ==40' > CpG.filt.all.samps.10x_sorted.bed
 ```
+
+cat CpG.all.samps.5x_sorted.bed | awk '$5 ==",40"' > CpG.all.samps-40.5x_sorted.bed (awk contains samples 26-40) to make sure all samples do exist in all samples file
+
+list all sample names manually to make sure all 40 are 
 
 head `CpG.all.samps.5x_sorted.bed`: 
 
