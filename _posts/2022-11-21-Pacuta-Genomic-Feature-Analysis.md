@@ -769,102 +769,56 @@ Pocillopora_acuta_HIv2___Sc0000000      28031   28033   83.333333
 
 # load modules needed (specific need for my computer)
 source /usr/share/Modules/init/sh # load the module function
-module load BEDTools/2.27.1-foss-2018b
 
+module load BEDTools/2.27.1-foss-2018b
 
 ##  Transcripts 
 
-# 5X
-for f in /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*5X*bed
+for f in /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*bed
 do
   intersectBed \
   -u \
   -a ${f} \
   -b Pocillopora_acuta_HIv2.genes.transcript.gff3 \
-  > ${f}-paTranscript5X
+  > ${f}-paTranscript
 done
-
-# 10X 
-for f in /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*10X*bed
-do
-  intersectBed \
-  -u \
-  -a ${f} \
-  -b Pocillopora_acuta_HIv2.genes.transcript.gff3 \
-  > ${f}-paTranscript10X
-done
-
 
 ## CDS 
 
-#5X 
-for f in /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*5X*bed
+for f in /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*bed
 do
   intersectBed \
   -u \
   -a ${f} \
   -b Pocillopora_acuta_HIv2.genes.cds.gff3 \
-  > ${f}-paCDS5X
-done
-
-#10X 
-for f in /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*10X*bed
-do
-  intersectBed \
-  -u \
-  -a ${f} \
-  -b Pocillopora_acuta_HIv2.genes.cds.gff3 \
-  > ${f}-paCDS10X
+  > ${f}-paCDS
 done
 
 ## Flanking regions
 
-# 5X 
-for f in /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*5X*bed
+for f in /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*bed
 do
   intersectBed \
   -u \
   -a ${f} \
   -b Pocillopora_acuta_HIv2.flanks.gff \
-  > ${f}-paFlanks5X
-done
-
-# 10X 
-for f in /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*10X*bed
-do
-  intersectBed \
-  -u \
-  -a ${f} \
-  -b Pocillopora_acuta_HIv2.flanks.gff \
-  > ${f}-paFlanks10X
+  > ${f}-paFlanks
 done
 
 ## Upstream flanking Regions
 
-# 5X
-for f in /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*5X*bed
+for f in /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*bed
 do
   intersectBed \
   -u \
   -a ${f} \
   -b Pocillopora_acuta_HIv2.flanks.Upstream.gff  \
-  > ${f}-paFlanksUpstream5X
-done
-
-# 10X
-for f in /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*10X*bed
-do
-  intersectBed \
-  -u \
-  -a ${f} \
-  -b Pocillopora_acuta_HIv2.flanks.Upstream.gff  \
-  > ${f}-paFlanksUpstream10X
+  > ${f}-paFlanksUpstream
 done
 
 ## Downstream flanking Regions
 
-# 5X
-for f in /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*5X*bed
+for f in /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*bed
 do
   intersectBed \
   -u \
@@ -873,27 +827,28 @@ do
   > ${f}-paFlanksDownstream5X
 done
 
-# 10X
-for f in /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*10X*bed
-do
-  intersectBed \
-  -u \
-  -a ${f} \
-  -b Pocillopora_acuta_HIv2.flanks.Downstream.gff  \
-  > ${f}-paFlanksDownstream10X
-done
-
 ## Intergenic: 
 ## Introns: not in original file
 ```
 
-*left off at finding the error in the above intergenic region issue.* 
-Next step is to make the below counts txt files 
+### Create counts txt files 
 
 ```
 mkdir counts.txt 
 cd counts.txt
 
-wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*paFlanksDownstream10X > Pacuta-paFlanksDownstream10X-counts.txt
+wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*paFlanksDownstream10X > counts.txt/Pacuta-paFlanksDownstream10X-counts.txt
+wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*paFlanksDownstream5X > counts.txt/Pacuta-paFlanksDownstream5X-counts.txt
 
+wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*paFlanksUpstream10X > counts.txt/Pacuta-paFlanksUpstream10X-counts.txt
+wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*paFlanksUpstream5X > counts.txt/Pacuta-paFlanksUpstream5X-counts.txt
+
+wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*paFlanks10X > counts.txt/Pacuta-paFlanks10X-counts.txt
+wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*paFlanks5X > counts.txt/Pacuta-paFlanks5X-counts.txt
+
+wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*paCDS10X > counts.txt/Pacuta-paCDS10X-counts.txt
+wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*paCDS5X > counts.txt/Pacuta-paCDS5X-counts.txt
+
+wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*paTranscript10X > counts.txt/Pacuta-paTranscript10X-counts.txt
+wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*paTranscript5X > counts.txt/Pacuta-paTranscript5X-counts.txt
 ```
