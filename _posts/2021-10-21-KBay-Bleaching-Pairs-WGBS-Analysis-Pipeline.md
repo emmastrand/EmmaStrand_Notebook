@@ -366,51 +366,23 @@ Copying this file to project folder:
 scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/BleachingPairs_WGBS/BleachingPairs_methylseq_v3/WGBS_methylseq_KBAY_genomev3_multiqc_report.html /Users/emmastrand/MyProjects/HI_Bleaching_Timeseries/Dec-July-2019-analysis/output/WGBS/WGBS_methylseq_KBAY_genomev3_multiqc_report.html
 ```
 
-#### only 26 files were generated as .cov but all were deduplicated? 
+Originally this was interrupted from storage issues but I re-ran the script with -resume, but output was a second folder: 
 
 I ran the script above again to make sure it wasn't because it was stopped and started several times b/c of storage issues on andromeda. New output will be in `/data/putnamlab/estrand/BleachingPairs_WGBS/BleachingPairs_methylseq_v3_2`. 
 
 Sanity check that all samples ran:
 
-`ls bismark_deduplicated/*bam | wc`: output should be 40 
-`ls bismark_methylation_calls/methylation_coverage/*deduplicated.bismark.cov.gz | wc`: output should be 40 
-
-The files that did work the first time (in `BleachingPairs_methylseq_v3`):
-
-```
-17_S134_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz  38_S129_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz
-18_S154_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz  39_S145_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz
-21_S119_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz  40_S135_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz
-22_S120_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz  42_S131_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz
-23_S141_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz  43_S143_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz
-24_S147_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz  44_S125_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz
-25_S148_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz  45_S156_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz
-26_S121_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz  4_S146_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz
-28_S122_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz  50_S139_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz
-2_S128_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz   54_S144_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz
-31_S127_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz  58_S157_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz
-33_S142_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz  59_S158_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz
-34_S136_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz  6_S132_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz
-```
-
-Files that did not run the first time: 16, 29, 30, 32, 35, 37, 41, 46, 47, 51, 52, 55, 56, 57
-
-but the step before worked b/c the output  `less 16_S138_L003_R1_001_val_1_bismark_bt2_pe.deduplication_report.txt` yields: 
-
-```
-Total number of alignments analysed in 16_S138_L003_R1_001_val_1_bismark_bt2_pe.bam:    23895598
-Total number duplicated alignments removed:     2940163 (12.30%)
-Duplicated alignments were found at:    2599109 different position(s)
-
-Total count of deduplicated leftover sequences: 20955435 (87.70% of total)
-```
-
-So why would this not get used as input for methylation calling....
+`ls bismark_deduplicated/*bam | wc`: 40      40    2317
+`ls bismark_methylation_calls/methylation_coverage/*deduplicated.bismark.cov.gz | wc`: 40      40    4637
 
 
 ### Multiqc Report 
 
 Full report can be found here: https://github.com/hputnam/HI_Bleaching_Timeseries/blob/main/Dec-July-2019-analysis/output/WGBS/WGBS_methylseq_KBAY_genomev3_multiqc_report.html. 
+
+```
+scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/BleachingPairs_WGBS/BleachingPairs_methylseq_v3_2/MultiQC/multiqc_report.html /Users/emmastrand/MyProjects/HI_Bleaching_Timeseries/Dec-July-2019-analysis/output/WGBS/WGBS_methylseq_KBAY_genomev3_2_multiqc_report.html
+```
 
 ## <a name="merge_strands"></a> **Merge Strands**
 
@@ -472,7 +444,6 @@ No errors in the output scripts, move on to the next step.
 
 Make a new directory for this output: `mkdir merged_cov_genomev3`. 
 
-
 `merge_strands-v3.sh` (named cov_to_cyto in other lab members' pipelines): 
 
 ```
@@ -485,8 +456,8 @@ Make a new directory for this output: `mkdir merged_cov_genomev3`.
 #SBATCH --export=NONE
 #SBATCH -D /data/putnamlab/estrand/BleachingPairs_WGBS/merged_cov_genomev3 #### this should be your new output directory so all the outputs ends up here
 #SBATCH --cpus-per-task=3
-#SBATCH --error="script_error_merge-v3" #if your job fails, the error report will be put in this file
-#SBATCH --output="output_script_merge-v3" #once your job is completed, any final job report comments will be put in this file
+#SBATCH --error="script_error_merge-v3_2" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_merge-v3_2" #once your job is completed, any final job report comments will be put in this file
 
 # load modules needed (specific need for my computer)
 source /usr/share/Modules/init/sh # load the module function
@@ -500,15 +471,17 @@ module load Bismark/0.20.1-foss-2018b
 # change file names below (_L003_*)
 # there can't be any spaces after the \
 
-find /data/putnamlab/estrand/BleachingPairs_WGBS/BleachingPairs_methylseq_v3/bismark_methylation_calls/methylation_coverage/*deduplicated.bismark.cov.gz \
+find /data/putnamlab/estrand/BleachingPairs_WGBS/BleachingPairs_methylseq_v3_2/bismark_methylation_calls/methylation_coverage/*deduplicated.bismark.cov.gz \
  | xargs basename -s _L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz \
  | xargs -I{} coverage2cytosine \
- --genome_folder /data/putnamlab/estrand/BleachingPairs_WGBS/BleachingPairs_methylseq_v3/reference_genome/BismarkIndex \
+ --genome_folder /data/putnamlab/estrand/BleachingPairs_WGBS/BleachingPairs_methylseq_v3_2/reference_genome/BismarkIndex \
  -o {} \
  --merge_CpG \
  --zero_based \
-/data/putnamlab/estrand/BleachingPairs_WGBS/BleachingPairs_methylseq_v3/bismark_methylation_calls/methylation_coverage/{}_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz
+/data/putnamlab/estrand/BleachingPairs_WGBS/BleachingPairs_methylseq_v3_2/bismark_methylation_calls/methylation_coverage/{}_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz
 ```
+
+Sanity check = `ls *merged_CpG_evidence.cov | wc` = 40      40    1717
 
 
 ## <a name="sort"></a> **Sort CpG .cov file**
@@ -994,3 +967,37 @@ scp 'emma_strand@ssh3.hac.uri.edu:/data/putnamlab/estrand/BleachingPairs_WGBS/me
 
 scp 'emma_strand@ssh3.hac.uri.edu:/data/putnamlab/estrand/BleachingPairs_WGBS/merged_cov_genomev3/*_10x_enrichment.bed' ~/MyProjects/Acclim_Dynamics_molecular/data/WGBS/output/meth_counts_10x
 ```
+
+## Troubleshooting 
+
+The files that did work the first time (in `BleachingPairs_methylseq_v3`):
+
+```
+17_S134_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz  38_S129_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz
+18_S154_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz  39_S145_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz
+21_S119_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz  40_S135_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz
+22_S120_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz  42_S131_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz
+23_S141_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz  43_S143_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz
+24_S147_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz  44_S125_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz
+25_S148_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz  45_S156_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz
+26_S121_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz  4_S146_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz
+28_S122_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz  50_S139_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz
+2_S128_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz   54_S144_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz
+31_S127_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz  58_S157_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz
+33_S142_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz  59_S158_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz
+34_S136_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz  6_S132_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bismark.cov.gz
+```
+
+Files that did not run the first time: 16, 29, 30, 32, 35, 37, 41, 46, 47, 51, 52, 55, 56, 57
+
+but the step before worked b/c the output  `less 16_S138_L003_R1_001_val_1_bismark_bt2_pe.deduplication_report.txt` yields: 
+
+```
+Total number of alignments analysed in 16_S138_L003_R1_001_val_1_bismark_bt2_pe.bam:    23895598
+Total number duplicated alignments removed:     2940163 (12.30%)
+Duplicated alignments were found at:    2599109 different position(s)
+
+Total count of deduplicated leftover sequences: 20955435 (87.70% of total)
+```
+
+So why would this not get used as input for methylation calling....

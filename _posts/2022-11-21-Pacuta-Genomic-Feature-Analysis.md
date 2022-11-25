@@ -823,32 +823,110 @@ do
   intersectBed \
   -u \
   -a ${f} \
-  -b Pocillopora_acuta_HIv2.flanks.Downstream.gff  \
-  > ${f}-paFlanksDownstream5X
+  -b ../genomic_feature/Pocillopora_acuta_HIv2.flanks.Downstream.gff  \
+  > ${f}-paFlanksDownstream
 done
 
 ## Intergenic: 
 ## Introns: not in original file
 ```
 
+Error for downtstream flanks:
+
+ERROR: Received illegal bin number 4294967295 from getBin call.
+ERROR: Unable to add record to tree.
+
 ### Create counts txt files 
 
+`mkdir counts.txt `
+`cd counts.txt`
+
+#### Downstream Flanks 
+
 ```
-mkdir counts.txt 
-cd counts.txt
+# I accidentally added "5X" to all files so I need to include that in calling..
+wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*10x*paFlanksDownstream5X > counts.txt/Pacuta-paFlanksDownstream10X-counts.txt
 
-wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*paFlanksDownstream10X > counts.txt/Pacuta-paFlanksDownstream10X-counts.txt
-wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*paFlanksDownstream5X > counts.txt/Pacuta-paFlanksDownstream5X-counts.txt
+$ head -2 Pacuta-paFlanksDownstream10X-counts.txt
+0 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_10x_sorted.bedgraph.bed-paFlanksDownstream5X
+0 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_10x_sorted.bedgraph-Meth.bed-paFlanksDownstream5X
 
-wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*paFlanksUpstream10X > counts.txt/Pacuta-paFlanksUpstream10X-counts.txt
-wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*paFlanksUpstream5X > counts.txt/Pacuta-paFlanksUpstream5X-counts.txt
+wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*5x*paFlanksDownstream5X > counts.txt/Pacuta-paFlanksDownstream5X-counts.txt
 
-wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*paFlanks10X > counts.txt/Pacuta-paFlanks10X-counts.txt
-wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*paFlanks5X > counts.txt/Pacuta-paFlanks5X-counts.txt
-
-wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*paCDS10X > counts.txt/Pacuta-paCDS10X-counts.txt
-wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*paCDS5X > counts.txt/Pacuta-paCDS5X-counts.txt
-
-wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*paTranscript10X > counts.txt/Pacuta-paTranscript10X-counts.txt
-wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*paTranscript5X > counts.txt/Pacuta-paTranscript5X-counts.txt
+$ head -2 Pacuta-paFlanksDownstream5X-counts.txt
+0 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_5x_sorted.bedgraph.bed-paFlanksDownstream5X
+0 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_5x_sorted.bedgraph-Meth.bed-paFlanksDownstream5X
 ```
+
+`head 1647_5x_sorted.bedgraph-Meth.bed-paFlanksDownstream5X` = empty... Downstream flanks don't appear to work. 
+
+This is because of a bin issue with downstream flanks. 
+
+
+#### Upstream Flanks
+
+```
+wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*10x*paFlanksUpstream > Pacuta-paFlanksUpstream10X-counts.txt | head -2
+
+# output 
+    342145 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_10x_sorted.bedgraph.bed-paFlanksUpstream
+      3777 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_10x_sorted.bedgraph-Meth.bed-paFlanksUpstream
+
+
+wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*5x*paFlanksUpstream > Pacuta-paFlanksUpstream5X-counts.txt | head -2 
+# output 
+    580660 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_5x_sorted.bedgraph.bed-paFlanksUpstream
+      7511 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_5x_sorted.bedgraph-Meth.bed-paFlanksUpstream
+```
+
+#### Flanks 
+
+```
+wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*10x*paFlanks > Pacuta-paFlanks10X-counts.txt | head -2
+
+#output 
+    571789 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_10x_sorted.bedgraph.bed-paFlanks
+      8339 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_10x_sorted.bedgraph-Meth.bed-paFlanks
+
+wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*5x*paFlanks > Pacuta-paFlanks5X-counts.txt | head -2
+
+#output 
+   1001849 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_5x_sorted.bedgraph.bed-paFlanks
+     17638 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_5x_sorted.bedgraph-Meth.bed-paFlanks
+```
+
+#### CDS 
+
+```
+wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*10x*paCDS > Pacuta-paCDS10X-counts.txt | head -2
+
+#output
+    897455 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_10x_sorted.bedgraph.bed-paCDS
+     43673 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_10x_sorted.bedgraph-Meth.bed-paCDS
+
+wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*5x*paCDS > Pacuta-paCDS5X-counts.txt | head -2
+
+#output 
+    1195194 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_5x_sorted.bedgraph.bed-paCDS
+      69117 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_5x_sorted.bedgraph-Meth.bed-paCDS
+``` 
+
+#### Transcript 
+
+```
+wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*5x*paTranscript > Pacuta-paTranscript10X-counts.txt | head -2
+
+#output 
+    3216893 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_5x_sorted.bedgraph.bed-paTranscript
+     154520 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_5x_sorted.bedgraph-Meth.bed-paTranscript
+
+wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*10x*paTranscript > Pacuta-paTranscript5X-counts.txt | head -2
+
+#output 
+   2059224 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_10x_sorted.bedgraph.bed-paTranscript
+      81997 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_10x_sorted.bedgraph-Meth.bed-paTranscript
+```
+
+Left off at:
+1.) make list of current issues to address 
+2.) next step after making counts.txt files 
