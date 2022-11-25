@@ -697,20 +697,96 @@ Moving forward I want to see the differences in data we get from 5X and 10X. We'
 `wc -l *5x_sorted.tab`:
 
 ```
-
+   10795712 16_S138_5x_sorted.tab
+    9475520 17_S134_5x_sorted.tab
+   10544006 18_S154_5x_sorted.tab
+   11086014 21_S119_5x_sorted.tab
+    8324187 22_S120_5x_sorted.tab
+    9565847 23_S141_5x_sorted.tab
+    7217442 24_S147_5x_sorted.tab
+   15508592 25_S148_5x_sorted.tab
+    6679878 26_S121_5x_sorted.tab
+   13129157 28_S122_5x_sorted.tab
+   13177726 29_S153_5x_sorted.tab
+   11203815 2_S128_5x_sorted.tab
+   10223642 30_S124_5x_sorted.tab
+    1414587 31_S127_5x_sorted.tab
+   10908998 32_S130_5x_sorted.tab
+    7641308 33_S142_5x_sorted.tab
+    9390715 34_S136_5x_sorted.tab
+   12071740 35_S137_5x_sorted.tab
+    8944977 37_S140_5x_sorted.tab
+    6851807 38_S129_5x_sorted.tab
+   10867493 39_S145_5x_sorted.tab
+   11144799 40_S135_5x_sorted.tab
+    8654965 41_S151_5x_sorted.tab
+   10887332 42_S131_5x_sorted.tab
+   12484052 43_S143_5x_sorted.tab
+    9865682 44_S125_5x_sorted.tab
+    8637091 45_S156_5x_sorted.tab
+    8379720 46_S133_5x_sorted.tab
+   10301106 47_S155_5x_sorted.tab
+   14300207 4_S146_5x_sorted.tab
+   11738047 50_S139_5x_sorted.tab
+    8229716 51_S126_5x_sorted.tab
+    7771771 52_S150_5x_sorted.tab
+   11123515 54_S144_5x_sorted.tab
+    7765416 55_S123_5x_sorted.tab
+    6517952 56_S149_5x_sorted.tab
+    6887246 57_S152_5x_sorted.tab
+    6034212 58_S157_5x_sorted.tab
+    6793494 59_S158_5x_sorted.tab
+    11607615 6_S132_5x_sorted.tab
+  384147101 total
 ```
-
-Sanity check = `ls *5x_sorted.tab | wc` = 
 
 ### 10x coverage
 
 `wc -l *10x_sorted.tab`:
 
 ```
-   
+   2849086 16_S138_10x_sorted.tab
+   1898361 17_S134_10x_sorted.tab
+   2928908 18_S154_10x_sorted.tab
+   3191365 21_S119_10x_sorted.tab
+   1454107 22_S120_10x_sorted.tab
+   1885121 23_S141_10x_sorted.tab
+   1044970 24_S147_10x_sorted.tab
+   9192668 25_S148_10x_sorted.tab
+    839032 26_S121_10x_sorted.tab
+   5449797 28_S122_10x_sorted.tab
+   5380052 29_S153_10x_sorted.tab
+   3214753 2_S128_10x_sorted.tab
+   2522178 30_S124_10x_sorted.tab
+     40842 31_S127_10x_sorted.tab
+   2921673 32_S130_10x_sorted.tab
+   1044145 33_S142_10x_sorted.tab
+   1893638 34_S136_10x_sorted.tab
+   3994034 35_S137_10x_sorted.tab
+   1587468 37_S140_10x_sorted.tab
+    800425 38_S129_10x_sorted.tab
+   3126530 39_S145_10x_sorted.tab
+   3254802 40_S135_10x_sorted.tab
+   1972497 41_S151_10x_sorted.tab
+   3235614 42_S131_10x_sorted.tab
+   4763284 43_S143_10x_sorted.tab
+   2320334 44_S125_10x_sorted.tab
+   1724432 45_S156_10x_sorted.tab
+   1469327 46_S133_10x_sorted.tab
+   2746614 47_S155_10x_sorted.tab
+   6886932 4_S146_10x_sorted.tab
+   3872754 50_S139_10x_sorted.tab
+   1505077 51_S126_10x_sorted.tab
+   1401552 52_S150_10x_sorted.tab
+   3448169 54_S144_10x_sorted.tab
+   1282952 55_S123_10x_sorted.tab
+    851327 56_S149_10x_sorted.tab
+    961452 57_S152_10x_sorted.tab
+    893503 58_S157_10x_sorted.tab
+    944123 59_S158_10x_sorted.tab
+   3462425 6_S132_10x_sorted.tab
+ 104256323 total
 ```
-
-Sanity check = `ls *10x_sorted.tab | wc` = 
 
 ## <a name="filter_pos"></a> **Create a file with positions found in all samples**
 
@@ -749,7 +825,27 @@ cat CpG.all.samps.5x_sorted.bed | awk '$4 ==40' > CpG.filt.all.samps.5x_sorted.b
 cat CpG.all.samps.10x_sorted.bed | awk '$4 ==40' > CpG.filt.all.samps.10x_sorted.bed
 ```
 
+`head -2 CpG.filt.all.samps.10x_sorted.bed`:
 
+```
+Montipora_capitata_HIv3___Scaffold_1    15259   15261   1       2       0       1       0       0       0       0       0       0       0       0       0       0  00       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0  00       0       0       0       0
+Montipora_capitata_HIv3___Scaffold_1    15275   15277   1       2       0       1       0       0       0       0       0       0       0       0       0       0  00       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0  00       0       0       0       0
+```
+
+`head -2 CpG.filt.all.samps.5x_sorted.bed`:
+
+```
+Montipora_capitata_HIv3___Scaffold_1    25587   25589   40      1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40      1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1  11       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1
+Montipora_capitata_HIv3___Scaffold_1    25599   25601   40      1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40      1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1  11       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1       1
+```
+
+`wc -l CpG.filt.all.samps.5x_sorted.bed`:
+
+96449 CpG.filt.all.samps.5x_sorted.bed
+
+`wc -l CpG.filt.all.samps.10x_sorted.bed`:
+
+4512 CpG.filt.all.samps.10x_sorted.bed
 
 ## <a name="gene_anno"></a> **Gene annotation**
 
@@ -777,6 +873,7 @@ $ awk '{if ($3 == "gene") {print}}' Montipora_capitata_HIv3.genes.gff3  > Montip
 
 This came back empty so the descriptions are all parts of genes. Removing the created file above and moving on with the original file (`Montipora_capitata_HIv3.genes.gff3`). (In other pipelines our lab has done, we needed this step). 
 
+**Do I need to filter this to transcript instead?** 
 
 ## <a name="intersectBed_map"></a> **IntersectBed: Loci mapped to annotated gene**
 
@@ -825,7 +922,9 @@ do
 done
 ```
 
-No errors - move on
+Sanity check `ls *_gene | wc` = 
+
+The above code probably doesn't need to be divided into 5 and 10x if the function is the same and the names of the files have 5 or 10 already in them. 
 
 ## <a name="intersectBed_all"></a> **IntersectBed: File to only positions found in all samples**
 
