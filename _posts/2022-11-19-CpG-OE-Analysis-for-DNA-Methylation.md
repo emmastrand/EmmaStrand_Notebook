@@ -257,6 +257,45 @@ Montipora_capitata_HIv3___RNAseq.10547_t         0.613498
 
 ### Combine functional annotation file with CpG sorted file 
 
-join mcap_ID_CpG_sorted Montipora_capitata_HIv3.genes.EggNog_results_sorted.txt | awk '{print $1, "\t", $2}' > Mcap_cpg_anno
+`join mcap_ID_CpG_sorted Montipora_capitata_HIv3.genes.EggNog_results_sorted.txt | awk '{print $1, "\t", $2}' > Mcap_cpg_anno`:
 
-*left off at merge these two files the above code worked but now need to attach annotation GOslim information and do the above with Pacuta.* 
+```
+Montipora_capitata_HIv3___RNAseq.10187_t         1.07151
+Montipora_capitata_HIv3___RNAseq.10207_t         0.566746
+```
+
+`join pacuta_ID_CpG_sorted Pocillopora_acuta_HIv2.genes.EggNog_results_sorted.txt | awk '{print $1, "\t", $2}' > Pacuta_cpg_anno`:
+
+```
+Pocillopora_acuta_HIv2___RNAseq.10002_t          0.874359
+Pocillopora_acuta_HIv2___RNAseq.10010_t          0.824372
+```
+
+## Export data to local computer 
+
+*M. capitata is for Bleaching Pairs project.* 
+
+```
+scp emma_strand@ssh3.hac.uri.edu:/data/putnamlab/estrand/CpG_OE/Mcap_cpg_anno /Users/emmastrand/MyProjects/HI_Bleaching_Timeseries/Dec-July-2019-analysis/output/WGBS/Mcap_cpg_anno.txt
+```
+
+*P. acuta is for Holobiont Integration project.* 
+
+```
+scp emma_strand@ssh3.hac.uri.edu:/data/putnamlab/estrand/CpG_OE/Pacuta_cpg_anno /Users/emmastrand/MyProjects/Acclim_Dynamics_molecular/data/WGBS/Pacuta_cpg_anno.txt
+```
+
+### Next steps 
+
+The dataframe I need is:
+
+`Gene_ID     CpG_ratio     Annotation`
+
+The annotation is the GOSlim terms from the functional annotation pipeline I use. 
+
+1.) R script to analyze CpG Density 
+2.) Identify which Gene IDs (and annotations) are in weakly and strongly methylated sets 
+3.) Interpret what *P. acuta* and *M. capitata* traditionally heavily methylate (or not)
+4.) Track % methylation on those two groups of genes (weakly and strongly) through time, treatment (might have to collapse temperature)
+
+CpG ratio is only at the species level not individual because the timescale changes in nucleotides is larger than the shorter-term effect of environment or phenotype in the case of bleaching pairs. 

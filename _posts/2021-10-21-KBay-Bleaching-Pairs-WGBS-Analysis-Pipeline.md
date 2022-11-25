@@ -550,6 +550,8 @@ do
 done
 ```
 
+Sanity check = `ls *_sorted.cov | wc`  = 40      40     757
+
 ### OVERVIEW 
 
 The script is saying: 
@@ -594,6 +596,8 @@ do
   > "${STEM}"_10x_sorted.bedgraph
 done
 ```
+
+Sanity check = `ls *sorted.bedgraph | wc` = 80      80    2194 (x2 for two coverage levels)
 
 ## <a name="filter_cov"></a> **Filter for a specific coverage (5X, 10X)**
 
@@ -682,6 +686,8 @@ do
 done
 ```
 
+Sanity check `ls *sorted.tab | wc` = 80      80    1794 (x2 for two coverage levels)
+
 ### OVERVIEW 
 
 Moving forward I want to see the differences in data we get from 5X and 10X. We'll have to decide which threshold to use moving forward. We want confidence and high resolution but also a large dataset so we need a happy medium. 
@@ -691,68 +697,20 @@ Moving forward I want to see the differences in data we get from 5X and 10X. We'
 `wc -l *5x_sorted.tab`:
 
 ```
-9475520 17_S134_5x_sorted.tab
-   10544006 18_S154_5x_sorted.tab
-   11086014 21_S119_5x_sorted.tab
-    8324187 22_S120_5x_sorted.tab
-    9565847 23_S141_5x_sorted.tab
-    7217442 24_S147_5x_sorted.tab
-   15508592 25_S148_5x_sorted.tab
-    6679878 26_S121_5x_sorted.tab
-   13129157 28_S122_5x_sorted.tab
-   11203815 2_S128_5x_sorted.tab
-    1414587 31_S127_5x_sorted.tab
-    7641308 33_S142_5x_sorted.tab
-    9390715 34_S136_5x_sorted.tab
-    6851807 38_S129_5x_sorted.tab
-   10867493 39_S145_5x_sorted.tab
-   11144799 40_S135_5x_sorted.tab
-   10887332 42_S131_5x_sorted.tab
-   12484052 43_S143_5x_sorted.tab
-    9865682 44_S125_5x_sorted.tab
-    8637091 45_S156_5x_sorted.tab
-   14300207 4_S146_5x_sorted.tab
-   11738047 50_S139_5x_sorted.tab
-   11123515 54_S144_5x_sorted.tab
-    6034212 58_S157_5x_sorted.tab
-    6793494 59_S158_5x_sorted.tab
-   11607615 6_S132_5x_sorted.tab
-  253516414 total
+
 ```
+
+Sanity check = `ls *5x_sorted.tab | wc` = 
 
 ### 10x coverage
 
 `wc -l *10x_sorted.tab`:
 
 ```
-   1898361 17_S134_10x_sorted.tab
-   2928908 18_S154_10x_sorted.tab
-   3191365 21_S119_10x_sorted.tab
-   1454107 22_S120_10x_sorted.tab
-   1885121 23_S141_10x_sorted.tab
-   1044970 24_S147_10x_sorted.tab
-   9192668 25_S148_10x_sorted.tab
-    839032 26_S121_10x_sorted.tab
-   5449797 28_S122_10x_sorted.tab
-   3214753 2_S128_10x_sorted.tab
-     40842 31_S127_10x_sorted.tab
-   1044145 33_S142_10x_sorted.tab
-   1893638 34_S136_10x_sorted.tab
-    800425 38_S129_10x_sorted.tab
-   3126530 39_S145_10x_sorted.tab
-   3254802 40_S135_10x_sorted.tab
-   3235614 42_S131_10x_sorted.tab
-   4763284 43_S143_10x_sorted.tab
-   2320334 44_S125_10x_sorted.tab
-   1724432 45_S156_10x_sorted.tab
-   6886932 4_S146_10x_sorted.tab
-   3872754 50_S139_10x_sorted.tab
-   3448169 54_S144_10x_sorted.tab
-    893503 58_S157_10x_sorted.tab
-    944123 59_S158_10x_sorted.tab
-   3462425 6_S132_10x_sorted.tab
-  72811034 total
+   
 ```
+
+Sanity check = `ls *10x_sorted.tab | wc` = 
 
 ## <a name="filter_pos"></a> **Create a file with positions found in all samples**
 
@@ -791,47 +749,7 @@ cat CpG.all.samps.5x_sorted.bed | awk '$4 ==40' > CpG.filt.all.samps.5x_sorted.b
 cat CpG.all.samps.10x_sorted.bed | awk '$4 ==40' > CpG.filt.all.samps.10x_sorted.bed
 ```
 
-cat CpG.all.samps.5x_sorted.bed | awk '$5 ==",40"' > CpG.all.samps-40.5x_sorted.bed (awk contains samples 26-40) to make sure all samples do exist in all samples file
 
-list all sample names manually to make sure all 40 are 
-
-head `CpG.all.samps.5x_sorted.bed`: 
-
-```
-Montipora_capitata_HIv3___Scaffold_1    15160   15162   2       1,16    1       0       0       0       0       0       0       0       0       0       0       0
-       0       0       0       1       0       0       0       0       0       0       0       0       0       0
-Montipora_capitata_HIv3___Scaffold_1    15182   15184   2       1,16    1       0       0       0       0       0       0       0       0       0       0       0
-       0       0       0       1       0       0       0       0       0       0       0       0       0       0
-Montipora_capitata_HIv3___Scaffold_1    15206   15210   2       1,16    1       0       0       0       0       0       0       0       0       0       0       0
-       0       0       0       1       0       0       0       0       0       0       0       0       0       0
-Montipora_capitata_HIv3___Scaffold_1    15226   15228   2       1,16    1       0       0       0       0       0       0       0       0       0       0       0
-       0       0       0       1       0       0       0       0       0       0       0       0       0       0
-Montipora_capitata_HIv3___Scaffold_1    15259   15261   11      1,3,7,10,12,13,16,17,19,22,23   1       0       1       0       0       0       1       0       0
-       1       0       1       1       0       0       1       1       0       1       0       0       1       1       0       0       0
-Montipora_capitata_HIv3___Scaffold_1    15275   15277   10      1,3,4,7,10,12,13,16,19,22       1       0       1       1       0       0       1       0       0
-       1       0       1       1       0       0       1       0       0       1       0       0       1       0       0       0       0
-```
-
-head `CpG.filt.all.samps.5x_sorted.bed`: 
-
-```
-empty..
-```
-
-Try with lower # of column #4 value -- this cuts off after loci found in 26 samples or more. 
-
-```
-cat CpG.all.samps.5x_sorted.bed | awk '$4 ==26' > CpG.filt.all.samps.5x_sorted-26.bed 
-
-wc -l CpG.filt.all.samps.5x_sorted-26.bed
-
-739760 CpG.filt.all.samps.5x_sorted-10.bed
-776113 CpG.filt.all.samps.5x_sorted-15.bed
-420987 CpG.filt.all.samps.5x_sorted-25.bed
-158992 CpG.filt.all.samps.5x_sorted-26.bed
-0 CpG.filt.all.samps.5x_sorted-27.bed
-0 CpG.filt.all.samps.5x_sorted-30.bed
-```
 
 ## <a name="gene_anno"></a> **Gene annotation**
 
@@ -1001,3 +919,45 @@ Total count of deduplicated leftover sequences: 20955435 (87.70% of total)
 ```
 
 So why would this not get used as input for methylation calling....
+
+cat CpG.all.samps.5x_sorted.bed | awk '$5 ==",40"' > CpG.all.samps-40.5x_sorted.bed (awk contains samples 26-40) to make sure all samples do exist in all samples file
+
+list all sample names manually to make sure all 40 are 
+
+head `CpG.all.samps.5x_sorted.bed`: 
+
+```
+Montipora_capitata_HIv3___Scaffold_1    15160   15162   2       1,16    1       0       0       0       0       0       0       0       0       0       0       0
+       0       0       0       1       0       0       0       0       0       0       0       0       0       0
+Montipora_capitata_HIv3___Scaffold_1    15182   15184   2       1,16    1       0       0       0       0       0       0       0       0       0       0       0
+       0       0       0       1       0       0       0       0       0       0       0       0       0       0
+Montipora_capitata_HIv3___Scaffold_1    15206   15210   2       1,16    1       0       0       0       0       0       0       0       0       0       0       0
+       0       0       0       1       0       0       0       0       0       0       0       0       0       0
+Montipora_capitata_HIv3___Scaffold_1    15226   15228   2       1,16    1       0       0       0       0       0       0       0       0       0       0       0
+       0       0       0       1       0       0       0       0       0       0       0       0       0       0
+Montipora_capitata_HIv3___Scaffold_1    15259   15261   11      1,3,7,10,12,13,16,17,19,22,23   1       0       1       0       0       0       1       0       0
+       1       0       1       1       0       0       1       1       0       1       0       0       1       1       0       0       0
+Montipora_capitata_HIv3___Scaffold_1    15275   15277   10      1,3,4,7,10,12,13,16,19,22       1       0       1       1       0       0       1       0       0
+       1       0       1       1       0       0       1       0       0       1       0       0       1       0       0       0       0
+```
+
+head `CpG.filt.all.samps.5x_sorted.bed`: 
+
+```
+empty..
+```
+
+Try with lower # of column #4 value -- this cuts off after loci found in 26 samples or more. 
+
+```
+cat CpG.all.samps.5x_sorted.bed | awk '$4 ==26' > CpG.filt.all.samps.5x_sorted-26.bed 
+
+wc -l CpG.filt.all.samps.5x_sorted-26.bed
+
+739760 CpG.filt.all.samps.5x_sorted-10.bed
+776113 CpG.filt.all.samps.5x_sorted-15.bed
+420987 CpG.filt.all.samps.5x_sorted-25.bed
+158992 CpG.filt.all.samps.5x_sorted-26.bed
+0 CpG.filt.all.samps.5x_sorted-27.bed
+0 CpG.filt.all.samps.5x_sorted-30.bed
+```
