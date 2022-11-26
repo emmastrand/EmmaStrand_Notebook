@@ -922,7 +922,7 @@ do
 done
 ```
 
-Sanity check `ls *_gene | wc` = 
+Sanity check `ls *_gene | wc` = 80      80    2194
 
 The above code probably doesn't need to be divided into 5 and 10x if the function is the same and the names of the files have 5 or 10 already in them. 
 
@@ -966,6 +966,10 @@ do
 done
 ```
 
+`ls *CpG_10x_enrichment.bed | wc` = 40
+`ls *CpG_5x_enrichment.bed | wc` = 40
+
+
 Within merged_cov_genomev3 folder:
 
 ```
@@ -975,14 +979,40 @@ wc -l *5x_enrichment.bed > 5x_enrichment_sample_size.txt
 
 ### 5X COVERAGE 
 
+```
+    87180 16_S138_5x_sorted.tab_gene_CpG_5x_enrichment.bed
+    87180 17_S134_5x_sorted.tab_gene_CpG_5x_enrichment.bed
+    87180 18_S154_5x_sorted.tab_gene_CpG_5x_enrichment.bed
+    87180 21_S119_5x_sorted.tab_gene_CpG_5x_enrichment.bed
+    87180 22_S120_5x_sorted.tab_gene_CpG_5x_enrichment.bed
+    87180 23_S141_5x_sorted.tab_gene_CpG_5x_enrichment.bed
+    87180 24_S147_5x_sorted.tab_gene_CpG_5x_enrichment.bed
+    87180 25_S148_5x_sorted.tab_gene_CpG_5x_enrichment.bed
+    87180 26_S121_5x_sorted.tab_gene_CpG_5x_enrichment.bed
+    87180 28_S122_5x_sorted.tab_gene_CpG_5x_enrichment.bed
+```
+
 ### 10X COVERAGE
+
+```
+    1667 16_S138_10x_sorted.tab_gene_CpG_10x_enrichment.bed
+    1667 17_S134_10x_sorted.tab_gene_CpG_10x_enrichment.bed
+    1667 18_S154_10x_sorted.tab_gene_CpG_10x_enrichment.bed
+    1667 21_S119_10x_sorted.tab_gene_CpG_10x_enrichment.bed
+    1667 22_S120_10x_sorted.tab_gene_CpG_10x_enrichment.bed
+    1667 23_S141_10x_sorted.tab_gene_CpG_10x_enrichment.bed
+    1667 24_S147_10x_sorted.tab_gene_CpG_10x_enrichment.bed
+    1667 25_S148_10x_sorted.tab_gene_CpG_10x_enrichment.bed
+    1667 26_S121_10x_sorted.tab_gene_CpG_10x_enrichment.bed
+    1667 28_S122_10x_sorted.tab_gene_CpG_10x_enrichment.bed
+```
 
 ## <a name="export"></a> **Export Files**
 
 ```
-scp 'emma_strand@ssh3.hac.uri.edu:/data/putnamlab/estrand/BleachingPairs_WGBS/merged_cov_genomev3/*_5x_enrichment.bed' ~/MyProjects/Acclim_Dynamics_molecular/data/WGBS/output/meth_counts_5x
+scp 'emma_strand@ssh3.hac.uri.edu:/data/putnamlab/estrand/BleachingPairs_WGBS/merged_cov_genomev3/*_5x_enrichment.bed' ~/MyProjects/HI_Bleaching_Timeseries/Dec-July-2019-analysis/output/WGBS/meth_counts_5x/
 
-scp 'emma_strand@ssh3.hac.uri.edu:/data/putnamlab/estrand/BleachingPairs_WGBS/merged_cov_genomev3/*_10x_enrichment.bed' ~/MyProjects/Acclim_Dynamics_molecular/data/WGBS/output/meth_counts_10x
+scp 'emma_strand@ssh3.hac.uri.edu:/data/putnamlab/estrand/BleachingPairs_WGBS/merged_cov_genomev3/*_10x_enrichment.bed' ~/MyProjects/HI_Bleaching_Timeseries/Dec-July-2019-analysis/output/WGBS/meth_counts_10x
 ```
 
 ## Troubleshooting 
