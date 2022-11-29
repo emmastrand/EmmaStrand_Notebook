@@ -481,6 +481,14 @@ ERROR: Unable to add record to tree.
 
 Error in above section so need to come back to this...
 
+### Create summary file 
+
+`wc -l *CGMotif* > Pacuta-v2-CGMotif-Overlaps-counts.txt`
+
+#### Export this file 
+
+`scp emma_strand@ssh3.hac.uri.edu:/data/putnamlab/estrand/HoloInt_WGBS/genomic_feature/Pacuta-v2-CGMotif-Overlaps-counts.txt ~/MyProjects/Acclim_Dynamics_molecular/data/WGBS/genomic_feature/`
+
 ## Organize coverage files
 
 `wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*5x_sorted.bedgraph > Pacuta-v2-5x-bedgraph-counts.txt`
@@ -515,6 +523,14 @@ head Pacuta-v2-10x-bedgraph-counts.txt
     4656862 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1168_10x_sorted.bedgraph
     5010797 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1184_10x_sorted.bedgraph
     5914757 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1205_10x_sorted.bedgraph
+```
+
+### Export to computer 
+
+```
+scp emma_strand@ssh3.hac.uri.edu:/data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/Pacuta-v2-10x-bedgraph-counts.txt ~/MyProjects/Acclim_Dynamics_molecular/data/WGBS/genomic_feature
+
+scp emma_strand@ssh3.hac.uri.edu:/data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/Pacuta-v2-5x-bedgraph-counts.txt ~/MyProjects/Acclim_Dynamics_molecular/data/WGBS/genomic_feature
 ```
 
 ## Characterize methylation for each CpG dinucleotide
@@ -660,6 +676,15 @@ Pocillopora_acuta_HIv2___Sc0000000 1089 1091 0.000000
    111070 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1205_10x_sorted.bedgraph-Meth
 ```
 
+### Export files 
+
+```
+scp emma_strand@ssh3.hac.uri.edu:/data/putnamlab/estrand/HoloInt_WGBS/genomic_feature/Pacuta-v2-10x-*-counts.txt ~/MyProjects/Acclim_Dynamics_molecular/data/WGBS/genomic_feature/
+
+scp emma_strand@ssh3.hac.uri.edu:/data/putnamlab/estrand/HoloInt_WGBS/genomic_feature/Pacuta-v2-5x-*-counts.txt ~/MyProjects/Acclim_Dynamics_molecular/data/WGBS/genomic_feature
+```
+
+
 ## Characterize genomic locations of CpGs
 
 ### Create BED files
@@ -766,7 +791,6 @@ Pocillopora_acuta_HIv2___Sc0000000      28031   28033   83.333333
 #SBATCH --error="%x_error.%j" #if your job fails, the error report will be put in this file
 #SBATCH --output="%x_output.%j" #once your job is completed, any final job report comments will be put in this file
 
-
 # load modules needed (specific need for my computer)
 source /usr/share/Modules/init/sh # load the module function
 
@@ -866,67 +890,168 @@ This is because of a bin issue with downstream flanks.
 #### Upstream Flanks
 
 ```
-wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*10x*paFlanksUpstream > Pacuta-paFlanksUpstream10X-counts.txt | head -2
+wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*10x*paFlanksUpstream > Pacuta-paFlanksUpstream10X-counts.txt 
 
-# output 
+# head -5 Pacuta-paFlanksUpstream10X-counts.txt
     342145 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_10x_sorted.bedgraph.bed-paFlanksUpstream
       3777 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_10x_sorted.bedgraph-Meth.bed-paFlanksUpstream
+      6728 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_10x_sorted.bedgraph-sparseMeth.bed-paFlanksUpstream
+    331640 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_10x_sorted.bedgraph-unMeth.bed-paFlanksUpstream
+         0 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_10x_sorted.tab_gene_CpG_10x_enrichment.bed-paFlanksUpstream
 
+wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*5x*paFlanksUpstream > Pacuta-paFlanksUpstream5X-counts.txt 
 
-wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*5x*paFlanksUpstream > Pacuta-paFlanksUpstream5X-counts.txt | head -2 
-# output 
+# head -5 Pacuta-paFlanksUpstream5X-counts.txt
     580660 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_5x_sorted.bedgraph.bed-paFlanksUpstream
       7511 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_5x_sorted.bedgraph-Meth.bed-paFlanksUpstream
+     20830 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_5x_sorted.bedgraph-sparseMeth.bed-paFlanksUpstream
+    552319 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_5x_sorted.bedgraph-unMeth.bed-paFlanksUpstream
+         0 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_5x_sorted.tab_gene_CpG_5x_enrichment.bed-paFlanksUpstream
 ```
 
 #### Flanks 
 
 ```
-wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*10x*paFlanks > Pacuta-paFlanks10X-counts.txt | head -2
+wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*10x*paFlanks > Pacuta-paFlanks10X-counts.txt 
 
-#output 
+# head -5 Pacuta-paFlanks10X-counts.txt
     571789 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_10x_sorted.bedgraph.bed-paFlanks
       8339 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_10x_sorted.bedgraph-Meth.bed-paFlanks
+     12603 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_10x_sorted.bedgraph-sparseMeth.bed-paFlanks
+    550847 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_10x_sorted.bedgraph-unMeth.bed-paFlanks
+         0 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_10x_sorted.tab_gene_CpG_10x_enrichment.bed-paFlanks
 
-wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*5x*paFlanks > Pacuta-paFlanks5X-counts.txt | head -2
+wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*5x*paFlanks > Pacuta-paFlanks5X-counts.txt 
 
-#output 
+# head -5 Pacuta-paFlanks5X-counts.txt 
    1001849 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_5x_sorted.bedgraph.bed-paFlanks
      17638 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_5x_sorted.bedgraph-Meth.bed-paFlanks
+     39559 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_5x_sorted.bedgraph-sparseMeth.bed-paFlanks
+    944652 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_5x_sorted.bedgraph-unMeth.bed-paFlanks
+         0 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_5x_sorted.tab_gene_CpG_5x_enrichment.bed-paFlanks
 ```
 
 #### CDS 
 
 ```
-wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*10x*paCDS > Pacuta-paCDS10X-counts.txt | head -2
+wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*10x*paCDS > Pacuta-paCDS10X-counts.txt 
 
-#output
+# head -5 Pacuta-paCDS10X-counts.txt
     897455 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_10x_sorted.bedgraph.bed-paCDS
      43673 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_10x_sorted.bedgraph-Meth.bed-paCDS
+     22793 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_10x_sorted.bedgraph-sparseMeth.bed-paCDS
+    830989 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_10x_sorted.bedgraph-unMeth.bed-paCDS
+      7606 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_10x_sorted.tab_gene_CpG_10x_enrichment.bed-paCDS
 
-wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*5x*paCDS > Pacuta-paCDS5X-counts.txt | head -2
+wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*5x*paCDS > Pacuta-paCDS5X-counts.txt 
 
-#output 
+# head -5 Pacuta-paCDS5X-counts.txt
     1195194 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_5x_sorted.bedgraph.bed-paCDS
       69117 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_5x_sorted.bedgraph-Meth.bed-paCDS
+      44404 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_5x_sorted.bedgraph-sparseMeth.bed-paCDS
+    1081673 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_5x_sorted.bedgraph-unMeth.bed-paCDS
+     160577 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_5x_sorted.tab_gene_CpG_5x_enrichment.bed-paCDS
 ``` 
 
 #### Transcript 
 
 ```
-wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*5x*paTranscript > Pacuta-paTranscript10X-counts.txt | head -2
+wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*5x*paTranscript > Pacuta-paTranscript5X-counts.txt  
 
-#output 
+# head -5 Pacuta-paTranscript5X-counts.txt 
     3216893 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_5x_sorted.bedgraph.bed-paTranscript
      154520 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_5x_sorted.bedgraph-Meth.bed-paTranscript
+     137289 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_5x_sorted.bedgraph-sparseMeth.bed-paTranscript
+    2925084 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_5x_sorted.bedgraph-unMeth.bed-paTranscript
+     221239 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_5x_sorted.tab_gene_CpG_5x_enrichment.bed-paTranscript
 
-wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*10x*paTranscript > Pacuta-paTranscript5X-counts.txt | head -2
+wc -l /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*10x*paTranscript > Pacuta-paTranscript10X-counts.txt 
 
-#output 
-   2059224 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_10x_sorted.bedgraph.bed-paTranscript
+# head -5 Pacuta-paTranscript10X-counts.txt 
+    2059224 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_10x_sorted.bedgraph.bed-paTranscript
       81997 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_10x_sorted.bedgraph-Meth.bed-paTranscript
+      53618 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_10x_sorted.bedgraph-sparseMeth.bed-paTranscript
+    1923609 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_10x_sorted.bedgraph-unMeth.bed-paTranscript
+      10152 /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/1047_10x_sorted.tab_gene_CpG_10x_enrichment.bed-paTranscript
 ```
 
-Left off at:
-1.) make list of current issues to address 
-2.) next step after making counts.txt files 
+### List of counts files to export 
+
+Pacuta-paCDS10X-counts.txt     Pacuta-paFlanks5X-counts.txt             Pacuta-paFlanksUpstream10X-counts.txt  Pacuta-paTranscript5X-counts.txt
+Pacuta-paCDS5X-counts.txt      Pacuta-paFlanksDownstream10X-counts.txt  Pacuta-paFlanksUpstream5X-counts.txt
+Pacuta-paFlanks10X-counts.txt  Pacuta-paFlanksDownstream5X-counts.txt   Pacuta-paTranscript10X-counts.txt
+
+```
+scp -r emma_strand@ssh3.hac.uri.edu:/data/putnamlab/estrand/HoloInt_WGBS/genomic_feature/counts ~/MyProjects/Acclim_Dynamics_molecular/data/WGBS/genomic_feature
+
+scp emma_strand@ssh3.hac.uri.edu:/data/putnamlab/estrand/HoloInt_WGBS/genomic_feature/Pacuta-CGMotif-CDS-Overlaps.txt ~/MyProjects/Acclim_Dynamics_molecular/data/WGBS/
+```
+
+## Canonical Coverage Track with unionbedg
+
+bedtools unionbedg combines multiple bedgraph files into a single file check that one can direcctly compare coverage (and other text-values such as genotypes) across multiple samples. Reference: https://github.com/hputnam/Meth_Compare/blob/master/code/01.10-Mcap-Canonical-Coverage-Track.ipynb
+
+Bedgraphs: `/data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*.bedgraph`
+
+`unionbedg.sh`:
+
+```
+#!/bin/bash
+#SBATCH --job-name="unionbedg"
+#SBATCH -t 500:00:00
+#SBATCH --mem=128GB
+#SBATCH --export=NONE
+#SBATCH -D /data/putnamlab/estrand/HoloInt_WGBS/genomic_feature #### this is the output from the merge cov step above 
+#SBATCH --cpus-per-task=3
+#SBATCH --error="%x_error.%j" #if your job fails, the error report will be put in this file
+#SBATCH --output="%x_output.%j" #once your job is completed, any final job report comments will be put in this file
+
+# load modules needed (specific need for my computer)
+source /usr/share/Modules/init/sh # load the module function
+module load BEDTools/2.27.1-foss-2018b
+
+# 5x 
+unionBedGraphs \
+-header \
+-filler N/A \
+-names 1047 1051 1059 1090 1103 1147 1159 1168 1184 1205 \
+1238 1281 1296 1303 1239 1415 1416 1427 1445 1459 \
+1487 1536 1559 1563 1571 1582 1596 1641 1647 1707 \
+1709 1728 1732 1755 1757 1765 1777 1820 2012 2064 \
+2072 2087 2185 2212 2300 2304 2306 2409 2413 2513 \
+2550 2564 2668 2861 2877 2878 2879 \
+-i /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*5x*.bedgraph \
+> Union5x.bedgraph
+
+# 10x
+unionBedGraphs \
+-header \
+-filler N/A \
+-names 1047 1051 1059 1090 1103 1147 1159 1168 1184 1205 \
+1238 1281 1296 1303 1239 1415 1416 1427 1445 1459 \
+1487 1536 1559 1563 1571 1582 1596 1641 1647 1707 \
+1709 1728 1732 1755 1757 1765 1777 1820 2012 2064 \
+2072 2087 2185 2212 2300 2304 2306 2409 2413 2513 \
+2550 2564 2668 2861 2877 2878 2879 \
+-i /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*10x*.bedgraph \
+> Union10x.bedgraph
+```
+
+`head Union5x.bedgraph`
+
+```
+
+```
+
+`head Union10x.bedgraph`
+
+```
+
+```
+
+### export these files to computer 
+
+```
+scp emma_strand@ssh3.hac.uri.edu:/data/putnamlab/estrand/HoloInt_WGBS/genomic_feature/Union5x.bedgraph ~/MyProjects/Acclim_Dynamics_molecular/data/WGBS/genomic_feature/
+scp emma_strand@ssh3.hac.uri.edu:/data/putnamlab/estrand/HoloInt_WGBS/genomic_feature/Union10x.bedgraph ~/MyProjects/Acclim_Dynamics_molecular/data/WGBS/genomic_feature/
+```

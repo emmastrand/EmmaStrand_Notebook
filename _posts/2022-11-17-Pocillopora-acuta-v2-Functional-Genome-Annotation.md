@@ -161,8 +161,7 @@ Moved the above files to my genome annotation/split_files folder.
 ```
 #!/bin/bash
 #SBATCH --job-name="PA-trem"
-#SBATCH -t 240:00:00
-#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH -t 30-00:00:00
 #SBATCH --mem=128GB
 #SBATCH --account=putnamlab
 #SBATCH --export=NONE
@@ -211,8 +210,7 @@ i = in-place (edit file in place) s = substitute /replacement_from_reg_exp/repla
 ```
 #!/bin/bash
 #SBATCH --job-name="PA-int"
-#SBATCH -t 240:00:00
-#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH -t 30-00:00:00
 #SBATCH --mem=128GB
 #SBATCH --export=NONE
 #SBATCH -D /data/putnamlab/estrand/genome_annotation #### this should be your new output directory so all the outputs ends up here
@@ -224,7 +222,7 @@ source /usr/share/Modules/init/sh # load the module function
 
 echo "START $(date)"
 
-module load InterProScan/5.52-86.0-foss-2021a   
+module load InterProScan/5.59-91.0-foss-2021a
 module load Java/11.0.2
 java -version
 
@@ -239,8 +237,11 @@ echo "DONE $(date)"
 ### Moving and copying the produced XML files to local desk top 
 
 ```
+## Blastp xml 
+scp emma_strand@ssh3.hac.uri.edu:/data/putnamlab/estrand/genome_annotation/Pacuta_v2_blastp_annot.xml ~/MyProjects/Acclim_Dynamics_molecular/data/
 
-
+## Swissprot 
+scp emma_strand@ssh3.hac.uri.edu:/data/putnamlab/estrand/genome_annotation/Pacuta_v2_swissprot_protein.out ~/MyProjects/Acclim_Dynamics_molecular/data/
 ```
 
 
