@@ -109,7 +109,9 @@ We might need to mess with cut off variations in the methylseq because of this. 
 
 #### Methylseq1
 
-`PJ_methylseq1.sh`: 
+`PJ_methylseq1.sh`: --clip_r1 10 \ --clip_r2 10 \ --three_prime_clip_r1 10 --three_prime_clip_r2 10 \
+
+`PJ_methylseq2.sh`: --clip_r1 10 \ --clip_r2 10 \ --three_prime_clip_r1 20 --three_prime_clip_r2 20 \
 
 Run this first to assess m-bias and then decide if we need more trial runs. See Emma Strand and Kevin Wong's notebook posts for methylation scripts and how they dealt with these issues. 
 
@@ -117,7 +119,7 @@ Run time: 3h 49m 45s
 
 ```
 #!/bin/bash
-#SBATCH --job-name="1methylseq"
+#SBATCH --job-name="1methylseq" # EDIT HERE FOR PJ METHYLSEQ2
 #SBATCH -t 200:00:00
 #SBATCH --nodes=1 --ntasks-per-node=10
 #SBATCH --mem=128GB
@@ -139,14 +141,14 @@ nextflow run nf-core/methylseq -profile singularity \
 --fasta /data/putnamlab/estrand/PointJudithData_MBDBS/GCF_002022765.2_C_virginica-3.0_genomic.fa \
 --save_reference \
 --input '/data/putnamlab/KITT/hputnam/20200119_Oyst_Nut/MBDBS/*_R{1,2}_001.fastq.gz' \
---clip_r1 10 \
---clip_r2 10 \
---three_prime_clip_r1 10 --three_prime_clip_r2 10 \
+--clip_r1 10 \ # EDIT HERE FOR PJ METHYLSEQ2
+--clip_r2 10 \ # EDIT HERE FOR PJ METHYLSEQ2
+--three_prime_clip_r1 10 --three_prime_clip_r2 10 \ # EDIT HERE FOR PJ METHYLSEQ2
 --non_directional \
 --cytosine_report \
 --relax_mismatches \
 --unmapped \
---outdir /data/putnamlab/estrand/PointJudithData_MBDBS/PJ_methylseq1
+--outdir /data/putnamlab/estrand/PointJudithData_MBDBS/PJ_methylseq1 # EDIT HERE FOR PJ METHYLSEQ2
 ```
 
 The multiqc function is running into errors from the above script so I ran (this took much longer than KBay and HoloInt?):
@@ -172,7 +174,7 @@ scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/PointJudithData_MB
 scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/PointJudithData_MBDBS/MBDBS_methylseq_PJ_multiqc_report.html /Users/emmastrand/MyProjects/Cvir_Nut_Int/output/MBDBS/MBDBS_methylseq_PJ_multiqc_report2.html
 ```
 
-### Full Multiqc Report 
+### Methylseq 1: Full Multiqc Report 
 
 https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/MBDBS/MBDBS_methylseq_PJ_multiqc_report.html
 
