@@ -108,7 +108,9 @@ We might need to mess with cut off variations in the methylseq because of this. 
 
 Run this first to assess m-bias and then decide if we need more trial runs. See Emma Strand and Kevin Wong's notebook posts for methylation scripts and how they dealt with these issues. 
 
-Run time: 3h 49m 45s
+`PJ_methylseq1.sh` Run time: 3h 49m 45s (**this seems weirdly short..**)
+
+`PJ_methylseq2.sh` Run time: 20+hr  
 
 ```
 #!/bin/bash
