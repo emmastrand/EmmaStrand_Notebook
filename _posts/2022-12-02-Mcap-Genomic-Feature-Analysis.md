@@ -942,7 +942,11 @@ wc -l /data/putnamlab/estrand/BleachingPairs_WGBS/merged_cov_genomev3/*5x*paTran
 wc -l /data/putnamlab/estrand/BleachingPairs_WGBS/merged_cov_genomev3/*10x*paTranscript > Mcap-paTranscript10X-counts.txt  
 
 # head -5 Mcap-paTranscript10X-counts.txt 
-
+   1430466 /data/putnamlab/estrand/BleachingPairs_WGBS/merged_cov_genomev3/16_S138_10x_sorted.bedgraph.bed-paTranscript
+    208924 /data/putnamlab/estrand/BleachingPairs_WGBS/merged_cov_genomev3/16_S138_10x_sorted.bedgraph-Meth.bed-paTranscript
+     95478 /data/putnamlab/estrand/BleachingPairs_WGBS/merged_cov_genomev3/16_S138_10x_sorted.bedgraph-sparseMeth.bed-paTranscript
+   1126064 /data/putnamlab/estrand/BleachingPairs_WGBS/merged_cov_genomev3/16_S138_10x_sorted.bedgraph-unMeth.bed-paTranscript
+      1667 /data/putnamlab/estrand/BleachingPairs_WGBS/merged_cov_genomev3/16_S138_10x_sorted.tab_gene_CpG_10x_enrichment.bed-paTranscript
 ```
 
 #### 6. Exon
@@ -951,10 +955,20 @@ wc -l /data/putnamlab/estrand/BleachingPairs_WGBS/merged_cov_genomev3/*10x*paTra
 wc -l /data/putnamlab/estrand/BleachingPairs_WGBS/merged_cov_genomev3/*5x*paExon > Mcap-paExon5X-counts.txt  
 
 # head -5 Mcap-paExon5X-counts.txt 
+   1138119 /data/putnamlab/estrand/BleachingPairs_WGBS/merged_cov_genomev3/16_S138_5x_sorted.bedgraph.bed-paExon
+    175177 /data/putnamlab/estrand/BleachingPairs_WGBS/merged_cov_genomev3/16_S138_5x_sorted.bedgraph-Meth.bed-paExon
+    101845 /data/putnamlab/estrand/BleachingPairs_WGBS/merged_cov_genomev3/16_S138_5x_sorted.bedgraph-sparseMeth.bed-paExon
+    861097 /data/putnamlab/estrand/BleachingPairs_WGBS/merged_cov_genomev3/16_S138_5x_sorted.bedgraph-unMeth.bed-paExon
+     57295 /data/putnamlab/estrand/BleachingPairs_WGBS/merged_cov_genomev3/16_S138_5x_sorted.tab_gene_CpG_5x_enrichment.bed-paExon
 
 wc -l /data/putnamlab/estrand/BleachingPairs_WGBS/merged_cov_genomev3/*10x*paExon > Mcap-paExon10X-counts.txt  
 
 # head -5 Mcap-paExon10X-counts.txt 
+    386063 /data/putnamlab/estrand/BleachingPairs_WGBS/merged_cov_genomev3/16_S138_10x_sorted.bedgraph.bed-paExon
+     54100 /data/putnamlab/estrand/BleachingPairs_WGBS/merged_cov_genomev3/16_S138_10x_sorted.bedgraph-Meth.bed-paExon
+     30214 /data/putnamlab/estrand/BleachingPairs_WGBS/merged_cov_genomev3/16_S138_10x_sorted.bedgraph-sparseMeth.bed-paExon
+    301749 /data/putnamlab/estrand/BleachingPairs_WGBS/merged_cov_genomev3/16_S138_10x_sorted.bedgraph-unMeth.bed-paExon
+      1087 /data/putnamlab/estrand/BleachingPairs_WGBS/merged_cov_genomev3/16_S138_10x_sorted.tab_gene_CpG_10x_enrichment.bed-paExon
 ```
 
 ### Export files 
@@ -962,7 +976,7 @@ wc -l /data/putnamlab/estrand/BleachingPairs_WGBS/merged_cov_genomev3/*10x*paExo
 ```
 scp -r emma_strand@ssh3.hac.uri.edu:/data/putnamlab/estrand/BleachingPairs_WGBS/genomic_feature/counts ~/MyProjects/HI_Bleaching_Timeseries/Dec-July-2019-analysis/output/WGBS/genomic_feature/
 
-scp emma_strand@ssh3.hac.uri.edu:/data/putnamlab/estrand/BleachingPairs_WGBS/genomic_feature/Mcap-CGMotif*Overlaps.txt ~/MyProjects/HI_Bleaching_Timeseries/Dec-July-2019-analysis/output/WGBS/genomic_feature/
+scp emma_strand@ssh3.hac.uri.edu:/data/putnamlab/estrand/BleachingPairs_WGBS/genomic_feature/Mcap-CGMotif-UpstreamFlanks-Overlaps.txt ~/MyProjects/HI_Bleaching_Timeseries/Dec-July-2019-analysis/output/WGBS/genomic_feature/
 ```
 
 ## Canonical Coverage Track with unionbedg
