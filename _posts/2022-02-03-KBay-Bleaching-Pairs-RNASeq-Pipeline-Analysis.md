@@ -291,6 +291,42 @@ stringtie --merge -p 8 -G /data/putnamlab/estrand/Montipora_capitata_HIv3.genes.
 echo "Stringtie merge complete" $(date)
 ```
 
+`head mergelist.txt`:
+
+```
+16_S121_L003_R1_001.bam.gtf
+16_S121_L003_R2_001.bam.gtf
+17_S122_L003_R1_001.bam.gtf
+17_S122_L003_R2_001.bam.gtf
+21_S123_L003_R1_001.bam.gtf
+21_S123_L003_R2_001.bam.gtf
+22_S124_L003_R1_001.bam.gtf
+22_S124_L003_R2_001.bam.gtf
+23_S125_L003_R1_001.bam.gtf
+23_S125_L003_R2_001.bam.gtf
+```
+
+`head stringtie_merged.gtf`:
+
+```
+# stringtie --merge -p 8 -G /data/putnamlab/estrand/Montipora_capitata_HIv3.genes.gff3 -o stringtie_merged.gtf mergelist.txt
+# StringTie version 2.1.4
+Montipora_capitata_HIv3___Scaffold_1    StringTie       transcript      22732   36176   1000    -       .       gene_id "MSTRG.1"; transcript_id "Montipora_capitata_HIv3___RNAseq.g4581.t1"; 
+Montipora_capitata_HIv3___Scaffold_1    StringTie       exon    22732   23002   1000    -       .       gene_id "MSTRG.1"; transcript_id "Montipora_capitata_HIv3___RNAseq.g4581.t1"; exon_number "1"; 
+Montipora_capitata_HIv3___Scaffold_1    StringTie       exon    27868   27934   1000    -       .       gene_id "MSTRG.1"; transcript_id "Montipora_capitata_HIv3___RNAseq.g4581.t1"; exon_number "2"; 
+Montipora_capitata_HIv3___Scaffold_1    StringTie       exon    29683   29722   1000    -       .       gene_id "MSTRG.1"; transcript_id "Montipora_capitata_HIv3___RNAseq.g4581.t1"; exon_number "3"; 
+Montipora_capitata_HIv3___Scaffold_1    StringTie       exon    30150   30230   1000    -       .       gene_id "MSTRG.1"; transcript_id "Montipora_capitata_HIv3___RNAseq.g4581.t1"; exon_number "4"; 
+Montipora_capitata_HIv3___Scaffold_1    StringTie       exon    31466   31705   1000    -       .       gene_id "MSTRG.1"; transcript_id "Montipora_capitata_HIv3___RNAseq.g4581.t1"; exon_number "5"; 
+Montipora_capitata_HIv3___Scaffold_1    StringTie       exon    31890   31988   1000    -       .       gene_id "MSTRG.1"; transcript_id "Montipora_capitata_HIv3___RNAseq.g4581.t1"; exon_number "6"; 
+Montipora_capitata_HIv3___Scaffold_1    StringTie       exon    33295   33367   1000    -       .       gene_id "MSTRG.1"; transcript_id "Montipora_capitata_HIv3___RNAseq.g4581.t1"; exon_number "7"; 
+```
+
+`less assemble.sh_error.201665 `: 
+
+`ModuleCmd_Load.c(213):ERROR:105: Unable to locate a modulefile for 'gffcompare/0.11.5-foss-2018b'`
+
+I think this is OK b/c we don't use gffcompare command until the next script. I use a newer module in the next script that is on Andromeda. 
+
 ## <a name="genecount"></a> **Create gene counts matrix**
 
 The StringTie program includes a script, prepDE.py that compiles your assembly files into gene and transcript count matrices. This script requires as input the list of sample names and their full file paths, sample_list.txt. This file will live in StringTie program directory.
@@ -304,7 +340,7 @@ Copy this file: `cp /data/putnamlab/ashuffmyer/pairs-rnaseq/prepDE.py .`
 #SBATCH -t 60:00:00
 #SBATCH --nodes=1 --ntasks-per-node=1
 #SBATCH --export=NONE
-#SBATCH --mem=100GB
+#SBATCH --mem=128GB
 #SBATCH --account=putnamlab
 #SBATCH -D /data/putnamlab/estrand/BleachingPairs_RNASeq/output/                
 #SBATCH --error=../"%x_error.%j" #if your job fails, the error report will be put in this file
@@ -313,6 +349,7 @@ Copy this file: `cp /data/putnamlab/ashuffmyer/pairs-rnaseq/prepDE.py .`
 source /usr/share/Modules/init/sh # load the module function (specific need to my computer)
 module load StringTie/2.1.4-GCC-9.3.0
 module load Python/2.7.15-foss-2018b
+module load GffCompare/0.12.1-GCCcore-8.3.0
 
 # Assess the performance of the assembly
 gffcompare -r /data/putnamlab/estrand/Montipora_capitata_HIv3.genes.gff3 -o merged stringtie_merged.gtf
@@ -325,12 +362,50 @@ for filename in *.bam.gtf; do echo $filename $PWD/$filename; done > listGTF.txt
 
 # Compile the gene count matrix
 
-python prepDE.py -g KB_gene_count_matrix.csv -i listGTF.txt
+python ../scripts/prepDE.py -g ../KB_gene_count_matrix.csv -i listGTF.txt
 echo "Gene count matrix compiled." $(date)
 ```
+
+`head output/listGTF.txt` : 
+
+```
+16_S121_L003_R1_001.bam.gtf /glfs/brick01/gv0/putnamlab/estrand/BleachingPairs_RNASeq/output/16_S121_L003_R1_001.bam.gtf
+16_S121_L003_R2_001.bam.gtf /glfs/brick01/gv0/putnamlab/estrand/BleachingPairs_RNASeq/output/16_S121_L003_R2_001.bam.gtf
+17_S122_L003_R1_001.bam.gtf /glfs/brick01/gv0/putnamlab/estrand/BleachingPairs_RNASeq/output/17_S122_L003_R1_001.bam.gtf
+17_S122_L003_R2_001.bam.gtf /glfs/brick01/gv0/putnamlab/estrand/BleachingPairs_RNASeq/output/17_S122_L003_R2_001.bam.gtf
+21_S123_L003_R1_001.bam.gtf /glfs/brick01/gv0/putnamlab/estrand/BleachingPairs_RNASeq/output/21_S123_L003_R1_001.bam.gtf
+21_S123_L003_R2_001.bam.gtf /glfs/brick01/gv0/putnamlab/estrand/BleachingPairs_RNASeq/output/21_S123_L003_R2_001.bam.gtf
+22_S124_L003_R1_001.bam.gtf /glfs/brick01/gv0/putnamlab/estrand/BleachingPairs_RNASeq/output/22_S124_L003_R1_001.bam.gtf
+22_S124_L003_R2_001.bam.gtf /glfs/brick01/gv0/putnamlab/estrand/BleachingPairs_RNASeq/output/22_S124_L003_R2_001.bam.gtf
+23_S125_L003_R1_001.bam.gtf /glfs/brick01/gv0/putnamlab/estrand/BleachingPairs_RNASeq/output/23_S125_L003_R1_001.bam.gtf
+23_S125_L003_R2_001.bam.gtf /glfs/brick01/gv0/putnamlab/estrand/BleachingPairs_RNASeq/output/23_S125_L003_R2_001.bam.gtf
+```
+
+less `less genecount.sh_error.201740`: 
+
+```
+GCCcore/8.3.0(24):ERROR:150: Module 'GCCcore/8.3.0' conflicts with the currently loaded module(s) 'GCCcore/9.3.0'
+GCCcore/8.3.0(24):ERROR:102: Tcl command execution failed: conflict GCCcore
+
+  54384 reference transcripts loaded.
+  2 duplicate reference transcripts discarded.
+  54384 query transfrags loaded.
+```
+
+`head -5 KB_gene_count_matrix.csv`:
+
+```
+gene_id,16_S121_L003_R1_001.bam.gtf,16_S121_L003_R2_001.bam.gtf,17_S122_L003_R1_001.bam.gtf,17_S122_L003_R2_001.bam.gtf,21_S123_L003_R1_001.bam.gtf,21_S123_L003_R2_001.bam.gtf,22_S124_L003_R1_001.bam.gtf,22_S124_L003_R2_001.bam.gtf,23_S125_L003_R1_001.bam.gtf,23_S125_L003_R2_001.bam.gtf,24_S126_L003_R1_001.bam.gtf,24_S126_L003_R2_001.bam.gtf,25_S127_L003_R1_001.bam.gtf,25_S127_L003_R2_001.bam.gtf,26_S128_L003_R1_001.bam.gtf,26_S128_L003_R2_001.bam.gtf,28_S129_L003_R1_001.bam.gtf,28_S129_L003_R2_001.bam.gtf,29_S130_L003_R1_001.bam.gtf,29_S130_L003_R2_001.bam.gtf,2_S118_L003_R1_001.bam.gtf,2_S118_L003_R2_001.bam.gtf,30_S131_L003_R1_001.bam.gtf,30_S131_L003_R2_001.bam.gtf,31_S132_L003_R1_001.bam.gtf,31_S132_L003_R2_001.bam.gtf,33_S133_L003_R1_001.bam.gtf,33_S133_L003_R2_001.bam.gtf,37_S134_L003_R1_001.bam.gtf,37_S134_L003_R2_001.bam.gtf,39_S135_L003_R1_001.bam.gtf,39_S135_L003_R2_001.bam.gtf,42_S136_L003_R1_001.bam.gtf,42_S136_L003_R2_001.bam.gtf,43_S137_L003_R1_001.bam.gtf,43_S137_L003_R2_001.bam.gtf,45_S138_L003_R1_001.bam.gtf,45_S138_L003_R2_001.bam.gtf,46_S139_L003_R1_001.bam.gtf,46_S139_L003_R2_001.bam.gtf,47_S140_L003_R1_001.bam.gtf,47_S140_L003_R2_001.bam.gtf,4_S119_L003_R1_001.bam.gtf,4_S119_L003_R2_001.bam.gtf,50_S141_L003_R1_001.bam.gtf,50_S141_L003_R2_001.bam.gtf,51_S142_L003_R1_001.bam.gtf,51_S142_L003_R2_001.bam.gtf,52_S143_L003_R1_001.bam.gtf,52_S143_L003_R2_001.bam.gtf,54_S144_L003_R1_001.bam.gtf,54_S144_L003_R2_001.bam.gtf,55_S145_L003_R1_001.bam.gtf,55_S145_L003_R2_001.bam.gtf,56_S146_L003_R1_001.bam.gtf,56_S146_L003_R2_001.bam.gtf,57_S147_L003_R1_001.bam.gtf,57_S147_L003_R2_001.bam.gtf,59_S148_L003_R1_001.bam.gtf,59_S148_L003_R2_001.bam.gtf,60_S149_L003_R1_001.bam.gtf,60_S149_L003_R2_001.bam.gtf,61_S150_L003_R1_001.bam.gtf,61_S150_L003_R2_001.bam.gtf,62_S151_L003_R1_001.bam.gtf,62_S151_L003_R2_001.bam.gtf,63_S152_L003_R1_001.bam.gtf,63_S152_L003_R2_001.bam.gtf,64_S153_L003_R1_001.bam.gtf,64_S153_L003_R2_001.bam.gtf,65_S154_L003_R1_001.bam.gtf,65_S154_L003_R2_001.bam.gtf,66_S155_L003_R1_001.bam.gtf,66_S155_L003_R2_001.bam.gtf,67_S156_L003_R1_001.bam.gtf,67_S156_L003_R2_001.bam.gtf,68_S157_L003_R1_001.bam.gtf,68_S157_L003_R2_001.bam.gtf,6_S120_L003_R1_001.bam.gtf,6_S120_L003_R2_001.bam.gtf
+Montipora_capitata_HIv3___RNAseq.g19176.t1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,5,0,0,0,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Montipora_capitata_HIv3___RNAseq.g42173.t1,0,0,0,6,6,11,6,13,0,3,0,1,6,0,0,10,2,3,3,7,4,82,0,0,2,1,1,0,3,3,0,6,2,5,1,6,2,5,4,4,6,2,0,4,0,7,2,0,2,0,0,3,3,5,2,5,3,5,3,7,4,4,1,0,4,52,0,5,2,4,2,0,6,8,3,11,2,7,0,4
+Montipora_capitata_HIv3___RNAseq.g13553.t1,0,0,0,0,0,0,1,1,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,2,0,0,0,0,0,0,10,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11,6,0,0,0,0,0,0,0,0,0,2,0,2,0,0,1,2,0,0,0,0,0,0,0,0,0,1
+STRG.6173,396,227,1108,635,799,461,924,535,554,312,1959,1154,931,549,2016,1178,1126,663,1014,604,874,516,1169,689,1574,931,1471,867,1542,912,1525,908,1370,815,1739,1011,716,428,826,488,716,415,1109,651,866,519,2429,1434,1124,664,804,487,1575,957,1524,936,1585,934,822,488,1219,720,1646,973,1169,716,1282,764,1598,972,1915,1165,1465,877,1331,799,915,556,1016,590
+```
+
+Column with gene ID contains both gene names from reference genome and IDs from this pipeline (e.g. STRG.6173). Those from this pipeline seem to have the highest counts.. What does this mean?  
 
 **Copy that output to local computer**
 
 ```
-scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/BleachingPairs_RNASeq/output/KB_gene_count_matrix.csv /Users/emmastrand/MyProjects/HI_Bleaching_Timeseries/Dec-July-2019-analysis/output/RNASeq/KB_gene_count_matrix.csv
+scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/BleachingPairs_RNASeq/KB_gene_count_matrix.csv /Users/emmastrand/MyProjects/HI_Bleaching_Timeseries/Dec-July-2019-analysis/output/RNASeq/KB_gene_count_matrix.csv
 ```
