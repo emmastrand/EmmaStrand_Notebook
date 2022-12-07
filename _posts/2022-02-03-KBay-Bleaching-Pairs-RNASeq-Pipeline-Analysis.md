@@ -210,6 +210,8 @@ I'm using the newest version of the Mcap genome:
 path: `/data/putnamlab/estrand/Montipora_capitata_HIv3.assembly.fasta`  
 path: `/data/putnamlab/estrand/Montipora_capitata_HIv3.genes.gff3` 
 
+This took two weeks.. seems long but all worked. 
+
 `align.sh`: 
 
 ```
@@ -260,7 +262,7 @@ done
 #SBATCH -t 500:00:00
 #SBATCH --nodes=1 --ntasks-per-node=1
 #SBATCH --export=NONE
-#SBATCH --mem=100GB
+#SBATCH --mem=128GB
 #SBATCH --account=putnamlab
 #SBATCH -D /data/putnamlab/estrand/BleachingPairs_RNASeq/output/                
 #SBATCH --error=../"%x_error.%j" #if your job fails, the error report will be put in this file
