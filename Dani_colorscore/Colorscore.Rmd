@@ -1,0 +1,156 @@
+---
+title: "Color Score Analysis for Dani"
+author: "EL Strand"
+output:
+  github_document: default
+  pdf_document:
+    keep_tex: yes
+  html_document:
+    toc: yes
+    toc_depth: 6
+    toc_float: yes
+editor_options: 
+  chunk_output_type: inline
+---
+
+## Loading in required libraries 
+
+```{r}
+library(plyr)
+library("vegan")
+library(dplyr)
+library(tidyverse)
+library(readxl)
+library(writexl)
+```
+
+## Read in data
+
+```{r}
+tropical_data <- read_excel("Tropical_heatwave_color_score_data.xlsx", sheet = "TROPICAL",
+                            col_types = c("text", "text", "text",
+                                          "numeric", "numeric", "numeric",
+                                          "numeric", "numeric", "numeric",
+                                          "numeric", "text", "text"))
+
+temperate_data <- read_excel("Tropical_heatwave_color_score_data.xlsx", sheet = "TEMPERATE",
+                            col_types = c("text", "text", "text",
+                                          "numeric", "numeric", "numeric",
+                                          "numeric", "numeric", "numeric",
+                                          "numeric", "text"))
+
+
+```
+
+## Create sample ID column 
+
+```{r}
+tropical_data <- tropical_data %>% 
+  unite(Sample, c("Timepoint", "Tank_Number", "Fragment_Number"), sep = " ", remove = FALSE) 
+
+temperate_data <- temperate_data %>% 
+  unite(Sample, c("Timepoint", "Tank_Number", "Fragment_Number"), sep = " ", remove = FALSE) 
+```
+
+
+## Normalizing to color standards 
+
+Tropical set 
+
+```{r}
+tropical_data$Red.Norm.Coral <- tropical_data$Red_coral/tropical_data$Red_standard
+tropical_data$Green.Norm.Coral <- tropical_data$Green_coral/tropical_data$Green_standard
+tropical_data$Blue.Norm.Coral <- tropical_data$Blue_coral/tropical_data$Blue_standard
+
+head(tropical_data)
+```
+
+Temperate set
+
+```{r}
+temperate_data$Red.Norm.Coral <- temperate_data$Red_coral/temperate_data$Red_standard
+temperate_data$Green.Norm.Coral <- temperate_data$Green_coral/temperate_data$Green_standard
+temperate_data$Blue.Norm.Coral <- temperate_data$Blue_coral/temperate_data$Blue_standard
+
+head(temperate_data)
+```
+
+## Principal Components Analysis to find 'Color Score' value 
+
+### Create data matrix and name columns 
+
+Tropical set 
+
+```{r}
+tropical_matrix <- as.matrix(cbind(tropical_data$Red.Norm.Coral,
+                                   tropical_data$Green.Norm.Coral,
+                                   tropical_data$Blue.Norm.Coral)) #create matrix
+
+rownames(tropical_matrix) <- tropical_data$Sample #name columns in dataframe
+```
+
+Temperate set 
+
+```{r}
+temperate_matrix <- as.matrix(cbind(temperate_data$Red.Norm.Coral,
+                                   temperate_data$Green.Norm.Coral,
+                                   temperate_data$Blue.Norm.Coral)) #create matrix
+
+rownames(temperate_matrix) <- temperate_data$Sample #name columns in dataframe
+```
+
+### Calculate distance matrix of color scores
+
+```{r}
+tropical_dist <- vegdist(tropical_matrix, method="euclidean") 
+temperate_dist <- vegdist(temperate_matrix, method="euclidean") 
+```
+
+### Calculate PCA 
+
+```{r}
+trop_PCA <- princomp(tropical_dist) #run principal components Analysis
+summary(trop_PCA) # view variance explained by PCs
+
+temp_PCA <- princomp(temperate_dist)
+summary(temp_PCA)
+```
+
+### Extract PC1 as color score value
+
+Tropical set
+
+```{r}
+Tropical_colorscore <- as.data.frame(-trop_PCA$scores[,1]) #extract PC1
+Tropical_colorscore$Sample <- rownames(tropical_matrix)
+
+Tropical_colorscore <- Tropical_colorscore %>% dplyr::rename(., Color_score = `-trop_PCA$scores[, 1]`)
+```
+
+Temperate set 
+
+```{r}
+Temperate_colorscore <- as.data.frame(-temp_PCA$scores[,1]) #extract PC1
+Temperate_colorscore$Sample <- rownames(temperate_matrix)
+
+Temperate_colorscore <- Temperate_colorscore %>% dplyr::rename(., Color_score = `-temp_PCA$scores[, 1]`)
+```
+
+## Create final data frame 
+
+```{r}
+tropical_data_final <- left_join(tropical_data, Tropical_colorscore, by = "Sample") 
+
+temperate_data_final <- left_join(temperate_data, Temperate_colorscore, by = "Sample")
+```
+
+## Export that data frame 
+
+```{r}
+tropical_data_final %>% write_xlsx("Tropical_colorscore.xlsx")
+temperate_data_final %>% write_xlsx("Temperate_colorscore.xlsx")
+```
+
+
+
+
