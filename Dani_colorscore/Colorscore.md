@@ -43,7 +43,7 @@ library(tidyverse)
     ## ───────────────────────────────────────
     ## tidyverse 1.3.2 ──
 
-    ## ✔ ggplot2 3.4.0     ✔ purrr   0.3.5
+    ## ✔ ggplot2 3.4.0     ✔ purrr   1.0.0
     ## ✔ tibble  3.1.8     ✔ stringr 1.5.0
     ## ✔ tidyr   1.2.1     ✔ forcats 0.5.2
     ## ✔ readr   2.1.3     
@@ -63,6 +63,7 @@ library(tidyverse)
 ``` r
 library(readxl)
 library(writexl)
+library(Rmisc)
 ```
 
 ## Read in data
@@ -524,3 +525,96 @@ temperate_data_final <- left_join(temperate_data, Temperate_colorscore, by = "Sa
 tropical_data_final %>% write_xlsx("Tropical_colorscore.xlsx")
 temperate_data_final %>% write_xlsx("Temperate_colorscore.xlsx")
 ```
+
+# Analysis
+
+## Import data frame from the above so don’t have to run code again
+
+``` r
+tropical_df <- read_excel("Tropical_colorscore.xlsx") %>% 
+  select(1:4,17) %>%
+  mutate(Treatment = case_when(Tank_Number == "1" ~ "Ambient Temperature", 
+                               Tank_Number == "2" ~ "High Temperature",
+                               Tank_Number == "3" ~ "Ambient Temperature",
+                               Tank_Number == "4" ~ "High Temperature")) %>%
+  mutate(Date = case_when(Timepoint == "20220329" ~ "Day 1", 
+                          Timepoint == "20220331" ~ "Day 3",
+                          Timepoint == "20220402" ~ "Day 6",
+                          Timepoint == "20220404" ~ "Day 8",
+                          Timepoint == "20220406" ~ "Day 10",
+                          Timepoint == "20220408" ~ "Day 12",
+                          Timepoint == "20220411" ~ "Day 15",
+                          Timepoint == "20220414" ~ "Day 18",
+                          Timepoint == "20220417" ~ "Day 21",
+                          Timepoint == "20220419" ~ "Day 23"))
+
+tropical_df$Date <- factor(tropical_df$Date, 
+                           levels = c("Day 1", "Day 3", "Day 6", "Day 8",
+                                      "Day 10", "Day 12", "Day 15", "Day 18",
+                                      "Day 21", "Day 23"))
+
+tropical_df %>% write_xlsx("Tropical_colorscore_meta.xlsx")
+
+temperate_df <- read_excel("Temperate_colorscore.xlsx") %>% 
+  select(2:4,16) %>% 
+  mutate(Treatment = case_when(Tank_Number == "1" ~ "High Temperature", 
+                               Tank_Number == "2" ~ "Ambient Temperature",
+                               Tank_Number == "3" ~ "High Temperature",
+                               Tank_Number == "4" ~ "Ambient Temperature")) %>%
+  filter(Color_score > -100) %>% ## this threshold was decided after looking at the histograms below
+  mutate(Date = case_when(Timepoint == "20220914" ~ "Baseline", 
+                          Timepoint == "20220921" ~ "Day 2",
+                          Timepoint == "20220923" ~ "Day 4",
+                          Timepoint == "20220927" ~ "Day 8",
+                          Timepoint == "20220929" ~ "Day 10",
+                          Timepoint == "20220930" ~ "Day 11",
+                          Timepoint == "20221004" ~ "Day 15",
+                          Timepoint == "20221006" ~ "Day 17"))
+
+temperate_df$Date <- factor(temperate_df$Date, 
+                           levels = c("Baseline", "Day 2", "Day 4", "Day 8",
+                                      "Day 10", "Day 11", "Day 15", "Day 17"))
+
+temperate_df %>% write_xlsx("Temperate_colorscore_meta.xlsx")
+```
+
+``` r
+hist(tropical_df$Color_score)
+```
+
+![](Colorscore_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
+
+``` r
+hist(temperate_df$Color_score)
+```
+
+![](Colorscore_files/figure-gfm/unnamed-chunk-15-2.png)<!-- -->
+
+``` r
+tropical_means <- summarySE(tropical_df, measurevar = c("Color_score"), groupvars = c("Date", "Treatment"))
+temperate_means <- summarySE(temperate_df, measurevar = c("Color_score"), groupvars = c("Date", "Treatment"))
+```
+
+``` r
+tropical_means %>%
+  ggplot(., aes(x=Date, y=Color_score, group=Treatment, color=Treatment)) +
+  geom_point() + geom_line() + 
+  scale_color_manual(values = c("blue", "red")) +
+  geom_errorbar(aes(ymin=Color_score-se, ymax=Color_score+se), width=.2) +
+  theme_bw() + ylab("Color Score") + 
+  xlab("")
+```
+
+![](Colorscore_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
+
+``` r
+temperate_means %>%
+  ggplot(., aes(x=Date, y=Color_score, group=Treatment, color=Treatment)) +
+  geom_point() + geom_line() + 
+  scale_color_manual(values = c("blue", "red")) +
+  geom_errorbar(aes(ymin=Color_score-se, ymax=Color_score+se), width=.2) +
+  theme_bw() + ylab("Color Score") + 
+  xlab("")
+```
+
+![](Colorscore_files/figure-gfm/unnamed-chunk-17-2.png)<!-- -->
