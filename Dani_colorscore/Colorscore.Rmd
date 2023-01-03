@@ -211,7 +211,10 @@ hist(temperate_df$Color_score)
 
 ```{r}
 tropical_means <- summarySE(tropical_df, measurevar = c("Color_score"), groupvars = c("Date", "Treatment"))
+tropical_means %>% write_xlsx("Tropical_means.xlsx")
+
 temperate_means <- summarySE(temperate_df, measurevar = c("Color_score"), groupvars = c("Date", "Treatment"))
+temperate_means %>% write_xlsx("Temperate_means.xlsx")
 ```
 
 ```{r}
