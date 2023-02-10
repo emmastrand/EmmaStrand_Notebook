@@ -44,9 +44,8 @@ NXF_VER=20.07.1 nextflow run epidiverse/snp -profile <docker|singularity|conda> 
 ```
 #!/bin/bash
 #SBATCH -t 100:00:00
-#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --nodes=1 --ntasks=1 --cpus-per-task=18
 #SBATCH --export=NONE
-#SBATCH --mem=128GB
 #SBATCH --account=putnamlab
 #SBATCH -D /data/putnamlab/estrand/BleachingPairs_WGBS/EpiDiverse  
 #SBATCH --error=output_messages/"%x_error.%j" #if your job fails, the error report will be put in this file
@@ -57,11 +56,12 @@ source /usr/share/Modules/init/sh # load the module function
 
 # load modules needed
 echo "START" $(date)
-module load Nextflow/22.04.0
+module load Nextflow/20.07.1 #this pipeline requires this version 
 
-nextflow run epidiverse/snp \
--profile singularity \ 
---input /data/putnamlab/estrand/BleachingPairs_WGBS/BleachingPairs_methylseq_v3_2/bismark_deduplicated/*.bam \
+# only need to direct to input folder not *bam files 
+NXF_VER=20.07.1 nextflow run epidiverse/snp -resume \
+-profile singularity \
+--input /data/putnamlab/estrand/BleachingPairs_WGBS/BleachingPairs_methylseq_v3_2/bismark_deduplicated/ \
 --reference /data/putnamlab/estrand/Montipora_capitata_HIv3.assembly.fasta \
 --output /data/putnamlab/estrand/BleachingPairs_WGBS/EpiDiverse \
 --clusters \
@@ -71,15 +71,72 @@ nextflow run epidiverse/snp \
 echo "STOP" $(date) # this will output the time it takes to run within the output message
 ```
 
+### Troubleshooting
+
+Will need to add in `--take 40` in the next attempt so this processes all files.
+
+Error: Seems like the preprocessing step isn't working for these files.. 
+
+```
+Execution cancelled -- Finishing pending tasks before exit
+Oops... Pipeline execution stopped with the following message: INFO:    Environment variable SINGULARITYENV_TMP is set, but APPTAINERENV_TMP is preferred
+INFO:    Environment variable SINGULARITYENV_TMPDIR is set, but APPTAINERENV_TMPDIR is preferred
+INFO:    Environment variable SINGULARITYENV_NXF_DEBUG is set, but APPTAINERENV_NXF_DEBUG is preferred
+/bin/bash: line 0: cd: /glfs/brick01/gv0/putnamlab/estrand/BleachingPairs_WGBS/EpiDiverse/work/1a/abba1eb3efe5cd6ef4ab62143c4d1a: No such file or directory
+/bin/bash: /glfs/brick01/gv0/putnamlab/estrand/BleachingPairs_WGBS/EpiDiverse/work/1a/abba1eb3efe5cd6ef4ab62143c4d1a/.command.run: No such file or directory
+[3a/ecc812] NOTE: Process `SNPS:preprocessing (32_S130_L003_R1_001_val_1_bismark_bt2_pe.deduplicated)` terminated with an error exit status (127) -- Execution is retried (1)
+[c8/e493a9] NOTE: Process `SNPS:preprocessing (41_S151_L003_R1_001_val_1_bismark_bt2_pe.deduplicated)` terminated with an error exit status (127) -- Execution is retried (1)
+[bc/f95b29] NOTE: Process `SNPS:preprocessing (6_S132_L003_R1_001_val_1_bismark_bt2_pe.deduplicated)` terminated with an error exit status (127) -- Execution is retried (1)
+[57/843e49] NOTE: Process `SNPS:preprocessing (21_S119_L003_R1_001_val_1_bismark_bt2_pe.deduplicated)` terminated with an error exit status (127) -- Execution is retried (1)
+[cb/e63715] NOTE: Process `SNPS:preprocessing (26_S121_L003_R1_001_val_1_bismark_bt2_pe.deduplicated)` terminated with an error exit status (127) -- Execution is retried (1)
+[d7/2cb8af] NOTE: Process `SNPS:preprocessing (44_S125_L003_R1_001_val_1_bismark_bt2_pe.deduplicated)` terminated with an error exit status (127) -- Execution is retried (1)
+[06/0054b2] NOTE: Process `SNPS:preprocessing (18_S154_L003_R1_001_val_1_bismark_bt2_pe.deduplicated)` terminated with an error exit status (127) -- Execution is retried (1)
+[47/14f735] NOTE: Process `SNPS:preprocessing (45_S156_L003_R1_001_val_1_bismark_bt2_pe.deduplicated)` terminated with an error exit status (127) -- Execution is retried (1)
+[80/0eed5a] NOTE: Process `SNPS:preprocessing (35_S137_L003_R1_001_val_1_bismark_bt2_pe.deduplicated)` terminated with an error exit status (127) -- Execution is retried (1)
+[94/7db42b] NOTE: Process `SNPS:preprocessing (17_S134_L003_R1_001_val_1_bismark_bt2_pe.deduplicated)` terminated with an error exit status (127) -- Execution is retried (1)
+Error executing process > 'SNPS:preprocessing (32_S130_L003_R1_001_val_1_bismark_bt2_pe.deduplicated)'
+
+Caused by:
+  Process `SNPS:preprocessing (32_S130_L003_R1_001_val_1_bismark_bt2_pe.deduplicated)` terminated with an error exit status (127)
+
+Command executed:
+
+  samtools sort -T deleteme -m 966367642 -@ 4 \
+  -o sorted.bam 32_S130_L003_R1_001_val_1_bismark_bt2_pe.deduplicated.bam || exit $?
+  samtools calmd -b sorted.bam Montipora_capitata_HIv3.assembly.fasta 1> calmd.bam 2> /dev/null && rm sorted.bam
+  samtools index calmd.bam
+
+Command exit status:
+  127
+
+Command output:
+  (empty)
+
+Command error:
+  INFO:    Environment variable SINGULARITYENV_TMP is set, but APPTAINERENV_TMP is preferred
+  INFO:    Environment variable SINGULARITYENV_TMPDIR is set, but APPTAINERENV_TMPDIR is preferred
+  INFO:    Environment variable SINGULARITYENV_NXF_DEBUG is set, but APPTAINERENV_NXF_DEBUG is preferred
+  /bin/bash: line 0: cd: /glfs/brick01/gv0/putnamlab/estrand/BleachingPairs_WGBS/EpiDiverse/work/1a/abba1eb3efe5cd6ef4ab62143c4d1a: No such file or directory
+  /bin/bash: .command.run: No such file or directory
+
+Work dir:
+  /glfs/brick01/gv0/putnamlab/estrand/BleachingPairs_WGBS/EpiDiverse/work/1a/abba1eb3efe5cd6ef4ab62143c4d1a
+
+Tip: you can try to figure out what's wrong by changing to the process work dir and showing the script file named `.command.sh`
+```
+
 ### Details 
 
 Main command = `nextflow run epidiverse/snp [OPTIONS]` 
 
-Input = `--input <ARG>` [required]: path to BAM files 
-Reference genome == `--reference <ARG>`: fasta format of reference genome AND a corresponding fasta index *.fai file in the same location
-Output directory == `--output <ARG>`: output directory path 
+Input = `--input <ARG>` [required]: path to BAM files. Not specifying "\*.bam" files, just the whole folder  
+Reference genome == `--reference <ARG>`: fasta format of reference genome AND a corresponding fasta index *.fai file in the same location  
+Output directory == `--output <ARG>`: output directory path   
 
 `-profile` = preset configuration options. https://app.gitbook.com/@epidiverse/s/project/epidiverse-pipelines/installation 
+
+`--take <INTEGER>`: specificy the number of bam files. The default for SNP workflow is 10 files so if we have more we have to tell it that. 
+- see github issue on this: https://github.com/EpiDiverse/snp/issues/6
 
 #### Modifiers 
 
