@@ -37,9 +37,34 @@ NXF_VER=20.07.1 nextflow run epidiverse/snp -profile <docker|singularity|conda> 
 --input /path/to/wgbs/bam --reference /path/to/reference.fa
 ```
 
+Test line: `NXF_VER=20.07.1 nextflow run epidiverse/snp -profile test,<docker|singularity|conda>`
+
 ## Script 
 
-`episnp.sh`:
+Copy epidiverse repo to access the environment.yml file to load in using Mamba. `$ git clone https://github.com/EpiDiverse/snp.git`. I renamed this 'epidiverse_github_repo' which is within the path below so that it wasn't confusing with a 'snp' folder from this clone command and 'snps' folder from the output of the script.
+
+Do the below in the `interactive` node on Andromeda. 
+
+`[emma_strand@n063 EpiDiverse]$ module load Mamba/22.11.1-4`
+`[emma_strand@n063 EpiDiverse]$ mamba env create -f /data/putnamlab/estrand/BleachingPairs_WGBS/EpiDiverse/epidiverse_github_repo/snp/env/environment.yml`
+
+The first time I didn't load all the packages correctly b/c I had to switch wifis and the command timed out. See below for a fix.
+
+### running jobs in interactive node but be able to switch wifi 
+
+1. `ssh` into HPC.
+2. Run the following command: `screen -S <name-of-my-session>` (Replace the <name-of-my-session> (including the < and >) with a descriptive name of your job - don't use spaces in the description.
+3. Run your job(s).
+4. Close your computer, go home, switch WiFi networks, whatever. The job will continue running!!
+5. To get back to that session, `ssh` back into the HPC.
+6. The, resume the screen session: `screen -r <name-of-my-session>`. If you can't remember the name, you can run `screen -list`. That will list any running screen sessions.
+
+`tmux` is another program for this but screen usually comes pre-installed on Linux systems. 
+
+I named my session `epi`.
+
+
+Run the following script `episnp.sh`:
 
 ```
 #!/bin/bash
@@ -67,6 +92,7 @@ NXF_VER=20.07.1 nextflow run epidiverse/snp -resume \
 --clusters \
 --variants \
 --coverage 5 \
+--take 40
 
 echo "STOP" $(date) # this will output the time it takes to run within the output message
 ```
@@ -132,6 +158,15 @@ NXF_VER=20.07.1 nextflow run epidiverse/snp -profile test,singularity
 ```
 
 I also tried running the script without the profile parameter but got the same error. 
+
+I tried including the below in my shell script but got an error saying I can't use conda within my shell script. 
+
+```
+# create conda environment for this
+module load Anaconda3/5.3.0
+conda create --name epidiverse-snp_env --file environment.yml
+conda activate epidiverse-snp_env
+``` 
 
 ### Details 
 
