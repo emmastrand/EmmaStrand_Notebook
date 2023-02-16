@@ -48,6 +48,13 @@ Do the below in the `interactive` node on Andromeda.
 `[emma_strand@n063 EpiDiverse]$ module load Mamba/22.11.1-4`
 `[emma_strand@n063 EpiDiverse]$ mamba env create -f /data/putnamlab/estrand/BleachingPairs_WGBS/EpiDiverse/epidiverse_github_repo/snp/env/environment.yml`
 
+If needed:
+
+```
+#Remove snps environment
+mamba env remove -n snps
+```
+
 The first time I didn't load all the packages correctly b/c I had to switch wifis and the command timed out. See below for a fix.
 
 ### running jobs in interactive node but be able to switch wifi 
@@ -85,7 +92,6 @@ module load Nextflow/20.07.1 #this pipeline requires this version
 
 # only need to direct to input folder not *bam files 
 NXF_VER=20.07.1 nextflow run epidiverse/snp -resume \
--profile singularity \
 --input /data/putnamlab/estrand/BleachingPairs_WGBS/BleachingPairs_methylseq_v3_2/bismark_deduplicated/ \
 --reference /data/putnamlab/estrand/Montipora_capitata_HIv3.assembly.fasta \
 --output /data/putnamlab/estrand/BleachingPairs_WGBS/EpiDiverse \
@@ -167,6 +173,12 @@ module load Anaconda3/5.3.0
 conda create --name epidiverse-snp_env --file environment.yml
 conda activate epidiverse-snp_env
 ``` 
+
+### Issue 1: Anaconda vs. Miniconda 
+
+
+
+
 
 ### Details 
 
