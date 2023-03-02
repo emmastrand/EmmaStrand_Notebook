@@ -48,12 +48,20 @@ Do the below in the `interactive` node on Andromeda.
 `[emma_strand@n063 EpiDiverse]$ module load Mamba/22.11.1-4`
 `[emma_strand@n063 EpiDiverse]$ mamba env create -f /data/putnamlab/estrand/BleachingPairs_WGBS/EpiDiverse/epidiverse_github_repo/snp/env/environment.yml`
 
-If needed:
+If needed b/c the above command didn't run all the way through:
 
 ```
 #Remove snps environment
 mamba env remove -n snps
 ```
+
+To view any environments: `conda info --envs`. This output will be different in the interactive and log-in node (Kevin Bryan said this is OK). 
+
+To start the environment we just ran: You may be prompted to exit and re-enter Andromeda, that's OK. Log back in and re-enter the interactive node.
+
+`conda activate snps`
+
+Now run `sbatch episnp.sh` command to run the desired script. 
 
 The first time I didn't load all the packages correctly b/c I had to switch wifis and the command timed out. See below for a fix.
 
@@ -70,12 +78,13 @@ The first time I didn't load all the packages correctly b/c I had to switch wifi
 
 I named my session `epi`.
 
+### slurm script to run EpiDiverse 
 
 Run the following script `episnp.sh`:
 
 ```
 #!/bin/bash
-#SBATCH -t 100:00:00
+#SBATCH -t 200:00:00
 #SBATCH --nodes=1 --ntasks=1 --cpus-per-task=18
 #SBATCH --export=NONE
 #SBATCH --account=putnamlab
@@ -89,6 +98,7 @@ source /usr/share/Modules/init/sh # load the module function
 # load modules needed
 echo "START" $(date)
 module load Nextflow/20.07.1 #this pipeline requires this version 
+module load SAMtools/1.9-foss-2018b 
 
 # only need to direct to input folder not *bam files 
 NXF_VER=20.07.1 nextflow run epidiverse/snp -resume \
@@ -174,11 +184,9 @@ conda create --name epidiverse-snp_env --file environment.yml
 conda activate epidiverse-snp_env
 ``` 
 
-### Issue 1: Anaconda vs. Miniconda 
+### left off 
 
-
-
-
+preprocessing ran but stopped at masking -- insert `module load Pysam/0.18.0-GCC-11.2.0` and run again. Nextflow should have all of these downloaded I don't know why I have to add these lines? But when I added module load Samtools it ran..
 
 ### Details 
 
@@ -188,7 +196,7 @@ Input = `--input <ARG>` [required]: path to BAM files. Not specifying "\*.bam" f
 Reference genome == `--reference <ARG>`: fasta format of reference genome AND a corresponding fasta index *.fai file in the same location  
 Output directory == `--output <ARG>`: output directory path   
 
-`-profile` = preset configuration options. https://app.gitbook.com/@epidiverse/s/project/epidiverse-pipelines/installation 
+`-profile` = preset configuration options. https://app.gitbook.com/@epidiverse/s/project/epidiverse-pipelines/installation. In the script above I didn't include a profile because I used Mamba and conda. 
 
 `--take <INTEGER>`: specificy the number of bam files. The default for SNP workflow is 10 files so if we have more we have to tell it that. 
 - see github issue on this: https://github.com/EpiDiverse/snp/issues/6

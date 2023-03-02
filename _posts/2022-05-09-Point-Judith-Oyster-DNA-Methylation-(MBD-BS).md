@@ -100,21 +100,32 @@ We might need to mess with cut off variations in the methylseq because of this. 
 
 ## <a name="methylseq"></a> **NF-core: Methylseq**
 
-#### Methylseq1
+#### Different runs 
+
+**Parameters** 
 
 `PJ_methylseq1.sh`: --clip_r1 10 \ --clip_r2 10 \ --three_prime_clip_r1 10 --three_prime_clip_r2 10 \
+- Run this first to assess m-bias and then decide if we need more trial runs. See Emma Strand and Kevin Wong's notebook posts for methylation scripts and how they dealt with these issues. 
 
 `PJ_methylseq2.sh`: --clip_r1 10 \ --clip_r2 10 \ --three_prime_clip_r1 20 --three_prime_clip_r2 20 \
+- Because the run time seemed oddly short, I wanted to run this again to be sure it worked. 
 
-Run this first to assess m-bias and then decide if we need more trial runs. See Emma Strand and Kevin Wong's notebook posts for methylation scripts and how they dealt with these issues. 
+`PJ_methylseq3.sh`: --clip_r1 150 \ --clip_r2 150 \ --three_prime_clip_r1 150 --three_prime_clip_r2 150 \
+- We think that methylseq isn't properly recognizing the adapters because 1.) the multiqc report says 300 bp length when usually for methylation data we use 2x150 bp. 2.) If the program isn't trimming the adapter fully that would explain the extreme m-bias, adapter content, and decreased quality all after 150 bp length. 3.) Usually Illumina adapters are ~150 bp of the read length and are not included in multiqc reports (if recognized appropriately). 
+
+**Run Time** 
 
 `PJ_methylseq1.sh` Run time: 3h 49m 45s (**this seems weirdly short..**)
 
 `PJ_methylseq2.sh` Run time: 20+hr  
 
+`PJ_methylseq3.sh` Run time:    
+
+#### Methylseq script 
+
 ```
 #!/bin/bash
-#SBATCH --job-name="1methylseq" # EDIT HERE FOR PJ METHYLSEQ2
+#SBATCH --job-name="1methylseq" # EDIT HERE FOR PJ METHYLSEQ#
 #SBATCH -t 200:00:00
 #SBATCH --nodes=1 --ntasks-per-node=10
 #SBATCH --mem=128GB
@@ -136,17 +147,25 @@ nextflow run nf-core/methylseq -profile singularity \
 --fasta /data/putnamlab/estrand/PointJudithData_MBDBS/GCF_002022765.2_C_virginica-3.0_genomic.fa \
 --save_reference \
 --input '/data/putnamlab/KITT/hputnam/20200119_Oyst_Nut/MBDBS/*_R{1,2}_001.fastq.gz' \
---clip_r1 10 \ # EDIT HERE FOR PJ METHYLSEQ2
---clip_r2 10 \ # EDIT HERE FOR PJ METHYLSEQ2
---three_prime_clip_r1 10 --three_prime_clip_r2 10 \ # EDIT HERE FOR PJ METHYLSEQ2
+--clip_r1 10 \ # EDIT HERE FOR PJ METHYLSEQ#
+--clip_r2 10 \ # EDIT HERE FOR PJ METHYLSEQ#
+--three_prime_clip_r1 10 \ # EDIT HERE FOR PJ METHYLSEQ#
+--three_prime_clip_r2 10 \ # EDIT HERE FOR PJ METHYLSEQ#
 --non_directional \
 --cytosine_report \
 --relax_mismatches \
 --unmapped \
---outdir /data/putnamlab/estrand/PointJudithData_MBDBS/PJ_methylseq1 # EDIT HERE FOR PJ METHYLSEQ2
+--outdir /data/putnamlab/estrand/PointJudithData_MBDBS/PJ_methylseq1 # EDIT HERE FOR PJ METHYLSEQ#
+-name PJ_3 # EDIT HERE FOR PJ METHYLSEQ#
 ```
 
 The multiqc function is running into errors from the above script so I ran (this took much longer than KBay and HoloInt?):
+
+#### creating multiqc report 
+
+The multiqc report fails with methylseq b/c we need a more updated versinon. The below code also works. 
+
+**PJ_methylseq1** 
 
 ```
 interactive 
@@ -169,6 +188,25 @@ scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/PointJudithData_MB
 scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/PointJudithData_MBDBS/MBDBS_methylseq_PJ_multiqc_report.html /Users/emmastrand/MyProjects/Cvir_Nut_Int/output/MBDBS/MBDBS_methylseq_PJ_multiqc_report2.html
 ```
 
+**PJ_methylseq2** 
+
+```
+interactive 
+
+module load MultiQC/1.9-intel-2020a-Python-3.8.2
+
+multiqc -f --filename MBDBS_methylseq_PJ_multiqc_report_methylseq2  . \
+      -m custom_content -m picard -m qualimap -m bismark -m samtools -m preseq -m cutadapt -m fastqc
+```
+
+Copying this file to project folder: 
+
+```
+scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/PointJudithData_MBDBS/PJ_methylseq2/MBDBS_methylseq_PJ_multiqc_report_methylseq2.html /Users/emmastrand/MyProjects/Cvir_Nut_Int/output/MBDBS/MBDBS_methylseq_PJ_multiqc_report_methylseq2.html
+```
+
+
+
 ### Methylseq 1: Full Multiqc Report 
 
 https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/MBDBS/MBDBS_methylseq_PJ_multiqc_report.html
@@ -189,3 +227,5 @@ https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/MBDBS/MBDBS_methylseq
 ![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/MBDBS/multiqc/complexity-curve.png?raw=true)
 ![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/MBDBS/multiqc/cutadapt-filt.png?raw=true)
 ![](https://github.com/hputnam/Cvir_Nut_Int/blob/master/output/MBDBS/multiqc/trimseqlengths.png?raw=true)
+
+**The remaining multiqc reports are on our Cvir repo..** 
