@@ -112,6 +112,7 @@ We might need to mess with cut off variations in the methylseq because of this. 
 
 `PJ_methylseq3.sh`: --clip_r1 150 \ --clip_r2 150 \ --three_prime_clip_r1 150 --three_prime_clip_r2 150 \
 - We think that methylseq isn't properly recognizing the adapters because 1.) the multiqc report says 300 bp length when usually for methylation data we use 2x150 bp. 2.) If the program isn't trimming the adapter fully that would explain the extreme m-bias, adapter content, and decreased quality all after 150 bp length. 3.) Usually Illumina adapters are ~150 bp of the read length and are not included in multiqc reports (if recognized appropriately). 
+- I'm cutting 150 here to see if this makes a difference but unsure if we trust methylseq if it's not recognizing the adapters (i.e. what other problems might we have and don't see yet?)
 
 **Run Time** 
 
