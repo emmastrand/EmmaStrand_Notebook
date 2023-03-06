@@ -132,5 +132,48 @@ Note that we use the `-h` flag of samtools view to ensure that other header data
 
 The GATK uses two files to access and safety check access to the reference files: a .dict dictionary of the contig names and sizes, and a .fai fasta index file to allow efficient random access to the reference bases. You have to generate these files in order to be able to use a fasta file as reference.
 
+**Step 1**: CreateSequenceDictionary.jar from Picard to create a .dict file from a fasta file. This produces a SAM-style header file describing the contents of the fasta file.
+
+**Step 2**: faidx command in samtools to prepare the fasta index file. This file describes byte offsets in the fasta file for each contig, allowing to compute exactly where a particular reference base at contig:pos is in the fasta file. This produces a text file with one record per line for each of the fasta contigs. Each record is of the: contig, size, location, basesPerLine, bytesPerLine.
+
+I have already have Step 2 done from a previous project: `/data/putnamlab/estrand/Montipora_capitata_HIv3.assembly.fasta.fai`. The command to run to create a file like this is: `samtools faidx $R` with $R as the path to reference file.
+
+`prep_ref.sh`: 
+
+```
+#!/bin/sh
+#SBATCH -t 200:00:00
+#SBATCH --export=NONE
+#SBATCH --account=putnamlab
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_RNASeq/SNP  
+#SBATCH --error=output_messages/"%x_error.%j" #if your job fails, the error report will be put in this file
+#SBATCH --output=output_messages/"%x_output.%j" #once your job is completed, any final job report comments will be put in this file
+
+# load modules needed (specific need for my computer)
+source /usr/share/Modules/init/sh # load the module function
+# Load modules needed 
+module load GATK/4.3.0.0-GCCcore-11.2.0-Java-11
+
+R="/data/putnamlab/estrand/Montipora_capitata_HIv3.assembly.fasta"
+
+# Step 1 described in notebook post 
+gatk CreateSequenceDictionary -REFERENCE $R -OUTPUT ${R%*.*}.dict
+```
+
+Output: `Montipora_capitata_HIv3.assembly.dict`.
+
+### 1c. Merge unalinged bam file
+
+Purpose: Merge unalinged bam file (now with read group info) with aligned bam file (read group info from unalinged bam is transfered to aligned bam)      
+Input: `${i}.FastqToSam.unmapped.bam` from the previous script     
+Output: `${i}.rg.bam` ; edited bam file 
+
+`x.sh`:
+
+```
 
 
+
+```
+
+left off at filling in the above https://github.com/fscucchia/Pastreoides_development_depth/blob/main/SNPs/MergeBamAlignment.sh 
