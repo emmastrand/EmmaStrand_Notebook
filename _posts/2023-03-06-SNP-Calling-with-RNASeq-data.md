@@ -91,6 +91,12 @@ Output: `${i}.rg.bam` ; edited bam file
 
 ```
 #!/bin/sh
+#SBATCH -t 200:00:00
+#SBATCH --export=NONE
+#SBATCH --account=putnamlab
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_RNASeq/SNP  
+#SBATCH --error=output_messages/"%x_error.%j" #if your job fails, the error report will be put in this file
+#SBATCH --output=output_messages/"%x_output.%j" #once your job is completed, any final job report comments will be put in this file
 
 # load modules needed (specific need for my computer)
 source /usr/share/Modules/init/sh # load the module function
