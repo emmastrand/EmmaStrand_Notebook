@@ -124,11 +124,13 @@ We might need to mess with cut off variations in the methylseq because of this. 
 
 #### Methylseq script 
 
+*Take out the comments after the lines of code if you copy and paste this script (i.e. "# EDIT HERE FOR PJ METHYLSEQ#")*
+
 ```
 #!/bin/bash
 #SBATCH --job-name="1methylseq" # EDIT HERE FOR PJ METHYLSEQ#
 #SBATCH -t 200:00:00
-#SBATCH --nodes=1 --ntasks-per-node=10
+#SBATCH --nodes=1 --cpus-per-task=15 # PJ METHYLSEQ_3 needs --cpus-per-task=15; the others didn't 
 #SBATCH --mem=128GB
 #SBATCH --account=putnamlab
 #SBATCH --export=NONE
@@ -142,7 +144,8 @@ module load Nextflow/21.03.0
 
 # run nextflow methylseq
 
-nextflow run nf-core/methylseq -profile singularity \
+nextflow run nf-core/methylseq -resume \
+-profile singularity \
 --aligner bismark \
 --igenomes_ignore \
 --fasta /data/putnamlab/estrand/PointJudithData_MBDBS/GCF_002022765.2_C_virginica-3.0_genomic.fa \
@@ -157,7 +160,7 @@ nextflow run nf-core/methylseq -profile singularity \
 --relax_mismatches \
 --unmapped \
 --outdir /data/putnamlab/estrand/PointJudithData_MBDBS/PJ_methylseq1 # EDIT HERE FOR PJ METHYLSEQ#
--name PJ_3 # EDIT HERE FOR PJ METHYLSEQ#
+-name PJ_3 # EDIT HERE FOR PJ METHYLSEQ# ; THIS HAS TO BE DIFFERENT EVERY TIME YOU RUN IT 
 ```
 
 The multiqc function is running into errors from the above script so I ran (this took much longer than KBay and HoloInt?):

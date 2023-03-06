@@ -41,6 +41,8 @@ Test line: `NXF_VER=20.07.1 nextflow run epidiverse/snp -profile test,<docker|si
 
 ## Script 
 
+`wget https://github.com/freebayes/freebayes/blob/master/scripts/fasta_generate_regions.py`. This script should be pulled in by the EpiDiverse program itself but I also have to load the modules separately.. 
+
 Copy epidiverse repo to access the environment.yml file to load in using Mamba. `$ git clone https://github.com/EpiDiverse/snp.git`. I renamed this 'epidiverse_github_repo' which is within the path below so that it wasn't confusing with a 'snp' folder from this clone command and 'snps' folder from the output of the script.
 
 Do the below in the `interactive` node on Andromeda. 
@@ -80,7 +82,15 @@ I named my session `epi`.
 
 ### slurm script to run EpiDiverse 
 
-Run the following script `episnp.sh`:
+Run the following script:
+
+```
+$ interactive
+$ conda info --envs #double check `snps` is there
+$ conda activate snps
+```
+
+`episnp.sh`
 
 ```
 #!/bin/bash
@@ -99,6 +109,10 @@ source /usr/share/Modules/init/sh # load the module function
 echo "START" $(date)
 module load Nextflow/20.07.1 #this pipeline requires this version 
 module load SAMtools/1.9-foss-2018b 
+Pysam/0.15.1-foss-2018b-Python-3.6.6
+
+# define location for fasta_generate_regions.py
+fasta_generate_regions.py = /data/putnamlab/estrand/BleachingPairs_WGBS/EpiDiverse/fasta_generate_regions.py
 
 # only need to direct to input folder not *bam files 
 NXF_VER=20.07.1 nextflow run epidiverse/snp -resume \
@@ -114,6 +128,8 @@ echo "STOP" $(date) # this will output the time it takes to run within the outpu
 ```
 
 ### Troubleshooting
+
+**Profile singularity issue, eventually ran conda instead.** 
 
 Will need to add in `--take 40` in the next attempt so this processes all files.
 
@@ -184,9 +200,25 @@ conda create --name epidiverse-snp_env --file environment.yml
 conda activate epidiverse-snp_env
 ``` 
 
-### left off 
+**Module load issue.** 
 
 preprocessing ran but stopped at masking -- insert `module load Pysam/0.18.0-GCC-11.2.0` and run again. Nextflow should have all of these downloaded I don't know why I have to add these lines? But when I added module load Samtools it ran..
+
+`GCCcore/11.2.0(24):ERROR:150: Module 'GCCcore/11.2.0' conflicts with the currently loaded module(s) 'GCCcore/7.3.0'
+GCCcore/11.2.0(24):ERROR:102: Tcl command execution failed: conflict GCCcore` is the error I get when I load Pysam module above. 
+
+So I tried `Pysam/0.15.1-foss-2018b-Python-3.6.6` instead. **Circle back to the difference between these Pysams??** 
+
+**No freebayes script detected.** 
+
+I also shouldn't have to load this myself but I did wget from the github page and referenced the path in my shell script. 
+
+```
+Command error:
+  .command.sh: line 2: fasta_generate_regions.py: command not found
+```
+
+
 
 ### Details 
 
