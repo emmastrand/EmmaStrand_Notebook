@@ -104,7 +104,7 @@ Output: `${i}.rg.bam` ; edited bam file
 source /usr/share/Modules/init/sh # load the module function
 
 # Load modules needed 
-module load SAMtools/1.15.1-GCC-11.2.0
+module load SAMtools/1.16.1-GCC-11.3.0
 module load rgsam/0.2.1-foss-2022a
 
 # Data path to unmapped bam files reads 
@@ -138,7 +138,7 @@ Note that we use the `-h` flag of samtools view to ensure that other header data
 
 #### Troubleshooting 
 
-I ran into several errors with versions of modules. 
+I ran into several errors with versions of modules. `rgsam/0.2.1-foss-2022a` needs to be pairs with GCC-11.3.0 so Kevin Bryan downloaded `SAMtools/1.16.1-GCC-11.3.0` and that seemed to work. 
 
 ```
 GCCcore/11.3.0(24):ERROR:150: Module 'GCCcore/11.3.0' conflicts with the currently loaded module(s) 'GCCcore/11.2.0'
@@ -185,16 +185,44 @@ Output: `Montipora_capitata_HIv3.assembly.dict`.
 
 ### 1c. Merge unalinged bam file
 
-Purpose: Merge unalinged bam file (now with read group info) with aligned bam file (read group info from unalinged bam is transfered to aligned bam)      
-Input: `${i}.FastqToSam.unmapped.bam` from the previous script     
-Output: `${i}.rg.bam` ; edited bam file 
+Purpose: Merge unalinged bam file (now with read group info) with aligned bam file (read group info from unalinged bam is transfered to aligned bam)       
+Input: `${i}.FastqToSam.unmapped.bam.rg.bam` from the previous script (edited merged bam file)  
+Output: `${i}.MergeBamAlignment.merged.bam` ; edited merged bam file 
 
-`x.sh`:
+`MergeBamAlignment.sh`:
+
+```
+#!/bin/sh
+#SBATCH -t 200:00:00
+#SBATCH --export=NONE
+#SBATCH --account=putnamlab
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_RNASeq/SNP  
+#SBATCH --error=output_messages/"%x_error.%j" #if your job fails, the error report will be put in this file
+#SBATCH --output=output_messages/"%x_output.%j" #once your job is completed, any final job report comments will be put in this file
+
+# load modules needed (specific need for my computer)
+source /usr/share/Modules/init/sh # load the module function
+module load GATK/4.3.0.0-GCCcore-11.2.0-Java-11 
+
+F="/data/putnamlab/estrand/BleachingPairs_RNASeq/SNP/unmapped_bam"
+G="/data/putnamlab/estrand/Montipora_capitata_HIv3.assembly.fasta"
+A="/data/putnamlab/estrand/BleachingPairs_RNASeq/output"
+
+array1=($(ls $F/*unmapped.bam.rg.bam))
+for i in ${array1[@]}; do
+    gatk MergeBamAlignment --REFERENCE_SEQUENCE $G \
+    --UNMAPPED_BAM ${i} \
+    --ALIGNED_BAM $A/*.bam \ 
+    --OUTPUT ${i}.MergeBamAlignment.merged.bam \
+    --INCLUDE_SECONDARY_ALIGNMENTS false \
+    --VALIDATION_STRINGENCY SILENT \ 
+    touch ${i}.MergeBamAlignment.done
+done 
+```
+
+#### Rename the output files to get rid of several bam.bam.bam extentions
 
 ```
 
 
-
 ```
-
-left off at filling in the above https://github.com/fscucchia/Pastreoides_development_depth/blob/main/SNPs/MergeBamAlignment.sh 
