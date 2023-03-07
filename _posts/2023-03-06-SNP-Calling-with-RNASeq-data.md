@@ -82,6 +82,8 @@ The sed argument 's/_R1.fastq//' has 3 parts. Each is separated by /.
 - The next is actually empty, i.e., substitute _R1.fastq with nothing
 
 ### 1b. collect RG
+
+I moved all the unmapped bam files produced above into a new directory within my SNPs folder. 
  
 Purpose: *fill in*     
 Input: `${i}.FastqToSam.unmapped.bam` from the previous script     
@@ -100,15 +102,16 @@ Output: `${i}.rg.bam` ; edited bam file
 
 # load modules needed (specific need for my computer)
 source /usr/share/Modules/init/sh # load the module function
+
 # Load modules needed 
-module load SAMtools/1.9-foss-2018b 
+module load SAMtools/1.15.1-GCC-11.2.0
 module load rgsam/0.2.1-foss-2022a
 
 # Data path to unmapped bam files reads 
-path="/data/putnamlab/estrand/BleachingPairs_RNASeq/processed"
+path="/data/putnamlab/estrand/BleachingPairs_RNASeq/SNP"
 
 # Create a list for every file that ends with FastqToSam.unmapped.bam in that folder 
-array1=($(ls $path/*FastqToSam.unmapped.bam))
+array1=($(ls $path/unmapped_bam/*FastqToSam.unmapped.bam))
 
 # A for loop that says for every file that ends with R1 and R2 
 for i in ${array1[@]}; do
@@ -116,6 +119,7 @@ for i in ${array1[@]}; do
     samtools view -h ${i} | 
         rgsam tag -r ${i}.rg.txt |
         samtools view -b - > ${i}.rg.bam
+done
 
 ```
 
@@ -132,6 +136,15 @@ https://github.com/djhshih/rgsam
 
 Note that we use the `-h` flag of samtools view to ensure that other header data are preserved (any existing @RG will be replaced)
 
+#### Troubleshooting 
+
+I ran into several errors with versions of modules. 
+
+```
+GCCcore/11.3.0(24):ERROR:150: Module 'GCCcore/11.3.0' conflicts with the currently loaded module(s) 'GCCcore/11.2.0'
+GCCcore/11.3.0(24):ERROR:102: Tcl command execution failed: conflict GCCcore
+```
+
 ### 1c. Prepare your reference file
 
 *below content from [F.Scucchia page](https://github.com/fscucchia/Pastreoides_development_depth/tree/main/SNPs)* 
@@ -145,6 +158,8 @@ The GATK uses two files to access and safety check access to the reference files
 I have already have Step 2 done from a previous project: `/data/putnamlab/estrand/Montipora_capitata_HIv3.assembly.fasta.fai`. The command to run to create a file like this is: `samtools faidx $R` with $R as the path to reference file.
 
 `prep_ref.sh`: 
+
+Takes under 5 minutes. 
 
 ```
 #!/bin/sh
