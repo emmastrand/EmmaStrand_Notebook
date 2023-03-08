@@ -11,6 +11,8 @@ projects: KBay Bleaching Pairs
 
 Goal: Call SNPs for my Bleaching Pairs project using RNASeq data. I originally tried EpiDiverse to call SNPs with my WGBS data but am continuing to troubleshoot that pipeline ([link here](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/_posts/2023-02-06-EpiDiverse-Bleaching-Pairs-Analysis.md)). 
 
+I recommend looking at the below references in parallel with this script. 
+
 References: 
 - Palumbi lab workshop: https://github.com/UCcongenomics/Conservation-Gene-Expression/blob/master/UCGenomics-SNPcalling-Palumbilab_final%20(1).pdf; https://github.com/bethsheets/SNPcalling_tutorial   
 - Federica's pipeline: https://github.com/fscucchia/Pastreoides_development_depth/tree/main/SNPs (Federica referenced Tim's)  
@@ -31,7 +33,7 @@ All analysis done on URI's HPC system Andromeda.
 3. PLINK (https://www.cog-genomics.org/plink2). Version already downloaded on Andromeda: `PLINK/2.00a2.3_x86_64`. 
 
 
-## 1. FastqToSam, collect RG, and MergeBamAlignment
+## 01. FastqToSam, collect RG, and MergeBamAlignment
 
 ### 1a. FastqToSam
 
@@ -89,7 +91,7 @@ Purpose: *fill in*
 Input: `${i}.FastqToSam.unmapped.bam` from the previous script     
 Output: `${i}.rg.bam` ; edited bam file 
 
-`collectRG_rgsam.sh`: 
+`collectRG_rgsam.sh`: 10-12 hour range. 
 
 ```
 #!/bin/sh
@@ -183,7 +185,7 @@ gatk CreateSequenceDictionary -REFERENCE $R -OUTPUT ${R%*.*}.dict
 
 Output: `Montipora_capitata_HIv3.assembly.dict`.
 
-### 1c. Merge unalinged bam file
+### 1d. Merge unalinged bam file
 
 Purpose: Merge unalinged bam file (now with read group info) with aligned bam file (read group info from unalinged bam is transfered to aligned bam)       
 Input: `${i}.FastqToSam.unmapped.bam.rg.bam` from the previous script (edited merged bam file)  
@@ -210,19 +212,79 @@ A="/data/putnamlab/estrand/BleachingPairs_RNASeq/output"
 
 array1=($(ls $F/*unmapped.bam.rg.bam))
 for i in ${array1[@]}; do
-    gatk MergeBamAlignment --REFERENCE_SEQUENCE $G \
-    --UNMAPPED_BAM ${i} \
-    --ALIGNED_BAM $A/*.bam \ 
-    --OUTPUT ${i}.MergeBamAlignment.merged.bam \
-    --INCLUDE_SECONDARY_ALIGNMENTS false \
-    --VALIDATION_STRINGENCY SILENT \ 
-    touch ${i}.MergeBamAlignment.done
+    gatk MergeBamAlignment --REFERENCE_SEQUENCE $G --UNMAPPED_BAM ${i} --ALIGNED_BAM $A/*.bam --OUTPUT ${i}.MergeBamAlignment.merged.bam --INCLUDE_SECONDARY_ALIGNMENTS false --VALIDATION_STRINGENCY SILENT touch ${i}.MergeBamAlignment.done
 done 
 ```
+
+#### Troubleshooting
+
+Stuck on an error for the above script -- I don't think I can run all of the scripts in an array? 
 
 #### Rename the output files to get rid of several bam.bam.bam extentions
 
 ```
+for file in *; do mv "${file}" "${file/000/}"
+```
+
+## 02. MarkDuplicates 
+
+Potential PCR duplicates need to be marked with Picard Tools.
+
+Purpose: Merge read groups belonging to the same sample into a single BAM file. 
+Input: `*.MergeBamAlignment.merged.bam` from previous step.  
+Output: `*.MarkDuplicates.dedupped.bam` and `*.MarkDuplicates.metrics` files. 
+
+`MarkDuplicates.sh`:
+
+```
+#!/bin/sh
+#SBATCH -t 200:00:00
+#SBATCH --export=NONE
+#SBATCH --account=putnamlab
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_RNASeq/SNP  
+#SBATCH --error=output_messages/"%x_error.%j" #if your job fails, the error report will be put in this file
+#SBATCH --output=output_messages/"%x_output.%j" #once your job is completed, any final job report comments will be put in this file
+
+# load modules needed (specific need for my computer)
+source /usr/share/Modules/init/sh # load the module function
+module load GATK/4.3.0.0-GCCcore-11.2.0-Java-11 
+
+F="/data/putnamlab/estrand/BleachingPairs_RNASeq/SNP/unmapped_bam"
+
+array1=($(ls $F/*MergeBamAlignment.merged.bam))
+for i in ${array1[@]}; do
+    gatk MarkDuplicates --INPUT ${i} \
+    --OUTPUT ${i}.MarkDuplicates.dedupped.bam \
+    --CREATE_INDEX true \
+    --VALIDATION_STRINGENCY SILENT \
+    --METRICS_FILE ${i}.MarkDuplicates.metrics
+done 
+```
+
+## 03. SplitNCigarReads 
+
+The ‘CIGAR’ (Compact Idiosyncratic Gapped Alignment Report) string is how the SAM/BAM format represents spliced alignments. Understanding the CIGAR string will help you understand how your query sequence aligns to the reference genome.
+
+Purpose: This will split reads that contain Ns in their cigar string (e.g. spanning splicing events in RNAseq data), it identifies all N cigar elements and creates k+1 new reads (where k is the number of N cigar elements). This is to distinguish between deletions in exons and large skips due to introns. For mRNA-to-genome alignment, an N operation represents an intron.
+Input: `*.MergeBamAlignment.merged.bam` from previous step.  
+Output: `*.MarkDuplicates.dedupped.bam` and `*.MarkDuplicates.metrics` files. 
+
+`SplitNCigarReads.sh`: 
+
+```
+#!/bin/sh
+#SBATCH -t 200:00:00
+#SBATCH --export=NONE
+#SBATCH --account=putnamlab
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_RNASeq/SNP  
+#SBATCH --error=output_messages/"%x_error.%j" #if your job fails, the error report will be put in this file
+#SBATCH --output=output_messages/"%x_output.%j" #once your job is completed, any final job report comments will be put in this file
+
+# load modules needed (specific need for my computer)
+source /usr/share/Modules/init/sh # load the module function
+module load GATK/4.3.0.0-GCCcore-11.2.0-Java-11 
 
 
 ```
+
+left off at this script https://github.com/fscucchia/Pastreoides_development_depth/blob/main/SNPs/SplitNCigarReads.sh 
