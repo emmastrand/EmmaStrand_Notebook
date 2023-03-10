@@ -187,6 +187,17 @@ Output: `Montipora_capitata_HIv3.assembly.dict`.
 
 ### 1d. Merge unalinged bam file
 
+#### Create a single aligned bam file from RNASeq output 
+
+```
+
+
+```
+
+#### Merge the unmapped.rg.bam files 
+
+**At this point they are all named R1 but contain data from both R1 and R2; see output from 1a.**
+
 Purpose: Merge unalinged bam file (now with read group info) with aligned bam file (read group info from unalinged bam is transfered to aligned bam)       
 Input: `${i}.FastqToSam.unmapped.bam.rg.bam` from the previous script (edited merged bam file)  
 Output: `${i}.MergeBamAlignment.merged.bam` ; edited merged bam file 
@@ -206,19 +217,53 @@ Output: `${i}.MergeBamAlignment.merged.bam` ; edited merged bam file
 source /usr/share/Modules/init/sh # load the module function
 module load GATK/4.3.0.0-GCCcore-11.2.0-Java-11 
 
-F="/data/putnamlab/estrand/BleachingPairs_RNASeq/SNP/unmapped_bam"
 G="/data/putnamlab/estrand/Montipora_capitata_HIv3.assembly.fasta"
 A="/data/putnamlab/estrand/BleachingPairs_RNASeq/output"
 
-array1=($(ls $F/*unmapped.bam.rg.bam))
+# Data path to unmapped bam files reads 
+path="/data/putnamlab/estrand/BleachingPairs_RNASeq/SNP"
+
+# Create a list for every file that ends with FastqToSam.unmapped.bam.rg.bam in that folder 
+array1=($(ls $path/unmapped_bam/*.unmapped.bam.rg.bam))
+
+# Create for loop 
 for i in ${array1[@]}; do
-    gatk MergeBamAlignment --REFERENCE_SEQUENCE $G --UNMAPPED_BAM ${i} --ALIGNED_BAM $A/*.bam --OUTPUT ${i}.MergeBamAlignment.merged.bam --INCLUDE_SECONDARY_ALIGNMENTS false --VALIDATION_STRINGENCY SILENT touch ${i}.MergeBamAlignment.done
+    gatk MergeBamAlignment \
+    --REFERENCE_SEQUENCE $G \
+    --UNMAPPED_BAM ${i} \
+    --ALIGNED_BAM $A/*.bam \
+    --OUTPUT ${i}.merged.bam \
+    --INCLUDE_SECONDARY_ALIGNMENTS false \
+    --VALIDATION_STRINGENCY SILENT touch ${i}.Merge.done
 done 
 ```
 
 #### Troubleshooting
 
-Stuck on an error for the above script -- I don't think I can run all of the scripts in an array? 
+Stuck on an error for the above script -- I don't think I can run all of the scripts in an array? Test a single file.
+
+```
+#!/bin/sh
+#SBATCH -t 200:00:00
+#SBATCH --export=NONE
+#SBATCH --account=putnamlab
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_RNASeq/SNP  
+#SBATCH --error=output_messages/"%x_error.%j" #if your job fails, the error report will be put in this file
+#SBATCH --output=output_messages/"%x_output.%j" #once your job is completed, any final job report comments will be put in this file
+
+# load modules needed (specific need for my computer)
+source /usr/share/Modules/init/sh # load the module function
+module load GATK/4.3.0.0-GCCcore-11.2.0-Java-11 
+
+G="/data/putnamlab/estrand/Montipora_capitata_HIv3.assembly.fasta"
+A="/data/putnamlab/estrand/BleachingPairs_RNASeq/output"
+path="/data/putnamlab/estrand/BleachingPairs_RNASeq/SN/unmapped_bam"
+
+gatk MergeBamAlignment \
+    --REFERENCE_SEQUENCE $G \
+    --UNMAPPED_BAM $path/trimmed.16_S121_L003_R1_001.fastq.gz.FastqToSam.unmapped.bam.rg.bam \
+    --ALIGNED_BAM $A/
+```
 
 #### Rename the output files to get rid of several bam.bam.bam extentions
 

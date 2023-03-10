@@ -202,6 +202,8 @@ I use the program `HISAT2`, but other pipelines use `STAR`.
 
 ### Reference genome information 
 
+#### see note on why to run align2.sh instead 
+
 I'm using the newest version of the Mcap genome: 
 
 `wget http://cyanophora.rutgers.edu/montipora/Montipora_capitata_HIv3.assembly.fasta.gz`. gunzip this file 
@@ -210,7 +212,7 @@ I'm using the newest version of the Mcap genome:
 path: `/data/putnamlab/estrand/Montipora_capitata_HIv3.assembly.fasta`  
 path: `/data/putnamlab/estrand/Montipora_capitata_HIv3.genes.gff3` 
 
-This took two weeks.. seems long but all worked. 
+This took two weeks.. seems long but all worked. **Later I found out that the below `align.sh` actually produced a bam file for both R1 and R2. ah!** 
 
 `align.sh`: 
 
@@ -246,6 +248,41 @@ for i in ${array[@]}; do
     rm ${sample_name}.sam
 done
 ```
+
+`align2.sh`: 
+
+```
+#!/bin/bash
+#SBATCH -t 500:00:00
+#SBATCH --export=NONE
+#SBATCH --account=putnamlab
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_RNASeq/output/                
+#SBATCH --error=../"%x_error.%j" #if your job fails, the error report will be put in this file
+#SBATCH --output=../"%x_output.%j" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function (specific need to my computer)
+
+# load modules needed
+module load HISAT2/2.2.1-gompi-2021b
+module load SAMtools/1.15.1-GCC-11.2.0
+
+# Index the reference genome 
+hisat2-build -f /data/putnamlab/estrand/Montipora_capitata_HIv3.assembly.fasta ./Mcap_ref
+echo "Reference genome indexed. Starting alignment" $(date)
+
+# Alignment of clean reads to the reference genome
+array=($(ls /data/putnamlab/estrand/BleachingPairs_RNASeq/processed/*_R1_001.fastq.gz))
+
+for i in ${array[@]}; do
+    hisat2 -p 8 --rna-strandness RF --dta -q -x Mcap_ref -1 ${i} -2 $(echo ${i}|sed s/_R1/_R2/) -S ${i}.sam
+    samtools sort -@ 8 -o ${i}.bam ${i}.sam
+    	echo "${i} bam-ified!"
+    rm ${i}.sam
+done
+```
+
+**OUTPUT SHOULD BE BOTH R1 AND R2 IN ONE SAM FILE!!** 
+
 
 ## <a name="assemble"></a> **Assemble aligned reads and quantify transcripts**
 
