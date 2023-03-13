@@ -202,8 +202,6 @@ I use the program `HISAT2`, but other pipelines use `STAR`.
 
 ### Reference genome information 
 
-#### see note on why to run align2.sh instead 
-
 I'm using the newest version of the Mcap genome: 
 
 `wget http://cyanophora.rutgers.edu/montipora/Montipora_capitata_HIv3.assembly.fasta.gz`. gunzip this file 
@@ -212,42 +210,8 @@ I'm using the newest version of the Mcap genome:
 path: `/data/putnamlab/estrand/Montipora_capitata_HIv3.assembly.fasta`  
 path: `/data/putnamlab/estrand/Montipora_capitata_HIv3.genes.gff3` 
 
-This took two weeks.. seems long but all worked. **Later I found out that the below `align.sh` actually produced a bam file for both R1 and R2. ah!** 
-
-`align.sh`: 
-
-```
-#!/bin/bash
-#SBATCH -t 500:00:00
-#SBATCH --nodes=1 --ntasks-per-node=1
-#SBATCH --export=NONE
-#SBATCH --mem=100GB
-#SBATCH --account=putnamlab
-#SBATCH -D /data/putnamlab/estrand/BleachingPairs_RNASeq/output/                
-#SBATCH --error=../"%x_error.%j" #if your job fails, the error report will be put in this file
-#SBATCH --output=../"%x_output.%j" #once your job is completed, any final job report comments will be put in this file
-
-source /usr/share/Modules/init/sh # load the module function (specific need to my computer)
-
-# load modules needed
-module load HISAT2/2.2.1-foss-2019b
-module load SAMtools/1.9-foss-2018b
-
-# Index the reference genome 
-hisat2-build -f /data/putnamlab/estrand/Montipora_capitata_HIv3.assembly.fasta ./Mcap_ref
-echo "Reference genome indexed. Starting alignment" $(date)
-
-# Alignment of clean reads to the reference genome
-array=($(ls /data/putnamlab/estrand/BleachingPairs_RNASeq/processed/*.fastq.gz))
-
-for i in ${array[@]}; do
-    sample_name=`echo $i| awk -F [.] '{print $2}'`
-    hisat2 -p 8 --rna-strandness RF --dta -q -x Mcap_ref -1 ${i} -2 $(echo ${i}|sed s/_R1/_R2/) -S ${sample_name}.sam
-    samtools sort -@ 8 -o ${sample_name}.bam ${sample_name}.sam
-    	echo "${i} bam-ified!"
-    rm ${sample_name}.sam
-done
-```
+Creating the reference genome part takes ~5-10 minutes.  
+Running the hisat2 and samtools parts took under 4 days (the align.sh script at the end of this doc took 2 weeks..) 
 
 `align2.sh`: 
 
@@ -255,8 +219,9 @@ done
 #!/bin/bash
 #SBATCH -t 500:00:00
 #SBATCH --export=NONE
+#SBATCH --nodes=1 --ntasks-per-node=15
 #SBATCH --account=putnamlab
-#SBATCH -D /data/putnamlab/estrand/BleachingPairs_RNASeq/output/                
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_RNASeq/output2/                
 #SBATCH --error=../"%x_error.%j" #if your job fails, the error report will be put in this file
 #SBATCH --output=../"%x_output.%j" #once your job is completed, any final job report comments will be put in this file
 
@@ -292,13 +257,81 @@ done
 2. Merge output GTF files and assess the assembly performance
 3. Compilation of GTF-files into gene and transcript count matrices
 
-**see troubleshooting section below -- my final script was assemble2.sh b/c of a formatting issue with the Mcap v3 gff.** 
+### GFF File Fix 
 
-`assemble.sh`: 
+My original counts matrix output with names like `STRG.6173` instead of the gene name. 
+
+Ariana had a solution to this outlined here: https://github.com/Putnam-Lab/Lab_Management/issues/51
+
+### Upload new GFF file 
+
+```
+scp /Users/emmastrand/MyProjects/HI_Bleaching_Timeseries/Dec-July-2019-analysis/Montipora_capitata_HIv3.genes_fixed.gff3.gz emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/
+```
+
+### Ended up using assemble2.sh below (b/c of a formatting issue in my original gff)
+
+`assemble2.sh`: 
 
 ```
 #!/bin/bash
 #SBATCH -t 500:00:00
+#SBATCH --nodes=1 --ntasks-per-node=10
+#SBATCH --export=NONE
+#SBATCH --mem=128GB
+#SBATCH --account=putnamlab
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_RNASeq/output2/                
+#SBATCH --error=../"%x_error.%j" #if your job fails, the error report will be put in this file
+#SBATCH --output=../"%x_output.%j" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function (specific need to my computer)
+module load StringTie/2.1.4-GCC-9.3.0
+
+# Assemble and estimate reads
+# array 1 ls is every file that ends with .bam in the output2 folder specified above 
+array1=($(ls *.bam))
+
+for i in ${array1[@]}; do
+    stringtie -p 8 -e -B -G /data/putnamlab/estrand/Montipora_capitata_HIv3.genes_fixed.gff3 -o /data/putnamlab/estrand/BleachingPairs_RNASeq/output2/${i}.gtf /data/putnamlab/estrand/BleachingPairs_RNASeq/output2/${i}
+done
+
+# Merge stringTie gtf results
+
+ls *gtf > mergelist.txt
+cat mergelist.txt
+
+stringtie --merge -p 8 -G /data/putnamlab/estrand/Montipora_capitata_HIv3.genes_fixed.gff3 -o stringtie_merged.gtf mergelist.txt
+
+echo "Stringtie merge complete" $(date)
+```
+
+`head mergelist.txt`:
+
+```
+
+```
+
+`head stringtie_merged.gtf`:
+
+```
+
+```
+
+
+
+## <a name="genecount"></a> **Create gene counts matrix**
+
+The StringTie program includes a script, prepDE.py that compiles your assembly files into gene and transcript count matrices. This script requires as input the list of sample names and their full file paths, sample_list.txt. This file will live in StringTie program directory.
+
+Copy this file: `cp /data/putnamlab/ashuffmyer/pairs-rnaseq/prepDE.py .`
+
+### Ended up using genecount2.sh b/c of a formatting issue above 
+
+`genecount2.sh`: 
+
+```
+#!/bin/bash
+#SBATCH -t 60:00:00
 #SBATCH --nodes=1 --ntasks-per-node=1
 #SBATCH --export=NONE
 #SBATCH --mem=128GB
@@ -309,68 +342,57 @@ done
 
 source /usr/share/Modules/init/sh # load the module function (specific need to my computer)
 module load StringTie/2.1.4-GCC-9.3.0
-module load gffcompare/0.11.5-foss-2018b
+module load Python/2.7.15-foss-2018b
+module load GffCompare/0.12.1-GCCcore-8.3.0
 
-# Assemble and estimate reads
+# Assess the performance of the assembly
+gffcompare -r /data/putnamlab/estrand/Montipora_capitata_HIv3.genes_fixed.gff3 -o merged stringtie_merged.gtf
 
-array1=($(ls *.bam))
+echo "GFFcompare complete, Starting gene count matrix assembly..." $(date)
 
-for i in ${array1[@]}; do
-    sample_name=`echo $i| awk -F [_] '{print $1"_"$2"_"$3}'`
-    stringtie -p 8 -e -B -G /data/putnamlab/estrand/Montipora_capitata_HIv3.genes.gff3 -o /data/putnamlab/estrand/BleachingPairs_RNASeq/output/${i}.gtf /data/putnamlab/estrand/BleachingPairs_RNASeq/output/${i}
-done
+# Make gtf list text file
 
-# Merge stringTie gtf results
+for filename in *.bam.gtf; do echo $filename $PWD/$filename; done > listGTF.txt
 
-ls *gtf > mergelist.txt
-cat mergelist.txt
+# Compile the gene count matrix
 
-stringtie --merge -p 8 -G /data/putnamlab/estrand/Montipora_capitata_HIv3.genes.gff3 -o stringtie_merged.gtf mergelist.txt
-
-echo "Stringtie merge complete" $(date)
+python ../scripts/prepDE.py -g ../KB_gene_count_matrix.csv -i listGTF.txt
+echo "Gene count matrix compiled." $(date)
 ```
 
-`head mergelist.txt`:
+`head output/listGTF.txt` : 
 
 ```
-16_S121_L003_R1_001.bam.gtf
-16_S121_L003_R2_001.bam.gtf
-17_S122_L003_R1_001.bam.gtf
-17_S122_L003_R2_001.bam.gtf
-21_S123_L003_R1_001.bam.gtf
-21_S123_L003_R2_001.bam.gtf
-22_S124_L003_R1_001.bam.gtf
-22_S124_L003_R2_001.bam.gtf
-23_S125_L003_R1_001.bam.gtf
-23_S125_L003_R2_001.bam.gtf
+16_S121_L003_R1_001.bam.gtf /glfs/brick01/gv0/putnamlab/estrand/BleachingPairs_RNASeq/output/16_S121_L003_R1_001.bam.gtf
+16_S121_L003_R2_001.bam.gtf /glfs/brick01/gv0/putnamlab/estrand/BleachingPairs_RNASeq/output/16_S121_L003_R2_001.bam.gtf
+17_S122_L003_R1_001.bam.gtf /glfs/brick01/gv0/putnamlab/estrand/BleachingPairs_RNASeq/output/17_S122_L003_R1_001.bam.gtf
+17_S122_L003_R2_001.bam.gtf /glfs/brick01/gv0/putnamlab/estrand/BleachingPairs_RNASeq/output/17_S122_L003_R2_001.bam.gtf
+21_S123_L003_R1_001.bam.gtf /glfs/brick01/gv0/putnamlab/estrand/BleachingPairs_RNASeq/output/21_S123_L003_R1_001.bam.gtf
+21_S123_L003_R2_001.bam.gtf /glfs/brick01/gv0/putnamlab/estrand/BleachingPairs_RNASeq/output/21_S123_L003_R2_001.bam.gtf
+22_S124_L003_R1_001.bam.gtf /glfs/brick01/gv0/putnamlab/estrand/BleachingPairs_RNASeq/output/22_S124_L003_R1_001.bam.gtf
+22_S124_L003_R2_001.bam.gtf /glfs/brick01/gv0/putnamlab/estrand/BleachingPairs_RNASeq/output/22_S124_L003_R2_001.bam.gtf
+23_S125_L003_R1_001.bam.gtf /glfs/brick01/gv0/putnamlab/estrand/BleachingPairs_RNASeq/output/23_S125_L003_R1_001.bam.gtf
+23_S125_L003_R2_001.bam.gtf /glfs/brick01/gv0/putnamlab/estrand/BleachingPairs_RNASeq/output/23_S125_L003_R2_001.bam.gtf
 ```
 
-`head stringtie_merged.gtf`:
+`head -5 KB_gene_count_matrix.csv`:
 
 ```
-# stringtie --merge -p 8 -G /data/putnamlab/estrand/Montipora_capitata_HIv3.genes.gff3 -o stringtie_merged.gtf mergelist.txt
-# StringTie version 2.1.4
-Montipora_capitata_HIv3___Scaffold_1    StringTie       transcript      22732   36176   1000    -       .       gene_id "MSTRG.1"; transcript_id "Montipora_capitata_HIv3___RNAseq.g4581.t1"; 
-Montipora_capitata_HIv3___Scaffold_1    StringTie       exon    22732   23002   1000    -       .       gene_id "MSTRG.1"; transcript_id "Montipora_capitata_HIv3___RNAseq.g4581.t1"; exon_number "1"; 
-Montipora_capitata_HIv3___Scaffold_1    StringTie       exon    27868   27934   1000    -       .       gene_id "MSTRG.1"; transcript_id "Montipora_capitata_HIv3___RNAseq.g4581.t1"; exon_number "2"; 
-Montipora_capitata_HIv3___Scaffold_1    StringTie       exon    29683   29722   1000    -       .       gene_id "MSTRG.1"; transcript_id "Montipora_capitata_HIv3___RNAseq.g4581.t1"; exon_number "3"; 
-Montipora_capitata_HIv3___Scaffold_1    StringTie       exon    30150   30230   1000    -       .       gene_id "MSTRG.1"; transcript_id "Montipora_capitata_HIv3___RNAseq.g4581.t1"; exon_number "4"; 
-Montipora_capitata_HIv3___Scaffold_1    StringTie       exon    31466   31705   1000    -       .       gene_id "MSTRG.1"; transcript_id "Montipora_capitata_HIv3___RNAseq.g4581.t1"; exon_number "5"; 
-Montipora_capitata_HIv3___Scaffold_1    StringTie       exon    31890   31988   1000    -       .       gene_id "MSTRG.1"; transcript_id "Montipora_capitata_HIv3___RNAseq.g4581.t1"; exon_number "6"; 
-Montipora_capitata_HIv3___Scaffold_1    StringTie       exon    33295   33367   1000    -       .       gene_id "MSTRG.1"; transcript_id "Montipora_capitata_HIv3___RNAseq.g4581.t1"; exon_number "7"; 
+gene_id,16_S121_L003_R1_001.bam.gtf,16_S121_L003_R2_001.bam.gtf,17_S122_L003_R1_001.bam.gtf,17_S122_L003_R2_001.bam.gtf,21_S123_L003_R1_001.bam.gtf,21_S123_L003_R2_001.bam.gtf,22_S124_L003_R1_001.bam.gtf,22_S124_L003_R2_001.bam.gtf,23_S125_L003_R1_001.bam.gtf,23_S125_L003_R2_001.bam.gtf,24_S126_L003_R1_001.bam.gtf,24_S126_L003_R2_001.bam.gtf,25_S127_L003_R1_001.bam.gtf,25_S127_L003_R2_001.bam.gtf,26_S128_L003_R1_001.bam.gtf,26_S128_L003_R2_001.bam.gtf,28_S129_L003_R1_001.bam.gtf,28_S129_L003_R2_001.bam.gtf,29_S130_L003_R1_001.bam.gtf,29_S130_L003_R2_001.bam.gtf,2_S118_L003_R1_001.bam.gtf,2_S118_L003_R2_001.bam.gtf,30_S131_L003_R1_001.bam.gtf,30_S131_L003_R2_001.bam.gtf,31_S132_L003_R1_001.bam.gtf,31_S132_L003_R2_001.bam.gtf,33_S133_L003_R1_001.bam.gtf,33_S133_L003_R2_001.bam.gtf,37_S134_L003_R1_001.bam.gtf,37_S134_L003_R2_001.bam.gtf,39_S135_L003_R1_001.bam.gtf,39_S135_L003_R2_001.bam.gtf,42_S136_L003_R1_001.bam.gtf,42_S136_L003_R2_001.bam.gtf,43_S137_L003_R1_001.bam.gtf,43_S137_L003_R2_001.bam.gtf,45_S138_L003_R1_001.bam.gtf,45_S138_L003_R2_001.bam.gtf,46_S139_L003_R1_001.bam.gtf,46_S139_L003_R2_001.bam.gtf,47_S140_L003_R1_001.bam.gtf,47_S140_L003_R2_001.bam.gtf,4_S119_L003_R1_001.bam.gtf,4_S119_L003_R2_001.bam.gtf,50_S141_L003_R1_001.bam.gtf,50_S141_L003_R2_001.bam.gtf,51_S142_L003_R1_001.bam.gtf,51_S142_L003_R2_001.bam.gtf,52_S143_L003_R1_001.bam.gtf,52_S143_L003_R2_001.bam.gtf,54_S144_L003_R1_001.bam.gtf,54_S144_L003_R2_001.bam.gtf,55_S145_L003_R1_001.bam.gtf,55_S145_L003_R2_001.bam.gtf,56_S146_L003_R1_001.bam.gtf,56_S146_L003_R2_001.bam.gtf,57_S147_L003_R1_001.bam.gtf,57_S147_L003_R2_001.bam.gtf,59_S148_L003_R1_001.bam.gtf,59_S148_L003_R2_001.bam.gtf,60_S149_L003_R1_001.bam.gtf,60_S149_L003_R2_001.bam.gtf,61_S150_L003_R1_001.bam.gtf,61_S150_L003_R2_001.bam.gtf,62_S151_L003_R1_001.bam.gtf,62_S151_L003_R2_001.bam.gtf,63_S152_L003_R1_001.bam.gtf,63_S152_L003_R2_001.bam.gtf,64_S153_L003_R1_001.bam.gtf,64_S153_L003_R2_001.bam.gtf,65_S154_L003_R1_001.bam.gtf,65_S154_L003_R2_001.bam.gtf,66_S155_L003_R1_001.bam.gtf,66_S155_L003_R2_001.bam.gtf,67_S156_L003_R1_001.bam.gtf,67_S156_L003_R2_001.bam.gtf,68_S157_L003_R1_001.bam.gtf,68_S157_L003_R2_001.bam.gtf,6_S120_L003_R1_001.bam.gtf,6_S120_L003_R2_001.bam.gtf
+Montipora_capitata_HIv3___RNAseq.g42319.t1,1,2,0,11,0,3,6,15,3,7,0,7,0,0,0,7,0,10,0,1,0,4,0,9,0,11,0,11,0,8,0,8,0,4,0,0,0,2,0,4,0,12,0,0,0,1,0,17,0,4,0,3,0,0,0,12,0,3,1,2,0,4,0,11,0,7,0,6,0,5,0,14,2,16,0,0,0,9,0,2
+Montipora_capitata_HIv3___TS.g49315.t1b,42,24,0,0,13,9,115,53,24,16,2,0,130,68,22,14,255,117,191,109,0,0,70,34,113,60,3,4,0,0,6,0,56,24,74,39,306,136,65,35,0,0,178,90,29,16,242,126,9,4,15,10,139,71,3,7,160,84,48,23,114,50,0,0,0,8,27,16,85,40,18,13,88,47,153,82,105,52,116,58
+Montipora_capitata_HIv3___TS.g49315.t1a,325,178,13,0,104,60,1239,668,669,373,24,18,619,343,56,34,1441,790,1052,594,0,0,576,328,825,437,0,0,0,0,19,0,44,26,752,416,1816,1021,1276,707,0,0,1018,574,71,47,2005,1099,0,0,79,41,1047,560,0,0,1082,599,29,17,1140,639,0,0,22,0,729,408,1666,954,96,65,1287,742,905,538,2351,1376,1874,1043
+Montipora_capitata_HIv3___RNAseq.g19176.t1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,5,0,0,0,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 ```
 
-`less assemble.sh_error.201665 `: 
+This seems to have fixed the issue with gene naming. 
 
-`ModuleCmd_Load.c(213):ERROR:105: Unable to locate a modulefile for 'gffcompare/0.11.5-foss-2018b'`
+### copy gene counts matrix to computer (again)
 
-I think this is OK b/c we don't use gffcompare command until the next script. I use a newer module in the next script that is on Andromeda. 
+```
+scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/BleachingPairs_RNASeq/KB_gene_count_matrix.csv /Users/emmastrand/MyProjects/HI_Bleaching_Timeseries/Dec-July-2019-analysis/output/RNASeq/KB_gene_count_matrix.csv
+```
 
-## <a name="genecount"></a> **Create gene counts matrix**
-
-The StringTie program includes a script, prepDE.py that compiles your assembly files into gene and transcript count matrices. This script requires as input the list of sample names and their full file paths, sample_list.txt. This file will live in StringTie program directory.
-
-Copy this file: `cp /data/putnamlab/ashuffmyer/pairs-rnaseq/prepDE.py .`
 
 `genecount.sh`: 
 
@@ -449,23 +471,47 @@ Column with gene ID contains both gene names from reference genome and IDs from 
 scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/BleachingPairs_RNASeq/KB_gene_count_matrix.csv /Users/emmastrand/MyProjects/HI_Bleaching_Timeseries/Dec-July-2019-analysis/output/RNASeq/KB_gene_count_matrix.csv
 ```
 
-## Troubleshooting
+## Previous versions of scripts
 
-### GFF File Fix 
+This took two weeks.. seems long but all worked. **Later I found out that the below `align.sh` actually produced a bam file for both R1 and R2. ah!** 
 
-My original counts matrix output with names like `STRG.6173` instead of the gene name. 
-
-Ariana had a solution to this outlined here: https://github.com/Putnam-Lab/Lab_Management/issues/51
-
-### Upload new GFF file 
+`align.sh`: 
 
 ```
-scp /Users/emmastrand/MyProjects/HI_Bleaching_Timeseries/Dec-July-2019-analysis/Montipora_capitata_HIv3.genes_fixed.gff3.gz emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/
+#!/bin/bash
+#SBATCH -t 500:00:00
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --export=NONE
+#SBATCH --mem=100GB
+#SBATCH --account=putnamlab
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_RNASeq/output/                
+#SBATCH --error=../"%x_error.%j" #if your job fails, the error report will be put in this file
+#SBATCH --output=../"%x_output.%j" #once your job is completed, any final job report comments will be put in this file
+
+source /usr/share/Modules/init/sh # load the module function (specific need to my computer)
+
+# load modules needed
+module load HISAT2/2.2.1-foss-2019b
+module load SAMtools/1.9-foss-2018b
+
+# Index the reference genome 
+hisat2-build -f /data/putnamlab/estrand/Montipora_capitata_HIv3.assembly.fasta ./Mcap_ref
+echo "Reference genome indexed. Starting alignment" $(date)
+
+# Alignment of clean reads to the reference genome
+array=($(ls /data/putnamlab/estrand/BleachingPairs_RNASeq/processed/*.fastq.gz))
+
+for i in ${array[@]}; do
+    sample_name=`echo $i| awk -F [.] '{print $2}'`
+    hisat2 -p 8 --rna-strandness RF --dta -q -x Mcap_ref -1 ${i} -2 $(echo ${i}|sed s/_R1/_R2/) -S ${sample_name}.sam
+    samtools sort -@ 8 -o ${sample_name}.bam ${sample_name}.sam
+    	echo "${i} bam-ified!"
+    rm ${sample_name}.sam
+done
 ```
 
-### Rerun Assemble 
 
-`assemble2.sh`: 
+`assemble.sh`: 
 
 ```
 #!/bin/bash
@@ -488,7 +534,7 @@ array1=($(ls *.bam))
 
 for i in ${array1[@]}; do
     sample_name=`echo $i| awk -F [_] '{print $1"_"$2"_"$3}'`
-    stringtie -p 8 -e -B -G /data/putnamlab/estrand/Montipora_capitata_HIv3.genes_fixed.gff3 -o /data/putnamlab/estrand/BleachingPairs_RNASeq/output/${i}.gtf /data/putnamlab/estrand/BleachingPairs_RNASeq/output/${i}
+    stringtie -p 8 -e -B -G /data/putnamlab/estrand/Montipora_capitata_HIv3.genes.gff3 -o /data/putnamlab/estrand/BleachingPairs_RNASeq/output/${i}.gtf /data/putnamlab/estrand/BleachingPairs_RNASeq/output/${i}
 done
 
 # Merge stringTie gtf results
@@ -496,75 +542,7 @@ done
 ls *gtf > mergelist.txt
 cat mergelist.txt
 
-stringtie --merge -p 8 -G /data/putnamlab/estrand/Montipora_capitata_HIv3.genes_fixed.gff3 -o stringtie_merged.gtf mergelist.txt
+stringtie --merge -p 8 -G /data/putnamlab/estrand/Montipora_capitata_HIv3.genes.gff3 -o stringtie_merged.gtf mergelist.txt
 
 echo "Stringtie merge complete" $(date)
-```
-
-### Rerun gene count 
-
-`genecount2.sh`: 
-
-```
-#!/bin/bash
-#SBATCH -t 60:00:00
-#SBATCH --nodes=1 --ntasks-per-node=1
-#SBATCH --export=NONE
-#SBATCH --mem=128GB
-#SBATCH --account=putnamlab
-#SBATCH -D /data/putnamlab/estrand/BleachingPairs_RNASeq/output/                
-#SBATCH --error=../"%x_error.%j" #if your job fails, the error report will be put in this file
-#SBATCH --output=../"%x_output.%j" #once your job is completed, any final job report comments will be put in this file
-
-source /usr/share/Modules/init/sh # load the module function (specific need to my computer)
-module load StringTie/2.1.4-GCC-9.3.0
-module load Python/2.7.15-foss-2018b
-module load GffCompare/0.12.1-GCCcore-8.3.0
-
-# Assess the performance of the assembly
-gffcompare -r /data/putnamlab/estrand/Montipora_capitata_HIv3.genes_fixed.gff3 -o merged stringtie_merged.gtf
-
-echo "GFFcompare complete, Starting gene count matrix assembly..." $(date)
-
-# Make gtf list text file
-
-for filename in *.bam.gtf; do echo $filename $PWD/$filename; done > listGTF.txt
-
-# Compile the gene count matrix
-
-python ../scripts/prepDE.py -g ../KB_gene_count_matrix.csv -i listGTF.txt
-echo "Gene count matrix compiled." $(date)
-```
-
-`head output/listGTF.txt` : 
-
-```
-16_S121_L003_R1_001.bam.gtf /glfs/brick01/gv0/putnamlab/estrand/BleachingPairs_RNASeq/output/16_S121_L003_R1_001.bam.gtf
-16_S121_L003_R2_001.bam.gtf /glfs/brick01/gv0/putnamlab/estrand/BleachingPairs_RNASeq/output/16_S121_L003_R2_001.bam.gtf
-17_S122_L003_R1_001.bam.gtf /glfs/brick01/gv0/putnamlab/estrand/BleachingPairs_RNASeq/output/17_S122_L003_R1_001.bam.gtf
-17_S122_L003_R2_001.bam.gtf /glfs/brick01/gv0/putnamlab/estrand/BleachingPairs_RNASeq/output/17_S122_L003_R2_001.bam.gtf
-21_S123_L003_R1_001.bam.gtf /glfs/brick01/gv0/putnamlab/estrand/BleachingPairs_RNASeq/output/21_S123_L003_R1_001.bam.gtf
-21_S123_L003_R2_001.bam.gtf /glfs/brick01/gv0/putnamlab/estrand/BleachingPairs_RNASeq/output/21_S123_L003_R2_001.bam.gtf
-22_S124_L003_R1_001.bam.gtf /glfs/brick01/gv0/putnamlab/estrand/BleachingPairs_RNASeq/output/22_S124_L003_R1_001.bam.gtf
-22_S124_L003_R2_001.bam.gtf /glfs/brick01/gv0/putnamlab/estrand/BleachingPairs_RNASeq/output/22_S124_L003_R2_001.bam.gtf
-23_S125_L003_R1_001.bam.gtf /glfs/brick01/gv0/putnamlab/estrand/BleachingPairs_RNASeq/output/23_S125_L003_R1_001.bam.gtf
-23_S125_L003_R2_001.bam.gtf /glfs/brick01/gv0/putnamlab/estrand/BleachingPairs_RNASeq/output/23_S125_L003_R2_001.bam.gtf
-```
-
-`head -5 KB_gene_count_matrix.csv`:
-
-```
-gene_id,16_S121_L003_R1_001.bam.gtf,16_S121_L003_R2_001.bam.gtf,17_S122_L003_R1_001.bam.gtf,17_S122_L003_R2_001.bam.gtf,21_S123_L003_R1_001.bam.gtf,21_S123_L003_R2_001.bam.gtf,22_S124_L003_R1_001.bam.gtf,22_S124_L003_R2_001.bam.gtf,23_S125_L003_R1_001.bam.gtf,23_S125_L003_R2_001.bam.gtf,24_S126_L003_R1_001.bam.gtf,24_S126_L003_R2_001.bam.gtf,25_S127_L003_R1_001.bam.gtf,25_S127_L003_R2_001.bam.gtf,26_S128_L003_R1_001.bam.gtf,26_S128_L003_R2_001.bam.gtf,28_S129_L003_R1_001.bam.gtf,28_S129_L003_R2_001.bam.gtf,29_S130_L003_R1_001.bam.gtf,29_S130_L003_R2_001.bam.gtf,2_S118_L003_R1_001.bam.gtf,2_S118_L003_R2_001.bam.gtf,30_S131_L003_R1_001.bam.gtf,30_S131_L003_R2_001.bam.gtf,31_S132_L003_R1_001.bam.gtf,31_S132_L003_R2_001.bam.gtf,33_S133_L003_R1_001.bam.gtf,33_S133_L003_R2_001.bam.gtf,37_S134_L003_R1_001.bam.gtf,37_S134_L003_R2_001.bam.gtf,39_S135_L003_R1_001.bam.gtf,39_S135_L003_R2_001.bam.gtf,42_S136_L003_R1_001.bam.gtf,42_S136_L003_R2_001.bam.gtf,43_S137_L003_R1_001.bam.gtf,43_S137_L003_R2_001.bam.gtf,45_S138_L003_R1_001.bam.gtf,45_S138_L003_R2_001.bam.gtf,46_S139_L003_R1_001.bam.gtf,46_S139_L003_R2_001.bam.gtf,47_S140_L003_R1_001.bam.gtf,47_S140_L003_R2_001.bam.gtf,4_S119_L003_R1_001.bam.gtf,4_S119_L003_R2_001.bam.gtf,50_S141_L003_R1_001.bam.gtf,50_S141_L003_R2_001.bam.gtf,51_S142_L003_R1_001.bam.gtf,51_S142_L003_R2_001.bam.gtf,52_S143_L003_R1_001.bam.gtf,52_S143_L003_R2_001.bam.gtf,54_S144_L003_R1_001.bam.gtf,54_S144_L003_R2_001.bam.gtf,55_S145_L003_R1_001.bam.gtf,55_S145_L003_R2_001.bam.gtf,56_S146_L003_R1_001.bam.gtf,56_S146_L003_R2_001.bam.gtf,57_S147_L003_R1_001.bam.gtf,57_S147_L003_R2_001.bam.gtf,59_S148_L003_R1_001.bam.gtf,59_S148_L003_R2_001.bam.gtf,60_S149_L003_R1_001.bam.gtf,60_S149_L003_R2_001.bam.gtf,61_S150_L003_R1_001.bam.gtf,61_S150_L003_R2_001.bam.gtf,62_S151_L003_R1_001.bam.gtf,62_S151_L003_R2_001.bam.gtf,63_S152_L003_R1_001.bam.gtf,63_S152_L003_R2_001.bam.gtf,64_S153_L003_R1_001.bam.gtf,64_S153_L003_R2_001.bam.gtf,65_S154_L003_R1_001.bam.gtf,65_S154_L003_R2_001.bam.gtf,66_S155_L003_R1_001.bam.gtf,66_S155_L003_R2_001.bam.gtf,67_S156_L003_R1_001.bam.gtf,67_S156_L003_R2_001.bam.gtf,68_S157_L003_R1_001.bam.gtf,68_S157_L003_R2_001.bam.gtf,6_S120_L003_R1_001.bam.gtf,6_S120_L003_R2_001.bam.gtf
-Montipora_capitata_HIv3___RNAseq.g42319.t1,1,2,0,11,0,3,6,15,3,7,0,7,0,0,0,7,0,10,0,1,0,4,0,9,0,11,0,11,0,8,0,8,0,4,0,0,0,2,0,4,0,12,0,0,0,1,0,17,0,4,0,3,0,0,0,12,0,3,1,2,0,4,0,11,0,7,0,6,0,5,0,14,2,16,0,0,0,9,0,2
-Montipora_capitata_HIv3___TS.g49315.t1b,42,24,0,0,13,9,115,53,24,16,2,0,130,68,22,14,255,117,191,109,0,0,70,34,113,60,3,4,0,0,6,0,56,24,74,39,306,136,65,35,0,0,178,90,29,16,242,126,9,4,15,10,139,71,3,7,160,84,48,23,114,50,0,0,0,8,27,16,85,40,18,13,88,47,153,82,105,52,116,58
-Montipora_capitata_HIv3___TS.g49315.t1a,325,178,13,0,104,60,1239,668,669,373,24,18,619,343,56,34,1441,790,1052,594,0,0,576,328,825,437,0,0,0,0,19,0,44,26,752,416,1816,1021,1276,707,0,0,1018,574,71,47,2005,1099,0,0,79,41,1047,560,0,0,1082,599,29,17,1140,639,0,0,22,0,729,408,1666,954,96,65,1287,742,905,538,2351,1376,1874,1043
-Montipora_capitata_HIv3___RNAseq.g19176.t1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,5,0,0,0,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-```
-
-This seems to have fixed the issue with gene naming. 
-
-### copy gene counts matrix to computer (again)
-
-```
-scp emma_strand@ssh3.hac.uri.edu:../../data/putnamlab/estrand/BleachingPairs_RNASeq/KB_gene_count_matrix.csv /Users/emmastrand/MyProjects/HI_Bleaching_Timeseries/Dec-July-2019-analysis/output/RNASeq/KB_gene_count_matrix.csv
 ```
