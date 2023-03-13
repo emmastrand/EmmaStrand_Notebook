@@ -202,6 +202,24 @@ Purpose: Merge unalinged bam file (now with read group info) with aligned bam fi
 Input: `${i}.FastqToSam.unmapped.bam.rg.bam` from the previous script (edited merged bam file)  
 Output: `${i}.MergeBamAlignment.merged.bam` ; edited merged bam file 
 
+I had trouble figuring out how to do this in an array that would be able to recognize that sample's aligned bam file. The below is the loop I was trying:
+
+```
+# Create a list for every file that ends with FastqToSam.unmapped.bam.rg.bam in that folder 
+array1=($(ls $path/*.unmapped.bam.rg.bam))
+
+# Create for loop 
+for i in ${array1[@]}; do
+    gatk MergeBamAlignment \
+    --REFERENCE_SEQUENCE $G \
+    --UNMAPPED_BAM ${i} \
+    --ALIGNED_BAM $A/.bam \
+    --OUTPUT ${i}.merged.bam \
+    --INCLUDE_SECONDARY_ALIGNMENTS false \
+    --VALIDATION_STRINGENCY SILENT touch ${i}.Merge.done
+done 
+```
+
 `MergeBamAlignment.sh`:
 
 ```
@@ -209,66 +227,99 @@ Output: `${i}.MergeBamAlignment.merged.bam` ; edited merged bam file
 #SBATCH -t 200:00:00
 #SBATCH --export=NONE
 #SBATCH --account=putnamlab
-#SBATCH -D /data/putnamlab/estrand/BleachingPairs_RNASeq/SNP  
-#SBATCH --error=output_messages/"%x_error.%j" #if your job fails, the error report will be put in this file
-#SBATCH --output=output_messages/"%x_output.%j" #once your job is completed, any final job report comments will be put in this file
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_RNASeq/SNP/merged_bam  
+#SBATCH --error=../output_messages/"%x_error.%j" #if your job fails, the error report will be put in this file
+#SBATCH --output=../output_messages/"%x_output.%j" #once your job is completed, any final job report comments will be put in this file
 
 # load modules needed (specific need for my computer)
 source /usr/share/Modules/init/sh # load the module function
 module load GATK/4.3.0.0-GCCcore-11.2.0-Java-11 
 
 G="/data/putnamlab/estrand/Montipora_capitata_HIv3.assembly.fasta"
-A="/data/putnamlab/estrand/BleachingPairs_RNASeq/output"
+A="/data/putnamlab/estrand/BleachingPairs_RNASeq/output2"
 
 # Data path to unmapped bam files reads 
-path="/data/putnamlab/estrand/BleachingPairs_RNASeq/SNP"
+path="/data/putnamlab/estrand/BleachingPairs_RNASeq/SNP/unmapped_bam"
 
-# Create a list for every file that ends with FastqToSam.unmapped.bam.rg.bam in that folder 
-array1=($(ls $path/unmapped_bam/*.unmapped.bam.rg.bam))
+gatk MergeBamAlignment --REFERENCE_SEQUENCE $G --UNMAPPED_BAM $path/trimmed.16_S121_L003_R1_001.fastq.gz.FastqToSam.unmapped.bam.rg.bam --ALIGNED_BAM $A/trimmed.16_S121_L003_R1_001.fastq.gz.bam --OUTPUT 16_trimmed.MergeBamAlignment.merged.bam --INCLUDE_SECONDARY_ALIGNMENTS false --VALIDATION_STRINGENCY SILENT; touch 16_trimmed.MergeBamAlignment.done
 
-# Create for loop 
-for i in ${array1[@]}; do
-    gatk MergeBamAlignment \
-    --REFERENCE_SEQUENCE $G \
-    --UNMAPPED_BAM ${i} \
-    --ALIGNED_BAM $A/*.bam \
-    --OUTPUT ${i}.merged.bam \
-    --INCLUDE_SECONDARY_ALIGNMENTS false \
-    --VALIDATION_STRINGENCY SILENT touch ${i}.Merge.done
-done 
-```
+gatk MergeBamAlignment --REFERENCE_SEQUENCE $G --UNMAPPED_BAM $path/trimmed.17_S122_L003_R1_001.fastq.gz.FastqToSam.unmapped.bam.rg.bam --ALIGNED_BAM $A/trimmed.17_S122_L003_R1_001.fastq.gz.bam --OUTPUT 17_trimmed.MergeBamAlignment.merged.bam --INCLUDE_SECONDARY_ALIGNMENTS false --VALIDATION_STRINGENCY SILENT; touch 17_trimmed.MergeBamAlignment.done
 
-#### Troubleshooting
+gatk MergeBamAlignment --REFERENCE_SEQUENCE $G --UNMAPPED_BAM $path/trimmed.21_S123_L003_R1_001.fastq.gz.FastqToSam.unmapped.bam.rg.bam --ALIGNED_BAM $A/trimmed.21_S123_L003_R1_001.fastq.gz.bam --OUTPUT 21_trimmed.MergeBamAlignment.merged.bam --INCLUDE_SECONDARY_ALIGNMENTS false --VALIDATION_STRINGENCY SILENT; touch 21_trimmed.MergeBamAlignment.done
 
-Stuck on an error for the above script -- I don't think I can run all of the scripts in an array? Test a single file.
+gatk MergeBamAlignment --REFERENCE_SEQUENCE $G --UNMAPPED_BAM $path/trimmed.22_S124_L003_R1_001.fastq.gz.FastqToSam.unmapped.bam.rg.bam --ALIGNED_BAM $A/trimmed.22_S124_L003_R1_001.fastq.gz.bam --OUTPUT 22_trimmed.MergeBamAlignment.merged.bam --INCLUDE_SECONDARY_ALIGNMENTS false --VALIDATION_STRINGENCY SILENT; touch 22_trimmed.MergeBamAlignment.done
 
-```
-#!/bin/sh
-#SBATCH -t 200:00:00
-#SBATCH --export=NONE
-#SBATCH --account=putnamlab
-#SBATCH -D /data/putnamlab/estrand/BleachingPairs_RNASeq/SNP  
-#SBATCH --error=output_messages/"%x_error.%j" #if your job fails, the error report will be put in this file
-#SBATCH --output=output_messages/"%x_output.%j" #once your job is completed, any final job report comments will be put in this file
+gatk MergeBamAlignment --REFERENCE_SEQUENCE $G --UNMAPPED_BAM $path/trimmed.23_S125_L003_R1_001.fastq.gz.FastqToSam.unmapped.bam.rg.bam --ALIGNED_BAM $A/trimmed.23_S125_L003_R1_001.fastq.gz.bam --OUTPUT 23_trimmed.MergeBamAlignment.merged.bam --INCLUDE_SECONDARY_ALIGNMENTS false --VALIDATION_STRINGENCY SILENT; touch 23_trimmed.MergeBamAlignment.done
 
-# load modules needed (specific need for my computer)
-source /usr/share/Modules/init/sh # load the module function
-module load GATK/4.3.0.0-GCCcore-11.2.0-Java-11 
+gatk MergeBamAlignment --REFERENCE_SEQUENCE $G --UNMAPPED_BAM $path/trimmed.24_S126_L003_R1_001.fastq.gz.FastqToSam.unmapped.bam.rg.bam --ALIGNED_BAM $A/trimmed.24_S126_L003_R1_001.fastq.gz.bam --OUTPUT 24_trimmed.MergeBamAlignment.merged.bam --INCLUDE_SECONDARY_ALIGNMENTS false --VALIDATION_STRINGENCY SILENT; touch 24_trimmed.MergeBamAlignment.done
 
-G="/data/putnamlab/estrand/Montipora_capitata_HIv3.assembly.fasta"
-A="/data/putnamlab/estrand/BleachingPairs_RNASeq/output"
-path="/data/putnamlab/estrand/BleachingPairs_RNASeq/SN/unmapped_bam"
+gatk MergeBamAlignment --REFERENCE_SEQUENCE $G --UNMAPPED_BAM $path/trimmed.25_S127_L003_R1_001.fastq.gz.FastqToSam.unmapped.bam.rg.bam --ALIGNED_BAM $A/trimmed.25_S127_L003_R1_001.fastq.gz.bam --OUTPUT 25_trimmed.MergeBamAlignment.merged.bam --INCLUDE_SECONDARY_ALIGNMENTS false --VALIDATION_STRINGENCY SILENT; touch 25_trimmed.MergeBamAlignment.done
 
-gatk MergeBamAlignment \
-    --REFERENCE_SEQUENCE $G \
-    --UNMAPPED_BAM $path/trimmed.16_S121_L003_R1_001.fastq.gz.FastqToSam.unmapped.bam.rg.bam \
-    --ALIGNED_BAM $A/
-```
+gatk MergeBamAlignment --REFERENCE_SEQUENCE $G --UNMAPPED_BAM $path/trimmed.26_S128_L003_R1_001.fastq.gz.FastqToSam.unmapped.bam.rg.bam --ALIGNED_BAM $A/trimmed.26_S128_L003_R1_001.fastq.gz.bam --OUTPUT 26_trimmed.MergeBamAlignment.merged.bam --INCLUDE_SECONDARY_ALIGNMENTS false --VALIDATION_STRINGENCY SILENT; touch 26_trimmed.MergeBamAlignment.done
 
-#### Rename the output files to get rid of several bam.bam.bam extentions
+gatk MergeBamAlignment --REFERENCE_SEQUENCE $G --UNMAPPED_BAM $path/trimmed.28_S129_L003_R1_001.fastq.gz.FastqToSam.unmapped.bam.rg.bam --ALIGNED_BAM $A/trimmed.28_S129_L003_R1_001.fastq.gz.bam --OUTPUT 28_trimmed.MergeBamAlignment.merged.bam --INCLUDE_SECONDARY_ALIGNMENTS false --VALIDATION_STRINGENCY SILENT; touch 28_trimmed.MergeBamAlignment.done
 
-```
-for file in *; do mv "${file}" "${file/000/}"
+gatk MergeBamAlignment --REFERENCE_SEQUENCE $G --UNMAPPED_BAM $path/trimmed.29_S130_L003_R1_001.fastq.gz.FastqToSam.unmapped.bam.rg.bam --ALIGNED_BAM $A/trimmed.29_S130_L003_R1_001.fastq.gz.bam --OUTPUT 29_trimmed.MergeBamAlignment.merged.bam --INCLUDE_SECONDARY_ALIGNMENTS false --VALIDATION_STRINGENCY SILENT; touch 29_trimmed.MergeBamAlignment.done
+
+gatk MergeBamAlignment --REFERENCE_SEQUENCE $G --UNMAPPED_BAM $path/trimmed.2_S118_L003_R1_001.fastq.gz.FastqToSam.unmapped.bam.rg.bam --ALIGNED_BAM $A/trimmed.2_S118_L003_R1_001.fastq.gz.bam --OUTPUT 2_trimmed.MergeBamAlignment.merged.bam --INCLUDE_SECONDARY_ALIGNMENTS false --VALIDATION_STRINGENCY SILENT; touch 2_trimmed.MergeBamAlignment.done
+
+gatk MergeBamAlignment --REFERENCE_SEQUENCE $G --UNMAPPED_BAM $path/trimmed.30_S131_L003_R1_001.fastq.gz.FastqToSam.unmapped.bam.rg.bam --ALIGNED_BAM $A/trimmed.30_S131_L003_R1_001.fastq.gz.bam --OUTPUT 30_trimmed.MergeBamAlignment.merged.bam --INCLUDE_SECONDARY_ALIGNMENTS false --VALIDATION_STRINGENCY SILENT; touch 30_trimmed.MergeBamAlignment.done
+
+gatk MergeBamAlignment --REFERENCE_SEQUENCE $G --UNMAPPED_BAM $path/trimmed.31_S132_L003_R1_001.fastq.gz.FastqToSam.unmapped.bam.rg.bam --ALIGNED_BAM $A/trimmed.31_S132_L003_R1_001.fastq.gz.bam --OUTPUT 31_trimmed.MergeBamAlignment.merged.bam --INCLUDE_SECONDARY_ALIGNMENTS false --VALIDATION_STRINGENCY SILENT; touch 31_trimmed.MergeBamAlignment.done
+
+gatk MergeBamAlignment --REFERENCE_SEQUENCE $G --UNMAPPED_BAM $path/trimmed.33_S133_L003_R1_001.fastq.gz.FastqToSam.unmapped.bam.rg.bam --ALIGNED_BAM $A/trimmed.33_S133_L003_R1_001.fastq.gz.bam --OUTPUT 33_trimmed.MergeBamAlignment.merged.bam --INCLUDE_SECONDARY_ALIGNMENTS false --VALIDATION_STRINGENCY SILENT; touch 33_trimmed.MergeBamAlignment.done
+
+gatk MergeBamAlignment --REFERENCE_SEQUENCE $G --UNMAPPED_BAM $path/trimmed.37_S134_L003_R1_001.fastq.gz.FastqToSam.unmapped.bam.rg.bam --ALIGNED_BAM $A/trimmed.37_S134_L003_R1_001.fastq.gz.bam --OUTPUT 37_trimmed.MergeBamAlignment.merged.bam --INCLUDE_SECONDARY_ALIGNMENTS false --VALIDATION_STRINGENCY SILENT; touch 37_trimmed.MergeBamAlignment.done
+
+gatk MergeBamAlignment --REFERENCE_SEQUENCE $G --UNMAPPED_BAM $path/trimmed.39_S135_L003_R1_001.fastq.gz.FastqToSam.unmapped.bam.rg.bam --ALIGNED_BAM $A/trimmed.39_S135_L003_R1_001.fastq.gz.bam --OUTPUT 39_trimmed.MergeBamAlignment.merged.bam --INCLUDE_SECONDARY_ALIGNMENTS false --VALIDATION_STRINGENCY SILENT; touch 39_trimmed.MergeBamAlignment.done
+
+gatk MergeBamAlignment --REFERENCE_SEQUENCE $G --UNMAPPED_BAM $path/trimmed.42_S136_L003_R1_001.fastq.gz.FastqToSam.unmapped.bam.rg.bam --ALIGNED_BAM $A/trimmed.42_S136_L003_R1_001.fastq.gz.bam --OUTPUT 42_trimmed.MergeBamAlignment.merged.bam --INCLUDE_SECONDARY_ALIGNMENTS false --VALIDATION_STRINGENCY SILENT; touch 42_trimmed.MergeBamAlignment.done
+
+gatk MergeBamAlignment --REFERENCE_SEQUENCE $G --UNMAPPED_BAM $path/trimmed.43_S137_L003_R1_001.fastq.gz.FastqToSam.unmapped.bam.rg.bam --ALIGNED_BAM $A/trimmed.43_S137_L003_R1_001.fastq.gz.bam --OUTPUT 43_trimmed.MergeBamAlignment.merged.bam --INCLUDE_SECONDARY_ALIGNMENTS false --VALIDATION_STRINGENCY SILENT; touch 43_trimmed.MergeBamAlignment.done
+
+gatk MergeBamAlignment --REFERENCE_SEQUENCE $G --UNMAPPED_BAM $path/trimmed.45_S138_L003_R1_001.fastq.gz.FastqToSam.unmapped.bam.rg.bam --ALIGNED_BAM $A/trimmed.45_S138_L003_R1_001.fastq.gz.bam --OUTPUT 45_trimmed.MergeBamAlignment.merged.bam --INCLUDE_SECONDARY_ALIGNMENTS false --VALIDATION_STRINGENCY SILENT; touch 45_trimmed.MergeBamAlignment.done
+
+gatk MergeBamAlignment --REFERENCE_SEQUENCE $G --UNMAPPED_BAM $path/trimmed.46_S139_L003_R1_001.fastq.gz.FastqToSam.unmapped.bam.rg.bam --ALIGNED_BAM $A/trimmed.46_S139_L003_R1_001.fastq.gz.bam --OUTPUT 46_trimmed.MergeBamAlignment.merged.bam --INCLUDE_SECONDARY_ALIGNMENTS false --VALIDATION_STRINGENCY SILENT; touch 46_trimmed.MergeBamAlignment.done
+
+gatk MergeBamAlignment --REFERENCE_SEQUENCE $G --UNMAPPED_BAM $path/trimmed.47_S140_L003_R1_001.fastq.gz.FastqToSam.unmapped.bam.rg.bam --ALIGNED_BAM $A/trimmed.47_S140_L003_R1_001.fastq.gz.bam --OUTPUT 47_trimmed.MergeBamAlignment.merged.bam --INCLUDE_SECONDARY_ALIGNMENTS false --VALIDATION_STRINGENCY SILENT; touch 47_trimmed.MergeBamAlignment.done
+
+gatk MergeBamAlignment --REFERENCE_SEQUENCE $G --UNMAPPED_BAM $path/trimmed.4_S119_L003_R1_001.fastq.gz.FastqToSam.unmapped.bam.rg.bam --ALIGNED_BAM $A/trimmed.4_S119_L003_R1_001.fastq.gz.bam --OUTPUT 4_trimmed.MergeBamAlignment.merged.bam --INCLUDE_SECONDARY_ALIGNMENTS false --VALIDATION_STRINGENCY SILENT; touch 4_trimmed.MergeBamAlignment.done
+
+gatk MergeBamAlignment --REFERENCE_SEQUENCE $G --UNMAPPED_BAM $path/trimmed.50_S141_L003_R1_001.fastq.gz.FastqToSam.unmapped.bam.rg.bam --ALIGNED_BAM $A/trimmed.50_S141_L003_R1_001.fastq.gz.bam --OUTPUT 50_trimmed.MergeBamAlignment.merged.bam --INCLUDE_SECONDARY_ALIGNMENTS false --VALIDATION_STRINGENCY SILENT; touch 50_trimmed.MergeBamAlignment.done
+
+gatk MergeBamAlignment --REFERENCE_SEQUENCE $G --UNMAPPED_BAM $path/trimmed.51_S142_L003_R1_001.fastq.gz.FastqToSam.unmapped.bam.rg.bam --ALIGNED_BAM $A/trimmed.51_S142_L003_R1_001.fastq.gz.bam --OUTPUT 51_trimmed.MergeBamAlignment.merged.bam --INCLUDE_SECONDARY_ALIGNMENTS false --VALIDATION_STRINGENCY SILENT; touch 51_trimmed.MergeBamAlignment.done
+
+gatk MergeBamAlignment --REFERENCE_SEQUENCE $G --UNMAPPED_BAM $path/trimmed.52_S143_L003_R1_001.fastq.gz.FastqToSam.unmapped.bam.rg.bam --ALIGNED_BAM $A/trimmed.52_S143_L003_R1_001.fastq.gz.bam --OUTPUT 52_trimmed.MergeBamAlignment.merged.bam --INCLUDE_SECONDARY_ALIGNMENTS false --VALIDATION_STRINGENCY SILENT; touch 52_trimmed.MergeBamAlignment.done
+
+gatk MergeBamAlignment --REFERENCE_SEQUENCE $G --UNMAPPED_BAM $path/trimmed.54_S144_L003_R1_001.fastq.gz.FastqToSam.unmapped.bam.rg.bam --ALIGNED_BAM $A/trimmed.54_S144_L003_R1_001.fastq.gz.bam --OUTPUT 54_trimmed.MergeBamAlignment.merged.bam --INCLUDE_SECONDARY_ALIGNMENTS false --VALIDATION_STRINGENCY SILENT; touch 54_trimmed.MergeBamAlignment.done
+
+gatk MergeBamAlignment --REFERENCE_SEQUENCE $G --UNMAPPED_BAM $path/trimmed.55_S145_L003_R1_001.fastq.gz.FastqToSam.unmapped.bam.rg.bam --ALIGNED_BAM $A/trimmed.55_S145_L003_R1_001.fastq.gz.bam --OUTPUT 55_trimmed.MergeBamAlignment.merged.bam --INCLUDE_SECONDARY_ALIGNMENTS false --VALIDATION_STRINGENCY SILENT; touch 55_trimmed.MergeBamAlignment.done
+
+gatk MergeBamAlignment --REFERENCE_SEQUENCE $G --UNMAPPED_BAM $path/trimmed.56_S146_L003_R1_001.fastq.gz.FastqToSam.unmapped.bam.rg.bam --ALIGNED_BAM $A/trimmed.56_S146_L003_R1_001.fastq.gz.bam --OUTPUT 56_trimmed.MergeBamAlignment.merged.bam --INCLUDE_SECONDARY_ALIGNMENTS false --VALIDATION_STRINGENCY SILENT; touch 56_trimmed.MergeBamAlignment.done
+
+gatk MergeBamAlignment --REFERENCE_SEQUENCE $G --UNMAPPED_BAM $path/trimmed.57_S147_L003_R1_001.fastq.gz.FastqToSam.unmapped.bam.rg.bam --ALIGNED_BAM $A/trimmed.57_S147_L003_R1_001.fastq.gz.bam --OUTPUT 57_trimmed.MergeBamAlignment.merged.bam --INCLUDE_SECONDARY_ALIGNMENTS false --VALIDATION_STRINGENCY SILENT; touch 57_trimmed.MergeBamAlignment.done
+
+gatk MergeBamAlignment --REFERENCE_SEQUENCE $G --UNMAPPED_BAM $path/trimmed.59_S148_L003_R1_001.fastq.gz.FastqToSam.unmapped.bam.rg.bam --ALIGNED_BAM $A/trimmed.59_S148_L003_R1_001.fastq.gz.bam --OUTPUT 59_trimmed.MergeBamAlignment.merged.bam --INCLUDE_SECONDARY_ALIGNMENTS false --VALIDATION_STRINGENCY SILENT; touch 59_trimmed.MergeBamAlignment.done
+
+gatk MergeBamAlignment --REFERENCE_SEQUENCE $G --UNMAPPED_BAM $path/trimmed.60_S149_L003_R1_001.fastq.gz.FastqToSam.unmapped.bam.rg.bam --ALIGNED_BAM $A/trimmed.60_S149_L003_R1_001.fastq.gz.bam --OUTPUT 60_trimmed.MergeBamAlignment.merged.bam --INCLUDE_SECONDARY_ALIGNMENTS false --VALIDATION_STRINGENCY SILENT; touch 60_trimmed.MergeBamAlignment.done
+
+gatk MergeBamAlignment --REFERENCE_SEQUENCE $G --UNMAPPED_BAM $path/trimmed.61_S150_L003_R1_001.fastq.gz.FastqToSam.unmapped.bam.rg.bam --ALIGNED_BAM $A/trimmed.61_S150_L003_R1_001.fastq.gz.bam --OUTPUT 61_trimmed.MergeBamAlignment.merged.bam --INCLUDE_SECONDARY_ALIGNMENTS false --VALIDATION_STRINGENCY SILENT; touch 61_trimmed.MergeBamAlignment.done
+
+gatk MergeBamAlignment --REFERENCE_SEQUENCE $G --UNMAPPED_BAM $path/trimmed.62_S151_L003_R1_001.fastq.gz.FastqToSam.unmapped.bam.rg.bam --ALIGNED_BAM $A/trimmed.62_S151_L003_R1_001.fastq.gz.bam --OUTPUT 62_trimmed.MergeBamAlignment.merged.bam --INCLUDE_SECONDARY_ALIGNMENTS false --VALIDATION_STRINGENCY SILENT; touch 62_trimmed.MergeBamAlignment.done
+
+gatk MergeBamAlignment --REFERENCE_SEQUENCE $G --UNMAPPED_BAM $path/trimmed.63_S152_L003_R1_001.fastq.gz.FastqToSam.unmapped.bam.rg.bam --ALIGNED_BAM $A/trimmed.63_S152_L003_R1_001.fastq.gz.bam --OUTPUT 63_trimmed.MergeBamAlignment.merged.bam --INCLUDE_SECONDARY_ALIGNMENTS false --VALIDATION_STRINGENCY SILENT; touch 63_trimmed.MergeBamAlignment.done
+
+gatk MergeBamAlignment --REFERENCE_SEQUENCE $G --UNMAPPED_BAM $path/trimmed.64_S153_L003_R1_001.fastq.gz.FastqToSam.unmapped.bam.rg.bam --ALIGNED_BAM $A/trimmed.64_S153_L003_R1_001.fastq.gz.bam --OUTPUT 64_trimmed.MergeBamAlignment.merged.bam --INCLUDE_SECONDARY_ALIGNMENTS false --VALIDATION_STRINGENCY SILENT; touch 64_trimmed.MergeBamAlignment.done
+
+gatk MergeBamAlignment --REFERENCE_SEQUENCE $G --UNMAPPED_BAM $path/trimmed.65_S154_L003_R1_001.fastq.gz.FastqToSam.unmapped.bam.rg.bam --ALIGNED_BAM $A/trimmed.65_S154_L003_R1_001.fastq.gz.bam --OUTPUT 65_trimmed.MergeBamAlignment.merged.bam --INCLUDE_SECONDARY_ALIGNMENTS false --VALIDATION_STRINGENCY SILENT; touch 65_trimmed.MergeBamAlignment.done
+
+gatk MergeBamAlignment --REFERENCE_SEQUENCE $G --UNMAPPED_BAM $path/trimmed.66_S155_L003_R1_001.fastq.gz.FastqToSam.unmapped.bam.rg.bam --ALIGNED_BAM $A/trimmed.66_S155_L003_R1_001.fastq.gz.bam --OUTPUT 66_trimmed.MergeBamAlignment.merged.bam --INCLUDE_SECONDARY_ALIGNMENTS false --VALIDATION_STRINGENCY SILENT; touch 66_trimmed.MergeBamAlignment.done
+
+gatk MergeBamAlignment --REFERENCE_SEQUENCE $G --UNMAPPED_BAM $path/trimmed.67_S156_L003_R1_001.fastq.gz.FastqToSam.unmapped.bam.rg.bam --ALIGNED_BAM $A/trimmed.67_S156_L003_R1_001.fastq.gz.bam --OUTPUT 67_trimmed.MergeBamAlignment.merged.bam --INCLUDE_SECONDARY_ALIGNMENTS false --VALIDATION_STRINGENCY SILENT; touch 67_trimmed.MergeBamAlignment.done
+
+gatk MergeBamAlignment --REFERENCE_SEQUENCE $G --UNMAPPED_BAM $path/trimmed.68_S157_L003_R1_001.fastq.gz.FastqToSam.unmapped.bam.rg.bam --ALIGNED_BAM $A/trimmed.68_S157_L003_R1_001.fastq.gz.bam --OUTPUT 68_trimmed.MergeBamAlignment.merged.bam --INCLUDE_SECONDARY_ALIGNMENTS false --VALIDATION_STRINGENCY SILENT; touch 68_trimmed.MergeBamAlignment.done
+
+gatk MergeBamAlignment --REFERENCE_SEQUENCE $G --UNMAPPED_BAM $path/trimmed.6_S120_L003_R1_001.fastq.gz.FastqToSam.unmapped.bam.rg.bam --ALIGNED_BAM $A/trimmed.6_S120_L003_R1_001.fastq.gz.bam --OUTPUT 6_trimmed.MergeBamAlignment.merged.bam --INCLUDE_SECONDARY_ALIGNMENTS false --VALIDATION_STRINGENCY SILENT; touch 6_trimmed.MergeBamAlignment.done
 ```
 
 ## 02. MarkDuplicates 
@@ -286,15 +337,15 @@ Output: `*.MarkDuplicates.dedupped.bam` and `*.MarkDuplicates.metrics` files.
 #SBATCH -t 200:00:00
 #SBATCH --export=NONE
 #SBATCH --account=putnamlab
-#SBATCH -D /data/putnamlab/estrand/BleachingPairs_RNASeq/SNP  
-#SBATCH --error=output_messages/"%x_error.%j" #if your job fails, the error report will be put in this file
-#SBATCH --output=output_messages/"%x_output.%j" #once your job is completed, any final job report comments will be put in this file
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_RNASeq/SNP/merged_bam  
+#SBATCH --error=../output_messages/"%x_error.%j" #if your job fails, the error report will be put in this file
+#SBATCH --output=../output_messages/"%x_output.%j" #once your job is completed, any final job report comments will be put in this file
 
 # load modules needed (specific need for my computer)
 source /usr/share/Modules/init/sh # load the module function
 module load GATK/4.3.0.0-GCCcore-11.2.0-Java-11 
 
-F="/data/putnamlab/estrand/BleachingPairs_RNASeq/SNP/unmapped_bam"
+F="/data/putnamlab/estrand/BleachingPairs_RNASeq/SNP/merged_bam"
 
 array1=($(ls $F/*MergeBamAlignment.merged.bam))
 for i in ${array1[@]}; do
