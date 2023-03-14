@@ -213,7 +213,7 @@ for i in ${array1[@]}; do
     gatk MergeBamAlignment \
     --REFERENCE_SEQUENCE $G \
     --UNMAPPED_BAM ${i} \
-    --ALIGNED_BAM $A/.bam \
+    --ALIGNED_BAM $A/*.bam \
     --OUTPUT ${i}.merged.bam \
     --INCLUDE_SECONDARY_ALIGNMENTS false \
     --VALIDATION_STRINGENCY SILENT touch ${i}.Merge.done
@@ -221,6 +221,8 @@ done
 ```
 
 `MergeBamAlignment.sh`:
+
+Run time = ~22 min per sample (x40 = ~14 hours) 
 
 ```
 #!/bin/sh
@@ -327,7 +329,7 @@ gatk MergeBamAlignment --REFERENCE_SEQUENCE $G --UNMAPPED_BAM $path/trimmed.6_S1
 Potential PCR duplicates need to be marked with Picard Tools.
 
 Purpose: Merge read groups belonging to the same sample into a single BAM file. 
-Input: `*.MergeBamAlignment.merged.bam` from previous step.  
+Input: `*.MergeBamAlignment.merged.bam` from previous step (within `merged_bam` folder).  
 Output: `*.MarkDuplicates.dedupped.bam` and `*.MarkDuplicates.metrics` files. 
 
 `MarkDuplicates.sh`:
@@ -359,28 +361,90 @@ done
 
 ## 03. SplitNCigarReads 
 
+*Content below from F.Succhia protocol.* 
+
 The ‘CIGAR’ (Compact Idiosyncratic Gapped Alignment Report) string is how the SAM/BAM format represents spliced alignments. Understanding the CIGAR string will help you understand how your query sequence aligns to the reference genome.
 
 Purpose: This will split reads that contain Ns in their cigar string (e.g. spanning splicing events in RNAseq data), it identifies all N cigar elements and creates k+1 new reads (where k is the number of N cigar elements). This is to distinguish between deletions in exons and large skips due to introns. For mRNA-to-genome alignment, an N operation represents an intron.
-Input: `*.MergeBamAlignment.merged.bam` from previous step.  
-Output: `*.MarkDuplicates.dedupped.bam` and `*.MarkDuplicates.metrics` files. 
+
+Input: `*.MarkDuplicates.dedupped.bam` from previous step.  
+Output: `*.SplitNCigarReads.split.bam` file. 
 
 `SplitNCigarReads.sh`: 
 
 ```
 #!/bin/sh
-#SBATCH -t 200:00:00
+#SBATCH -t 300:00:00
 #SBATCH --export=NONE
 #SBATCH --account=putnamlab
-#SBATCH -D /data/putnamlab/estrand/BleachingPairs_RNASeq/SNP  
-#SBATCH --error=output_messages/"%x_error.%j" #if your job fails, the error report will be put in this file
-#SBATCH --output=output_messages/"%x_output.%j" #once your job is completed, any final job report comments will be put in this file
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_RNASeq/SNP/SplitNCigarReads   
+#SBATCH --error=../output_messages/"%x_error.%j" #if your job fails, the error report will be put in this file
+#SBATCH --output=../output_messages/"%x_output.%j" #once your job is completed, any final job report comments will be put in this file
 
 # load modules needed (specific need for my computer)
 source /usr/share/Modules/init/sh # load the module function
 module load GATK/4.3.0.0-GCCcore-11.2.0-Java-11 
 
+# List paths for input files (F) and reference genome (G)
+F="/data/putnamlab/estrand/BleachingPairs_RNASeq/SNP/merged_bam"
+G="/data/putnamlab/estrand/Montipora_capitata_HIv3.assembly.fasta"
 
+# Create array1 list of all files we want as input
+array1=($(ls $F/*MarkDuplicates.dedupped.bam))
+
+# Create for loop for SplitNCigarReads function 
+for i in ${array1[@]}; do
+    gatk SplitNCigarReads \
+        -R $G \
+        -I ${i} \
+        -O ${i}.SplitNCigarReads.split.bam
+done
 ```
 
-left off at this script https://github.com/fscucchia/Pastreoides_development_depth/blob/main/SNPs/SplitNCigarReads.sh 
+----
+
+*Content below from F.Succhia protocol.* 
+
+Steps 4 and 5 are part of the GATK "Best Practices" guide but can't really be undertaken with non-model genomes. These steps in fact require "known sites", i.e. sites where we know beforehand that SNPs occure. This info is not avaliable for non-model systems. Since sites not in this list are considered putative errors that need to be corrected, these steps have to be skipped.
+
+-----
+
+## 06. HaplotypeCaller
+
+This assumes:
+--sample-ploidy 2 (default)
+--heterozygosity 0.001 (deafult; *add details.*)
+
+This assumes plodiy = 2. Based on our work with *M. capitata* in Kaneohe Bay, Hawai'i, these populations are diploidy. 
+
+Input: `*.SplitNCigarReads.split.bam` from previous step.  
+Output: `${i}.HaplotypeCaller.g.vcf.gz` file. 
+
+```
+#!/bin/sh
+#SBATCH -t 300:00:00
+#SBATCH --export=NONE
+#SBATCH --account=putnamlab
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_RNASeq/SNP/SplitNCigarReads   
+#SBATCH --error=../output_messages/"%x_error.%j" #if your job fails, the error report will be put in this file
+#SBATCH --output=../output_messages/"%x_output.%j" #once your job is completed, any final job report comments will be put in this file
+
+# load modules needed (specific need for my computer)
+source /usr/share/Modules/init/sh # load the module function
+
+# List paths for input files (F) and reference genome (G)
+F="/data/putnamlab/estrand/BleachingPairs_RNASeq/SNP/SplitNCigarReads"
+G="/data/putnamlab/estrand/Montipora_capitata_HIv3.assembly.fasta"
+
+# Create array1 list of all files we want as input
+array1=($(ls $F/*SplitNCigarReads.split.bam))
+
+# Create for loop for HaplotypeCaller function 
+for i in ${array1[@]}; do
+    gatk HaplotypeCaller \
+     --reference $G \
+     --input ${i} \
+     --output ${i}.HaplotypeCaller.g.vcf.gz -dont-use-soft-clipped-bases -ERC GVCF
+done
+```
+
