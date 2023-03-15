@@ -334,6 +334,8 @@ Output: `*.MarkDuplicates.dedupped.bam` and `*.MarkDuplicates.metrics` files.
 
 `MarkDuplicates.sh`:
 
+Run time = ~10 min per sample. 
+
 ```
 #!/bin/sh
 #SBATCH -t 200:00:00
@@ -371,6 +373,8 @@ Input: `*.MarkDuplicates.dedupped.bam` from previous step.
 Output: `*.SplitNCigarReads.split.bam` file. 
 
 `SplitNCigarReads.sh`: 
+
+Run time  = 
 
 ```
 #!/bin/sh
