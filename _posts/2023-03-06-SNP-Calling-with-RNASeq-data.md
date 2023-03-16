@@ -374,7 +374,7 @@ Output: `*.SplitNCigarReads.split.bam` file.
 
 `SplitNCigarReads.sh`: 
 
-Run time  = 
+Run time  = ~99 min per sample (x40 = 66 hours; almost 3 days)
 
 ```
 #!/bin/sh
@@ -451,4 +451,6 @@ for i in ${array1[@]}; do
      --output ${i}.HaplotypeCaller.g.vcf.gz -dont-use-soft-clipped-bases -ERC GVCF
 done
 ```
+
+### editing file names so we can get rid of the extended .bam.bam.bam notation 
 
