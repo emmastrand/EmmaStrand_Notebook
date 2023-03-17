@@ -426,7 +426,7 @@ Output: `${i}.HaplotypeCaller.g.vcf.gz` file.
 
 `HaplotypeCaller.sh`: 
 
-
+Run time = 
 
 ```
 #!/bin/sh
