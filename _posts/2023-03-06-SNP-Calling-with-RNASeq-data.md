@@ -424,20 +424,25 @@ This assumes plodiy = 2. Based on our work with *M. capitata* in Kaneohe Bay, Ha
 Input: `*.SplitNCigarReads.split.bam` from previous step.  
 Output: `${i}.HaplotypeCaller.g.vcf.gz` file. 
 
+`HaplotypeCaller.sh`: 
+
+
+
 ```
 #!/bin/sh
 #SBATCH -t 300:00:00
 #SBATCH --export=NONE
 #SBATCH --account=putnamlab
-#SBATCH -D /data/putnamlab/estrand/BleachingPairs_RNASeq/SNP/SplitNCigarReads   
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_RNASeq/SNP/merged_bam   
 #SBATCH --error=../output_messages/"%x_error.%j" #if your job fails, the error report will be put in this file
 #SBATCH --output=../output_messages/"%x_output.%j" #once your job is completed, any final job report comments will be put in this file
 
 # load modules needed (specific need for my computer)
 source /usr/share/Modules/init/sh # load the module function
+module load GATK/4.3.0.0-GCCcore-11.2.0-Java-11 
 
 # List paths for input files (F) and reference genome (G)
-F="/data/putnamlab/estrand/BleachingPairs_RNASeq/SNP/SplitNCigarReads"
+F="/data/putnamlab/estrand/BleachingPairs_RNASeq/SNP/merged_bam"
 G="/data/putnamlab/estrand/Montipora_capitata_HIv3.assembly.fasta"
 
 # Create array1 list of all files we want as input
@@ -451,6 +456,10 @@ for i in ${array1[@]}; do
      --output ${i}.HaplotypeCaller.g.vcf.gz -dont-use-soft-clipped-bases -ERC GVCF
 done
 ```
+
+### move the .vcf output files to a new directory to keeep the outputs clean
+
+
 
 ### editing file names so we can get rid of the extended .bam.bam.bam notation 
 
