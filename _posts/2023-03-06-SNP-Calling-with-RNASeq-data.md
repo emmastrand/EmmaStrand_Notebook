@@ -428,6 +428,8 @@ Output: `${i}.HaplotypeCaller.g.vcf.gz` file.
 
 Run time = 
 
+This look longer than expected.. I probably could have upped the # of threads and processors? Once it started I just let it run. 
+
 ```
 #!/bin/sh
 #SBATCH -t 300:00:00
