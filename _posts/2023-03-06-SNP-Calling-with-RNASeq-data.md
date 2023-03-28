@@ -652,24 +652,132 @@ scp emma_strand@ssh3.hac.uri.edu:/data/putnamlab/estrand/BleachingPairs_RNASeq/S
 scp emma_strand@ssh3.hac.uri.edu:/data/putnamlab/estrand/BleachingPairs_RNASeq/SNP/Variant_Filtration/GVCFall_INDELs.table /Users/emmastrand/MyProjects/HI_Bleaching_Timeseries/Dec-July-2019-analysis/output/WGBS/SNP
 ```
 
-Run `VariantFiltering.Rmd` script to create diagnostic plots. 
+Run `VariantFiltering.Rmd` Part 1 script to create diagnostic plots. 
 
-- `QD` is the quality (`QUAL`) normalized by the read depth (`DP`)
-- 
+- https://support.illumina.com/content/dam/illumina-support/help/Illumina_DRAGEN_Bio_IT_Platform_v3_7_1000000141465/Content/SW/Informatics/Dragen/QUAL_QD_GQ_Formulation_fDG.htm
+- Slide 19 has GATK recommendations for non model organisms: https://ressources.france-bioinformatique.fr/sites/default/files/V04_FiltrageVariantNLapaluRoscoff2016_0.pdf
+- https://gatk.broadinstitute.org/hc/en-us/articles/360035890471-Hard-filtering-germline-short-variants#:~:text=StrandOddsRatio%20(SOR),-This%20is%20another&text=Reads%20at%20the%20ends%20of,0%20to%20greater%20than%209.
 
-![]()
+- `QD` = quality (`QUAL`) normalized by the read depth (`DP`) or Variant Quality / depth of non-ref samples
+- `DP` = read depth / Coverage (reads that passed quality metrics)
+- `FS` = Test (Fisher) : Phred score p-value for strand bias
+- `MQ` = Root Mean Square Mapping Quality 
+- `MQRankSum` = Mapping quality of Reference reads vs ALT reads
+- `ReadPosRankSum` = Distance of ALT reads from the end of the reads
+- `SOR` = StrandOddsRatio; Reads at the ends of exons tend to only be covered by reads in one direction and FS gives those variants a bad score. SOR will take into account the ratios of reads that cover both alleles. Let's look at the SOR values for the unfiltered variants. The SOR values range from 0 to greater than 9. 
+
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%20RNASeq%20SNP%20/Diag_plots.png?raw=true)
 
 
 ## 09. Apply Variant filtering
 
 https://gatk.broadinstitute.org/hc/en-us/articles/360050815032-VariantFiltration 
 
-Parameters chosen from the diagnostic plots above
+https://github.com/fscucchia/Pastreoides_development_depth/blob/main/SNPs/Variant_filt.sh 
+
+Parameters chosen from the diagnostic plots above. I compared the GATK recommended minimum filtering to my plots and to what Federica did for her *Porites spp.* filtering. These filters are fairly conservative so I could come back and loosen them if needed. 
 
 `Variant_Filtration_2.sh`:
 
-```
-
-
+Run time <5 min
 
 ```
+#!/bin/sh
+#SBATCH -t 60:00:00
+#SBATCH --export=NONE 
+#SBATCH --ntasks-per-node=24
+#SBATCH --account=putnamlab
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_RNASeq/SNP/Variant_Filtration   
+#SBATCH --error=../output_messages/"%x_error.%j" #if your job fails, the error report will be put in this file
+#SBATCH --output=../output_messages/"%x_output.%j" #once your job is completed, any final job report comments will be put in this file
+
+# load modules needed (specific need for my computer)
+source /usr/share/Modules/init/sh # load the module function
+module load GATK/4.3.0.0-GCCcore-11.2.0-Java-11 
+
+G="/data/putnamlab/estrand/Montipora_capitata_HIv3.assembly.fasta"
+OUT="GVCFall"
+O="/data/putnamlab/estrand/BleachingPairs_RNASeq/SNP/Variant_Filtration"
+
+### 
+SNP_QD_MIN=20.000
+SNP_MQ_MIN=50.000
+SNP_FS_MAX=5.000
+SNP_SOR_MAX=2.500
+####
+
+gatk VariantFiltration --reference "${G}" --variant "${OUT}_SNPs.vcf.gz" --output "$O/${OUT}_SNPs_VarScores_filter.vcf.gz" \
+	--filter-name "VarScores_filter_QD" --filter-expression "QD < $SNP_QD_MIN" \
+	--filter-name "VarScores_filter_MQ" --filter-expression "MQ < $SNP_MQ_MIN" \
+	--filter-name "VarScores_filter_FS" --filter-expression "FS > $SNP_FS_MAX" \
+	--filter-name "VarScores_filter_SOR" --filter-expression "SOR > $SNP_SOR_MAX" \
+	1> "$O/${OUT}_SNPs_VarScores_filter.vcf.gz.log" 2>&1
+```
+
+### Check number PASSED after the first filtering
+
+Move to `Variant_Filtration` directory. 
+
+```
+$ zcat "GVCFall_SNPs.vcf.gz" | grep -v '^#' | wc -l 
+## output: 
+3970239
+
+$ zcat "GVCFall_SNPs_VarScores_filter.vcf.gz" | grep 'PASS' | wc -l
+
+## output: 
+2485639  
+```
+
+After filtering, 62% of SNPs passed (2485639/3970239). `Variant_Filtration_2.sh` doesn't remove these yet, only annotates with pass or fail. 
+
+### Extract only variants that PASSED filtering
+
+Move to `Variant_Filtration` directory. 
+
+```
+zcat "GVCFall_SNPs_VarScores_filter.vcf.gz" | grep -E '^#|PASS' > "GVCFall_SNPs_VarScores_filterPASSED.vcf"
+
+interactive
+module load GATK/4.3.0.0-GCCcore-11.2.0-Java-11 
+gatk IndexFeatureFile --input "GVCFall_SNPs_VarScores_filterPASSED.vcf" 1> "GVCFall_SNPs_VarScores_filterPASSED.vcf.log" 2>&1
+```
+
+### Check filtering worked
+
+`Variant_Filtration_3.sh`:
+
+```
+#!/bin/sh
+#SBATCH -t 60:00:00
+#SBATCH --export=NONE 
+#SBATCH --ntasks-per-node=24
+#SBATCH --account=putnamlab
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_RNASeq/SNP/Variant_Filtration   
+#SBATCH --error=../output_messages/"%x_error.%j" #if your job fails, the error report will be put in this file
+#SBATCH --output=../output_messages/"%x_output.%j" #once your job is completed, any final job report comments will be put in this file
+
+# load modules needed (specific need for my computer)
+source /usr/share/Modules/init/sh # load the module function
+module load GATK/4.3.0.0-GCCcore-11.2.0-Java-11 
+
+G="/data/putnamlab/estrand/Montipora_capitata_HIv3.assembly.fasta"
+OUT="GVCFall"
+O="/data/putnamlab/estrand/BleachingPairs_RNASeq/SNP/Variant_Filtration"
+
+gatk VariantsToTable --reference "${G}" --variant "${OUT}_SNPs_VarScores_filterPASSED.vcf" \
+    --output "${OUT}_SNPs_VarScores_filterPASSED.table" \
+    -F CHROM -F POS -F QUAL -F QD -F DP -F MQ -F FS -F SOR -F MQRankSum -F ReadPosRankSum \
+    1> "${OUT}_SNPs_VarScores_filterPASSED.table.log" 2>&1
+```
+
+Copy `GVCFall_SNPs_VarScores_filterPASSED.table` to repo. 
+
+```
+scp emma_strand@ssh3.hac.uri.edu:/data/putnamlab/estrand/BleachingPairs_RNASeq/SNP/Variant_Filtration/GVCFall_SNPs_VarScores_filterPASSED.table /Users/emmastrand/MyProjects/HI_Bleaching_Timeseries/Dec-July-2019-analysis/output/WGBS/SNP
+```
+
+Run `VariantFiltering.Rmd` Part 2 script to create diagnostic plots. 
+
+![]()
+
