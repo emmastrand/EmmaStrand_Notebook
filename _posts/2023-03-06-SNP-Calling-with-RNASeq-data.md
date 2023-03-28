@@ -22,6 +22,12 @@ Data path = `/data/putnamlab/estrand/BleachingPairs_RNASeq/SNP`.
 
 All analysis done on URI's HPC system Andromeda. 
 
+## Workflow 
+
+https://nbisweden.github.io/workshop-ngsintro/2005/lab_vc.html#5_Variant_calling_in_cohort
+
+![](https://nbisweden.github.io/workshop-ngsintro/2005/data/ngs-workflow/3_best_practise.png)
+
 ### Input
 
 `/data/putnamlab/estrand/BleachingPairs_RNASeq/processed/trimmed.*.fastq.gz`. Both R1 and R2 
@@ -186,13 +192,6 @@ gatk CreateSequenceDictionary -REFERENCE $R -OUTPUT ${R%*.*}.dict
 Output: `Montipora_capitata_HIv3.assembly.dict`.
 
 ### 1d. Merge unalinged bam file
-
-#### Create a single aligned bam file from RNASeq output 
-
-```
-
-
-```
 
 #### Merge the unmapped.rg.bam files 
 
@@ -426,9 +425,9 @@ Output: `${i}.HaplotypeCaller.g.vcf.gz` file.
 
 `HaplotypeCaller.sh`: 
 
-Run time = 
+Run time = 7 days 6 hours 
 
-This look longer than expected.. I probably could have upped the # of threads and processors? Once it started I just let it run. 
+This look longer than expected.. I probably could have upped the # of threads and processors? Once it started I just let it run b/c that week was busy for me anyway. 
 
 ```
 #!/bin/sh
@@ -461,7 +460,216 @@ done
 
 ### move the .vcf output files to a new directory to keeep the outputs clean
 
+`mv merged_bam/*vcf.gz vcf` into new `vcf` directory. 
+`mv merged_bam/*tbi vcf` into new `vcf` directory. 
+
+So each sample has a `vcf.gz` file and index `vcf.gz.tbi` file. 
+
+Usually I would also edit the names now to remove the .bam.bam.bam notation but the vcf files in the code above took so long I'll leave it just in case. 
+
+## 07. Combine *.g.vcf.gz files and call genotypes
+
+If you are generating large callsets (1000+ samples) then look into GenomicsDBImport instead. 
+
+Input: `*HaplotypeCaller.g.vcf.gz`. Two or more HaplotypeCaller GVCFs to combine (only those produced by HaplotypeCaller). 
+Output: single `cohort.g.vcf.gz` file. A combined multi-sample gVCF. 
+
+https://gatk.broadinstitute.org/hc/en-us/articles/360037053272-CombineGVCFs 
+
+I also tried to run these in an array / multiple files after the `-V` flag, but ran into errors. 
+
+### Combine GVCF files 
+
+`CombineGVCFs.sh`:
+
+Run time = 2.5 - 3 hrs for 40 samples.  
+
+```
+#!/bin/sh
+#SBATCH -t 60:00:00
+#SBATCH --export=NONE
+#SBATCH --account=putnamlab
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_RNASeq/SNP/vcf   
+#SBATCH --error=../output_messages/"%x_error.%j" #if your job fails, the error report will be put in this file
+#SBATCH --output=../output_messages/"%x_output.%j" #once your job is completed, any final job report comments will be put in this file
+
+# load modules needed (specific need for my computer)
+source /usr/share/Modules/init/sh # load the module function
+module load GATK/4.3.0.0-GCCcore-11.2.0-Java-11 
+
+F="/data/putnamlab/estrand/BleachingPairs_RNASeq/SNP/vcf"
+G="/data/putnamlab/estrand/Montipora_capitata_HIv3.assembly.fasta"
+
+gatk CombineGVCFs -R "${G}" \
+    -V 16_trimmed.MergeBamAlignment.merged.bam.MarkDuplicates.dedupped.bam.SplitNCigarReads.split.bam.HaplotypeCaller.g.vcf.gz \
+    -V 17_trimmed.MergeBamAlignment.merged.bam.MarkDuplicates.dedupped.bam.SplitNCigarReads.split.bam.HaplotypeCaller.g.vcf.gz \
+    -V 21_trimmed.MergeBamAlignment.merged.bam.MarkDuplicates.dedupped.bam.SplitNCigarReads.split.bam.HaplotypeCaller.g.vcf.gz \
+    -V 22_trimmed.MergeBamAlignment.merged.bam.MarkDuplicates.dedupped.bam.SplitNCigarReads.split.bam.HaplotypeCaller.g.vcf.gz \
+    -V 23_trimmed.MergeBamAlignment.merged.bam.MarkDuplicates.dedupped.bam.SplitNCigarReads.split.bam.HaplotypeCaller.g.vcf.gz \
+    -V 24_trimmed.MergeBamAlignment.merged.bam.MarkDuplicates.dedupped.bam.SplitNCigarReads.split.bam.HaplotypeCaller.g.vcf.gz \
+    -V 25_trimmed.MergeBamAlignment.merged.bam.MarkDuplicates.dedupped.bam.SplitNCigarReads.split.bam.HaplotypeCaller.g.vcf.gz \
+    -V 26_trimmed.MergeBamAlignment.merged.bam.MarkDuplicates.dedupped.bam.SplitNCigarReads.split.bam.HaplotypeCaller.g.vcf.gz \
+    -V 28_trimmed.MergeBamAlignment.merged.bam.MarkDuplicates.dedupped.bam.SplitNCigarReads.split.bam.HaplotypeCaller.g.vcf.gz \
+    -V 29_trimmed.MergeBamAlignment.merged.bam.MarkDuplicates.dedupped.bam.SplitNCigarReads.split.bam.HaplotypeCaller.g.vcf.gz \
+    -V 2_trimmed.MergeBamAlignment.merged.bam.MarkDuplicates.dedupped.bam.SplitNCigarReads.split.bam.HaplotypeCaller.g.vcf.gz \
+    -V 30_trimmed.MergeBamAlignment.merged.bam.MarkDuplicates.dedupped.bam.SplitNCigarReads.split.bam.HaplotypeCaller.g.vcf.gz \
+    -V 31_trimmed.MergeBamAlignment.merged.bam.MarkDuplicates.dedupped.bam.SplitNCigarReads.split.bam.HaplotypeCaller.g.vcf.gz \
+    -V 33_trimmed.MergeBamAlignment.merged.bam.MarkDuplicates.dedupped.bam.SplitNCigarReads.split.bam.HaplotypeCaller.g.vcf.gz \
+    -V 37_trimmed.MergeBamAlignment.merged.bam.MarkDuplicates.dedupped.bam.SplitNCigarReads.split.bam.HaplotypeCaller.g.vcf.gz \
+    -V 39_trimmed.MergeBamAlignment.merged.bam.MarkDuplicates.dedupped.bam.SplitNCigarReads.split.bam.HaplotypeCaller.g.vcf.gz \
+    -V 42_trimmed.MergeBamAlignment.merged.bam.MarkDuplicates.dedupped.bam.SplitNCigarReads.split.bam.HaplotypeCaller.g.vcf.gz \
+    -V 43_trimmed.MergeBamAlignment.merged.bam.MarkDuplicates.dedupped.bam.SplitNCigarReads.split.bam.HaplotypeCaller.g.vcf.gz \
+    -V 45_trimmed.MergeBamAlignment.merged.bam.MarkDuplicates.dedupped.bam.SplitNCigarReads.split.bam.HaplotypeCaller.g.vcf.gz \
+    -V 46_trimmed.MergeBamAlignment.merged.bam.MarkDuplicates.dedupped.bam.SplitNCigarReads.split.bam.HaplotypeCaller.g.vcf.gz \
+    -V 47_trimmed.MergeBamAlignment.merged.bam.MarkDuplicates.dedupped.bam.SplitNCigarReads.split.bam.HaplotypeCaller.g.vcf.gz \
+    -V 4_trimmed.MergeBamAlignment.merged.bam.MarkDuplicates.dedupped.bam.SplitNCigarReads.split.bam.HaplotypeCaller.g.vcf.gz \
+    -V 50_trimmed.MergeBamAlignment.merged.bam.MarkDuplicates.dedupped.bam.SplitNCigarReads.split.bam.HaplotypeCaller.g.vcf.gz \
+    -V 51_trimmed.MergeBamAlignment.merged.bam.MarkDuplicates.dedupped.bam.SplitNCigarReads.split.bam.HaplotypeCaller.g.vcf.gz \
+    -V 52_trimmed.MergeBamAlignment.merged.bam.MarkDuplicates.dedupped.bam.SplitNCigarReads.split.bam.HaplotypeCaller.g.vcf.gz \
+    -V 54_trimmed.MergeBamAlignment.merged.bam.MarkDuplicates.dedupped.bam.SplitNCigarReads.split.bam.HaplotypeCaller.g.vcf.gz \
+    -V 55_trimmed.MergeBamAlignment.merged.bam.MarkDuplicates.dedupped.bam.SplitNCigarReads.split.bam.HaplotypeCaller.g.vcf.gz \
+    -V 56_trimmed.MergeBamAlignment.merged.bam.MarkDuplicates.dedupped.bam.SplitNCigarReads.split.bam.HaplotypeCaller.g.vcf.gz \
+    -V 57_trimmed.MergeBamAlignment.merged.bam.MarkDuplicates.dedupped.bam.SplitNCigarReads.split.bam.HaplotypeCaller.g.vcf.gz \
+    -V 59_trimmed.MergeBamAlignment.merged.bam.MarkDuplicates.dedupped.bam.SplitNCigarReads.split.bam.HaplotypeCaller.g.vcf.gz \
+    -V 60_trimmed.MergeBamAlignment.merged.bam.MarkDuplicates.dedupped.bam.SplitNCigarReads.split.bam.HaplotypeCaller.g.vcf.gz \
+    -V 61_trimmed.MergeBamAlignment.merged.bam.MarkDuplicates.dedupped.bam.SplitNCigarReads.split.bam.HaplotypeCaller.g.vcf.gz \
+    -V 62_trimmed.MergeBamAlignment.merged.bam.MarkDuplicates.dedupped.bam.SplitNCigarReads.split.bam.HaplotypeCaller.g.vcf.gz \
+    -V 63_trimmed.MergeBamAlignment.merged.bam.MarkDuplicates.dedupped.bam.SplitNCigarReads.split.bam.HaplotypeCaller.g.vcf.gz \
+    -V 64_trimmed.MergeBamAlignment.merged.bam.MarkDuplicates.dedupped.bam.SplitNCigarReads.split.bam.HaplotypeCaller.g.vcf.gz \
+    -V 65_trimmed.MergeBamAlignment.merged.bam.MarkDuplicates.dedupped.bam.SplitNCigarReads.split.bam.HaplotypeCaller.g.vcf.gz \
+    -V 66_trimmed.MergeBamAlignment.merged.bam.MarkDuplicates.dedupped.bam.SplitNCigarReads.split.bam.HaplotypeCaller.g.vcf.gz \
+    -V 67_trimmed.MergeBamAlignment.merged.bam.MarkDuplicates.dedupped.bam.SplitNCigarReads.split.bam.HaplotypeCaller.g.vcf.gz \
+    -V 68_trimmed.MergeBamAlignment.merged.bam.MarkDuplicates.dedupped.bam.SplitNCigarReads.split.bam.HaplotypeCaller.g.vcf.gz \
+    -V 6_trimmed.MergeBamAlignment.merged.bam.MarkDuplicates.dedupped.bam.SplitNCigarReads.split.bam.HaplotypeCaller.g.vcf.gz \
+    -O cohort.g.vcf.gz 
+```
+
+### Genotype combined GVCF file
+
+https://gatk.broadinstitute.org/hc/en-us/articles/360037057852-GenotypeGVCFs 
+
+Input: single `cohort.g.vcf.gz` file. A combined multi-sample gVCF made above. The GATK4 GenotypeGVCFs tool can take only one input track. Options are 1) a single single-sample GVCF 2) a single multi-sample GVCF created by CombineGVCFs or 3) a GenomicsDB workspace created by GenomicsDBImport. A sample-level GVCF is produced by HaplotypeCaller with the `-ERC GVCF` setting. Only GVCF files produced by HaplotypeCaller (or CombineGVCFs) can be used as input for this tool. 
+Output: single `cohort_genotypes.vcf.gz` file. A final VCF in which all samples have been jointly genotyped.
+
+This portion can handle any type of ploidy (not needed here but for Hawai'i *P. acuta* it would be). 
+
+`GenotypeGVCFs.sh`: 
+
+Run time = 2+ hours - I wasn't able to catch the exact time of this. 
+
+```
+#!/bin/sh
+#SBATCH -t 60:00:00
+#SBATCH --export=NONE
+#SBATCH --account=putnamlab
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_RNASeq/SNP/vcf   
+#SBATCH --error=../output_messages/"%x_error.%j" #if your job fails, the error report will be put in this file
+#SBATCH --output=../output_messages/"%x_output.%j" #once your job is completed, any final job report comments will be put in this file
+
+# load modules needed (specific need for my computer)
+source /usr/share/Modules/init/sh # load the module function
+module load GATK/4.3.0.0-GCCcore-11.2.0-Java-11 
+
+F="/data/putnamlab/estrand/BleachingPairs_RNASeq/SNP/vcf"
+G="/data/putnamlab/estrand/Montipora_capitata_HIv3.assembly.fasta"
+
+gatk --java-options "-Xmx4g" GenotypeGVCFs \
+    --reference "${G}" \
+    --output "cohort_genotypes.vcf.gz" \
+    --variant "cohort.g.vcf.gz" \
+    -stand-call-conf 30 
+```
+
+Flags: 
+- `--variant` = `-V` (same flag) 
+- `-stand-call-conf` = standard-min-confidence-threshold-for-calling. The minimum phred-scaled confidence threshold at which variants should be called. Default is 10.0. Similar pipelines with coral and our collaborators have used 30 so this is what I'm using for now. 
+- `--annotation` can be used to pair annotation files. I need to circle back to this to see which file is most appropriate.. Federica had `--annotation AS_MappingQualityRankSumTest --annotation AS_ReadPosRankSumTest > GenotypeGVCFs.log 2>&1`. 
 
 
-### editing file names so we can get rid of the extended .bam.bam.bam notation 
+## 08. Select SNPs and Indels
 
+`Variant_Filtration_1.sh`:
+
+Argument 1 and 2 from https://github.com/fscucchia/Pastreoides_development_depth/blob/main/SNPs/Variant_Filtration.sh. 
+
+Run time = ~ 10 minutes 
+
+```
+#!/bin/sh
+#SBATCH -t 60:00:00
+#SBATCH --export=NONE 
+#SBATCH --ntasks-per-node=24
+#SBATCH --account=putnamlab
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_RNASeq/SNP/vcf   
+#SBATCH --error=../output_messages/"%x_error.%j" #if your job fails, the error report will be put in this file
+#SBATCH --output=../output_messages/"%x_output.%j" #once your job is completed, any final job report comments will be put in this file
+
+# load modules needed (specific need for my computer)
+source /usr/share/Modules/init/sh # load the module function
+module load GATK/4.3.0.0-GCCcore-11.2.0-Java-11 
+
+F="/data/putnamlab/estrand/BleachingPairs_RNASeq/SNP/vcf"
+G="/data/putnamlab/estrand/Montipora_capitata_HIv3.assembly.fasta"
+OUT="GVCFall"
+O="/data/putnamlab/estrand/BleachingPairs_RNASeq/SNP/Variant_Filtration"
+
+## Argument 1 
+
+gatk SelectVariants \
+    --reference "${G}" \
+    --variant "$F/cohort_genotypes.vcf.gz" \
+    --output "$O/${OUT}_SNPs.vcf.gz" \
+    -select-type SNP 1> "$O/${OUT}_SNPs.vcf.gz.log" 2>&1
+
+gatk SelectVariants \
+    --reference "${G}" \
+    --variant "cohort_genotypes.vcf.gz" \
+    --output "$O/${OUT}_INDELs.vcf.gz" \
+    -select-type INDEL 1> "$O/${OUT}_INDELs.vcf.gz.log" 2>&1
+
+## Argument 2 
+
+gatk VariantsToTable \
+    --reference "${G}" \
+    --variant "$O/${OUT}_SNPs.vcf.gz" \
+    --output "$O/${OUT}_SNPs.table" \
+    -F CHROM -F POS -F QUAL -F QD -F DP -F MQ -F FS -F SOR -F MQRankSum -F ReadPosRankSum 1> "$O/${OUT}_SNPs.table.log" 2>&1
+
+gatk VariantsToTable \
+    --reference "${G}" \
+    --variant "$O/${OUT}_INDELs.vcf.gz" \
+    --output "$O/${OUT}_INDELs.table" \
+    -F CHROM -F POS -F QUAL -F QD -F DP -F MQ -F FS -F SOR -F MQRankSum -F ReadPosRankSum 1> "$O/${OUT}_INDELs.table.log" 2>&1
+```
+
+### Switch to R 
+
+Copy `GVCFall_SNPs.table` and `GVCFall_INDELs.table` to repo. 
+
+```
+scp emma_strand@ssh3.hac.uri.edu:/data/putnamlab/estrand/BleachingPairs_RNASeq/SNP/Variant_Filtration/GVCFall_SNPs.table /Users/emmastrand/MyProjects/HI_Bleaching_Timeseries/Dec-July-2019-analysis/output/WGBS/SNP
+
+scp emma_strand@ssh3.hac.uri.edu:/data/putnamlab/estrand/BleachingPairs_RNASeq/SNP/Variant_Filtration/GVCFall_INDELs.table /Users/emmastrand/MyProjects/HI_Bleaching_Timeseries/Dec-July-2019-analysis/output/WGBS/SNP
+```
+
+Run `VariantFiltering.Rmd` script to create diagnostic plots. 
+
+- `QD` is the quality (`QUAL`) normalized by the read depth (`DP`)
+- 
+
+![]()
+
+
+## 09. Apply Variant filtering
+
+https://gatk.broadinstitute.org/hc/en-us/articles/360050815032-VariantFiltration 
+
+Parameters chosen from the diagnostic plots above
+
+`Variant_Filtration_2.sh`:
+
+```
+
+
+
+```
