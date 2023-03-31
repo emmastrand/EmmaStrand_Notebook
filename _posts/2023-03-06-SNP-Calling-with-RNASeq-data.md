@@ -747,6 +747,8 @@ gatk IndexFeatureFile --input "GVCFall_SNPs_VarScores_filterPASSED.vcf" 1> "GVCF
 
 `Variant_Filtration_3.sh`:
 
+Run time <5 min
+
 ```
 #!/bin/sh
 #SBATCH -t 60:00:00
@@ -779,5 +781,56 @@ scp emma_strand@ssh3.hac.uri.edu:/data/putnamlab/estrand/BleachingPairs_RNASeq/S
 
 Run `VariantFiltering.Rmd` Part 2 script to create diagnostic plots. 
 
-![]()
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%20RNASeq%20SNP%20/Diag_plots2.png?raw=true)
 
+This worked! 
+
+### 2nd-pass filtering, filter genotypes
+
+When all low confidence variant sites are removed, filter VCF files for genotype quality. 
+
+`Variant_Filtration_4.sh`:
+
+Run time < 10 minutes 
+
+```
+#!/bin/sh
+#SBATCH -t 60:00:00
+#SBATCH --export=NONE 
+#SBATCH --ntasks-per-node=24
+#SBATCH --account=putnamlab
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_RNASeq/SNP/Variant_Filtration   
+#SBATCH --error=../output_messages/"%x_error.%j" #if your job fails, the error report will be put in this file
+#SBATCH --output=../output_messages/"%x_output.%j" #once your job is completed, any final job report comments will be put in this file
+
+# load modules needed (specific need for my computer)
+source /usr/share/Modules/init/sh # load the module function
+module load GATK/4.3.0.0-GCCcore-11.2.0-Java-11 
+
+G="/data/putnamlab/estrand/Montipora_capitata_HIv3.assembly.fasta"
+OUT="GVCFall"
+O="/data/putnamlab/estrand/BleachingPairs_RNASeq/SNP/Variant_Filtration"
+F="/data/putnamlab/estrand/BleachingPairs_RNASeq/SNP/vcf"
+
+gatk VariantsToTable \
+    --reference "${G}" \
+    --variant "$F/cohort_genotypes.vcf.gz" \
+    --output "${OUT}.DP.table" \
+    -F CHROM -F POS -GF GT -GF DP 1> "${OUT}.DP.table.log" 2>&1
+```
+
+From all samples before previous filtering. Run the following command:
+
+`for ((i=3; i<=81; i +=2)); do cut -f $i,$((i+1)) GVCFall.DP.table | awk '$1 != "./." {print $2}' > $i.DP; done`
+
+Where 3-81 are column numbers. We only want the odd numbers for 40 samples (column 3, 5, 7, etc) and skipping the even. This numbering is required because every sample is represented by two columns (GT, DP). Split it by samples and keep only positions that have been genotyped (!="./."). Output is a file per sample (`$i.DP`) with the column # as the ID (`$i`). 
+
+Copy output of the above command `$i.DP` to repo. Make new directory 'DP' to make scp -r easier.  
+
+```
+scp -r emma_strand@ssh3.hac.uri.edu:/data/putnamlab/estrand/BleachingPairs_RNASeq/SNP/Variant_Filtration/DP /Users/emmastrand/MyProjects/HI_Bleaching_Timeseries/Dec-July-2019-analysis/output/WGBS/SNP
+```
+
+Run `VariantFiltering.Rmd` Part 3 script to create DP distribution plots. 
+
+![]()
