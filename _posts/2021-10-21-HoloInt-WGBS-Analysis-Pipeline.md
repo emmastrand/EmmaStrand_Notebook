@@ -1330,6 +1330,8 @@ No errors - move on.
 
 `intersect_enrichment-v2.sh`: 
 
+Run time = 15 minutes 
+
 ```
 #!/bin/bash
 #SBATCH --job-name="v2H-enrich"
@@ -1373,6 +1375,8 @@ wc -l *5x_enrichment.bed > 5x_enrichment_sample_size.txt
 
 ### 5X COVERAGE 
 
+`head 5x_enrichment_sample_size.txt` 
+
 ```
     221239 1047_5x_sorted.tab_gene_CpG_5x_enrichment.bed
     221239 1051_5x_sorted.tab_gene_CpG_5x_enrichment.bed
@@ -1403,6 +1407,59 @@ wc -l *5x_enrichment.bed > 5x_enrichment_sample_size.txt
     10152 1205_10x_sorted.tab_gene_CpG_10x_enrichment.bed
 ```
 
+### creating a file without the filtering for all samples step
+
+I'm trying to see if Triploids have a higher number of methylated loci than diploids.
+
+`intersect_all-v2.sh`:
+
+```
+#!/bin/bash
+#SBATCH --job-name="v2H-allint"
+#SBATCH -t 500:00:00
+#SBATCH --nodes=1 --ntasks-per-node=10
+#SBATCH --mem=128GB
+#SBATCH --account=putnamlab
+#SBATCH --export=NONE
+#SBATCH -D /data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2 #### this is the output from the merge cov step above 
+#SBATCH --cpus-per-task=3
+#SBATCH --error="script_error_v2H-allint" #if your job fails, the error report will be put in this file
+#SBATCH --output="output_script_v2H-allint" #once your job is completed, any final job report comments will be put in this file
+
+# load modules needed  
+source /usr/share/Modules/init/sh # load the module function (specific to my computer)
+module load BEDTools/2.27.1-foss-2018b
+
+for i in *_5x_sorted.tab_gene
+do
+  intersectBed \
+  -a ${i} \
+  -b CpG.all.samps.5x_sorted.bed \
+  > ${i}_CpG_5x_all.bed
+done
+```
+
+Within merged_cov_genomev2 folder: 
+
+```
+wc -l *5x_all.bed > 5x_all_sample_size.txt
+```
+
+Output: `head 5x_all_sample_size.txt` 
+
+```
+    5623521 1047_5x_sorted.tab_gene_CpG_5x_all.bed
+    6164773 1051_5x_sorted.tab_gene_CpG_5x_all.bed
+    5939069 1059_5x_sorted.tab_gene_CpG_5x_all.bed
+    6109077 1090_5x_sorted.tab_gene_CpG_5x_all.bed
+    5623282 1103_5x_sorted.tab_gene_CpG_5x_all.bed
+    2932721 1147_5x_sorted.tab_gene_CpG_5x_all.bed
+    5365392 1159_5x_sorted.tab_gene_CpG_5x_all.bed
+    5717905 1168_5x_sorted.tab_gene_CpG_5x_all.bed
+    5857148 1184_5x_sorted.tab_gene_CpG_5x_all.bed
+    6119823 1205_5x_sorted.tab_gene_CpG_5x_all.bed
+```
+
 
 ## <a name="export"></a> **Export Files**
 
@@ -1410,6 +1467,12 @@ wc -l *5x_enrichment.bed > 5x_enrichment_sample_size.txt
 scp 'emma_strand@ssh3.hac.uri.edu:/data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*_5x_enrichment.bed' ~/MyProjects/Acclim_Dynamics_molecular/data/WGBS/output/meth_counts_5x
 
 scp 'emma_strand@ssh3.hac.uri.edu:/data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*_10x_enrichment.bed' ~/MyProjects/Acclim_Dynamics_molecular/data/WGBS/output/meth_counts_10x
+```
+
+### without last filtering step test 
+
+```
+scp 'emma_strand@ssh3.hac.uri.edu:/data/putnamlab/estrand/HoloInt_WGBS/merged_cov_genomev2/*_5x_all.bed' ~/MyProjects/Acclim_Dynamics_molecular/data/WGBS/output/meth_counts_5x
 ```
 
 

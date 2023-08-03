@@ -785,7 +785,7 @@ Run `VariantFiltering.Rmd` Part 2 script to create diagnostic plots.
 
 This worked! 
 
-### 2nd-pass filtering, filter genotypes
+### 2nd-pass filtering, filter genotypes part 1
 
 When all low confidence variant sites are removed, filter VCF files for genotype quality. 
 
@@ -819,6 +819,13 @@ gatk VariantsToTable \
     -F CHROM -F POS -GF GT -GF DP 1> "${OUT}.DP.table.log" 2>&1
 ```
 
+Flags:
+- `GF` / `--genotype-fields` = The name of a genotype field to include in the output table ("DP" and "GT")
+- `F` / `--fields` = The name of a standard VCF field or an INFO field to include in the output table
+
+GT = genotype 
+DP = read depth / Coverage (reads that passed quality metrics)
+
 From all samples before previous filtering. Run the following command:
 
 `for ((i=3; i<=81; i +=2)); do cut -f $i,$((i+1)) GVCFall.DP.table | awk '$1 != "./." {print $2}' > $i.DP; done`
@@ -833,4 +840,204 @@ scp -r emma_strand@ssh3.hac.uri.edu:/data/putnamlab/estrand/BleachingPairs_RNASe
 
 Run `VariantFiltering.Rmd` Part 3 script to create DP distribution plots. 
 
-![]()
+![](https://github.com/emmastrand/EmmaStrand_Notebook/blob/master/images/KBay%20RNASeq%20SNP%20/Diag_plots3.png?raw=true)
+
+View the content of GVCFall.DP.percentiles.txt and select the acceptable cut-off. Discard the genotypes below the 5th percentile and above the 99th percentile. 
+
+**Come back to how to do the above 5% and 99% ...** 
+
+### 2nd-pass filtering, filter genotypes part 2: apply dp filtering and set no calls 
+
+Input: `${OUT}_SNPs_VarScores_filterPASSED.vcf`
+Ouput: `${OUT}_SNPs_VarScores_filterPASSED_DPfilter.vcf` and `${OUT}_SNPs_VarScores_filterPASSED_DPfilterNoCall.vcf`
+
+`Variant_Filtration_5.sh`:
+
+Run time < 10 minutes 
+
+```
+#!/bin/sh
+#SBATCH -t 60:00:00
+#SBATCH --export=NONE 
+#SBATCH --ntasks-per-node=24
+#SBATCH --account=putnamlab
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_RNASeq/SNP/Variant_Filtration   
+#SBATCH --error=../output_messages/"%x_error.%j" #if your job fails, the error report will be put in this file
+#SBATCH --output=../output_messages/"%x_output.%j" #once your job is completed, any final job report comments will be put in this file
+
+# load modules needed (specific need for my computer)
+source /usr/share/Modules/init/sh # load the module function
+module load GATK/4.3.0.0-GCCcore-11.2.0-Java-11 
+
+G="/data/putnamlab/estrand/Montipora_capitata_HIv3.assembly.fasta"
+OUT="GVCFall"
+O="/data/putnamlab/estrand/BleachingPairs_RNASeq/SNP/Variant_Filtration"
+F="/data/putnamlab/estrand/BleachingPairs_RNASeq/SNP/vcf"
+
+###
+DP_MIN=20.000
+###
+
+gatk VariantFiltration \
+    --reference "${G}" \
+    --variant "${OUT}_SNPs_VarScores_filterPASSED.vcf" \
+    --output "${OUT}_SNPs_VarScores_filterPASSED_DPfilter.vcf" \
+	--genotype-filter-name "DP_filter" \
+    --genotype-filter-expression "DP < $DP_MIN" \
+	1> "${OUT}_SNPs_VarScores_filterPASSED_DPfilter.vcf.log" 2>&1
+
+gatk SelectVariants \
+    --reference "${G}" \
+    --variant "${OUT}_SNPs_VarScores_filterPASSED_DPfilter.vcf" \
+    --output "${OUT}_SNPs_VarScores_filterPASSED_DPfilterNoCall.vcf" \
+    --set-filtered-gt-to-nocall \
+	1> "${OUT}_SNPs_VarScores_filterPASSED_DPfilterNoCall.vcf.log" 2>&1
+```
+
+### 3nd-pass filtering
+
+Input: `${OUT}_SNPs_VarScores_filterPASSED_DPfilterNoCall.vcf` 
+Output: `${OUT}_SNPs_VarScores_filterPASSED_DPfilterNoCall.AD.table` 
+
+`Variant_Filtration_6.sh`:
+
+Run time < 10 minutes 
+
+```
+#!/bin/sh
+#SBATCH -t 60:00:00
+#SBATCH --export=NONE 
+#SBATCH --ntasks-per-node=24
+#SBATCH --account=putnamlab
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_RNASeq/SNP/Variant_Filtration   
+#SBATCH --error=../output_messages/"%x_error.%j" #if your job fails, the error report will be put in this file
+#SBATCH --output=../output_messages/"%x_output.%j" #once your job is completed, any final job report comments will be put in this file
+
+# load modules needed (specific need for my computer)
+source /usr/share/Modules/init/sh # load the module function
+module load GATK/4.3.0.0-GCCcore-11.2.0-Java-11 
+
+G="/data/putnamlab/estrand/Montipora_capitata_HIv3.assembly.fasta"
+OUT="GVCFall"
+O="/data/putnamlab/estrand/BleachingPairs_RNASeq/SNP/Variant_Filtration"
+F="/data/putnamlab/estrand/BleachingPairs_RNASeq/SNP/vcf"
+
+gatk VariantsToTable \
+    --reference "${G}" \
+    --variant "${OUT}_SNPs_VarScores_filterPASSED_DPfilterNoCall.vcf" \
+    --output "${OUT}_SNPs_VarScores_filterPASSED_DPfilterNoCall.AD.table" \
+    -F CHROM -F POS -GF GT -GF AD -GF DP \
+	1> "${OUT}_SNPs_VarScores_filterPASSED_DPfilterNoCall.AD.table.log" 2>&1
+```
+
+## 10. VCF to Table
+
+`Variant_Filtration_7.sh`:
+
+```
+#!/bin/sh
+#SBATCH -t 60:00:00
+#SBATCH --export=NONE 
+#SBATCH --ntasks-per-node=24
+#SBATCH --account=putnamlab
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_RNASeq/SNP/Variant_Filtration   
+#SBATCH --error=../output_messages/"%x_error.%j" #if your job fails, the error report will be put in this file
+#SBATCH --output=../output_messages/"%x_output.%j" #once your job is completed, any final job report comments will be put in this file
+
+# load modules needed (specific need for my computer)
+source /usr/share/Modules/init/sh # load the module function
+module load GATK/4.3.0.0-GCCcore-11.2.0-Java-11 
+
+G="/data/putnamlab/estrand/Montipora_capitata_HIv3.assembly.fasta"
+OUT="GVCFall"
+O="/data/putnamlab/estrand/BleachingPairs_RNASeq/SNP/Variant_Filtration"
+F="/data/putnamlab/estrand/BleachingPairs_RNASeq/SNP/vcf"
+
+gatk VariantsToTable \
+    --reference "${G}" \
+    --variant "${OUT}_SNPs_VarScores_filterPASSED_DPfilterNoCall.vcf" \
+    --output "${OUT}_SNPs_filterPASSED_final.table" \
+    -F CHROM -F POS -GF GT \
+	1> "${OUT}_SNPs_filterPASSED_final.table.log" 2>&1
+```
+
+Output: `${OUT}_SNPs_filterPASSED_final.table`. Output files (genotype tables) and vcf files ready for subsequent analyses.
+
+## 11. Filtering for linkage disequilibrium
+
+Plink2 program: https://www.cog-genomics.org/plink/2.0/general_usage. Program commands start with `plink2`. 
+
+**Argument 1**: Which manually sets the variant ID in the final vcf file (it replaces the dot in the ID column with a manually set ID). This is needed for argument 4 to work.   
+
+**Argument 2**: Which converts the vcf file into a bed file.   
+- `--double-id`: deals with Multiple instances of '_' in sample ID 
+- `--max-alleles 2`: allows for multiallelic variants
+- `--chr-set`: sets # of chromosomes (28) with `no-xy` option
+
+**Argument 3**: Which performs the pruning of SNPs that are strongly genetically linked.
+- `--allow-no-sex` no longer has any effect in the newest version so don't need this. 
+- `--bad-ld` wasn't recognized so left this out too. 
+
+**Argument 4**: Which extracts the pruned SNPs data from the vcf file. 
+- `--max-alleles 2`: allows for multiallelic variants
+
+`plink.sh`:
+
+```
+#!/bin/sh
+#SBATCH -t 60:00:00
+#SBATCH --export=NONE 
+#SBATCH --ntasks-per-node=24
+#SBATCH --account=putnamlab
+#SBATCH -D /data/putnamlab/estrand/BleachingPairs_RNASeq/SNP/Variant_Filtration   
+#SBATCH --error=../output_messages/"%x_error.%j" #if your job fails, the error report will be put in this file
+#SBATCH --output=../output_messages/"%x_output.%j" #once your job is completed, any final job report comments will be put in this file
+
+# load modules needed (specific need for my computer)
+source /usr/share/Modules/init/sh # load the module function
+module load BCFtools/1.9-foss-2018b
+module load PLINK/2.00a2.3_x86_64
+
+G="/data/putnamlab/estrand/Montipora_capitata_HIv3.assembly.fasta"
+OUT="GVCFall"
+F="/data/putnamlab/estrand/BleachingPairs_RNASeq/SNP/Variant_Filtration"
+
+## Argument 1 
+bcftools annotate --set-id '%CHROM\_%POS\_%REF\_%FIRST_ALT' \
+    $F/${OUT}_SNPs_VarScores_filterPASSED_DPfilterNoCall.vcf
+
+## Argument 2 
+plink2 --vcf $F/${OUT}_SNPs_VarScores_filterPASSED_DPfilterNoCall.vcf \
+    --make-bed --chr-set 28 no-xy --allow-extra-chr --double-id --max-alleles 2 --out VCF_annotated
+
+## Argument 3 
+plink2 --bfile $F/VCF_annotated \
+    --allow-extra-chr --indep-pairwise 25 0.5
+
+## Argument 4 
+plink2 --vcf $F/${OUT}_SNPs_VarScores_filterPASSED_DPfilterNoCall.vcf \
+    --extract plink2.prune.in --allow-extra-chr --make-bed --double-id --max-alleles 2 --out final_vcf_pruned
+```
+
+Output message:
+
+```
+=40 samples (0 females, 0 males, 40 ambiguous; 40 founders) loaded from
+final_vcf_pruned-temporary.psam.
+2471727 out of 2485639 variants loaded from final_vcf_pruned-temporary.pvar.
+Note: No phenotype data present.
+--extract: 2471727 variants remaining.
+2471727 variants remaining after main filters.
+```
+
+## 12. Fst analysis
+
+`Fst.Rmd` R script ran from the below files copied from the output. 
+
+```
+scp emma_strand@ssh3.hac.uri.edu:/data/putnamlab/estrand/BleachingPairs_RNASeq/SNP/Variant_Filtration/final_vcf_pruned.bed /Users/emmastrand/MyProjects/HI_Bleaching_Timeseries/Dec-July-2019-analysis/output/WGBS/SNP/
+
+scp emma_strand@ssh3.hac.uri.edu:/data/putnamlab/estrand/BleachingPairs_RNASeq/SNP/Variant_Filtration/final_vcf_pruned.fam /Users/emmastrand/MyProjects/HI_Bleaching_Timeseries/Dec-July-2019-analysis/output/WGBS/SNP/
+
+scp emma_strand@ssh3.hac.uri.edu:/data/putnamlab/estrand/BleachingPairs_RNASeq/SNP/Variant_Filtration/final_vcf_pruned.bim /Users/emmastrand/MyProjects/HI_Bleaching_Timeseries/Dec-July-2019-analysis/output/WGBS/SNP/
+```
