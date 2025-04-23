@@ -174,8 +174,8 @@ My folder is all temporary working data but I want to re-do this analysis anyway
 What we do need on Unity that I will ask Jill to transfer:  
 - `/data/putnamlab/shared/PointJudithData_Rebecca`  (16S data raw data + analysis)  
 - `/data/putnamlab/shared/Oyst_Nut_RNA` (RNAseq processing)    
-- `/data/putnamlab/KITT/hputnam/20200119_Oyst_Nut/MBDBS` (Methylation MBDBS raw data)  
-- `/data/putnamlab/KITT/hputnam/20200119_Oyst_Nut/DB` AND `/data/putnamlab/KITT/hputnam/20200119_Oyst_Nut/NS` (RNAseq raw data)  
+- `/data/putnamlab/KITT/hputnam/20200119_Oyst_Nut/MBDBS` (Methylation MBDBS raw data) - this is already on NCBI   
+- `/data/putnamlab/KITT/hputnam/20200119_Oyst_Nut/DB` AND `/data/putnamlab/KITT/hputnam/20200119_Oyst_Nut/NS` (RNAseq raw data) - this is already on NCBI    
 
 ### Kevin data 
 
