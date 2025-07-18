@@ -75,6 +75,7 @@ Use RStudio in OOD to run the following R script to create a sample sheet `creat
 ```
 ### Creating samplesheet for nextflow methylseq
 ### Holobiont Integration
+### headers: sample,fastq_1,fastq_2,genome
 
 ## Load libraries 
 library(dplyr)
@@ -84,23 +85,23 @@ library(strex)
 ### Read in sample sheet 
 
 sample_list <- read.delim2("/work/pi_hputnam_uri_edu/estrand/HoloInt_WGBS/rawdata_file_list", header=F) %>% 
-  dplyr::rename(forwardReads = V1) %>%
-  mutate(sampleID = str_after_nth(forwardReads, "WGBS/", 1),
-         sampleID = str_before_nth(sampleID, "_S", 1),
-         sampleID = paste0("HI_", sampleID)
+  dplyr::rename(fastq_1 = V1) %>%
+  mutate(sample = str_after_nth(fastq_1, "WGBS/", 1),
+         sample = str_before_nth(sample, "_S", 1),
+         sample = paste0("HI_", sample)
          )
 
 # creating sample ID 
-sample_list$sampleID <- gsub("-", "_", sample_list$sampleID)
+sample_list$sample <- gsub("-", "_", sample_list$sample)
 
 # keeping only rows with R1
-sample_list <- filter(sample_list, grepl("R1", forwardReads, ignore.case = TRUE))
+sample_list <- filter(sample_list, grepl("R1", fastq_1, ignore.case = TRUE))
 
 # duplicating column 
-sample_list$reverseReads <- sample_list$forwardReads
+sample_list$fastq_2 <- sample_list$fastq_1
 
 # replacing R1 with R2 in only one column 
-sample_list$reverseReads <- gsub("R1", "R2", sample_list$reverseReads)
+sample_list$fastq_2 <- gsub("R1", "R2", sample_list$fastq_2)
 
 # rearranging columns 
 sample_list <- sample_list[,c(2,1,3)]
@@ -117,10 +118,10 @@ sample_list %>% write.csv("/work/pi_hputnam_uri_edu/estrand/HoloInt_WGBS/samples
 ```
 #!/usr/bin/env bash
 #SBATCH --export=NONE
-#SBATCH --nodes=2 --ntasks-per-node=24
+#SBATCH --nodes=1 --ntasks-per-node=48
 #SBATCH --partition=uri-cpu
 #SBATCH --no-requeue
-#SBATCH --mem=400GB
+#SBATCH --mem=600GB
 #SBATCH -t 120:00:00
 #SBATCH -o output/"%x_output.%j"
 #SBATCH -e output/"%x_error.%j"
@@ -133,9 +134,9 @@ module load apptainer/latest
 ## Set Nextflow directories to use scratch
 out="/scratch3/workspace/emma_strand_uri_edu-shared/HoloIntWGBS"
 
-#export NXF_WORK=${out}/nextflow_work
-#export NXF_TEMP=${out}/nextflow_temp
-#export NXF_LAUNCHER=${out}/nextflow_launcher
+export NXF_WORK=${out}/nextflow_work
+export NXF_TEMP=${out}/nextflow_temp
+export NXF_LAUNCHER=${out}/nextflow_launcher
 
 export APPTAINER_CACHEDIR=${out}/apptainer_cache
 export SINGULARITY_CACHEDIR=${out}/apptainer_cache
@@ -157,8 +158,8 @@ nextflow run nf-core/methylseq -resume \
 --non_directional \
 --cytosine_report \
 --relax_mismatches \
---unmapped \
---outdir ${out}
+--outdir ${out} \
+--skip_fastqc --skip_multiqc
 ```
 
 Testing to see if .sh works, `salloc` to grab an interactive node and `bash 01-HoloInt_WGBS_nexflow.sh`
@@ -234,8 +235,9 @@ emma_strand_uri_edu@login1:/work/pi_hputnam_uri_edu/estrand/HoloInt_WGBS/scripts
           40061953   uri-cpu 01-HoloI emma_str PD       0:00      2 (Resources)
 ```
 
+**7-18-2025**: The work directory was in the /work putnam folder not my scratch. Changed memory/node allocation, skip fastqc and multiqc steps. Que'd again 
 
-
+Take out windows characters: `sed -i 's/\r$//' 01-HoloInt_WGBS_nexflow.sh`
 
 
 

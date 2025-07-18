@@ -86,23 +86,23 @@ library(strex)
 ### Read in sample sheet 
 
 sample_list <- read.delim2("/work/pi_hputnam_uri_edu/estrand/BleachingPairs_WGBS/rawdata_file_list", header=F) %>% 
-  dplyr::rename(forwardReads = V1) %>%
-  mutate(sampleID = str_after_nth(forwardReads, "WGBS/", 1),
-         sampleID = str_before_nth(sampleID, "_S", 1),
-         sampleID = paste0("KB_", sampleID)
+  dplyr::rename(fastq_1 = V1) %>%
+  mutate(sample = str_after_nth(fastq_1, "WGBS/", 1),
+         sample = str_before_nth(sample, "_S", 1),
+         sample = paste0("HI_", sample)
          )
 
 # creating sample ID 
-sample_list$sampleID <- gsub("-", "_", sample_list$sampleID)
+sample_list$sample <- gsub("-", "_", sample_list$sample)
 
 # keeping only rows with R1
-sample_list <- filter(sample_list, grepl("R1", forwardReads, ignore.case = TRUE))
+sample_list <- filter(sample_list, grepl("R1", fastq_1, ignore.case = TRUE))
 
 # duplicating column 
-sample_list$reverseReads <- sample_list$forwardReads
+sample_list$fastq_2 <- sample_list$fastq_1
 
 # replacing R1 with R2 in only one column 
-sample_list$reverseReads <- gsub("R1", "R2", sample_list$reverseReads)
+sample_list$fastq_2 <- gsub("R1", "R2", sample_list$fastq_2)
 
 # rearranging columns 
 sample_list <- sample_list[,c(2,1,3)]
@@ -119,10 +119,10 @@ sample_list %>% write.csv("/work/pi_hputnam_uri_edu/estrand/BleachingPairs_WGBS/
 ```
 #!/usr/bin/env bash
 #SBATCH --export=NONE
-#SBATCH --nodes=2 --ntasks-per-node=24
+#SBATCH --nodes=1 --ntasks-per-node=48
 #SBATCH --partition=uri-cpu
 #SBATCH --no-requeue
-#SBATCH --mem=400GB
+#SBATCH --mem=600GB
 #SBATCH -t 120:00:00
 #SBATCH -o output/"%x_output.%j"
 #SBATCH -e output/"%x_error.%j"
@@ -135,9 +135,9 @@ module load apptainer/latest
 ## Set Nextflow directories to use scratch
 out="/scratch3/workspace/emma_strand_uri_edu-shared/BleachingPairs_WGBS"
 
-#export NXF_WORK=${out}/nextflow_work
-#export NXF_TEMP=${out}/nextflow_temp
-#export NXF_LAUNCHER=${out}/nextflow_launcher
+export NXF_WORK=${out}/nextflow_work
+export NXF_TEMP=${out}/nextflow_temp
+export NXF_LAUNCHER=${out}/nextflow_launcher
 
 export APPTAINER_CACHEDIR=${out}/apptainer_cache
 export SINGULARITY_CACHEDIR=${out}/apptainer_cache
@@ -159,13 +159,33 @@ nextflow run nf-core/methylseq -resume \
 --non_directional \
 --cytosine_report \
 --relax_mismatches \
---unmapped \
---outdir ${out}
+--outdir ${out} \
+--skip_fastqc --skip_multiqc
 ```
 
-Testing to see if .sh works, `salloc` to grab an interactive node and `bash 01-KBay_WGBS_nexflow.sh`
 
 #### Troubleshooting 
 
+Testing to see if .sh works, `salloc` to grab an interactive node and `bash 01-KBay_WGBS_nexflow.sh`
+
+**7-17-2025**: Interactive node test script. HoloInt started running but I need to change samplesheet headers to sample, fastq_1, fastq_2. Edited samplesheet and ran again on interactive node. Got a node required error which is because of interactive so now I can switch this to sbatch! 
+
+```
+
+Execution cancelled -- Finishing pending tasks before exit
+Pulling Singularity image https://depot.galaxyproject.org/singularity/multiqc:1.29--pyhdfd78af_0 [cache /scratch3/workspace/emma_strand_uri_edu-shared/BleachingPairs_WGBS/apptainer_cache/depot.galaxyproject.org-singularity-multiq
+c-1.29--pyhdfd78af_0.img]
+-[nf-core/methylseq] Pipeline completed with errors-
+ERROR ~ Error executing process > 'NFCORE_METHYLSEQ:METHYLSEQ:TRIMGALORE (HI_17)'
+Caused by:
+  Process requirement exceeds available CPUs -- req: 12; avail: 1
+```
+
+**7-18-2025**: The work directory didn't export to /scratch so I stopped and changed memory, added skip fastqc, multiqc, took out the save unmapped reads, and up'd the memory and tasks. I got an error and need to unzip this again. Got a node required error which is because of interactive so now I can switch this to sbatch! 
+
+Take out windows characters: `sed -i 's/\r$//' 01-KBay_WGBS_nexflow.sh`
 
 
+https://shellywanamaker.github.io/401th-post/
+
+https://huishenlab.github.io/biscuit/
