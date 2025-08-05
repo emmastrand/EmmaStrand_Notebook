@@ -239,5 +239,71 @@ emma_strand_uri_edu@login1:/work/pi_hputnam_uri_edu/estrand/HoloInt_WGBS/scripts
 
 Take out windows characters: `sed -i 's/\r$//' 01-HoloInt_WGBS_nexflow.sh`
 
+**7-23-2025** This worked! but only got through 50/50. I used `seff` to see that 90% CPUs were used and 100% of memory allocation was used. I up'd both of those and then made a subset of csv and script to run just the last 10 files in a new output folder. The steps/samples aren't dependent on each other so this should be fine. 
+
+`(head -n 1 samplesheet.csv && tail -n 10 samplesheet.csv) > samplesheet_last10.csv`
+
+Que'd again. This worked! 
+
+**7-25-2025**: But I need to re-run one with the 50 samples. I also changed the output directory and then que'd again. 
+
+`(head -n 51 samplesheet.csv) > samplesheet_first50.csv`
+
+I got this error: `slurmstepd-uri-cpu039: error: Detected 3 oom_kill events in StepId=40304713.batch. Some of the step tasks have been OOM Killed.` This says out of memory, maybe I'll split the 50 into 25 and 25...
+
+```
+executor >  local (80)
+[-        ] NFC…DEX_BISMARK_BWAMETH:GUNZIP -
+[f0/7c700f] NFC…acuta_HIv2.assembly.fasta) | 1 of 1 ✔
+[-        ] NFC…HYLSEQ:METHYLSEQ:CAT_FASTQ -
+[7b/2b31a3] NFC…YLSEQ:TRIMGALORE (HI_1427) | 50 of 50 ✔
+[0b/b08831] NFC…RK:BISMARK_ALIGN (HI_1732) | 29 of 50, failed: 1
+[-        ] NFC…ISMARK:BISMARK_DEDUPLICATE | 0 of 23
+[-        ] NFC…EDUP_BISMARK:SAMTOOLS_SORT -
+[-        ] NFC…DUP_BISMARK:SAMTOOLS_INDEX -
+[-        ] NFC…SMARK_METHYLATIONEXTRACTOR -
+[-        ] NFC…:BISMARK_COVERAGE2CYTOSINE -
+[-        ] NFC…DUP_BISMARK:BISMARK_REPORT -
+[-        ] NFC…UP_BISMARK:BISMARK_SUMMARY -
+-[nf-core/methylseq] Pipeline completed with errors-
+ERROR ~ Error executing process > 'NFCORE_METHYLSEQ:METHYLSEQ:FASTQ_ALIGN_DEDUP_BISMARK:BISMARK_ALIGN (HI_1709)'
+
+Caused by:
+  Process `NFCORE_METHYLSEQ:METHYLSEQ:FASTQ_ALIGN_DEDUP_BISMARK:BISMARK_ALIGN (HI_1709)` terminated with an error exit status (255)
+```
+
+**8-4-2025**: I downloaded the full samplesheet and split into csvs with 10 files each. Start fresh so I don't miss any files. I tried to run them all at once but the 1-10 got a memory error and the rest couldn't run at the same time. So now I'm doing 1-10 by itself with 600 GB. 
+
+
+
+
+### Moving all output to one folder
+
+I did this in batches so I need to move all the deduplicated files to one spot for biscuit. 
+
+`mkdir /scratch3/workspace/emma_strand_uri_edu-shared/HoloInt_all_deduplicated` 
+
+Last 10:
+
+```
+(biscuit) emma_strand_uri_edu@login1:/scratch3/workspace/emma_strand_uri_edu-shared/HoloIntWGBS_last10/bismark/deduplicated$ ls
+HI_2409.deduplicated.sorted.bam      HI_2513.deduplicated.sorted.bam      HI_2564.deduplicated.sorted.bam      HI_2861.deduplicated.sorted.bam      HI_2878.deduplicated.sorted.bam      logs
+HI_2409.deduplicated.sorted.bam.bai  HI_2513.deduplicated.sorted.bam.bai  HI_2564.deduplicated.sorted.bam.bai  HI_2861.deduplicated.sorted.bam.bai  HI_2878.deduplicated.sorted.bam.bai
+HI_2413.deduplicated.sorted.bam      HI_2550.deduplicated.sorted.bam      HI_2668.deduplicated.sorted.bam      HI_2877.deduplicated.sorted.bam      HI_2879.deduplicated.sorted.bam
+HI_2413.deduplicated.sorted.bam.bai  HI_2550.deduplicated.sorted.bam.bai  HI_2668.deduplicated.sorted.bam.bai  HI_2877.deduplicated.sorted.bam.bai  HI_2879.deduplicated.sorted.bam.bai
+(biscuit) emma_strand_uri_edu@login1:/scratch3/workspace/emma_strand_uri_edu-shared/HoloIntWGBS_last10/bismark/deduplicated$ mv *.bam ../../../HoloInt_all_deduplicated/
+```
+
+First 50:
+
+```
+
+```
+
+
+### Sorting deduplicated bam files 
+
+*The pipeline does already, yay.*
+
 
 

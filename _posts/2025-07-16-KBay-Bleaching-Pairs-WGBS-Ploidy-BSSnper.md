@@ -60,6 +60,17 @@ id: shared
      available extensions : 5
 ```
 
+**7-23-2025** I'm extending this workspace: `ws_extend shared 30`
+
+```
+emma_strand_uri_edu@login1:/scratch3/workspace/emma_strand_uri_edu-shared$ ws_extend shared 30
+Info: extending workspace.
+Info: reused mail address emma_strand@uri.edu
+/scratch3/workspace/emma_strand_uri_edu-shared
+remaining extensions  : 4
+remaining time in days: 30
+```
+
 ### Download genome 
 
 Navigate to the proper folder: `/work/pi_hputnam_uri_edu/estrand/BleachingPairs_WGBS`
@@ -185,7 +196,174 @@ Caused by:
 
 Take out windows characters: `sed -i 's/\r$//' 01-KBay_WGBS_nexflow.sh`
 
+Finished!! 
+
+### Sorting deduplicated bam files 
+
+*The pipeline does already, yay.*
+
+### Running biscuit on deduplicated bam files 
 
 https://shellywanamaker.github.io/401th-post/
 
 https://huishenlab.github.io/biscuit/
+
+Start conda environment to download biscuit in
+
+```
+## path to putnamlab conda environments 
+/work/pi_hputnam_uri_edu/conda/envs
+
+## I need to set up conda channels (only once)
+conda config --add channels defaults
+conda config --add channels conda-forge
+conda config --add channels bioconda
+conda config --set channel_priority strict
+
+## making new conda environment inthat path so all can use it
+conda create --prefix /work/pi_hputnam_uri_edu/conda/envs/biscuit biscuit
+
+## test that 
+conda activate /work/pi_hputnam_uri_edu/conda/envs/biscuit
+```
+
+Run the script. Shelly had trouble with the sample name not retained through subsequent steps so she can a foor loop. This below will do a slurm array. 
+
+`nano 02-biscuit_SNP.sh`:
+
+```
+#!/usr/bin/env bash
+#SBATCH --export=NONE
+#SBATCH --nodes=1 --ntasks-per-node=12
+#SBATCH --partition=uri-cpu
+#SBATCH --no-requeue
+#SBATCH --mem=50GB
+#SBATCH -t 120:00:00
+#SBATCH -o output/biscuit/"%x_output.%j"
+#SBATCH -e output/biscuit/"%x_error.%j"
+
+## Load Conda environment with biscuit downloaded 
+module load conda/latest
+conda activate /work/pi_hputnam_uri_edu/conda/envs/biscuit
+
+## Set output directories to use scratch
+out="/scratch3/workspace/emma_strand_uri_edu-shared/BleachingPairs_WGBS/biscuit"
+ref="/work/pi_hputnam_uri_edu/estrand/BleachingPairs_WGBS/Montipora_capitata_HIv3.assembly.fasta"
+
+## set paths
+deduplicated_bams="/scratch3/workspace/emma_strand_uri_edu-shared/BleachingPairs_WGBS/bismark/deduplicated"
+biscuit_path="/work/pi_hputnam_uri_edu/conda/envs/biscuit/bin"
+
+## CREATE SAMPLE LIST FOR SLURM ARRAY
+### 1. Create list of all .gz files in raw data path
+ls -d ${deduplicated_bams}/*sorted.bam > ${deduplicated_bams}/samplelist
+
+### 2. Create a list of filenames based on that list created in step 1
+mapfile -t FILENAMES < ${deduplicated_bams}/samplelist
+
+### 3. Create variable i that will assign each row of FILENAMES to a task ID
+i=${FILENAMES[$SLURM_ARRAY_TASK_ID]}
+
+# Create a pileup VCF of DNA methylation and genetic information
+# Also compresses and indexes the VCF
+
+filename=${i##*/}
+
+${biscuit_path}/biscuit pileup -q 48 -o ${out}/${filename}.vcf ${ref} ${i}
+
+bgzip --threads 48 ${out}/${filename}.vcf
+tabix -p vcf ${out}/${filename}.vcf.gz
+
+# Extract DNA methylation into BED format
+# Also compresses and indexes the BED
+${biscuit_path}/biscuit vcf2bed ${out}/${filename}.vcf.gz > ${out}/${filename}.bed
+
+bgzip ${out}/${filename}.bed
+tabix -p bed ${out}/${filename}.bed.gz
+```
+
+To run that with 40 files: `sbatch --array=1-40 02-biscuit_SNP.sh`
+
+#### Troubleshooting
+
+**7-23-2025**: I tried this for the first time with array of 1-40. This couldn't find the conda command so I added `module load conda/latest` to load the latest version of conda. 
+
+**7-25-2025/7-28-2025** OK this worked but now get the below error because I don't have bgzip and tabix (`conda install -c bioconda htslib`). Successfully installed and will try again. 
+
+```
+pileup: invalid option -- '@'
+[main_pileup:1302] Unrecognized command/option: ?.
+/var/spool/slurm/slurmd/job40305031/slurm_script: line 42: bgzip: command not found
+/var/spool/slurm/slurmd/job40305031/slurm_script: line 43: tabix: command not found
+[wzopen:20] Fatal, cannot open file: filename.vcf.gz
+/var/spool/slurm/slurmd/job40305031/slurm_script: line 49: bgzip: command not found
+/var/spool/slurm/slurmd/job40305031/slurm_script: line 50: tabix: command not found
+```
+
+Added the full path to biscuit too just in case it's not finding this program. OK this is better now! Now this error that tells me I need to remove the extra 'biscuit' in the file path.
+
+
+```
+/var/spool/slurm/slurmd/job40371768/slurm_script: line 38: /work/pi_hputnam_uri_edu/conda/envs/biscuit/bin/biscuit/biscuit: Not a directory
+[bgzip] No such file or directory: filename.vcf
+tbx_index_build failed: filename.vcf.gz
+/var/spool/slurm/slurmd/job40371768/slurm_script: line 45: /work/pi_hputnam_uri_edu/conda/envs/biscuit/bin/biscuit/biscuit: Not a directory
+[bgzip] can't create filename.bed.gz: File exists
+[tabix] the index file exists. Please use '-f' to overwrite.
+```
+
+I still get the filename.vcf issue:
+
+```
+[bgzip] No such file or directory: filename.vcf
+tbx_index_build failed: filename.vcf.gz
+[wzopen:20] Fatal, cannot open file: filename.vcf.gz
+[bgzip] can't create filename.bed.gz: File exists
+[tabix] the index file exists. Please use '-f' to overwrite.
+```
+
+OK this is now recognizing the file name, but still no biscuit... using -p instead for pileup and --threads for bgzip. 
+
+```
+pileup: invalid option -- '@'
+[main_pileup:1302] Unrecognized command/option: ?.
+[bgzip] No such file or directory: /scratch3/workspace/emma_strand_uri_edu-shared/BleachingPairs_WGBS/biscuit/HI_17.deduplicated.sorted.bam.vcf
+tbx_index_build failed: /scratch3/workspace/emma_strand_uri_edu-shared/BleachingPairs_WGBS/biscuit/HI_17.deduplicated.sorted.bam.vcf.gz
+[wzopen:20] Fatal, cannot open file: /scratch3/workspace/emma_strand_uri_edu-shared/BleachingPairs_WGBS/biscuit/HI_17.deduplicated.sorted.bam.vcf.gz
+```
+
+OK now I get this error. This can't find the {i} file so it aborts that function. Realized that it needs to be ${i}. 
+
+```
+[E::hts_open_format] fail to open file '{i}'
+[main_pileup:1361] Cannot open {i}
+Abort.
+[bgzip] No such file or directory: /scratch3/workspace/emma_strand_uri_edu-shared/BleachingPairs_WGBS/biscuit/HI_18.deduplicated.sorted.bam.vcf
+tbx_index_build failed: /scratch3/workspace/emma_strand_uri_edu-shared/BleachingPairs_WGBS/biscuit/HI_18.deduplicated.sorted.bam.vcf.gz
+[wzopen:20] Fatal, cannot open file: /scratch3/workspace/emma_strand_uri_edu-shared/BleachingPairs_WGBS/biscuit/HI_18.deduplicated.sorted.bam.vcf.gz
+[bgzip] can't create /scratch3/workspace/emma_strand_uri_edu-shared/BleachingPairs_WGBS/biscuit/HI_18.deduplicated.sorted.bam.bed.gz: File exists
+[tabix] the index file exists. Please use '-f' to overwrite.
+```
+
+**8-4-2025** Running this again after adding $. This ran! I now have vcf and bam.bed outputs. Some files have an average tsv output.. What is this? Eg `HI_39.deduplicated.sorted.bam.vcf_meth_average.tsv`. Files that don't have this: 17, 18. 
+
+From the error file in 17 and 18. This error file also had building reference... Maybe this was happening simultaneously and then was fine for the rest? Maybe I can just re-run these two files? This also didn't run HI-16, probably because I did 1-40 instead of 0-39 within the slurm array. 
+
+```
+[fai_load] build FASTA index.
+[refcache_fetch:95] Error, cannot retrieve reference Montipora_capitata_HIv3___Scaffold_1:0-0.
+```
+
+**8-5-2025** I made 3 new scripts with just the 16, 17, and 18 input files so they are running individually.
+
+Next Steps:
+- How to analyze vcf files   
+- How to get CT snps from bed files?
+
+
+
+
+
+
+
+
