@@ -274,8 +274,9 @@ Caused by:
 
 **8-4-2025**: I downloaded the full samplesheet and split into csvs with 10 files each. Start fresh so I don't miss any files. I tried to run them all at once but the 1-10 got a memory error and the rest couldn't run at the same time. So now I'm doing 1-10 by itself with 600 GB. 
 
+**8-18-2025**: I ran all 60 again with more GB and it finished 59/60 before time ran out. I'll re-do the missing sample 1709.
 
-
+**8-25-2025**: changed GB To 400 and re-do 1709. 
 
 ### Moving all output to one folder
 
@@ -283,22 +284,6 @@ I did this in batches so I need to move all the deduplicated files to one spot f
 
 `mkdir /scratch3/workspace/emma_strand_uri_edu-shared/HoloInt_all_deduplicated` 
 
-Last 10:
-
-```
-(biscuit) emma_strand_uri_edu@login1:/scratch3/workspace/emma_strand_uri_edu-shared/HoloIntWGBS_last10/bismark/deduplicated$ ls
-HI_2409.deduplicated.sorted.bam      HI_2513.deduplicated.sorted.bam      HI_2564.deduplicated.sorted.bam      HI_2861.deduplicated.sorted.bam      HI_2878.deduplicated.sorted.bam      logs
-HI_2409.deduplicated.sorted.bam.bai  HI_2513.deduplicated.sorted.bam.bai  HI_2564.deduplicated.sorted.bam.bai  HI_2861.deduplicated.sorted.bam.bai  HI_2878.deduplicated.sorted.bam.bai
-HI_2413.deduplicated.sorted.bam      HI_2550.deduplicated.sorted.bam      HI_2668.deduplicated.sorted.bam      HI_2877.deduplicated.sorted.bam      HI_2879.deduplicated.sorted.bam
-HI_2413.deduplicated.sorted.bam.bai  HI_2550.deduplicated.sorted.bam.bai  HI_2668.deduplicated.sorted.bam.bai  HI_2877.deduplicated.sorted.bam.bai  HI_2879.deduplicated.sorted.bam.bai
-(biscuit) emma_strand_uri_edu@login1:/scratch3/workspace/emma_strand_uri_edu-shared/HoloIntWGBS_last10/bismark/deduplicated$ mv *.bam ../../../HoloInt_all_deduplicated/
-```
-
-First 50:
-
-```
-
-```
 
 
 ### Sorting deduplicated bam files 

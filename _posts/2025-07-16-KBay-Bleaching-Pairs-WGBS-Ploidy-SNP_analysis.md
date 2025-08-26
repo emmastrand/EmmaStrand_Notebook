@@ -71,6 +71,8 @@ remaining extensions  : 4
 remaining time in days: 30
 ```
 
+Did this again 8-22 but accidentally did it twice so now only 2 remaining for 30 days. Hopefully that should be fine.
+
 ### Download genome 
 
 Navigate to the proper folder: `/work/pi_hputnam_uri_edu/estrand/BleachingPairs_WGBS`
@@ -282,7 +284,68 @@ bgzip ${out}/${filename}.bed
 tabix -p bed ${out}/${filename}.bed.gz
 ```
 
-To run that with 40 files: `sbatch --array=1-40 02-biscuit_SNP.sh`
+To run that with 40 files: `sbatch --array=1-40 02-biscuit_SNP.sh`. 
+
+Because I didn't use the `-t snp` flag on the vcf2bed command above, I decided to make a new script instead of running the above all over again.
+
+
+`nano 03-biscuit_vcf2bed.sh`:
+
+```
+#!/usr/bin/env bash
+#SBATCH --export=NONE
+#SBATCH --nodes=1 --ntasks-per-node=12
+#SBATCH --partition=uri-cpu
+#SBATCH --no-requeue
+#SBATCH --mem=50GB
+#SBATCH -t 120:00:00
+#SBATCH -o output/biscuit/"%x_output.%j"
+#SBATCH -e output/biscuit/"%x_error.%j"
+
+## Load Conda environment with biscuit downloaded 
+module load conda/latest
+conda activate /work/pi_hputnam_uri_edu/conda/envs/biscuit
+
+## Set paths
+biscuit_path="/work/pi_hputnam_uri_edu/conda/envs/biscuit/bin"
+out="/scratch3/workspace/emma_strand_uri_edu-shared/BleachingPairs_WGBS/biscuit"
+
+for i in ${out}/*.vcf.gz; do
+    filename=$(basename "$i" .vcf.gz)
+
+    # Filter for lines with PASS in column 7 and not header lines
+    zcat "$i" | awk 'BEGIN{OFS="\t"} /^#/ {print $0} !/^#/ && $7=="PASS"' | bgzip > "${out}/${filename}.PASS.vcf.gz"
+    tabix -p vcf "${out}/${filename}.PASS.vcf.gz"
+
+    # Now run biscuit vcf2bed on the filtered VCF
+    ${biscuit_path}/biscuit vcf2bed -t snp "${out}/${filename}.PASS.vcf.gz" > "${out}/${filename}.PASS.SNP.bed"
+    bgzip "${out}/${filename}.PASS.SNP.bed"
+    tabix -p bed "${out}/${filename}.PASS.SNP.bed.gz"
+done
+```
+
+`nano 04-CT_SNPs.sh`:
+
+```
+#!/usr/bin/env bash
+#SBATCH --export=NONE
+#SBATCH --nodes=1 --ntasks-per-node=1
+#SBATCH --partition=uri-cpu
+#SBATCH --no-requeue
+#SBATCH --mem=10GB
+#SBATCH -t 10:00:00
+#SBATCH -o output/"%x_output.%j"
+#SBATCH -e output/"%x_error.%j"
+
+# Set output directory
+out="/scratch3/workspace/emma_strand_uri_edu-shared/BleachingPairs_WGBS/biscuit"
+
+for file in ${out}/*.PASS.SNP.bed.gz; do
+    filename=$(basename "$file" .PASS.SNP.bed.gz)
+    zcat "$file" | awk '($4=="C" && $5=="T")' > "${out}/${filename}.CTonly_filtered_SNP.bed"
+done
+```
+
 
 #### Troubleshooting
 
@@ -361,9 +424,19 @@ Next Steps:
 - How to get CT snps from bed files?
 
 
+**8-13-2025**: I need to add `-t snp` to extract snp information into the bed file. Edited line: `${biscuit_path}/biscuit vcf2bed -t cg ${out}/${filename}.vcf.gz > ${out}/${filename}.bed`. 
+
+Then from bed file do but probably only one direction... re-visit to figure out which
+
+`awk '($5=="C" && $6=="T") || ($5=="T" && $6=="C")' yourfile.snp.bed > yourfile.CT_snp.bed`
+
+Get this for every sample, then do I filter those sites. Picked only the CT SNPs. 
+
+**8-14-2025** Ran script 03 to create SNP bed file and then wrote 04 to filter to CT SNPs. Script 3 worked and running script #4 to produce CT list. I can read that into R and filter out of the DNA methylation matrix. 
 
 
+**8-18-2025**: No error or output file but `head X file` produces an empty file. Because I was originally calling columsn 5 and 6 but it's supposed to be 4 and 5.
 
+Checking for what unique values in the 7th column: `awk '!/^#/ {print $7}' HI_45.deduplicated.sorted.bam.vcf | sort | uniq` after unzipping that file. That is taking too long.. Need to filter for high quality SNPs in between current script 3 and 4 since the vcf is the only file with this column...
 
-
-
+**8-25-2025 / 8-26-2025**: Re-running script #3 for filtering for high quality SNPs and then prepping script 4 re-run on the filtered vcfs. 
