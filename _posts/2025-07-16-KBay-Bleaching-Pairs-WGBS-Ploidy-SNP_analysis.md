@@ -291,6 +291,8 @@ Because I didn't use the `-t snp` flag on the vcf2bed command above, I decided t
 
 `nano 03-biscuit_vcf2bed.sh`:
 
+Prior to running, I installed `conda install -c bioconda bcftools`
+
 ```
 #!/usr/bin/env bash
 #SBATCH --export=NONE
@@ -308,44 +310,36 @@ conda activate /work/pi_hputnam_uri_edu/conda/envs/biscuit
 
 ## Set paths
 biscuit_path="/work/pi_hputnam_uri_edu/conda/envs/biscuit/bin"
-out="/scratch3/workspace/emma_strand_uri_edu-shared/BleachingPairs_WGBS/biscuit"
+input="/scratch3/workspace/emma_strand_uri_edu-shared/BleachingPairs_WGBS/biscuit"
+out="/scratch3/workspace/emma_strand_uri_edu-shared/BleachingPairs_WGBS/biscuit/filtered_vcfs"
 
-for i in ${out}/*.vcf.gz; do
+## Filter with vcftools 
+for i in ${input}/*.vcf.gz; do
     filename=$(basename "$i" .vcf.gz)
 
-    # Filter for lines with PASS in column 7 and not header lines
-    zcat "$i" | awk 'BEGIN{OFS="\t"} /^#/ {print $0} !/^#/ && $7=="PASS"' | bgzip > "${out}/${filename}.PASS.vcf.gz"
-    tabix -p vcf "${out}/${filename}.PASS.vcf.gz"
+    bcftools view -i 'FILTER="PASS" && QUAL>=30 && FORMAT/DP>=10 && FORMAT/DP<=150 && FORMAT/GQ>=20 && FORMAT/AF>=0.3' "$i" -Oz -o "${out}/${filename}.filtered.vcf.gz"
 
-    # Now run biscuit vcf2bed on the filtered VCF
-    ${biscuit_path}/biscuit vcf2bed -t snp "${out}/${filename}.PASS.vcf.gz" > "${out}/${filename}.PASS.SNP.bed"
-    bgzip "${out}/${filename}.PASS.SNP.bed"
-    tabix -p bed "${out}/${filename}.PASS.SNP.bed.gz"
+    tabix -p vcf "${out}/${filename}.filtered.vcf.gz"
 done
+
+## Merge to one large vcf file
+bcftools merge ${out}/*.filtered.vcf.gz -Oz -o ${out}/merged.filtered.vcf.gz
+tabix -p vcf ${out}/merged.filtered.vcf.gz
+
+# Filter merged VCF to SNPs present in all samples (no missing genotypes)
+bcftools view -g ^miss ${out}/merged.filtered.vcf.gz -Oz -o ${out}/merged.filtered.100pct.vcf.gz
+tabix -p vcf ${out}/merged.filtered.100pct.vcf.gz
+
+## Create SNP.bed file from merged.filtered.100pct.vcf.gz
+${biscuit_path}/biscuit vcf2bed -t snp ${out}/merged.filtered.100pct.vcf.gz > ${out}/merged.filtered.100pct.SNP.bed
+bgzip ${out}/merged.filtered.100pct.SNP.bed
+tabix -p bed ${out}/merged.filtered.100pct.SNP.bed.gz
+
+## Filter merged.filtered.100pct.SNP.bed.gz to only C>T SNPs
+zcat ${out}/merged.filtered.100pct.SNP.bed.gz | awk '($4=="C" && $5=="T")' > ${out}/merged.filtered.100pct.CTonly_SNP.bed
 ```
 
-`nano 04-CT_SNPs.sh`:
-
-```
-#!/usr/bin/env bash
-#SBATCH --export=NONE
-#SBATCH --nodes=1 --ntasks-per-node=1
-#SBATCH --partition=uri-cpu
-#SBATCH --no-requeue
-#SBATCH --mem=10GB
-#SBATCH -t 10:00:00
-#SBATCH -o output/"%x_output.%j"
-#SBATCH -e output/"%x_error.%j"
-
-# Set output directory
-out="/scratch3/workspace/emma_strand_uri_edu-shared/BleachingPairs_WGBS/biscuit"
-
-for file in ${out}/*.PASS.SNP.bed.gz; do
-    filename=$(basename "$file" .PASS.SNP.bed.gz)
-    zcat "$file" | awk '($4=="C" && $5=="T")' > "${out}/${filename}.CTonly_filtered_SNP.bed"
-done
-```
-
+To run: `sbatch 03-biscuit_vcf2bed.sh`
 
 #### Troubleshooting
 
@@ -440,3 +434,5 @@ Get this for every sample, then do I filter those sites. Picked only the CT SNPs
 Checking for what unique values in the 7th column: `awk '!/^#/ {print $7}' HI_45.deduplicated.sorted.bam.vcf | sort | uniq` after unzipping that file. That is taking too long.. Need to filter for high quality SNPs in between current script 3 and 4 since the vcf is the only file with this column...
 
 **8-25-2025 / 8-26-2025**: Re-running script #3 for filtering for high quality SNPs and then prepping script 4 re-run on the filtered vcfs. 
+
+I then added more stringent filtering and combined script 3 and 4. 

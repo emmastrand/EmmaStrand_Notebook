@@ -110,7 +110,6 @@ sample_list %>% write.csv("/work/pi_hputnam_uri_edu/estrand/HoloInt_WGBS/samples
                           row.names=FALSE, quote = FALSE)
 ```
 
- 
 ### Nextflow methyl-seq
 
 `01-HoloInt_WGBS_nexflow.sh`
@@ -163,6 +162,116 @@ nextflow run nf-core/methylseq -resume \
 ```
 
 Testing to see if .sh works, `salloc` to grab an interactive node and `bash 01-HoloInt_WGBS_nexflow.sh`
+
+### Moving all output to one folder
+
+I did this in batches so I need to move all the deduplicated files to one spot for biscuit. 
+
+`mkdir /scratch3/workspace/emma_strand_uri_edu-shared/HoloInt_all_deduplicated` 
+
+## Biscuit to identify SNPs 
+
+`nano 02-biscuit_SNP.sh`:
+
+```
+#!/usr/bin/env bash
+#SBATCH --export=NONE
+#SBATCH --nodes=1 --ntasks-per-node=12
+#SBATCH --partition=uri-cpu
+#SBATCH --no-requeue
+#SBATCH --mem=50GB
+#SBATCH -t 120:00:00
+#SBATCH -o output/biscuit/"%x_output.%j"
+#SBATCH -e output/biscuit/"%x_error.%j"
+
+## Load Conda environment with biscuit downloaded 
+module load conda/latest
+conda activate /work/pi_hputnam_uri_edu/conda/envs/biscuit
+
+## Set output directories to use scratch
+out="/scratch3/workspace/emma_strand_uri_edu-shared/HoloInt_all_deduplicated/biscuit"
+ref="/work/pi_hputnam_uri_edu/estrand/HoloInt_WGBS/Pocillopora_acuta_HIv2.assembly.fasta"
+
+## set paths
+deduplicated_bams="/scratch3/workspace/emma_strand_uri_edu-shared/HoloInt_all_deduplicated"
+biscuit_path="/work/pi_hputnam_uri_edu/conda/envs/biscuit/bin"
+
+## CREATE SAMPLE LIST FOR SLURM ARRAY
+### 1. Create list of all .gz files in raw data path
+ls -d ${deduplicated_bams}/*sorted.bam > ${deduplicated_bams}/samplelist
+
+### 2. Create a list of filenames based on that list created in step 1
+mapfile -t FILENAMES < ${deduplicated_bams}/samplelist
+
+### 3. Create variable i that will assign each row of FILENAMES to a task ID
+i=${FILENAMES[$SLURM_ARRAY_TASK_ID]}
+
+# Create a pileup VCF of DNA methylation and genetic information
+# Also compresses and indexes the VCF
+
+filename=${i##*/}
+
+${biscuit_path}/biscuit pileup -q 48 -o ${out}/${filename}.vcf ${ref} ${i}
+
+bgzip --threads 48 ${out}/${filename}.vcf
+tabix -p vcf ${out}/${filename}.vcf.gz
+```
+
+To run that with 60 files: `sbatch --array=0-59 02-biscuit_SNP.sh`. 
+
+
+`nano 03-biscuit_vcf2bed.sh`:
+
+Prior to running, I installed `conda install -c bioconda bcftools`
+
+```
+#!/usr/bin/env bash
+#SBATCH --export=NONE
+#SBATCH --nodes=1 --ntasks-per-node=12
+#SBATCH --partition=uri-cpu
+#SBATCH --no-requeue
+#SBATCH --mem=50GB
+#SBATCH -t 120:00:00
+#SBATCH -o output/biscuit/"%x_output.%j"
+#SBATCH -e output/biscuit/"%x_error.%j"
+
+## Load Conda environment with biscuit downloaded 
+module load conda/latest
+conda activate /work/pi_hputnam_uri_edu/conda/envs/biscuit
+
+## Set paths
+biscuit_path="/work/pi_hputnam_uri_edu/conda/envs/biscuit/bin"
+input="/scratch3/workspace/emma_strand_uri_edu-shared/HoloInt_all_deduplicated/biscuit"
+out="/scratch3/workspace/emma_strand_uri_edu-shared/HoloInt_all_deduplicated/biscuit/filtered_vcfs"
+
+## Filter with vcftools 
+for i in ${input}/*.vcf.gz; do
+    filename=$(basename "$i" .vcf.gz)
+
+    bcftools view -i 'FILTER="PASS" && QUAL>=30 && FORMAT/DP>=10 && FORMAT/DP<=150 && FORMAT/GQ>=20 && FORMAT/AF>=0.3' "$i" -Oz -o "${out}/${filename}.filtered.vcf.gz"
+
+    tabix -p vcf "${out}/${filename}.filtered.vcf.gz"
+done
+
+## Merge to one large vcf file
+bcftools merge ${out}/*.filtered.vcf.gz -Oz -o ${out}/merged.filtered.vcf.gz
+tabix -p vcf ${out}/merged.filtered.vcf.gz
+
+# Filter merged VCF to SNPs present in all samples (no missing genotypes)
+bcftools view -g ^miss ${out}/merged.filtered.vcf.gz -Oz -o ${out}/merged.filtered.100pct.vcf.gz
+tabix -p vcf ${out}/merged.filtered.100pct.vcf.gz
+
+## Create SNP.bed file from merged.filtered.100pct.vcf.gz
+${biscuit_path}/biscuit vcf2bed -t snp ${out}/merged.filtered.100pct.vcf.gz > ${out}/merged.filtered.100pct.SNP.bed
+bgzip ${out}/merged.filtered.100pct.SNP.bed
+tabix -p bed ${out}/merged.filtered.100pct.SNP.bed.gz
+
+## Filter merged.filtered.100pct.SNP.bed.gz to only C>T SNPs
+zcat ${out}/merged.filtered.100pct.SNP.bed.gz | awk '($4=="C" && $5=="T")' > ${out}/merged.filtered.100pct.CTonly_SNP.bed
+```
+
+To run: `sbatch 03-biscuit_vcf2bed.sh`
+
 
 #### Troubleshooting 
 
@@ -276,19 +385,10 @@ Caused by:
 
 **8-18-2025**: I ran all 60 again with more GB and it finished 59/60 before time ran out. I'll re-do the missing sample 1709.
 
-**8-25-2025**: changed GB To 400 and re-do 1709. 
-
-### Moving all output to one folder
-
-I did this in batches so I need to move all the deduplicated files to one spot for biscuit. 
-
-`mkdir /scratch3/workspace/emma_strand_uri_edu-shared/HoloInt_all_deduplicated` 
+**8-25-2025**: changed GB To 400 and re-do 1709. FINALLY FINISHED, it had ~20X the data so this was why.
 
 
 
-### Sorting deduplicated bam files 
-
-*The pipeline does already, yay.*
 
 
 
