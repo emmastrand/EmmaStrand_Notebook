@@ -73,6 +73,34 @@ remaining time in days: 30
 
 Did this again 8-22 but accidentally did it twice so now only 2 remaining for 30 days. Hopefully that should be fine.
 
+Did this again 9-21 but I need to transfer data soon. 
+
+```
+emma_strand_uri_edu@login1:/project/pi_hputnam_uri_edu$ ws_extend shared 30
+Info: could not read email from users config ~/.ws_user.conf.
+Info: reminder email will be sent to local user account
+Info: extending workspace.
+Info: changed mail address to emma_strand_uri_edu
+Info: changed reminder setting.
+/scratch3/workspace/emma_strand_uri_edu-shared
+remaining extensions  : 1
+remaining time in days: 30
+```
+
+**10-21-2025**: Extending this workspace. I should move this data to another folder for safe-keeping. 
+
+```
+emma_strand_uri_edu@login4:/scratch3/workspace/emma_strand_uri_edu-shared$ ws_extend shared 30
+Info: could not read email from users config ~/.ws_user.conf.
+Info: reminder email will be sent to local user account
+Info: extending workspace.
+Info: changed mail address to emma_strand_uri_edu
+Info: changed reminder setting.
+/scratch3/workspace/emma_strand_uri_edu-shared
+remaining extensions  : 0
+remaining time in days: 30
+```
+
 ### Download genome 
 
 Navigate to the proper folder: `/work/pi_hputnam_uri_edu/estrand/BleachingPairs_WGBS`
@@ -288,7 +316,6 @@ To run that with 40 files: `sbatch --array=1-40 02-biscuit_SNP.sh`.
 
 Because I didn't use the `-t snp` flag on the vcf2bed command above, I decided to make a new script instead of running the above all over again.
 
-
 `nano 03-biscuit_vcf2bed.sh`:
 
 Prior to running, I installed `conda install -c bioconda bcftools`
@@ -313,11 +340,11 @@ biscuit_path="/work/pi_hputnam_uri_edu/conda/envs/biscuit/bin"
 input="/scratch3/workspace/emma_strand_uri_edu-shared/BleachingPairs_WGBS/biscuit"
 out="/scratch3/workspace/emma_strand_uri_edu-shared/BleachingPairs_WGBS/biscuit/filtered_vcfs"
 
-## Filter with vcftools 
+## Filter with bcftools 
 for i in ${input}/*.vcf.gz; do
     filename=$(basename "$i" .vcf.gz)
 
-    bcftools view -i 'FILTER="PASS" && QUAL>=30 && FORMAT/DP>=10 && FORMAT/DP<=150 && FORMAT/GQ>=20 && FORMAT/AF>=0.3' "$i" -Oz -o "${out}/${filename}.filtered.vcf.gz"
+    bcftools view -i 'FILTER="PASS" && QUAL>=15 && FORMAT/DP>=3 && FORMAT/GQ>=15' "$i" -Oz -o "${out}/${filename}.filtered.vcf.gz"
 
     tabix -p vcf "${out}/${filename}.filtered.vcf.gz"
 done
@@ -328,15 +355,22 @@ tabix -p vcf ${out}/merged.filtered.vcf.gz
 
 # Filter merged VCF to SNPs present in all samples (no missing genotypes)
 bcftools view -g ^miss ${out}/merged.filtered.vcf.gz -Oz -o ${out}/merged.filtered.100pct.vcf.gz
+
+bcftools view -i 'N_PASS(GT!="mis")>=39' ${out}/merged.filtered.vcf.gz -Oz -o ${out}/merged.filtered.39.vcf.gz
+bcftools view -i 'N_PASS(GT!="mis")>=36' ${out}/merged.filtered.vcf.gz -Oz -o ${out}/merged.filtered.36.vcf.gz
+bcftools view -i 'N_PASS(GT!="mis")>=28' ${out}/merged.filtered.vcf.gz -Oz -o ${out}/merged.filtered.28.vcf.gz
+bcftools view -i 'N_PASS(GT!="mis")>=20' ${out}/merged.filtered.vcf.gz -Oz -o ${out}/merged.filtered.20.vcf.gz
+
 tabix -p vcf ${out}/merged.filtered.100pct.vcf.gz
 
-## Create SNP.bed file from merged.filtered.100pct.vcf.gz
-${biscuit_path}/biscuit vcf2bed -t snp ${out}/merged.filtered.100pct.vcf.gz > ${out}/merged.filtered.100pct.SNP.bed
-bgzip ${out}/merged.filtered.100pct.SNP.bed
-tabix -p bed ${out}/merged.filtered.100pct.SNP.bed.gz
+## Create SNP.bed file from merged.filtered.36.vcf.gz
+${biscuit_path}/biscuit vcf2bed -t snp ${out}/merged.filtered.36.vcf.gz > ${out}/merged.filtered.36.SNP.bed
 
-## Filter merged.filtered.100pct.SNP.bed.gz to only C>T SNPs
-zcat ${out}/merged.filtered.100pct.SNP.bed.gz | awk '($4=="C" && $5=="T")' > ${out}/merged.filtered.100pct.CTonly_SNP.bed
+bgzip ${out}/merged.filtered.100pct.SNP.bed
+tabix -p bed ${out}/merged.filtered.36.SNP.bed.gz
+
+## Filter merged.filtered.100pct.SNP.bed.gz to only C>T SNPs (settled on present in 90%)
+zcat ${out}/merged.filtered.36.SNP.bed | awk '($4=="C" && $5=="T")' > ${out}/merged.filtered.36.CTonly_SNP.bed
 ```
 
 To run: `sbatch 03-biscuit_vcf2bed.sh`
@@ -436,3 +470,67 @@ Checking for what unique values in the 7th column: `awk '!/^#/ {print $7}' HI_45
 **8-25-2025 / 8-26-2025**: Re-running script #3 for filtering for high quality SNPs and then prepping script 4 re-run on the filtered vcfs. 
 
 I then added more stringent filtering and combined script 3 and 4. 
+
+**8-27-2025**: I added the filtering but this resulted in 0 SNPs and empty file... Testing a couple filters on one vcf file. Maybe our quality is too poor?
+
+```
+module load conda/latest
+conda activate /work/pi_hputnam_uri_edu/conda/envs/biscuit
+
+bcftools view -i 'FILTER="PASS" && QUAL>=30 && TYPE="snp"' HI_16.deduplicated.sorted.bam.vcf -Oz -o HI_16.deduplicated.sorted.bam.filtered.PASS30snp.vcf.gz
+```
+
+This worked! Let's try the full thing. If this works then I was missing the 1 on AF1. Yes it did! 
+
+```
+bcftools view -i 'FILTER="PASS" && QUAL>=30 && FORMAT/DP>=10 && FORMAT/DP<=150 && FORMAT/GQ>=20 && FORMAT/AF1>=0.3' HI_16.deduplicated.sorted.bam.vcf -Oz -o HI_16.deduplicated.sorted.bam.filtered.PASS30snp.vcf.gz
+```
+
+**9-2-2025**: There were hardly any SNPs so I changed the DP to 5 and will see what the output looks like. This still has no SNPs... Chagning to GT to 10 not 20 and see what happens.
+
+**9-3-2025**: Count number of SNPs in the merged file: `grep -v "^#" merged.filtered.vcf | wc -l` = 1,488,240 and in the 100% file: `grep -v "^#" merged.filtered.100pct.vcf | wc -l`
+
+```
+grep -v "^#" merged.filtered.vcf | wc -l ## 1,488,240
+grep -v "^#" merged.filtered.39.vcf | wc -l ## 7
+grep -v "^#" merged.filtered.36.vcf | wc -l ## 19
+grep -v "^#" merged.filtered.28.vcf | wc -l ## 132
+grep -v "^#" merged.filtered.20.vcf | wc -l ## 1,202
+```
+
+I must be not understanding the filtering to SNPs in X samples correctly.
+
+**9-3-2025**: My filtering is likely way too strict. `&& FORMAT/AF1>=0.3` and trying that. This is better! Still not a lot. 
+
+```
+grep -v "^#" merged.filtered.39.vcf | wc -l ## 1,187 
+grep -v "^#" merged.filtered.28.vcf | wc -l ## 49,192 
+grep -v "^#" merged.filtered.20.vcf | wc -l ## 423,795 
+```
+
+**10-15-2025**: I'm lowering the quality thresholds and the max depth filter to see if this retains more. I'll probably land on a middle ground of quality and data. I could probably go back up to 20/20 for the quality thresholds or at least 15. 
+
+`unzip.sh`
+
+```
+#!/usr/bin/env bash
+#SBATCH --export=NONE
+#SBATCH --nodes=1 --ntasks-per-node=12
+#SBATCH --partition=uri-cpu
+#SBATCH --no-requeue
+#SBATCH --mem=50GB
+#SBATCH -t 120:00:00
+
+cd /scratch3/workspace/emma_strand_uri_edu-shared/BleachingPairs_WGBS/biscuit/filtered_vcfs
+
+gunzip *merged.filtered.*.vcf.gz 
+```
+
+```
+grep -v "^#" merged.filtered.vcf | wc -l ##  ## accidentally deleted this one. 
+
+grep -v "^#" merged.filtered.39.vcf | wc -l ## 378,220
+grep -v "^#" merged.filtered.36.vcf | wc -l ## 3,187,236
+grep -v "^#" merged.filtered.28.vcf | wc -l ## 22,341,447
+grep -v "^#" merged.filtered.20.vcf | wc -l ## too big 
+```

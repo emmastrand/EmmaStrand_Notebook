@@ -248,29 +248,94 @@ out="/scratch3/workspace/emma_strand_uri_edu-shared/HoloInt_all_deduplicated/bis
 for i in ${input}/*.vcf.gz; do
     filename=$(basename "$i" .vcf.gz)
 
-    bcftools view -i 'FILTER="PASS" && QUAL>=30 && FORMAT/DP>=10 && FORMAT/DP<=150 && FORMAT/GQ>=20 && FORMAT/AF>=0.3' "$i" -Oz -o "${out}/${filename}.filtered.vcf.gz"
+    bcftools view -i 'FILTER="PASS" && QUAL>=15 && FORMAT/DP>=3 && FORMAT/GQ>=10' "$i" -Oz -o "${out}/${filename}.filtered.vcf.gz"
 
     tabix -p vcf "${out}/${filename}.filtered.vcf.gz"
 done
 
 ## Merge to one large vcf file
 bcftools merge ${out}/*.filtered.vcf.gz -Oz -o ${out}/merged.filtered.vcf.gz
-tabix -p vcf ${out}/merged.filtered.vcf.gz
-
-# Filter merged VCF to SNPs present in all samples (no missing genotypes)
-bcftools view -g ^miss ${out}/merged.filtered.vcf.gz -Oz -o ${out}/merged.filtered.100pct.vcf.gz
-tabix -p vcf ${out}/merged.filtered.100pct.vcf.gz
-
-## Create SNP.bed file from merged.filtered.100pct.vcf.gz
-${biscuit_path}/biscuit vcf2bed -t snp ${out}/merged.filtered.100pct.vcf.gz > ${out}/merged.filtered.100pct.SNP.bed
-bgzip ${out}/merged.filtered.100pct.SNP.bed
-tabix -p bed ${out}/merged.filtered.100pct.SNP.bed.gz
-
-## Filter merged.filtered.100pct.SNP.bed.gz to only C>T SNPs
-zcat ${out}/merged.filtered.100pct.SNP.bed.gz | awk '($4=="C" && $5=="T")' > ${out}/merged.filtered.100pct.CTonly_SNP.bed
+#tabix -p vcf ${out}/merged.filtered.vcf.gz
 ```
 
 To run: `sbatch 03-biscuit_vcf2bed.sh`
+
+Headers within the merged file are: HI_1051.deduplicated.sorted 
+
+I need a metadata file that matches these column headers to the ploidy group they are in.
+Create triploid and diploid files:
+
+```
+awk -F, '{gsub(/\r/,""); if(tolower($2)=="triploid") print $1}' /work/pi_hputnam_uri_edu/estrand/HoloInt_WGBS/vcf_metadata.csv > triploid_samples.txt
+awk -F, '{gsub(/\r/,""); if(tolower($2)=="diploid") print $1}' /work/pi_hputnam_uri_edu/estrand/HoloInt_WGBS/vcf_metadata.csv > diploid_samples.txt
+```
+
+Install python and pandas for the python script included:
+
+```
+module load conda/latest
+conda activate /work/pi_hputnam_uri_edu/conda/envs/biscuit
+conda install -c conda-forge python=3.9 pandas -y
+```
+
+`nano 04-ploidy_SNPs.sh`
+
+```
+#!/usr/bin/env bash
+#SBATCH --export=NONE
+#SBATCH --nodes=1 --ntasks-per-node=12
+#SBATCH --partition=uri-cpu
+#SBATCH --no-requeue
+#SBATCH --mem=50GB
+#SBATCH -t 120:00:00
+#SBATCH -o output/SNP_ploidy/"%x_output.%j"
+#SBATCH -e output/SNP_ploidy/"%x_error.%j"
+
+## Load Conda environment with biscuit downloaded 
+module load conda/latest
+conda activate /work/pi_hputnam_uri_edu/conda/envs/biscuit
+
+## Set paths
+biscuit_path="/work/pi_hputnam_uri_edu/conda/envs/biscuit/bin"
+input="/scratch3/workspace/emma_strand_uri_edu-shared/HoloInt_all_deduplicated/biscuit"
+out="/scratch3/workspace/emma_strand_uri_edu-shared/HoloInt_all_deduplicated/biscuit/filtered_vcfs"
+
+## 1. Focus on CT/GA SNPs only
+bcftools view -i '((REF="C" & ALT="T") | (REF="G" & ALT="A"))' ${out}/merged.filtered.vcf.gz -Oz -o ${out}/ct_snps.vcf.gz
+bcftools index ${out}/ct_snps.vcf.gz
+
+## 2. Split merged SNPs by group
+bcftools view -S ${out}/triploid_samples.txt ${out}/ct_snps.vcf.gz -Oz -o ${out}/triploid.vcf.gz
+bcftools view -S ${out}/diploid_samples.txt ${out}/ct_snps.vcf.gz -Oz -o ${out}/diploid.vcf.gz
+
+## 3. Generate genotype tables
+bcftools query -f '%CHROM\t%POS[\t%GT]\n' ${out}/triploid.vcf.gz > ${out}/triploid_genotypes.tsv
+bcftools query -f '%CHROM\t%POS[\t%GT]\n' ${out}/diploid.vcf.gz > ${out}/diploid_genotypes.tsv
+
+# 4. Python analysis: find SNPs ≥90% triploids and ≤10% diploids
+python <<'EOF'
+import pandas as pd
+import os
+
+out = "/scratch3/workspace/emma_strand_uri_edu-shared/HoloInt_all_deduplicated/biscuit/filtered_vcfs"
+trip = pd.read_csv(f"{out}/triploid_genotypes.tsv", sep="\t", header=None)
+dip = pd.read_csv(f"{out}/diploid_genotypes.tsv", sep="\t", header=None)
+
+def is_variant(gt):
+    return gt not in ["0/0", "./."]
+
+trip["trip_count"] = trip.iloc[:, 2:].apply(lambda r: sum(is_variant(x) for x in r), axis=1)
+dip["dip_count"] = dip.iloc[:, 2:].apply(lambda r: sum(is_variant(x) for x in r), axis=1)
+
+trip_frac = trip["trip_count"] / (trip.shape[1] - 2)
+dip_frac = dip["dip_count"] / (dip.shape[1] - 2)
+
+specific = trip[(trip_frac >= 0.9) & (dip_frac <= 0.1)]
+specific[[0, 1]].to_csv(f"{out}/triploid_specific_ct_snps.txt", sep="\t", index=False, header=False)
+EOF
+```
+
+To run: `sbatch 04-ploidy_SNPs.sh`
 
 
 #### Troubleshooting 
@@ -387,8 +452,63 @@ Caused by:
 
 **8-25-2025**: changed GB To 400 and re-do 1709. FINALLY FINISHED, it had ~20X the data so this was why.
 
+**9-2-2025**: There were hardly any SNPs so I changed the DP to 5 and will see what the output looks like.
 
+**10-15-2025**: Replacing high thresholds with lower ones: 
 
+```
+## old
+bcftools view -i 'FILTER="PASS" && QUAL>=30 && FORMAT/DP>=5 && FORMAT/DP<=150 && FORMAT/GQ>=20 && FORMAT/AF1>=0.3' "$i" -Oz -o "${out}/${filename}.filtered.vcf.gz"
 
+## new 
+bcftools view -i 'FILTER="PASS" && QUAL>=10 && FORMAT/DP>=3 && FORMAT/GQ>=10' "$i" -Oz -o "${out}/${filename}.filtered.vcf.gz"
+```
 
+**10-15-2025**: I'm lowering the quality thresholds and the max depth filter to see if this retains more. 59 total, went up to 15 quality threshold for bleaching pairs project. 
 
+`unzip.sh`
+
+```
+#!/usr/bin/env bash
+#SBATCH --export=NONE
+#SBATCH --nodes=1 --ntasks-per-node=12
+#SBATCH --partition=uri-cpu
+#SBATCH --no-requeue
+#SBATCH --mem=10GB
+#SBATCH -t 120:00:00
+
+cd /scratch3/workspace/emma_strand_uri_edu-shared/HoloInt_all_deduplicated/biscuit/filtered_vcfs
+
+gunzip *merged.filtered.*.vcf.gz 
+```
+
+```
+grep -v "^#" merged.filtered.53.vcf | wc -l ## 10,287,406
+grep -v "^#" merged.filtered.47.vcf | wc -l ##  
+grep -v "^#" merged.filtered.41.vcf | wc -l ##  
+grep -v "^#" merged.filtered.35.vcf | wc -l ##  
+```
+
+Removing this code before filtering by trip and dip 
+
+```
+
+# Filter merged VCF to SNPs present in all samples (no missing genotypes)
+bcftools view -g ^miss ${out}/merged.filtered.vcf.gz -Oz -o ${out}/merged.filtered.100pct.vcf.gz
+
+bcftools view -i 'N_PASS(GT!="mis")>=53' ${out}/merged.filtered.vcf.gz -Oz -o ${out}/merged.filtered.53.vcf.gz
+
+bcftools view -i 'N_PASS(GT!="mis")>=47' ${out}/merged.filtered.vcf.gz -Oz -o ${out}/merged.filtered.47.vcf.gz
+
+bcftools view -i 'N_PASS(GT!="mis")>=41' ${out}/merged.filtered.vcf.gz -Oz -o ${out}/merged.filtered.41.vcf.gz
+
+bcftools view -i 'N_PASS(GT!="mis")>=35' ${out}/merged.filtered.vcf.gz -Oz -o ${out}/merged.filtered.35.vcf.gz
+
+## Create SNP.bed file from merged.filtered.100pct.vcf.gz
+${biscuit_path}/biscuit vcf2bed -t snp ${out}/merged.filtered.100pct.vcf.gz > ${out}/merged.filtered.100pct.SNP.bed
+bgzip ${out}/merged.filtered.100pct.SNP.bed
+tabix -p bed ${out}/merged.filtered.100pct.SNP.bed.gz
+
+## Filter merged.filtered.100pct.SNP.bed.gz to only C>T SNPs
+zcat ${out}/merged.filtered.100pct.SNP.bed.gz | awk '($4=="C" && $5=="T")' > ${out}/merged.filtered.100pct.CTonly_SNP.bed
+```
