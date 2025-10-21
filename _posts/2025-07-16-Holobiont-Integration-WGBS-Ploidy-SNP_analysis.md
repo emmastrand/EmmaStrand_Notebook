@@ -219,6 +219,7 @@ tabix -p vcf ${out}/${filename}.vcf.gz
 
 To run that with 60 files: `sbatch --array=0-59 02-biscuit_SNP.sh`. 
 
+## SNP filtering 
 
 `nano 03-biscuit_vcf2bed.sh`:
 
@@ -277,6 +278,8 @@ module load conda/latest
 conda activate /work/pi_hputnam_uri_edu/conda/envs/biscuit
 conda install -c conda-forge python=3.9 pandas -y
 ```
+
+## Triploid specific SNPs 
 
 `nano 04-ploidy_SNPs.sh`
 
