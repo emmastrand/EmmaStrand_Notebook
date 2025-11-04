@@ -348,32 +348,58 @@ for i in ${input}/*.vcf.gz; do
 
     tabix -p vcf "${out}/${filename}.filtered.vcf.gz"
 done
+```
+
+To run: `sbatch 03-biscuit_vcf2bed.sh`
+
+## Filtering to CT SNPs only 
+
+`nano 04-CT_SNP.sh` 
+
+```
+#!/usr/bin/env bash
+#SBATCH --export=NONE
+#SBATCH --nodes=1 --ntasks-per-node=12
+#SBATCH --partition=uri-cpu
+#SBATCH --no-requeue
+#SBATCH --mem=50GB
+#SBATCH -t 120:00:00
+#SBATCH -o output/biscuit/"%x_output.%j"
+#SBATCH -e output/biscuit/"%x_error.%j"
+
+## Load Conda environment with biscuit downloaded 
+module load conda/latest
+conda activate /work/pi_hputnam_uri_edu/conda/envs/biscuit
+
+## Set paths
+biscuit_path="/work/pi_hputnam_uri_edu/conda/envs/biscuit/bin"
+input="/scratch3/workspace/emma_strand_uri_edu-shared/BleachingPairs_WGBS/biscuit"
+out="/scratch3/workspace/emma_strand_uri_edu-shared/BleachingPairs_WGBS/biscuit/filtered_vcfs"
 
 ## Merge to one large vcf file
 bcftools merge ${out}/*.filtered.vcf.gz -Oz -o ${out}/merged.filtered.vcf.gz
 tabix -p vcf ${out}/merged.filtered.vcf.gz
 
-# Filter merged VCF to SNPs present in all samples (no missing genotypes)
-bcftools view -g ^miss ${out}/merged.filtered.vcf.gz -Oz -o ${out}/merged.filtered.100pct.vcf.gz
+## Focus on CT/GA SNPs only
+bcftools view -i '((REF="C" & ALT="T") | (REF="G" & ALT="A"))' ${out}/merged.filtered.vcf.gz -Oz -o ${out}/ct_snps.vcf.gz
+bcftools index ${out}/ct_snps.vcf.gz
 
-bcftools view -i 'N_PASS(GT!="mis")>=39' ${out}/merged.filtered.vcf.gz -Oz -o ${out}/merged.filtered.39.vcf.gz
-bcftools view -i 'N_PASS(GT!="mis")>=36' ${out}/merged.filtered.vcf.gz -Oz -o ${out}/merged.filtered.36.vcf.gz
-bcftools view -i 'N_PASS(GT!="mis")>=28' ${out}/merged.filtered.vcf.gz -Oz -o ${out}/merged.filtered.28.vcf.gz
-bcftools view -i 'N_PASS(GT!="mis")>=20' ${out}/merged.filtered.vcf.gz -Oz -o ${out}/merged.filtered.20.vcf.gz
-
-tabix -p vcf ${out}/merged.filtered.100pct.vcf.gz
-
-## Create SNP.bed file from merged.filtered.36.vcf.gz
-${biscuit_path}/biscuit vcf2bed -t snp ${out}/merged.filtered.36.vcf.gz > ${out}/merged.filtered.36.SNP.bed
-
-bgzip ${out}/merged.filtered.100pct.SNP.bed
-tabix -p bed ${out}/merged.filtered.36.SNP.bed.gz
-
-## Filter merged.filtered.100pct.SNP.bed.gz to only C>T SNPs (settled on present in 90%)
-zcat ${out}/merged.filtered.36.SNP.bed | awk '($4=="C" && $5=="T")' > ${out}/merged.filtered.36.CTonly_SNP.bed
+## CT SNPs in at least 10% of samples
+bcftools view -i 'N_PASS(GT!="mis")>=4' ${out}/ct_snps.vcf.gz -Oz -o ${out}/ct_snps.10p.vcf.gz
 ```
 
-To run: `sbatch 03-biscuit_vcf2bed.sh`
+To create list of locations:
+
+```
+srun --pty bash 
+module load conda/latest
+conda activate /work/pi_hputnam_uri_edu/conda/envs/biscuit
+
+out="/scratch3/workspace/emma_strand_uri_edu-shared/BleachingPairs_WGBS/biscuit/filtered_vcfs"
+bcftools query -f '%CHROM\t%POS\n' ${out}/ct_snps.10p.vcf > ${out}/ct_snps.10p.locations.txt
+bcftools query -f '%CHROM\t%POS\n' ${out}/ct_snps.vcf > ${out}/ct_snps.locations.txt
+```
+
 
 #### Troubleshooting
 
@@ -534,3 +560,38 @@ grep -v "^#" merged.filtered.36.vcf | wc -l ## 3,187,236
 grep -v "^#" merged.filtered.28.vcf | wc -l ## 22,341,447
 grep -v "^#" merged.filtered.20.vcf | wc -l ## too big 
 ```
+
+**10-21-2025**: Rethinking this filtering and think it needs to be lower... A SNP isn't likely to come up in all of the samples. 10%? 
+
+```
+
+# Filter merged VCF to SNPs present in all samples (no missing genotypes)
+bcftools view -g ^miss ${out}/merged.filtered.vcf.gz -Oz -o ${out}/merged.filtered.100pct.vcf.gz
+
+bcftools view -i 'N_PASS(GT!="mis")>=39' ${out}/merged.filtered.vcf.gz -Oz -o ${out}/merged.filtered.39.vcf.gz
+bcftools view -i 'N_PASS(GT!="mis")>=36' ${out}/merged.filtered.vcf.gz -Oz -o ${out}/merged.filtered.36.vcf.gz
+bcftools view -i 'N_PASS(GT!="mis")>=28' ${out}/merged.filtered.vcf.gz -Oz -o ${out}/merged.filtered.28.vcf.gz
+bcftools view -i 'N_PASS(GT!="mis")>=20' ${out}/merged.filtered.vcf.gz -Oz -o ${out}/merged.filtered.20.vcf.gz
+
+tabix -p vcf ${out}/merged.filtered.100pct.vcf.gz
+
+## Create SNP.bed file from merged.filtered.36.vcf.gz
+${biscuit_path}/biscuit vcf2bed -t snp ${out}/merged.filtered.36.vcf.gz > ${out}/merged.filtered.36.SNP.bed
+
+bgzip ${out}/merged.filtered.100pct.SNP.bed
+tabix -p bed ${out}/merged.filtered.36.SNP.bed.gz
+
+## Filter merged.filtered.100pct.SNP.bed.gz to only C>T SNPs (settled on present in 90%)
+zcat ${out}/merged.filtered.36.SNP.bed | awk '($4=="C" && $5=="T")' > ${out}/merged.filtered.36.CTonly_SNP.bed
+```
+
+**10-22-2025**: Ran script 4 now that script 3 with 15 values mininums run. I think a low % is better for methylation here. 
+
+```
+gunzip ct_snps.*gz
+
+grep -v "^#" ct_snps.10p.vcf | wc -l  ## 703,807 SNPs
+grep -v "^#" ct_snps.vcf | wc -l ## 804,220 
+```
+
+Create list of the locations and now I can use that to filter my methylation matrix!! 

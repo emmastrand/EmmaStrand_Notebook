@@ -249,7 +249,7 @@ out="/scratch3/workspace/emma_strand_uri_edu-shared/HoloInt_all_deduplicated/bis
 for i in ${input}/*.vcf.gz; do
     filename=$(basename "$i" .vcf.gz)
 
-    bcftools view -i 'FILTER="PASS" && QUAL>=15 && FORMAT/DP>=3 && FORMAT/GQ>=10' "$i" -Oz -o "${out}/${filename}.filtered.vcf.gz"
+    bcftools view -i 'FILTER="PASS" && QUAL>=20 && FORMAT/DP>=3 && FORMAT/GQ>=20' "$i" -Oz -o "${out}/${filename}.filtered.vcf.gz"
 
     tabix -p vcf "${out}/${filename}.filtered.vcf.gz"
 done
@@ -279,7 +279,7 @@ conda activate /work/pi_hputnam_uri_edu/conda/envs/biscuit
 conda install -c conda-forge python=3.9 pandas -y
 ```
 
-## Triploid specific SNPs 
+## Filtering SNPs
 
 `nano 04-ploidy_SNPs.sh`
 
@@ -315,10 +315,9 @@ bcftools view -S ${out}/diploid_samples.txt ${out}/ct_snps.vcf.gz -Oz -o ${out}/
 bcftools query -f '%CHROM\t%POS[\t%GT]\n' ${out}/triploid.vcf.gz > ${out}/triploid_genotypes.tsv
 bcftools query -f '%CHROM\t%POS[\t%GT]\n' ${out}/diploid.vcf.gz > ${out}/diploid_genotypes.tsv
 
-# 4. Python analysis: find SNPs ≥90% triploids and ≤10% diploids
+# 4. Python analysis: find SNPs ≥90% triploids and ≤10% diploids, vice versa, and ≥70% overall
 python <<'EOF'
 import pandas as pd
-import os
 
 out = "/scratch3/workspace/emma_strand_uri_edu-shared/HoloInt_all_deduplicated/biscuit/filtered_vcfs"
 trip = pd.read_csv(f"{out}/triploid_genotypes.tsv", sep="\t", header=None)
@@ -333,9 +332,28 @@ dip["dip_count"] = dip.iloc[:, 2:].apply(lambda r: sum(is_variant(x) for x in r)
 trip_frac = trip["trip_count"] / (trip.shape[1] - 2)
 dip_frac = dip["dip_count"] / (dip.shape[1] - 2)
 
-specific = trip[(trip_frac >= 0.9) & (dip_frac <= 0.1)]
-specific[[0, 1]].to_csv(f"{out}/triploid_specific_ct_snps.txt", sep="\t", index=False, header=False)
+# Triploid-specific: ≥80% triploid, ≤20% diploid
+trip_specific = trip[(trip_frac >= 0.8) & (dip_frac <= 0.2)]
+trip_specific[[0, 1]].to_csv(f"{out}/triploid_specific_ct_snps.txt", sep="\t", index=False, header=False)
+
+# Diploid-specific: ≥80% diploid, ≤20% triploid
+dip_specific = trip[(dip_frac >= 0.8) & (trip_frac <= 0.2)]
+dip_specific[[0, 1]].to_csv(f"{out}/diploid_specific_ct_snps.txt", sep="\t", index=False, header=False)
+
+# Combine all samples and find SNPs in ≥10% of total
+merged = pd.concat([trip, dip], axis=1)
+merged = merged.loc[:, ~merged.columns.duplicated()]  # remove duplicate CHROM/POS
+all_gt = pd.concat([trip.iloc[:, 2:-2], dip.iloc[:, 2:-2]], axis=1)
+merged["all_count"] = all_gt.apply(lambda r: sum(is_variant(x) for x in r), axis=1)
+all_frac = merged["all_count"] / all_gt.shape[1]
+
+common = merged[all_frac >= 0.1]
+common[[0, 1]].to_csv(f"{out}/common_10pct_ct_snps.txt", sep="\t", index=False, header=False)
 EOF
+
+## creating location file 
+bcftools query -f '%CHROM\t%POS\n' ${out}/ct_snps.10p.vcf > ${out}/ct_snps.10p.locations.txt
+bcftools query -f '%CHROM\t%POS\n' ${out}/ct_snps.vcf > ${out}/ct_snps.locations.txt
 ```
 
 To run: `sbatch 04-ploidy_SNPs.sh`
@@ -514,4 +532,84 @@ tabix -p bed ${out}/merged.filtered.100pct.SNP.bed.gz
 
 ## Filter merged.filtered.100pct.SNP.bed.gz to only C>T SNPs
 zcat ${out}/merged.filtered.100pct.SNP.bed.gz | awk '($4=="C" && $5=="T")' > ${out}/merged.filtered.100pct.CTonly_SNP.bed
+```
+
+**10-21-2025**: Viewing ct SNPs prior to triploid or diploid specific filtering. Added diploid only and a filter to get SNPs in at least 10% of samples (n=5 minimum individuals to be called a SNP). 
+
+`gunzip ct_snps.vcf`
+`grep -v "^#" ct_snps.vcf | wc -l` 4,556,893 SNPs 
+
+**10-22-2025**: I still had the file name as 70%, change to 10%: `common_70pct_ct_snps` to `common_10pct_ct_snps`. 682,915 CT SNPs to use. Now that I'll use the 10% filter, then I'll up the quality from script #3. Up'd those outputs to 20 minimum value to see how many SNPs come out (Were 10 before). 
+
+```
+emma_strand_uri_edu@login1:/scratch3/workspace/emma_strand_uri_edu-shared/HoloInt_all_deduplicated/biscuit/filtered_vcfs$ wc common_10pct_ct_snps.txt 
+  682915  1365830 29873475 common_10pct_ct_snps.txt
+```
+
+With min 20 quality:  
+
+`gunzip ct_snps.vcf`
+`grep -v "^#" ct_snps.vcf | wc -l` 4,556,893 SNPs 
+
+Re-do locations:
+
+```
+srun --pty bash 
+module load conda/latest
+conda activate /work/pi_hputnam_uri_edu/conda/envs/biscuit
+out="/scratch3/workspace/emma_strand_uri_edu-shared/HoloInt_all_deduplicated/biscuit/filtered_vcfs"
+
+bcftools query -f '%CHROM\t%POS\n' ${out}/ct_snps.vcf > ${out}/ct_snps.locations.txt
+
+## creating 10% file 
+bcftools view -i 'N_PASS(GT!="mis")>=6' ${out}/ct_snps.vcf -Oz -o ${out}/ct_snps.10p.vcf
+
+bcftools query -f '%CHROM\t%POS\n' ${out}/ct_snps.10p.vcf > ${out}/ct_snps.10p.locations.txt
+
+wc ct_snps.10p.locations.txt ## 4,445,809
+wc ct_snps.locations.txt ## 4,556,893
+```
+
+Create list of the locations and now I can use that to filter my methylation matrix!! 
+
+
+Creating a tar file from .vcf.gz 
+
+`nano tar.sh` 
+
+```
+#!/usr/bin/env bash
+#SBATCH --export=NONE
+#SBATCH --nodes=1 --ntasks-per-node=48
+#SBATCH --partition=uri-cpu
+#SBATCH --no-requeue
+#SBATCH --mem=50GB
+#SBATCH -t 120:00:00
+
+# Set the input and output directories
+input_vcfs="/scratch3/workspace/emma_strand_uri_edu-shared/HoloInt_all_deduplicated/biscuit/filtered_vcfs"
+input_bam="/scratch3/workspace/emma_strand_uri_edu-shared/HoloInt_all_deduplicated"
+output_dir="/work/pi_hputnam_uri_edu/estrand/HoloInt_WGBS/"
+
+# Create tar archive of all .vcf.gz files
+cd "${input_vcfs}"
+tar -cvf "${output_dir}/all_nonfiltered_vcfs.tar" *.vcf.gz
+
+# Verify the contents of the tar file
+tar -tvf "${output_dir}/all_nonfiltered_vcfs.tar"
+
+# Print completion message
+echo "Tar archive created successfully at: ${output_dir}/all_nonfiltered_vcfs.tar"
+
+#### BAM files 
+# Create tar archive of all .vcf.gz files
+cd "${input_bam}"
+tar -cvf "${output_dir}/all_dedup_sorted_bam.tar" *.bam
+
+# Verify the contents of the tar file
+tar -tvf "${output_dir}/all_dedup_sorted_bam.tar"
+
+# Print completion message
+echo "Tar archive created successfully at: ${output_dir}/all_dedup_sorted_bam.tar"
+
 ```
