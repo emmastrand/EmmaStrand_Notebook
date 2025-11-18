@@ -595,3 +595,46 @@ grep -v "^#" ct_snps.vcf | wc -l ## 804,220
 ```
 
 Create list of the locations and now I can use that to filter my methylation matrix!! 
+
+### moving data to /projects 
+
+Creating a tar file from .vcf.gz 
+
+`nano tar.sh` 
+
+```
+#!/usr/bin/env bash
+#SBATCH --export=NONE
+#SBATCH --nodes=1 --ntasks-per-node=48
+#SBATCH --partition=uri-cpu
+#SBATCH --no-requeue
+#SBATCH --mem=50GB
+#SBATCH -t 120:00:00
+
+# Set the input and output directories
+input_vcfs="/scratch3/workspace/emma_strand_uri_edu-shared/BleachingPairs_WGBS/biscuit/filtered_vcfs"
+input_bam="/scratch3/workspace/emma_strand_uri_edu-shared/BleachingPairs_WGBS/bismark/deduplicated"
+output_dir="/project/pi_hputnam_uri_edu/estrand"
+
+# Create tar archive of all .vcf.gz files
+cd "${input_vcfs}"
+tar -cvf "${output_dir}/KBay_all_nonfiltered_vcfs.tar" *.vcf.gz
+
+# Verify the contents of the tar file
+tar -tvf "${output_dir}/KBay_all_nonfiltered_vcfs.tar"
+
+# Print completion message
+echo "Tar archive created successfully at: ${output_dir}/KBay_all_nonfiltered_vcfs.tar"
+
+#### BAM files 
+# Create tar archive of all .vcf.gz files
+cd "${input_bam}"
+tar -cvf "${output_dir}/KBay_all_dedup_sorted_bam.tar" *.bam
+
+# Verify the contents of the tar file
+tar -tvf "${output_dir}/KBay_all_dedup_sorted_bam.tar"
+
+# Print completion message
+echo "Tar archive created successfully at: ${output_dir}/KBay_all_dedup_sorted_bam.tar"
+
+```
